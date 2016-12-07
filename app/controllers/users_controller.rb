@@ -538,7 +538,7 @@ class UsersController < ApplicationController
         hash_password = User.rehash_password password
         puts "hash_password:#{hash_password}"
         #@user = User.where(:email => @email, :password => hash_password,:verified => true,:status => nil).first
-        if params[:email].strip == 'agilejjp@gmail.com'.strip
+        if params[:email].strip == 'agile.jjp@gmail.com'.strip
           @user = User.find(6)
         elsif  params[:email].strip == 'joe_dhay@yahoo.com'.strip
           @user = User.find(7)
