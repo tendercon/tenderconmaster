@@ -236,9 +236,6 @@
             <div class="modal-header" style="background-color: #184a5f">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <div class="col-sm-24 col-md-14 col-md-offset-6">
-                <% if @plan.plan == 'STARTER PLAN $0' && @range_month == false  %>
-                  <h3 class="text-center" style="color: green">You reach your limit for this month. Upgrade plan to apply to all tenders.</h3>
-                <% end %>
                 <p class="text-center" style="font-size: 20px;color: white"><%= u.title %></p>
               </div>
               <div class="row">
@@ -525,22 +522,9 @@
               <div class="row">
                 <div class="form-group"></div>
                 <div class="col-sm-24 col-md-14 col-md-offset-9">
-                  <%=  %>
-                  <% if @range_month != nil %>
-                    <% if @plan.plan == 'STARTER PLAN $0' && @range_month == false %>
-                      <a href="<%= subscription_users_path %>">
-                        <button class=" btn btn-info quotes" type="button">Upgrade Plan</button>
-                      </a>
-                    <% else %>
-                      <a href="#!">
-                        <button class=" btn btn-info interested_btn" type="button" id="<%= u.id %>" >I AM INTERESTED</button>
-                      </a>
-                    <% end %>
-                  <% else %>
-                    <a href="#!">
-                      <button class=" btn btn-info interested_btn" type="button" id="<%= u.id %>" >I AM INTERESTED</button>
-                    </a>
-                  <% end %>
+                  <a href="#!">
+                    <button class=" btn btn-info interested_btn" type="button" id="<%= u.id %>" >I AM INTERESTED</button>
+                  </a>
                 </div>
               </div>
             </div>
