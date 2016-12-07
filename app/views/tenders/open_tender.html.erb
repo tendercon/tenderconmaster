@@ -596,196 +596,6 @@
   <% end %>
 </div>
 
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8&libraries=places&sensor=false"></script> 
-<script>
-  var tender_id;
-  var map;
-  var tab_id;
-  var myLatLng;
-
-  <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
-    <% if @user_quote.present? %>
-      var tender_date =  "<%= (@user_quote.created_at + 1.month).strftime("%Y-%m-%d") %>";
-
-      console.log("tender_date:"+tender_date)
-      $("#open_tender_counter").countdown(tender_date, function(event) {
-        $(this).text(event.strftime('%D days %H hrs : %M mins : %S secs'));
-    });
-    <% end %>
-  <% end %>
-
-  $('#open_tender_table').DataTable({} );
-
-
-  $('#inputSuccess2').keyup(function (){
-    var rex = new RegExp($(this).val(), 'i');
-    $('.searchable tr').hide();
-    $('.searchable tr').filter(function () {
-      return rex.test($(this).text());
-    }).show();
-  });
-
-  $('.download').change(function(){
-    var tender_id = $('.tender_id').val();
-    var user_id = $('.sc_id').val();
-    var trade =  $(this).val();
-
-    $.ajax({
-      method: "POST",
-      data: {tender_id:tender_id,trade:trade,user_id:user_id},
-      url: "/package_downloads/save_download"
-    }).done(function (data){
-
-    });
-  });
-
-  $('.interested_btn').click(function(){
-    var id = $(this).attr('id');
-    $.ajax({
-      method: "POST",
-      data: {tender_id:id},
-      url: "/open_tenders/get_request_body"
-    }).done(function (data){
-      $('.open_tender_body').html(data);
-    });
-    //$('#tender_Modal_'+id).modal('hide');
-    //$('#tender_trade_Modal_'+id).modal('show');
-  });
-
-  $('.quotes').click(function(){
-    var tender_id = $('.tender_id').val();
-    var sc_id = $('.sc_id').val();
-
-    var ids = []
-    $('.trade_class').each(function(){
-      if($(this).is(':checked')){
-        ids.push($(this).val());
-      }
-    });
-
-    $.ajax({
-      method: "POST",
-      data: {tender_id:tender_id,sc_id:sc_id,ids:ids,open:true},
-      url: "/tenders/request_to_quote"
-    }).done(function (data) {
-      $('#tender_trade_Modal_'+tender_id).modal('hide');
-      $('#tender_success_'+tender_id).modal('show');
-    });
-  });
-
-  $('.trade_class').change(function(){
-    var ids = []
-    $('.trade_class').each(function(){
-      if($(this).is(':checked')){
-        ids.push($(this).val());
-      }
-    });
-
-    if(ids.length > 0){
-      $('.quotes').prop('disabled',false);
-    }else{
-      $('.quotes').prop('disabled',true);
-    }
-  });
-
-  $('.why_quote').click(function(){
-    $('.quote_info').show();
-    $('.tab-content').hide();
-    $('li').removeClass("active");
-  });
-
-  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-    $('.tab-content').show();
-    $('.quote_info').hide();
-  });
-
-  $(document).ready(function(){
-    $('.tenders').each(function(){
-      var id =  $(this).val();
-      var add = $('.add'+id).val();
-    });
-
-    $('.tender').click(function(){
-      var id = $(this).attr('id');
-      var add = $('.add'+id).val();
-      tender_id = id;
-      tab_id = "#green"+tender_id;
-      $.ajax({
-        method: "POST",
-        data: {add:add},
-        url: "/tenders/get_latling"
-      }).done(function (data) {
-        $('#tender_Modal_'+id).modal('show');
-        initialize(data,id);
-      });
-    });
-
-    $('a').attr('href', tab_id).on('shown.bs.tab', function() {
-      google.maps.event.trigger(map, 'resize');
-    });
-
-
-    function initialize(data,id) {
-      myLatLng = {lat:data.latitude, lng: data.longitude};
-      var mp =  'map_'+id;
-
-      map = new google.maps.Map(document.getElementById(mp), {
-        zoom: 15,
-        center: myLatLng
-      });
-
-      var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map
-      });
-
-      google.maps.event.addListenerOnce(map, 'idle', function() {
-        google.maps.event.trigger(map, 'resize');
-        map.setCenter(myLatLng);
-      });
-    }
-
-    $(function(){
-      $(".dropdown-menu > li > a.trigger").on("click",function(e){
-        var current=$(this).next();
-        var grandparent=$(this).parent().parent();
-        if($(this).hasClass('left-caret')||$(this).hasClass('right-caret'))
-          $(this).toggleClass('right-caret left-caret');
-        grandparent.find('.left-caret').not(this).toggleClass('right-caret left-caret');
-        grandparent.find(".sub-menu:visible").not(current).hide();
-        current.toggle();
-        e.stopPropagation();
-      });
-
-      $(".dropdown-menu > li > a:not(.trigger)").on("click",function(){
-        var root=$(this).closest('.dropdown');
-        root.find('.left-caret').toggleClass('right-caret left-caret');
-        root.find('.sub-menu:visible').hide();
-      });
-    });
-
-    $('.search_filter').click(function(e){
-      e.stopPropagation();
-       console.log($("#e1").val())
-      var filters = $("#e1").val();
-      //$('.tender_list_filter').html('');
-      $.ajax({
-        method: "POST",
-        data: {filters:filters},
-        url: "/tenders/filter_open_tender"
-      }).done(function (data) {
-         $('.tender_list_filter').html(data);
-      });
-    });
-
-    $("#e1").select2({
-      "multiple": true,
-      "closeOnSelect": false
-    });
-  })
-</script>
-
-
 <div class="requested">
   <% if @tenders.present? %>
       <%  @tenders.each do |u| %>
@@ -872,3 +682,194 @@
       <% end %>
   <% end %>
 </div>
+
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8&libraries=places&sensor=false"></script> 
+<script>
+  $(document).ready(function(){
+    var tender_id;
+    var map;
+    var tab_id;
+    var myLatLng;
+
+    <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
+    <% if @user_quote.present? %>
+    var tender_date =  "<%= (@user_quote.created_at + 1.month).strftime("%Y-%m-%d") %>";
+
+    console.log("tender_date:"+tender_date)
+    $("#open_tender_counter").countdown(tender_date, function(event) {
+      $(this).text(event.strftime('%D days %H hrs : %M mins : %S secs'));
+    });
+    <% end %>
+    <% end %>
+
+    $('#open_tender_table').DataTable({} );
+
+
+    $('#inputSuccess2').keyup(function (){
+      var rex = new RegExp($(this).val(), 'i');
+      $('.searchable tr').hide();
+      $('.searchable tr').filter(function () {
+        return rex.test($(this).text());
+      }).show();
+    });
+
+    $('.download').change(function(){
+      var tender_id = $('.tender_id').val();
+      var user_id = $('.sc_id').val();
+      var trade =  $(this).val();
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id,trade:trade,user_id:user_id},
+        url: "/package_downloads/save_download"
+      }).done(function (data){
+
+      });
+    });
+
+    $('.interested_btn').click(function(){
+      var id = $(this).attr('id');
+      $.ajax({
+        method: "POST",
+        data: {tender_id:id},
+        url: "/open_tenders/get_request_body"
+      }).done(function (data){
+        $('.open_tender_body').html(data);
+      });
+      //$('#tender_Modal_'+id).modal('hide');
+      //$('#tender_trade_Modal_'+id).modal('show');
+    });
+
+    $('.quotes').click(function(){
+      var tender_id = $('.tender_id').val();
+      var sc_id = $('.sc_id').val();
+
+      var ids = []
+      $('.trade_class').each(function(){
+        if($(this).is(':checked')){
+          ids.push($(this).val());
+        }
+      });
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id,sc_id:sc_id,ids:ids,open:true},
+        url: "/tenders/request_to_quote"
+      }).done(function (data) {
+        $('#tender_trade_Modal_'+tender_id).modal('hide');
+        $('#tender_success_'+tender_id).modal('show');
+      });
+    });
+
+    $('.trade_class').change(function(){
+      var ids = []
+      $('.trade_class').each(function(){
+        if($(this).is(':checked')){
+          ids.push($(this).val());
+        }
+      });
+
+      if(ids.length > 0){
+        $('.quotes').prop('disabled',false);
+      }else{
+        $('.quotes').prop('disabled',true);
+      }
+    });
+
+    $('.why_quote').click(function(){
+      $('.quote_info').show();
+      $('.tab-content').hide();
+      $('li').removeClass("active");
+    });
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      $('.tab-content').show();
+      $('.quote_info').hide();
+    });
+
+    $(document).ready(function(){
+      $('.tenders').each(function(){
+        var id =  $(this).val();
+        var add = $('.add'+id).val();
+      });
+
+      $('.tender').click(function(){
+        var id = $(this).attr('id');
+        var add = $('.add'+id).val();
+        tender_id = id;
+        tab_id = "#green"+tender_id;
+        $.ajax({
+          method: "POST",
+          data: {add:add},
+          url: "/tenders/get_latling"
+        }).done(function (data) {
+          $('#tender_Modal_'+id).modal('show');
+          initialize(data,id);
+        });
+      });
+
+      $('a').attr('href', tab_id).on('shown.bs.tab', function() {
+        google.maps.event.trigger(map, 'resize');
+      });
+
+
+      function initialize(data,id) {
+        myLatLng = {lat:data.latitude, lng: data.longitude};
+        var mp =  'map_'+id;
+
+        map = new google.maps.Map(document.getElementById(mp), {
+          zoom: 15,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map
+        });
+
+        google.maps.event.addListenerOnce(map, 'idle', function() {
+          google.maps.event.trigger(map, 'resize');
+          map.setCenter(myLatLng);
+        });
+      }
+
+      $(function(){
+        $(".dropdown-menu > li > a.trigger").on("click",function(e){
+          var current=$(this).next();
+          var grandparent=$(this).parent().parent();
+          if($(this).hasClass('left-caret')||$(this).hasClass('right-caret'))
+            $(this).toggleClass('right-caret left-caret');
+          grandparent.find('.left-caret').not(this).toggleClass('right-caret left-caret');
+          grandparent.find(".sub-menu:visible").not(current).hide();
+          current.toggle();
+          e.stopPropagation();
+        });
+
+        $(".dropdown-menu > li > a:not(.trigger)").on("click",function(){
+          var root=$(this).closest('.dropdown');
+          root.find('.left-caret').toggleClass('right-caret left-caret');
+          root.find('.sub-menu:visible').hide();
+        });
+      });
+
+      $('.search_filter').click(function(e){
+        e.stopPropagation();
+        console.log($("#e1").val())
+        var filters = $("#e1").val();
+        //$('.tender_list_filter').html('');
+        $.ajax({
+          method: "POST",
+          data: {filters:filters},
+          url: "/tenders/filter_open_tender"
+        }).done(function (data) {
+          $('.tender_list_filter').html(data);
+        });
+      });
+
+      $("#e1").select2({
+        "multiple": true,
+        "closeOnSelect": false
+      });
+    })
+  })
+</script>

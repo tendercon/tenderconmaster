@@ -142,6 +142,7 @@
                   <% if params[:action] == 'invited_tender' %>
                       <span class="selected"></span>
                   <% end %>
+                  <span class="badge badge-danger"><%= @tender_invites.present? ? @tender_invites.size : 0 %></span>
                 </a>
               </li>
 
@@ -156,6 +157,7 @@
                   <% if params[:action] == 'invited_tender' %>
                       <span class="selected"></span>
                   <% end %>
+                  <span class="badge badge-danger"><%= @open_tenders.present? ? @open_tenders.size : 0 %></span>
                 </a>
               </li>
 
@@ -171,7 +173,9 @@
 
             <a href="<%= '/tenders/my_tender' %>" class="nav-link ">
               <span class="title">My Tender</span>
-              <span class="badge badge-danger"><%= @tenders.present? ? @tenders.size : 0 %></span>
+              <% if session[:role] == 'Head Contractor' %>
+                <span class="badge badge-danger"><%= @tenders.present? ? @tenders.size : 0 %></span>
+              <% end %>
             </a>
           </li>
 

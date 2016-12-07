@@ -47,6 +47,8 @@ class ApplicationController < ActionController::Base
         @sc_rfi_count = Rfi.where(:user_id => session[:user_logged_id]).count()
         @sc_rfi_shareds = SharedRfi.where(:user_id => session[:user_logged_id])
         @sc_rfi_shared_count = SharedRfi.where(:user_id => session[:user_logged_id]).count
+        @open_tenders = OpenTender.where(:user_id => session[:user_logged_id])
+        @tender_invites = TenderInvite.where(:user_id => session[:user_logged_id])
         @rfis_array = []
         @sc_invite_notifs =  ScInviteNotification.where(:user_id => session[:user_logged_id],:seen => 0)
         @sc_invite_notif_count =  ScInviteNotification.where(:user_id => session[:user_logged_id],:seen => 0).count()
