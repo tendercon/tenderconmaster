@@ -536,7 +536,8 @@ class UsersController < ApplicationController
         puts "PASSWORD ====> #{params[:password]}"
         hash_password = User.rehash_password password
         puts "hash_password:#{hash_password}"
-        @user = User.where(:email => @email, :password => hash_password,:verified => 1,:status => nil).first
+        #@user = User.where(:email => @email, :password => hash_password,:verified => true,:status => nil).first
+        @user = User.where(:email => @email, :password => hash_password,:verified => true,:status => nil).first
         puts "USER =========> #{@user.inspect}"
         puts "USERS ALL ==============> #{User.all.inspect}"
       end
