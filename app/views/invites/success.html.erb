@@ -1,0 +1,206 @@
+<div class="container" style="background-color: #ffffff">
+  <%= render :partial => 'users/headers/company_profiles' %>
+
+  <div class="row">
+    <div class="col-md-24">
+      <% if session[:role] == 'Sub Contractor' %>
+        <% if params[:reinvite].present? %>
+          <h1 class="text-center"> YOUR INVITATION HAS BEEN RE-SENT </h1>
+        <% else %>
+          <h1 class="text-center"> YOUR INVITATION HAS BEEN SENT </h1>
+        <% end %>
+      <% else %>
+
+      <% end %>
+
+      <div class="form-group">
+        <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+      </div>
+
+      <div class="col-md-12">
+        <h1>WHAT HAPPENS NOW</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row">
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-24 col-md-12 col-md-offset-10">
+        <div class="col-md-3">
+          <i class="fa fa-envelope-square fa-3x" aria-hidden="true"></i>
+        </div>
+        <div class="col-md-19">
+          <p class="success_invites">Your latest team member will receive an email instructions</p>
+          <p class="success_invites">on how to activate their account</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+      </div>
+      <% if params[:customer].present? %>
+        <div class="col-md-24 col-md-12 col-md-offset-10">
+          <div class="col-md-3">
+            <i class="fa fa-credit-card fa-3x" aria-hidden="true"></i>
+          </div>
+          <div class="col-md-19">
+            <p class="success_invites">When does the payment start? Day of invite or Day of invited user signup?</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-24">
+            <div class="form-group">
+
+            </div>
+          </div>
+          <div class="col-md-24">
+            <div class="form-group">
+
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-12">
+      <h1>WHAT NEXT?</h1>
+    </div>
+    <div class="row">
+      <div class="row">
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+      </div>
+
+      <% if session[:role] == 'Sub Contractor' %>
+          <% if params[:reinvite].present? %>
+              <div class="col-md-24 col-md-12 col-md-offset-10">
+                <div class="col-md-3">
+                  <i class="fa fa-clock-o fa-3x" aria-hidden="true" style="color: #00ABEA"></i>
+                </div>
+                <div class="col-md-19">
+                  <p class="success_invites">We might suggest you give them a little nudge to save you</p>
+                  <p class="success_invites">from re-inviting them again</p>
+                </div>
+              </div>
+          <% else %>
+              <h1 class="text-center"> YOUR INVITATION HAS BEEN SENT </h1>
+          <% end %>
+      <% else %>
+
+      <% end %>
+
+
+
+      <div class="row">
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-24 col-md-12 col-md-offset-10">
+        <div class="col-md-3">
+          <i class="fa fa-users fa-3x" aria-hidden="true"></i>
+        </div>
+        <div class="col-md-19">
+          <p class="success_invites">After the team member has signed up, they will be added to</p>
+          <p class="success_invites">the team and have access to the Tendercon platform</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row">
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+      </div>
+      <div class="col-md-24 col-md-12 col-md-offset-10">
+        <div class="col-md-3">
+          <i class="fa fa-times-circle fa-3x" aria-hidden="true" style="color: red"></i>
+        </div>
+        <div class="col-md-19">
+          <p class="success_invites">If the user has not signed up after 72 hours, you will be </p>
+          <p class="success_invites">notified and re-invite option will be available to you.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+
+        <div class="col-md-24">
+          <div class="form-group">
+
+          </div>
+        </div>
+
+        <div class="col-md-24 col-md-12 col-md-offset-10">
+          <div class="form-group">
+            <a href="<%= invites_path %>">
+              <button type="button" class="btn-success btn-lg">
+                INVITE MORE
+              </button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

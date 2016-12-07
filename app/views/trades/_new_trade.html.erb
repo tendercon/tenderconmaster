@@ -1,0 +1,88 @@
+<table  class="table table-bordered responsive new_directory_document_table"   cellspacing="0" width="100%">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody class="searchable">
+  <% if @hc_trades.present? %>
+      <% @hc_trades.each do |t| %>
+          <tr>
+            <td>
+              <%= t.name %>
+              <input type="hidden" name="trade_lists[]"  value="<%= t.id %>">
+            </td>
+            <td>
+              <a href="#!">
+                <button type="button" class="btn btn-danger remove" id="<%= t.id %>">
+                  Remove
+                </button>
+              </a>
+            </td>
+          </tr>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+
+
+<script>
+
+  $(document).ready(function(){
+    $('.remove').click(function(){
+      var id = $(this).attr('id');
+      $.ajax({
+        method: "POST",
+        data: {id:id},
+        url: "/trades/delete_trades"
+      }).done(function (data) {
+        $('.new_trade_added').html(data);
+      });
+    });
+
+
+    var new_trade_id = <%= @id %>
+
+    $('.search_trade'+new_trade_id).click(function(){
+
+      var id = $('.present_trade').val();
+      if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 )
+      {
+        $('html, body').animate({scrollTop: $('#trade_id_'+id).offset().top + 100 }, 'slow');
+      }
+      else if(navigator.userAgent.indexOf("Chrome") != -1 )
+      {
+        document.getElementById("trade_id_"+id).scrollIntoView(true);
+      }
+      else if(navigator.userAgent.indexOf("Safari") != -1)
+      {
+        $('html, body').animate({scrollTop: $('#trade_id_'+id).offset().top + 100 }, 'slow');
+      }
+      else if(navigator.userAgent.indexOf("Firefox") != -1 )
+      {
+        $('html, body').animate({scrollTop: $('#trade_id_'+id).offset().top + 100 }, 'slow');
+      }
+      else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )) //IF IE > 10
+      {
+        $('html, body').animate({scrollTop: $('#trade_id_'+id).offset().top + 100 }, 'slow');
+      }
+
+      $('#trade_id_'+id).css('background-color','yellow');
+    });
+
+    function get_trades(){
+      var trades = '<%= @trade_names %>';
+      var new_trades = JSON.parse(trades.replace(/&quot;/g,'"'));
+      return new_trades;
+    }
+
+    $( ".trade" ).autocomplete({
+      source: get_trades()
+    });
+  });
+
+
+
+</script>

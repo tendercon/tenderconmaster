@@ -1,0 +1,57 @@
+<p class="text-center" style="font-size: 16px">Today</p>
+<p class="text-center"><%= Time.now.strftime("%B %d") %></p>
+
+<% if @google_event.present? %>
+    <% @google_event.each do |d| %>
+        <% if @events_array.index("#{d.summary}") == 0  %>
+            <span class="badge event-important"><%= d.summary %></span>
+            <h3> <%= Time.at(d[:start].to_f / 1000).strftime("%H:%M %p ") %> </h3>
+        <% elsif @events_array.index(d.summary) == 1 %>
+            <span class="badge event-success"><%= d.summary %></span>
+            <h3> <%= Time.at(d[:start].to_f / 1000).strftime("%H:%M %p ") %> </h3>
+        <% elsif @events_array.index(d.summary) == 2  %>
+            <span class="badge event-inverse"><%= d.summary %></span>
+            <h3> <%= Time.at(d[:start].to_f / 1000).strftime("%H:%M %p ") %> </h3>
+        <% elsif @events_array.index(d.summary) == 3 %>
+            <span class="badge event-special"><%= d.summary %></span>
+            <h3> <%= Time.at(d[:start].to_f / 1000).strftime("%H:%M %p ") %> </h3>
+        <% elsif @events_array.index(d.summary) == 4 %>
+            <span class="badge event-warning"><%= d.summary %></span>
+            <h3> <%= Time.at(d[:start].to_f / 1000).strftime("%H:%M %p ") %> </h3>
+        <% elsif @events_array.index(d.summary) == 5 %>
+            <span class="badge event-danger"><%= d.summary %></span>
+            <h3> <%= Time.at(d[:start].to_f / 1000).strftime("%H:%M %p ") %> </h3>
+        <% elsif @events_array.index(d.summary) == 6 %>
+            <span class="badge event-primary"><%= d.summary %></span>
+            <h3> <%= Time.at(d[:start].to_f / 1000).strftime("%H:%M %p ") %> </h3>
+        <% elsif @events_array.index(d.summary) == 7 %>
+            <span class="badge event-default"><%= d.summary %></span>
+            <h3> <%= Time.at(d[:start].to_f / 1000).strftime("%H:%M %p ") %> </h3>
+        <% elsif @events_array.index(d.summary) == 8 %>
+            <span class="badge event-link"><%= d.summary %></span>
+            <h3> <%= Time.at(d[:start].to_f / 1000).strftime("%H:%M %p ") %> </h3>
+        <% elsif @events_array.index(d.summary) == 9 %>
+            <span class="badge event-comment"><%= d.summary %></span>
+            <h3> <%= Time.at(d[:start].to_f / 1000).strftime("%H:%M %p ") %> </h3>
+        <% end %>
+    <% end %>
+<% end %>
+
+
+<script>
+  $('.events-list').click(function(e){
+    e.preventDefault();
+    $('.event_details').html('');
+    console.log($(this).attr("data-cal-end"))
+    var start_date = $(this).attr("data-cal-start");
+    var end_date = $(this).attr("data-cal-end");
+    $.ajax({
+      method: "POST",
+      data: {start_date: start_date,end_date:end_date},
+      url: "/calendars/get_event_details"
+    }).done(function (data) {
+      $('.event_details').html(data);
+    });
+  });
+
+</script>

@@ -1,0 +1,351 @@
+
+
+<div class="contractors">
+  <div class="wrapper">
+
+    <div class="container">
+
+      <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+        <ul id="myTab" class="nav nav-tabs nav-tabs-responsive" role="tablist">
+          <li role="presentation" class="active">
+            <a href="#invited_tender" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+              <span class="text">Invites</span>
+            </a>
+          </li>
+          <li role="presentation" class="next">
+            <a href="#request_tender" role="tab" id="request-tab" data-toggle="tab" aria-controls="request">
+              <span class="text">Requests</span>
+            </a>
+          </li>
+          <li role="presentation" class="next">
+            <a href="#tendering" role="tab" id="tendering-tab" data-toggle="tab" aria-controls="tendering">
+              <span class="text">Tendering</span>
+            </a>
+          </li>
+
+        </ul>
+        <div class="col-md-24" style="height: 80px;"></div>
+
+        <div class="row">
+          <!--<div class="col-md-6">
+            <div class="form-group">
+              <div class="input-group input-group-unstyled">
+                <input type="text" class="form-control sub_search_text" placeholder="Search"/>
+                <span class="input-group-addon"> <i class="fa fa-search" id="search_by_trades"></i></span>
+              </div>
+            </div>
+          </div>-->
+
+          <div class="col-md-2"></div>
+          <div class="col-md-16">
+            <div class="row">
+              <!--<div class="col-md-6">
+                <div class="form-group">
+                  <select class="form-control tender_status" multiple="multiple">
+                    <option value="all">All</option>
+                    <option value="invited">Invited</option>
+                    <option value="requesting">Requesting</option>
+                    <option value="declined">Declined</option>
+                    <option value="tendering">Tendering</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <select id="demo" multiple="multiple" class="trade_filter">
+                  <%# if @trades_ids.present? %>
+                      <%# @trades_ids.uniq.each do |t| %>
+                          <option value="<%#= t %>"><%#= get_trade_name t %></option>
+                      <%# end %>
+                  <%# end %>
+                </select>
+              </div>-->
+            </div>
+          </div>
+        </div>
+
+        <div id="myTabContent" class="tab-content">
+          <div role="tabpanel" class="tab-pane fade in active" id="invited_tender" aria-labelledby="home-tab">
+            <div class="col-md-20 col-md-offset-2">
+              <div class="row">
+                <div class="col-md-5" style="border: solid">
+                  <div  style="height: 30px"></div>
+                  <p class="text-center" style="font-size: 24px">
+                    <%= get_invitation_count @tender.id %>
+                  </p>
+                  <div  style="height: 10px"></div>
+                  <p class="text-center">Invitation Sent</p>
+                </div>
+                <div class="col-md-5" style="border: solid">
+                  <div  style="height: 30px"></div>
+                  <p class="text-center" style="font-size: 24px">
+                    <%= get_invitation_open_count @tender.id %>
+                  </p>
+                  <div  style="height: 10px"></div>
+                  <p class="text-center">Invitation Open</p>
+                </div>
+                <div class="col-md-5" style="border: solid">
+                  <div  style="height: 30px"></div>
+                  <p class="text-center" style="font-size: 24px">
+                    <%= get_invitation_accepted_count @tender.id %>
+                  </p>
+                  <div  style="height: 10px"></div>
+                  <p class="text-center">Invitation Accepted</p>
+                </div>
+                <div class="col-md-5" style="border: solid">
+                  <div  style="height: 30px"></div>
+                  <p class="text-center" style="font-size: 24px">
+                    <%= get_quote_submitted_count @tender.id %>
+                  </p>
+                  <div  style="height: 10px"></div>
+                  <p class="text-center">Quotes Submitted</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-20" style="height: 10px"></div>
+            <div class="col-md-20" style="border-bottom: solid; background-color: #000000;height: 1px"></div>
+            <div class="col-md-20" style="height: 10px"></div>
+            <div class="col-md-20">
+              <div class="row">
+                <div class="col-md-7">
+                  <a href="#!" class="invite_more_sub" id="<%= @tender.id %>">
+                    <button class="btn btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i>Invite more Subconstractors</button>
+                  </a>
+                </div>
+
+                <div class="col-md-10">
+                  Filter by Trades:
+                  <select id="trade1" multiple="multiple" class="trade_filter" title="invites">
+                    <% if @trades_ids.present? %>
+                      <% @trades_ids.uniq.each do |t| %>
+                        <option value="<%= t %>"><%= get_trade_name t %></option>
+                      <% end %>
+                    <% end %>
+                  </select>
+                </div>
+              </div>
+              <div style="height: 40px"></div>
+              <div class="invited_div">
+                <%= render 'tenders/sub_contractors_tab/invited_user_tender' %>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="request_tender" aria-labelledby="request-tab">
+            <div class="col-md-20 col-md-offset-2">
+              <div class="row">
+                <div class="col-md-5" style="border: solid">
+                  <div  style="height: 30px"></div>
+                  <p class="text-center" style="font-size: 24px">
+                    <%= get_request_count @tender.id %>
+                  </p>
+                  <div  style="height: 10px"></div>
+                  <p class="text-center">Total Request</p>
+                </div>
+                <div class="col-md-5" style="border: solid">
+                  <div  style="height: 30px"></div>
+                  <p class="text-center" style="font-size: 24px">
+                    <%= get_request_approved @tender.id %>
+                  </p>
+                  <div  style="height: 10px"></div>
+                  <p class="text-center">Request Approved</p>
+                </div>
+                <div class="col-md-5" style="border: solid">
+                  <div  style="height: 30px"></div>
+                  <p class="text-center" style="font-size: 24px">
+                    <%= get_request_declined @tender.id %>
+                  </p>
+                  <div  style="height: 10px"></div>
+                  <p class="text-center">Request Declined</p>
+                </div>
+                <div class="col-md-5" style="border: solid">
+                  <div  style="height: 30px"></div>
+                  <p class="text-center" style="font-size: 24px">
+                    <%= get_quote_submitted_count @tender.id %>
+                  </p>
+                  <div  style="height: 10px"></div>
+                  <p class="text-center">Quotes Submitted</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-20" style="height: 10px"></div>
+            <div class="col-md-20" style="border-bottom: solid; background-color: #000000;height: 1px"></div>
+            <div class="col-md-20" style="height: 10px"></div>
+            <div class="col-md-20">
+              <div class="row">
+                <div class="col-md-8">
+                  Filter by Trades:
+                  <select id="trade2" multiple="multiple" class="trade_filter" title="request">
+                    <% if @trades_ids.present? %>
+                        <% @trades_ids.uniq.each do |t| %>
+                            <option value="<%= t %>"><%= get_trade_name t %></option>
+                        <% end %>
+                    <% end %>
+                  </select>
+                </div>
+              </div>
+              <div style="height: 40px"></div>
+              <div class="requested_div">
+                <%#= render 'tenders/sub_contractors_tab/requesting_tender' %>
+              </div>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="tendering" aria-labelledby="tendering-tab">
+            <div class="col-md-20 col-md-offset-2">
+              <div class="row">
+                <div class="col-md-5" style="border: solid">
+                  <div  style="height: 30px"></div>
+                  <p class="text-center" style="font-size: 24px">
+                    <%= get_subcontractors_count @tender.id %>
+                  </p>
+                  <div  style="height: 10px"></div>
+                  <p class="text-center">Sub Contractors</p>
+                </div>
+                <div class="col-md-5" style="border: solid">
+                  <div  style="height: 30px"></div>
+                  <p class="text-center" style="font-size: 24px">
+                    <%= get_trade_count @tender.id %>
+                  </p>
+                  <div  style="height: 10px"></div>
+                  <p class="text-center">Trades</p>
+                </div>
+                <div class="col-md-5" style="border: solid">
+                  <div  style="height: 30px"></div>
+                  <p class="text-center" style="font-size: 24px">
+                    <%= get_packages_count @tender.id %>
+                  </p>
+                  <div  style="height: 10px"></div>
+                  <p class="text-center">Packages</p>
+                </div>
+                <div class="col-md-5" style="border: solid">
+                  <div  style="height: 30px"></div>
+                  <p class="text-center" style="font-size: 24px">
+                    <%= get_quote_submitted_count @tender.id %>
+                  </p>
+                  <div  style="height: 10px"></div>
+                  <p class="text-center">Quotes Submitted</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-20" style="height: 10px"></div>
+            <div class="col-md-20" style="border-bottom: solid; background-color: #000000;height: 1px"></div>
+            <div class="col-md-20" style="height: 10px"></div>
+            <div class="col-md-20">
+              <div class="row">
+                <div class="col-md-8">
+                  Filter by Trades:
+                  <select id="trade3" multiple="multiple" class="trade_filter" title="tendering">
+                    <% if @trades_ids.present? %>
+                        <% @trades_ids.uniq.each do |t| %>
+                            <option value="<%= t %>"><%= get_trade_name t %></option>
+                        <% end %>
+                    <% end %>
+                  </select>
+                </div>
+              </div>
+              <div style="height: 40px"></div>
+              <div class="tendering_div">
+                <%#= render 'tenders/sub_contractors_tab/tendering' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-24 pending">
+
+  </div>
+</div>
+
+<input type="hidden" class="tender_id" name="<%= @tender.id %>">
+<input type="hidden" class="trade_list" value="<%= @trades_ids %>">
+<script>
+
+  $(document).ready(function(){
+    $('.download').hover(
+      function(){
+        var id = $(this).attr('id');
+        var trade_id = $(this).attr('alt');
+        $('#trade_'+id+"_"+trade_id).show();
+      },function(){
+        var id = $(this).attr('id');
+        var trade_id = $(this).attr('alt');
+        $('#trade_'+id+"_"+trade_id).hide();
+      }
+    );
+
+    var trades = "<%= @trades_ids %>";
+    var new_trade_array = trades.replace(/[\])}[{(]/g, '').split(',');
+
+    for(var a=0;a < new_trade_array.length;a++){
+      var cnt = $('.child_trade_'+new_trade_array[a].trim()).length;
+      $('.count_trade_'+new_trade_array[a].trim()).text('('+cnt+')');
+    }
+
+    $('.invite_more_sub').click(function(){
+      $('#invite_more_modal').modal('show');
+    });
+
+    $('#trade1').multiselect();
+    $('#trade2').multiselect();
+    $('#trade3').multiselect();
+    $('.tender_status').multiselect();
+    $('.trade_filter').change(function(){
+      var tender_id = $('.tender_id').val();
+      var trades = $(this).val();
+      var tab  = $(this).attr('title');
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id,trades:trades,tab:tab},
+        url: "/tenders/filter_by_trades"
+      }).done(function (data) {
+
+        if(tab == 'invites'){
+          $('.invited_div').html('');
+          $('.invited_div').html(data);
+        }else if(tab == 'request'){
+          $('.requested_div').html('');
+          $('.requested_div').html(data);
+        }else if(tab == 'tendering'){
+          $('.tendering_div').html('');
+          $('.tendering_div').html(data);
+        }
+      });
+    });
+
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      var tender_id = $('.tender_id').val();
+      var target = $(e.target).attr("href");
+      var tab;
+      if(target == '#invited_tender'){
+        tab = 'invites';
+      }else if(target == '#request_tender'){
+        tab = 'request';
+      }else if(target == '#tendering'){
+        tab = 'tendering';
+      }
+
+       if(target == '#invited_tender' || target == '#request_tender' || target == '#tendering'){
+         $.ajax({
+           method: "POST",
+           data: {tender_id:tender_id,tab:tab},
+           url: "/tenders/sub_contractor_tabs"
+         }).done(function (data) {
+           if(tab == 'invites'){
+             $('.invited_div').html('');
+             $('.invited_div').html(data);
+           }else if(tab == 'request'){
+             $('.requested_div').html('');
+             $('.requested_div').html(data);
+           }else if(tab == 'tendering'){
+             $('.tendering_div').html('');
+             $('.tendering_div').html(data);
+           }
+
+         });
+       }
+    });
+
+  });
+</script>

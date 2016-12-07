@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-22">
+    <div class="row">
+      <div class="form-group"></div>
+    </div>
+  </div>
+  <div class="col-md-22">
+    <div class="col-md-24">
+      <p class="text-center">
+        <i class="fa fa-file fa-4x" aria-hidden="true"></i>
+      </p>
+    </div>
+    <br>
+    <% if !@tender.hide_document.present? || @tender.hide_document == '0'  %>
+      <div class="col-md-24">
+        <p class="text-center" style="font-size: 18px">
+          <b>You have been visible the documents on this tender</b>
+        </p>
+        <p class="text-center" style="font-size: 16px">
+          <a href="<%= "http://"+request.host_with_port+"/assets/tender/#{@tender.tendercon_id}/#{@tender.tendercon_id}.zip" %>">
+            Download documents here.
+          </a>
+        </p>
+        <p class="text-center" style="font-size: 16px">
+          OR
+        </p>
+        <p class="text-center" style="font-size: 16px">
+          <a href="/tenders/new_tender?document=true&info_id=<%= @tender.id %>&edit=true">
+            <button class="btn btn-success" type="button">Edit</button>
+          </a>
+        </p>
+      </div>
+    <% else %>
+        <div class="col-md-24 col-md-13 col-md-offset-0">
+          <p class="text-center" style="font-size: 18px">
+            <b>You have hidden the documents on this tender</b>
+          </p>
+        </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,257 @@
+<table  class="table table-bordered document_table col-md-12">
+  <thead>
+  <% if @documents.present? || @unzips.present? %>
+      <tr>
+        <th>Document</th>
+        <th>Revision</th>
+        <th>Size</th>
+        <th>Updated</th>
+        <th>Packages</th>
+      </tr>
+  <% end %>
+  </thead>
+  <tbody>
+  <% if @documents.present? || @unzips.present? %>
+      <% if @directories.present? %>
+          <% @directories.uniq.each do |c| %>
+              <% if c.present? %>
+                <% if(!@docs1.include? "#{c}") && (!@unzip_dirs.include? "#{c}") %>
+                  <% @docs1 << "#{c}" %>
+                  <% @unzip_dirs << "#{c}" %>
+                  <tr>
+                    <td>
+                      <a href="#!" class="directory" value="<%=  replace_char_to_string c  %>"  id="<%=  replace_char_to_string c  %>">
+                        <i class="fa fa-chevron-circle-up" aria-hidden="true"> </i> <%= c %>
+                      </a>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <% if @documents.present? %>
+                    <% @documents.each_with_index do |u,index| %>
+                      <% if u.directory == c && u.document_file_name.present? %>
+                        <tr class="<%= replace_char_to_string u.directory  %>">
+                          <td class="text-center" title="<%= u.document_file_name %>"><%= truncate(u.document_file_name, :length => 45) %></td>
+                          <td><%= u.revision.present? ? u.revision : nil %></td>
+                          <td><%= u.document_file_size %> kbs</td>
+                          <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
+                          <% if (get_document_package u.id,@tender.id).to_i > 0 %>
+                              <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
+                          <% else %>
+                              <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
+                          <% end %>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <% if @unzips.present? %>
+                    <% @unzips.each do |u| %>
+                      <% if u.directory.to_s == c.to_s %>
+                        <tr class="<%= replace_char_to_string u.directory  %>">
+                          <td><%= truncate(u.filename, :length => 45) %></td>
+                          <td><%= u.revision.present? ? u.revision : nil %></td>
+                          <td><%= u.file_size %> kbs</td>
+                          <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
+                          <% if (get_document_package u.id,@tender.id).to_i > 0 %>
+                              <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
+                          <% else %>
+                              <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
+                          <% end %>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% else %>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <% if @documents.present? %>
+                    <% @documents.each_with_index do |u,index| %>
+                      <tr>
+                        <% if u.document_file_name.present? %>
+                          <% if !u.directory.present? && File.exist?(u.document.path) %>
+                              <td class="text-center" title="<%= u.document_file_name %>"><%= truncate(u.document_file_name, :length => 45) %></td>
+                              <td><%= u.revision.present? ? u.revision : nil %></td>
+                              <td><%= u.document_file_size %> kbs</td>
+                              <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
+                              <% if (get_document_package u.id,@tender.id).to_i > 0 %>
+                                  <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
+                              <% else %>
+                                  <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
+                              <% end %>
+                          <% end %>
+                        <% end %>
+                      </tr>
+                    <% end %>
+                  <% end %>
+              <% end %>
+          <% end %>
+      <% else %>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <% if @documents.present? %>
+            <% @documents.each_with_index do |u,index| %>
+              <tr>
+                <% if u.document_file_name.present? %>
+                  <% if !u.directory.present? && File.exist?(u.document.path) %>
+                    <td class="text-center" title="<%= u.document_file_name %>"><%= truncate(u.document_file_name, :length => 45) %></td>
+                    <td><%= u.revision.present? ? u.revision : nil %></td>
+                    <td><%= u.document_file_size %> kbs</td>
+                    <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
+                    <% if (get_document_package u.id,@tender.id).to_i > 0 %>
+                      <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
+                    <% else %>
+                      <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </tr>
+            <% end %>
+          <% end %>
+      <% end %>
+
+      <% if @unzips.present? %>
+          <% @unzips.each_with_index do |u,index| %>
+              <% if  u.directory.present? && u.filename.present?  %>
+                <% if(!@unzip_dirs.include? "#{u.directory}") && (!@docs1.include? "#{u.directory}") %>
+                  <% @unzip_dirs << "#{u.directory}" %>
+                  <% @docs1 << "#{u.directory}" %>
+                  <tr>
+                    <td>
+                      <a href="#!" class="directory" value="<%=  replace_char_to_string u.directory  %>"  id="<%=  replace_char_to_string u.directory  %>">
+                        <i class="fa fa-chevron-circle-up" aria-hidden="true"> </i> <%= u.directory %>
+                      </a>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
+                    <td></td>
+                  </tr>
+                  <tr class="<%= replace_char_to_string u.directory %>">
+                    <td class="text-center" title="<%= u.filename %>"><%= truncate(u.filename, :length => 45) %></td>
+                    <td><%= u.revision.present? ? u.revision : nil %></td>
+                    <td><%= u.file_size %> kbs</td>
+                    <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
+                    <% if (get_document_package u.id,@tender.id).to_i > 0 %>
+                        <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
+                    <% else %>
+                        <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
+                    <% end %>
+                  </tr>
+
+                  <% if @documents.present? %>
+                    <% @documents.each_with_index do |d,index| %>
+                      <% if d.directory == u.directory %>
+                        <tr class="<%= replace_char_to_string u.directory %>">
+                          <td title="<%= d.document_file_name %>"><%= truncate(u.document_file_name, :length => 45) %></td>
+                          <td><%= u.revision.present? ? u.revision : nil %></td>
+                          <td><%= d.document_file_size %> kbs</td>
+                          <% if (get_document_package u.id,@tender.id).to_i > 0 %>
+                              <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
+                          <% else %>
+                              <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
+                          <% end %>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% else %>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr class="<%= replace_char_to_string u.directory %>">
+                    <td class="text-center" title="<%= u.filename %>"><%= truncate(u.filename, :length => 45) %></td>
+                    <td><%= u.revision.present? ? u.revision : nil %></td>
+                    <td><%= u.file_size %> kbs</td>
+                    <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
+                    <% if (get_document_package u.id,@tender.id).to_i > 0 %>
+                        <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
+                    <% else %>
+                        <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
+                    <% end %>
+                  </tr>
+              <% end %>
+          <% end %>
+      <% end %>
+  <% else %>
+      <tr>
+        <td style="color: grey;">No document available.</td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<input type="hidden" class="tender_id" name="<%= @tender.id %>">
+<script>
+  $('.directory').click(function () {
+    var dir = $(this).attr('id');
+    $('.'+dir).each(function () {
+      $(this).toggle();
+    })
+  });
+
+  $('#search').click(function(){
+    var tender_id = $('.tender_id').val();
+    var search = $('.search_text').val();
+    var document_control = 'true'
+
+    $.ajax({
+      method: "POST",
+      data: {search:search,tender_id:tender_id,document_control:document_control},
+      url: "/tenders/search_by_documents"
+    }).done(function (data) {
+      $('.documents').html(data);
+    });
+  });
+
+
+  $('.search_text').focusout(function(){
+    var tender_id = $('.tender_id').val();
+    var search = $('.search_text').val();
+    var document_control = 'true'
+
+    if(search.length <= 0){
+      $.ajax({
+        method: "POST",
+        data: {search:search,tender_id:tender_id,document_control:document_control},
+        url: "/tenders/search_by_documents"
+      }).done(function (data) {
+        $('.documents').html(data);
+      });
+    }
+  });
+
+  $('.search_text').keyup(function(){
+    var tender_id = $('.tender_id').val();
+    var search = $('.search_text').val();
+    var document_control = 'true'
+
+    if(search.length <= 0){
+      $.ajax({
+        method: "POST",
+        data: {search:search,tender_id:tender_id,document_control:document_control},
+        url: "/tenders/search_by_documents"
+      }).done(function (data) {
+        $('.documents').html(data);
+      });
+    }
+  });
+</script>

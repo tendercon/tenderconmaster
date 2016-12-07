@@ -1,0 +1,476 @@
+<div class="quote_all_lists">
+  <div class="col-md-24">
+    <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
+        <a href="#!" class="new_quote">
+          <button class="btn btn-info">Send Quote</button>
+        </a>
+    <% end %>
+    <% if session[:role] == 'Head Contractor' %>
+
+    <% end %>
+    <br><br>
+    <div class="col-md-24 quote_lists">
+      <%= render :partial => 'quotes/quotes', :locals => {:quotes => @refs,:tender_id =>@tender.id} %>
+    </div>
+  </div>
+
+
+
+  <div style="background-color: transparent;"> 
+    <input id="file_input" type="file" style="background-color: transparent;" name="documents"> 
+  </div> 
+
+  <input type="hidden" class="tender_id" value="<%= @tender.id %>"> 
+
+  <div style="display: none;">
+    <a href="" class="download_link" target="_blank"></a>
+  </div>
+
+  <div id="new_quote" class="modal fade col-md-28" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;overflow-y:scroll;" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content col-md-24">
+        <div class="modal-header">
+          <button type="button" class="close new_rfi_close" data-dismiss="modal">&times;</button>
+          <div class="col-md-24 col-md-20 col-md-offset-2">
+            <p class="text-center" style="font-size: 20px">
+              Send Quote
+            </p>
+          </div>
+          <div class="col-md-24 col-md-20 col-md-offset-2" id="error"></div>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+        <br>
+        <div class="modal-body">
+          <div class="row">
+            <div class="container">
+              <div id="content">
+                <div class="col-md-6">
+                  <label>Ref#</label>
+                  <input type="text" class="form-control ref_no" value="<%= @ref_no %>" id="ref_no" name="ref_no" disabled>
+                  <label>To</label>
+                  <input type="text" class="form-control to" value="<%= @user.company %>" id="to"  disabled>
+                  <label>Attention</label>
+                  <input type="text" class="form-control attention" value="<%= "#{@user.first_name} #{@user.last_name} " %>" id="attention" >
+                  <label>Date</label>
+                  <input type="text" class="form-control quote_date" value="<%= Time.now.strftime("%Y-%m-%d")  %>" id="quote_date" >
+                  <label>Title</label>
+                  <input type="text" class="form-control title"  id="title">
+                </div>
+
+
+                <div class="col-md-6">
+                  <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+                  <br/> <br/>
+                  <div class="form-group">
+                    <label>Company</label>
+                    <input type="text" class="form-control company" value="<%= @sc_user.company %>" id="company">
+                    <label>From</label>
+                    <input type="text" class="form-control from" value="<%= "#{@sc_user.first_name} #{@sc_user.last_name}" %>" id="form">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-24">
+              <br>
+              <label>Trade</label>
+              <br/>
+              <% if @trades.present? %>
+                  <% @trades.each do |t| %>
+                      <label class="checkbox-inline"><input type="checkbox" class="trade_array" value="<%= t.id %>" id="<%= t.name %>"><%= t.name %></label>
+                  <% end %>
+              <% end %>
+              <input type="text" class="form-control">
+            </div>
+            <div class="col-md-24">
+              <label>Description</label>
+              <textarea class="form-control quote_desc" rows="5" id="quote_desc"></textarea>
+            </div>
+
+            <div class="col-md-12">
+              <label>Price</label>
+              <input type="text" class="form-control price"  id="price">
+            </div>
+            <div class="col-md-12">
+
+            </div>
+
+            <div class="col-md-24">
+
+              <div class="col-md-24">
+                <div class="col-md-24" style="height: 5px"></div>
+                <div class="col-md-24">
+                  <div class="quote_files">
+                    <label>Attach Quote</label>
+                    <%= form_for @quote_document, :url => create_document_quote_documents_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
+                        <input type="hidden" value="<%= @tender.id%>" name="tender_id" class="tender_id">
+                        <input type="file" id="file_comment" class="btn btn-success" name="document" webkitdirectory directory multiple /> 
+                        <div style="display: none">
+                          <button type="submit" class="submit_document"></button>
+                        </div>
+                    <% end %>
+                    <div class="quote_documents"></div>
+                    <label>Attach Supporting files(Optional)</label>
+                    <%= form_for @quote_document_optional, :url => create_document_quote_document_optionals_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
+                        <input type="hidden" value="<%= @tender.id%>" name="tender_id" class="tender_id">
+                        <input type="file" id="file_comment" class="btn btn-success" name="document" webkitdirectory directory multiple /> 
+                        <div style="display: none">
+                          <button type="submit" class="submit_document"></button>
+                        </div>
+                    <% end %>
+                    <div class="quote_document_optional"></div>
+                  </div>
+
+                  <div class="col-md-24" style="height: 5px"></div>
+                </div>
+              </div>
+              <div class="rfi_document_lists">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+
+            </div>
+            <div class="col-md-20 col-md-offset-8">
+              <a href="#!">
+                <button class=" btn btn-info button_preview" type="button" >Preview</button>
+              </a>
+              <a href="#!" onclick="sent_rfi_btn();">
+                <button class=" btn btn-success button_done" type="button">Send</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="preview_quote" class="modal fade col-md-28" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; overflow-y:scroll;" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content col-md-24">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="col-md-24 col-md-20 col-md-offset-2">
+            <p class="text-center" style="font-size: 20px">
+              Preview Quote
+            </p>
+          </div>
+
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+        <br>
+        <div class="modal-body">
+          <div class="row">
+            <div class="container">
+              <div id="content">
+                <div class="col-md-6">
+                  <label>Ref#</label>
+                  <p class="quote_no_preview"></p>
+                  <label>To</label>
+                  <p class="to_preview"></p>
+                  <label>Attention</label>
+                  <p class="attention_preview"></p>
+                  <label>Date</label>
+                  <p class="quote_date_preview"></p>
+                  <label>Trade</label>
+                  <p class="trade_preview"></p>
+                  <label>Title</label>
+                  <p class="heading_preview"></p>
+                </div>
+
+                <div class="col-md-6">
+                  <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+                  <div class="form-group">
+                    <label>Company</label>
+                    <p class="company_preview"><%= @sc_user.company %></p>
+                    <label>From</label>
+                    <p class="from_preview"><%= "#{@sc_user.first_name} #{@sc_user.last_name}" %></p>
+                    <label>Price</label>
+                    <p class="price_preview"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-24">
+              <label>Description</label>
+              <textarea class="form-control quote_desc_preview" rows="5" id="quote_desc"></textarea>
+            </div>
+            <div class="col-md-24">
+              <div class="document_attached_files" > 
+
+              </div>  
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group"></div>
+            <div class="col-md-20 col-md-offset-9">
+              <a href="#!">
+                <button class=" btn btn-info exit_preview" type="button" >Exit Preview</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="success_quote" class="modal fade col-md-28" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; overflow-y:scroll;" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content col-md-24">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="row">
+            <div class="form-group">
+            </div>
+          </div>
+
+          <div class="modal-body">
+            <div class="row">
+              <div class="form-group">
+                <div class="col-md-24 col-md-20 col-md-offset-2">
+                  <p class="text-center" style="font-size: 14px">
+                    <i class="fa fa-check-circle fa-3x" aria-hidden="true"></i>
+                  </p>
+                  <p class="text-center">
+                  <h2>Successfully sent quote.</h2>
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-20 col-md-offset-8">
+                <a href="#!">
+                  <button class=" btn btn-success register_quote" type="button" >Go to Quote Register</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<script>
+  $(document).ready(function(){
+
+    $('.new_quote').click(function(){
+      $('#new_quote').modal('show');
+
+      $.ajax({
+        method: "POST",
+        data: {},
+        url: "/quotes/get_new_ref"
+      }).done(function (data) {
+        $('.ref_no').val(data.ref);
+      });
+    });
+
+    $('.sort_trade').change(function(){
+      var id = $(this).val();
+      var tender_id = $('.tender_id').val();
+      console.log(id);
+      $.ajax({
+        method: "POST",
+        data: {trade_id:id,tender_id:tender_id},
+        url: "/rfis/get_rfi_by_trade"
+      }).done(function (data) {
+        console.log(data);
+        $('.quote_lists').html(data);
+      });
+    });
+
+
+
+    $('#duedatepicker').datetimepicker({format: 'DD-MM-YYYY hh:mm a'});
+
+    $('.rfi_dropzone').click(function(){
+      $('#file_input').click();
+    });
+
+    $('#new_quote_document').fileupload({
+      dataType: 'json',    done: function (e, data) {
+        $.each(data, function (index, file) {
+          if (index == 'done') {
+            var tender_id = $('.tender_id').val();
+            $.ajax({
+              method: "POST",
+              data: {tender_id:tender_id},
+              url: "/quote_documents/get_documents"
+            }).done(function (data) {
+              $('.quote_files').html(data);
+            });
+          }
+        });
+      },progress: function (e, data) {
+
+      }
+    });
+
+    $('#new_quote_document_optional').fileupload({
+      dataType: 'json',    done: function (e, data) {
+        $.each(data, function (index, file) {
+          if (index == 'done') {
+            var tender_id = $('.tender_id').val();
+            $.ajax({
+              method: "POST",
+              data: {tender_id:tender_id},
+              url: "/quote_document_optionals/get_documents"
+            }).done(function (data) {
+              $('.quote_document_optional').html(data);
+            });
+          }
+        });
+      },progress: function (e, data) {
+
+      }
+    });
+
+
+
+    $('.button_preview').click(function(){
+      var tender_id = $('.tender_id').val();
+      $('#new_quote').modal('hide');
+      var ref_no = $('.ref_no').val();
+      var to = $('.to').val();
+      var attention = $('.attention').val();
+      var rfi_date = $('.quote_date').val();
+
+      var heading = $('.title').val();
+      var trade = $(".trade option:selected").text();
+      var rfi_desc = $('.quote_desc').val();
+      var tender_id = $('.tender_id').val();
+      var price = $('.price').val();
+      var company = $('.company_preview').text();
+      var from = $('.from_preview').text();
+
+      var trades = [];
+
+      $('.trade_array').each(function(){
+
+        if($(this).prop("checked") == true){
+          console.log($(this).prop("checked") == true)
+          trades.push($(this).attr('id'));
+          console.log($(this).attr('id'));
+        }
+      });
+
+      $('.quote_no_preview').text(ref_no);
+      $('.to_preview').text(to);
+      $('.price_preview').text(price);
+      $('.attention_preview').text(attention);
+      $('.quote_date_preview').text(rfi_date);
+
+      $('.trade_preview').text(trades);
+      $('.heading_preview').text(heading);
+      $('.quote_desc_preview').text(rfi_desc);
+      $('#preview_quote').modal('show');
+
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id,preview:'true'},
+        url: "/quote_documents/get_documents"
+      }).done(function (data) {
+        $('.document_attached_files').html(data);
+      });
+
+
+    });
+
+    $('.exit_preview').click(function(){
+      $('#new_quote').modal('show');
+      $('#preview_quote').modal('hide');
+    });
+
+    $('.cancel_rfi').click(function(){
+      $('#confirm_rfi').modal('hide');
+    });
+
+
+    $('.create_rfi').click(function(){
+      $('.response_date').val('');
+      $('.heading').val('');
+      $('.rfi_desc').val('');
+      $('.trade').val('');
+      $('#success_rfi').modal('hide');
+      $('#new_rfi').modal('show');
+    });
+
+    $('.register_quote').click(function(){
+      var tender_id = $('.tender_id').val();
+      window.location.href = "/tenders/sc_tender?id="+tender_id+"&quote=true";
+    });
+
+  });
+
+
+  function sent_rfi_btn(){
+    var tender_id = $('.tender_id').val();
+    var ref_no = $('.ref_no').val();
+    var to = $('.to').val();
+    var attention = $('.attention').val();
+    var quote_date = $('.quote_date').val();
+
+    var title = $('.title').val();
+    var quote_desc = $('.quote_desc').val();
+    var price = $('.price').val();
+    var company = $('.company_preview').text();
+    var from = $('.from_preview').text();
+
+    var trades = [];
+
+    $('.trade_array').each(function(){
+
+      if($(this).prop("checked") == true){
+        console.log($(this).prop("checked") == true)
+        trades.push($(this).val());
+      }
+    });
+    console.log("tender_id"+tender_id);
+    console.log("ref_no"+ref_no);
+    console.log("to"+to);
+    console.log("attention"+attention);
+    console.log("quote_date"+quote_date);
+    console.log("title"+title);
+    console.log("quote_desc"+quote_desc);
+    console.log("price"+price);
+    console.log("trades"+trades);
+
+    $.ajax({
+      method: "POST",
+      data: {tender_id:tender_id,tender_id:tender_id,ref_no:ref_no,to:to,attention:attention,
+        quote_date:quote_date,title:title,quote_desc:quote_desc,price:price,trades:trades
+      },
+      url: "/quotes/save_quotes"
+    }).done(function (data) {
+      if(data.state == 'valid'){
+        $('#new_quote').modal('hide');
+        $('#success_quote').modal('show');
+      }else{
+        $('#error').html(
+            '<div class="alert alert-danger open-sans-regular" id="users_error">'+
+            '<button type="button" class="close" data-dismiss="alert">&times;</button>'+
+            '<h3>Title,Price and attached document are required.</h3></div>');
+        alert("Title,Price and attached document are required.")
+      }
+    });
+  }
+</script>

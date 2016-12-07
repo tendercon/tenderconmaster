@@ -1,0 +1,9 @@
+<ul class="nav nav-tabs">
+  <li><a href="<%#= profile_users_path(:id => @user.id) %>">COMPANY PROFILE</a></li>
+  <% if session[:role_type] == 'Admin' %>
+    <li><a href="<%= invites_path %>">USERS<span class="badge"><%= @user_cnt %></span></a></li>
+  <% end %>
+  <li><a href="<%#= billing_users_path %>">TENDERCON REVIEWS</a></li>
+  <li><a href="<%= portfolios_path %>">PORFOLIO<span class="badge"><%= @project_count %></span></a></li>
+  <li><a href="#">ADMIN NOTIFICATION</a></li>
+</ul>

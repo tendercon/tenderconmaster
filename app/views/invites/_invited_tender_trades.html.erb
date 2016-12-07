@@ -1,0 +1,195 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal">&times;</button>
+  <div class="col-md-24 col-md-20 col-md-offset-2">
+    <p class="text-center" style="font-size: 20px">
+      Select the trades you wish to quote for
+    </p>
+    <div class="text-center notif"><%= @notification %></div>
+
+  </div>
+  <div class="row">
+    <div class="form-group"></div>
+  </div>
+</div>
+<br>
+<input type="hidden" class="sc_id" value="<%= session[:user_logged_id] %>">
+<input type="hidden" class="tender_id" value="<%= @tender.id %>">
+<div class="modal-body" style="overflow-y: auto;height: 250px;">
+  <% if(get_invited_trade @tender.id,session[:email]).present? %>
+    <% (get_invited_trade @tender.id,session[:email]).uniq.each do |a| %>
+      <table>
+        <tbody>
+        <tr>
+          <td class="col-md-5"><%= get_trade_name a %></td>
+          <td class="col-md-5">
+            <select class="btn btn-info trade_status_button" id="<%= session[:user_logged_id] %>" alt="<%= a %>" title="<%= @tender.id %>">
+              <% if (check_tender_trade_status a,@tender.id,session[:email]) == 'accepted' %>
+                <option class="white" value="None">None</option>
+                <option class="red" value="Accept" selected>Accept</option>
+                <option class="yellow" value="Decline">Decline</option>
+              <% else %>
+                <option class="white" value="None">None</option>
+                <option class="red" value="Accept">Accept</option>
+                <option class="yellow" value="Decline" selected>Decline</option>
+              <% end %>
+            </select>
+          </td>
+        </tr>
+        <tr></tr>
+        </tbody>
+      </table>
+    <% end %>
+  <% end %>
+  <div class="row">
+    <div class="container">
+      <div id="content">
+        <div class="tab-pane" id="orange">
+          <div class="col-md-18">
+            <% @trade_cats = [] %>
+            <% @trade_categories.each do |tc|  %> 
+
+                <% if (get_tender_trades @tender.id).present? %>
+
+                    <% (get_tender_trades @tender.id).each_with_index do |t,index| %>
+                        <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                            <div class="col-md-24"> 
+                              <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+
+                                  <% if !@trade_cats.include? tc.title %>
+                                      <% @trade_cats << tc.title %>
+                                      <h1> <%= tc.title %></h1> 
+                                  <% end %>
+                              <% end %>
+                            </div>
+                            <div class="col-md-22">
+                              <div class="col-md-6">
+                                <% if @invite_count > 0 %>
+                                    <label id="trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class" id="trade_<%= t.trade_id %>" disabled> <%= get_trade_name t.trade_id %></label> 
+                                <% else %>
+                                    <label id="trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class" id="trade_<%= t.trade_id %>"> <%= get_trade_name t.trade_id %></label> 
+                                <% end %>
+                              </div>
+                            </div>
+
+                        <% end %>
+                    <% end %>
+                <% end %> 
+            <% end %> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+
+    </div>
+    <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+
+      <a href="#!">
+        <button class=" btn btn-info quotes" type="button" disabled>I AM INTERESTED</button>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+  $('.trade_status_button').change(function(){
+    var txt = $(this).val();
+    var trade_id = $(this).attr('alt');
+    var tender_id = $('.tender_id').val();
+    var ids = $(this).attr('id');
+
+    console.log("txt:"+txt.trim());
+    console.log("trade_ID:"+trade_id);
+    console.log("tender_id:"+tender_id);
+    console.log("sc_id:"+sc_id);
+
+
+    $.ajax({
+      method: "POST",
+      data: {tender_id:tender_id,trade_id:trade_id,sc_id:ids,txt:txt.trim()},
+      url: "/invites/update_tender_invite"
+    }).done(function (data){
+      $('#trade_invited_body').html(data);
+    });
+
+  });
+
+  $('.quotes').click(function(){
+    var tender_id = $('.tender_id').val();
+    var sc_id = $('.sc_id').val();
+
+    var ids = []
+    $('.trade_class').each(function(){
+
+      if($(this).is(':checked')){
+        ids.push($(this).val());
+      }
+    });
+
+    console.log("ids:"+ids);
+    console.log("sc_id:"+sc_id);
+    $.ajax({
+      method: "POST",
+      data: {tender_id:tender_id,sc_id:sc_id,ids:ids},
+      url: "/tenders/request_to_quote"
+    }).done(function (data) {
+      $('#tender_Modal_'+tender_id).modal('hide');
+      $('#tender_success_'+tender_id).modal('show');
+    });
+  });
+
+  $('.trade_class').change(function(){
+
+    var ids = []
+    $('.trade_class').each(function(){
+
+      if($(this).is(':checked')){
+        ids.push($(this).val());
+      }
+    });
+
+    if(ids.length > 0){
+      $('.quotes').prop('disabled',false);
+    }else{
+      $('.quotes').prop('disabled',true);
+    }
+  });
+  check_trade_status();
+  function check_trade_status(){
+    var tender_id = $('.tender_id').val();
+    var sc_id = $('.sc_id').val();
+    var ids = []
+    $('.trade_class').each(function(){
+
+      if($(this).is(':checked')){
+        ids.push($(this).val());
+      }
+    });
+    $.ajax({
+      method: "POST",
+      data: {tender_id:tender_id,sc_id:sc_id,ids:ids},
+      url: "/invites/check_trade_status"
+    }).done(function (data) {
+      if(data.state == 'invalid'){
+        $('.quotes').prop('disabled',true);
+      }else{
+        $('.quotes').prop('disabled',false);
+      }
+
+      $('.trade_class').each(function(){
+        $(this).prop('checked',false);
+      });
+
+      for(var a=0; a < data.trades.length; a++){
+        $('#trade_'+data.trades[a]).prop('checked',true);
+      }
+
+
+    });
+  }
+</script>

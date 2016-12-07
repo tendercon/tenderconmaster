@@ -1,0 +1,24 @@
+<% if @trades.present? %>
+    <% @trades.uniq.each do |a| %>
+        <table  class="table table-bordered document_table">
+          <thead>
+          <tr>
+            <th> <%= get_trade_name a  %></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% if (get_user_company a).present? %>
+              <% (get_user_company a).each do |d| %>
+                  <tr>
+                    <td class="col-md-3"> <%= get_company d.user_id  %></td>
+                  </tr>
+              <% end %>
+          <% else %>
+              <tr>
+                <td>No User</td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+    <% end %>
+<% end %>

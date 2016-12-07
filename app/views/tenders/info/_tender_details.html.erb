@@ -1,0 +1,49 @@
+<table  class="table table-bordered">
+  <tbody>
+  <% if session[:role] == 'Sub Contractor' %>
+      <% if (get_tender_request @tender_id,session[:user_logged_id]).present? %>
+          <% (get_tender_request @tender_id,session[:user_logged_id]).each do |a| %>
+              <tr>
+                <td>
+                  <label><%= get_trade_name ((get_sc_tender_trade a.id).trade_id) %></label>
+                </td>
+                <td><button class="btn btn-warning">Pending</button></td>
+              </tr>
+          <% end %>
+      <% end %>
+      <% if (get_sc_trade_approved @tender_id,session[:user_logged_id]).present? %>
+          <% (get_sc_trade_approved @tender_id,session[:user_logged_id]).each do |a| %>
+              <tr>
+                <td>
+                  <label><%= get_trade_name ((a).trade_id) %></label>
+                </td>
+                <td><button class="btn btn-success">Tendering</button></td>
+              </tr>
+          <% end %>
+      <% end %>
+      <% if (get_sc_trade_declined @tender_id,session[:user_logged_id]).present? %>
+          <% (get_sc_trade_declined @tender_id,session[:user_logged_id]).each do |a| %>
+              <tr>
+                <td>
+                  <label><%= get_trade_name ((a).trade_id) %></label>
+                </td>
+                <td><button class="btn btn-danger">Decline</button></td>
+              </tr>
+          <% end %>
+      <% end %>
+
+  <% end %>
+
+  <% if session[:role] == 'Head Contractor' %>
+      <% if (get_tender_trades @tender_id).present? %>
+          <% (get_tender_trades @tender_id).each do |a| %>
+              <tr>
+                <td>
+                  <label><%= get_trade_name a.trade_id %></label>
+                </td>
+              </tr>
+          <% end %>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>

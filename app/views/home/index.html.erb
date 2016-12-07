@@ -1,0 +1,72 @@
+<div class="col-md-24" style="background-color: white;border-radius: 10px;">
+ <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
+ <h1 class="text-center login-title"><b>REGISTER WITH TENDERCON</b></h1>
+ <p class="text-center" style="color: #000;font-weight: bold;font-size: 13px;">NO CREDIT CARD NEEDED</p>
+ <br>
+ <br>
+ <p class="text-center" style="color: #000;font-weight: bold;font-size: 15px;">WHAT DO YOU WANT TO DO?</p>
+</div>
+
+
+<div class="col-md-24">
+  <div class="span10">
+    <div class="checkbox">
+      <label><input type="checkbox" value="tender_new" name="tender_type" class="tender_type" id="new"> REGISTER YOUR ORGANIZATION TO USE TENDERCON FOR HE FIRST TIME </label>
+      <label class="pull-right"><input type="checkbox" value="tender_olb" name="tender_type" class="tender_type" id="old"> CREATE A USER ACCOUNT IF YOUR ORGANIZATION IS ALREADY REGISTERED </label>
+    </div>
+
+    <div class="col-md-12">
+      <div class="getting_started" style="display: none;">
+        <p class="type_text">You will need to register if your organiation has not used Tendercon before</p>
+        <a href="<%= register_users_path %>" class="text-center new-account" style="text-decoration: none; color: #000000"><button class="btn  btn-primary " type="submit">Getting Started</button> </a>
+      </div>
+    </div>
+
+    <div class="col-md-12 pull-right">
+      <div class="old_account pull-right" style="display: none;">
+        <p class="type_text">If your organization already using Tendercon? Ask your Org Admin to set you up as a user.</p>
+        <p class="type_text">Your Org Admin is someone who works for your organization and overseas Tendercon.</p>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="col-md-24" style="margin-top: 30px;">
+    <h1 class="text-center login-title"><b>NOT SURE WHAT TO DO?</b></h1>
+
+    <br>
+    <br>
+    <p class="text-center home_contact">To find out if your organization is already registered on Tendercon. Contact our helpdesk.</p>
+    <a href="#!" class="text-center new-account" style="color: #000000"> <h1 class="text-center login-title"><b>Contact Support</b></h1></a>
+
+  </div>
+</div>
+
+<script>
+  $('.tender_type_value').click(function(){
+    var title = $(this).attr('title');
+
+    if(title == 'new_tender'){
+      $('.getting_started').show();
+    }else{
+      $('.getting_started').hide();
+    }
+  });
+
+  $('.tender_type').click(function(){
+    $('.tender_type').attr('checked',false);
+    var comp_id = $(this).attr('id');
+    $('#'+comp_id).prop('checked',true);
+
+    if(comp_id == 'new'){
+      $('.getting_started').show();
+      $('.old_account').hide();
+    }else{
+      $('.getting_started').hide();
+      $('.old_account').show();
+    }
+
+  });
+</script>
+

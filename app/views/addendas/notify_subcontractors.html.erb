@@ -1,0 +1,70 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Issue Addenda</a>
+    </div>
+  </div>
+</nav>
+
+<ol class="breadcrumb">
+  <li><a href="<%= addendas_path(:id => @tender.id ) %>">Home</a></li>
+  <% if params[:addenda_type] == 'documents' %>
+      <li><a href="/addendas/new?id=<%= @tender.id %>&type=document&addenda=<%= @addenda.id %>">Details</a></li>
+      <li><a href="/addendas/matrix?tender_id=<%= @tender.id %>&addenda=<%= @addenda.id %>&addenda_type='documents'">Matrix</a></li>
+      <li><a href="<%= review_addendas_path(:id => @tender.id,:addenda => @edited_addenda.id,:addenda_type=> params[:addenda_type]) %>">Review</a></li>
+  <% else %>
+      <li><a href="/addendas/new?id=<%= @tender.id %>&type=details&addenda=<%= @addenda.id %>">Details</a></li>
+      <li><a href="<%= review_addendas_path(:id => @tender.id,:addenda => @edited_addenda.id,:addenda_type=> params[:addenda_type]) %>">Review</a></li>
+  <% end %>
+  <li class="active">Notify</li>
+</ol>
+
+<%= form_tag(issue_addenda_addendas_path)  do %>
+  <div class="col-md-22">
+    <input type="hidden" name="id" value="<%= @tender.id %>">
+    <input type="hidden" name="addenda" value="<%= @edited_addenda.id %>">
+    <table class="table table-bordered responsive"  cellspacing="0" width="100%">
+      <thead>
+        <tr>
+          <th class="text-center">Notify</th>
+          <th class="text-center">Trades</th>
+          <th class="text-center">Sub Contrators</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center">
+            <input type="checkbox" class="document_list_master" name="document_list_master" checked>
+          </td>
+          <td class="text-center">All</td>
+          <td class="text-center"><%= @tender.tender_approved_trades.count() %></td>
+        </tr>
+        <% if @tender.tender_trades.present? %>
+          <% @tender.tender_trades.each do |t| %>
+              <tr>
+                <td class="text-center">
+                  <input type="checkbox" class="document_list" name="trades[]" value="<%= t.trade_id %>">
+                </td>
+                <td class="text-center"><%= get_trade_name t.trade_id %></td>
+                <td class="text-center"><%= get_approved_trade_count(t.trade_id,t.tender_id) %></td>
+              </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <% if params[:addenda_type] == 'documents' %>
+        <a href="<%= review_addendas_path(:id => @tender.id,:addenda => @edited_addenda.id,:addenda_type=> params[:addenda_type]) %>">
+          <button type="button" class="btn btn-danger">Back</button>
+        </a>
+    <% else %>
+        <a href="<%= review_addendas_path(:id => @tender.id,:addenda => @edited_addenda.id,:addenda_type=> params[:addenda_type]) %>">
+          <button type="button" class="btn btn-danger">Back</button>
+        </a>
+    <% end %>
+
+    <button type="submit" class="btn btn-default">Issue Addenda</button>
+  </div>
+<% end %>
+
+
+

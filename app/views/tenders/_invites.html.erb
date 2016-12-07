@@ -1,0 +1,106 @@
+<div class="row"> 
+  <%= form_tag(invite_sub_contractor_tenders_path, :html => { :multipart => true }) do |f| %>
+      <input type="hidden" class="tender_id" name="tender_id" value="<%= params[:info_id] %>">
+      <div class="col-md-12">  
+          <div type="file" id="dir-select" webkitdirectory name="document">
+            <div class="invite_dropzone">
+              <h1 class="text-center"> SC Network</h1>
+            </div>
+          </div>  
+        <div class="checkbox"> 
+          <label>
+            INVITE NEW SUB-CONTRACTORS
+          </label>  
+          <button class="btn btn-success invite_btn" type="button">
+            <i class="fa fa-plus-circle" aria-hidden="true"></i> INVITE NEW SC's
+          </button>
+
+          <label>Know of a sub-contractor who's not currently in your My Network? You can invite them here and they will receive
+              an email invitation to quote for your tender.
+          </label>
+
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+          <br><br>
+
+        </div> 
+          <div class="col-md-24">
+
+          </div>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+
+      </div>  
+      <div class="col-md-12">
+        <div class="new_invite">
+          <% if @tender_invites.present? %>
+            <input type="hidden" name="invite" value="true">
+            <% @tender_invites.each do |a| %>
+              <div class="form-group">
+                <label class="control-label">Email</label>
+                <input class="form-control email" name="emails[]" value="<%= a.email %>">
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">TO QUOTE FOR</label>
+                <%= select_tag "trades[]",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@trades, 'id','name',a.trade_id.present? ? a.trade_id : '' )+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control categories'} %> 
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+
+      </div>
+      <div class="col-md-12">
+        <div class="form-actions">
+          <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>"> 
+            <button class="btn btn-default"  type="button">BACK</button>
+          </a>   
+          <a href="#!"> 
+            <button class="btn btn-primary" type="submit">SAVE AND CONTINUE</button>
+          </a>   
+
+        </div>
+      </div>
+
+  <% end %>
+</div> 
+
+<script>
+  $('.f_name').keyup(function(){
+    var val = $(this).val();
+
+    if(val.length > 0){
+
+    }
+  });
+
+  $('.f_name').focusout(function(){
+    var val = $(this).val();
+
+    if(val.length > 0){
+
+    }
+  });
+
+
+
+  function active_invite_btn(){
+
+    $('.invite_submit_btn').prop('disabled',false);
+  }
+
+
+  $('.invite_btn').click(function(){
+    var tender_id = $('.tender_id').val();
+    $.ajax({
+      method: "POST",
+      data: {tender_id:tender_id},
+      url: "/tenders/new_invite_form"
+    }).done(function (data) {
+      $('.new_invite').append(data);
+
+    });
+  });
+</script>

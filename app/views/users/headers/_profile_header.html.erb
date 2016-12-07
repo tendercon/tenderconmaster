@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs">
+  <li><a href="<%= profile_users_path(:id => @user.id) %>">MY PROFILE</a></li>
+  <li><a href="<%= subscription_users_path %>">TENDERCON SUBSCRIPTION</a></li>
+  <li><a href="<%= change_password_users_path %>">PASSWORD</a></li>
+  <% if session[:role_type] == 'Admin' %>
+      <li><a href="<%= billing_users_path %>">BILLING</a></li>
+  <% end %>
+
+  <li><a href="#">NOTIFICATIONS</a></li>
+  <li><a href="#">SYNC</a></li>
+</ul>

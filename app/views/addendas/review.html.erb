@@ -1,0 +1,113 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Issue Addenda</a>
+    </div>
+  </div>
+</nav>
+
+<ol class="breadcrumb">
+  <li><a href="<%= addendas_path(:id => @tender.id ) %>">Home</a></li>
+  <% if params[:addenda_type] == 'documents' %>
+    <li><a href="/addendas/new?id=<%= @tender.id %>&type=document&addenda=<%= @addenda.id %>">Details</a></li>
+    <li><a href="/addendas/matrix?tender_id=<%= @tender.id %>&addenda=<%= @addenda.id %>&addenda_type='documents'">Matrix</a></li>
+  <% else %>
+      <li><a href="/addendas/new?id=<%= @tender.id %>&type=details&addenda=<%= @addenda.id %>">Details</a></li>
+  <% end %>
+  <li class="active">Review</li>
+</ol>
+
+
+<div class="col-md-22">
+  <fieldset>
+    <h2>Addenda Info</h2>
+  </fieldset>
+  <table class="table table-bordered responsive"  cellspacing="0" width="100%">
+    <tbody>
+      <tr>
+        <td>Subject</td>
+        <td><%= @addenda.subject %></td>
+      </tr>
+      <tr>
+        <td>Details</td>
+        <td><%= @addenda.details %></td>
+      </tr>
+      <% if params[:addenda_type] != 'documents' %>
+        <tr>
+          <td>Quotes Due</td>
+          <td><%= @tender.tender_quote.quote_date  %> Updated</td>
+        </tr>
+        <% if @tender.tender_quote.previous_date.present? %>
+            <tr>
+              <td></td>
+              <td><%= @tender.tender_quote.previous_date  %> Previously</td>
+            </tr>
+        <% end %>
+        <% if @tender.tender_sites.present? %>
+          <tr>
+            <td>Site Inspection</td>
+            <td></td>
+          </tr>
+          <% @tender.tender_sites.each do |s| %>
+            <tr>
+              <td></td>
+              <td><%= s.site_date  %> Updated</td>
+            </tr>
+            <% if s.previous_date.present? %>
+              <tr>
+                <td></td>
+                <td><%= s.previous_date  %> Previously</td>
+              </tr>
+              <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% if params[:addenda_type] == 'documents' %>
+      <div class="row">
+        <div style="height: 30px;"></div>
+      </div>
+      <fieldset>
+        <h2>Documents</h2>
+      </fieldset>
+      <div class="table-responsive" >
+        <table class="table table-bordered responsive" id="updated_addenda_document_table" cellspacing="0" width="100%">
+          <thead>
+          <th class="text-center">Filename</th>
+          <th class="text-center">Size</th>
+          </thead>
+          <tbody>
+          <% if @documents.present? %>
+              <% @documents.each_with_index do |t,index| %>
+                  <tr>
+                    <td class="text-center"><%= t.document_file_name  %></td>
+                    <td class="text-center"><%= convert_kb_to_mb t.document_file_size %> MB</td>
+                  </tr>
+              <% end %>
+          <% end %>
+          </tbody>
+        </table>
+
+      </div>
+      <div class="row">
+        <div style="height: 30px;"></div>
+      </div>
+  <% end %>
+
+  <% if params[:addenda_type] == 'documents' %>
+      <a href="/addendas/matrix?tender_id=<%= @tender.id %>&addenda=<%= @addenda.id %>&type=documents">
+        <button type="button" class="btn btn-danger">Back</button>
+      </a>
+  <% else %>
+      <a href="/addendas/new?id=<%= @tender.id %>&addenda=<%= @addenda.id %>&type=details">
+        <button type="button" class="btn btn-danger">Back</button>
+      </a>
+  <% end %>
+
+  <a href="<%= notify_subcontractors_addendas_path(:id => @tender.id,:addenda => @addenda.id,:addenda_type => params[:addenda_type]) %>">
+    <button type="button" class="btn btn-success">Next</button>
+  </a>
+</div>
+

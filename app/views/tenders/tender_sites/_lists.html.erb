@@ -1,0 +1,40 @@
+<table  class="table table-bordered responsive new_directory_document_table"   cellspacing="0" width="100%">
+  <thead>
+  <tr>
+    <th>Dates</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody class="searchable">
+  <% if @tender_sites.present? %>
+      <% @tender_sites.each do |t| %>
+          <tr>
+            <td><%= t.site_date %></td>
+            <td>
+              <a href="#!">
+                <button type="button" class="btn btn-danger remove" id="<%= t.id %>">
+                  Remove
+                </button>
+              </a>
+            </td>
+          </tr>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+
+<script>
+  $(document).ready(function(){
+    $('.remove').click(function(){
+      var id = $(this).attr('id');
+      $.ajax({
+        method: "POST",
+        data: {id:id},
+        url: "/tender_sites/delete_site"
+      }).done(function (data) {
+        $('.new_site').html(data);
+      });
+    });
+  });
+</script>

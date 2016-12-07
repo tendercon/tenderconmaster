@@ -1,0 +1,38 @@
+<% if @shared_trades.present? %>
+    <% @shared_trades.uniq.each_with_index do |a| %>
+        <table  class="table table-bordered document_table">
+          <thead>
+          <tr>
+            <th>
+              <a href="#!" class="ref_no" value="<%=  "#{get_rfi_ref_no a}_#{get_rfi_trade_name a}" %>"  id="<%=  "#{get_rfi_ref_no a}_#{get_rfi_trade_name a}"  %>">
+                <i class="fa fa-chevron-circle-down" aria-hidden="true"> </i> <%=  "#{get_rfi_ref_no a } (#{get_rfi_trade_name a})" %>
+              </a>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <% if (get_user_company @trade[a]).present? %>
+            <% (get_user_company @trade[a]).each do |d| %>
+              <tr class="<%=   "#{get_rfi_ref_no a}_#{get_rfi_trade_name a}" %>">
+                <td class="col-md-3"> <%= get_company d.user_id  %></td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td>No User</td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+    <% end %>
+<% end %>
+
+
+<script>
+  $('.ref_no').click(function () {
+    var ref_no = $(this).attr('id');
+    $('.'+ref_no).each(function(){
+      $(this).toggle();
+    })
+  });
+</script>

@@ -1,0 +1,639 @@
+<div class="row">
+  <% if !@rfi.status.present? %>
+    <div class="col-md-23 information_header">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-24">
+              <div class="col-md-2"><i class="fa fa-lightbulb-o fa-3x" aria-hidden="true" style="color: #91be24"></i></div>
+              <div class="form-group"></div>
+              <div class="col-md-22">
+                <a href="#!">
+                  This RFI can be shared with other Sub Contractors onces it get reolved.
+                  <button class="btn btn-lg btn-default btn-sm " type="button">Resolve RFI
+                    <i class="fa fa-question-circle fa-1x" aria-hidden="true" style="color: #00ABEA"></i>
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @rfi.status.present? && !(rfi_is_shared? @rfi.id) %>
+    <div class="col-md-23 information_header">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-24">
+              <div class="col-md-2"><i class="fa fa-lightbulb-o fa-3x" aria-hidden="true" style="color:limegreen"></i></div>
+              <div class="form-group"></div>
+              <div class="col-md-22">
+                <a href="#!">
+                  Share this RFI with other Sub Contractors.
+                  <button class="btn btn-lg btn-default btn-sm shared_rfi_btn" type="button">Share RFI
+                    <i class="fa fa-question-circle fa-1x" aria-hidden="true" style="color: limegreen"></i>
+                  </button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+
+  <a href="<%= sc_tender_tenders_path(:id => @tender.id,:rfi => 'true') %>">
+    <button class="btn btn-warning" type="button" >
+      <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to RFI Register</button>
+  </a>
+  <div style="height: 10px"></div>
+  <div class="container">
+    <div id="content">
+      <div class="col-md-12">
+        <label>Ref#</label>
+        <p class="rfi_no_preview"><%= @rfi.ref_no %></p>
+        <label>To</label>
+        <p class="to_preview"><%= @rfi.to %></p>
+        <label>Attention</label>
+        <p class="attention_preview"><%= @rfi.attention %></p>
+        <label>Date</label>
+        <p class="rfi_date_preview"><%= @rfi.rfi_date %></p>
+        <label>Response Due</label>
+        <p class="response_due_preview"><%= @rfi.response_date %></p>
+        <label>Trade</label>
+        <p class="trade_preview"><%= get_trade_name @rfi.trade_id %></p>
+        <label>Heading</label>
+        <p class="heading_preview"><%= @rfi.heading %></p>
+      </div>
+
+      <div class="col-md-6">
+        <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+        <div class="form-group">
+          <label>Company</label>
+          <p class="company_preview"><%= @sc_user.company %></p>
+          <label>From</label>
+          <p class="from_preview"><%= "#{@sc_user.first_name} #{@sc_user.last_name}" %></p>
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <% if @rfi.status.present? %>
+            <% if (rfi_is_shared? @rfi.id) && @rfi.status.present? %>
+              <p>
+                <h2 style="color: green"><%= @rfi.status %> & SHARED</h2>
+              </p>
+              <button class="btn btn-lg btn-default btn-sm shared_rfi_btn" type="button">View Details
+                <i class="fa fa-question-circle fa-1x" aria-hidden="true" style="color: limegreen"></i>
+              </button>
+            <% else %>
+              <p>
+                <h2 style="color: green"><%= @rfi.status %></h2>
+              </p>
+              <button class="btn btn-lg btn-default btn-sm shared_rfi_btn" type="button">Share RFI
+                <i class="fa fa-question-circle fa-1x" aria-hidden="true" style="color: limegreen"></i>
+              </button>
+            <% end %>
+
+
+          <% else %>
+            <p>
+              <h2 style="color: red">Outsanding</h2>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-24">
+    <label>Description</label>
+    <textarea class="form-control rfi_desc_preview" rows="5" id="rfi_desc" value="<%= @rfi.description %>"><%= @rfi.description %></textarea>
+  </div>
+  <div class="col-md-24">
+    <label>Attach files</label>
+    <div class="col-md-24" > 
+      <div class="col-md-20  col-md-offset-2 rfi_preview_dropzone">
+        <br/>
+        <p class="text-center">
+          <i class="fa fa-file-o fa-5x" aria-hidden="true"></i>
+        </p>
+        <h2 class="text-center prev_ref"><%= "#{@rfi.ref_no}-#{@tender.title}" %></h2>
+        <p class="text-center download_btn">
+          <a href="<%= @download_link %>" >
+            <i class="fa fa-download fa-2x" aria-hidden="true"></i>
+          </a>
+        </p>
+      </div>
+    </div>  
+  </div>
+  <div class="col-md-24" style="height: 5px"></div>
+  <div class="col-md-20 col-md-offset-10">
+    <a href="#!">
+      <% if @rfi.status == nil %>
+        <button class=" btn btn-info mark_resolved" type="button" >Mark as Resolved</button>
+      <%# else %>
+        <!--<button class=" btn btn-info mark_resolved" type="button" >Resolved</button>-->
+      <% end %>
+
+      <% if session[:role] == 'Head Contractor' %>
+          <button class=" btn btn-info request_mark_resolved" type="button" >Request To Resolve</button>
+      <% end %>
+    </a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group"></div>
+
+  <div class="col-md-12 comment_lists">
+    <%= render :partial => 'rfi_comments/comment_document_lists' %>
+  </div>
+
+  <div class="col-md-20 col-md-offset-10">
+    <a href="#!">
+      <button class=" btn btn-info add_comment" type="button" >Add Comment</button>
+    </a>
+  </div>
+  <div class="form-group">
+    <br/>
+  </div>
+  <div class="col-md-16 col-md-offset-4 comment_area" style="display: none;">
+    <div class="col-md-24" style="height: 5px"></div>
+    <div class="col-md-24">
+      <textarea class="form-control message" rows="5" cols="20"></textarea>
+      <div class="col-md-24" style="height: 2px"></div>
+      <%= form_for @comment_document, :url => create_comment_document_comment_documents_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
+          <input type="hidden" value="<%= @tender.id%>" name="tender_id" class="tender_id">
+          <input type="hidden" value="<%= @str_token %>" name="token" class="token">
+          <input type="hidden" class="rfi_id" value="<%= @rfi.id %>" name="rfi_id">
+          <input type="file" id="file_comment" class="btn btn-success" name="document" webkitdirectory directory multiple /> 
+      <% end %>
+      <div id="<%= @str_token %>" class="str_token"></div>
+      <button class="btn btn-info submit_comment">
+        Submit
+      </button>
+      <button class="btn btn-info cancel_comment">
+        Cancel
+      </button>
+      <div class="col-md-24" style="height: 5px"></div>
+    </div>
+  </div>
+</div>
+<input type="hidden" value="<%= @request %>" class="request">
+<input type="hidden" value="<%= @rfi.trade_id %>" class="trade_id">
+<input type="hidden" value="<%= @rfi.id %>" class="rfi_id">
+
+
+<div id="request_myModal"  class="modal fade col-md-28" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Request Resolve RFI</h4>
+      </div>
+      <div class="modal-body">
+          <h3>You like to resolve this RFI?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn_no" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary btn_resolve">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="shared_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p class="text-center">
+          <i class="fa fa-share-square fa-4x" aria-hidden="true"></i>
+        </p>
+        <p class="text-center">
+          How to you wish to share this RFI?
+        </p>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="col-md-24">
+            <div class="radio">
+              <label><input type="radio" name="optradio" class="shared_option" id="1">Share with all Sub Contractors Relevant Trade</label>
+            </div>
+          </div>
+          <div class="col-md-24">
+            <div class="radio">
+              <label><input type="radio" name="optradio" class="shared_option" id="2">Share with all my tenderding Sub Contractors</label>
+            </div>
+          </div>
+          <div class="col-md-24">
+            <div class="radio disabled">
+              <label><input type="radio" name="optradio" class="shared_option" id="3">Manually select Sub Contractors you wish to share with</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-default btn_no" data-dismiss="modal">No</button>
+        <button type="button" class="btn btn-primary btn_resolve">Yes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="option1_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p class="text-center">
+          You have currently shared this RFI with Sub Contractors that are relevant to the trade.
+        </p>
+        <p class="text-center">
+          <button type="button" class="btn btn-default view_sub">View Sub Contractors</button>
+        </p>
+      </div>
+      <div class="modal-body">
+        <div class="text-center span2">
+          <button type="button" class="btn btn-primary all_sub">
+            I wish to share this RFI with all Sub Contractors
+          </button>
+        </div>
+        <p class="text-center">or</p>
+        <div class="text-center span2">
+          <button type="button" class="btn btn-primary manually_select">
+            I wish to manually select Sub Contractors and share this RFI.
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+       <p class="text-center">
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="option2_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p class="text-center">
+          You have shared this RFI with all Sub Contractors currently tendering on your project.
+        </p>
+        <p class="text-center">
+          <button type="button" class="btn btn-default view_sub">View Sub Contractors</button>
+        </p>
+        <p class="text-center">
+          Note: All future approved Sub Contractors will also get this RFI in there shared section.
+        </p>
+      </div>
+      <div class="modal-body">
+        <div class="text-center span2">
+          <button type="button" class="btn btn-primary btn_resolve">
+            Stop sharing RFI with new coming Sub Contractors.
+          </button>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <p class="text-center">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="option3_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p class="text-center">
+          You have manually selected and shared this RFI with Sub Contractors on you project.
+        </p>
+        <p class="text-center">
+          <button type="button" class="btn btn-default view_sub">View Sub Contractors</button>
+        </p>
+      </div>
+      <div class="modal-body">
+        <div class="text-center span2">
+          <button type="button" class="btn btn-primary all_sub">
+            I wish to share this RFI with all Sub Contractors
+          </button>
+        </div>
+        <p class="text-center">or</p>
+        <div class="text-center span2">
+          <buttons type="button" class="btn btn-primary manually_select">
+            I wish to manually select Sub Contractors and share this RFI.
+          </buttons>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <p class="text-center">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="manual_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p class="text-center">
+          Select Sub Contractors you wish to share the RFI with:
+        </p>
+      </div>
+      <div class="modal-body">
+        <% if @trades.present? %>
+          <% @trades.uniq.each do |a| %>
+                <table  class="table table-bordered document_table">
+                  <thead>
+                     <tr>
+                       <th><input type="checkbox" id="<%= a %>" class="user_list_master" name="document_list_master"> <%= get_trade_name a  %></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                    <% if (get_user_company a).present? %>
+                      <% (get_user_company a).each do |d| %>
+                        <tr>
+                          <td class="col-md-3"><input type="checkbox" value="<%= d.user_id%>" class="user_list_<%= a %>" name="user_list" title="<%= a %>"> <%= get_company d.user_id  %></td>
+                        </tr>
+                      <% end %>
+                    <% else %>
+                      <tr>
+                        <td>No User</td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <p class="text-center">
+          <button type="button" class="btn btn-primary share_rfi" data-dismiss="modal">Share</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="success_manual_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p class="text-center">
+          Success you have shared the RFI with the following Sub Contractors.
+        </p>
+      </div>
+      <div class="modal-body manual_body">
+
+      </div>
+      <div class="modal-footer">
+        <p class="text-center">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="success_all_sub_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <p class="text-center">
+          Success you have shared the RFI with the following Sub Contractors.
+        </p>
+      </div>
+      <div class="modal-body all_sub_body">
+
+      </div>
+      <div class="modal-footer">
+        <p class="text-center">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+  var req = $('.request').val();
+  console.log("req"+req)
+  if(req == 'true'){
+    console.log("SHOW")
+    $('#request_myModal').modal('show');
+  }
+
+  $('.add_comment').click(function(){
+    $('.comment_area').show();
+  });
+
+  $('.cancel_comment').click(function(){
+    $('.comment_area').hide();
+  });
+
+  $('#new_comment_document').fileupload({
+    dataType: 'json',    done: function (e, data) {
+      $.each(data, function (index, file) {
+
+        if (index == 'done') {
+          var token = $('.token').val();
+          $.ajax({
+            method: "POST",
+            data: {str_token:token},
+            url: "/comment_documents/get_documents"
+          }).done(function (data) {
+            $('#'+token).html(data);
+          });
+        }
+      });
+    },progress: function (e, data) {
+
+    }
+  });
+
+  $('.submit_comment').click(function(){
+    var message = $('.message').val();
+    var rfi_id = $('.rfi_id').val();
+    var tender_id = $('.tender_id').val();
+    var str_token = $('.str_token').attr('id');
+    $.ajax({
+      method: "POST",
+      data: {message:message,rfi_id:rfi_id,tender_id:tender_id,str_token:str_token},
+      url: "/rfi_comments/create_comment"
+    }).done(function (data) {
+       $('.str_token').html('');
+       $('.message').val('');
+       $('.comment_area').hide();
+        console.log(data);
+       $('.comment_lists').html(data);
+    });
+  });
+
+  $('.mark_resolved').click(function(){
+    var rfi_id = $('.rfi_id').val();
+    $.ajax({
+      method: "POST",
+      data: {rfi_id:rfi_id},
+      url: "/rfis/update_status"
+    }).done(function (data) {
+      $('.mark_resolved').text("Resolved");
+      window.location.reload();
+    });
+  });
+
+  $('.btn_resolve').click(function(){
+    var rfi_id = $('.rfi_id').val();
+    var tender_id = $('.tender_id').val();
+    $.ajax({
+      method: "POST",
+      data: {rfi_id:rfi_id},
+      url: "/rfis/update_status"
+    }).done(function (data) {
+      $('.mark_resolved').text("Resolved");
+      $('#request_myModal').modal('hide');
+      window.location.href = "/rfis/comments?id="+rfi_id+"&tender_id="+tender_id;
+
+    });
+  });
+
+  $('.btn_no').click(function(){
+    var rfi_id = $('.rfi_id').val();
+    var tender_id = $('.tender_id').val();
+    $.ajax({
+      method: "POST",
+      data: {rfi_id:rfi_id,no:'No'},
+      url: "/rfis/update_status"
+    }).done(function (data) {
+      $('#request_myModal').modal('hide');
+      window.location.href = "/rfis/comments?id="+rfi_id+"&tender_id="+tender_id;
+    });
+  })
+
+  $('.request_mark_resolved').click(function(){
+    var rfi_id = $('.rfi_id').val();
+    $.ajax({
+      method: "POST",
+      data: {rfi_id:rfi_id},
+      url: "/rfis/request_to_resolve"
+    }).done(function (data) {
+
+    });
+  });
+
+  $('.shared_rfi_btn').click(function(){
+    $('#shared_modal').modal('show');
+  });
+
+  $('.shared_option').click(function(){
+    var option_id = $(this).attr('id');
+
+    if(option_id == 1){
+      $('#option1_modal').modal('show');
+      $('#option2_modal').modal('hide');
+      $('#option3_modal').modal('hide');
+    }else if(option_id == 2){
+      $('#option2_modal').modal('show');
+      $('#option1_modal').modal('hide');
+      $('#option3_modal').modal('hide');
+
+      var trade_id = $('.trade_id').val();
+      var rfi_id = $('.rfi_id').val();
+
+      $.ajax({
+        method: "POST",
+        data: {rfi_id:rfi_id,trade_id:trade_id},
+        url: "/shared_rfis/shared_by_approved_sub"
+      }).done(function (data) {
+        $('#shared_modal').modal('hide');
+        window.location.reload();
+      });
+    }else{
+      $('#option3_modal').modal('show');
+      $('#option1_modal').modal('hide');
+      $('#option2_modal').modal('hide');
+    }
+  });
+
+  $('.all_sub').click(function(){
+    var trade_id = $('.trade_id').val();
+    var rfi_id = $('.rfi_id').val();
+
+    $.ajax({
+      method: "POST",
+      data: {rfi_id:rfi_id,trade_id:trade_id},
+      url: "/shared_rfis/shared_by_trade"
+    }).done(function (data) {
+      $('#shared_modal').modal('hide');
+      $('#option3_modal').modal('hide');
+      $('#option1_modal').modal('hide');
+      $('#option2_modal').modal('hide');
+      $('.all_sub_body').html(data);
+      $('#success_all_sub_modal').modal('show');
+      //window.location.reload();
+    });
+  });
+
+  $('.manually_select').click(function(){
+    $('#manual_modal').modal('show');
+  });
+
+  $('.user_list_master').click(function(){
+    var id = $(this).attr('id');
+    console.log(id);
+
+
+    console.log($('.user_list_'+id).prop('checked'));
+    if($('.user_list_'+id).prop('checked')){
+      $('.user_list_'+id).prop('checked',false);
+    }else{
+      $('.user_list_'+id).prop('checked',true);
+    }
+  });
+
+  $('.share_rfi').click(function(){
+    var user_ids =[];
+    var trades = [];
+    $.each($("input[name='user_list']:checked"), function(){
+      trades.push($(this).attr('title'));
+      user_ids.push($(this).val());
+    });
+
+    var rfi_id = $('.rfi_id').val();
+
+    $.ajax({
+      method: "POST",
+      data: {rfi_id:rfi_id,trades:trades,user_ids:user_ids},
+      url: "/shared_rfis/shared_by_trade"
+    }).done(function (data) {
+      $('#shared_modal').modal('hide');
+      $('#option3_modal').modal('hide');
+      $('#option1_modal').modal('hide');
+      $('#option2_modal').modal('hide');
+      $('.manual_body').html(data);
+      $('#success_manual_modal').modal('show');
+      //window.location.reload();
+    });
+
+  });
+
+</script>

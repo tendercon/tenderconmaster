@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-22 chat_div">
+    <p class="text-center">
+      <%= get_tender_title @tender_id %>
+    </p>
+    <div class="col-md-5" id="users">
+      <label >Members</label>
+      <% if params[:group].present? %>
+          <p class="text-center"><%= get_user_name session[:user_logged_id] %></p>
+        <% @group_approved_trades.each do |a| %>
+          <p class="text-center"><%= get_user_name a.sc_id %></p>
+        <% end %>
+      <% else %>
+        <p class="text-center"><%= get_user_name @tender_approved_trade.hc_id %></p>
+        <p class="text-center"><%= get_user_name @tender_approved_trade.sc_id %></p>
+      <% end %>
+
+    </div>
+    <div class="col-md-17" id="messages"></div>
+    <input class="tender_id" type="hidden" value="<%= @tender_id %>">
+    <input class="trade" type="hidden" value="<%= @trade %>">
+    <input class="trade_name" type="hidden" value="<%= get_trade_name @trade %>">
+    <% if !params[:group].present? %>
+      <input class="sc_id" type="hidden" value="<%= @tender_approved_trade.sc_id %>">
+      <input class="hc_id" type="hidden" value="<%= @tender_approved_trade.hc_id %>">
+    <% end %>
+
+    <div class="col-md-5">
+
+    </div>
+    <div class="col-md-17 input-group">
+      <input id="chat-input" class="form-control" type="text" placeholder="say anything" autofocus/>
+      <span class="input-group-btn">
+        <button class="btn btn-default send" type="button">Send</button>
+      </span>
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,191 @@
+<div class="container" style="background-color: #ffffff">
+  <ul class="nav nav-tabs">
+    <li><a href="<%#= profile_users_path(:id => @user.id) %>">COMPANY PROFILE</a></li>
+    <li><a href="<%#= change_password_users_path %>">USERS</a></li>
+    <li><a href="<%#= billing_users_path %>">TENDERCON REVIEWS</a></li>
+    <li><a href="<%= portfolios_path %>">PORFOLIO</a></li>
+    <li><a href="#">ADMIN NOTIFICATION</a></li>
+  </ul>
+
+  <input type="hidden" id="user_id" value="<%= session[:user_logged_id] %>" name="user_id">
+  <input type="hidden" id="project_id" value="<%= @portfolio.id %>" name="project_id">
+  <div class="row">
+    <div class="form-group">
+
+    </div>
+    <div class="col-md-24">
+      <div class="col-md-12">
+
+        <% if session[:user_logged_id] == @portfolio.user_id || (get_parent_access @portfolio.user_id) == session[:user_logged_id] %>
+          <a href="<%= edit_portfolio_path(@portfolio) %>" class="text-center new-account" style="text-decoration: none; color: grey">
+            <i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+          </a>
+
+          <a href="<%= delete_portfolio_portfolios_path(:id => @portfolio.id ) %>" class="text-center new-account" style="text-decoration: none; color: grey">
+            <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+          </a>
+        <% end %>
+
+        <% if session[:role] == 'Head Contractor' %>
+          <a href="<%= download_portfolio_portfolios_path(format: 'pdf') %>" class="text-center new-account" style="text-decoration: none; color: grey">
+            <i class="fa fa-download fa-2x" aria-hidden="true"></i>
+          </a>
+        <% elsif session[:role] == 'Sub Contractor' %>
+          <a href="<%= download_portfolio_portfolios_path(format: 'pdf',:id => @portfolio.id) %>" class="text-center new-account" style="text-decoration: none; color: grey">
+            <i class="fa fa-download fa-2x" aria-hidden="true"></i>
+          </a>
+        <% end %>
+
+        <% if session[:role] == 'Head Contractor' %>
+          <a href="mailto:<%= @user.email %>?subject=Portfolio&body=This is the link where you can download you profile. <%= "http://"+request.host_with_port+download_portfolio_portfolios_path(format: 'pdf').html_safe %>" class="share" style="text-decoration: none; color: gray">
+            <i class="fa fa-share-alt fa-2x" aria-hidden="true"></i>
+          </a>
+        <% elsif session[:role] == 'Sub Contractor' %>
+          <a href="mailto:<%= @user.email %>?subject=Portfolio&body=This is the link where you can download you profile. <%= "http://"+request.host_with_port+download_portfolio_portfolios_path(format: 'pdf').html_safe %>" class="share" style="text-decoration: none; color: gray">
+            <i class="fa fa-share-alt fa-2x" aria-hidden="true"></i>
+          </a>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="form-group">
+        <div class="col-md-4">
+          <label for="client">Client</label>
+        </div>
+        <div class="col-md-19">
+          <label> <%= @portfolio.client %> </label>
+        </div>
+        <br>
+        <div class="col-md-4">
+          <label for="location">Location:</label>
+        </div>
+        <div class="col-md-19">
+          <label><%= @portfolio.project_address.present? ? @portfolio.project_address.location : nil %></label>
+        </div>
+        <div class="col-md-4">
+          <label for="location">Suburb:</label>
+        </div>
+        <div class="col-md-18">
+          <label><%= @portfolio.project_address.present? ? @portfolio.project_address.suburb : nil %></label>
+        </div>
+        <div class="col-md-4">
+          <label for="location">Postcode:</label>
+        </div>
+        <div class="col-md-19">
+          <label><%= @portfolio.project_address.present? ? @portfolio.project_address.postcode : nil %></label>
+        </div>
+        <div class="col-md-4">
+          <label for="location">State:</label>
+        </div>
+        <div class="col-md-19">
+          <label><%= @portfolio.project_address.present? ? @portfolio.project_address.state : nil %></label>
+        </div>
+        <div class="col-md-4">
+          <label>Year</label>
+        </div>
+
+        <div class="col-md-19">
+          <label><%= @portfolio.year %></label>
+        </div>
+
+        <div class="col-md-4">
+          <label>Value</label>
+        </div>
+
+        <div class="col-md-19">
+          <label><%= @portfolio.project_range %></label>
+        </div>
+
+        <div class="col-md-4">
+          <label>Sector</label>
+        </div>
+        <div class="col-md-19">
+          <label><%=  get_category_name @portfolio.category_id %></label>
+        </div>
+
+
+        <div class="col-md-4">
+          <label>Trades</label>
+        </div>
+
+        <div class="col-md-14">
+          <% if @trade_array.present? && @trade_array.size > 0 %>
+            <% @trade_array.each do |t| %>
+              <label><%= get_trade_name t %></label>
+            <% end %>
+          <% end %>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="col-md-20">
+        <label for="client">Company Involvement with Project</label>
+      </div>
+      <div class="col-md-20">
+        <label><%= @portfolio.present? ? @portfolio.about_me.html_safe : nil %></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+      <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+    </div>
+    <div class="col-sm-24 col-md-14 col-md-offset-5 ">
+      <div class="project_photos">
+        <div class="carousel slide article-slide" id="article-photo-carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <% @urls.each_with_index do |url,index| %>
+              <% if index == 0 %>
+                <li data-target="#article-photo-carousel" data-slide-to="<%= index %>" class="active">
+                  <div class="form-group">
+                    <img src="http://<%= url %>" width="100px" height="100px" class="center-block">
+                  </div>
+                </li>
+
+              <% else %>
+                <li data-target="#article-photo-carousel" data-slide-to="<%= index %>">
+                  <div class="form-group">
+                    <img src="http://<%= url %>" width="100px" height="100px" class="center-block">
+                  </div>
+                </li>
+              <% end %>
+
+            <% end %>
+          </ol>
+
+          <!-- Wrapper for Slides -->
+          <div class="carousel-inner cont-slider">
+            <% if @urls.present? %>
+              <% @urls.each_with_index do |url,index| %>
+                <% if index == 0 %>
+                  <div class="item active">
+                    <img src="http://<%= url %>" width="300px"  class="center-block">
+                  </div>
+                <% else %>
+                  <div class="item">
+                    <img src="http://<%= url %>" width="300px"  class="center-block">
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#article-photo-carousel" data-slide="prev">
+            <span class="icon-prev"></span>
+          </a>
+          <a class="right carousel-control" href="#article-photo-carousel" data-slide="next">
+            <span class="icon-next"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

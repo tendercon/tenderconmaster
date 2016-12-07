@@ -1,0 +1,62 @@
+<table class="table table-bordered responsive" id="tendering_table"  cellspacing="0" width="100%">
+  <thead>
+  <th>Company Name</th>
+  <th>Contact Name</th>
+  <th>Trade</th>
+  <th>Joined</th>
+  <th>Packages</th>
+  <th>Status</th>
+  </thead>
+  <tbody>
+  <% if @tendering.present? %>
+      <% @tendering.each do |t| %>
+          <tr class="trade" id="<%=  t %>" data-title="<%= get_trade_name t.trade_id %>">
+            <td class="text-center"><%= get_user_company_name t.sc_id %></td>
+            <td class="text-center"><%= get_user_name t.sc_id %></td>
+            <td class="text-center"><%= get_trade_name t.trade_id  %></td>
+            <td class="text-center"><p><%= (get_user_created t.sc_id).strftime("%d.%m.%Y %H:%M %p")  %></p></td>
+            <td class="text-center">
+              <p class="text-center"><%= "#{return_download_package_cnt @tender.id,t.trade_id}" %></p>
+              <label>Downloads</label>
+            </td>
+            <td class="text-center">
+              <% if t.approved_date.present? %>
+                  <span class="label label-success label-as-badge">Quoting</span>
+              <% else %>
+                  <label>Quote Submitted</label>
+                  <p><%= t.request_date.strftime("%d.%m.%Y %H:%M %p") %></p>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    $('#tendering_table').DataTable({
+      "columnDefs": [
+        { "visible": false, "targets": 2 }
+      ],
+      "order": [[ 2, 'asc' ]],
+      "displayLength": 25,
+      "drawCallback": function ( settings ) {
+        var api = this.api();
+        var rows = api.rows( {page:'current'} ).nodes();
+        var last=null;
+
+        api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+          console.log(group);
+          if ( last !== group ) {
+            $(rows).eq( i ).before(
+                '<tr class="group"><td colspan="7">'+group+'</td></tr>'
+            );
+
+            last = group;
+          }
+        } );
+      }
+    });
+
+  });
+</script>

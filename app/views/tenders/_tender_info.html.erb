@@ -1,0 +1,270 @@
+<div class="row">
+  <div class="form-group"></div>
+</div>
+<% if session[:role] == 'Head Contractor' %>
+  <div class="col-md-20">
+    <a href="/tenders/new_tender?info=true&info_id=<%= @tender.id %>" class="pull-right">
+      <button class="btn btn-success" type="button">Edit</button>
+    </a>
+  </div>
+<% end %>
+
+
+<div class="col-md-22">
+
+  <label>Trades <i class="fa fa-question-circle" aria-hidden="true" style="color: green"></i></label>
+  <% if session[:role] == 'Sub Contractor' %>
+    <p>Status of the trades you have applied to tender for</p>
+  <% end %>
+  <div class="trade_div">
+    <table  class="table table-bordered">
+      <tbody>
+      <% if session[:role] == 'Sub Contractor' %>
+        <% if (get_tender_request @tender.id,session[:user_logged_id]).present? %>
+          <% (get_tender_request @tender.id,session[:user_logged_id]).each do |a| %>
+            <tr>
+              <td>
+                <label><%= get_trade_name a.trade_id %></label>
+              </td>
+              <% if a.status == 'approved' %>
+                  <td><button class="btn btn-success">Tendering</button></td>
+              <% elsif a.status == 'declined' %>
+                  <td><button class="btn btn-danger">Declined</button></td>
+              <% else %>
+                  <td><button class="btn btn-warning">Pending</button></td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% end %>
+
+        <% if (get_tender_invite_status @tender.id,session[:user_logged_id]).present? %>
+          <% (get_tender_invite_status @tender.id,session[:user_logged_id]).each do |a| %>
+              <tr>
+                <td>
+                  <label><%= get_trade_name a.trade_id %></label>
+                </td>
+                <% if a.status == 'rejected' %>
+                    <td><button class="btn btn-danger">Invite Declined</button></td>
+                <% else %>
+                    <td><button class="btn btn-warning">Invite Pending</button></td>
+                <% end %>
+              </tr>
+          <% end %>
+        <% end %>
+
+
+      <% end %>
+
+      <% if session[:role] == 'Head Contractor' %>
+        <% if (get_tender_trades @tender.id).present? %>
+          <% (get_tender_trades @tender.id).each do |a| %>
+            <tr>
+              <td>
+                <label><%= get_trade_name a.trade_id %></label>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <% if session[:role] == 'Sub Contractor' %>
+    <button class="btn btn-default apply_more_trade">
+      Apply For more Trades
+    </button>
+  <% end %>
+</div>
+
+
+
+<div class="col-md-12">
+  <label>Tender Details </label>
+  <p></p>
+  <label>Tender ID</label>
+  <p style="font-size: 12px"><%= @tender.tendercon_id %></p>
+  <label>Title</label>
+  <p style="font-size: 12px"><%= @tender.title %></p>
+  <label>Sector</label>
+  <p style="font-size: 12px"><%= get_categoty_name @tender.category_id %></p>
+  <label>Value</label>
+  <p style="font-size: 12px"><%= get_value_name @tender.tender_value_id %></p>
+  <label>Client</label>
+  <p style="font-size: 12px"><%= @tender.client %></p>
+  <label>Architect</label>
+  <p style="font-size: 12px"><%= @tender.architect %></p>
+  <label>Description</label>
+  <p style="font-size: 12px"><%=  @tender.description.html_safe %></p>
+  <label>Quote</label>
+  <p></p>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Description</th>
+      <th>Date</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><%= @tender.tender_quote.quote_description  %></td>
+      <td><%= @tender.tender_quote.quote_date %></td>
+    </tr>
+    </tbody>
+  </table>
+  <label>Site Inspection</label>
+  <% if (get_tender_sites @tender.id).present? %>
+    <% (get_tender_sites @tender.id).each do |a| %>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th>Description</th>
+            <th>Date</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><%= a.site_description %></td>
+            <td><%= a.site_date %></td>
+          </tr>
+          </tbody>
+        </table>
+    <% end %>
+  <% end %>
+  <p></p>
+
+
+  <label>Status</label>
+  <% if @tender.status == '1' %>
+    <p style="font-size: 12px">Tendering - Your organization is still tendering for this project.</p>
+  <% else %>
+    <p style="font-size: 12px">Awarded - This tender has been awarded to the Head Contractor </p>
+  <% end %>
+  <br/>
+  <div class="row">
+    <div class="col-md-22">
+      <div class="form-group"></div>
+    </div>
+    <div class="col-md-22">
+      <div class="form-group"></div>
+    </div>
+  </div>
+
+  <%#= render 'tender_trades' %>
+
+
+
+</div>
+<div class="col-md-12">
+  <label>Address </label>
+  <div id="map_<%= @tender.id %>" style="height:300px;width:100%;"></div>
+</div>
+<input type="hidden"  class="tenders" value="<%= @tender.id %>">
+<input type="hidden"  class="add<%= @tender.id %>" value="<%= @tender.address %>">
+<input type="hidden"  class="tender_id" value="<%= @tender.id %>">
+<input type="hidden"  class="sc_id" value="<%= session[:user_logged_id] %>">
+
+<div class="success">
+  <div id="apply_more_trade" class="modal fade " role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px"   >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #184a5f">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="col-sm-24 col-md-14 col-md-offset-6">
+            <p class="text-center" style="font-size: 20px;color: white">Apply more Trade</p>
+          </div>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+        <br>
+        <div class="modal-body">
+          <div class="row">
+            <div class="container">
+              <div id="content">
+                <div class="tab-pane" id="orange">
+                  <% if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
+                      <div class="col-md-12">
+                        <p class="text-center" style="font-size: 16px">
+                          Note: All selected checkbox are being requested on Invited Tender
+                        </p>
+                      </div>
+                  <% end %>
+                  <div class="col-md-18">
+                    <% @trade_cats = [] %>
+                    <% @trade_categories.each do |tc|  %> 
+                        <% if (get_tender_trades @tender.id).present? %>
+                            <% (get_tender_trades @tender.id).each_with_index do |t,index| %>
+                                <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                                    <div class="col-md-24"> 
+                                      <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                                          <% if !@trade_cats.include? tc.title %>
+                                              <% @trade_cats << tc.title %>
+                                              <h1> <%= tc.title %></h1> 
+                                          <% end %>
+                                      <% end %>
+                                    </div>
+                                    <div class="col-md-22">
+                                      <div class="col-md-6">
+                                        <% if (check_tender_trade_per_sc  @tender.id,session[:user_logged_id],t.trade_id)  %>
+                                            <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  class="trade_class" checked disabled readonly> <%= get_trade_name t.trade_id %></label> 
+                                        <% else %>
+                                            <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
+                                        <% end %>
+                                      </div>
+                                    </div>
+                                <% end %>
+                            <% end %>
+                        <% end %> 
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group"></div>
+
+          </div>
+        </div>
+        <div class="modal-footer" style="background-color: #184a5f">
+          <div class="text-center">
+            <a href="#!">
+              <button class=" btn btn-info quotes" type="button">I AM INTERESTED</button>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+  $('.apply_more_trade').click(function(){
+     $('#apply_more_trade').modal('show');
+  });
+
+  $('.quotes').click(function(){
+    var tender_id = $('.tender_id').val();
+    var sc_id = $('.sc_id').val();
+
+    var ids = []
+    $('.trade_class').each(function(){
+      if($(this).is(':checked')){
+        ids.push($(this).val());
+      }
+    });
+    console.log(ids)
+    $.ajax({
+      method: "POST",
+      data: {tender_id:tender_id,sc_id:sc_id,ids:ids,tender_detail:true},
+      url: "/tenders/request_to_quote"
+    }).done(function (data) {
+      $('#apply_more_trade').modal('hide');
+      $('.trade_div').html(data);
+    });
+  });
+</script>

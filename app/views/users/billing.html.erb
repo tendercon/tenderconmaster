@@ -1,0 +1,162 @@
+<div class="container" style="background-color: #ffffff">
+  <%= render :partial => 'users/headers/profile_header' %>
+
+  <% if @user.div_status == false %>
+    <div class="form-group has-feedback">
+      <% if flash[:error] %>
+        <div class="alert alert-danger open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= @error_alert %>
+          <div class="notice" style="font-size: 14px;"><%= flash[:error].html_safe %></div>
+          <% flash[:error]=nil %>
+        </div>
+      <% end %>
+      <%- if !flash[:notice].nil? %>
+        <div class="alert alert-success open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= @error_alert %>
+          <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
+          <% flash[:notice]=nil %>
+        </div>
+      <%- end %>
+    </div>
+    <div class="col-md-23 information_header">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-14">
+              <div class="col-md-2"><i class="fa fa-lightbulb-o fa-4x" aria-hidden="true" style="color: #ffff00"></i></div>
+              <div class="form-group"></div>
+              <div class="col-md-22">
+                <p class="user_profile_header">This copy will describe what the user can do on this page and how it effects user account.</p>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="form-group"></div>
+              <a href="<%= zendesk_index_path(:id => @user.id) %>" class="text-center new-account">
+                <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Learn More</button>
+              </a>
+              <a href="<%= update_user_div_users_path(:id => @user.id) %>" class="text-center new-account">
+                <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Don't shw this again.</button>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+
+  <div class="credit_card_data">
+    <div class="col-sm-24 col-md-14 col-md-offset-5 ">
+      <input type="hidden" class="user_id" value="<%= @user.id %>">
+      <div class="login_div">
+
+        <label>YOUR PLAN</label>
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <label>FREE</label>
+            <label>Standard Subscription</label>
+          </div>
+        </form>
+        <button type="button" class="btn btn-success update_plan">UPGRADE PLAN</button>
+        <input type="text" class="form-control "   required>
+        <br/>
+        <label>PAYMENT INFORMATION</label>
+        <div class="row">
+          <div class="form-group"></div>
+        </div>
+        <% if !@subscriber.present? %>
+          <label style="color: red">Please update your credit card details if you wish to upgrade your plan.</label>
+        <% end %>
+        <div class="row">
+          <div class="form-group"></div>
+        </div>
+
+        <% if @subscriber.present? %>
+          <label>Expiration Date: <%= @subscriber.expiry_date %> </label>
+          <br>
+          <% if @brand == 'Visa' %>
+            <img src="/assets/credit_card/visa.jpg" class="visa" height="40px" width="60px"> <label>
+          <% elsif @brand == 'MasterCard' %>
+            <img src="/assets/credit_card/mastercard.jpg" class="mastercard" height="40px" width="60px">
+          <% elsif @brand == 'American Express' %>
+            <img src="/assets/credit_card/amex.jpg" class="amex" height="40px" width="60px">
+          <% end %>
+          <%= "  .... .... .... #{@last_four}" %> </label>
+        <% end %>
+
+        <%= form_tag subscriber_path(1),method: :put do %>
+        <br>
+          <article>
+            <% if flash[:error].present? %>
+              <div id="error_explanation">
+                <p><%= flash[:error] %></p>
+              </div>
+            <% end %>
+            <label class="amount">
+              <span>Amount: $5.00</span>
+            </label>
+          </article>
+
+          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                  data-description="A month's subscription"
+                  data-amount=""
+                  data-panelLabel="Submit"
+                  data-locale="auto"></script>
+        <% end %>
+        <input type="text" class="form-control"  required>
+        <br/>
+        <label>INVOICE HISTORY</label>
+        <div class="row">
+          <div class="form-group"></div>
+        </div>
+        <label>This account currently has no invoice</label>
+        <div class="row">
+          <div class="form-group"></div>
+        </div>
+        <label>NOTE: TENDERCON WILL DISPLAY LAST 12 MONTH INVOICES. PLEASR CONTACT BILLING@TENDERON</label>
+        <input type="text" class="form-control"  required>
+
+      </div>
+    </div>
+  </div>
+  <input type="hidden" class="sub" value="<%= @subscriber.present? ? @subscriber.stripe_id : nil %>">
+</div>
+
+<script>
+  $('.amount').hide();
+  var sub = $('.sub').val();
+  console.log("sub.length"+sub.length);
+  if(sub.length > 0){
+    $('.stripe-button-el').text('Change Card');
+
+    $('.stripe-button-el').click(function(){
+      $('.iconTick').attr('text', 'Submit')
+      $('.iconTick').attr('value', 'Submit')
+      if(!$('#submitButton').is(':hidden')){
+        if(!$('.iconTick').is(':hidden')){
+          $('.iconTick').text('Update');
+          $('#submitButton').text('Update');
+        }else{
+          $('.iconTick').text('Update');
+          $('#submitButton').text('Update');
+        }
+        $('.iconTick').text('Update');
+
+      }
+
+    });
+
+    $('.iconTick').load(function(){
+      alert("test");
+    });
+
+  }else{
+    $('.stripe-button-el').text('Update Details');
+  }
+
+
+</script>

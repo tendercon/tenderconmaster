@@ -1,0 +1,205 @@
+<div class="col-md-24 pending">
+  <table  class="table table-bordered sub_table">
+    <tbody>
+    <% if @trades_ids.present? %>
+      <% @trades_ids.uniq.each do |t| %>
+        <tr>
+          <td class="trade_name">
+            <%= get_trade_name t %> <label class="count_trade_<%= t %>"></label>
+          </td>
+        </tr>
+          <% if (get_sc_invite  t,@tender.id).present? %>
+            <% (get_sc_invite  t,@tender.id).uniq.each_with_index do |u,index| %>
+              <tr>
+                <% if (get_invite_status @tender.id,t,u) != 'accepted'  %>
+                  <td class="text-center child_trade_<%= t %>"><%=  u.to_i > 0 ? (get_user_company_name u) : u %></td>
+                <% end %>
+                <% if (get_invite_status @tender.id,t,u) == 'rejected' %>
+                  <td class="inv_dec_sent">Invitation Sent</td>
+                  <td class="inv_dec_open">Invitation Opened</td>
+                  <td class="inv_declined">Invitation Declined</td>
+                  <td class="inv_dec_package_down">
+                    <a href="#!"  class="download" id="<%= u %>" alt="<%= t %>" style="text-decoration: none;color: #333">
+                      Packages Downloaded  <%= "#{return_download_package_cnt @tender.id,t}/#{return_package_cnt @tender.id}" %>
+                    </a>
+
+                    <div id="trade_<%= u %>_<%= t %>" class="trade_hover">
+                      <% if (return_package_download @tender.id,u,t).present? %>
+                          <% (return_package_download @tender.id,u,t).each do |a| %>
+                              <p><%= a.name %></p>
+                          <% end %>
+                      <% else %>
+                          <p>No Downloads</p>
+                      <% end %>
+                    </div>
+                  </td>
+                  <td class="inv_dec_addendas_down">Addendas Downloaded 0/0</td>
+                  <td class="inv_stop_quote">Stopped Quoting</td>
+                <% elsif (get_invite_status @tender.id,t,u) == 'opened' %>
+                  <td class="inv_open" colspan="3">Invitation Sent</td>
+                  <td class="inv_open">Invitation Opened</td>
+                  <td class="inv_accept_package_down">
+                    <a href="#!"  class="download" id="<%= u %>" alt="<%= t %>" style="text-decoration: none;color: #333">
+                      Packages Downloaded  <%= "#{return_download_package_cnt @tender.id,t}/#{return_package_cnt @tender.id}" %>
+                    </a>
+
+                    <div id="trade_<%= u %>_<%= t %>" class="trade_hover">
+                      <% if (return_package_download @tender.id,u,t).present? %>
+                          <% (return_package_download @tender.id,u,t).each do |a| %>
+                              <p><%= a.name %></p>
+                          <% end %>
+                      <% else %>
+                          <p>No Downloads</p>
+                      <% end %>
+                    </div>
+                  </td>
+                  <td class="inv_accept_addendas_down">Addendas Downloaded 0/0</td>
+                  <td class="inv_quote">Quoting</td>
+                <% else %>
+                  <% if (get_invite_status @tender.id,t,u) != 'accepted'  %>
+                    <td class="inv_open" colspan="4">Invitation Sent</td>
+                    <td class="inv_dec_not_open" colspan="3">Invitation Opened</td>
+                  <% end %>
+                <% end %>
+              </tr>
+            <% end %>
+          <% end %>
+        <% if (get_sc_user  t,@tender.id).present? %>
+          <% (get_sc_user  t,@tender.id).uniq.each_with_index do |u,index| %>
+            <tr>
+              <td class="text-center child_trade_<%= t %>"><%= get_user_company_name u %></td>
+              <% if(get_approved_trade_status t,@tender.id,u) == 'approved' %>
+                <td class="request_quote">Requesting Quote</td>
+                <td class="request_quote">Request Approved</td>
+                <td class="inv_accept_package_down">
+                  <a href="#!"  class="download" id="<%= u %>" alt="<%= t %>" style="text-decoration: none;color: #333">
+                    Packages Downloaded  <%= "#{return_download_package_cnt @tender.id,t}/#{return_package_cnt @tender.id}" %>
+                  </a>
+
+                  <div id="trade_<%= u %>_<%= t %>" class="trade_hover">
+                    <% if (return_package_download @tender.id,u,t).present? %>
+                        <% (return_package_download @tender.id,u,t).each do |a| %>
+                            <p><%= a.name %></p>
+                        <% end %>
+                    <% else %>
+                        <p>No Downloads</p>
+                    <% end %>
+                  </div>
+                </td>
+                <td class="inv_accept_addendas_down">Addendas Downloaded 0/0</td>
+                <td class="inv_quote" colspan="3">Quoting</td>
+              <% elsif (get_approved_trade_status t,@tender.id,u) == 'declined' %>
+                <td class="request_quote">Requesting Quote</td>
+                <td class="request_quote_dec">Request Decline</td>
+                <td class="inv_dec_package_down">
+                  <a href="#!"  class="download" id="<%= u %>" alt="<%= t %>" style="text-decoration: none;color: #333">
+                    Packages Downloaded  <%= "#{return_download_package_cnt @tender.id,t}/#{return_package_cnt @tender.id}" %>
+                  </a>
+
+                  <div id="trade_<%= u %>_<%= t %>" class="trade_hover">
+                    <% if (return_package_download @tender.id,u,t).present? %>
+                        <% (return_package_download @tender.id,u,t).each do |a| %>
+                            <p><%= a.name %></p>
+                        <% end %>
+                    <% else %>
+                        <p>No Downloads</p>
+                    <% end %>
+                  </div>
+                </td>
+                <td class="inv_dec_addendas_down">Addendas Downloaded 0/0</td>
+                <td class="inv_stop_quote" colspan="3">Stopped Quoting</td>
+              <% else %>
+                <td class="request_quote" colspan="3">Requesting Quote</td>
+                <td class="pending_quotes" colspan="3">Pending</td>
+                <td class="col-md-1" >
+                  <button class="btn btn-success approved" id="<%= t %>" alt="<%= u  %>"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
+                  <button class="btn btn-danger declined" id="<%= t %>" alt="<%= u  %>"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<input type="hidden" class="trade_list" value="<%= @trades_ids %>">
+<script>
+  $(document).ready(function(){
+    $('.download').hover(
+        function(){
+          var id = $(this).attr('id');
+          var trade_id = $(this).attr('alt');
+          console.log("id"+id);
+          console.log("trade_id"+trade_id);
+          $('#trade_'+id+"_"+trade_id).show();
+        },function(){
+          var id = $(this).attr('id');
+          var trade_id = $(this).attr('alt');
+          console.log("id"+id);
+          $('#trade_'+id+"_"+trade_id).hide();
+
+        }
+    );
+
+    var trades = "<%= @trades_ids %>";
+    var new_trade_array = trades.replace(/[\])}[{(]/g, '').split(',');
+
+    for(var a=0;a < new_trade_array.length;a++){
+      var cnt = $('.child_trade_'+new_trade_array[a].trim()).length;
+      $('.count_trade_'+new_trade_array[a].trim()).text('('+cnt+')');
+    }
+
+    $('.approved').click(function(){
+      var sc_id = $(this).attr('alt');
+      var trade_id = $(this).attr('id');
+      var tender_id = $('.tender_id').val();
+
+      $.ajax({
+        method: "POST",
+        data: {sc_id:sc_id,tender_id:tender_id,trade_id:trade_id},
+        url: "/tenders/approved_trade_quote"
+      }).done(function (data) {
+        $('.contractors').html(data);
+      });
+    });
+
+    $('.declined').click(function(){
+      var sc_id = $(this).attr('alt');
+      var trade_id = $(this).attr('id');
+      var tender_id = $('.tender_id').val();
+
+      $.ajax({
+        method: "POST",
+        data: {sc_id:sc_id,tender_id:tender_id,trade_id:trade_id},
+        url: "/tenders/reject_trade_quotes"
+      }).done(function (data) {
+        $('.contractors').html(data);
+      });
+    });
+
+    $('.user').click(function () {
+      var dir = $(this).attr('id');
+      $('.'+dir).each(function () {
+        $(this).toggle();
+      })
+    });
+
+    $('.quote_search_text').keyup(function(){
+      var tender_id = $('.tender_id').val();
+      var search = $('.quote_search_text').val();
+
+      if(search.length <=0 ){
+        $.ajax({
+          method: "POST",
+          data: {search:search,tender_id:tender_id,no_quote:'true'},
+          url: "/tenders/search_quotes_by_trades"
+        }).done(function (data) {
+          $('.contractors').html(data);
+        });
+      }
+    });
+  });
+</script>

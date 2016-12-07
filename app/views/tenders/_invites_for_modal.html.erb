@@ -1,0 +1,37 @@
+
+  <div class="col-md-8">
+    <div class="form-group">
+      <label class="control-label">Full Name</label>
+    </div>
+
+    <div class="form-group">
+      <input class="form-control f_name" name="names[]" value="">
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="form-group">
+      <label class="control-label">Email</label>
+    </div>
+
+    <div class="form-group">
+      <input class="form-control email" name="emails[]" value="">
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <div class="form-group">
+      <label class="control-label">TO QUOTE FOR</label>
+    </div>
+
+    <div class="form-group">
+      <select class="form-control trades">
+        <option value="all">None</option>
+        <% if @tender_trades.present? %>
+            <% @tender_trades.uniq.each do |t| %>
+                <option value="<%= t.trade_id %>"><%= get_trade_name t.trade_id %></option>
+            <% end %>
+        <% end %>
+      </select> 
+    </div>
+  </div>

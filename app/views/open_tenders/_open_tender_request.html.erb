@@ -1,0 +1,118 @@
+<div class="row">
+  <div class="container">
+    <div id="content">
+      <div class="tab-pane" id="orange">
+        <% if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
+         <div class="col-md-12">
+           <p class="text-center" style="font-size: 16px">
+             Note: All selected checkbox are being requested on Invited Tender
+           </p>
+         </div>
+        <% end %>
+        <div class="col-md-18">
+          <% @trade_cats = [] %>
+          <% @trades = [] %>
+          <% @trade_categories.each do |tc|  %> 
+              <% if (get_tender_trades @tender.id).present? %>
+                  <% (get_tender_trades @tender.id).each_with_index do |t,index| %>
+                      <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                          <div class="col-md-24"> 
+                            <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                                <% if !@trade_cats.include? tc.title %>
+                                    <% @trade_cats << tc.title %>
+                                    <h1> <%= tc.title %></h1> 
+                                <% end %>
+                            <% end %>
+                          </div>
+                          <div class="col-md-22">
+                            <div class="col-md-6">
+
+                              <%# if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
+                                  <%# (get_open_tender_trades @tender.id,session[:user_logged_id]).each do |a| %>
+
+                                    <%# if !@trades.include? t.trade_id %>
+                                      <%# @trades << t.trade_id %>
+                                    <% if  ((get_open_tender_trades @tender.id,session[:user_logged_id])).present? %>
+                                      <% if ((get_open_tender_trades @tender.id,session[:user_logged_id])).include? t.trade_id %>
+                                          <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class" checked disabled> <%= get_trade_name t.trade_id %></label> 
+                                      <% else %>
+                                          <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
+                                      <% end %>
+                                    <% else %>
+                                  <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
+                                    <% end %>
+
+                                  <%# end %>
+                              <%# else %>
+                                  <%# if !@trades.include? t.trade_id %>
+
+                                  <%# end %>
+
+                              <%# end %>
+
+                            </div>
+                          </div>
+                      <% end %>
+                  <% end %>
+              <% end %> 
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group"></div>
+  <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+    <% if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
+        <a href="#!">
+          <button class=" btn btn-info quotes" type="button">I AM INTERESTED</button>
+        </a>
+    <% else %>
+        <a href="#!">
+          <button class=" btn btn-info quotes" type="button" disabled>I AM INTERESTED</button>
+        </a>
+    <% end %>
+
+  </div>
+</div>
+
+<input type="hidden" class="tender_id" value="<%= @tender.id %>">
+<input type="hidden" class="sc_id" value="<%= session[:user_logged_id] %>">
+<script>
+  $('.quotes').click(function(){
+    var tender_id = $('.tender_id').val();
+    var sc_id = $('.sc_id').val();
+
+    var ids = []
+    $('.trade_class').each(function(){
+      if($(this).is(':checked')){
+        ids.push($(this).val());
+      }
+    });
+
+    $.ajax({
+      method: "POST",
+      data: {tender_id:tender_id,sc_id:sc_id,ids:ids,open:true},
+      url: "/tenders/request_to_quote"
+    }).done(function (data) {
+      $('#tender_Modal_'+tender_id).modal('hide');
+      $('#tender_success_'+tender_id).modal('show');
+    });
+  });
+
+  $('.trade_class').change(function(){
+    var ids = []
+    $('.trade_class').each(function(){
+      if($(this).is(':checked')){
+        ids.push($(this).val());
+      }
+    });
+
+    if(ids.length > 0){
+      $('.quotes').prop('disabled',false);
+    }else{
+      $('.quotes').prop('disabled',true);
+    }
+  });
+</script>

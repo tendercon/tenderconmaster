@@ -1,0 +1,195 @@
+<table  class="table table-bordered document_table col-md-12">
+  <thead>
+  <% if @documents.present? %>
+      <tr>
+        <th><input type="checkbox" class="document_list_master" name="document_list_master"></th>
+        <th>Document</th>
+        <th>Size</th>
+        <th></th>
+      </tr>
+  <% end %>
+  </thead>
+  <tbody>
+  <% if @documents.present? %>
+      <% if @directories.present? %>
+          <% @directories.uniq.each do |c| %>
+              <% if c.present? %>
+                  <% if(!@docs1.include? "#{c}") && (!@unzip_dirs.include? "#{c}") %>
+                      <% @docs1 << "#{c}" %>
+                      <% @unzip_dirs << "#{c}" %>
+                      <tr>
+                        <td><input type="checkbox" class="document_list" name="documents[]" value="<%= c %>"></td>
+                        <td><input type="text" class="directory" value="<%=  c  %>"  id="<%=  c  %>"> </td>
+                        <td></td>
+                        <td>
+                          <i class="fa fa-file-text add_files" aria-hidden="true" id="<%= c %>" ></i>
+                        </td>
+                      </tr>
+                      <% if @unzips.present? %>
+                          <% @unzips.each do |u| %>
+                              <% if u.directory.to_s == c.to_s %>
+                                  <tr>
+                                    <td><input type="checkbox" class="document_list" name="documents[]" value="<%= u.path %>"></td>
+
+                                    <td><%= u.filename %></td>
+                                    <td><%= u.file_size %> MB</td>
+                                    <td>
+                                      <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                                    </td>
+                                  </tr>
+                              <% end %>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+                  <% @documents.each_with_index do |u,index| %>
+                      <% if u.directory == c && u.document_file_name.present? %>
+                          <tr>
+                            <td><input type="checkbox" class="document_list" name="documents[]" value="<%= u.id %>"></td>
+                            <td><%= u.document_file_name %></td>
+                            <!--<td><input type="text" id="<%#= u.id %>" name="revision" class="revision" alt="<%#= u.directory %>" value="<%#= u.revision.present? ? u.revision : nil %>"></td>-->
+                            <td><%= convert_kb_to_mb u.document_file_size %> MB</td>
+                            <td>
+                              <i class="fa fa-che ck" aria-hidden="true" style="color: green"></i>
+                            </td>
+                          </tr>
+                      <% end %>
+                  <% end %>
+
+              <% else %>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+
+                  <% @documents.each_with_index do |u,index| %>
+                      <tr>
+                        <% if u.document_file_name.present? %>
+                            <% if !u.directory.present? && File.exist?(u.document.path) %>
+                                <td><input type="checkbox" class="document_list" name="documents[]" value="<%= u.id %>"></td>
+                                <td><%= u.document_file_name %></td>
+                                <!--<td><input type="text" id="<%#= u.id %>" name="revision" class="revision" alt="<%#= u.directory %>" value="<%#= u.revision.present? ? u.revision : nil %>"></td>-->
+                                <td><%= convert_kb_to_mb u.document_file_size %> MB</td>
+                                <td>
+                                  <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                                </td>
+                            <% end %>
+                        <% end %>
+                      </tr>
+                  <% end %>
+              <% end %>
+          <% end %>
+      <% else %>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <% @documents.each_with_index do |u,index| %>
+              <tr>
+                <% if u.document_file_name.present? %>
+                    <% if !u.directory.present? && File.exist?(u.document.path) %>
+                        <td><input type="checkbox" class="document_list" name="documents[]" value="<%= u.id %>"></td>
+                        <td><%= u.document_file_name %></td>
+                        <!--<td><input type="text" id="<%#= u.id %>" name="revision" class="revision" alt="<%#= u.directory %>" value="<%#= u.revision.present? ? u.revision : nil %>"></td>-->
+                        <td><%= convert_kb_to_mb u.document_file_size %> MB</td>
+                        <td>
+                          <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                        </td>
+                    <% end %>
+                <% end %>
+              </tr>
+          <% end %>
+      <% end %>
+
+      <% if @unzips.present? %>
+          <% @unzips.each_with_index do |u,index| %>
+              <% if  u.directory.present? && u.filename.present?  %>
+                  <% if(!@unzip_dirs.include? "#{u.directory}") && (!@docs1.include? "#{u.directory}") %>
+                      <% @unzip_dirs << "#{u.directory}" %>
+                      <% @docs1 << "#{u.directory}" %>
+                      <tr>
+                        <td><input type="checkbox" class="document_list" name="documents[]" value="<%= u.id %>"></td>
+                        <td><input type="text" class="directory" value="<%=  u.directory  %>" id="<%= u.directory %>"></td>
+                        <!--<td style="text-align: center">
+                              <i class="fa fa-angle-double-down revision_icon" aria-hidden="true" style="display: none" title="<%#= u.directory %>"></i>
+                              <%# if check_if_have_revision u.directory,session[:user_logged_id] %>
+                                  <button type="button" class="btn btn-primary revision_btn"  id="<%#= u.directory %>" title="<%#= u.directory %>" value="">
+                                    <i class="fa fa-angle-double-down" aria-hidden="true"></i> APPLY TO ALL
+                                  </button>
+                              <%# else %>
+                                  <button type="button" class="btn btn-primary revision_btn" style="display: none" id="<%#= u.directory %>" title="<%#= u.directory %>">
+                                    <i class="fa fa-angle-double-down" aria-hidden="true"></i> APPLY TO ALL
+                                  </button>
+                              <%# end %>
+                            </td>-->
+                        <td></td>
+                        <td>
+                          <i class="fa fa-file-text add_files" aria-hidden="true" id="<%= u.directory %>"></i>
+                        </td>
+                      </tr>
+                      <tr>
+
+                        <td><input type="checkbox" class="document_list" name="documents[]" value="<%= u.path %>"></td>
+
+                        <td><%= u.filename %></td>
+                        <!--<td><input type="text" id="<%#= u.id %>" name="revision" class="revision" alt="<%#= u.directory %>" value="<%#= u.revision.present? ? u.revision : nil %>"></td>-->
+                        <td><%= u.file_size %> MB</td>
+                        <td>
+                          <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                        </td>
+                      </tr>
+
+                      <% if @documents.present? %>
+                          <% @documents.each_with_index do |d,index| %>
+                              <% if d.directory == u.directory %>
+                                  <tr>
+                                    <td><input type="checkbox" class="document_list" name="documents[]" value="<%= d.id %>"></td>
+                                    <td><%= d.document_file_name %></td>
+                                    <!--<td><input type="text" id="<%#= d.id %>" name="revision" class="revision" alt="<%#= d.directory %>" value="<%#= d.revision.present? ? d.revision : nil %>"></td>-->
+                                    <td><%= d.document_file_size %> MB</td>
+                                    <td>
+                                      <i class="fa fa-che ck" aria-hidden="true" style="color: green"></i>
+                                    </td>
+                                  </tr>
+                              <% end %>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+
+
+              <% else %>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+
+                    <%= puts "FILENAME1:#{u.filename}" %>
+                    <td><input type="checkbox" class="document_list" name="documents[]" value="<%= u.path %>"></td>
+
+                    <td><%= u.filename %></td>
+                    <!--<td><input type="text" id="<%#= u.id %>" name="revision" class="revision" alt="<%#= u.directory %>" value="<%#= u.revision.present? ? u.revision : nil %>"></td>-->
+                    <td><%= u.file_size %> MB</td>
+                    <td>
+                      <i class="fa fa-check" aria-hidden="true" style="color: green"></i>
+                    </td>
+                  </tr>
+              <% end %>
+          <% end %>
+      <% end %>
+  <% else %>
+      <tr>
+        <td style="color: grey;">No tender available.</td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

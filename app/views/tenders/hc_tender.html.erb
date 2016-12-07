@@ -1,0 +1,386 @@
+<div class="row">
+  <div class="container">
+    <input type="hidden" class="tender_id" value="<%= @tender.id %>">
+    <div id="content">
+      <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+        <% if params[:addenda].present? %>
+            <li ><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
+        <% else %>
+            <li class="active"><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
+        <% end %>
+
+        <li><a href="#sub" data-toggle="tab" id="<%= @tender.id %>">Sub-Contractors</a></li>
+        <% if params[:addenda].present? %>
+            <li class="active"><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
+        <% else %>
+            <li><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
+        <% end %>
+            <li ><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs</a></li>
+        <li><a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">Document Control</a></li>
+        <li><a href="#chat" data-toggle="tab" id="<%= @tender.id %>">Chat</a></li>
+        <li><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quote</a></li>
+      </ul>
+      <div id="my-tab-content" class="tab-content">
+        <div class="row">
+          <div class="form-group"></div>
+        </div>
+        <% if params[:addenda].present? %>
+            <div class="tab-pane  col-md-21" id="info">
+              <%= render 'tender_info' %>
+            </div>
+        <% else %>
+            <div class="tab-pane active col-md-21" id="info">
+              <%= render 'tender_info' %>
+            </div>
+        <% end %>
+
+        <div class="tab-pane col-md-21" id="sub">
+          <%#= render 'sub_contractors_quotes' %>
+        </div>
+
+        <% if params[:addenda].present? %>
+            <div class="tab-pane active col-md-21" id="addenda">
+              <%= render :partial => 'addendas/new_lists', :locals => { :addendas => @addendas,:tender => @tender} %>
+            </div>
+        <% else %>
+            <div class="tab-pane col-md-21" id="addenda">
+
+            </div>
+        <% end %>
+
+
+        <div class="tab-pane col-md-21" id="rfi">
+
+        </div>
+        <div class="tab-pane  col-md-21" id="document_control">
+          <div class="row>">
+            <div class="form-group"></div>
+            <br>
+            <%= render 'document_control' %>
+          </div>
+        </div>
+        <div class="tab-pane col-md-21" id="chat">
+          <%#= render 'tender_chat' %>
+        </div>
+        <div class="tab-pane col-md-21" id="quote">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group">
+
+    </div>
+
+  </div>
+</div>
+
+<div class="chat">
+  <div id="chat_modal" class="modal fade"   style="margin-top: 100px; width: 100%" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content col-md-24">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="col-md-24 col-md-20 col-md-offset-2">
+            <p class="text-center" style="font-size: 20px">
+              New Chat
+            </p>
+            <label>Select the individual SC's or trade groups you wish to chat with</label>
+            <input type="text" class="form-control" placeholder="Add Participants" id="chat_member">
+          </div>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+        <br>
+
+        <div class="modal-body" style="overflow-y: auto;height: 250px;">
+          <table  class="table table-bordered sub_table">
+            <tbody>
+            <% if @tender_trade_array.present?  %>
+              <% @tender_trade_array.uniq.each do |c| %>
+                <tr>
+                  <td class="trade_name">
+                    <%= get_trade_name c %></td>
+                  </td>
+                  <td class="trade_name">
+                    <button class="btn btn-default invite" id="<%= c %>" alt="<%= get_trade_name c %>">
+                      Invite All
+                    </button>
+                  </td>
+                </tr>
+
+                <% if (get_sc_user  c,@tender.id).present? %>
+                  <% (get_sc_user  c,@tender.id).each_with_index do |u,index| %>
+                    <tr>
+                      <td class="text-center"><%= get_user_company_name u %></td>
+                      <td>
+                        <input type="checkbox" class="member <%= c %>" alt="<%= u %>" id="<%= c %>" title="<%= get_user_company_name u %>">
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% else %>
+                <tr>
+                  <td style="color: grey;">No quotes available.</td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info start_message" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="invite_more">
+  <div id="invite_more_modal" class="modal fade"   style="margin-top: 100px; width: 100%" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content col-md-24">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="col-md-24 col-md-20 col-md-offset-2">
+            <p class="text-center" style="font-size: 20px">
+              Invite More Sub contractors
+            </p>
+          </div>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+        <br>
+
+        <div class="modal-body" style="overflow-y: auto;height: 250px;">
+          <div class="col-md-24">
+            <button class="btn btn-success add_more" type="button">
+              <i class="fa fa-plus-circle" aria-hidden="true"></i> ADD MORE
+            </button>
+          </div>
+
+
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+          <br><br>
+          <div class="col-md-24">
+            <div class="new_invite">
+              <div class="col-md-20">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="control-label">Full Name</label>
+                  </div>
+
+                  <div class="form-group">
+                    <input class="form-control f_name" name="names[]" value="">
+                  </div>
+                </div>
+
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="control-label">Email</label>
+                  </div>
+
+                  <div class="form-group">
+                    <input class="form-control email" name="emails[]" value="">
+                  </div>
+                </div>
+
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="control-label">TO QUOTE FOR</label>
+                  </div>
+
+                  <div class="form-group">
+                    <select class="form-control trades">
+                      <option value="all">None</option>
+                      <% if @tender_trades.present? %>
+                        <% @tender_trades.uniq.each do |t| %>
+                          <option value="<%= t.trade_id %>"><%= get_trade_name t.trade_id %></option>
+                        <% end %>
+                      <% end %>
+                    </select> 
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-20 new_invite_div">
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info send_invite" data-dismiss="modal">Invite</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8&libraries=places&sensor=false"></script> 
+<script>
+
+
+  $(document).ready(function(){
+
+    $('.add_more').click(function(){
+      $('.new_invite_div').append("<%= escape_javascript(render :partial => 'tenders/invites_for_modal') %>");
+    });
+
+    $('.send_invite').click(function(){
+      var emails = [];
+      var names = [];
+      var trades = [];
+      var tender_id = $('.tender_id').val();
+
+      $('.f_name').each(function(){
+        names.push($(this).val());
+      });
+      console.log('names:'+names);
+      $('.email').each(function(){
+        emails.push($(this).val());
+
+      });
+      $('.trades').each(function(){
+        if(parseInt($(this).val()) > 0){
+          trades.push($(this).val())
+        }
+
+      });
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id,emails:emails,names:names,trades:trades},
+        url: "/tenders/invite_more_sub"
+      }).done(function (data) {
+        //$('.contractors').html(data);
+        $('.invited_div').html('');
+        $('.invited_div').html(data);
+      });
+
+
+    });
+
+    $('.tenders').each(function(){
+      var id =  $(this).val();
+      var add = $('.add'+id).val();
+    });
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      var target = $(e.target).attr("href"); // activated tab
+      var id = $(e.target).attr("id");
+      var tender_id = $('.tender_id').val();
+      if(target == '#chat'){
+        $.ajax({
+          method: "POST",
+          data: {tender_id:tender_id},
+          url: "/tenders/get_latest_chat"
+        }).done(function (data) {
+          $('#chat').html(data);
+        });
+      }else if(target == '#sub'){
+
+        $.ajax({
+          method: "POST",
+          data: {tender_id:tender_id},
+          url: "/tenders/get_latest_sub"
+        }).done(function (data) {
+          $('#sub').html(data);
+        });
+
+      }else if(target == '#quote'){
+
+        /*$.ajax({
+          method: "POST",
+          data: {tender_id:tender_id},
+          url: "/tenders/get_latest_quote"
+        }).done(function (data) {
+          $('#quote').html(data);
+        });*/
+        var tender_id = $('.tender_id').val();
+        $.ajax({
+          method: "POST",
+          data: {tender_id:tender_id},
+          url: "/quotes/get_latest_quotes"
+        }).done(function (data) {
+          $('#quote').html(data);
+        });
+
+      }else if(target == '#rfi'){
+        var tender_id = $('.tender_id').val();
+        $.ajax({
+          method: "POST",
+          data: {tender_id:tender_id},
+          url: "/rfis/get_latest_rfis"
+        }).done(function (data) {
+          $('#rfi').html(data);
+        });
+      }else if(target == '#addenda'){
+        var tender_id = $('.tender_id').val();
+        $.ajax({
+          method: "POST",
+          data: {tender_id:tender_id},
+          url: "/addendas/get_addendas"
+        }).done(function (data) {
+          $('#addenda').html(data);
+        });
+      }
+    });
+
+    $(document).ready(function(){
+      var map;
+      var id = $('.tender_id').val();
+      var myLatLng;
+      load_map();
+      function load_map() {
+
+        var add = $('.add'+id).val();
+
+        $.ajax({
+          method: "POST",
+          data: {add:add},
+          url: "/tenders/get_latling"
+        }).done(function (data) {
+
+          myLatLng = {lat:data.latitude, lng: data.longitude};
+
+          map = new google.maps.Map(document.getElementById('map_'+id), {
+            zoom: 15,
+            center: myLatLng
+          });
+
+          var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map
+          });
+
+          google.maps.event.addListenerOnce(map, 'idle', function() {
+            google.maps.event.trigger(map, 'resize');
+            map.setCenter(myLatLng);
+          });
+        });
+
+      }
+
+      $('a[href="#red"]').on('shown.bs.tab', function() {
+        google.maps.event.trigger(map, 'resize');
+        load_map();
+      });
+
+    });
+
+
+  })
+
+
+</script>

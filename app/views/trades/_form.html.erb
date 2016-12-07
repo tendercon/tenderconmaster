@@ -1,0 +1,85 @@
+
+<%= form_for(@trade,:html => { :multipart => true }) do |f| %>
+
+  <div class="form-group has-feedback">
+    <%- if  @trade.present?  %>
+      <% if @trade.errors.present? %>
+        <div class="alert alert-danger open-sans-regular" id="object_cats_error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <h2>Errors</h2>
+          <ul>
+            <% @trade.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    <% end %>
+    <% if flash[:error] %>
+      <div class="alert alert-danger open-sans-regular" id="object_cats_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= @error_alert %>
+        <div class="notice" style="font-size: 14px;"><%= flash[:error] %></div>
+        <% flash[:error]=nil   %>
+      </div>
+    <% end %>
+    <%- if !flash[:notice].nil? %>
+      <div class="alert alert-success open-sans-regular" id="object_cats_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
+        <% flash[:notice]=nil %>
+      </div>
+    <%- end %>
+  </div>
+
+  <div class="form-group required">
+    <label>Trade Name</label>
+    <%= f.text_field :name,:class=>'form-control', :placeholder =>'Name',:id => "trade_id" %>
+  </div>
+
+
+  <div class="actions">
+    <% if params[:action] == 'edit' || params[:action] == 'update' %>
+      <%= f.submit 'Update Trade', :class => 'btn btn-default btn-gray'%>
+    <% else %>
+      <div class="btn-group">
+        <a href="#!" class="btn btn-default btn-gray add_trade">
+          Add
+        </a>
+      </div>
+    <% end %>
+
+    <div class="btn-group">
+      <a href="<%= trades_path %>" class="btn btn-default ">
+        Cancel
+      </a>
+    </div>
+  </div>
+<% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 trade_lists">
+
+    </div>
+  </div>
+</div>
+
+<script>
+  $('.add_trade').click(function(){
+    var name = $('#trade_name').val();
+    $.ajax({
+      method: "POST",
+      data: {name:name},
+      url: "/trades/get_all_lists"
+    }).done(function(data){
+      if(data.state == 'invalid'){
+        $('.trade_lists').html('<p>Error on saving trade. Please try again.</p>')
+      }else{
+        $('#trade_name').val('');
+        $('.trade_lists').html(data);
+      }
+
+    });
+  });
+</script>

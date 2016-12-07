@@ -1,0 +1,16 @@
+<div class="col-sm-24 col-md-14 col-md-offset-5 ">
+  <div class="login_div">
+    <!--<img src="/assets/img-4.jpg" width="30px" class="img-responsive center-block">-->
+    <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
+    <h1 class="text-center login-title">This link has expired</h1>
+    <br>
+    <br>
+    <br>
+    <%= form_tag(generate_new_token_users_path, {:name=> "login",:class=>'form-signin' } )  do %>
+      <input type="hidden" value="<%= params[:id] %>" name="id">
+      <p class="text-center text-expired">Please click below to re-send activation link.</p>
+      <br/>
+      <button class="btn btn-lg btn-primary btn-block btn-login" type="submit">RE-SEND ACTIVATION LINK</button>
+    <% end %>
+  </div>
+</div>

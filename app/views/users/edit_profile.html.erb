@@ -1,0 +1,426 @@
+<div class="container edit_profile" style="background-color: #ffffff">
+  <%= render :partial => 'users/headers/profile_header' %>
+
+  <% if @user.div_status == false %>
+    <div class="col-md-23 information_header">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-14">
+              <div class="col-md-2"><i class="fa fa-lightbulb-o fa-4x" aria-hidden="true" style="color: #ffff00"></i></div>
+              <div class="form-group"></div>
+              <div class="col-md-22">
+                <p class="user_profile_header">This copy will describe what the user can do on this page and how it effects user account.</p>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="form-group"></div>
+              <a href="<%= zendesk_index_path(:id => @user.id) %>" class="text-center new-account">
+                <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Learn More</button>
+              </a>
+              <a href="<%= update_user_div_users_path(:id => @user.id) %>" class="text-center new-account">
+                <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Don't shw this again.</button>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% if !@avatar_id.present? || !@about_me.present? %>
+    <div class="col-md-23 information_header1">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-14">
+              <div class="col-md-2"><i class="fa fa-info-circle fa-4x" aria-hidden="true" style="color: #4AD6F7"></i></div>
+              <div class="form-group"></div>
+              <div class="col-md-22">
+                <p class="user_profile_2header">Your profile is almost complete. Please update the following fields.</p>
+                <% if !@link.present? %>
+                  <p class="user_profile_2header logo">Add your professional photo in clicking ADD PROFILE PICTURE</p>
+                <% end %>
+                <% if !@about_me.present? %>
+                  <p class="user_profile_2header about">Tell the Tendercon Network about your professional experience in ABOUT ME</p>
+                <% end %>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+
+  <div style="background-color: transparent;display: none">
+    <%= form_for @avatar, :url => create_avatar_users_path,:html => {:multipart => true,:class => 'avatar'} do |m| %>
+      <%= m.text_field :user_id,:value =>  session[:user_logged_id]  %>
+      <%= m.file_field :image %>
+    <% end %>
+  </div>
+  <%= form_for(@user,:html => {:multipart => true,:class => 'avatar'}) do |f| %>
+    <div class="profile_data">
+      <div class="col-md-24 col-md-12 col-md-offset-6">
+        <div class="col-md-16">
+          <a href="#!" class="text-center new-account">
+            <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Who can see this?</button>
+          </a>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+
+        <div class="profile_div" style="background-color: #ffffff;color: black">
+          <br>
+          <div>
+            <div class="col-md-14 col-md-offset-5 avatar_error"></div>
+            <% if @user.avatar.present? %>
+              <input type="hidden" class="avt" value="1">
+              <img id="profile-img" class="img-circle center-block avatar" src="<%= @user.avatar.image.url(:original) %>" width="200px;" height="200px;" />
+            <% else %>
+              <input type="hidden" class="avt">
+              <img id="profile-img" class="img-circle center-block avatar" src="https://s-media-cache-ak0.pinimg.com/236x/9a/de/a4/9adea4e40b39301576ff29f7ddebfd5b.jpg" width="200px;" height="200px;" />
+            <% end %>
+            <!--<img id="profile-img" class="img-circle center-block avatar" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" width="200px;" height="200px;" />-->
+            <div style="background-color: transparent;">
+              <input id="file_input" type="file" style="background-color: transparent;" name="avatar">
+            </div>
+            <div class="col-md-20 col-md-offset-9">
+              <div class="row">
+                <div class="form-group"></div>
+              </div>
+              <input type="text" name="name" id="name" class="name form-control" value="<%= "#{@user.first_name} #{@user.last_name}" %>">
+
+            </div>
+          </div>
+
+          <br>
+
+          <br>
+          <div class="row">
+            <div class="col-md-24 col-md-offset-2">
+              <p style="font-size: 12px;font-weight: bold">Details</p>
+
+            </div>
+
+            <div class="col-md-24 col-md-offset-9">
+              <div class=" form-group">
+                <div class="col-md-3">
+                  <label   style="font-size: 12px;font-weight: bold">Company:</label>
+                </div>
+                <div class="col-md-12">
+                  <label><%= @user.company %></label>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-24 col-md-offset-9">
+              <div class=" form-group">
+                <div class="col-md-3">
+                  <label   style="font-size: 12px;font-weight: bold">Position:</label>
+                </div>
+                <div class="col-md-12">
+                 <input class="form-control position" value="<%= get_postion @user.position %>" name="position">
+                </div>
+              </div>
+            </div>
+            <div class="col-md-24 col-md-offset-9">
+              <div class=" form-group">
+                <div class="col-md-3">
+                  <label   style="font-size: 12px;font-weight: bold">Rating:</label>
+
+                </div>
+                <div class="col-md-6">
+                  <label><%#= get_postion @user.position %></label>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-20 col-md-offset-2">
+              <hr style="color: #000000;background-color: #000000;">
+            </div>
+
+            <div class="col-md-24 col-md-offset-2">
+              <p style="font-size: 12px;font-weight: bold">About</p>
+            </div>
+
+            <div class="col-md-20 col-md-offset-2">
+              <%= text_area_tag('about_me',@about_me.present? ? @about_me.html_safe : nil,:cols => '70',:rows => '10',:class => 'form-group wysihtml5') %>
+              <hr style="color: #000000;background-color: #000000;">
+            </div>
+
+
+            <div class="col-md-24 col-md-offset-2">
+              <p style="font-size: 12px;font-weight: bold">Contact</p>
+            </div>
+
+            <div class="col-md-24 col-md-offset-9">
+              <div class=" form-group">
+                <div class="col-md-3">
+                  <label   style="font-size: 12px;font-weight: bold">Email:</label>
+                </div>
+                <div class="col-md-12">
+                  <input class="form-control" value="<%=  @user.email %>" name="email">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-24 col-md-offset-9">
+              <div class=" form-group">
+                <div class="col-md-3">
+                  <label   style="font-size: 12px;font-weight: bold">Mobile:</label>
+                </div>
+                <div class="col-md-12">
+                  <input class="form-control" value="<%= @user.mobile_number %>" name="mobile">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-24 col-md-offset-9">
+              <div class=" form-group">
+                <div class="col-md-3">
+                  <label   style="font-size: 12px;font-weight: bold">Linkedin:</label>
+                </div>
+                <div class="col-md-12">
+                  <form  class="form-inline" role="form">
+                    <div class="form-group">
+                      <input class="form-control linkedin"  name="linkedin" id="linkedin" value="<%= @linkedin %>">
+                      <!--<button type="button" class="btn btn-default linkedin_verify">Verify</button>-->
+                    </div>
+                    <label class="linkedin_icon" style="display: none;margin-top: -15px"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i></label>
+                    <p style="font-size: 12px;color: gray;display: none;margin-top:-15px" class="linkedin_error"> Invalid Linkedin url.</p>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="actions">
+          <button type="submit" class="btn btn-default">Update</button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class=" form-group"></div>
+  </div>
+</div>
+
+<div id="imageModal" class="modal fade" role="dialog" style="margin-top: 200px;" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"></h4>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="image_div">
+
+          </div>
+          <div class="form-group">
+
+          </div>
+          <div class="form-group">
+
+          </div>
+          <div class="actions">
+            <div class="col-md-18">
+              <a href="#!" class="text-center new-account" role="button" >
+                <button class="btn btn-default " type="button" style="text-decoration: none; border-radius: 10px;">Choose Another</button>
+              </a>
+            </div>
+
+            <div class="col-md-4">
+              <a href="#!" class="text-center new-account" role="button" >
+                <button class="btn btn-default upload" type="button" style="text-decoration: none; border-radius: 10px;">Upload Image</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#new_avatar').fileupload({
+    dataType: 'json',
+    done: function (e, data) {
+      $.each(data, function (index, file) {
+
+        if(index == 'result'){
+          $.each(file, function (i, f) {
+            //var json_url = JSON.parse(file);
+            console.log("file:"+f);
+            console.log("file.INDEX:"+i);
+            if(i == 'avatar_url'){
+              $('.avatar_error').html('');
+              //$('#imageModal').modal('show');
+              $('.avatar').attr('src','http://'+f);
+              $('.image_div').html('<img id="avatar_image" height="100px;" width="100px;" class="avatar_image img-circle center-block" src="http://'+f+'" />');
+              $('.logo').hide();
+              $('.avt').val(1);
+              hide_todos();
+            }else{
+              if(f != 'valid'){
+                $('.avatar_error').html('<p class="text-center" style="font-size: 12px;color: grey">'+f+'</p>');
+              }
+            }
+          });
+        }
+      });
+    }
+  });
+
+  $(document).ready(function(){
+
+
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5({toolbar: {
+        'font-styles': true,
+        'color': false,
+        'emphasis': {
+          'small': true
+        },
+        'blockquote': true,
+        'lists': true,
+        'html': false,
+        'link': false,
+        'image': false,
+        'smallmodals': false
+      },
+        events: {
+          load: function() {
+            $('.wysihtml5-sandbox').contents().find('body').on("keyup",function(event) {
+
+              var l = event.currentTarget.innerText
+
+              if(l.length > 0){
+                $('.about').hide();
+              }else{
+                $('.about').show();
+              }
+              hide_todos();
+            });
+          }
+        }
+      });
+    });
+
+    function hide_todos(){
+      //information_header
+      var about = $('#about_me').val();
+      var avt = $('.avt').val();
+      console.log(about.length);
+      console.log("avt:"+avt);
+      if(about.length > 0 && avt == 1){
+        $('.information_header1').hide();
+      }else{
+        $('.information_header1').show();
+      }
+
+    }
+
+    $('.img-circle').click(function(){
+      $('#avatar_image').click();
+    });
+
+    $('#avatar_image').change(function(){
+
+      var filename = $(this).val();
+
+    });
+
+    $('.upload').click(function(){
+      var filename = $('#file_input').val();
+
+      $.ajax({
+        method: "POST",
+        data: {filename: filename},
+        url: "/users/upload_image"
+      }).done(function (data) {
+
+      });
+    });
+
+    $('#linkedin').keyup(function(){
+      var link = $(this).val();
+
+      $.ajax({
+        method: "POST",
+        data: {link: link},
+        url: "/users/validate_linkedin"
+      }).done(function (data) {
+        console.log(data.state)
+        if(data.state == 'valid'){
+          //$('.linkedin_verify').hide();
+          $('.linkedin').hide();
+          $('.linkedin_icon').show();
+          $('.linkedin_error').hide();
+        }else{
+          $('.linkedin_error').show();
+          //$('.linkedin_verify').show();
+        }
+      });
+    });
+
+    $('#linkedin').focusout(function(){
+      var link = $(this).val();
+
+      $.ajax({
+        method: "POST",
+        data: {link: link},
+        url: "/users/validate_linkedin"
+      }).done(function (data) {
+        console.log(data.state)
+        if(data.state == 'valid'){
+          //$('.linkedin_verify').hide();
+          $('.linkedin').hide();
+          $('.linkedin_icon').show();
+          $('.linkedin_error').hide();
+        }else{
+          $('.linkedin_error').show();
+          //$('.linkedin_verify').show();
+        }
+      });
+    });
+
+    $('.position').keyup(function(){
+      var new_postion = $(this).val();
+
+      if(new_postion.length > 1){
+        console.log(new_postion);
+        $.ajax({
+          method: "POST",
+          data: {position: new_postion},
+          url: "/users/validate_position"
+        }).done(function (data) {
+          if(data.state == 'valid'){
+            var availableTags =  data.positions
+
+            $(".position").autocomplete({
+              source: availableTags,
+              select: function(evt,ui){
+
+              }
+            });
+
+          }else{
+
+          }
+        });
+      }else{
+
+      }
+    });
+  });
+
+</script>

@@ -1,0 +1,145 @@
+
+
+    <div class="form-group">
+      <label class="control-label">Email</label>
+      <input class="form-control email" name="emails[]" >
+      <div class="error_email"></div>
+    </div>
+
+    <div class="form-group">
+
+
+    </div>
+
+
+    <div class="form-group">
+      <label class="control-label">TO QUOTE FOR</label>
+      <%= select_tag "trades[]",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@trades, 'id','name')+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control categories'} %> 
+    </div>
+
+    <div class="form-group">
+
+    </div>
+
+    <div class="form-group">
+      <a href="#!">
+        <button class="btn btn-success add" id="<%= @id %>" type="button">Add Invite</button>
+      </a>
+
+    </div>
+
+
+
+<input type="hidden" class="tender_id" name="tender_id" value="<%= @tender.id %>">
+
+
+<script>
+  $('.add').click(function () {
+    var tender_id = $('.tender_id').val();
+    $(this).hide();
+    $.ajax({
+      method: "POST",
+      data: {tender_id:tender_id},
+      url: "/tenders/new_invite_form"
+    }).done(function (data) {
+      $('.new_invite').append(data);
+
+    });
+
+  });
+
+  $('.email').focusout(function(){
+
+    var email = $(this).val();
+    if(validateEmail(email)){
+      $.ajax({
+        method: "POST",
+        data: {email: email},
+        url: "/users/validate_user_email"
+      }).done(function (data) {
+        if(data.state == 'invalid'){
+          //$('.error_email').html('<p style="color: grey;font-style: italic;">Email address already exist. Please try other email.</p>');
+        }else{
+          active_invite_btn();
+          //$('.error_email').html('');
+        }
+      });
+    }
+  });
+
+  $('.f_name').keyup(function(){
+    var val = $(this).val();
+
+    if(val.length > 0){
+      active_invite_btn()
+    }
+  });
+
+  $('.f_name').focusout(function(){
+    var val = $(this).val();
+
+    if(val.length > 0){
+      active_invite_btn()
+    }
+  });
+
+  $('.categories').change(function(){
+    var val = $(this).val();
+
+    if(parseInt(val) > 0){
+      active_invite_btn()
+    }
+
+  });
+
+  function active_invite_btn(){
+
+    var trades = [];
+    var emails = [];
+    var value_array = [];
+    $('.categories').each(function()
+    {
+      console.log("dasdas"+$(this).val());
+      if(parseInt($(this).val()) > 0){
+        trades = 1
+      }
+    });
+
+    $('.f_name').each(function()
+    {
+      if($(this).val().length > 0){
+        value_array = 1
+      }else{
+        value_array = []
+      }
+    });
+
+    $('.email').each(function()
+    {
+      if($(this).val().length > 0){
+        emails = 1
+      }else{
+        emails = []
+      }
+    });
+
+    console.log("trades:"+trades);
+    console.log("emails:"+emails);
+    console.log("value_array:"+value_array);
+
+
+    if(trades == 1 && emails ==  1 && value_array == 1){
+      $('.invite_submit_btn').prop('disabled',false);
+    }else{
+      $('.invite_submit_btn').prop('disabled',true);
+    }
+
+
+  }
+
+  function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+</script>

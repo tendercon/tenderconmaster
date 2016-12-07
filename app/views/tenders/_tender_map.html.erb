@@ -1,0 +1,69 @@
+<input type="hidden"  class="tenders" value="<%= @tender.id %>">
+<input type="hidden"  class="add<%= @tender.id %>" value="<%= @tender.address %>">
+<div class="row">
+  <div class="col-md-12">
+
+  </div>
+  <div class="col-md-12">
+    <a href="/tenders/new_tender?info=true&info_id=<%= @tender.id %>" class="pull-right">
+      <button class="btn btn-success" type="button">Edit</button>
+    </a>
+  </div>
+
+  <div class="col-md-24">
+    <div class="form-group"></div>
+  </div>
+
+</div>
+
+ <div id="map_<%= @tender.id %>" style="height:500px;width:100%;"></div>
+
+
+
+<script>
+  $(document).ready(function(){
+    var map;
+    var id = $('.tender_id').val();
+    var myLatLng;
+    function load_map() {
+
+      var add = $('.add'+id).val();
+
+      $.ajax({
+        method: "POST",
+        data: {add:add},
+        url: "/tenders/get_latling"
+      }).done(function (data) {
+
+        myLatLng = {lat:data.latitude, lng: data.longitude};
+
+        map = new google.maps.Map(document.getElementById('map_'+id), {
+          zoom: 15,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map
+        });
+
+        google.maps.event.addListenerOnce(map, 'idle', function() {
+          google.maps.event.trigger(map, 'resize');
+          map.setCenter(myLatLng);
+        });
+      });
+
+    }
+
+    $('a[href="#green"]').on('shown.bs.tab', function() {
+      load_map();
+      google.maps.event.trigger(map, 'resize');
+    });
+
+
+    function initialize() {
+
+
+    }
+  });
+</script>

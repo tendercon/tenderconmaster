@@ -1,0 +1,657 @@
+<div class="row">
+  <div style="height: 80px;"></div>
+</div>
+<div class="row">
+  <div class="col-md-7">
+    <a href="<%= addendas_path(:id => @tender.id ) %>"  id="<%= @tender.id %>">
+      <button class="btn btn-success">Issue Addenda</button>
+    </a>
+  </div>
+</div>
+<div class="row">
+  <div style="height: 40px;"></div>
+</div>
+
+<div class="table-responsive" >
+  <table class="table table-bordered responsive" id="addenda_table"  cellspacing="0" width="100%">
+    <thead>
+    <th>Addendum#</th>
+    <th>Subject</th>
+    <th>Sent</th>
+    <th>Action</th>
+    </thead>
+    <tbody>
+    <% if @addendas.present? %>
+        <% @addendas.each_with_index do |t,index| %>
+            <tr>
+              <td class="text-center"><%=  "Addendum# #{t.ref_no}" %></td>
+              <td class="text-center"><%=  t.subject %></td>
+              <td class="text-center"><%=  t.created_at.strftime("%d.%m.%Y %H:%M %p") %></td>
+              <td>
+                <button class="btn btn-default " id="<%= t.id %>">View</button>
+              </td>
+            </tr>
+        <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="add_addenda_div">
+  <div id="add_addenda_modal" class="modal fade"  style="margin-top: 100px; width: 100%" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content col-md-24">
+        <div class="modal-header" style="background-color: #184a5f">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="col-md-24 col-md-20 col-md-offset-2">
+            <p class="text-center" style="font-size: 20px">
+              New Addenda
+            </p>
+          </div>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+        <br>
+
+        <div class="modal-body" style="overflow-y: auto;height: 250px;">
+          <div class="col-md-24">
+            <div class="col-md-6">
+              <label>Subject</label>
+            </div>
+            <div class="col-md-18">
+              <input type="text" class="form-control subject">
+            </div>
+
+            <div class="col-md-24" style="height: 20px"></div>
+            <div class="col-md-6">
+              <label>Details</label>
+            </div>
+            <div class="col-md-18">
+              <textarea class="form-control details" rows="5"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-info step2" data-dismiss="modal">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="step_addenda_div">
+  <div id="step2_addenda_modal" class="modal fade"  style="margin-top: 100px; width: 100%" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content col-md-24">
+        <div class="modal-header" style="background-color: #184a5f">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="col-md-24 col-md-20 col-md-offset-2">
+            <p class="text-center" style="font-size: 20px">
+              Issue Addenda
+            </p>
+          </div>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+        <br>
+
+        <div class="modal-body" style="overflow-y: auto;height: 250px;">
+          <div class="col-md-24">
+            <p class="text-center" style="font-size: 24px">Select the type of Addenda you wish to issue</p>
+          </div>
+          <div class="col-md-24" style="height: 20px"></div>
+          <div class="col-md-24">
+            <div class="col-md-8">
+              <div class="radio pull-right">
+                <label>
+                  <input type="radio" name="optradio" class="radio_option1" value="document">
+                </label>
+              </div>
+
+            </div>
+            <div class="col-md-16">
+              <label>
+                Upload Documents<br/>
+                <p>Upload new or supersede existing files</p>
+              </label>
+            </div>
+
+            <div class="col-md-24" style="height: 20px"></div>
+            <div class="col-md-8">
+              <div class="radio pull-right">
+                <label><input type="radio" name="optradio" class="radio_option2" value="detail"></label>
+              </div>
+            </div>
+            <div class="col-md-16">
+              <label>
+                Update Tender Details<br/>
+                <p>Revise Tender dates and status..</p>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default back_step1" >Back</button>
+          <button type="button" class="btn btn-info step3">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="tender_details_addenda_div">
+  <div id="tender_details_addenda_modal" class="modal fade"  style="margin-top: 100px; width: 100%;" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content col-md-24">
+        <div class="modal-header" style="background-color: #184a5f">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="col-md-24 col-md-20 col-md-offset-2">
+            <p class="text-center" style="font-size: 20px">
+              Issue Addenda
+            </p>
+          </div>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+        <br>
+
+        <div class="modal-body" style="overflow-y: auto;height: 250px;">
+          <div class="col-md-24">
+            <p class="text-center" style="font-size: 24px">Update Tender Details</p>
+          </div>
+          <div class="col-md-24" style="height: 20px"></div>
+          <div class="col-md-24">
+            <div class="col-md-8">
+              <div class="radio pull-right">
+                Quotes Due
+              </div>
+
+            </div>
+            <div class="col-md-16">
+              <div class="input-group date" id="datetimepicker1"> 
+                <input type="text" class="form-control quote_due" name="quote" value="<%= @tender.tender_quote.quote_date %>"/>	<span class="input-group-addon"><span class="glyphicon-calendar glyphicon quote_calender"></span></span> 
+                <button type="button" class="btn btn-success update_quote_due" id="<%= @tender.tender_quote.id %>">Update</button>
+              </div> 
+            </div>
+
+            <div class="col-md-24" style="height: 20px"></div>
+            <div class="col-md-8">
+              <div class="radio pull-right">
+                Site Inspection
+              </div>
+            </div>
+            <div class="col-md-16">
+              <% if @tender.tender_sites.present? %>
+                  <% @tender.tender_sites.each_with_index do |a,i| %>
+                      <div class="input-group site_date" id="tender_site_date<%= i %>"> 
+                        <input type="text" class="form-control site_due_date_<%= a.id %>" name="quote" value="<%= a.site_date %>"/>	<span class="input-group-addon"><span class="glyphicon-calendar glyphicon quote_calender"></span></span> 
+                        <button type="button" class="btn btn-success update_site_due" id="<%= a.id %>">Update</button>
+                      </div> 
+                  <% end %>
+              <% end %>
+            </div>
+            <div style="height: 20px"></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-20"> 
+              <% if @tender.present? %>
+                  <% if @tender.status == '1' %>
+                      <div class="radio"> 
+                        <label><input type="radio" class="tendering" name="tendering" value="1" checked>Tendering - Your organization is still tendering for this project.</label> 
+                        <p class="tendering_text"><i>note: Once this tender is posted you will be able to change the status from Tendering to awarded.</i></p> 
+                      </div> 
+                      <div class="radio"> 
+                        <label><input type="radio" name="tendering" class="tendering" value="2">Awarded - This tender has been awarded yo your organization or this your project.</label> 
+                        <p class="awarded_text" style="display: none"><i>note: Once this tender is posted you will no longer be able to change the Awarded status to Tendering again. </i></p> 
+                      </div>
+                  <% else %>
+                      <div class="radio"> 
+                        <label><input type="radio" class="tendering" name="tendering" value="1" >Tendering - Your organization is still tendering for this project.</label> 
+                        <p class="tendering_text"><i>note: Once this tender is posted you will be able to change the status from Tendering to awarded.</i></p> 
+                      </div> 
+                      <div class="radio"> 
+                        <label><input type="radio" name="tendering" class="tendering" value="2" checked>Awarded - This tender has been awarded yo your organization or this your project.</label> 
+                        <p class="awarded_text" style="display: none"><i>note: Once this tender is posted you will no longer be able to change the Awarded status to Tendering again. </i></p> 
+                      </div>
+                  <% end %>
+
+              <% else %>
+                  <div class="radio"> 
+                    <label><input type="radio" class="tendering" name="tendering" value="1" checked>Tendering - Your organization is still tendering for this project.</label> 
+                    <p class="tendering_text"><i>note: Once this tender is posted you will be able to change the status from Tendering to awarded.</i></p> 
+                  </div> 
+                  <div class="radio"> 
+                    <label><input type="radio" name="tendering" class="tendering" value="2">Awarded - This tender has been awarded yo your organization or this your project.</label> 
+                    <p class="awarded_text" style="display: none"><i>note: Once this tender is posted you will no longer be able to change the Awarded status to Tendering again. </i></p> 
+                  </div>
+              <% end %>
+            </div> 
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default back_step2" >Back</button>
+          <button type="button" class="btn btn-info step4">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="tender_details_review_addenda_div">
+  <div id="tender_details_review_addenda_modal" class="modal fade"  style="margin-top: 100px; width: 100%;" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content col-md-24">
+        <div class="modal-header" style="background-color: #184a5f">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="col-md-24 col-md-20 col-md-offset-2">
+            <p class="text-center" style="font-size: 20px">
+              Issue Addenda
+            </p>
+          </div>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+        <br>
+
+        <div class="modal-body" style="overflow-y: auto;height: 250px;">
+          <div class="col-md-24">
+            <div class="col-md-6">
+              <label>Subject</label>
+            </div>
+            <div class="col-md-18">
+              <label class="review_subject"> </label>
+            </div>
+
+            <div class="col-md-24" style="height: 20px"></div>
+            <div class="col-md-6">
+              <label>Details</label>
+            </div>
+            <div class="col-md-18">
+              <label class="review_details"> </label>
+            </div>
+            <div class="col-md-24" style="height: 20px"></div>
+            <div class="col-md-6">
+              <label>Quotes Due</label>
+            </div>
+            <div class="col-md-18">
+              <label><%= @tender.tender_quote.previous_date  %> Previously</label>
+            </div>
+            <div class="col-md-6">
+              <label></label>
+            </div>
+            <div class="col-md-18">
+              <label><%= @tender.tender_quote.quote_date  %> Updated</label>
+            </div>
+            <div class="col-md-24" style="height: 20px"></div>
+            <div class="col-md-6">
+              <label>Site Inspection</label>
+            </div>
+            <% if @tender.tender_sites.present? %>
+                <% @tender.tender_sites.each do |s| %>
+                    <% if s.previous_date.present? %>
+                        <div class="col-md-18">
+                          <label><%= s.previous_date  %> Previously</label>
+                        </div>
+                        <div class="col-md-6">
+                          <label></label>
+                        </div>
+                        <div class="col-md-18">
+                          <label><%= s.site_date  %> Updated</label>
+                        </div>
+                    <% else %>
+                        <div class="col-md-6">
+                          <label></label>
+                        </div>
+                        <div class="col-md-18">
+                          <label><%= s.site_date  %> Updated</label>
+                        </div>
+                    <% end %>
+
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default back_step3" >Back</button>
+          <button type="button" class="btn btn-info step5">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="tender_document_addenda_div">
+  <div id="tender_document_addenda_modal" class="modal fade"  style="margin-top: 100px; width: 100%;" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content col-md-24">
+        <div class="modal-header" style="background-color: #184a5f">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="col-md-24 col-md-20 col-md-offset-2">
+            <p class="text-center" style="font-size: 20px">
+              Issue Addenda
+            </p>
+          </div>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+        <br>
+
+        <div class="modal-body" style="overflow-y: auto;height: 250px;">
+          <div class="col-md-24">
+            <div class="col-md-24">
+              <p class="text-center" style="font-size: 24px">Update Document</p>
+            </div>
+            <div class="col-md-24" style="height: 20px"></div>
+            <div class="col-md-22 document_div"> 
+
+              <div class="row">
+                <div class="col-md-7">
+                  <a href="#!"  id="<%= @tender.id %>">
+                    <button class="btn btn-success add_document">
+                      Add Document
+                    </button>
+                  </a>
+                  <a href="#!" class="remove_document" id="<%= @tender.id %>">
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="row">
+                <div style="height: 40px;"></div>
+              </div>
+
+              <div class="table-responsive" >
+                <% if @documents.present? %>
+                    <table class="table table-bordered responsive" id="addenda_document_table" cellspacing="0" width="100%">
+                      <thead>
+                      <th class="text-center"><input type="checkbox" class="document_list_master" name="document_list_master"></th>
+                      <th>Filename</th>
+                      <th>Size</th>
+                      <th>Directory</th>
+                      </thead>
+                      <tbody>
+                      <% @documents.each_with_index do |t,index| %>
+                          <tr>
+                            <td class="text-center"><input type="checkbox" class="document_list" name="document_list"></td>
+                            <td class="text-center"><%= t.document_file_name  %></td>
+                            <td class="text-center"><%=  t.document_file_size %></td>
+                            <td class="text-center"><%=  t.directory %></td>
+                          </tr>
+                      <% end %>
+                      </tbody>
+                    </table>
+                <% end %>
+              </div>
+            </div>  
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default back_step2" >Back</button>
+          <button type="button" class="btn btn-info step5">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="add_document_addenda_div">
+  <div id="add_document_addenda_modal" class="modal fade"  style="margin-top: 100px; width: 100%;" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content col-md-24">
+        <div class="modal-header" style="background-color: #184a5f">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <div class="col-md-24 col-md-20 col-md-offset-2">
+            <p class="text-center" style="font-size: 20px">
+              Issue Addenda
+            </p>
+          </div>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+        <br>
+
+        <div class="modal-body" style="overflow-y: auto;height: 250px;">
+          <div class="col-md-24">
+            <div class="col-md-24">
+              <p class="text-center" style="font-size: 24px">Add Document</p>
+            </div>
+            <div class="col-md-24" style="height: 20px"></div>
+            <div class="col-md-22"> 
+              <div class="row">
+                <div style="height: 40px;"></div>
+              </div>
+
+              <div class="col-md-8">
+                <label>Directory Name</label>
+              </div>
+              <div class="col-md-16">
+                <input type="text" class="form-control directory_name">
+              </div>
+              <div class="row">
+                <div style="height: 20px;"></div>
+              </div>
+              <div class="document_upload" style="display: none">
+                <div class="col-md-24" type="file" id="dir-select" webkitdirectory name="document"> 
+                  <div class="col-md-20  col-md-offset-2 rfi_dropzone">
+                    <p class="text-center">
+                      <i class="fa fa-cloud-upload fa-5x upload " aria-hidden="true"></i>
+                    </p>
+                    <h1 class="text-center">DRAG AND DROP</h1>
+                    <p class="text-center">your files anywhere, or browse</p> 
+
+                  </div>
+                </div>  
+              </div>
+            </div>  
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default cancel_document" >Cancel</button>
+          <button type="button" class="btn btn-info">View Document</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<input type="hidden" class="addenda_type">
+<input type="hidden" class="addenda_subject">
+<input type="hidden" class="addenda_details">
+<input type="hidden" class="tender_id" value="<%= @tender.id %>">
+<div style="background-color: transparent;display: none"> 
+  <%= form_for @addenda_document, :url => create_addenda_document_addendas_path,:html => {:multipart => true,:class => 'addenda_document'} do |m| %> 
+      <input type="hidden" name="tender_id" value="<%= @tender.id %>">
+      <input type="hidden" class="addenda_directory" name="directory">
+      <input type="file" id="dir-select" name="document" webkitdirectory directory multiple /> 
+  <% end %>
+</div> 
+
+<script>
+  $(document).ready(function(){
+
+    $('#addenda_table').DataTable();
+
+    $('#addenda_document_table').DataTable({
+      bFilter: false,
+      bInfo: false,
+      "bPaginate": false,
+      'bSortable': false,
+      "columnDefs": [
+        { "visible": false, "targets": 3 }
+      ],
+      "order": [[ 3, 'asc' ]],
+      "displayLength": 25,
+      "drawCallback": function ( settings ) {
+        var api = this.api();
+        var rows = api.rows( {page:'current'} ).nodes();
+        var last=null;
+
+        api.column(3, {page:'current'} ).data().each( function ( group, i ) {
+          console.log(group);
+          if ( last !== group ) {
+            $(rows).eq( i ).before(
+                '<tr class="group"><td colspan="7">'+group+'</td></tr>'
+            );
+
+            last = group;
+          }
+        } );
+      }
+    } );
+
+    $('#datetimepicker1').datetimepicker();
+
+    $('.site_date').click(function(){
+      var id = $(this).attr('id');
+      $('#'+id).datetimepicker();
+    });
+
+    $('.issue_addenda').click(function(){
+      //$('#add_addenda_modal').modal('show');
+      $('#tender_document_addenda_modal').modal('show');
+    });
+
+    $('.add_document').click(function(){
+      $('#tender_document_addenda_modal').modal('hide');
+      $('#add_document_addenda_modal').modal('show');
+    });
+
+    $('.directory_name').keyup(function(){
+      if($(this).val().length > 0){
+        $('.document_upload').show();
+        $('.addenda_directory').val($(this).val());
+      }else{
+        $('.document_upload').hide();
+      }
+    });
+
+    $('#new_addenda').fileupload({
+
+      dataType: 'json',    done: function (e, data) {
+
+      },progress: function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#progress .progress-bar').css( 'width', progress + '%');
+      }
+    }).bind('fileuploadstop', function (e) {
+      alert("Document Upload successfully uploaded.");
+    });
+
+    $('.step2').click(function(){
+      $('.addenda_subject').val($('.subject').val());
+      $('.addenda_details').val($('.details').val());
+      $('#add_addenda_modal').modal('hide');
+      $('#step2_addenda_modal').modal('show');
+
+    });
+
+    $('.back_step1').click(function(){
+      $('#add_addenda_modal').modal('show');
+      $('#step2_addenda_modal').modal('hide');
+    });
+
+    $('.back_step2').click(function(){
+      $('#tender_details_addenda_modal').modal('hide');
+      $('#tender_document_addenda_modal').modal('hide');
+      $('#step2_addenda_modal').modal('show');
+    });
+
+    $('.back_step3').click(function(){
+      $('#tender_details_addenda_modal').modal('show');
+      $('#tender_details_review_addenda_modal').modal('hide');
+    })
+
+    $('.step3').click(function(){
+      if ($(".radio_option1").prop("checked")){
+        $('#step2_addenda_modal').modal('hide');
+        $('#tender_document_addenda_modal').modal('show');
+        $('.addenda_type').val('documents');
+      }else if($(".radio_option2").prop("checked")){
+        $('#step2_addenda_modal').modal('hide');
+        $('#tender_details_addenda_modal').modal('show');
+        $('.addenda_type').val('details');
+      }else{
+        alert("You need to select type.");
+      }
+
+    });
+
+    $('.step4').click(function(){
+      $('#tender_details_addenda_modal').modal('hide');
+      $('.review_subject').text($('.subject').val());
+      $('.review_details').text($('.details').val());
+      $('#tender_details_review_addenda_modal').modal('show');
+    });
+
+    $('.step5').click(function(){
+      alert("asjhshdjas");
+      var subject = $('.subject').val();
+      var details = $('.details').val();
+      var tender_id = $('.tender_id').val();
+      var type = $('.addenda_type').val();
+      $.ajax({
+        method: "POST",
+        data: {subject:subject,details:details,tender_id:tender_id,type:type},
+        url: "/addendas/create_addendas"
+      }).done(function (data) {
+        window.location.href = '/tenders/hc_tender?id='+tender_id+'&addenda=true'
+      });
+    });
+
+    $('.update_quote_due').click(function(){
+      var id = $(this).attr('id');
+      var quote_due = $('.quote_due').val();
+      $.ajax({
+        method: "POST",
+        data: {quote_id:id,quote_date:quote_due,type:"quote"},
+        url: "/addendas/update_quote_due  "
+      }).done(function (data) {
+        alert("Successfully update the Quote Due");
+      });
+    })
+
+    $('.update_site_due').click(function(){
+      var id = $(this).attr('id');
+      var quote_due = $('.site_due_date_'+id).val();
+      $.ajax({
+        method: "POST",
+        data: {quote_id:id,quote_date:quote_due,type:"site"},
+        url: "/addendas/update_quote_due  "
+      }).done(function (data) {
+        alert("Successfully update the Site Due");
+      });
+    })
+
+    $('.tendering').change(function(){
+      var status = $(this).val();
+      var tender_id = $('.tender_id').val();
+      $.ajax({
+        method: "POST",
+        data: {status:status,tender_id:tender_id,type:"status"},
+        url: "/addendas/update_quote_due  "
+      }).done(function (data) {
+        alert("Successfully update the Tender Status");
+      });
+    })
+
+  });
+</script>
+
+

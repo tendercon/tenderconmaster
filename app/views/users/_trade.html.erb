@@ -1,0 +1,351 @@
+<%= select_tag "secondary_trade#{@number}",content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name')+content_tag(:option,'Others',:value=>'last'),{:class=> "form-control col-lg-12 trades new_trade#{@number}",:style=> 'width:300px;',:id => @number} %>
+
+<input type="hidden" class="act" value="<%= params[:action] %>">
+<script>
+
+  $('.new_trade1').change(function(){
+    var secondary_value = $(this).val();
+    var id = $(this).attr('id');
+    console.log("id:"+id);
+
+
+    if(secondary_value == 'last'){
+
+      show_text_field(id);
+      $('#secondary_others').keyup(function(){
+
+        $('#secondary_others1').keyup(function(){
+          var new_secondary = $(this).val();
+
+          if(new_secondary.length > 1){
+            $.ajax({
+              method: "POST",
+              data: {trade: new_secondary},
+              url: "/users/validate_trade"
+            }).done(function (data) {
+              if(data.state == 'valid'){
+                //$('.position_value').text(new_postion);
+                $('.error_secondary').hide();
+                $('.project_trade2').val(new_secondary);
+                $('.secondary_others').show();
+                $('.secondary_others1').hide();
+                $('.secondary_others2').hide();
+                $('.secondary_others3').hide();
+                $('.secondary_others4').hide();
+              }else{
+                $('.error_secondary').show();
+              }
+            });
+          }else{
+            $('.error_secondary1').hide();
+            $('.error_secondary').hide();
+          }
+        });
+
+      });
+
+    }else{
+      $('.secondary_others').hide();
+      if(id == 2){
+        $('.secondary_others1').hide();
+      }
+
+      if(id == 3){
+        $('.secondary_others2').hide();
+      }
+
+      if(id == 4){
+        $('.secondary_others3').hide();
+      }
+
+      if(id == 5){
+        $('.secondary_others4').hide();
+      }
+
+
+      $('.error_secondary1').hide();
+      $('.error_secondary').hide();
+
+    }
+  });
+
+  $('.new_trade2').change(function() {
+    var secondary_value = $(this).val();
+    var id = $(this).attr('id');
+    console.log("id:"+id);
+    if(secondary_value == 'last'){
+
+      show_text_field(id);
+      $('#secondary_others1').keyup(function(){
+        var new_secondary = $(this).val();
+
+        if(new_secondary.length > 1){
+          $.ajax({
+            method: "POST",
+            data: {trade: new_secondary},
+            url: "/users/validate_trade"
+          }).done(function (data) {
+            if(data.state == 'valid'){
+              $('.error_secondary').hide();
+              $('.project_trade1').val(new_secondary);
+              $('.secondary_others').hide();
+              $('.secondary_others1').show();
+              $('.secondary_others2').hide();
+              $('.secondary_others3').hide();
+              $('.secondary_others4').hide();
+            }else{
+              $('.error_secondary').show();
+
+            }
+          });
+        }else{
+          $('.error_secondary1').hide();
+          $('.error_secondary').hide();
+        }
+
+      });
+
+    }else{
+      $('.secondary_others').hide();
+      if(id == 2){
+        $('.secondary_others1').hide();
+      }
+
+      if(id == 3){
+        $('.secondary_others2').hide();
+      }
+
+      if(id == 4){
+        $('.secondary_others3').hide();
+      }
+
+      if(id == 5){
+        $('.secondary_others4').hide();
+      }
+
+
+      $('.error_secondary1').hide();
+      $('.error_secondary').hide();
+
+    }
+  });
+
+
+  $('.new_trade3').change(function() {
+    var secondary_value = $(this).val();
+    var id = $(this).attr('id');
+    console.log("id:"+id);
+    if(secondary_value == 'last'){
+
+      show_text_field(id);
+      $('#secondary_others2').keyup(function(){
+        var new_secondary = $(this).val();
+
+        if(new_secondary.length > 1){
+          $.ajax({
+            method: "POST",
+            data: {trade: new_secondary},
+            url: "/users/validate_trade"
+          }).done(function (data) {
+            if(data.state == 'valid'){
+              $('.error_secondary').hide();
+              $('.project_trade1').val(new_secondary);
+              $('.secondary_others').hide();
+              $('.secondary_others1').hide();
+              $('.secondary_others2').show();
+              $('.secondary_others3').hide();
+              $('.secondary_others4').hide();
+            }else{
+              $('.error_secondary').show();
+
+            }
+          });
+        }else{
+          $('.error_secondary1').hide();
+          $('.error_secondary').hide();
+        }
+
+      });
+
+    }else{
+      $('.secondary_others').hide();
+      if(id == 2){
+        $('.secondary_others1').hide();
+      }
+
+      if(id == 3){
+        $('.secondary_others2').hide();
+      }
+
+      if(id == 4){
+        $('.secondary_others3').hide();
+      }
+
+      if(id == 5){
+        $('.secondary_others4').hide();
+      }
+
+
+      $('.error_secondary1').hide();
+      $('.error_secondary').hide();
+
+    }
+  });
+
+  $('.new_trade4').change(function() {
+    var secondary_value = $(this).val();
+    var id = $(this).attr('id');
+    console.log("id:"+id);
+    if(secondary_value == 'last'){
+
+      show_text_field(id);
+      $('#secondary_others3').keyup(function(){
+        var new_secondary = $(this).val();
+
+        if(new_secondary.length > 1){
+          $.ajax({
+            method: "POST",
+            data: {trade: new_secondary},
+            url: "/users/validate_trade"
+          }).done(function (data) {
+            if(data.state == 'valid'){
+              $('.error_secondary').hide();
+              $('.project_trade1').val(new_secondary);
+              $('.secondary_others').hide();
+              $('.secondary_others1').hide();
+              $('.secondary_others2').hide();
+              $('.secondary_others3').show();
+              $('.secondary_others4').hide();
+            }else{
+              $('.error_secondary').show();
+
+            }
+          });
+        }else{
+          $('.error_secondary1').hide();
+          $('.error_secondary').hide();
+        }
+
+      });
+
+    }else{
+      $('.secondary_others').hide();
+      if(id == 2){
+        $('.secondary_others1').hide();
+      }
+
+      if(id == 3){
+        $('.secondary_others2').hide();
+      }
+
+      if(id == 4){
+        $('.secondary_others3').hide();
+      }
+
+      if(id == 5){
+        $('.secondary_others4').hide();
+      }
+
+
+      $('.error_secondary1').hide();
+      $('.error_secondary').hide();
+
+    }
+  });
+
+  $('.new_trade5').change(function() {
+    var secondary_value = $(this).val();
+    var id = $(this).attr('id');
+    console.log("id:"+id);
+    if(secondary_value == 'last'){
+
+      show_text_field(id);
+      $('#secondary_others4').keyup(function(){
+        var new_secondary = $(this).val();
+
+        if(new_secondary.length > 1){
+          $.ajax({
+            method: "POST",
+            data: {trade: new_secondary},
+            url: "/users/validate_trade"
+          }).done(function (data) {
+            if(data.state == 'valid'){
+              $('.error_secondary').hide();
+              $('.project_trade1').val(new_secondary);
+              $('.secondary_others').hide();
+              $('.secondary_others1').hide();
+              $('.secondary_others2').hide();
+              $('.secondary_others3').hide();
+              $('.secondary_others4').show();
+            }else{
+              $('.error_secondary').show();
+
+            }
+          });
+        }else{
+          $('.error_secondary1').hide();
+          $('.error_secondary').hide();
+        }
+
+      });
+
+    }else{
+      $('.secondary_others').hide();
+      if(id == 2){
+        $('.secondary_others1').hide();
+      }
+
+      if(id == 3){
+        $('.secondary_others2').hide();
+      }
+
+      if(id == 4){
+        $('.secondary_others3').hide();
+      }
+
+      if(id == 5){
+        $('.secondary_others4').hide();
+      }
+
+
+      $('.error_secondary1').hide();
+      $('.error_secondary').hide();
+
+    }
+  });
+
+  function show_text_field(id){
+    if(id == 'trades'){
+      $('.secondary_others').show();
+      $('.secondary_others1').hide();
+      $('.secondary_others2').hide();
+      $('.secondary_others3').hide();
+      $('.secondary_others4').hide();
+    }else if(id == 2){
+      $('.secondary_others').hide();
+      $('.secondary_others1').show();
+      $('.secondary_others2').hide();
+      $('.secondary_others3').hide();
+      $('.secondary_others4').hide();
+    }else if(id == 3){
+      $('.secondary_others').hide();
+      $('.secondary_others1').hide();
+      $('.secondary_others2').show();
+      $('.secondary_others3').hide();
+      $('.secondary_others4').hide();
+    }else if(id == 4){
+      $('.secondary_others').hide();
+      $('.secondary_others1').hide();
+      $('.secondary_others2').hide();
+      $('.secondary_others3').show();
+      $('.secondary_others4').hide();
+    }else if(id == 5){
+      $('.secondary_others').hide();
+      $('.secondary_others1').hide();
+      $('.secondary_others2').hide();
+      $('.secondary_others3').hide();
+      $('.secondary_others4').show();
+    }
+  }
+</script>
+

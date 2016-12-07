@@ -1,0 +1,159 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <div class="input-group input-group-unstyled">
+        <input type="text" class="form-control sub_search_text" placeholder="Search"/>
+        <span class="input-group-addon"> <i class="fa fa-search" id="search_by_trades"></i></span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+
+<div class="contractors">
+  <div class="col-md-24 pending">
+    <table  class="table table-bordered sub_table">
+      <tbody>
+      <% if @trades_ids.present? %>
+        <% @trades_ids.uniq.each do |t| %>
+          <tr>
+            <td class="trade_name">
+              <%= get_trade_name t %> (<%= return_trade_sc_pending t,@tender.id %>)</td>
+            </td>
+            <td class="trade_name"></td>
+          </tr>
+          <% if (get_sc_user  t,@tender.id).present? %>
+            <% (get_sc_user  t,@tender.id).uniq.each_with_index do |u,index| %>
+              <tr>
+                <td class="text-center"><%= get_user_company_name u %></td>
+                <% if(get_approved_trade_status t,@tender.id,u) == 'approved' %>
+                  <td class="request_quote" colspan="6">Request Approved</td>
+                <% elsif (get_approved_trade_status t,@tender.id,u) == 'declined' %>
+                  <td class="request_quote_dec" colspan="6">Request Decline</td>
+                <% else %>
+                  <td class="request_quote">Requesting Quote</td>
+                  <td class="pending_quotes">Pending</td>
+                  <td class="col-md-1" colspan="5">
+                    <button class="btn btn-success approved" id="<%= t %>" alt="<%= u  %>"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
+                    <button class="btn btn-danger declined" id="<%= t %>" alt="<%= u  %>"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                  </td>
+                <% end %>
+              </tr>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<input type="hidden" class="tender_id" name="<%= @tender.id %>">
+<script>
+
+  $('.invite_more_sub').click(function(){
+    $('#invite_more_modal').modal('show');
+  });
+
+  $('#demo').multiselect();
+  $('.tender_status').multiselect();
+  $('.trade_filter').change(function(){
+    var tender_id = $('.tender_id').val();
+    var trades = $(this).val();
+
+    $.ajax({
+      method: "POST",
+      data: {tender_id:tender_id,trades:trades},
+      url: "/tenders/filter_by_trades"
+    }).done(function (data) {
+      $('.contractors').html(data);
+    });
+  });
+
+  $('.tender_status').change(function(){
+    var tender_id = $('.tender_id').val();
+    var status = $(this).val();
+
+    $.ajax({
+      method: "POST",
+      data: {tender_id:tender_id,status:status},
+      url: "/tenders/filter_by_status"
+    }).done(function (data) {
+      $('.contractors').html(data);
+    });
+    console.log("status:"+status);
+  });
+
+  $('.approved').unbind('click').bind('click', function (){
+    var sc_id = $(this).attr('alt');
+    var trade_id = $(this).attr('id');
+    var tender_id = $('.tender_id').val();
+
+    $.ajax({
+      method: "POST",
+      data: {sc_id:sc_id,tender_id:tender_id,trade_id:trade_id},
+      url: "/tenders/approved_trade_quote"
+    }).done(function (data) {
+      $('.contractors').html(data);
+    });
+
+  });
+
+  $('.declined').click(function(){
+    var sc_id = $(this).attr('alt');
+    var trade_id = $(this).attr('id');
+    var tender_id = $('.tender_id').val();
+
+    $.ajax({
+      method: "POST",
+      data: {sc_id:sc_id,tender_id:tender_id,trade_id:trade_id},
+      url: "/tenders/reject_trade_quotes"
+    }).done(function (data) {
+      $('.contractors').html(data);
+    });
+  })
+
+  $('.user').click(function () {
+    var dir = $(this).attr('id');
+    $('.'+dir).each(function () {
+      $(this).toggle();
+    })
+  });
+
+  $('#search_by_trades').click(function(){
+    var tender_id = $('.tender_id').val();
+    var search = $('.quote_search_text').val();
+
+    $.ajax({
+      method: "POST",
+      data: {search:search,tender_id:tender_id},
+      url: "/tenders/search_quotes_by_trades"
+    }).done(function (data) {
+      $('.contractors').html(data);
+    });
+  });
+
+  $('.sub_search_text').keyup(function(){
+    var tender_id = $('.tender_id').val();
+    var search = $(this).val();
+    console.log("search:"+search.length);
+    if(search.length > 2){
+      $.ajax({
+        method: "POST",
+        data: {search:search,tender_id:tender_id},
+        url: "/tenders/search_quotes_by_trades"
+      }).done(function (data) {
+        $('.contractors').html(data);
+      });
+    }else{
+      $.ajax({
+        method: "POST",
+        data: {search:search,tender_id:tender_id,no_quote:'true'},
+        url: "/tenders/search_quotes_by_trades"
+      }).done(function (data) {
+        $('.contractors').html(data);
+      });
+    }
+
+  });
+</script>

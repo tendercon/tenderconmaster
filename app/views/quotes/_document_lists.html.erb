@@ -1,0 +1,177 @@
+<label>Attach Quote</label>
+<%= form_for @quote_document, :url => create_document_quote_documents_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
+    <input type="hidden" value="<%= @tender_id%>" name="tender_id" class="tender_id">
+    <input type="file" id="file_comment" class="btn btn-success" name="document" webkitdirectory directory multiple /> 
+    <div style="display: none">
+      <button type="submit" class="submit_document"></button>
+    </div>
+<% end %>
+<div class="quote_documents">
+  <div class="row">
+    <div class="col-md-22">
+      <button class="btn btn-default remove_comment_doc">
+        <i class="fa fa-trash"  aria-hidden="true"></i>
+      </button>
+      <table  class="table table-bordered document_table col-md-12">
+        <thead>
+        <% if @quote_documents.present? %>
+            <tr>
+              <th><input type="checkbox" class="document_list_master" name="document_list_master"></th>
+              <th>Document</th>
+            </tr>
+        <% end %>
+        </thead>
+        <tbody>
+        <% if @quote_documents.present? %>
+            <% @quote_documents.each do |d| %>
+                <tr>
+                  <% if d.document_file_name != '.DS_Store'  %>
+                      <td><input type="checkbox" class="document_list" name="documents[]" value="<%= d.id %>"></td>
+                      <td><%= d.document_file_name %></td>
+                  <% end %>
+                </tr>
+            <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <input type="hidden" class="tender_id" value="<%= @tender_id %>">
+  </div>
+
+</div>
+<label>Attach Supporting files(Optional)</label>
+<%= form_for @quote_document_optional, :url => create_document_quote_document_optionals_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
+    <input type="hidden" value="<%= @tender_id%>" name="tender_id" class="tender_id">
+    <input type="file" id="file_comment" class="btn btn-success" name="document" webkitdirectory directory multiple /> 
+    <div style="display: none">
+      <button type="submit" class="submit_document"></button>
+    </div>
+<% end %>
+<div class="quote_document_optional">
+  <div class="row">
+    <div class="col-md-22">
+      <button class="btn btn-default remove_comment_doc_optional">
+        <i class="fa fa-trash"  aria-hidden="true"></i>
+      </button>
+      <table  class="table table-bordered document_table col-md-12">
+        <thead>
+        <% if @quote_document_optionals.present? %>
+            <tr>
+              <th><input type="checkbox" class="document_list_master_optional" name="document_list_master"></th>
+              <th>Document</th>
+            </tr>
+        <% end %>
+        </thead>
+        <tbody>
+        <% if @quote_document_optionals.present? %>
+            <% @quote_document_optionals.each do |d| %>
+                <tr>
+                  <% if d.document_file_name != '.DS_Store'  %>
+                      <td><input type="checkbox" class="document_list_optional" name="documents[]" value="<%= d.id %>"></td>
+                      <td><%= d.document_file_name %></td>
+                  <% end %>
+                </tr>
+            <% end %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+    <input type="hidden" class="tender_id" value="<%= @tender_id %>">
+  </div>
+</div>
+
+
+<script>
+  $('#new_quote_document').fileupload({
+    dataType: 'json',    done: function (e, data) {
+      $.each(data, function (index, file) {
+        if (index == 'done') {
+          var tender_id = $('.tender_id').val();
+          $.ajax({
+            method: "POST",
+            data: {tender_id:tender_id},
+            url: "/quote_documents/get_documents"
+          }).done(function (data) {
+
+            $('.quote_files').html(data);
+          });
+        }
+      });
+    },progress: function (e, data) {
+
+    }
+  });
+
+  $('#new_quote_document_optional').fileupload({
+    dataType: 'json',    done: function (e, data) {
+      $.each(data, function (index, file) {
+        if (index == 'done') {
+          var tender_id = $('.tender_id').val();
+          $.ajax({
+            method: "POST",
+            data: {tender_id:tender_id},
+            url: "/quote_documents/get_documents"
+          }).done(function (data) {
+            $('.quote_files').html(data);
+          });
+        }
+      });
+    },progress: function (e, data) {
+
+    }
+  });
+
+  $('.document_list_master').change(function(){
+    $('.document_list').prop('checked',$(this).prop("checked"));
+  });
+
+  $('.document_list_master_optional').change(function(){
+    $('.document_list_optional').prop('checked',$(this).prop("checked"));
+  });
+
+  $('.remove_comment_doc').click(function(){
+    var tender_id = $('.tender_id').val();
+    var r = confirm("Are you sure you want to delete this item?");
+    if (r == true) {
+      var ids = [];
+
+      $('.document_list').each(function()
+      {
+        if($(this).prop("checked")){
+          ids.push($(this).val());
+        }
+      })
+      console.log("ids:"+ids);
+      $.ajax({
+        method: "POST",
+        data: {ids:ids,tender_id:tender_id},
+        url: "/quote_documents/delete_documents"
+      }).done(function (data) {
+        $('.quote_files').html(data);
+      });
+    }
+  })
+
+  $('.remove_comment_doc_optional').click(function(){
+    var tender_id = $('.tender_id').val();
+    var r = confirm("Are you sure you want to delete this item?");
+    if (r == true) {
+      var ids = [];
+
+      $('.document_list_optional').each(function()
+      {
+        if($(this).prop("checked")){
+          ids.push($(this).val());
+        }
+      })
+      console.log("ids:"+ids);
+      $.ajax({
+        method: "POST",
+        data: {ids:ids,tender_id:tender_id},
+        url: "/quote_document_optionals/delete_documents"
+      }).done(function (data) {
+        $('.quote_files').html(data);
+      });
+    }
+  })
+</script>

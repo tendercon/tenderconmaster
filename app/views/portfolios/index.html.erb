@@ -1,0 +1,287 @@
+<div class="container" style="background-color: #ffffff">
+  <ul class="nav nav-tabs">
+    <li><a href="<%#= profile_users_path(:id => @user.id) %>">COMPANY PROFILE</a></li>
+    <li><a href="<%#= change_password_users_path %>">USERS</a></li>
+    <li><a href="<%#= billing_users_path %>">TENDERCON REVIEWS</a></li>
+    <li><a href="<%= portfolios_path %>">PORFOLIO</a></li>
+    <li><a href="#">ADMIN NOTIFICATION</a></li>
+  </ul>
+  <div class="form-group has-feedback">
+    <% if flash[:error] %>
+      <div class="alert alert-danger open-sans-regular" id="users_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= @error_alert %>
+        <div class="notice" style="font-size: 14px;"><%= flash[:error].html_safe %></div>
+        <% flash[:error]=nil %>
+      </div>
+    <% end %>
+    <%- if !flash[:notice].nil? %>
+      <div class="alert alert-success open-sans-regular" id="users_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= @error_alert %>
+        <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
+        <% flash[:notice]=nil %>
+      </div>
+    <%- end %>
+  </div>
+  <% if @user.div_status == false %>
+    <div class="col-md-23 information_header">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-14">
+              <div class="col-md-2"><i class="fa fa-lightbulb-o fa-4x" aria-hidden="true" style="color: #ffff00"></i></div>
+              <div class="form-group"></div>
+              <div class="col-md-22">
+                <p class="user_profile_header">This copy will describe what the user can do on this page and how it effects user account.</p>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="form-group"></div>
+              <a href="<%= zendesk_index_path(:id => @user.id) %>" class="text-center new-account">
+                <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Learn More</button>
+              </a>
+              <a href="<%= update_user_div_users_path(:id => @user.id) %>" class="text-center new-account">
+                <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Don't shw this again.</button>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="col-md-24 col-md-12 col-md-offset-6">
+    <div class="col-md-16">
+      <h1>Build Big's Portfolio of Work</h1>
+    </div>
+    <div class="col-md-8">
+      <a href="<%= new_portfolio_path %>">
+        <button type="button" class="btn btn-primary btn-lg">ADD NEW PROJECT</button>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group"></div>
+  </div>
+  <div class="row">
+    <div class="form-group"></div>
+  </div>
+  <div class="row">
+    <div class="row">
+      <div class="form-group"></div>
+    </div>
+    <div class="col-md-24">
+      <div class="col-md-8">
+        <h1>Number of Projects</h1>
+        <% if @portfolios.present? %>
+          <% if @count > 0  %>
+              <%= @count %>
+          <% else %>
+              0
+          <% end %>
+        <% end %>
+
+      </div>
+
+      <div class="col-md-8">
+        <h1>Project Size Range </h1>
+        <% if @portfolios.present? %>
+            <% if  @project_count == 1 %>
+                <%= @highest %>
+            <% else %>
+                <%= "$#{@lowest} - $#{@highest}"  %>
+            <% end %>
+        <% end %>
+
+      </div>
+
+      <div class="col-md-8">
+        <% if session[:role] == 'Head Contractor' %>
+          <h1>Top 3 Sector Worked On</h1>
+        <% else %>
+            <h1>Top 3 Trades Worked On</h1>
+        <% end %>
+        <% if @portfolios.present? %>
+          <% if session[:role] == 'Head Contractor' %>
+            <%= puts "@categories:#{@categories.inspect}" %>
+            <% if @tops.present?  %>
+                <% if @tops.size > 3 %>
+                    <%= puts "TEST" %>
+                    <ul class="list-unstyled">
+                      <% @tops.each_with_index do |t,index| %>
+                          <li><%= "#{index + 1}. #{(get_category_name t)}" %></li>
+                      <% end %>
+                    </ul>
+                <% else %>
+                    <ul class="list-unstyled">
+
+                      <% @tops.uniq.each_with_index do |t,index| %>
+                          <%= puts "ELSE" %>
+                          <li><%= "#{index + 1}. #{(get_category_name t)}" %></li>
+                      <% end %>
+                    </ul>
+                <% end %>
+            <% elsif @categories.present? %>
+                <% if @categories.size > 3 %>
+                    <%= puts "TEST" %>
+                    <ul class="list-unstyled">
+                      <% @categories.each_with_index do |t,index| %>
+                          <li><%= "#{index + 1}. #{(get_category_name t)}" %></li>
+                      <% end %>
+                    </ul>
+                <% else %>
+                    <ul class="list-unstyled">
+
+                      <% @categories.uniq.each_with_index do |t,index| %>
+                          <%= puts "ELSE" %>
+                          <li><%= "#{index + 1}. #{(get_category_name t)}" %></li>
+                      <% end %>
+                    </ul>
+                <% end %>
+
+            <% else %>
+                <p>No Available Record.</p>
+            <% end %>
+          <% end %>
+            <% if session[:role] == 'Sub Contractor' %>
+                <%= puts "@categories:#{@categories.inspect}" %>
+                <% if @top_trades.present?  %>
+                    <% if @top_trades.size > 3 %>
+                        <%= puts "TEST" %>
+                        <ul class="list-unstyled">
+                          <% @top_trades.each_with_index do |t,index| %>
+                              <li><%= "#{index + 1}. #{(get_trade_name t)}" %></li>
+                          <% end %>
+                        </ul>
+                    <% else %>
+                        <ul class="list-unstyled">
+
+                          <% @top_trades.uniq.each_with_index do |t,index| %>
+                              <%= puts "ELSE" %>
+                              <li><%= "#{index + 1}. #{(get_trade_name t)}" %></li>
+                          <% end %>
+                        </ul>
+                    <% end %>
+                <% elsif @trade_ids.present? %>
+                    <% if @trade_ids.size > 3 %>
+                        <%= puts "TEST" %>
+                        <ul class="list-unstyled">
+                          <% @trade_ids.each_with_index do |t,index| %>
+                              <li><%= "#{index + 1}. #{(get_trade_name t)}" %></li>
+                          <% end %>
+                        </ul>
+                    <% else %>
+                        <ul class="list-unstyled">
+
+                          <% @trade_ids.uniq.each_with_index do |t,index| %>
+                              <%= puts "ELSE" %>
+                              <li><%= "#{index + 1}. #{(get_trade_name t)}" %></li>
+                          <% end %>
+                        </ul>
+                    <% end %>
+
+                <% else %>
+                    <p>No Available Record.</p>
+                <% end %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-24">
+      <% if @years.present? %>
+        <% @years.uniq.each do |y| %>
+          <div class="col-md-24">
+            <h1><%= y %></h1>
+            <br>
+            <% if @portfolios.present? %>
+              <% @portfolios.each do |p| %>
+                <% if p.year == y %>
+                  <% if (get_project_avatar y,p.id).present? %>
+
+                    <% (get_project_avatar y,p.id).each do |url| %>
+
+                      <div class="col-md-12 show-image">
+                        <h1><%=   p.client  %></h1>
+                        <img src="http://<%= url %>" width="300px"  height="300px" class="center-block">
+                        <p class="center-block details" style="font-size: 14px"><%= get_project_suburb p.id %>, <%= get_project_state p.id %></p>
+                        <a href="<%= portfolio_path(p) %>" class="more">
+                          <button class="btn-primary">More Details</button>
+                        </a>
+                      </div>
+                    <% end %>
+                  <% end %>
+
+                <% end %>
+              <% end %>
+            <% else %>
+
+            <% end %>
+
+          </div>
+
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<style>
+  div.show-image {
+
+  }
+  div.show-image:hover img{
+    opacity:0.5;
+  }
+  div.show-image:hover input {
+    display: block;
+
+  }
+
+  div.show-image:hover p.details {
+    display: block;
+
+  }
+
+  div.show-image:hover a.more {
+    display: block;
+
+  }
+
+  div.show-image:hover  p.details {
+    display: block;
+  }
+
+
+  div.show-image input {
+    position:absolute;
+    display:none;
+  }
+
+  div.show-image a {
+    position:absolute;
+    display:none;
+  }
+
+  div.show-image p {
+    position:absolute;
+    display:none;
+  }
+
+
+  div.show-image a.more {
+    top:150px;
+    left:240px;
+  }
+
+  div.show-image p.details {
+    left:200px;
+    top:130px;
+
+
+  }
+</style>

@@ -1,0 +1,507 @@
+<div class="col-md-24 chat_container">
+  <% if @user.div_status == false %>
+      <div class="row">
+        <div class="col-md-24 information_header">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-md-14">
+                  <div class="col-md-2"><i class="fa fa-lightbulb-o fa-3x" aria-hidden="true" style="color: #ffff00"></i></div>
+                  <div class="form-group"></div>
+                  <div class="col-md-22">
+                    <p class="user_profile_header">This copy will describe what the user can do on this page and how it effects user account.</p>
+                  </div>
+                </div>
+                <div class="col-md-10">
+                  <div class="form-group"></div>
+                  <a href="<%= zendesk_index_path(:id => @user.id) %>" class="text-center new-account">
+                    <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Learn More</button>
+                  </a>
+                  <a href="<%= update_user_div_users_path(:id => @user.id) %>" class="text-center new-account">
+                    <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Don't shw this again.</button>
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+  <% if !@messages.present? %>
+      <div class="row">
+        <div class="col-md-24 information_header1">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-md-14">
+                  <div class="col-md-2"><i class="fa fa-info-circle fa-3x" aria-hidden="true" style="color: #4AD6F7"></i></div>
+                  <div class="form-group"></div>
+                  <div class="col-md-22">
+                    <p class="user_profile_2header"> There are currently no live conversations. Start a conversation with SC's Today.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <% end %>
+  <div class="row">
+    <div class="col-md-24 ">
+      <div class="col-md-12">
+
+      </div>
+      <% if session[:role] == 'Head Contractor' %>
+          <div class="col-md-12 ">
+            <i class="fa fa-plus-circle fa-3x pull-right add_chat" aria-hidden="true" style="color: green"></i>
+          </div>
+      <% end %>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 member_lists" >
+      <div class="row">
+        <% if @messages.present? %>
+            <% @messages.each do |m| %>
+                <% if !@group_name.include? "#{m.group_name}" %>
+                    <% @group_name << m.group_name %>
+                    <a href="#!" class="group_chat" title="<%= m.group_name %>">
+                      <div class="box_hover" alt="<%= m.group_name %>">
+
+                        <% if(get_user_list_on_group m.group_name,@tender.id).present? %>
+                            <% (get_user_list_on_group m.group_name,@tender.id).each_with_index do |a,index| %>
+
+                                <% if((get_user_logged_status a) == 'online') %>
+                                    <p><%= get_user_company_name a %> <i class="fa fa-circle" aria-hidden="true" style="color: green"> online</i></p>
+                                <% else %>
+                                    <p><%= get_user_company_name a %> <i class="fa fa-circle" aria-hidden="true"> offline</i></p>
+                                <% end %>
+
+
+                            <% end %>
+                        <% end %>
+                      </div>
+                      <div style="border: 1px solid #ddd; height: 100px">
+                        <div class="col-md-3">
+                          <img src="https://s-media-cache-ak0.pinimg.com/236x/9a/de/a4/9adea4e40b39301576ff29f7ddebfd5b.jpg" class="img-circle image_'+message.author+'" width="40px" height="40px">
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-12">
+                          <h3><%=  truncate(m.group_name.to_s,length:25) %></h3>
+                        </div>
+                        <div class="col-md-6">
+                          <p class="pull-right message_time" alt="<%= m.group_name %>">
+                            <% if (get_unread_tender_messages m.tender_id,session[:user_logged_id],m.group_name).present? %>
+                                <% (get_unread_tender_messages m.tender_id,session[:user_logged_id],m.group_name).each_with_index do |t,index| %>
+
+                                    <% if index.to_i == ((get_unread_tender_messages t.tender_id,session[:user_logged_id],t.group_name).size - 1).to_i %>
+                                        <%= t.created_at.strftime('%H:%M %p') %>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                          </p>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-18"></div>
+                          <div class="col-md-18">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-15">
+
+                              <% if (get_unread_tender_messages m.tender_id,session[:user_logged_id],m.group_name).present? %>
+
+                                  <% (get_unread_tender_messages m.tender_id,session[:user_logged_id],m.group_name).each_with_index do |a,index| %>
+
+                                      <% if index == ((get_unread_tender_messages m.tender_id,session[:user_logged_id],m.group_name).size - 1) %>
+                                          <p class="message_text" alt="<%= m.group_name %>"><%=  truncate(a.message,length:25) %>  <span class="badge <%= a.to_id %>_unread_<%= a.id%>" style="background-color: red;"><%= get_unread_messages a.tender_id,session[:user_logged_id],a.group_name %></span></p>
+                                      <% end %>
+                                  <% end %>
+                              <% end %>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </a>
+
+                <% end %>
+            <% end %>
+        <% end %>
+
+        <% if session[:role] == 'Head Contractor' %>
+            <% if @group_approved_trades.present? %>
+                <% @group_approved_trades.each do |t| %>
+                    <a href="#!" class="group_chat" title="<%= t.sc_id %>" id="<%= t.hc_id %>" alt="<%= get_trade_name t.trade_id %>">
+                      <div style="border: 1px solid #ddd; height: 100px">
+                        <div class="col-md-3">
+                          <img src="<%= get_user_avatar t.sc_id %>" class="img-circle image_'+message.author+'" width="40px" height="40px">
+                          <% if (get_user_logged_status t.sc_id) == 'online' %>
+                              <i class="fa fa-circle" aria-hidden="true" style="color: green"> online</i>
+                          <% else %>
+                              <i class="fa fa-circle-thin" aria-hidden="true"> offline</i>
+                          <% end %>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-12">
+                          <h3><%=  truncate((get_user_company_name t.sc_id),length:25) %></h3>
+                          <p>Trade:<%=  get_trade_name t.trade_id %></p>
+                        </div>
+                        <div class="col-md-6">
+                          <p class="pull-right message_time" alt="<%= "channel_#{get_trade_name t.trade_id}_#{t.tender_id}_#{t.sc_id}_#{t.hc_id}" %>">
+                            <% if (get_unread_tender_messages t.tender_id,session[:user_logged_id],"channel_#{get_trade_name t.trade_id}_#{t.tender_id}_#{t.sc_id}_#{t.hc_id}").present? %>
+                                <% (get_unread_tender_messages t.tender_id,session[:user_logged_id],"channel_#{get_trade_name t.trade_id}_#{t.tender_id}_#{t.sc_id}_#{t.hc_id}").each_with_index do |m,index| %>
+
+                                    <% if index.to_i == ((get_unread_tender_messages m.tender_id,session[:user_logged_id],m.group_name).size - 1).to_i %>
+                                        <%= t.created_at.strftime('%H:%M %p') %>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                          </p>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-18"></div>
+                          <div class="col-md-18">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-15">
+
+                              <% if (get_unread_tender_messages t.tender_id,session[:user_logged_id],"channel_#{get_trade_name t.trade_id}_#{t.tender_id}_#{t.sc_id}_#{t.hc_id}").present? %>
+
+                                  <% (get_unread_tender_messages t.tender_id,session[:user_logged_id],"channel_#{get_trade_name t.trade_id}_#{t.tender_id}_#{t.sc_id}_#{t.hc_id}").each_with_index do |a,index| %>
+
+                                      <% if index == ((get_unread_tender_messages t.tender_id,session[:user_logged_id],"channel_#{get_trade_name t.trade_id}_#{t.tender_id}_#{t.sc_id}_#{t.hc_id}").size - 1) %>
+                                          <p class="message_text" alt="<%= a.group_name %>"><%=  truncate(a.message,length:25) %>  <span class="badge <%= a.to_id %>_unread_<%= a.id%>" style="background-color: red;"><%= get_unread_messages a.tender_id,session[:user_logged_id],a.group_name %></span></p>
+                                      <% end %>
+                                  <% end %>
+                              <% end %>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                <% end %>
+            <% end %>
+        <% end %>
+
+        <% if session[:role] == 'Sub Contractor' %>
+            <% if @group_approved_trades.present? %>
+                <% @group_approved_trades.each do |t| %>
+                    <a href="#!" class="group_chat" title="<%= t.sc_id %>" id="<%= t.hc_id %>" alt="<%= get_trade_name t.trade_id %>">
+                      <div style="border: 1px solid #ddd; height: 100px">
+                        <div class="col-md-3">
+                          <img src="<%= get_user_avatar t.hc_id %>" class="img-circle image_'+message.author+'" width="40px" height="40px">
+                          <% if (get_user_logged_status t.hc_id) == 'online' %>
+                              <i class="fa fa-circle" aria-hidden="true" style="color: green"> online</i>
+                          <% else %>
+                              <i class="fa fa-circle-thin" aria-hidden="true"> offline</i>
+                          <% end %>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-12">
+                          <h3><%=  truncate((get_user_company_name t.hc_id),length:25) %></h3>
+                          <p>Trade:<%=  get_trade_name t.trade_id %></p>
+                        </div>
+                        <div class="col-md-6">
+                          <p class="pull-right message_time" alt="<%= "channel_#{get_trade_name t.trade_id}_#{t.tender_id}_#{t.sc_id}_#{t.hc_id}" %>">
+                            <% if (get_unread_tender_messages t.tender_id,session[:user_logged_id],"channel_#{get_trade_name t.trade_id}_#{t.tender_id}_#{t.sc_id}_#{t.hc_id}").present? %>
+                                <% (get_unread_tender_messages t.tender_id,session[:user_logged_id],"channel_#{get_trade_name t.trade_id}_#{t.tender_id}_#{t.sc_id}_#{t.hc_id}").each_with_index do |m,index| %>
+
+                                    <% if index.to_i == ((get_unread_tender_messages m.tender_id,session[:user_logged_id],m.group_name).size - 1).to_i %>
+                                        <%= t.created_at.strftime('%H:%M %p') %>
+                                    <% end %>
+                                <% end %>
+                            <% end %>
+                          </p>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-18"></div>
+                          <div class="col-md-18">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-15">
+
+                              <% if (get_unread_tender_messages t.tender_id,session[:user_logged_id],"channel_#{get_trade_name t.trade_id}_#{t.tender_id}_#{t.sc_id}_#{t.hc_id}").present? %>
+
+                                  <% (get_unread_tender_messages t.tender_id,session[:user_logged_id],"channel_#{get_trade_name t.trade_id}_#{t.tender_id}_#{t.sc_id}_#{t.hc_id}").each_with_index do |a,index| %>
+
+                                      <% if index == ((get_unread_tender_messages t.tender_id,session[:user_logged_id],"channel_#{get_trade_name t.trade_id}_#{t.tender_id}_#{t.sc_id}_#{t.hc_id}").size - 1) %>
+                                          <p class="message_text" alt="<%= a.group_name %>"><%=  truncate(a.message,length:25) %>  <span class="badge <%= a.to_id %>_unread_<%= a.id%>" style="background-color: red;"><%= get_unread_messages a.tender_id,session[:user_logged_id],a.group_name %></span></p>
+                                      <% end %>
+                                  <% end %>
+                              <% end %>
+                            </div>
+                            <div class="col-md-3">
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+
+                    <!--<a href="#!" class="group_chat" title="<%#= t.sc_id %>" id="<%#= t.hc_id %>" alt="<%#= get_trade_name t.trade_id %>">
+                      <div style="border: 1px solid #ddd; height: 100px">
+                        <%#= get_user_company_name t.hc_id %>
+                        <br>
+                        <p>Trade:<%#=  get_trade_name t.trade_id %></p>
+                      </div>
+                    </a>-->
+                <% end %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+
+
+    <div class="col-md-16" id="messages"></div>
+    <div class="col-md-8"></div>
+    <div class="col-md-16 input-group">
+      <input id="chat-input" class="form-control" type="text" placeholder="say anything" autofocus/>
+      <span class="input-group-btn">
+        <button class="btn btn-default send" type="button">Send</button>
+      </span>
+    </div>
+  </div>
+  <input type="hidden" class="channel">
+  <input type="hidden" class="current_user" value="<%= session[:user_logged_id] %>">
+
+</div>
+
+<%= javascript_include_tag 'chat.js' %>
+<script>
+  $('.add_chat').click(function(){
+    $('#chat_modal').modal('show');
+  });
+
+  $('.invite').click(function(){
+    var id = $(this).attr('id');
+    var trade = $(this).attr('alt');
+    var val = $('#chat_member').val();
+    console.log("val:"+val);
+    console.log("trade:"+trade);
+    if(val.length > 0){
+      if(val == trade){
+        $('#chat_member').val(val);
+        val = null;
+        trade = null;
+      }else{
+        $('#chat_member').val(val + ","+ trade);
+        val = null;
+        trade = null;
+      }
+
+    }else{
+      $('#chat_member').val(trade);
+      val = null;
+      trade = null;
+    }
+    $('.'+id).each(function () {
+      $(this).prop('checked',true);
+    });
+  });
+
+  $('.member').change(function(){
+
+    if($(this).is(':checked')){
+      var title = $(this).attr('title');
+      var val = $('#chat_member').val();
+      if(val.length > 0){
+        $('#chat_member').val(val + ","+ title);
+      }else{
+        $('#chat_member').val(title);
+      }
+    }else{
+      var new_value = val.replace(','+title,'');
+      $('#chat_member').val(new_value);
+    }
+
+
+  });
+
+  $('.start_message').click(function(){
+    var scs = [];
+    var trades = [];
+    var tender_id = $('.tender_id').val();
+    var val = $('#chat_member').val();
+    $('.member').each(function () {
+      if($(this).is(':checked')){
+        scs.push($(this).attr('alt'));
+        trades.push($(this).attr('id'));
+      }
+    });
+
+    $.ajax({
+      method: "POST",
+      data: {tender_id:tender_id,trades:trades,scs:scs,val:val},
+      url: "/messages/create_channel"
+    }).done(function (data) {
+      $('#chat_member').val('');
+      $('.member').each(function () {
+        $(this).prop('checked',false);
+      });
+      $('.chat_container').html(data);
+    });
+  })
+
+  $('.group_chat').click(function(){
+    sc_id = $(this).attr('title');
+    hc_id = $(this).attr('id');
+    var trade_name = $(this).attr('alt');
+    var group_name = $(this).attr('title');
+    var tender_id = $('.tender_id').val();
+    if(parseInt(sc_id) > 0 && parseInt(hc_id) > 0){
+      new_channel = "channel_"+trade_name+"_"+tender_id+"_"+sc_id+"_"+hc_id;
+    }else{
+      new_channel = group_name;
+    }
+    $('#messages').html('');
+    $.post("/token", function(data) {
+
+      avatar_path = data.avatar;
+      username = data.username;
+      var accessManager = new Twilio.AccessManager(data.token);
+      var messagingClient = new Twilio.IPMessaging.Client(accessManager);
+
+      messagingClient.getChannelByUniqueName(new_channel).then(function(channel) {
+
+        if (channel) {
+          chatChannel = channel;
+          setupChannel();
+        } else {
+          messagingClient.createChannel({
+            uniqueName: new_channel,
+            friendlyName: new_channel+"_"+ 'Channel' })
+              .then(function(channel) {
+                chatChannel = channel;
+                setupChannel();
+              });
+        }
+      });
+    });
+
+    function setupChannel() {
+
+      chatChannel.join().then(function(channel) {
+        printMessage('<p class="username_'+username+'">'+get_user_company_name(username)+'</p>');
+      });
+
+      chatChannel.on('messageAdded', function(message) {
+
+        //printMessage(message.author + ": " + message.body);
+
+        get_avatar(message.author);
+        var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+        var new_date = new Date(message.timestamp);
+        var day = new_date.getDay();
+        var month = new_date.getMonth();
+        var time = (message.timestamp).toLocaleTimeString().replace(/:\d+ /, '') + ' ' + day + ' ' + months[month];
+        printMessage(' <div class="row">'+
+            '<div class="col-md-24">'+
+            '<div class="col-md-2"><img src="'+avatar_path+'" class="img-circle image_'+message.author+'" width="80px" height="60px"></div>'+
+            '<div class="col-md-4"></div>'+
+            '<div class="col-md-18">'+
+            '<p class="text-center" style="font-size: 14px;font-weight: bold">'+time+'</p>'+
+            '<p style="font-size: 14px;font-weight: bold" class="author_'+message.author+'">'+get_company_name(message.author)+'</p>'+
+            '<p style="font-size: 14px">'+message.body+'</p>'+
+            '</div>'+
+            '</div>'+
+            '</div>');
+      });
+
+      chatChannel.getMessages(25)
+          .then(function(messages) {
+                for (i=0; i<messages.length; i++) {
+                  var message = messages[i];
+                  get_avatar(message.author);
+                  var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
+                  var new_date = new Date(message.timestamp);
+                  var day = new_date.getDay();
+                  var month = new_date.getMonth();
+                  var time = (message.timestamp).toLocaleTimeString().replace(/:\d+ /, '') + ' ' + day + ' ' + months[month];
+                  printMessage(' <div class="row">'+
+                      '<div class="col-md-24">'+
+                      '<div class="col-md-2"><img src="'+avatar_path+'" class="img-circle image_'+message.author+'" width="80px" height="60px"></div>'+
+                      '<div class="col-md-4"></div>'+
+                      '<div class="col-md-18">'+
+                      '<p class="text-center" style="font-size: 14px;font-weight: bold">'+time+'</p>'+
+                      '<p style="font-size: 14px;font-weight: bold" class="author_'+message.author+'">'+get_company_name(message.author)+'</p>'+
+                      '<p style="font-size: 14px">'+message.body+'</p>'+
+                      '</div>'+
+                      '</div>'+
+                      '</div>');
+                  update_unread_messages(message.author,tender_id,new_channel);
+                }
+              }
+          );
+
+      chatChannel.on('typingStarted', function(member) {
+        //process the member to show typing
+        console.log("typing started for " + member);
+      });
+    }
+
+  });
+
+  $('.group_chat').hover(
+      function(){
+        var group_name = $(this).attr('alt');
+        var tender_id = $('.tender_id').val();
+        console.log("group_name:"+group_name);
+        $('.box_hover[alt="'+group_name+'"]').show();
+
+      },function(){
+        var group_name = $(this).attr('alt');
+        var tender_id = $('.tender_id').val();
+        console.log("group_name:"+group_name);
+        $('.box_hover[alt="'+group_name+'"]').hide();
+      }
+  );
+
+  function get_company_name(id){
+
+    $.ajax({
+      type: "POST",
+      data: ({ id : id}),
+      url: "/users/get_user_company"
+    }).done(function (data) {
+      $('.author_'+id).text(data.company);
+    });
+  }
+
+  function get_avatar(id){
+
+    $.ajax({
+      type: "POST",
+      data: ({ id : id}),
+      url: "/users/get_user_avatar"
+    }).done(function (data) {
+      $('.image_'+id).attr("src", data.avatar);
+    });
+  }
+
+  function update_unread_messages(id,tender_id,group_name){
+
+    $.ajax({
+      type: "POST",
+      data: ({ id : id,tender_id:tender_id,group_name : group_name}),
+      url: "/messages/update_unread_messages"
+    }).done(function (data) {
+      $('.'+id+'_'+'unread_'+data.message_id).text('');
+    });
+  }
+
+
+
+
+</script>
+
+
+

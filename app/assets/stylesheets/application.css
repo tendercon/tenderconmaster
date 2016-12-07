@@ -1,0 +1,53 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require dataTables/jquery.dataTables
+ *= require_self
+ */
+
+
+.document_dropzone{
+    height: 300px;
+    border: 2px dashed #cccccc;
+    text-align: center;
+}
+
+.document_dropzone.dragover{
+    border-color: #000000;
+    color: #000000;
+}
+
+.new_drop_zone{
+    height: 300px;
+    border: 2px dashed #cccccc;
+    text-align: center;
+}
+
+.new_drop_zone.dragover{
+    border-color: #000000;
+    color: #000000;
+}
+
+.invite_dropzone{
+    height: 300px;
+    border: 2px dashed #cccccc;
+
+
+    text-align: center;
+}
+
+.invite_dropzone.dragover{
+    border-color: #000000;
+    color: #000000;
+}
+

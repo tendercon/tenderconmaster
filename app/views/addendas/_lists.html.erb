@@ -1,0 +1,173 @@
+<div class="row">
+  <div style="height: 80px;"></div>
+</div>
+<div class="row">
+  <% if session[:role] == 'Head Contractor' %>
+    <div class="col-md-7">
+      <a href="<%= addendas_path(:id => @tender.id ) %>"  id="<%= @tender.id %>">
+        <button class="btn btn-success">Issue Addenda</button>
+      </a>
+    </div>
+  <% end %>
+</div>
+<div class="row">
+  <div style="height: 40px;"></div>
+</div>
+
+<div class="table-responsive" >
+  <table class="table table-bordered responsive" id="addenda_table"  cellspacing="0" width="100%">
+    <thead>
+    <th class="text-center">Addendum#</th>
+    <th class="text-center">Subject</th>
+    <th class="text-center">Sent</th>
+    <th class="text-center">Action</th>
+    </thead>
+    <tbody>
+    <% if @addendas.present? %>
+        <% @addendas.each_with_index do |t,index| %>
+            <tr>
+              <td class="text-center"><%=  "Addendum# #{t.ref_no}" %></td>
+              <td class="text-center"><%=  t.subject %></td>
+              <td class="text-center"><%=  t.created_at.strftime("%d.%m.%Y %H:%M %p") %></td>
+              <td class="text-center">
+                <button class="btn btn-default view_addenda" id="<%= t.id %>">View</button>
+              </td>
+            </tr>
+        <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<% if @addendas.present? %>
+    <% @addendas.each do |a| %>
+        <div class="add_addenda_div">
+          <div id="view_Addenda_modal_<%= a.id %>" class="modal fade"  style="margin-top: 100px; width: 100%" >
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content col-md-24">
+                <div class="modal-header" style="background-color: #184a5f">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="col-md-24 col-md-20 col-md-offset-2">
+                    <p class="text-center" style="font-size: 20px">
+                      Addendum
+                    </p>
+                  </div>
+                  <div class="row">
+                    <div class="form-group"></div>
+                  </div>
+                </div>
+                <br>
+
+                <div class="modal-body" style="overflow-y: auto;height: 550px;">
+                  <div class="col-md-24">
+                    <div class="col-md-6">
+                      <label>Subject</label>
+                    </div>
+                    <div class="col-md-18">
+                      <label><%= a.subject %></label>
+                    </div>
+                    <div class="col-md-24" style="height: 20px"></div>
+                    <div class="col-md-6">
+                      <label>Sent</label>
+                    </div>
+                    <div class="col-md-18">
+                      <label><%= a.created_at.strftime("%d.%m.%Y %H:%M %p") %></label>
+                    </div>
+
+                    <div class="col-md-24" style="height: 20px"></div>
+                    <div class="col-md-6">
+                      <label>Details</label>
+                    </div>
+                    <div class="col-md-18">
+                      <label><%= a.details %></label>
+                    </div>
+
+                    <div class="col-md-24" style="height: 20px"></div>
+
+                    <% if a.addenda_type == 'documents' %>
+                        <div class="col-md-6">
+                          <label>Documents</label>
+                        </div>
+                        <div class="col-md-18">
+                          <a href="<%= "http://"+@ip+"/assets/tender/document/Fullset-#{@tender.tendercon_id}.zip" %>" >
+                            <button class="btn btn-default">Download Changes</button>
+                          </a>
+                        </div>
+                        <div class="col-md-24" style="height: 20px"></div>
+
+                        <% if(get_addenda_documents a.id).present? %>
+                            <table class="table table-bordered responsive"  cellspacing="0" width="100%">
+                              <thead>
+                              <th class="text-center">Filename</th>
+                              <th class="text-center">Change</th>
+                              <th class="text-center">Download</th>
+                              </thead>
+                              <tbody>
+                              <% if (get_addenda_documents a.id).present? %>
+                                  <% (get_addenda_documents a.id).each_with_index do |t,index| %>
+                                      <tr>
+                                        <td class="text-center"><%= t.document_file_name  %></td>
+                                        <td class="text-center">Added</td>
+                                        <td class="text-center"></td>
+                                      </tr>
+                                  <% end %>
+                              <% end %>
+                              </tbody>
+                            </table>
+                        <% end %>
+                    <% end %>
+
+                    <% if a.addenda_type == 'details' %>
+                        <% if @tender.tender_quote.previous_date.present? %>
+                            <table class="table table-bordered responsive"  cellspacing="0" width="100%">
+                              <thead>
+                              <th>Changes</th>
+                              <th></th>
+                              </thead>
+                              <tbody>
+                              <tr>
+                                <td>Quotes Due</td>
+                                <td><%= @tender.tender_quote.quote_date  %> Updated</td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td><%= @tender.tender_quote.previous_date  %> Previously</td>
+                              </tr>
+                              </tbody>
+                            </table>
+                        <% end %>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
+<% end %>
+
+
+
+<input type="hidden" class="addenda_type">
+<input type="hidden" class="addenda_subject">
+<input type="hidden" class="addenda_details">
+<input type="hidden" class="tender_id" value="<%= @tender.id %>">
+<script>
+  $(document).ready(function(){
+
+    $('#addenda_table').DataTable();
+
+    $('.view_addenda').click(function(){
+      var id = $(this).attr('id');
+
+      $('#view_Addenda_modal_'+id).modal('show');
+    });
+
+  });
+</script>
+
+

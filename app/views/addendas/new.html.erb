@@ -1,0 +1,264 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Issue Addenda</a>
+    </div>
+  </div>
+</nav>
+
+<ol class="breadcrumb">
+  <li><a href="<%= addendas_path(:id => @tender.id ) %>">Home</a></li>
+  <li class="active"><a href="#">Details</a></li>
+</ol>
+
+<div class="row">
+  <div style="height: 30px;"></div>
+</div>
+<div class="form-group has-feedback">
+  <% if flash[:error] %>
+      <div class="alert alert-danger open-sans-regular" id="users_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= @error_alert %>
+        <div class="notice" style="font-size: 14px;"><%= flash[:error].html_safe %></div>
+        <% flash[:error]=nil %>
+      </div>
+  <% end %>
+  <%- if !flash[:notice].nil? %>
+      <div class="alert alert-success open-sans-regular" id="users_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= @error_alert %>
+        <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
+        <% flash[:notice]=nil %>
+      </div>
+  <%- end %>
+</div>
+<div class="row">
+  <div style="height: 40px;"></div>
+</div>
+<%= form_for(@addenda)  do |f| %>
+  <fieldset>
+    <input type="hidden" name="tender_id" value="<%= @tender.id %>">
+    <input type="hidden" name="addenda_id" value="<%= @edited_addenda.present? ? @edited_addenda.id : nil %>">
+    <div class="form-group">
+      <%= f.label :subject %>
+      <%= f.text_field :subject,:class => 'form-control',:value => @edited_addenda.present? ? @edited_addenda.subject : nil  %>
+
+    </div>
+    <div class="form-group">
+      <%= f.label :details %>
+      <%= f.text_area :details,:class => 'form-control',:rows => 5,:value => @edited_addenda.present? ? @edited_addenda.details : nil %>
+
+    </div>
+  </fieldset>
+
+
+  <div style="height: 20px"></div>
+  <legend></legend>
+
+  <% if params[:type] == 'details' %>
+      <input type="hidden" name="addenda_type" value="details">
+      <%= render :partial => 'addendas/tender_details', :locals => { :tender => @tender} %>
+  <% end %>
+
+  <% if params[:type] == 'document' %>
+    <input type="hidden" name="addenda_type" value="documents">
+        <div class="col-md-24" style="height: 20px"></div>
+        <div class="col-md-22 document_div"> 
+          <div class="row">
+            <div style="height: 40px;"></div>
+          </div>
+
+          <div class="document_upload">
+            <div class="col-md-24" type="file" id="dir-select" webkitdirectory name="document"> 
+              <div class="col-md-20  col-md-offset-2 rfi_dropzone">
+                <p class="text-center">
+                  <i class="fa fa-cloud-upload fa-5x upload " aria-hidden="true"></i>
+                </p>
+                <h1 class="text-center">DRAG AND DROP</h1>
+                <p class="text-center">your files anywhere, or browse</p> 
+
+              </div>
+            </div>  
+          </div>
+
+          <div class="table-responsive addenda_table_list" >
+            <% if @documents.present? %>
+              <div class="row">
+                <div style="height: 40px;"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-7">
+                  <a href="#!" class="remove_document" id="<%= @tender.id %>">
+                    <button class="btn btn-danger" type="button">
+                      <i class="fa fa-trash" aria-hidden="true"></i> Remove Document
+                    </button>
+                  </a>
+                </div>
+              </div>
+
+                <table class="table table-bordered responsive" id="addenda_document_table" cellspacing="0" width="100%">
+                  <thead>
+                  <th class="text-center"><input type="checkbox" class="document_list_master" name="document_list_master"></th>
+                  <th class="text-center">Filename</th>
+                  <th class="text-center">Size</th>
+                  <th class="text-center">Directory</th>
+                  </thead>
+                  <tbody>
+                  <% @documents.each_with_index do |t,index| %>
+                      <tr>
+                        <td class="text-center"><input type="checkbox" class="document_list" name="document_list" value="<%= t.id %>"></td>
+                        <td class="text-center"><%= t.document_file_name  %></td>
+                        <td class="text-center"><%= convert_kb_to_mb t.document_file_size %> MB</td>
+                        <td class="text-center"><%=  t.directory %></td>
+                      </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+            <% end %>
+          </div>
+        </div>  
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-24">
+      <a href="<%= addendas_path(:id => @tender.id ) %>">
+        <button type="button" class="btn btn-danger">Cancel</button>
+      </a>
+      <button type="submit" class="btn btn-default">Next</button>
+    </div>
+  </div>
+<% end %>
+
+<div style="background-color: transparent;display: none"> 
+  <%= form_for @addenda_document, :url => create_addenda_document_addendas_path,:html => {:multipart => true,:class => 'addenda_document'} do |m| %> 
+      <input type="hidden" name="tender_id" value="<%= @tender.id %>">
+      <input type="hidden" class="addenda_directory" name="directory">
+      <input type="file" id="dir-select" name="document" webkitdirectory directory multiple /> 
+  <% end %>
+</div> 
+
+<div class="modal fade" id="uploading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:100px;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Processing...</h1>
+      </div>
+      <div class="modal-body">
+        <div class="progress">
+          <div id="progress" class="progress progress-striped">
+            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  var out = [];
+  var directories = [];
+  $('#new_tender_document').fileupload({
+
+    dataType: 'json',    done: function (e, data) {
+
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      $('#uploading').modal('show');
+      var indexes = []
+      for (var i = 0, f; f = data.files[i]; ++i) {
+        if(f.name != '.DS_Store'){
+          out.push(f.name);
+          indexes.push(i);
+          directories.push(f.relativePath)
+        }
+
+      }
+
+      $.each(data, function (index, file) {
+        if (index == 'result') {
+          $.each(file, function (i, f) {
+            var a = []
+            if (i == 'avatar_url') {
+
+              console.log("INDEX:"+ index);
+              console.log("FILE:"+ file);
+
+            } else {
+              if (f != 'valid') {
+                $('.avatar_error').html('<p class="text-center" style="font-size: 12px;color: grey">' + f + '</p>');
+              }
+            }
+
+          });
+        }
+      });
+    },progress: function (e, data) {
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      $('#progress .progress-bar').css( 'width', progress + '%');
+    }
+  }).bind('fileuploadstop', function (e) {
+    var tender_id = '<%= @tender.id %>'
+    $.ajax({
+      method: "POST",
+      data: {out: out,directories:directories,tender_id:tender_id},
+      url: "/addendas/get_documents"
+    }).done(function (data) {
+      $('.addenda_table_list').html('');
+      $('.addenda_table_list').html(data);
+      out =  [];
+      directories = [];
+      $('#uploading').modal('hide');
+    });
+  });
+
+  $('#addenda_document_table').DataTable({
+    "bSort" : false,
+    "bPaginate": false,
+    "columnDefs": [
+      { "visible": false, "targets": 3 }
+    ],
+    "order": [[ 3, 'asc' ]],
+    "displayLength": 25,
+    "drawCallback": function ( settings ) {
+      var api = this.api();
+      var rows = api.rows( {page:'current'} ).nodes();
+      var last=null;
+
+      api.column(3, {page:'current'} ).data().each( function ( group, i ) {
+        console.log("group:"+group);
+        console.log("I -------> :"+i);
+        if ( last !== group ) {
+          $(rows).eq( i ).before(
+              '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '">'+ group+ '</td>' +
+              '</td></tr>'
+          );
+
+          last = group;
+        }
+      } );
+    }
+  });
+
+  $('.document_list_master').change(function(){
+    $('.document_list').prop('checked',$(this).prop("checked"));
+  });
+
+  $('.remove_document').click(function(){
+    var ids = [];
+    var tender_id = '<%= @tender.id %>';
+    $("input:checkbox:checked").map(function()
+    {
+      ids.push($(this).val());
+    })
+
+    $.ajax({
+      method: "POST",
+      data: {ids:ids,tender_id:tender_id},
+      url: "/addendas/delete_documents"
+    }).done(function (data) {
+      $('.addenda_table_list').html('');
+      $('.addenda_table_list').html(data);
+    });
+  });
+</script>
+

@@ -1,0 +1,46 @@
+<div class="col-md-22">
+  <div class="row">
+    <div class="form-group"></div>
+  </div>
+
+</div>
+<div class="col-md-22">
+  <div class="row">
+    <div class="col-md-4">
+      <p style="font-size: 32px;">Trades</p>
+    </div>
+
+    <div class="col-md-18 pull-right">
+      <a href="/tenders/new_tender?trades=true&info_id=<%= @tender.id %>" class="pull-right">
+        <button class="btn btn-success" type="button">Edit</button>
+      </a>
+    </div>
+  </div>
+
+
+</div>
+<div class="row">
+  <div class="col-md-22">
+    <% @trade_categories.each do |tc|  %> 
+      <div> 
+        <% if (get_tender_trades @tender.id).present? %>
+          <% if(check_if_categories_has_trade @tender.id,tc.id) %>
+            <h1> <%= tc.title %></h1> 
+          <% end %>
+          <% (get_tender_trades @tender.id).each_with_index do |t,index| %>
+            <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+              <p style="font-size: 12px;font-weight: bold"><%= get_trade_name t.trade_id %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div> 
+    <% end %> 
+  </div>
+</div>
+
+
+
+
+
+
+

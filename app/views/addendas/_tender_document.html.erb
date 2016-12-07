@@ -1,0 +1,16 @@
+
+
+
+<script>
+  $('#new_addenda').fileupload({
+
+    dataType: 'json',    done: function (e, data) {
+
+    },progress: function (e, data) {
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      $('#progress .progress-bar').css( 'width', progress + '%');
+    }
+  }).bind('fileuploadstop', function (e) {
+    alert("Document Upload successfully uploaded.");
+  });
+</script>

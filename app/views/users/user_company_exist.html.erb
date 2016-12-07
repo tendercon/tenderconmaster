@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="col-sm-24 col-md-14 col-md-offset-5 ">
+    <div class="login_div">
+      <div class="alert alert-danger open-sans-regular" id="users_error" style="display: none;">
+
+      </div>
+      <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
+      <h4 class="text-center login-title">You have type in this company name</h4>
+      <h4 class="text-center login-title"><%= @name %></h4>
+      <br>
+      <br>
+      <h5 class="text-center login-title">Are any of the below organizations that you work at</h5>
+      <input type="hidden" class="company_id">
+      <br>
+        <div class="col-md-24 col-md-offset-10">
+          <table>
+            <thead>
+            <% if @companies.present? %>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            <% end %>
+            </thead>
+            <tbody>
+            <% if @companies.present? %>
+              <% @companies.each do |company| %>
+                <tr>
+                  <td><label><input type="checkbox" value="<%= company.id %>" class="company_name" name="company" id="radio_<%= company.id %>"> <%= company.name %>,</label></td>
+                  <td><label><%= get_suburb company.id %>,</label></td>
+                  <td><label><%= get_state company.id %></label></td>
+                </tr>
+              <% end %>
+            <% else %>
+              <tr>
+                <td style="color: grey;">No tender available.</td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+          <%# @companies.each do |company| %>
+            <!--<form role="form">
+              <div class="checkbox">
+                <label><input type="checkbox" value="<%#= company.id %>" class="company_name" name="company" id="radio_<%#= company.id %>"><%#= company.name %></label>
+              </div>
+            </form>-->
+          <%# end %>
+          <a href="#!" class="text-center yes_company" role="button">
+            <button class="btn  btn-primary " type="submit" style="border-radius: 10px;">Yes</button>
+          </a>
+          <a href="<%= create_user_users_path(:company => @name,:email => @email, :password => @password, :name => @user_name, :status => 'false') %>" class="text-center new-account" role="button">
+            <button class="btn  btn-primary " type="submit" style="border-radius: 10px;">No</button>
+          </a>
+          <!--<a href="<%#= register_users_path %>" class="text-center new-account" role="button">
+            <button class="btn  btn-default " type="submit" style="border-radius: 10px;">Back</button>
+          </a>-->
+        </div>
+      <br>
+      <br>
+      <br>
+      <br>
+    </div>
+  </div>
+</div>
+
+  <script>
+    $('.yes_company').click(function(){
+      if($('.company_name').is(':checked')){
+        console.log($('#').val());
+        var com_id =  $('.company_id').val();
+        $(this).attr('href', 'account_taken?id='+com_id);
+      }else{
+        $('#users_error').show();
+        $('#users_error').html('' +
+                '<button type="button" class="close" data-dismiss="alert"></button>'+
+                '<div class="notice" style="font-size: 14px;">' +
+                'Please select company first.</div>')
+      }
+
+    });
+
+    $('.company_name').click(function(){
+      //$('.company_name').attr('checked',false);
+      var comp_id = $(this).val();
+      console.log($('#radio_'+comp_id).prop('checked'));
+      if($('#radio_'+comp_id).prop('checked') == true){
+        $('.company_name').each(function(){
+          console.log($(this).val());
+          $('#radio_'+$(this).val()).prop('checked',false);
+        })
+        $('#radio_'+comp_id).prop('checked',true);
+      }else{
+        $('#radio_'+comp_id).prop('checked',false);
+      }
+
+      console.log("comp_id:"+comp_id)
+      if(parseInt(comp_id) > 0){
+        $('.company_id').val(comp_id);
+      }
+    });
+  </script>

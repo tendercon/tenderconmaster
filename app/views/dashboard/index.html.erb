@@ -1,0 +1,368 @@
+
+  <div class="row">
+    <!--<div class="col-sm-12">
+      <div class="page-title">
+        <h1>Dashboard <small></small></h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-home"></i></a></li>
+          <li class="active">Dashboard</li>
+        </ol>
+      </div>
+    </div>
+  </div>&lt;!&ndash; end .page title&ndash;&gt;
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="tile-dashboard1">
+        <div class="tile-title clearfix">
+
+         &lt;!&ndash; <span class="pull-right"><i class="fa fa-caret-up"></i> &lt;!&ndash;33%&ndash;&gt;</span>&ndash;&gt;
+        </div>&lt;!&ndash;.tile-title&ndash;&gt;
+        <div class="tile-body-dashboard1 clearfix">
+          <h1 class="pull-right" style="font-size: 18px;"><%= @users_count %></h1>
+          <br>
+          <% if session[:role] == 'Admin' %>
+            <h2 class="pull-right"> Total Users</h2>
+          <% else %>
+
+          <% end %>
+
+        </div>&lt;!&ndash;.tile-body&ndash;&gt;
+        <div class="tile-footer-dashboard1">
+          <a href="<%= users_path %>">View Details...</a>
+        </div>&lt;!&ndash;.tile footer&ndash;&gt;
+      </div>&lt;!&ndash; .tile&ndash;&gt;
+    </div>&lt;!&ndash;end .col&ndash;&gt;
+    <div class="col-sm-6 ">
+      <div class="tile-dashboard2">
+        <div class="tile-title clearfix">
+        </div>&lt;!&ndash;.tile-title&ndash;&gt;
+        <div class="tile-body-dashboard2 clearfix">
+          <h1 class="pull-right" style="font-size: 18px;"><%= @users_completed %></h1>
+          <br>
+          <% if session[:role] == 'Admin' %>
+            <h2 class="pull-right"> Completed Sign up</h2>
+          <% else %>
+
+          <% end %>
+        </div>&lt;!&ndash;.tile-body&ndash;&gt;
+        <div class="tile-footer-dashboard2">
+          <a href="<%= users_path %>">View Details...</a>
+        </div>&lt;!&ndash;.tile footer&ndash;&gt;
+      </div>&lt;!&ndash; .tile&ndash;&gt;
+    </div>&lt;!&ndash;end .col&ndash;&gt;
+    <div class="col-sm-6 ">
+      <div class="tile-dashboard3">
+        <div class="tile-title clearfix">
+          &lt;!&ndash;Users
+          <span class="pull-right"><i class="fa fa-caret-up"></i> 50%</span>&ndash;&gt;
+        </div>&lt;!&ndash;.tile-title&ndash;&gt;
+        <div class="tile-body-dashboard3 clearfix">
+          <h1 class="pull-right" style="font-size: 18px;"><%= @users_incompleted %></h1>
+          <br>
+          <% if session[:role] == 'Admin' %>
+            <h2 class="pull-right"> Incomplete Sign up</h2>
+          <% else %>
+
+          <% end %>
+        </div>&lt;!&ndash;.tile-body&ndash;&gt;
+        <div class="tile-footer-dashboard3">
+          <a href="<%= users_path %>">View Details...</a>
+        </div>&lt;!&ndash;.tile footer&ndash;&gt;
+      </div>&lt;!&ndash; .tile&ndash;&gt;
+    </div>&lt;!&ndash;end .col&ndash;&gt;
+    <div class="col-sm-6 ">
+      <div class="tile-dashboard3">
+        <div class="tile-title clearfix">
+         &lt;!&ndash; Total orders
+          <span class="pull-right"><i class="fa fa-caret-up"></i> 33%</span>&ndash;&gt;
+        </div>&lt;!&ndash;.tile-title&ndash;&gt;
+        <div class="tile-body-dashboard4 clearfix">
+          <h1 class="pull-right" style="font-size: 18px;"><%= @users_deleted %></h1>
+          <br>
+
+          <% if session[:role] == 'Admin' %>
+            <h2 class="pull-right"> Deleted users</h2>
+          <% else %>
+
+          <% end %>
+        </div>&lt;!&ndash;.tile-body&ndash;&gt;
+        <div class="tile-footer-dashboard4">
+          <a href="<%= users_path %>">View Details...</a>
+        </div>&lt;!&ndash;.tile footer&ndash;&gt;
+      </div>&lt;!&ndash; .tile&ndash;&gt;
+    </div>&lt;!&ndash;end .col&ndash;&gt;
+  </div>&lt;!&ndash;end .row&ndash;&gt;
+  <br>
+
+  <div class="row">
+    <div class="col-sm-24">
+      <div class="panel panel-default recent-activites">
+        &lt;!&ndash; Start .panel &ndash;&gt;
+        <div class="panel-heading">
+          <h4 class="panel-title">Half year earnings</h4>
+          <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+          </div>
+        </div>
+        <div class="panel-body text-center">
+          <div>
+            <canvas id="lineChart" height="100"></canvas>
+          </div>
+
+        </div>
+      </div>&lt;!&ndash; End .panel &ndash;&gt;
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default ">
+        &lt;!&ndash; Start .panel &ndash;&gt;
+        <div class="panel-heading">
+          <h4 class="panel-title"> Sales & Earnings</h4>
+          <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div>
+            <canvas id="barChart" height="140"></canvas>
+          </div>
+        </div>
+      </div>&lt;!&ndash; End .panel &ndash;&gt;
+    </div>&lt;!&ndash;end .col&ndash;&gt;
+    <div class="col-md-12">
+      <div class="panel panel-default ">
+        &lt;!&ndash; Start .panel &ndash;&gt;
+        <div class="panel-heading">
+          <h4 class="panel-title"> Last sales locations</h4>
+          <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+          </div>
+        </div>
+        <div class="panel-body">
+          <div id="world-map" style="width: 100%; height: 250px"></div>
+        </div>
+      </div>&lt;!&ndash; End .panel &ndash;&gt;
+    </div>&lt;!&ndash;end .col&ndash;&gt;
+
+  </div>&lt;!&ndash;end .row&ndash;&gt;
+
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="panel panel-default recent-activites">
+        &lt;!&ndash; Start .panel &ndash;&gt;
+        <div class="panel-heading">
+          <h4 class="panel-title"> Recent Activities</h4>
+          <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+          </div>
+        </div>
+        <div class="panel-body pad-0">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <a href="#">Lorem ipsum dolor</a>
+              <small><i class="fa fa-clock-o"></i> 13/08/2015 04:51:21</small>
+            </li>
+            <li class="list-group-item">
+              <a href="#">Lorem ipsum dolor</a>
+              <small><i class="fa fa-clock-o"></i> 13/08/2015 04:51:21</small>
+            </li>
+            <li class="list-group-item">
+              <a href="#">Lorem ipsum dolor</a>
+              <small><i class="fa fa-clock-o"></i> 13/08/2015 04:51:21</small>
+            </li>
+            <li class="list-group-item">
+              <a href="#">Lorem ipsum dolor</a>
+              <small><i class="fa fa-clock-o"></i> 13/08/2015 04:51:21</small>
+            </li>
+          </ul>
+        </div>
+      </div>&lt;!&ndash; End .panel &ndash;&gt;
+    </div>&lt;!&ndash;end .col&ndash;&gt;
+    <div class="col-md-16">
+
+      <div class="panel panel-default recent-activites">
+        &lt;!&ndash; Start .panel &ndash;&gt;
+        <div class="panel-heading">
+          <h4 class="panel-title"> Recent Orders</h4>
+          <div class="panel-actions">
+            <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            <a href="#" class="panel-action panel-action-dismiss" data-panel-dismiss></a>
+          </div>
+        </div>
+        <div class="panel-body pad-0">
+          <div class="table-responsive">
+            <table class="table table-hover table-recent-orders">
+              <thead>
+              <tr>
+                <th>Id</th>
+                <th>Customer</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Action</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>4563</td>
+                <td>David</td>
+                <td><span class="text-danger">Pending</span></td>
+                <td>04 / 08 / 2015</td>
+                <td>$5679.99</td>
+                <td><span class="action-icon"><a href="#" data-toggle="tooltip" data-placement="top" title="View" class="btn btn-xs btn-primary"><i class="fa fa-eye-slash"></i></a></span></td>
+              </tr>
+              <tr>
+                <td>8997</td>
+                <td>John</td>
+                <td><span class="text-success">Success</span></td>
+                <td>04 / 08 / 2015</td>
+                <td>$5679.99</td>
+                <td><span class="action-icon"><a href="#" data-toggle="tooltip" data-placement="top" title="View" class="btn btn-xs btn-primary"><i class="fa fa-eye-slash"></i></a></span></td>
+              </tr>
+              <tr>
+                <td>2342</td>
+                <td>Mohinder</td>
+                <td><span class="text-danger">Pending</span></td>
+                <td>04 / 08 / 2015</td>
+                <td>$5679.99</td>
+                <td><span class="action-icon"><a href="#" data-toggle="tooltip" data-placement="top" title="View" class="btn btn-xs btn-primary"><i class="fa fa-eye-slash"></i></a></span></td>
+              </tr>
+              <tr>
+                <td>5677</td>
+                <td>Mohinder</td>
+                <td><span class="text-danger">Pending</span></td>
+                <td>04 / 08 / 2015</td>
+                <td>$5679.99</td>
+                <td><span class="action-icon"><a href="#" data-toggle="tooltip" data-placement="top" title="View" class="btn btn-xs btn-primary"><i class="fa fa-eye-slash"></i></a></span></td>
+              </tr>
+              <tr>
+                <td>6756</td>
+                <td>Camron</td>
+                <td><span class="text-danger">Success</span></td>
+                <td>04 / 08 / 2015</td>
+                <td>$5679.99</td>
+                <td><span class="action-icon"><a href="#" data-toggle="tooltip" data-placement="top" title="View" class="btn btn-xs btn-primary"><i class="fa fa-eye-slash"></i></a></span></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>&lt;!&ndash;end .col&ndash;&gt;-->
+    <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
+      <div class="col-md-24" style="background-color: #985f0d;border-radius:5px">
+        <div class="row">
+          <div class="col-md-12">
+             <h3>You are currently on Starter Plan. This means you can</h3>
+             <h3>apply for 1/<%= @tender_count %> Tenders in Open Tenders.</h3>
+          </div>
+          <div class="col-md-12">
+            <h3>Upgrade to Professional Plan to </h3>
+            <h3>access all tenders
+              <a href="<%= subscription_users_path %>">
+                <button class="btn btn-primary">Upgrade Now</button>
+              </a>
+            </h3>
+            <h3>
+              <a href="">
+                How to Upgrade?
+              </a>
+            </h3>
+          </div>
+        </div>
+        <br>
+        <div class="col-md-22">
+          <div class="row">
+            <h4 class="text-center">
+              Remaining days to be able to apply to other Tender.
+            </h4>
+            <div id="tender_countdown" class="col-sm-24 col-md-14 col-md-offset-10"></div>
+          </div>
+        </div>
+      </div>
+
+
+    <% end %>
+
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+  </div><!--end .row-->
+
+<script>
+
+  <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
+    $(document).ready(function(){
+
+      var tender_date =  "<%= @range_month %>";
+      $("#tender_countdown").countdown(tender_date, function(event) {
+        $(this).text(
+          event.strftime('%D days %H hrs : %M mins : %S secs')
+        );
+      });
+    });
+  <% end %>
+
+  "<% if @hash_arr.present? %>"
+  var hash_arr = "<%= @hash_arr.to_json %>";
+  var new_hash = JSON.parse(hash_arr.replace(/&quot;/g,'"'));
+  $(function () {
+    $('#container').highcharts({
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Monthly Average Posted Tender'
+      },
+      subtitle: {
+        /*text: 'Source: WorldClimate.com'*/
+      },
+      xAxis: {
+        categories: [
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dec'
+        ],
+        crosshair: true
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: ''
+        }
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+
+      series: new_hash
+    });
+  });
+  "<% end %>"
+</script>
+

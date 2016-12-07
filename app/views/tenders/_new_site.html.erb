@@ -1,0 +1,82 @@
+<div class="col-md-24">
+  <div class="new_site<%= @id %>" id="<%= @id %>">
+
+    <div class="input-group date col-md-10 site_meridian_datetime" data-date="2012-12-21T15:25:00Z">
+      <input type="text" class="form-control site" name="site[]"/>
+        <span class="input-group-btn">
+            <button class="btn default date-reset" type="button">
+                <i class="fa fa-times"></i>
+            </button>
+            <button class="btn default date-set" type="button">
+                <i class="fa fa-calendar"></i>
+            </button>
+        </span>
+    </div>
+    <!--<div class="input-group date" id="picker1"> 
+      <input type="text" class="form-control site" name="site[]"/>
+      <span class="input-group-addon"><span class="glyphicon-calendar glyphicon site_calendar" id="1"></span></span> 
+    </div> -->
+
+
+    <div style="height: 5px"></div>
+    <div class="form-group">
+      <a href="#!">
+        <button class="btn btn-success add" type="button">
+          Add
+        </button>
+      </a>
+      <!--<i class="fa fa-plus-circle fa-2x add" aria-hidden="true" style="color: green" id="1"></i> 
+      <i class="fa fa-minus-circle fa-2x remove" aria-hidden="true" style="color: red;display: none" id="1"></i> -->
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label class="control-label"></label>
+      </div>
+    </div>
+    <div class="col-md-8"> 
+      <div class="input-group date" id="picker<%= @id %>">
+        <input type="text" class="form-control site" name="site[]">
+        <span class="input-group-addon"><span class="glyphicon-calendar glyphicon site_calendar" id="<%= @id %>"></span></span> 
+      </div> 
+
+    </div>  
+    <div class="col-md-10"> 
+      <input type="text" class="form-control site_description" name="site_description[]" id="site_description" placeholder="Description/Note"> 
+    </div> 
+    <div class="col-md-2"> 
+      <i class="fa fa-plus-circle fa-2x add" aria-hidden="true" style="color: green" id="<%= @id %>"></i> 
+      <i class="fa fa-minus-circle fa-2x remove" aria-hidden="true" style="color: red;display: none" id="<%= @id %>"></i> 
+    </div> 
+
+  </div>
+</div>
+
+<script>
+  $('.add').click(function () {
+    $(this).hide();
+    $('.remove').show();
+    var id  = $(this).attr('id');
+    $.ajax({
+      method: "POST",
+      data: {id:id},
+      url: "/tenders/new_site"
+    }).done(function (data) {
+      $('.new_site').append(data);
+    });
+
+  });
+
+  $('.remove').click(function(){
+    var id  = $(this).attr('id');
+    $('.new_site'+id).remove();
+  });
+
+  $('.site_calendar').click(function(){
+
+    var id = $(this).attr('id');
+    $('#picker'+id).datetimepicker({ minDate:new Date()});
+  });
+
+</script>
+

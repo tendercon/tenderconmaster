@@ -1,0 +1,96 @@
+<div class="users_lists">
+  <div class="form-group has-feedback">
+    <% if flash[:error] %>
+      <div class="alert alert-danger open-sans-regular" id="users_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= @error_alert %>
+        <div class="notice" style="font-size: 14px;"><%= flash[:error] %></div>
+        <% flash[:error]=nil   %>
+      </div>
+    <% end %>
+    <%- if !flash[:notice].nil? %>
+      <div class="alert alert-success open-sans-regular" id="users_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
+        <% flash[:notice]=nil %>
+      </div>
+    <%- end %>
+  </div>
+
+  <br>
+  <div class="table-responsive">
+    <div class="row">
+      <div class="col-md-6">
+        <%= select_tag 'user_type',options_for_select(['All','Suspended','Deleted','Completed','Incomplete'],'All'),{:class=> 'form-control'} %>
+      </div>
+      <div class="col-md-6"> </div>
+      <div class="users">
+        <table  class="table table-striped table-bordered"
+                data-toggle="table"
+                data-toolbar="#toolbar"
+                data-search="true"
+                data-show-export="true"
+                data-minimum-count-columns="2"
+                data-pagination="true"
+                data-page-list="[10, 25, 50, 100, ALL]">
+          <thead>
+          <% if @users.present? %>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>ABN</th>
+              <th>Action</th>
+            </tr>
+          <% end %>
+          </thead>
+          <tbody>
+          <% if @users.present? %>
+            <% @users.each do |user| %>
+              <tr>
+                <td style="color: grey;"><%= user.first_name %></td>
+                <td style="color: grey;"><%= user.last_name %></td>
+                <td style="color: grey;"><%= user.abn %></td>
+                <td>
+                  <a href="#!" class="delete_link" data-original-title="Delete" id="<%= user.id %>"><button class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit" style="background-color: #00b8e6;color: white;border-radius: 10px;box-shadow: 0px 1px 39px -9px rgba(0,184,230,1);">Delete</button></a>
+                  <a href="<%= profile_users_path(:id => user.id) %>" class="delete_link" data-original-title="Delete" id="<%= user.id %>"><button class="btn btn-info" data-toggle="tooltip" data-placement="bottom" title="Edit" style="background-color: #00b8e6;color: white;border-radius: 10px;box-shadow: 0px 1px 39px -9px rgba(0,184,230,1);">Edit</button></a>
+                </td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr>
+              <td style="color: grey;">No tender available.</td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $('#user_type').change(function(){
+    var type = $(this).val();
+    console.log("type:"+type)
+    $.ajax({
+      method: "POST",
+      data: {type: type},
+      url: "/users/lists"
+    }).done(function (data) {
+      $('.users').html(data);
+    });
+  });
+
+  $('.delete_link').click(function(){
+    var id = $(this).attr('id');
+    var type = $("#user_type").val();
+    $.ajax({
+      method: "POST",
+      data: {type: type,id:id},
+      url: "/users/delete_user"
+    }).done(function (data) {
+      $('.users').html(data);
+    });
+  });
+</script>

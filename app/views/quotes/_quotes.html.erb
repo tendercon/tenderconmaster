@@ -1,0 +1,188 @@
+<% if quotes.present? %>
+  <i class="fa fa-download quote_download" aria-hidden="true"></i>
+  <% if session[:role] == 'Sub Contractor' %>
+      <i class="fa fa-trash remove_quote" aria-hidden="true"></i>
+  <% end %>
+<% end %>
+
+
+<table  class="table table-bordered document_table">
+  <thead>
+    <tr>
+      <th><input type="checkbox" class="quote_list_master"></th>
+      <th>Quote#</th>
+      <th>Version</th>
+      <th>Title</th>
+      <% if session[:role] == 'Head Contractor' %>
+        <th>Received</th>
+      <% end %>
+      <th>Trade</th>
+      <% if session[:role] == 'Sub Contractor' %>
+          <th>Sent</th>
+      <% end %>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Price</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if quotes.present? %>
+      <% quotes.uniq.each do |d| %>
+        <tr>
+          <td><input type="checkbox" class="quote_list" name="documents[]" value="<%= d %>"></td>
+          <td><%= d %></td>
+          <td><%=  get_version d %></td>
+          <% if (get_status d) == "Active" %>
+              <td>
+                <%= get_title d %>
+              </td>
+          <% else %>
+              <td>
+                <strike><%= get_title d %></strike>
+              </td>
+          <% end %>
+          <% if session[:role] == 'Head Contractor' %>
+              <th><%= get_received d %></th>
+          <% end %>
+
+          <td><%= get_trade_counts d %></td>
+          <% if session[:role] == 'Sub Contractor' %>
+              <th>
+                <%= get_created d %>
+                <% if (get_seen_status d) == 1 %>
+                  <i class="fa fa-eye" aria-hidden="true" style="color: green"></i>
+                <% else %>
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                <% end %>
+              </th>
+          <% end %>
+          <% if (get_status d) == "Active" %>
+            <td>
+              <button class="btn btn-success">
+                <%= get_status d %>
+              </button>
+            </td>
+          <% else %>
+              <td>
+                <button class="btn btn-danger">
+                  <%= get_status d %>
+                </button>
+              </td>
+        <% end %>
+
+          <td>
+            <a href="<%= view_quotes_path(:ref_no => d,:tender_id => tender_id) %>">
+              <button class="btn btn-default view">
+                View
+              </button>
+            </a>
+          </td>
+          <td>
+            <button class="btn btn-default edit">
+              Edit
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-default edit">
+              Re-activate
+            </button>
+          </td>
+          <td><%= "$ #{(get_price d)}" %></td>
+          <td></td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        No Records Found
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<div style="display: none;">
+  <a href="" class="zip_link" target="_blank"></a>
+</div>
+
+<div style="display: none;">
+  <a href="" class="download_link" target="_blank"></a>
+</div>
+
+<script>
+  var ids = [];
+  $('.quote_download').click(function(){
+
+    var tender_id = $('.tender_id').val();
+    $("input:checkbox:checked").map(function()
+    {
+      ids.push($(this).val());
+    })
+    console.log("ids:"+ids);
+    $.ajax({
+      method: "POST",
+      data: {ids:ids,tender_id:tender_id},
+      url: "/quotes/download_quotes"
+    }).done(function (data) {
+      $('.download_link').attr('href', data.link)
+      var link = $(".download_link");
+      link.click();
+      window.location.href = link.attr("href");
+    });
+
+  });
+
+  $('.remove_quote').click(function(){
+    var tender_id = $('.tender_id').val();
+    $("input:checkbox:checked").map(function()
+    {
+      ids.push($(this).val());
+    })
+    console.log("ids:"+ids);
+    $.ajax({
+      method: "POST",
+      data: {ids:ids,tender_id:tender_id},
+      url: "/quotes/delete_quotes"
+    }).done(function (data) {
+     $('.quote_all_lists').html(data);
+    });
+
+  });
+
+  $('.all_sub').click(function(){
+
+    console.log("all_sub:"+ids);
+    $.ajax({
+      method: "POST",
+      data: {ids:ids},
+      url: "/shared_rfis/shared_by_trade"
+    }).done(function (data) {
+      ids = [];
+      $('#shared_modal').modal('hide');
+      $('#option3_modal').modal('hide');
+      $('#option1_modal').modal('hide');
+      $('#option2_modal').modal('hide');
+      $('.all_sub_body').html(data);
+      $('#success_all_sub_modal').modal('show');
+      $("input:checkbox:checked").map(function()
+      {
+        $(this).prop('checked',false);
+      })
+
+      $('.shared_option').prop('checked',false);
+
+    });
+  });
+
+
+  $('.quote_list_master').click(function(){
+
+    if($('.quote_list').prop('checked')){
+      $('.quote_list').prop('checked',false);
+    }else{
+      $('.quote_list').prop('checked',true);
+    }
+  });
+</script>

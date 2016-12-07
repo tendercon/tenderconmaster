@@ -1,0 +1,324 @@
+<div class="row"> 
+  <div class="col-md-12">  
+    <div style="display:none"> 
+      <input id="file_input" type="file" style="background-color: transparent;" name="documents"> 
+    </div> 
+
+    <div  type="file" id="dir-select" webkitdirectory name="document"> 
+      <div class="col-md-8 col-md-offset-2 document_dropzone">
+        <div style="height: 40px"></div>
+        <p class="text-center">
+          <i class="fa fa-cloud-upload fa-5x upload " aria-hidden="true"></i>
+        </p>
+        <h1 class="text-center">DRAG AND DROP</h1>
+        <p class="text-center">your files anywhere, or browse</p> 
+
+      </div>
+    </div>  
+
+
+    <div class="col-md-8 col-md-offset-2">
+      <p class="text-center">
+        <label ><input type="checkbox" name="unzip"  class="unzip" checked="checked"> Unzip all zipped files</label> 
+      </p>
+    </div>
+
+      <div class="uploaded_docs">  
+        <% if params[:document].present? %>
+            <% if @documents.present? %>
+                <%= render :partial => 'tenders/documents' %>
+            <% end %>
+        <% end %>
+
+
+      </div>  
+
+      <!--<div class="col-md-20"> 
+        <%# if params[:edit].present? %>
+          <a href="/tenders/new_tender?reviews=true&info_id=<%#= @tender.id %>"> 
+            <button class="btn btn-primary  trade_btn btn-lg pull-right" type="button">SAVE AND CONTINUE</button>
+          </a>   
+        <%# else %>
+          <a href="/tenders/new_tender?invites=true&info_id=<%#= @tender.id %>" class="link"> 
+            <button class="btn btn-primary  trade_btn btn-lg pull-right" type="button">SAVE AND CONTINUE</button>
+          </a>   
+        <%# end %>
+
+        <a href="/tenders/new_tender?trades=true&info_id=<%#= @tender.id %>"> 
+          <button class="btn btn-default  next_info btn-lg pull-right" type="submit" >BACK</button>
+        </a>   
+
+      </div> -->
+  </div>  
+</div> 
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="form-actions">
+
+      <a href="/tenders/new_tender?trades=true&info_id=<%= @tender.id %>"> 
+        <button class="btn btn-default next_info " type="button" >BACK</button>
+      </a>   
+
+      <a href="/tenders/new_tender?invites=true&info_id=<%= @tender.id %>" class="link"> 
+        <button class="btn btn-primary" type="button">SAVE AND CONTINUE</button>
+      </a>   
+
+    </div>
+  </div>
+</div>
+
+<input type="hidden" class="tender_id" value="<%= @tender.id %>">
+
+<div style="background-color: transparent;display: none"> 
+  <%= form_for @tender_document, :url => create_document_tenders_path,:html => {:class => 'avatar'} do |m| %> 
+      <%= m.text_field :user_id,:value =>  session[:user_logged_id]  %> 
+      <%#= m.file_field :document %>
+      <input type="hidden" class="dir" name="dir">
+      <input type="hidden" class="unzip_file" name="unzip">
+      <input type="hidden" class="dir" name="tender_id" value="<%= params[:info_id] %>">
+      <input type="hidden" class="new_dir" name="new_dir">
+      <input type="file" class="file_upload_filed"  id="dir-select" name="document"   /> 
+  <% end %>
+
+  <%= form_tag  create_files_tenders_path,:html => {:multipart => true,:class => 'files'} do |m| %> 
+      <input type="hidden"  name="user_id" value="<%= session[:user_logged_id]  %>">
+
+      <input type="file" id="file_select" name="document" webkitdirectory directory multiple /> 
+  <% end %>
+</div> 
+
+
+<div class="modal fade" id="uploading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:100px;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Processing...</h1>
+      </div>
+      <div class="modal-body">
+        <div class="progress">
+          <div id="progress" class="progress progress-striped">
+            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var out = [];
+  var directories = [];
+  update_folder_lists();
+
+  if($('.unzip').is(":checked")){
+    $('.unzip_file').val(true);
+  }else{
+    $('.unzip_file').val(null);
+  }
+
+  $('.unzip').change(function() {
+
+    if($(this).is(":checked")){
+      alert("true");
+      $('.unzip_file').val(true);
+    }else{
+      alert("false");
+      $('.unzip_file').val(null);
+    }
+  });
+
+  update_link();
+  function update_link(){
+    var tender_id = $('.tender_id').val();
+    console.log("XXXXXXXXXXXXXXXXXXXXX");
+    $.ajax({
+      method: "POST",
+      data : {tender_id:tender_id},
+      url: "/tenders/check_document_cnt"
+    }).done(function (data) {
+      if(data.state == 'valid'){
+        console.log("data.directories.length:"+data.directories.length);
+        console.log("data.directories:"+data.directories);
+        if(data.directories.length > 0){
+          $(".link").attr("href", "/tenders/new_tender?package=true&info_id="+tender_id);
+        }else{
+          $(".link").attr("href", "/tenders/new_tender?invites=true&info_id="+tender_id);
+        }
+      }
+    });
+  }
+
+  function update_folder_lists(){
+    var tender_id = $('.tender_id').val();
+
+    $.ajax({
+      method: "POST",
+      data : {tender_id:tender_id},
+      url: "/tenders/update_folder_list"
+    }).done(function (data) {
+      if(data.state == 'valid'){
+        console.log(data.directories);
+        //$('.categories').html('');
+        $('.categories').append($('<option/>', {
+          value: '',
+          text : 'None'
+        }));
+        $.each(data.directories, function (index, value) {
+
+          $('.categories').append($('<option/>', {
+            value: value,
+            text : value
+          }));
+
+        });
+      }
+    });
+
+  }
+
+  $('#new_tender_document').fileupload({
+
+    dataType: 'json',    done: function (e, data) {
+
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      $('#uploading').modal('show');
+      var indexes = []
+      for (var i = 0, f; f = data.files[i]; ++i) {
+        if(f.name != '.DS_Store'){
+          out.push(f.name);
+          indexes.push(i);
+          directories.push(f.relativePath)
+        }
+
+      }
+
+      $.each(data, function (index, file) {
+        if (index == 'result') {
+          $.each(file, function (i, f) {
+            var a = []
+            //$('.unzip_file').val('');
+            //$('.unzip').prop('checked',false)
+            if (i == 'avatar_url') {
+
+              console.log("INDEX:"+ index);
+              console.log("FILE:"+ file);
+              /*$.ajax({
+                method: "POST",
+                data: {out: out,directories:directories,tender_id:tender_id},
+                url: "/tenders/get_documents"
+              }).done(function (data) {
+                //$('.document_div_table').html(data);
+                $('.uploaded_docs').html(data);
+                out =  [];
+                directories = [];
+                $('#uploading').modal('hide');
+              });*/
+            } else {
+              if (f != 'valid') {
+                $('.avatar_error').html('<p class="text-center" style="font-size: 12px;color: grey">' + f + '</p>');
+              }
+            }
+
+            if (i == 'new_dir') {
+
+              var tender_id = '<%= params[:info_id] %>'
+              $.ajax({
+                method: "POST",
+                data: {tender_id:tender_id},
+                url: "/tenders/get_documents"
+              }).done(function (data) {
+                $('.uploaded_docs').html(data);
+                $('#add_file_Modal').modal('hide');
+                $('.new_dir').val('');
+                out =  [];
+                directories = [];
+
+
+                $('#uploading').modal('hide');
+
+
+              });
+            } else {
+              if (f != 'valid') {
+                $('.avatar_error').html('<p class="text-center" style="font-size: 12px;color: grey">' + f + '</p>');
+              }
+            }
+          });
+
+
+        }
+
+
+      });
+    },progress: function (e, data) {
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      $('#progress .progress-bar').css( 'width', progress + '%');
+    }
+  }).bind('fileuploadstop', function (e) {
+    console.log("EVENT:"+JSON.stringify(e));
+    var tender_id = '<%= params[:info_id] %>'
+    console.log("TEST");
+    console.log("directories:======> " + directories);
+    //$('.unzip_file').val('');
+    $.ajax({
+      method: "POST",
+      data: {out: out,directories:directories,tender_id:tender_id},
+      url: "/tenders/get_documents"
+    }).done(function (data) {
+      //$('.document_div_table').html(data);
+      $('.uploaded_docs').html(data);
+      out =  [];
+      directories = [];
+      $('#uploading').modal('hide');
+    });
+  });
+
+
+
+  $('.upload').click(function(){
+
+    $('#file_input').click();
+  });
+
+  $('.document_dropzone').click(function(){
+    $('.file_upload_filed').click();
+
+  });
+
+  $('.new_drop_zone').click(function(){
+    alert("sadjhjdhjas");
+    $('#files_input').click();
+  });
+
+  $('.unzip').change(function(){
+    //var tender_id = $('.tender_id').val();
+    //$('.unzip_file').val(true);
+    /*$.ajax({
+      method: "POST",
+      data: {tender_id:tender_id},
+      url: "/tenders/unzip"
+    }).done(function (data) {
+
+      $('.uploaded_docs').html(data);
+
+    });*/
+  });
+
+  if($('.unzip').prop('checked')){
+    //$('.unzip_file').val(true);
+  }
+
+  document.querySelector('#dir-select').onchange = function(e) {
+    var out = [];
+    if(e.target.files.length > 0){
+      for (var i = 0, f; f = e.target.files[i]; ++i) {
+        out.push(f.webkitRelativePath);
+      }
+
+      $('.uploaded_docs').html(out);
+    }
+
+  };
+
+</script>

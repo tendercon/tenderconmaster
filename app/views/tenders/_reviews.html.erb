@@ -1,0 +1,282 @@
+<%= form_tag(publish_tenders_path, :html => { :multipart => true }) do |f| %>
+    <input type="hidden" name="tender_id" value="<%= params[:info_id] %>">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="portlet light bordered">
+          <div class="portlet-body form">
+            <div class="form-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="portlet box green">
+                    <div class="portlet-title">
+                      <div class="caption">
+                        <i class="fa fa-info-circle"></i>Details</div>
+                      <div class="tools">
+                        <a href="/tenders/new_tender?info=true&info_id=<%= @tender.id %>">
+                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:;" class="collapse"> </a>
+                      </div>
+                    </div>
+                    <div class="portlet-body">
+                      <div class="table-scrollable">
+                        <table class="table table-bordered table-hover">
+                          <thead>
+                          <tr>
+
+                          </tr>
+                          </thead>
+                          <tbody>
+                          <tr>
+                            <td> Tender ID </td>
+                            <td> <%= @tender.tendercon_id %> </td>
+                          </tr>
+                          <tr>
+                            <td> Status </td>
+                            <td>
+                              <% if @tender.status == '1' %>
+                                <label>Tendering - Your organization is still tendering for this project.</label>
+                              <% else %>
+                                <label>Awarded - This tender has been awarded to the Head Contractor </label>
+                              <% end %>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td> Client </td>
+                            <td> <%= @tender.client %> </td>
+                          </tr>
+                          <tr>
+                            <td> Architect </td>
+                            <td> <%= @tender.architect %> </td>
+                          </tr>
+                          <tr>
+                            <td> Sector </td>
+                            <td> <%= get_categoty_name @tender.category_id %> </td>
+                          </tr>
+                          <tr>
+                            <td> Value </td>
+                            <td> <%= get_value_name @tender.tender_value_id %> </td>
+                          </tr>
+
+                          <tr>
+                            <td> Description </td>
+                            <td> <%=  @tender.description.html_safe %> </td>
+                          </tr>
+
+
+                          <tr>
+                            <td> Address </td>
+                            <td> <%=  @tender.address %></td>
+                          </tr>
+
+                          <tr>
+                            <td> Quote Due </td>
+                            <td> <%= get_tender_due @tender.id %></td>
+                          </tr>
+
+                          <% if @tender.tender_sites.present? %>
+                              <tr>
+                                <td> Site Inspections </td>
+                                <td></td>
+                              </tr>
+                            <% @tender.tender_sites.each do |a| %>
+                                  <tr>
+                                    <td> </td>
+                                    <td><%= get_tender_site_dates a.id %></td>
+                                  </tr>
+                            <% end %>
+                          <% end %>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row"> 
+      <div class="col-md-12">
+        <div class="portlet light bordered">
+          <div class="portlet-body form">
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="portlet box green">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      <i class="fa fa-comments"></i>Trades</div>
+                    <div class="tools">
+                      <a href="/tenders/new_tender?trades=true&info_id=<%= @tender.id %>">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      </a>
+                      <a href="javascript:;" class="collapse"> </a>
+                    </div>
+                  </div>
+                  <div class="portlet-body">
+                    <table class="table table-bordered table-hover" id="tender_trade_table">
+                      <thead>
+                      <tr>
+                        <th></th>
+                        <th>Category</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                        <% if @tender.tender_trades.present? %>
+                          <% @tender.tender_trades.each do |t| %>
+                            <tr>
+                              <td class="text-center"><%= get_trade_name t.trade_id %></td>
+                              <td><%= get_trade_category t.trade_id %></td>
+                            </tr>
+                          <% end %>
+                        <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    <div class="row"> 
+      <div class="col-md-12">
+        <div class="portlet light bordered">
+          <div class="portlet-body form">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="portlet box green">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      <i class="fa fa-file"></i>Documents</div>
+                    <div class="tools">
+                      <div class="col-md-18">
+                      </div>
+                      <a href="javascript:;" class="collapse"> </a>
+                    </div>
+                  </div>
+                  <div class="portlet-body">
+                    <% if @document_packages.present? %>
+                        <select onchange="location = this.options[this.selectedIndex].value;" class="form-control">
+                          <option value="#!">None</option>
+                          <% @document_packages.each do |d| %>
+                              <option value="<%= d.url %>"><%= File.basename(d.url) %></option>
+                          <% end %>
+                        </select>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+
+    <div class="row"> 
+      <div class="col-md-12">
+        <div class="portlet light bordered">
+          <div class="portlet-body form">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="portlet box green">
+                  <div class="portlet-title">
+                    <div class="caption">
+                      <i class="fa fa-envelope-o"></i>Invites</div>
+                    <div class="tools">
+                      <a href="/tenders/new_tender?invites=true&info_id=<%= @tender.id %>">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      </a>
+                      <a href="javascript:;" class="collapse"> </a>
+                    </div>
+                  </div>
+                  <div class="portlet-body">
+                    <table class="table table-bordered table-hover">
+                      <thead>
+                      <tr>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Trades</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <% if @tender.tender_invites.present? %>
+                          <% @tender.tender_invites.each do |t| %>
+                              <tr>
+                                <td class="text-center"><%= t.email %></td>
+                                <td class="text-center"><%= get_trade_name t.trade_id %></td>
+                              </tr>
+                          <% end %>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+
+
+
+
+
+
+    <div class="col-md-12">
+      <div class="row">
+        <div class="form-group"></div>
+      </div>
+
+      <p class="text-center">
+        <input type="checkbox"  name="publish_terms" class="publish_terms"> I agree to Tendercon's Terms of Use
+      </p>  
+
+      <p class="text-center">
+        <button type="submit" class="btn btn-lg publish_btn btn-success" disabled>PUBLISH MY TENDER</button>
+      </p>
+
+    </div>
+<% end %>
+
+
+<script>
+  $(document).ready(function(){
+    $('#tender_trade_table').DataTable({
+      "bSort" : false,
+      "bPaginate": false,
+      "bFilter": false,
+      "bInfo": false,
+      "columnDefs": [
+        { "visible": false, "targets": 1 }
+      ],
+      "order": [[ 1, 'asc' ]],
+      "displayLength": 25,
+      "drawCallback": function ( settings ) {
+        var api = this.api();
+        var rows = api.rows( {page:'current'} ).nodes();
+        var last=null;
+
+        api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+          console.log("group:"+group);
+          console.log("I -------> :"+i);
+          if ( last !== group ) {
+            $(rows).eq( i ).before(
+                '<tr class="group"><td colspan="3" id="'+ i + '" title="'+ group+ '"><strong>'+ group+ '</strong></td>' +
+                '</td></tr>'
+            );
+
+            last = group;
+          }
+        } );
+      }
+    } );
+  });
+</script>

@@ -1,0 +1,185 @@
+<% if @tenders.present? %>
+
+    <table  class="table"
+            data-toggle="table"
+            data-toolbar="#toolbar"
+            data-show-export="true"
+            data-minimum-count-columns="1"
+            data-search="true">
+      <thead>
+      <% if @tenders.present? %>
+        <tr>
+          <th class="col-md-4">TENDER ID</th>
+          <th class="col-md-6">PROJECT NAME</th>
+          <th class="col-md-8">LOCATION</th>
+          <th class="col-md-8">DISTANCE FROM ME</th>
+          <th class="col-md-7">HEAD CONTRACTOR</th>
+          <th class="col-md-4">QUOTES DUE</th>
+          <% if session[:role] == 'Head Contractor' %>
+            <th></th>
+          <% end %>
+        </tr>
+      <% end %>
+      </thead>
+      <tbody class="searchable">
+      <% @tenders.each do |t| %>
+        <tr>
+          <% if session[:role] == 'Head Contractor' %>
+            <td>
+              <a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
+                <%= t.tendercon_id %>
+              </a>
+            </td>
+          <% else %>
+            <td>
+              <a href="#!" class="tender" id="<%= t.id %>">
+                <%= t.tendercon_id %>
+              </a>
+            </td>
+          <% end %>
+
+          <td><%= t.title %></td>
+          <td><%= t.address %></td>
+          <td><%= get_distance t.id,session[:user_logged_id] %></td>
+          <td><%= get_user_company_name t.user_id %></td>
+          <td><%= get_tender_due t.id %></td>
+          <% if session[:role] == 'Head Contractor' %>
+            <td>
+              <span class="badge" style="background-color: red"><%= get_count_tender_request session[:user_logged_id],t.id %></span>
+            </td>
+          <% end %>
+        </tr>
+      <% end   %>
+      </tbody>
+    </table>
+
+<% else %>
+    <p class="text-center"> No Available tenders.</p>
+<% end %>
+
+
+<script>
+
+  $(document).ready(function() {
+    $('.interested_btn').click(function(){
+      var id = $(this).attr('id');
+      $('#tender_Modal_'+id).modal('hide');
+      $('#tender_trade_Modal_'+id).modal('show');
+    });
+
+    $('.quotes').click(function(){
+      var tender_id = $('.tender_id').val();
+      var sc_id = $('.sc_id').val();
+
+      var ids = []
+      $('.trade_class').each(function(){
+        if($(this).is(':checked')){
+          ids.push($(this).val());
+        }
+      });
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id,sc_id:sc_id,ids:ids},
+        url: "/tenders/request_to_quote"
+      }).done(function (data) {
+        $('#tender_success_'+tender_id).modal('show');
+      });
+    });
+
+    $('.trade_class').change(function(){
+      var ids = []
+      $('.trade_class').each(function(){
+        if($(this).is(':checked')){
+          ids.push($(this).val());
+        }
+      });
+
+      if(ids.length > 0){
+        $('.quotes').prop('disabled',false);
+      }else{
+        $('.quotes').prop('disabled',true);
+      }
+    });
+
+    $('.tenders').each(function () {
+      var id = $(this).val();
+      var add = $('.add' + id).val();
+    });
+
+    $('.tender').click(function () {
+      var id = $(this).attr('id');
+      var add = $('.add' + id).val();
+      tender_id = id;
+      tab_id = "#green" + tender_id;
+      $.ajax({
+        method: "POST",
+        data: {add: add},
+        url: "/tenders/get_latling"
+      }).done(function (data) {
+        $('#tender_Modal_' + id).modal('show');
+        initialize(data, id);
+      });
+    });
+
+    $('a').attr('href', tab_id).on('shown.bs.tab', function () {
+      google.maps.event.trigger(map, 'resize');
+    });
+
+    function initialize(data, id) {
+      myLatLng = {lat: data.latitude, lng: data.longitude};
+      var mp = 'map_' + id;
+
+      map = new google.maps.Map(document.getElementById(mp), {
+        zoom: 15,
+        center: myLatLng
+      });
+
+      var marker = new google.maps.Marker({
+        position: myLatLng,
+        map: map
+      });
+
+      google.maps.event.addListenerOnce(map, 'idle', function () {
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter(myLatLng);
+      });
+    }
+
+    $(function () {
+      $(".dropdown-menu > li > a.trigger").on("click", function (e) {
+        var current = $(this).next();
+        var grandparent = $(this).parent().parent();
+        if ($(this).hasClass('left-caret') || $(this).hasClass('right-caret'))
+          $(this).toggleClass('right-caret left-caret');
+        grandparent.find('.left-caret').not(this).toggleClass('right-caret left-caret');
+        grandparent.find(".sub-menu:visible").not(current).hide();
+        current.toggle();
+        e.stopPropagation();
+      });
+      $(".dropdown-menu > li > a:not(.trigger)").on("click", function () {
+        var root = $(this).closest('.dropdown');
+        root.find('.left-caret').toggleClass('right-caret left-caret');
+        root.find('.sub-menu:visible').hide();
+      });
+    });
+
+    $('.search_filter').click(function () {
+      console.log($("#e1").val())
+      var filters = $("#e1").val();
+      $('.tender_list_filter').html('');
+      $.ajax({
+        method: "POST",
+        data: {filters: filters},
+        url: "/tenders/filter_open_tender"
+      }).done(function (data) {
+        $('.tender_list_filter').html(data);
+      });
+    });
+
+    $("#e1").select2({
+      "multiple": true,
+      "closeOnSelect": false
+    });
+  });
+</script>

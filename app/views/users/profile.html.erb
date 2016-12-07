@@ -1,0 +1,227 @@
+<div class="container" style="background-color: #ffffff">
+
+  <%= render :partial => 'users/headers/profile_header' %>
+
+  <% if @user.div_status == false %>
+  <div class="form-group has-feedback">
+    <% if flash[:error] %>
+      <div class="alert alert-danger open-sans-regular" id="users_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= @error_alert %>
+        <div class="notice" style="font-size: 14px;"><%= flash[:error].html_safe %></div>
+        <% flash[:error]=nil %>
+      </div>
+    <% end %>
+    <%- if !flash[:notice].nil? %>
+      <div class="alert alert-success open-sans-regular" id="users_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= @error_alert %>
+        <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
+        <% flash[:notice]=nil %>
+      </div>
+    <%- end %>
+  </div>
+    <div class="col-md-23 information_header">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-14">
+              <div class="col-md-2"><i class="fa fa-lightbulb-o fa-4x" aria-hidden="true" style="color: #ffff00"></i></div>
+              <div class="form-group"></div>
+              <div class="col-md-22">
+                <p class="user_profile_header">This copy will describe what the user can do on this page and how it effects user account.</p>
+              </div>
+            </div>
+            <div class="col-md-10">
+              <div class="form-group"></div>
+              <a href="<%= zendesk_index_path(:id => @user.id) %>" class="text-center new-account" target="_blank">
+                <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Learn More</button>
+              </a>
+              <a href="<%= update_user_div_users_path(:id => @user.id) %>" class="text-center new-account">
+                <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Don't shw this again.</button>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if !@avatar_id.present? || !@about_me.present? %>
+    <div class="col-md-23 information_header">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-14">
+              <div class="col-md-2"><i class="fa fa-info-circle fa-4x" aria-hidden="true" style="color: #4AD6F7"></i></div>
+              <div class="form-group"></div>
+              <div class="col-md-22">
+                <p class="user_profile_2header">Your profile is almost complete. Please update the following fields.</p>
+                <% if !@avatar_id.present? %>
+                  <p class="user_profile_2header">Add your professional photo in clicking ADD PROFILE PICTURE</p>
+                <% end %>
+
+                <% if !@about_me.present? %>
+                  <p class="user_profile_2header">Tell the Tendercon Network about your professional experience in ABOUT ME</p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+
+  <div class="profile_data">
+    <div class="col-md-24 col-md-12 col-md-offset-6">
+      <div class="col-md-16">
+        <a href="#!" class="text-center new-account">
+          <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Who can see this?</button>
+        </a>
+      </div>
+
+      <div class="col-md-8">
+        <a href="<%= edit_profile_users_path(:id => @user.id) %>" class="text-center new-account">
+          <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Edit Profile</button>
+        </a>
+        <div class="row">
+          <div class="form-group"></div>
+          <div class="form-group">
+            <div class="col-md-24">
+              <a href="<%= download_profile_users_path(format: 'pdf') %>" class="text-center new-account" style="text-decoration: none; color: #000000">
+                <i class="fa fa-download fa-2x" aria-hidden="true"></i>
+              </a>
+              <a href="mailto:<%= @user.email %>?subject=My Profile&body=This is the link where you can download you profile. <%= "http://"+request.host_with_port+download_profile_users_path(format: 'pdf').html_safe %>" class="share" style="text-decoration: none; color: #000000">
+                <i class="fa fa-share-alt fa-2x" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile_div" style="background-color: #ffffff;color: black">
+        <br>
+        <div>
+          <% if @user.avatar.present? %>
+            <img id="profile-img" class=" img-circle center-block" src="<%= @user.avatar.image.path %>" width="200px" height="200px" />
+          <% else %>
+            <img id="profile-img" class=" img-circle center-block" src="https://s-media-cache-ak0.pinimg.com/236x/9a/de/a4/9adea4e40b39301576ff29f7ddebfd5b.jpg" />
+          <% end %>
+
+          <div style="background-color: transparent;">
+            <input id="file_input" type="file" style="background-color: transparent;">
+          </div>
+        </div>
+
+        <br>
+        <div class="col-md-24 col-md-offset-9">
+          <div class=" form-group">
+            <div class="col-md-6">
+              <label style="font-size: 16px;font-weight: bold;color: green"><%= "#{@user.first_name } #{@user.last_name }" %></label>
+            </div>
+          </div>
+          <div class="row">
+
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-24 col-md-offset-2">
+            <p style="font-size: 12px;font-weight: bold">Details</p>
+          </div>
+          <div class="col-md-24 col-md-offset-9">
+            <div class=" form-group">
+              <div class="col-md-3">
+                <label   style="font-size: 12px;font-weight: bold">Company:</label>
+              </div>
+              <div class="col-md-6">
+                <label><%= @user.company %></label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-24 col-md-offset-9">
+            <div class=" form-group">
+              <div class="col-md-3">
+                <label   style="font-size: 12px;font-weight: bold">Position:</label>
+              </div>
+              <div class="col-md-6">
+                <label><%= get_postion @user.position %></label>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-24 col-md-offset-9">
+            <div class=" form-group">
+              <div class="col-md-3">
+                <label   style="font-size: 12px;font-weight: bold">Rating:</label>
+              </div>
+              <div class="col-md-6">
+                <label><%#= get_postion @user.position %></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-24 col-md-offset-9">
+            <p>__________________________________________________________</p>
+          </div>
+
+          <div class="col-md-24 col-md-offset-2">
+            <p style="font-size: 12px;font-weight: bold">About</p>
+          </div>
+
+          <div class="col-md-20 col-md-offset-2">
+            <%= @about_me.present? ? @about_me.html_safe : '' %>
+          </div>
+
+          <div class="col-md-24 col-md-offset-9">
+            <p>__________________________________________________________</p>
+          </div>
+
+          <div class="col-md-24 col-md-offset-2">
+            <p style="font-size: 12px;font-weight: bold">Contact</p>
+          </div>
+
+          <div class="col-md-24 col-md-offset-9">
+            <div class=" form-group">
+              <div class="col-md-3">
+                <label   style="font-size: 12px;font-weight: bold">Email:</label>
+              </div>
+              <div class="col-md-6">
+                <label><%=  @user.email %></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-24 col-md-offset-9">
+            <div class=" form-group">
+              <div class="col-md-3">
+                <label   style="font-size: 12px;font-weight: bold">Mobile:</label>
+              </div>
+              <div class="col-md-6">
+                <label><%= @user.mobile_number  %></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-24 col-md-offset-9">
+            <div class=" form-group">
+              <div class="col-md-3">
+                <label   style="font-size: 12px;font-weight: bold">Linkedin:</label>
+              </div>
+              <div class="col-md-6">
+                <label><%= @linkedin  %></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /*$('#profile-img').click(function(){
+    $('#file_input').click();
+  });*/
+</script>

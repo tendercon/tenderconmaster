@@ -1,0 +1,680 @@
+<div class="container" style="background-color: #ffffff">
+<%= render :partial => 'users/headers/company_profiles' %>
+<% if @user.div_status == false %>
+  <div class="form-group has-feedback">
+    <% if flash[:error] %>
+      <div class="alert alert-danger open-sans-regular" id="users_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= @error_alert %>
+        <div class="notice" style="font-size: 14px;"><%= flash[:error].html_safe %></div>
+        <% flash[:error]=nil %>
+      </div>
+    <% end %>
+    <%- if !flash[:notice].nil? %>
+      <div class="alert alert-success open-sans-regular" id="users_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <%= @error_alert %>
+        <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
+        <% flash[:notice]=nil %>
+      </div>
+    <%- end %>
+  </div>
+  <div class="col-md-23 information_header">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-14">
+            <div class="col-md-2"><i class="fa fa-lightbulb-o fa-4x" aria-hidden="true" style="color: #ffff00"></i></div>
+            <div class="form-group"></div>
+            <div class="col-md-22">
+              <p class="user_profile_header">This copy will describe what the user can do on this page and how it effects user account.</p>
+            </div>
+          </div>
+          <div class="col-md-10">
+            <div class="form-group"></div>
+            <a href="<%= zendesk_index_path(:id => @user.id) %>" class="text-center new-account">
+              <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Learn More</button>
+            </a>
+            <a href="<%= update_user_div_users_path(:id => @user.id) %>" class="text-center new-account">
+              <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Don't shw this again.</button>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<% end %>
+<%= puts puts "@about_me:#{@about_me.present?}" %>
+<% if !@link.present? || !@about_me.present? %>
+  <div class="col-md-23 information_header1">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-14">
+            <div class="col-md-2"><i class="fa fa-info-circle fa-4x" aria-hidden="true" style="color: #4AD6F7"></i></div>
+            <div class="form-group"></div>
+            <div class="col-md-22">
+              <p class="user_profile_2header">Your company profile is almost complete. Please update the following fields.</p>
+              <% if !@link.present? %>
+                <p class="user_profile_2header logo">Add your company logo ADD COMPANY LOGO</p>
+              <% end %>
+              <% if !@about_me.present? %>
+                <p class="user_profile_2header about">Tell the Tendercon Network about what the company does in ABOUT THE COMPANY</p>
+              <% end %>
+
+              <p class="user_profile_2header contact">Add the best number to contact the company.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+  <div style="background-color: transparent;display: none" class="company_avatar">
+    <%= form_for @company_avatar, :url => create_company_avatar_users_path,:html => {:multipart => true,:class => 'avatar'} do |m| %>
+      <%= m.text_field :user_id,:value =>  session[:user_logged_id]  %>
+      <%= m.file_field :image %>
+    <% end %>
+  </div>
+  <%= form_tag(create_company_profile_users_path )  do %>
+    <input type="hidden" value="<%= @user.id %>" name="user_id">
+    <div class="company_profile_data">
+      <div class="row">
+        <div class="col-md-24 col-md-12 col-md-offset-6">
+          <a href="#!" class="text-center new-account">
+            <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Who can see this?</button>
+          </a>
+          <div class="row">
+            <div class="form-group"></div>
+          </div>
+        </div>
+
+        <div class="col-md-24 col-md-12 col-md-offset-6">
+          <div class="profile_div" style="background-color: #ffffff;color: black">
+            <div>
+              <div class="col-md-14 col-md-offset-5 avatar_error"></div>
+              <% if @link.present? %>
+                <input type="hidden" class="avt" value="1">
+                <img id="profile-img" class="img-circle center-block avatar" src="<%= @link %>" width="200px;" height="200px;" />
+              <% else %>
+                <input type="hidden" class="avt">
+                <img id="profile-img" class="img-circle center-block avatar" src="https://s-media-cache-ak0.pinimg.com/236x/9a/de/a4/9adea4e40b39301576ff29f7ddebfd5b.jpg" width="200px;" height="200px;" />
+              <% end %>
+
+              <div style="background-color: transparent;">
+                <input id="file_input" type="file" style="background-color: transparent;" name="avatar">
+              </div>
+            </div>
+
+            <br>
+            <div class="col-md-24 col-md-offset-9">
+              <div class=" form-group">
+                <div class="col-md-6">
+                  <label style="font-size: 16px;font-weight: bold;color: green"><%= @user.company  %></label>
+                </div>
+              </div>
+            </div>
+            <br>
+            <br>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <input type="hidden" value="<%= @user.id %>" name="user_id">
+          <input type="hidden" value="<%= @user.id %>" name="id">
+
+          <div class="form-group">
+            <label for="email">Details</label>
+          </div>
+          <div class="col-md-24">
+            <div class="col-md-4">
+              <label style="font-size: 12px;font-weight: bold">ABN:</label>
+            </div>
+            <div class="col-md-16">
+              <label><%= @user.abn %></label>
+            </div>
+          </div>
+
+          <div class="col-md-24">
+            <div class="col-md-4">
+              <label style="font-size: 12px;font-weight: bold">ACN:</label>
+            </div>
+            <div class="col-md-16">
+              <input type="text" class="form-control" name="acn" value="<%= @added_company_profile.present? ? @added_company_profile.acn : '' %>">
+            </div>
+          </div>
+
+          <div class=" col-md-24">
+            <div class="col-md-4">
+              <label  style="font-size: 12px;font-weight: bold">Address:</label>
+            </div>
+            <div class="col-md-16">
+              <input type="text" class="form-control" name="address" value="<%=  @user.address.location %>" id="address">
+              <input type="hidden" name="suburb" class="suburb">
+              <input type="hidden" name="postcode" class="postcode">
+              <input type="hidden" name="state" class="state">
+              <input type="hidden" name="timezone" class="timezone">
+            </div>
+          </div>
+          <br>
+
+          <div class="col-md-24">
+            <div class="col-md-4">
+              <label style="font-size: 12px;font-weight: bold">Time zone:</label>
+            </div>
+            <div class="col-md-16">
+              <label><%= @user.address.timezone  %></label>
+            </div>
+          </div>
+          <br><br><br>
+          <div class="form-group">
+            <label for="email">About the Company</label>
+          </div>
+          <div class="col-md-24">
+            <div class="col-md-20">
+              <%= text_area_tag('about_me',@added_company_profile.present? ? @added_company_profile.about_me.html_safe : nil,:cols => '70',:rows => '10',:class => 'form-group wysihtml5') %>
+            </div>
+          </div>
+          <br>
+
+          <br>
+          <% if session[:role] == 'Sub Contractor' %>
+
+            <div class="form-group">
+              <label for="email">Specialist Trades</label>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-4">
+                <label   style="font-size: 12px;font-weight: bold">Primary Trade</label>
+              </div>
+              <div class="col-md-12">
+                <%= select_tag 'primary_trade',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name',@primary_trade.trade_id)+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control col-lg-12',:style=> 'width:300px;'} %>
+              </div>
+            </div>
+            <br><br><br>
+
+            <div class="form-group">
+              <div class="col-md-4">
+                <label   style="font-size: 12px;font-weight: bold">Secondary Trade</label>
+              </div>
+              <% if @secondary_trade_array.present? %>
+                <div class="col-md-14 second_trade">
+                  <% @secondary_trade_array.each_with_index do |a,index| %>
+                    <% if index == (@secondary_trade_array.size - 1) %>
+                      <form class="form-inline" role="form">
+                        <div class="form-group">
+                          <%= select_tag "secondary_trade#{index+1}",content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name',a)+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control col-lg-12 trades',:style=> 'width:300px;',:id => (index + 1)} %>
+                          <i class="glyphicon glyphicon-plus-sign add" aria-hidden="true" ></i>
+                        </div>
+                      </form>
+                    <% else %>
+                      <%= select_tag "secondary_trade#{index+1}",content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name',a)+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control col-lg-12 trades',:style=> 'width:300px;',:id => (index + 1)} %>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% else %>
+                <div class="col-md-14 second_trade">
+                  <form class="form-inline" role="form">
+                    <div class="form-group">
+                      <%= select_tag "secondary_trade1",content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name','None')+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control col-lg-12 trades',:style=> 'width:300px;',:id => 1} %>
+                      <i class="glyphicon glyphicon-plus-sign add" aria-hidden="true" ></i>
+                    </div>
+                  </form>
+                </div>
+              <% end %>
+              <br>
+              <br>
+              <br>
+            </div>
+            <br>
+          <% end %>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="email">More Info</label>
+          </div>
+
+          <div class=" form-group">
+            <div class=" form-group">
+              <div class="col-md-6">
+                <label style="font-size: 12px;font-weight: bold">Tendercon id:</label>
+              </div>
+              <div class="col-md-12">
+                <label><%= @user.tendercon_id  %></label>
+              </div>
+            </div>
+          </div>
+          <br>
+
+          <div class=" form-group">
+            <div class=" form-group">
+              <div class="col-md-6">
+                <label style="font-size: 12px;font-weight: bold">No. of Employees:</label>
+              </div>
+              <div class="col-md-12">
+                <%= select_tag "number_of_employees", options_for_select([ "","1 to 5", "5 to 10","10-15","15-20","20-25","25-50","50-75","75-100","100+"] , @added_company_profile.present? ? @added_company_profile.number_of_employees : "" ),{:class => 'form-control'} %>
+              </div>
+            </div>
+          </div>
+          <br>
+
+          <br>
+
+          <div class=" form-group">
+            <div class=" form-group">
+              <div class="col-md-6">
+                <label style="font-size: 12px;font-weight: bold">Commenced Operation:</label>
+              </div>
+              <div class="col-md-12">
+                <%= select_tag "commenced_operation", options_for_select(@years.reverse , Time.now.strftime('%Y').to_i),{:class => 'form-control'} %>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+
+          <div class=" form-group">
+            <div class=" form-group">
+              <div class="col-md-6">
+                <label style="font-size: 12px;font-weight: bold">Tendercon member since:</label>
+              </div>
+              <div class="col-md-12">
+                <input type="text" class="form-control" name="since" value="<%=  @user.created_at.strftime('%Y') %>">
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+
+          <div class=" form-group">
+            <div class=" form-group">
+              <div class="col-md-6">
+                <label style="font-size: 12px;font-weight: bold">Project range:</label>
+              </div>
+              <div class="col-md-6">
+                <%= select_tag "from", options_for_select(@from,@p_to.present? ? @p_to[0] : ''),{:class => 'form-control'} %>
+              </div>
+              <div class="col-md-6">
+                <%= select_tag "to", options_for_select(@to,@p_to.present? ? @p_to[1] : ''),{:class => 'form-control'} %>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+
+          <div class="form-group">
+            <label for="email">Contact</label>
+          </div>
+          <div class=" form-group">
+            <div class=" form-group">
+              <div class="col-md-6">
+                <label   style="font-size: 12px;font-weight: bold">Phone:</label>
+              </div>
+              <div class="col-md-12">
+                <input type="text" class="form-control phone" name="contact_number" value="<%= @added_company_profile.present? ? @added_company_profile.contact_number : '' %>">
+              </div>
+            </div>
+          </div>
+          <br>
+
+          <div class=" form-group">
+            <div class=" form-group">
+              <div class="col-md-6">
+                <label   style="font-size: 12px;font-weight: bold">FAX:</label>
+              </div>
+              <div class="col-md-12">
+                <input type="text" class="form-control fax" name="fax_number" value="<%= @added_company_profile.present? ? @added_company_profile.fax_number : '' %>">
+              </div>
+            </div>
+          </div>
+          <br>
+
+          <div class=" form-group">
+            <div class=" form-group">
+              <div class="col-md-6">
+                <label   style="font-size: 12px;font-weight: bold">Website:</label>
+              </div>
+              <div class="col-md-12">
+                <input type="text" class="form-control" name="website" value="<%= @added_company_profile.present? ? @added_company_profile.website : '' %>">
+              </div>
+            </div>
+          </div>
+          <br>
+
+          <div class=" form-group">
+            <div class=" form-group">
+              <div class="col-md-6">
+                <label   style="font-size: 12px;font-weight: bold">Linkedin:</label>
+              </div>
+              <div class="col-md-12">
+                <input type="text" class="form-control" id="linkedin" name="linkedin" value="<%= @added_company_profile.present? ? @added_company_profile.linkedin : '' %>">
+                <label class="linkedin_icon" style="display: none;margin-top: -10px"><i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i></label>
+                <p style="font-size: 12px;color: gray;display: none;margin-top:-10px" class="linkedin_error"> Invalid Linkedin url.</p>
+              </div>
+            </div>
+          </div>
+          <br>
+
+          <br>
+
+          <div class=" form-group">
+            <div class=" form-group">
+              <div class="col-md-6">
+                <input type="hidden" class="fb" name="fb">
+                <label   style="font-size: 12px;font-weight: bold">Facebook:</label>
+              </div>
+              <div class="col-md-12">
+                <% if  @added_company_profile.present? %>
+                  <input type="text" class="form-control fb" name="fb" value="<%= @added_company_profile.facebook %>">
+                <% else %>
+                  <input class="form-control" name="facebook" id="facebook" style="display: none;">
+                  <a href="#!" class="text-center share" style="text-decoration: none; "><button class="btn btn-sml btn-primary " type="button">Sign in with <i class="fa fa-facebook-official"></i></button></a>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <br>
+          <br>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <div class="actions">
+          <button type="submit" class="btn btn-default">Update</button>
+        </div>
+      </div>
+      <br><br>
+    </div>
+  <% end %>
+</div>
+
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8&libraries=places&sensor=false"></script>
+<script>
+  $(document).ready(function(){
+    $('.img-circle').click(function(){
+      $('#company_avatar_image').click();
+    });
+
+    $('#new_company_avatar').fileupload({
+      dataType: 'json',
+      done: function (e, data) {
+        $.each(data, function (index, file) {
+
+          if(index == 'result'){
+            $.each(file, function (i, f) {
+              console.log("file:"+f);
+              console.log("file.INDEX:"+i);
+              if(i == 'avatar_url'){
+                $('.avatar_error').html('');
+                $('.avatar').attr('src','http://'+f);
+                $('.image_div').html('<img id="avatar_image" height="100px;" width="100px;" class="avatar_image img-circle center-block" src="http://'+f+'" />');
+                $('.logo').hide();
+                $('.avt').val(1);
+                hide_todos();
+              }else{
+                if(f != 'valid'){
+                  $('.avatar_error').html('<p class="text-center" style="font-size: 12px;color: grey">'+f+'</p>');
+                }
+              }
+            });
+          }
+        });
+      }
+    });
+
+    $('#linkedin').keyup(function(){
+      var link = $(this).val();
+
+      $.ajax({
+        method: "POST",
+        data: {link: link},
+        url: "/users/validate_linkedin"
+      }).done(function (data) {
+        console.log(data.state)
+        if(data.state == 'valid'){
+          $('#linkedin').hide();
+          $('.linkedin_icon').show();
+          $('.linkedin_error').hide();
+        }else{
+          $('.linkedin_error').show();
+          $('.linkedin_verify').show();
+        }
+      });
+    });
+
+
+
+
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5({toolbar: {
+        'font-styles': true,
+        'color': false,
+        'emphasis': {
+          'small': true
+        },
+        'blockquote': true,
+        'lists': true,
+        'html': false,
+        'link': false,
+        'image': false,
+        'smallmodals': false
+      },
+        events: {
+          load: function() {
+            $('.wysihtml5-sandbox').contents().find('body').on("keyup",function(event) {
+
+              var l = event.currentTarget.innerText
+
+              if(l.length > 0){
+                $('.about').hide();
+              }else{
+                $('.about').show();
+              }
+              hide_todos();
+            });
+          }
+        }
+      });
+    });
+
+    $('.phone').keyup(function(){
+      var c = $(this).val();
+      var fax = $('.fax').val();
+      if(c.length > 0){
+        $('.contact').hide();
+      }else{
+        if(fax.length <= 0){
+          $('.contact').hide();
+        }
+      }
+      hide_todos();
+    });
+
+    $('.fax').keyup(function(){
+      var c = $(this).val();
+      var phone = $('.phone').val();
+      if(c.length > 0){
+        $('.contact').hide();
+      }else{
+        if(phone.length <= 0){
+          $('.contact').hide();
+        }
+      }
+      hide_todos();
+    });
+
+    function hide_todos(){
+      //information_header
+
+      var about = $('#about_me').val();
+      var avt = $('.avt').val();
+      var phone = $('.phone').val();
+      var fax = $('.fax').val();
+
+      console.log("about"+about.length)
+      console.log("avt"+avt)
+      console.log(phone.length)
+      console.log(fax.length)
+      if(about.length > 0 && avt == 1){
+
+        if(phone.length > 0){
+          console.log(phone.length)
+          $('.information_header1').hide();
+        }else if(fax.length > 0){
+          console.log(fax.length)
+          $('.information_header1').hide();
+        }else{
+          $('.information_header1').hide();
+        }
+
+
+      }else{
+        console.log("else");
+        $('.information_header1').show();
+      }
+
+    }
+
+
+    $('.position').keyup(function(){
+      var new_postion = $(this).val();
+
+      if(new_postion.length > 1){
+        console.log(new_postion);
+        $.ajax({
+          method: "POST",
+          data: {position: new_postion},
+          url: "/users/validate_position"
+        }).done(function (data) {
+          if(data.state == 'valid'){
+            var availableTags =  data.positions
+
+            $(".position").autocomplete({
+              source: availableTags,
+              select: function(evt,ui){
+
+              }
+            });
+
+          }else{
+
+          }
+        });
+      }else{
+
+      }
+    });
+
+
+    $('#address').keyup(function(){
+      var address = $(this).val();
+      initAutocomplete();
+      get_address_info(address);
+    });
+
+    $('#address').focusout(function(){
+      var address = $(this).val();
+      initAutocomplete();
+      get_address_info(address);
+    });
+
+    function initAutocomplete() {
+      autocomplete = new google.maps.places.Autocomplete(
+              (document.getElementById('address')),
+              {types: ['geocode'],componentRestrictions: {country: "au"}});
+
+      google.maps.event.addListener(autocomplete,'place_changed',function(){
+
+        var address = $("#address").val();
+        console.log("test:"+address);
+
+      });
+    }
+
+    function get_address_info(address){
+      $.ajax({
+        method: "POST",
+        data: {address: address},
+        url: "/users/get_address_info"
+      }).done(function (data) {
+        if(data.state = 'valid') {
+          console.log("data.add_state:"+data.add_state)
+          $('.state').val(data.add_state);
+          $('.suburb').val(data.suburb);
+          $('.postcode').val(data.postal);
+          $('.timezone').val(data.timezone);
+
+        }
+      });
+    }
+
+    $('.add').click(function(){
+      var indexes = []
+      $('.trades').each(function(){
+        indexes.push($(this).attr('id'));
+      });
+
+      console.log(Math.max.apply(Math, indexes))
+
+      if(Math.max.apply(Math, indexes) >3){
+        $('.add').hide();
+      }else{
+        $('.add').show();
+      }
+
+      $.ajax({
+        method: "POST",
+        data: {indexes: indexes},
+        url: "/users/add_new_trade"
+      }).done(function (data) {
+        $('.second_trade').append(data);
+      });
+    });
+  });
+
+
+</script>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1039814866107032',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+    FB.getLoginStatus(function(response){
+      if(response.status == 'connected'){
+        console.log('connected');
+      }else{
+        console.log('not connected');
+      }
+    });
+
+    $('.share').click(function(){
+      FB.login(function(r){
+        console.log(r);
+        FB.api('/me','GET',{fields: 'first_name, last_name,email'},function(r){
+          $('.share').hide();
+          $('#facebook').show();
+          $('.fb').val(r.email);
+          $('#facebook').val(r.email);
+          console.log(r.email);
+        });
+
+      });
+
+    });
+  };
+
+
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>

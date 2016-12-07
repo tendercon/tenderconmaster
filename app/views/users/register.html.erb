@@ -1,0 +1,204 @@
+
+<div class="col-sm-24 col-md-14 col-md-offset-5 ">
+  <%= form_for(@user,:url => create_user_users_path) do |f| %>
+    <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
+    <h1 class="text-center login-title">Log Into Your Tendercon Account</h1>
+    <div class="form-group has-feedback">
+      <%- if  @user.present?  %>
+        <% if @user.errors.present? %>
+          <div class="alert alert-danger open-sans-regular" id="users_error">
+            <button type="button" class="close" data-dismiss="alert"></button>
+            <h2>Errors</h2>
+            <ul>
+              <% @user.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      <% end %>
+      <% if flash[:error] %>
+        <div class="alert alert-danger open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert"></button>
+          <%= @error_alert %>
+          <div class="notice" style="font-size: 14px;"><%= flash[:error] %></div>
+          <% flash[:error]=nil   %>
+        </div>
+      <% end %>
+      <%- if !flash[:notice].nil? %>
+        <div class="alert alert-success open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
+          <% flash[:notice]=nil %>
+        </div>
+      <%- end %>
+    </div>
+
+    <p class="text-center login-title">Account type</p>
+    <% @roles.each do |theme| %>
+      <div class="radio-inline">
+          <% if params[:tender].present? %>
+            <% if theme == 'Head Contractor' %>
+                <%= f.radio_button :role, theme, :value => 'HC' %> <%= theme %>
+            <% else %>
+                <%= f.radio_button :role, theme, :checked => true, :value => 'SC' %> <%= theme %>
+            <% end %>
+          <% else %>
+            <% if theme == 'Head Contractor' %>
+                <%= f.radio_button :role, theme,:checked => true, :value => 'HC' %> <%= theme %>
+            <% else %>
+                <%= f.radio_button :role, theme, :value => 'SC' %> <%= theme %>
+            <% end %>
+          <% end %>
+      </div>
+    <% end %>
+    <br>
+
+    <div class="form-group">
+      <input type="hidden" name="tender_id" value="<%= params[:tender] %>">
+      <label>YOUR FIRST NAME</label>
+      <div class="form-group required">
+        <%= f.text_field :first_name,:class=>'form-control', :value => "#{params[:name].present? ? params[:name] : ''}" %>
+      </div>
+
+      <label>YOUR EMAIL</label>
+      <div class="form-group required">
+        <%= f.text_field :email,:class=>'form-control', :value => "#{params[:email].present? ? params[:email] : ''}" %>
+        <div class="email_error_message"></div>
+      </div>
+
+      <label>YOUR COMPANY</label>
+      <div class="form-group required">
+        <%#= f.text_field :company,:class=>'form-control'%>
+        <%= f.fields_for :company do |company| %>
+          <%= company.text_field :name,:class=>'form-control'%>
+        <% end %>
+      </div>
+
+      <label>YOUR PASSWORD</label>
+      <div class="form-group required">
+        <%= f.password_field :password,:class=>'form-control input-md'%>
+        <div class="password_error" style="display: none;">
+          <div class="password_length"><p style="font-style: italic;color: grey"><i class="fa fa-times-circle-o" aria-hidden="true"></i>Minimum of 6 characters</p></div>
+          <div class="password_number"><p style="font-style: italic;color: grey"><i class="fa fa-times-circle-o" aria-hidden="true"></i> Should include at least 1 number.</p></div>
+          <div class="password_letter"><p style="font-style: italic;color: grey"><i class="fa fa-times-circle-o" aria-hidden="true"></i>Should include at least 1 Capital letter.</p></div>
+        </div>
+
+      </div>
+      <label>CONFIRM PASSWORD</label>
+      <div class="form-group required">
+        <%= f.password_field :confirmed_password,:class=>'form-control input-md' %>
+        <div class="con_password_error" style="display: none;">
+          <div class="password_match"><p style="font-style: italic;color: grey"><i class="fa fa-times-circle-o" aria-hidden="true"></i>Does not match to password.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit 'SIGN UP FREE', :class => 'btn btn-primary', :style => 'border-radius: 10px'%>
+      <!--<a href="<%#= home_index_path %>" class="text-center new-account" role="button" >
+        <button class="btn btn-default " type="button" style="text-decoration: none; border-radius: 10px;">Back to Home</button>
+      </a>-->
+    </div>
+  <% end %>
+  <br><br>
+</div>
+
+<script>
+  $('#user_email').focusout(function(){
+    var email = $(this).val();
+    if(validateEmail(email)){
+      $.ajax({
+        method: "POST",
+        data: {email: email},
+        url: "/users/validate_user_email"
+      }).done(function (data) {
+        if(data.state == 'invalid'){
+          $('.email_error_message').html('<p style="color: grey;font-style: italic;">Email address already exist. Please try other email.</p>');
+        }else{
+          //$('.email_error_message').html('');
+          $('.email_error_message').html('<p style="color: green;"><i class="fa fa-check-circle-o" aria-hidden="true"> Email address already exist. Please try other email.</i></p>');
+        }
+      });
+    }else{
+      $('.email_error_message').html('');
+      /*$('.email_error_message').html('<p style="color: grey;font-style: italic;">Not a valid email address.</p>');*/
+    }
+  });
+
+  $('#user_password').focusin(function(){
+    $('.password_error').show();
+
+    $(this).keyup(function(){
+      var password = $(this).val();
+
+      if(password.length >= 6){
+        //$('.password_length').html('');
+        $('.password_length').html('<p style="color: green;"><i class="fa fa-check-circle-o" aria-hidden="true"> Minimum of 6 characters</i></p>');
+      }else{
+        $('.password_length').html('<p style="font-style: italic;color: grey"><i class="fa fa-times-circle-o" aria-hidden="true"></i>Minimum of 6 characters</p>');
+      }
+
+      if(hasNumber(password)){
+        //$('.password_number').html('');
+        $('.password_number').html('<p style="color: green;"><i class="fa fa-check-circle-o" aria-hidden="true"> Should include at least 1 number.</i></p>');
+      }else{
+        $('.password_number').html('<p style="font-style: italic;color: grey"><i class="fa fa-times-circle-o" aria-hidden="true"></i> Should include at least 1 number.</p>');
+      }
+
+      if(validateCapitalLetters(password)){
+        //$('.password_letter').html('');
+        $('.password_letter').html('<p style="color: green;"><i class="fa fa-check-circle-o" aria-hidden="true"> Should include at least 1 Capital letter.</i></p>');
+      }else{
+        $('.password_letter').html('<p style="font-style: italic;color: grey"><i class="fa fa-times-circle-o" aria-hidden="true"></i>Should include at least 1 Capital letter.</p>');
+      }
+    });
+  });
+
+  $('#user_password').focusout(function(){
+    $('.password_error').hide();
+  });
+
+  $('#user_confirmed_password').focusin(function(){
+    var password = $('#user_password').val();
+    //
+    $(this).keyup(function(){
+      if($(this).val().length > 2){
+        //$('.con_password_error').show();
+        if(password != $(this).val()){
+
+          //$('.password_match').show();
+          //$('.password_match').html('<p style="font-style: italic;color: grey"><i class="fa fa-times-circle-o" aria-hidden="true"></i> Does not match.</p>')
+        }else{
+          $('.password_match').html('');
+          //$('.password_match').html('<p style="color: green;"><i class="fa fa-check-circle-o" aria-hidden="true"> Match</i></p>');
+        }
+      }
+
+    })
+  });
+
+  $('#user_confirmed_password').focusout(function(){
+    $('.con_password_error').hide();
+  });
+
+  function hasNumber(str){
+    var regex = /\d/g;
+    return regex.test(str);
+  }
+
+
+  function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+  function validateCapitalLetters(str){
+    var regex = /[A-Z]/
+    return regex.test(str);
+  }
+
+
+</script>
+
+

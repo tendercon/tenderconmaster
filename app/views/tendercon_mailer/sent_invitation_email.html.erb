@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+  <title> Tendercon| Reset Password</title>
+  <meta http-equiv='Content-Type' content='text/html' charset='utf-8' />
+  <meta content='Elixir' />
+  <meta content='elixir/' name='application-name' />
+  <meta http-equiv='X-UA-Compatible' content='chrome=1'>
+  <meta http-equiv='X-UA-Compatible' content='IE=EmulateIE7, IE=9' />
+  <meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0' />
+  <meta name='apple-mobile-web-app-capable' content='yes' />
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div>
+  <div class="profile_pic">
+    <i class="fa fa-paw fa-5x"></i>
+  </div>
+</div>
+<div>
+  <div>
+    <div style='font-size:14px; color: #000000;width: 900px;'>
+      <h2>Hi, <%= @first_name %></h2>
+      <br>
+      <h3><%= @messages %></h3>
+    </div>
+  </div>
+  <br>
+  <div style='padding-top: 1%'>
+    <p><strong>
+      <a href="http://<%= @root_path %>/invites/registration?id=<%= @user_id%>">
+        <button class="btn btn-primary">Join the team</button>
+      </a>
+    </strong>
+    </p>
+    <br>
+    <p>Tendercon Team</p>
+  </div>
+</div>
+
+
+
+</body>
+</html>

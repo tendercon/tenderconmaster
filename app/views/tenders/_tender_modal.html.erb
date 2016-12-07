@@ -1,0 +1,247 @@
+<div class="upgrade_request ">
+  <% if @tender.present? %>
+          <div id="tender_Modal_<%= @tender.id %>" class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+            <div class="modal-dialog">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <div class="col-sm-24 col-md-14 col-md-offset-6">
+                    <p class="text-center" style="font-size: 20px"><%= @tender.title %></p>
+                  </div>
+                  <div class="row">
+                    <div class="form-group"></div>
+                  </div>
+                </div>
+                <br>
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="container">
+                      <div id="content">
+                        <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                          <li ><a href="#red" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
+                          <li><a href="#orange" data-toggle="tab" id="<%= @tender.id %>">Trades</a></li>
+                          <li><a href="#yellow" data-toggle="tab" id="<%= @tender.id %>">Documents</a></li>
+                          <li class="active"><a href="#green" data-toggle="tab" id="<%= @tender.id %>">Map</a></li>
+                        </ul>
+                        <div id="my-tab-content" class="tab-content">
+                          <div class="row">
+                            <div class="form-group"></div>
+                          </div>
+
+                          <div class="tab-pane" id="red">
+                            <div class="col-md-22">
+                              <div class="col-md-4">
+                                <label>Tender ID</label>
+                              </div>
+
+                              <div class="col-md-18">
+                                <label><%= @tender.tendercon_id %></label>
+                              </div>
+
+                              <div class="col-md-4">
+                                <label>Status</label>
+                              </div>
+
+                              <div class="col-md-18">
+                                <% if @tender.status == '1' %>
+                                    <label>Tendering - Your organization is still tendering for this project.</label>
+                                <% else %>
+                                    <label>Awarded - This tender has been awarded to the Head Contractor </label>
+                                <% end %>
+                              </div>
+
+                              <div class="col-md-4">
+                                <label>Client</label>
+                              </div>
+
+                              <div class="col-md-18">
+                                <label><%= @tender.client %></label>
+                              </div>
+
+                              <div class="col-md-4">
+                                <label>Architect</label>
+                              </div>
+
+                              <div class="col-md-18">
+                                <label><%= @tender.architect %></label>
+                              </div>
+
+                              <div class="col-md-4">
+                                <label>Sector</label>
+                              </div>
+
+                              <div class="col-md-18">
+                                <label><%= get_categoty_name @tender.category_id %></label>
+                              </div>
+
+                              <div class="col-md-4">
+                                <label>Value</label>
+                              </div>
+
+                              <div class="col-md-18">
+                                <label><%= get_value_name @tender.tender_value_id %></label>
+                              </div>
+
+                              <div class="col-md-4">
+                                <label>Description</label>
+                              </div>
+
+                              <div class="col-md-18">
+                                <label><%=  @tender.description %></label>
+                              </div>
+
+
+                              <div class="col-md-4">
+                                <label>Address</label>
+                              </div>
+
+                              <div class="col-md-18">
+                                <label><%=  @tender.address %></label>
+                              </div>
+
+                              <% if (get_tender_sites @tender.id).present? %>
+                                  <% (get_tender_sites @tender.id).each do |a| %>
+                                      <div class="col-md-4">
+                                        <label>Site Inspection</label>
+                                      </div>
+                                      <div class="col-md-18">
+                                        <label><%= a.site_description %></label>|
+                                        <label><%= a.site_date %></label>
+                                      </div>
+                                      <br>
+                                  <% end %>
+                              <% end %>
+                              <div class="col-md-4">
+                                <label>Quote</label>
+                              </div>
+
+                              <div class="col-md-18">
+                                <label><%=  @tender.tender_quote.quote_date %></label>|
+                                <label><%=  @tender.tender_quote.quote_description %></label>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="tab-pane" id="orange">
+                            <div class="col-md-18">
+                              <% @trade_categories.each do |tc|  %> 
+                                  <div class="<%= tc.title %>" id="<%= tc.title %>"> 
+                                    <% if(check_if_categories_has_trade @tender.id,tc.id) %>
+                                        <h1> <%= tc.title %></h1> 
+                                    <% end %>
+                                    <% (get_tender_trades @tender.id).each_with_index do |t,index| %>
+                                        <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                                            <p style="font-size: 12px;font-weight: bold"><%= get_trade_name t.trade_id %></p>
+                                        <% end %>
+                                    <% end %>
+                                  </div> 
+                              <% end %> 
+                            </div>
+                          </div>
+                          <div class="tab-pane" id="yellow">
+                            <div class="col-md-22">
+                              <div class="col-md-24 col-md-13 col-md-offset-0">
+                                <p class="text-center">
+                                  <i class="fa fa-file fa-4x" aria-hidden="true"></i>
+                                </p>
+                              </div>
+                              <br>
+
+                              <% if !@tender.hide_document.present? || @tender.hide_document == '0'  %>
+                                  <div class="col-md-24 col-md-13 col-md-offset-0">
+                                    <p class="text-center" style="font-size: 18px">
+                                      <b>Head Contractor has uploaded documents</b>
+                                    </p>
+                                    <p class="text-center" style="font-size: 16px">
+                                      <a href="<%= "http://"+request.host_with_port+"/assets/tender/#{@tender.tendercon_id}/#{@tender.tendercon_id}.zip" %>">
+                                        Download documents here.
+                                      </a>
+                                    </p>
+                                  </div>
+                              <% else %>
+                                  <div class="col-md-24 col-md-13 col-md-offset-0">
+                                    <p class="text-center" style="font-size: 18px">
+                                      <b>Head Contractor has hidden the documents</b>
+                                    </p>
+                                    <p class="text-center" style="font-size: 16px">
+                                      Documents will be available after your request approved
+                                    </p>
+                                  </div>
+                              <% end %>
+                            </div>
+
+                          </div>
+                          <div class="tab-pane active" id="green">
+                            <input type="hidden"  class="tenders" value="<%= @tender.id %>">
+                            <input type="hidden"  class="add<%= @tender.id %>" value="<%= @tender.address %>">
+                             
+                          </div>
+                          <div id="map_<%= @tender.id %>" style="height:180px;width:570px;"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-group">
+
+                    </div>
+                    <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+
+                      <a href="#!">
+                        <button class=" btn btn-info interested_btn" type="button" id="<%= @tender.id %>" >I AM INTERESTED</button>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+  <% end %>
+
+
+ <input type="hidden" class="tender_id" value="<%= @tender.id %>">
+ <input type="hidden" class="address" value="<%= @tender.address %>">
+</div>
+<script>
+
+  var tender_id = $('tender_id').val();
+  $('#tender_Modal_'+tender_id).modal('show');
+  load_map();
+
+  function load_map(){
+    $.ajax({
+      method: "POST",
+      data: {add:$('.address').val()},
+      url: "/tenders/get_latling"
+    }).done(function (data) {
+      initialize(data,tender_id);
+
+    });
+  }
+
+  function initialize(data,id) {
+
+    var myLatLng = {lat:data.latitude, lng: data.longitude};
+    var mp =  'map_'+id;
+
+    var map = new google.maps.Map(document.getElementById(mp), {
+      zoom: 15,
+      center: myLatLng
+    });
+
+    google.maps.event.addListenerOnce(map, 'idle', function() {
+      google.maps.event.trigger(map, 'resize');
+      map.setCenter(myLatLng);
+    });
+
+
+
+    console.log("TESt");
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map
+    });
+
+  }
+</script>

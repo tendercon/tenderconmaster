@@ -1,0 +1,277 @@
+<% if @documents.present?  %>
+    <% @documents.each do |t| %>
+        <% if !@directory_array.include? t.directory %>
+            <% @directory_array << t.directory %>
+            <tr>
+              <th class="row-header">
+                <a href="#!"  class="directory" id="<%= replace_char_to_string t.directory %>" title="<%= t.directory %>" alt="<%= replace_char_to_string t.directory %>_<%= t.id %>">
+                  <i class="fa fa-chevron-circle-up" aria-hidden="true" id="<%= replace_char_to_string t.directory %>_<%= t.id %>_up" > </i>
+                  <i class="fa fa-chevron-circle-down" aria-hidden="true" id="<%= replace_char_to_string t.directory %>_<%= t.id %>_down"  style="display: none"> </i>
+
+                  <%= t.directory %>
+
+                </a>
+              </th>
+              <th class="row-header"><div><span></span></div></th>
+              <th class="row-header"><div><span></span></div></th>
+              <% if @tender_package_count.present? %>
+                  <% for i in 0..((@tender_package_count + @directory_array_1.uniq.size) - 1) %>
+                      <th class="row-header"></th>
+                  <% end %>
+              <% end %>
+            </tr>
+        <% end %>
+
+        <% if @directory_array.present? %>
+            <% @directory_array.each do |f| %>
+                <% if (document_list_search f,@search,@tender_id ).present? %>
+                    <% (document_list_search f,@search,@tender_id ).each do |a| %>
+                        <% if !@document_array.include? "#{a.document_file_name}_#{f}" %>
+                            <% if f == a.directory %>
+                                <% @document_array << "#{a.document_file_name}_#{f}"  %>
+                                <tr id="demo" class="<%= replace_char_to_string a.directory %>">
+                                  <td id="doc_<%= a.id %>"><%= a.document_file_name %></td>
+                                  <td><input type="checkbox" id="per_field" class="per_field" title="<%= a.id %>"></td>
+                                  <td><input type="checkbox" checked></td>
+                                  <% @package_array.each do |d| %>
+                                      <% if d.to_i > 0 %>
+                                          <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>">
+
+                                            <% if @vals.present? %>
+                                                <% if @vals.include? "#{a.id}_#{d}".to_s %>
+
+                                                    <input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>" checked>
+                                                <% else %>
+                                                    <input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>">
+                                                <% end %>
+                                            <% else %>
+                                                <input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>">
+                                            <% end %>
+                                          </td>
+                                      <% else %>
+                                          <td></td>
+                                      <% end %>
+                                  <% end %>
+                                </tr>
+                            <% end %>
+
+                        <% end %>
+                    <% end %>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+<% end %>
+
+
+
+<script>
+  var last_array = [];
+
+  $('.per_field').change(function(){
+    var id = $(this).attr('title');
+    console.log("id-------->"+id)
+    if($(this).is(':checked')){
+      $('input:checkbox[id="'+id+'"]').prop("checked",true);
+    }else{
+      $('input:checkbox[id="'+id+'"]').prop("checked",false);
+    }
+
+
+  });
+
+  $('input[name *="package"]').change(function(){
+    session_array.push($(this).attr('alt'));
+  });
+
+
+  $('.trade_doc').focusin(function(){
+    $(this).prop('checked',true);
+  });
+
+  $('.package_trade').change(function(){
+    var id = $(this).attr('id');
+    var check = $(this).is(':checked');
+
+    if(check){
+      $('.'+id).each(function () {
+        $(this).prop('checked', true);
+        session_array.push($(this).attr('alt'));
+      })
+    }else{
+      $('.'+id).each(function () {
+        $(this).prop('checked', false);
+        session_array.push($(this).attr('alt'));
+      })
+    }
+  });
+
+  $('.directory').click(function () {
+    var dir = $(this).attr('id');
+    var alt = $(this).attr('alt');
+    console.log("alt:"+alt);
+    if($('#'+alt+"_up").is(":visible")){
+      $('#'+alt+"_up").hide();
+      $('#'+alt+"_down").show();
+    }else{
+      $('#'+alt+"_up").show();
+      $('#'+alt+"_down").hide();
+    }
+    $('.'+dir).each(function () {
+      $(this).toggle();
+    })
+  });
+
+  $('.category').click(function(){
+    var id = $(this).attr('id');
+    var tender_id = $('.tender_id').val();
+    var vals = [];
+    var checked = '<%= @vals %>';
+    var lists = JSON.parse(checked.replace(/&quot;/g,'"'));
+
+
+    for(var i = 0; i < lists.length; i++){
+      vals.push(lists[i]);
+    }
+    $('input[type="checkbox"]').each(function() {
+      if($(this).is(':checked')){
+        if($(this).val() != 'on'){
+          vals.push($(this).val());
+        }
+      }
+    });
+    $.ajax({
+      method: "POST",
+      data : {id:id,tender_id:tender_id,vals:vals},
+      url: "/tenders/filter_by_categories"
+    }).done(function (data) {
+      $('.matrix').html(data);
+    });
+
+  });
+
+  $('.search').click(function(){
+
+    var search = $('.search').val();
+    var tender_id = $('.tender_id').val();
+    var vals = []
+    var checked = '<%= @vals %>';
+    var lists = JSON.parse(checked.replace(/&quot;/g,'"'));
+
+
+    for(var i = 0; i < lists.length; i++){
+      vals.push(lists[i]);
+    }
+
+    $('input[type="checkbox"]').each(function() {
+      if($(this).is(':checked')){
+        if($(this).val() != 'on'){
+          vals.push($(this).val());
+        }
+      }
+    });
+    if(search.length > 1){
+      $.ajax({
+        method: "POST",
+        data : {search:search,tender_id:tender_id,vals:vals},
+        url: "/tenders/search_by_documents"
+      }).done(function (data) {
+        $('.matrix').html(data);
+      });
+    }
+
+
+  });
+  var selected = [];
+  $('#selectable').selectable({
+    //cancel: 'a',
+    delay: 150,
+    start: function(event, ui) {
+      $currentlySelected = $('#selectable');
+
+    },
+    stop: function(event, ui) {
+      var titles = [];
+      var ids = [];
+      $('.ui-selected').each(function () {
+
+        if($(this).attr('alt') != undefined){
+          titles.push($(this).attr('alt'))
+          session_array.push($(this).attr('alt'));
+        }
+      });
+
+      $(document).keypress(function(e) {
+
+        if(e.which == 13) {
+          for (var i = 0; i < titles.length; i++) {
+            $("input[alt='"+titles[i]+"']").prop('checked',true);
+            $("input[alt='"+titles[i]+"']").css({'background-color': ''});
+          }
+          titles = [];
+        }
+      });
+    },
+    selecting: function(event, ui) {
+      $currentlySelected.addClass('ui-selected'); // re-apply ui-selected class to currently selected items
+    },
+    selected: function(event, ui) {
+      selected.push(ui.selected);
+
+      var selected_ids = [];
+      for (var i = 0; i < selected.length; i++) {
+        selected_ids.push(selected[i].id);
+        $('#'+selected[i].id).toggleClass("ui-selectee");
+
+      }
+    }
+  });
+
+  $('#our_table td').hover(function() {
+
+    var row =  $(this).attr('id');
+    var col =  $(this).attr('data-col');
+    $(this).css('background-color','grey');
+    if(parseInt(row) > 0 && parseInt(col) > 0){
+      $('#doc_'+row).css('background-color','grey');
+      $('#'+col).css('background-color','grey');
+    }
+
+  });
+
+  $('#our_table td').on('mouseleave',function(){
+
+
+    var row =  $(this).attr('id');
+    var col =  $(this).attr('data-col');
+    $(this).css('background-color','');
+    if(parseInt(row) > 0 && parseInt(col) > 0){
+      $('#doc_'+row).css('background-color','');
+      $('#'+col).css('background-color','');
+    }
+  });
+  var vals = [];
+  $('.copy').click(function(){
+    var id = $(this).attr('id');
+
+    $('.'+id).each(function(){
+      if($(this).is(':checked')){
+        vals.push($(this).attr('id'));
+      }
+    });
+  });
+
+  $('.paste').click(function(){
+    var id = $(this).attr('id');
+
+    for(var a=0;a < vals.length; a++){
+      session_array.push(vals[a]+"_"+id);
+      $("input[alt='"+vals[a]+'_'+id+"']").prop('checked',true);
+    }
+  });
+
+  $('.update_package').click(function(){
+    $('#edit_tender_trade_Modal').modal('show');
+  });
+
+</script>

@@ -1,0 +1,123 @@
+<!--<div class="col-sm-24 col-md-14 col-md-offset-5 ">
+  <div class="login_div">
+    &lt;!&ndash;<img src="/assets/img-4.jpg" width="30px" class="img-responsive center-block">&ndash;&gt;
+    <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
+    <h1 class="text-center login-title">Log Into Your Tendercon Account</h1>
+    <br>
+    <br>
+    <br>
+    <div class="form-group has-feedback">
+      <% if flash[:error] %>
+        <div class="alert alert-danger open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= @error_alert %>
+          <div class="notice" style="font-size: 14px;"><%= flash[:error].html_safe %></div>
+          <% flash[:error]=nil %>
+        </div>
+      <% end %>
+      <%- if !flash[:notice].nil? %>
+        <div class="alert alert-success open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= @error_alert %>
+          <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
+          <% flash[:notice]=nil %>
+        </div>
+      <%- end %>
+    </div>
+    <%= form_tag(authenticate_users_path, {  :name=> "login",:class=>'form-signin' } )  do %>
+      <input type="hidden" value="<%= params[:url].present? ? params[:url] : '' %>" name="url">
+      <label>EMAIL</label>
+      <input type="text" class="form-control" placeholder="Enter your email" id="email" name="email" required autofocus>
+      <br/>
+      <label>PASSWORD</label>
+      <input type="password" class="form-control" placeholder="Enter your password" id="password" name="password" required>
+      <br/>
+      &lt;!&ndash;<input type="checkbox" name="remeber_me" id="remember_me" /> &nbsp; Remember me?&ndash;&gt;
+      <br/>
+      <button class="btn btn-lg btn-primary btn-block btn-login" type="submit">Log in</button>
+    <% end %>
+  </div>
+  <br/>
+  <a href="<%= forgot_password_users_path %>" class="text-center new-account" role="button" style="text-decoration: none; color: #000000" id="password">Forgot Password?</a>
+  <a href="<%= register_users_path %>" class="text-center new-account" style="text-decoration: none; color: #000000">Create an account </a>
+</div>-->
+
+
+<div>
+  <a class="hiddenanchor" id="signup"></a>
+  <a class="hiddenanchor" id="signin"></a>
+
+  <div class="login_wrapper">
+    <div class="animate form login_form">
+      <section class="login_content">
+        <%= form_tag(authenticate_users_path, {  :name=> "login",:class=>'form-signin' } )  do %>
+          <h1>Login Form</h1>
+          <div>
+            <input type="text" class="form-control" placeholder="Username" id="email" name="email" required="" />
+          </div>
+          <div>
+            <input type="password" class="form-control" placeholder="Password" id="password" name="password" required="" />
+          </div>
+          <div>
+            <!--<a class="btn btn-default submit" >Log in</a>-->
+            <button type="submit" class="btn btn-default submit">Log in</button>
+            <a class="reset_pass" href="#">Lost your password?</a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="separator">
+            <p class="change_link">New to site?
+              <a href="#signup" class="to_register"> Create Account </a>
+            </p>
+
+            <div class="clearfix"></div>
+            <br />
+
+            <div>
+              <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+              <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+            </div>
+          </div>
+        <% end %>
+      </section>
+    </div>
+
+    <div id="register" class="animate form registration_form">
+      <section class="login_content">
+        <form>
+          <h1>Create Account</h1>
+          <div>
+            <input type="text" class="form-control" placeholder="Username" required="" />
+          </div>
+          <div>
+            <input type="email" class="form-control" placeholder="Email" required="" />
+          </div>
+          <div>
+            <input type="password" class="form-control" placeholder="Password" required="" />
+          </div>
+          <div>
+            <a class="btn btn-default submit" href="index.html">Submit</a>
+          </div>
+
+          <div class="clearfix"></div>
+
+          <div class="separator">
+            <p class="change_link">Already a member ?
+              <a href="#signin" class="to_register"> Log in </a>
+            </p>
+
+            <div class="clearfix"></div>
+            <br />
+
+            <div>
+              <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+              <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+            </div>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+</div>
+

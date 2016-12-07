@@ -1,0 +1,631 @@
+
+<!-- END THEME PANEL -->
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+   <div class="row">
+     <div class="col-md-12">
+       <div  data-spy="affix"> </div>
+     </div>
+   </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet light portlet-fit bordered">
+
+
+      <div class="portlet-body bg-dark">
+        <div class="mt-element-step">
+
+          <div class="row step-line">
+            <% if params[:info] == 'true' %>
+                <div class="col-md-2 mt-step-col active">
+                  <div class="mt-step-number bg-dark font-grey">1</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Details</div>
+                </div>
+            <% else %>
+                <div class="col-md-2 mt-step-col done">
+                  <div class="mt-step-number bg-dark font-grey">1</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Details</div>
+                </div>
+            <% end %>
+
+            <% if params[:trades] == 'true' %>
+                <div class="col-md-2 mt-step-col active">
+                  <div class="mt-step-number bg-dark font-grey">2</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
+                </div>
+            <% else %>
+                <div class="col-md-2 mt-step-col done">
+                  <div class="mt-step-number bg-dark font-grey">2</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
+                </div>
+            <% end %>
+
+
+            <% if params[:document] == 'true' %>
+              <div class="col-md-3 mt-step-col active">
+                <div class="mt-step-number bg-dark font-grey">3</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
+              </div>
+            <% else %>
+              <div class="col-md-3 mt-step-col done">
+                <div class="mt-step-number bg-dark font-grey">3</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
+              </div>
+            <% end %>
+
+            <% if params[:package] == 'true' %>
+                <div class="col-md-3 mt-step-col active">
+                  <div class="mt-step-number bg-dark font-grey">4</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
+                </div>
+            <% else %>
+                <div class="col-md-3 mt-step-col done">
+                  <div class="mt-step-number bg-dark font-grey">4</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
+                </div>
+            <% end %>
+
+            <% if params[:invites] == 'true' %>
+                <div class="col-md-2 mt-step-col last">
+                  <div class="mt-step-number bg-dark font-grey">5</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
+                </div>
+            <% else %>
+                <div class="col-md-2 mt-step-col">
+                  <div class="mt-step-number bg-dark font-grey">5</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
+                </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- END : STEPS -->
+
+<div class="row" id="main_trade"> 
+  <!--<div  data-spy="affix"> 
+    <div class="stepwizard" > 
+      <div class="stepwizard-row setup-panel "> 
+        <div class="stepwizard-step"> 
+          <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a> 
+          <p>Details</p> 
+        </div> 
+
+        <div class="stepwizard-step"> 
+          <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a> 
+          <p>Trades</p> 
+        </div> 
+        <div class="stepwizard-step"> 
+          <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a> 
+          <p>Documents</p> 
+        </div> 
+        <div class="stepwizard-step"> 
+          <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a> 
+          <p>Packages</p> 
+        </div> 
+        <div class="stepwizard-step"> 
+          <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a> 
+          <p>Invitations</p> 
+        </div> 
+        <div class="stepwizard-step"> 
+          <a href="#step-6" type="button" class="btn btn-default btn-circle" disabled="disabled">Review</a> 
+          <p>Review</p> 
+        </div> 
+      </div> 
+    </div> 
+  </div> -->
+  <div class="row tender_form"> 
+
+  </div> 
+
+  <% if !params[:trades].present? && !params[:document].present? && !params[:package].present? && !params[:invites].present? && !params[:reviews].present? %>
+      <%= puts "sdksjdkajdakjdkas:#{}" %>
+      <%= render 'info' %>
+  <% end %>
+
+  <% if params[:trades].present? %>
+      <%= render 'trades' %>
+  <% end %>
+
+  <% if params[:document].present? %>
+      <%= render 'document_upload' %>
+  <% end %>
+
+  <% if params[:package].present? %>
+      <%= render 'packages' %>
+  <% end %>
+
+
+  <% if params[:invites].present? %>
+      <%= render 'invites' %>
+  <% end %>
+
+  <% if params[:reviews].present? %>
+      <%= render 'reviews' %>
+  <% end %>
+</div>
+
+<div class="add_file">
+  <div id="add_file_Modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close rejected_close" data-dismiss="modal">&times;</button>
+          <div class="col-md-12">
+            <h2 class="text-center" style="font-size: 18px;color: black">Add Files</h2>
+          </div>
+          <div class="row">
+            <div class="form-group" >
+
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="modal-body">
+          <div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
+            <div class="row">
+
+              <div class="col-md-12">
+
+                <div class="new_drop_zone" id="new_drop_zone">
+                  <div style="height: 40px"></div>
+                  <p class="text-center">
+                    <i class="fa fa-cloud-upload fa-5x upload " aria-hidden="true"></i>
+                  </p>
+                  <h1 class="text-center">DRAG AND DROP</h1>
+                  <p class="text-center">your files anywhere, or browse</p> 
+                  <div style="background-color: transparent;"> 
+                    <input id="files_input" type="file" style="display: none" name="documents"> 
+                  </div> 
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+
+            </div>
+            <div class="form-group">
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="requested">
+  <% if @documents.present? %>
+    <div id="tender_trade_Modal" class="modal fade col-lg-24"   style="margin-top: 100px;" >
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+              <h2 class="text-center">
+                Select the trades you wish to quote for
+              </h2>
+
+            <div class="row">
+              <div class="form-group"></div>
+            </div>
+          </div>
+          <br>
+          <div class="modal-body">
+            <div class="scroller" style="height:400px" data-always-visible="1" data-rail-visible1="1">
+              <div class="row">
+                <div id="content">
+                  <input type="hidden" value="<%= params[:info_id] %>" class="tender_id">
+                  <% @trade_cats = [] %>
+                  <% @trade_categories.each do |tc|  %> 
+                    <% if @tender_trades.present? %>
+                      <% @tender_trades.each_with_index do |t,index| %>
+                        <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                          <div class="col-md-12"> 
+                            <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                                <% if !@trade_cats.include? tc.title %>
+                                    <% @trade_cats << tc.title %>
+                                    <h1><input type="checkbox"   class=trade_categories checked="checked">  <%= tc.title %></h1> 
+                                <% end %>
+                            <% end %>
+                            <div class="col-md-8">
+                              <% if t.trade_id.present? %>
+                                  <label id="trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class" checked="checked"> <%= get_trade_name t.trade_id %></label> 
+                              <% else %>
+                                  <label id="trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
+                              <% end %>
+
+                            </div>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    <% end %> 
+                  <% end %> 
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <a href="/tenders/new_tender?invites=true&info_id=<%= params[:info_id] %>">
+              <button class="btn btn-danger" type="button">SKIP THIS STEP</button>
+            </a>
+
+
+            <a href="#!">
+              <% if (get_tender_trades params[:info_id]).present? %>
+                  <button class="btn btn-info create_package" type="button">CREATE PACKAGES</button>
+              <% else %>
+                  <button class="btn btn-info create_package" type="button" disabled>CREATE PACKAGES</button>
+              <% end %>
+
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<div class="edit_package">
+  <% if @documents.present? %>
+    <div id="edit_tender_trade_Modal" class="modal fade col-lg-24"   style="margin-top: 100px;" >
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content col-md-24">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            <p class="text-center" style="font-size: 20px">
+              Select the trades you like to create package.
+            </p>
+
+            <div class="row">
+              <div class="form-group"></div>
+            </div>
+          </div>
+          <br>
+          <div class="modal-body">
+            <div class="row">
+              <div class="container">
+                <div id="content">
+                  <input type="hidden" value="<%= params[:info_id] %>" class="tender_id">
+                  <% @trade_cats = [] %>
+                  <% @trade_categories.each do |tc|  %> 
+                    <% if @tender_trades.present? %>
+                      <% @tender_trades.uniq.each_with_index do |t,index| %>
+                        <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                          <div class="row">
+                            <div class="col-md-24"> 
+                              <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                                <% if !@trade_cats.include? tc.title %>
+                                  <% @trade_cats << tc.title %>
+                                  <h1> <%= tc.title %></h1> 
+                                <% end %>
+                              <% end %>
+                              <div class="col-md-8">
+                                <% if @package_array.present? %>
+                                  <% if @package_array.include? t.trade_id %>
+                                    <label id="trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="edit_trade_class" id="<%= t.trade_id %>" checked> <%= get_trade_name t.trade_id %></label> 
+                                  <% else %>
+                                    <label id="trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="edit_trade_class" id="<%= t.trade_id %>"> <%= get_trade_name t.trade_id %></label> 
+                                  <% end %>
+                                <% else %>
+                                  <label id="trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="edit_trade_class" id="<%= t.trade_id %>"> <%= get_trade_name t.trade_id %></label> 
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    <% end %> 
+                  <% end %> 
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success update_package_btn" data-dismiss="modal">Update Trades</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+
+<input type="hidden" class="step6" value="<%= params[:reviews] %>">
+<input type="hidden" class="step5" value="<%= params[:invites] %>">
+<input type="hidden" class="step4" value="<%= params[:package] %>">
+<input type="hidden" class="step3" value="<%= params[:document] %>">
+<input type="hidden" class="step2" value="<%= params[:trades] %>">
+<input type="hidden" class="step1" value="<%= params[:info] %>">
+<input type="hidden" class="tender_id" value="<%= params[:info_id] %>">
+<input type="hidden" class="cmd" value="<%= params[:cmd] %>">
+<input type="hidden" class="package" value="<%= @documents.present? ? 'packages' : nil %>">
+<input type="hidden" class="new_package" value="<%= params[:new_package] %>">
+
+   
+<script>
+
+  var pack = $('.package').val();
+  var step4 = $('.step4').val();
+  var cmd = $('.cmd').val();
+  //update_folder_lists();
+
+  $(document).ready(function(){
+    if(step4.length > 0){
+      var new_package = $('.new_package').val();
+      if(pack == 'packages' && new_package.length == 0 && cmd.length <= 0){
+        $('#tender_trade_Modal').modal('show');
+      }
+    }
+
+    $('.new_drop_zone').click(function(){
+      $('.file_upload_filed').click();
+    });
+
+    $('.edit_trade_class').change(function(){
+      var tender_id = $('.tender_id').val();
+      var id = $(this).val();
+      if($(this).is(':checked') == false){
+        $(this).prop('checked',false);
+      }
+
+      $.ajax({
+        method: "POST",
+        data : {tender_id:tender_id,trade_id:id},
+        url: "/tenders/search_document_package"
+      }).done(function (data) {
+        if(data.state == 'invalid'){
+          if(confirm('Are you sure you want to remove this trade? This trade have '+data.cnt+' allocated documents.')){
+            $("#"+data.trade_id).prop('checked',false);
+          }else{
+            $("input[value='"+ data.trade_id +"']").prop('checked',true);
+          }
+        }
+      });
+    });
+
+    $('.update_package_btn').click(function () {
+      var tender_id = $('.tender_id').val();
+      var trade_ids = [];
+      $('.edit_trade_class').each(function () {
+        if($(this).prop('checked')){
+          trade_ids.push($(this).val());
+        }
+      });
+
+      $.ajax({
+        method: "POST",
+        data : {tender_id:tender_id,ids:trade_ids},
+        url: "/tenders/update_package_trades"
+      }).done(function (data) {
+        if(data.state == 'valid'){
+          window.location.href = 'new_tender?package=true&info_id='+tender_id+'&cmd=edit'
+        }
+      });
+    });
+
+    $('.trade_class').click(function(){
+      var ids = []
+      $('.trade_class').each(function () {
+        if ($(this).is(':checked')){
+          ids.push($(this).val());
+        }
+      });
+
+      if(ids.length > 0){
+        $('.create_package').prop('disabled',false);
+      }else{
+        $('.create_package').prop('disabled',true);
+      }
+    });
+
+
+    $('.create_package').click(function () {
+      var tender_id = $('.tender_id').val();
+      var ids = []
+      $('.trade_class').each(function () {
+        if ($(this).is(':checked')){
+          ids.push($(this).val());
+        }
+      });
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id,ids:ids},
+        url: "/tenders/create_package"
+      }).done(function (data) {
+        window.location.href = '/tenders/new_tender?package=true&info_id='+data.tender_id+'&new_package=true'
+      });
+    })
+
+
+    $('.publish_terms').click(function(){
+      var val = $(this).is(':checked');
+
+      if(val){
+        $('.publish_btn').prop('disabled',false);
+      }else{
+        $('.publish_btn').prop('disabled',true);
+      }
+    });
+
+
+
+    // Tender Details  
+    var navListItems = $('div.setup-panel div a'),
+        allWells = $('.setup-content'),
+        allNextBtn = $('.nextBtn'),
+        allBackBtn = $('.backBtn');
+    allWells.hide();
+
+    navListItems.click(function (e) {
+      var step3 = $('.step3').val();
+      var step2 = $('.step2').val();
+      var step1 = $('.step1').val();
+      var step4 = $('.step4').val();
+      var step5 = $('.step5').val();
+      var step6 = $('.step6').val();
+      console.log("step3"+step3)
+      e.preventDefault();
+      var $target = $($(this).attr('href')),
+          $item = $(this);
+      console.log($target)
+      if (!$item.hasClass('disabled')) {
+        navListItems.removeClass('btn-primary').addClass('btn-default');
+        $item.addClass('btn-primary');
+        allWells.hide();
+        if(step1 == 'true'){
+          $('#step-2').show();
+          $('a[href="#step-2"]').removeClass('btn-primary');
+          $('a[href="#step-3"]').removeClass('btn-primary');
+          $('a[href="#step-4"]').removeClass('btn-primary');
+          $('a[href="#step-5"]').removeClass('btn-primary');
+          $('a[href="#step-6"]').removeClass('btn-primary');
+          $('a[href="#step-1"]').addClass('btn-primary');
+        }else{
+          $target.show();
+        }
+
+        if(step2 == 'true'){
+          $('#step-2').show();
+          $('a[href="#step-1"]').removeClass('btn-primary');
+          $('a[href="#step-3"]').removeClass('btn-primary');
+          $('a[href="#step-4"]').removeClass('btn-primary');
+          $('a[href="#step-5"]').removeClass('btn-primary');
+          $('a[href="#step-6"]').removeClass('btn-primary');
+          $('a[href="#step-2"]').addClass('btn-primary');
+        }else{
+          $target.show();
+        }
+
+        if(step3 == 'true'){
+          $('#step-3').show();
+          $('a[href="#step-1"]').removeClass('btn-primary');
+          $('a[href="#step-2"]').removeClass('btn-primary');
+          $('a[href="#step-4"]').removeClass('btn-primary');
+          $('a[href="#step-5"]').removeClass('btn-primary');
+          $('a[href="#step-6"]').removeClass('btn-primary');
+          $('a[href="#step-3"]').addClass('btn-primary');
+        }else{
+          $target.show();
+        }
+        if(step4 == 'true'){
+          $('#step-4').show();
+          $('a[href="#step-2"]').removeClass('btn-primary');
+          $('a[href="#step-3"]').removeClass('btn-primary');
+          $('a[href="#step-1"]').removeClass('btn-primary');
+          $('a[href="#step-5"]').removeClass('btn-primary');
+          $('a[href="#step-6"]').removeClass('btn-primary');
+          $('a[href="#step-4"]').addClass('btn-primary');
+        }else{
+          $target.show();
+        }
+
+        if(step5 == 'true'){
+          $('#step-5').show();
+          $('a[href="#step-2"]').removeClass('btn-primary');
+          $('a[href="#step-3"]').removeClass('btn-primary');
+          $('a[href="#step-4"]').removeClass('btn-primary');
+          $('a[href="#step-1"]').removeClass('btn-primary');
+          $('a[href="#step-6"]').removeClass('btn-primary');
+          $('a[href="#step-5"]').addClass('btn-primary');
+        }else{
+          $target.show();
+        }
+
+        if(step6 == 'true'){
+          $('#step-5').show();
+          $('a[href="#step-2"]').removeClass('btn-primary');
+          $('a[href="#step-3"]').removeClass('btn-primary');
+          $('a[href="#step-4"]').removeClass('btn-primary');
+          $('a[href="#step-5"]').removeClass('btn-primary');
+          $('a[href="#step-1"]').removeClass('btn-primary');
+          $('a[href="#step-6"]').addClass('btn-primary');
+        }else{
+          $target.show();
+        }
+
+        $target.find('input:eq(0)').focus();
+      }
+    });
+
+    allBackBtn.click(function(){
+      var curStep = $(this).closest(".setup-content").prev(".setup-content"),
+          curStepBtn = curStep.attr("id")
+
+      $('div.setup-panel div a[href="#' + curStepBtn + '"]').click();
+    });
+
+    allNextBtn.click(function(){
+
+      var curStep = $(this).closest(".setup-content"),
+          curStepBtn = curStep.attr("id"),
+          nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+          curInputs = curStep.find("input[type='text'],input[type='url']"),
+          isValid = true;
+
+      $(".form-group").removeClass("has-error");
+
+      for(var i=0; i<curInputs.length; i++){
+        if (!curInputs[i].validity.valid){
+          isValid = false;
+          $(curInputs[i]).closest(".form-group").addClass("has-error");
+        }
+      }
+      if (isValid)
+        nextStepWizard.removeAttr('disabled').trigger('click');
+    });
+    $('div.setup-panel div a.btn-primary').trigger('click');
+
+
+    $('.move_documents').click(function(){
+      var ids = $('.document_ids').val();
+      var new_folder_name = $('.newly_folder').val();
+      var directory = $('#directory').val();
+      var tender_id = $('.tender_id').val();
+      console.log("IDS:"+ids);
+      $.ajax({
+        method: "POST",
+        data: {ids:ids,new_folder_name:new_folder_name,directory:directory,tender_id:tender_id},
+        url: "/tenders/move_files"
+      }).done(function (data) {
+        jQuery('.modal-backdrop').hide();
+        $('body').removeClass('modal-open');
+        $('#remove_file_Modal').modal('hide');
+        //$('.uploaded_docs').html(data);
+        $('.document_div_table').html(data);
+
+      });
+
+
+    });
+  });
+
+</script>
+
