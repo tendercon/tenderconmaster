@@ -16,37 +16,225 @@ OpenTender.delete_all
 TenderTrade.delete_all
 Package.delete_all
 Addenda.delete_all
-User.delete_all
-
-user = User.new
-user.email = 'agile.jjp@gmail.com'
-user.password = "#{Digest::MD5.hexdigest('Admin1234')+Digest::MD5.hexdigest('AdmIn')}"
-user.confirmed_password = "#{Digest::MD5.hexdigest('Admin1234')+Digest::MD5.hexdigest('AdmIn')}"
-user.verified = true
-user.abn = '83959230241'
-user.tendercon_id = 'TDF'
-user.tendercon_key = '6b7270af66672d5229ff52c3f1d87d2821716da691ac2a98db84e794a653707f'
-user.role = 'Head Contractor'
-user.status = nil
-user.first_name = 'Head Contractor'
-user.last_name = 'Admin Head Contractor'
-user.save
-puts "HASH ------->#{Digest::MD5.hexdigest('Admin1234')+Digest::MD5.hexdigest('AdmIn')}"
-user1 = User.new
-user1.email = 'joe_dhay@yahoo.com'
-user1.password = "#{Digest::MD5.hexdigest('Admin1234')+Digest::MD5.hexdigest('AdmIn')}"
-user1.confirmed_password = "#{Digest::MD5.hexdigest('Admin1234')+Digest::MD5.hexdigest('AdmIn')}"
-user1.verified = true
-user1.abn = '83959230242'
-user1.tendercon_id = 'TDV'
-user1.status = nil
-user1.tendercon_key = '6b7270af66672d5229ff52c3f1d87d2821716da691ac2a98db84e794a653707f'
-user1.role = 'Sub Contractor'
-user1.first_name = 'Sub Contractor'
-user1.last_name = 'Admin Sub Contractor'
-user1.save
 
 
-users = User.all
-puts "USERS ============> #{users.inspect}"
+for i in 0..1997
+  characters = ('A'..'Z').to_a
+
+  new_code = (0..2).map{characters.sample}.join
+
+  puts new_code
+
+  tendercon_code = TenderconCode.where(:name => new_code).first
+
+  puts tendercon_code.inspect
+
+  if !tendercon_code.present?
+
+    tendercon = TenderconCode.new
+    tendercon.name = new_code
+    tendercon.save
+
+  end
+
+end
+
+
+
+['Architect','Construction Manager','Contract Administrator','Director','Engineer','Estimating Manager',
+'Estimator','Project Manager','Site Manager','Surveyor'].each do |t|
+  position = Position.new
+  position.title = t
+  position.save
+
+end
+
+
+
+['0900-0930','0930-1000','1000-1030','1030-1100','1100-1130','1130-1200','1200-1230','1230-1300','1300-1330',
+'1330-1400','1400-1430','1430-1500','1500-1530','1530-1600','1600-1630','1630-1700','1700-1730','1730-1800',
+'1800-1830','1830-1900'].each do |t|
+  time = TimeAvailability.new
+  time.availability = t
+  time.save
+end
+
+['Asbestos','Civil Works','Asphalt Roads & Driveways','Cranes','Demolition','Earthworks','Scaffold','Shoring','Shotcrete','Building Cleaners','Fencing',
+'Hoarding','Awnings','Bricklayers','Blocklayers','Carpentry','Concrete','Concrete Cutting','Concrete Repair','Formwork','Light Steel Framing','Piling',
+'Precast Concrete','Reinforcement','Structural Steel','Timber Framing','Timber Trusses','Waterproofing','Swimming Pools','Access Floors','Air Grilles / Louvres',
+'Aluminium Windows','Balustrading','Blinds & Curtains','Carpet','Vinyl','Caulking','Ceilings','Doors & Frames','Double Glazing','Epoxy Floor Coatings','Facade Construction',
+'Glazed Balustrades','Glaziers','Hardware','Insulation','Joinery','Linemarking','Marble / Granite','Metalwork','Painting','Plasterboard Partitions','Paving','Resilient Flooring',
+'Roller Doors','Roof Tiling','Roofing','Sanitary Hardware','Security Screens','Signs / Displays','Solid Plaster / Render','Stainless Steel','Stairs','Tactile Indicators','Tiling',
+'Timber Flooring','Timber Windows','Toilet Partitions','Workstations','Window Film','Operable Walls','Pinboards & Whiteboards','Glazed Partitions','Furniture (Commercial)','Landscaping',
+'Whitegoods','Water Tanks','Skylights','Coolrooms','Access Control','Audiovisual','CCTV','Communications','Electrical Services','Fire Services','Floor Heating','Hydraulic Services','Intercoms',
+'Lift Services','Mechanical Services','Security','Solar Panels'].each do |t|
+
+  trade = Trade.where(:name => t)
+
+  if !trade.present?
+    new_trade = Trade.new
+    new_trade.name = t
+    new_trade.save
+  end
+
+end
+
+Position.delete_all
+
+['Architect','Construction Manager','Contract Administrator','Director','Engineer','Estimating Manager',
+'Estimator','Project Manager','Site Manager','Surveyor'].each do |t|
+  position = Position.new
+  position.title = t
+  position.save
+
+end
+
+# ["Joener's Building","Prime Form Constructions","Ryan Building Services","Sandro Botic Constructions Pty Ltd"].each do |a|
+#   company = Company.where(:name => a).first
+#
+#   if company.present?
+#     Company.where(:id => company.id).destroy_all
+#   end
+# end
+
+['Civil','Commercial','Community','Defence','Education','Environmental','Goverment','Industrial',
+'Infrastructure','Institutional','Medical','Residential','Retail','Aged Care/Retirement','Aviation',
+'Energy and Resources','Sports','Camps and Accommadation','Oil and Gas','Transport','Development'].each do |c|
+  category = Category.new
+  category.name = c
+  category.save
+
+end
+
+
+
+['1K - 10K','10K - 50K','50K - 100K','100K - 250K','250K - 500K','500K - 1M',
+'1M - 5M','5M - 10M','10M - 20M','20M - 50M','50M - 100M','100M - 500M','500M + '].each do |a|
+  tender_value = TenderValue.new
+
+  tender_value.range = a
+  tender_value.save
+end
+
+['Preliminaries','Structural','Architectural','Services'].each do |a|
+  trade_categories = TradeCategory.new
+  trade_categories.title = a
+  trade_categories.save
+end
+
+
+['Asbestos',
+'Civil Works',
+'Asphalt Roads & Driveways',
+'Cranes',
+'Demolition',
+'Earthworks',
+'Scaffold',
+'Shoring',
+'Shotcrete',
+'Building Cleaners',
+'Fencing',
+'Hoarding'].each do |t|
+   Trade.where(:name => t).update_all(:trade_category_id => 1)
+end
+
+
+['Awnings',
+'Bricklayers',
+'Blocklayers',
+'Carpentry',
+'Concrete',
+'Concrete Cutting',
+'Concrete Repair',
+'Formwork',
+'Light Steel Framing',
+'Piling',
+'Precast Concrete',
+'Reinforcement',
+'Structural Steel',
+'Timber Framing',
+'Timber Trusses',
+'Waterproofing',
+'Swimming Pools'
+].each do |t|
+  Trade.where(:name => t).update_all(:trade_category_id => 2)
+end
+
+['Access Floors',
+'Air Grilles / Louvres',
+'Aluminium Windows',
+'Balustrading',
+'Blinds & Curtains',
+'Carpet',
+'Vinyl',
+'Caulking',
+'Ceilings',
+'Doors & Frames',
+'Double Glazing',
+'Epoxy Floor Coatings',
+'Facade Construction',
+'Glazed Balustrades',
+'Glaziers',
+'Hardware',
+'Insulation',
+'Joinery',
+'Linemarking',
+'Marble / Granite',
+'Metalwork',
+'Painting',
+'Plasterboard Partitions',
+'Paving',
+'Resilient Flooring',
+'Roller Doors',
+'Roof Tiling',
+'Roofing',
+'Sanitary Hardware',
+'Security Screens',
+'Signs / Displays',
+'Solid Plaster / Render',
+'Stainless Steel',
+'Stairs',
+'Tactile Indicators',
+'Tiling',
+'Timber Flooring',
+'Timber Windows',
+'Toilet Partitions',
+'Workstations',
+'Window Film',
+'Operable Walls',
+'Pinboards & Whiteboards',
+'Glazed Partitions',
+'Furniture (Commercial)',
+'Landscaping',
+'Whitegoods',
+'Water Tanks',
+'Skylights',
+'Coolrooms'].each do |t|
+  Trade.where(:name => t).update_all(:trade_category_id => 3)
+end
+
+['Access Control',
+'Audiovisual',
+'CCTV',
+'Communications',
+'Electrical Services',
+'Fire Services',
+'Floor Heating',
+'Hydraulic Services',
+'Intercoms',
+'Lift Services',
+'Mechanical Services',
+'Security',
+'Solar Panels'
+].each do |t|
+  Trade.where(:name => t).update_all(:trade_category_id => 4)
+end
+
+['Others'].each do |a|
+  trade_categories = TradeCategory.new
+  trade_categories.title = a
+  trade_categories.save
+end
+
+
 
