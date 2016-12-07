@@ -355,20 +355,25 @@ module TendersHelper
 
   def get_distance tender_id,user_id
     user = User.find(user_id)
-    if user.address.location.present?
-      user_address = Geocoder.coordinates(user.address.location)
-      current_location =  Geokit::LatLng.new(user_address[0],user_address[1])
-      tender = Tender.find(tender_id)
+    if user.address.present?
+      if user.address.location.present?
+        user_address = Geocoder.coordinates(user.address.location)
+        current_location =  Geokit::LatLng.new(user_address[0],user_address[1])
+        tender = Tender.find(tender_id)
 
-      if tender.address.present?
-        tender_location = Geocoder.coordinates(tender.address)
+        if tender.address.present?
+          tender_location = Geocoder.coordinates(tender.address)
 
-        destination = "#{tender_location[0]},#{tender_location[1]}"
-        distance = current_location.distance_to(destination)/1.61
-        return "#{distance.to_i} KM"
+          destination = "#{tender_location[0]},#{tender_location[1]}"
+          distance = current_location.distance_to(destination)/1.61
+          return "#{distance.to_i} KM"
+        else
+          nil
+        end
       else
         nil
       end
+
     else
       nil
     end
