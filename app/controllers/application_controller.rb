@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
         @email_count = EmailNotification.where(:user_id => @user.id).count()
         @user_cnt = User.where(:parent_id => @user.id).count()
         @project_count =  ProjectPortfolio.where(:user_id => @user.id).count()
-        @tenders = Tender.where(:user_id => @user.id)
+        @tenders = Tender.where(:user_id => @user.id,:publish => true)
         @notifs = Notification.where(:user_id => @user.id)
         @notif_count = Notification.where(:user_id => @user.id).count()
         @rfis = Rfi.where(:hc_id => session[:user_logged_id])

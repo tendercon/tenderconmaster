@@ -484,7 +484,7 @@ class TendersController < ApplicationController
 
   def my_tender
     if session[:role] == 'Head Contractor'
-      @tenders = Tender.where(:user_id => session[:user_logged_id])
+      @tenders = Tender.where(:user_id => session[:user_logged_id],:publish => true)
       @trade_categories = TradeCategory.all
     else
       @trade_categories = TradeCategory.all
@@ -497,7 +497,7 @@ class TendersController < ApplicationController
       end
 
       if tender_array.present?
-        @tenders = Tender.where(:id => tender_array)
+        @tenders = Tender.where(:id => tender_array,:publish => true)
         @t_array = tender_array
       else
         @tenders = nil
@@ -1926,15 +1926,18 @@ class TendersController < ApplicationController
 
     if emails.present?
       emails.each_with_index do |n,index|
-        user = User.where(:email => emails[index]).first
-        invite = TenderInvite.new
-        invite.tender_id = tender_id
-        invite.email = emails[index]
-        invite.trade_id = trades[index]
-        if user.present?
-          invite.user_id = user.id
+        if n.present? && trades[index].present?
+          user = User.where(:email => emails[index]).first
+          invite = TenderInvite.new
+          invite.tender_id = tender_id
+          invite.email = emails[index]
+          invite.trade_id = trades[index]
+          if user.present?
+            invite.user_id = user.id
+          end
+          invite.save
         end
-        invite.save
+
       end
     end
 

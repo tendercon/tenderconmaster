@@ -85,7 +85,7 @@
 
 
 <div class="move_file">
-  <div id="remove_file_Modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+  <div id="remove_file_Modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" data-backdrop="false">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
@@ -311,7 +311,7 @@
         data: {ids:ids,new_folder_name:new_folder_name,directory:directory,tender_id:tender_id},
         url: "/tenders/move_files"
       }).done(function (data) {
-        jQuery('.modal-backdrop').hide();
+        //jQuery('.modal-backdrop').hide();
         $('body').removeClass('modal-open');
         $('#remove_file_Modal').modal('hide');
         //$('.uploaded_docs').html(data);

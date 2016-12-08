@@ -2,9 +2,233 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2309/9601/original/ui_alerts_api.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2309/9602/original/ui_bootbox.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2309/9603/original/table_static_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2309/9604/original/ui_blockui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2309/9605/original/octocat-spinner-32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2309/9606/original/github-7779b57edafe155a3aa1b637cecde8ee61b92710fda0c54fdffc9826639a0bdd.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2309/VZZ-2309.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2309/original/table_static_basic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9559/original/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9564/original/Hello.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9565/original/smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9566/original/index.htm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9570/original/vml-radial-gradient.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9571/original/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9572/original/plupload.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9573/original/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9574/original/IMG_3344.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9575/original/AdminTestTestProfileTendercon.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9576/original/octocat-spinner-32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9580/original/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9581/original/RFI-AB-3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9582/original/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9584/original/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9585/original/RFI-AB-3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9586/original/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/9587/original/2C.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/VZZ-2491.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-2491/original/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-3647/9589/original/table_datatables_managed.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-3647/9590/original/table_datatables_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-3647/9591/original/table_datatables_rowreorder.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-3647/9592/original/table_static_basic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-3647/9593/original/ui_alerts_api.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-3647/9594/original/ui_bootbox.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-3647/9595/original/table_static_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-3647/9596/original/ui_blockui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-3647/9597/original/octocat-spinner-32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-3647/9599/original/site-f6ce114ac3bc145f575863b4a6dbdf65e924bccb184fc4d4a4f5a09819b4173d.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-3647/VZZ-3647.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-3647/original/table_datatables_fixedheader.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9559/original/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9563/original/Hello.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9563/original/images/smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9564/original/Hello.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9565/original/smile.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9566/original/index.htm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9570/original/vml-radial-gradient.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9571/original/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9572/original/plupload.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9573/original/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9574/original/IMG_3344.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9575/original/AdminTestTestProfileTendercon.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9576/original/octocat-spinner-32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9577/original/.DS_Store." afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9578/original/.DS_Store." afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9579/original/.DS_Store." afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9580/original/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9581/original/RFI-AB-3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9582/original/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9583/original/.DS_Store." afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9584/original/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9585/original/RFI-AB-3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9586/original/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9587/original/2C.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9588/original/table_datatables_fixedheader.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9589/original/table_datatables_managed.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9590/original/table_datatables_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9591/original/table_datatables_rowreorder.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9592/original/table_static_basic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9593/original/ui_alerts_api.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9594/original/ui_bootbox.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9595/original/table_static_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9596/original/ui_blockui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9597/original/octocat-spinner-32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9599/original/site-f6ce114ac3bc145f575863b4a6dbdf65e924bccb184fc4d4a4f5a09819b4173d.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9600/original/table_static_basic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9601/original/ui_alerts_api.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9602/original/ui_bootbox.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9603/original/table_static_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9604/original/ui_blockui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9605/original/octocat-spinner-32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9606/original/github-7779b57edafe155a3aa1b637cecde8ee61b92710fda0c54fdffc9826639a0bdd.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9607/original/table_static_basic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9608/original/ui_alerts_api.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9609/original/table_static_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9610/original/ui_blockui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9611/original/ui_bootbox.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Audiovisual.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Audiovisual/New Folder/IMG_3344.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Audiovisual/New Folder/index.htm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Audiovisual/New Folder/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Audiovisual/New Folder/vml-radial-gradient.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Audiovisual/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Audiovisual/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Audiovisual/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Audiovisual/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers/Header2/ui_alerts_api.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers/Header3/table_static_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers/Header4/ui_blockui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Carpentry.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Carpentry/Header2/ui_alerts_api.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Carpentry/Header3/table_static_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Carpentry/Header4/ui_blockui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fire Services.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fire Services/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fire Services/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fire Services/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fire Services/SONY REFURB/STRUCTURAL/RFI-AB-3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2309.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2309/dasdas.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2309/dasdas1.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2491.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2491/Audiovisual.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2491/Fire Services.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2491/Hydraulic Services.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2491/Intercoms.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2491/Lift Services.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2491/Piling.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2491/Reinforcement.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2491/Security.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2491/Waterproofing.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2924.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2924/Bricklayers.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-2924/Carpentry.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-3647.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-3647/Security.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-3647/askdjkadjaksdjaskdas.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-3647/ksdjksadjaksdkas.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Hydraulic Services.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Hydraulic Services/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Hydraulic Services/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Hydraulic Services/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Intercoms.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Intercoms/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Intercoms/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Intercoms/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Lift Services.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Lift Services/New Folder/IMG_3344.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Lift Services/New Folder/index.htm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Lift Services/New Folder/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Lift Services/New Folder/vml-radial-gradient.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Lift Services/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Lift Services/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Lift Services/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Piling.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Piling/Header234/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Piling/New Folder/index.htm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Piling/New Folder/vml-radial-gradient.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Piling/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Piling/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Piling/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Piling/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Piling/SONY REFURB/STRUCTURAL/RFI-AB-3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Piling/images/plupload.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Reinforcement.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Reinforcement/Header234/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Reinforcement/New Folder/index.htm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Reinforcement/New Folder/vml-radial-gradient.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Reinforcement/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Reinforcement/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Reinforcement/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Reinforcement/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Reinforcement/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Reinforcement/SONY REFURB/STRUCTURAL/RFI-AB-3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Reinforcement/images/plupload.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/Header1/table_datatables_fixedheader.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/Header2/table_datatables_managed.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/Header3/table_datatables_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/Header4/table_datatables_rowreorder.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/Header5/table_static_basic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/Header6/ui_alerts_api.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/Header7/ui_bootbox.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/Header8/table_static_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/Header9/octocat-spinner-32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/New Folder/IMG_3344.JPG" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/New Folder/index.htm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/New Folder/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/New Folder/site-f6ce114ac3bc145f575863b4a6dbdf65e924bccb184fc4d4a4f5a09819b4173d.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/New Folder/ui_blockui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/New Folder/vml-radial-gradient.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/Header234/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/New Folder/index.htm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/New Folder/vml-radial-gradient.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/SONY REFURB/STRUCTURAL/RFI-AB-3.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/images/plupload.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/askdjkadjaksdjaskdas.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/askdjkadjaksdjaskdas/Header8/table_static_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/askdjkadjaksdjaskdas/Header9/octocat-spinner-32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/askdjkadjaksdjaskdas/New Folder/site-f6ce114ac3bc145f575863b4a6dbdf65e924bccb184fc4d4a4f5a09819b4173d.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/askdjkadjaksdjaskdas/New Folder/ui_blockui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/dasdas.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/dasdas/Header4/github-7779b57edafe155a3aa1b637cecde8ee61b92710fda0c54fdffc9826639a0bdd.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/dasdas/Header4/table_static_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/dasdas/Header5/ui_blockui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/dasdas/New Folder/octocat-spinner-32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/dasdas/New Folder/table_static_basic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/dasdas1.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/dasdas1/Header4/github-7779b57edafe155a3aa1b637cecde8ee61b92710fda0c54fdffc9826639a0bdd.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/dasdas1/Header4/table_static_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/dasdas1/Header5/ui_blockui.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/dasdas1/New Folder/octocat-spinner-32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/dasdas1/New Folder/table_static_basic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/ksdjksadjaksdkas.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/ksdjksadjaksdkas/Header8/table_static_responsive.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/ksdjksadjaksdkas/Header9/octocat-spinner-32.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/ksdjksadjaksdkas/New Folder/site-f6ce114ac3bc145f575863b4a6dbdf65e924bccb184fc4d4a4f5a09819b4173d.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/ksdjksadjaksdkas/New Folder/ui_blockui.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/nav/_sidemenu.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/nav/_sidemenu.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/open_tender.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/open_tender.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/tenders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/tenders_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/_document_upload.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/_document_upload.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/_documents.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/_documents.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/document_upload/_new_ducument_table.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/document_upload/_new_ducument_table.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/new_tender.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/new_tender.html.erb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,31 +254,89 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="invited_tender.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/tenders/invited_tender.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="668">
-              <caret line="51" column="12" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tenders_helper.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/helpers/tenders_helper.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="355" column="18" selection-start-line="355" selection-start-column="6" selection-end-line="355" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_sidemenu.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_sidemenu.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_sidemenu.html.erb">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="158" column="27" selection-start-line="158" selection-start-column="27" selection-end-line="158" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="datatables.min.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/vendors/global/plugins/datatables/datatables.min.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="559">
+              <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_documents.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/tenders/_documents.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="886">
+              <caret line="313" column="10" selection-start-line="313" selection-start-column="10" selection-end-line="313" selection-end-column="10" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_new_ducument_table.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/tenders/document_upload/_new_ducument_table.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="525">
-              <caret line="167" column="29" selection-start-line="167" selection-start-column="29" selection-end-line="167" selection-end-column="29" />
+              <caret line="35" column="86" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tenders_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="421">
+              <caret line="499" column="53" selection-start-line="499" selection-start-column="53" selection-end-line="499" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="new_tender.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/tenders/new_tender.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2073">
+              <caret line="213" column="101" selection-start-line="213" selection-start-column="101" selection-end-line="213" selection-end-column="101" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#5;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="540" column="47" selection-start-line="540" selection-start-column="47" selection-end-line="540" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -63,8 +345,8 @@
       <file leaf-file-name="application_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="50" column="23" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="23" />
+            <state relative-caret-position="196">
+              <caret line="40" column="70" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
               <folding />
             </state>
           </provider>
@@ -94,11 +376,9 @@
         <option value="$PROJECT_DIR$/app/views/layouts/users_layout.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/app/views/tenders/document_upload/_new_added_folder.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tenders/document_upload/_new_ducument_table.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/document_upload/_new_directory_name_table.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_packages.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_search_by_documents.html.erb" />
-        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/app/views/tenders/_invites.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_new_invites.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_reviews.html.erb" />
@@ -112,23 +392,25 @@
         <option value="$PROJECT_DIR$/db/migrate/20161207040716_add_user_id_trades.rb" />
         <option value="$PROJECT_DIR$/app/controllers/trades_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/trades/_new_trade.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/tenders_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_info.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tenders/_document_upload.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tenders/_documents.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/my_tender.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_trades.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/tenders/new_tender.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" />
         <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/helpers/tenders_helper.rb" />
         <option value="$PROJECT_DIR$/app/views/tenders/open_tender.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/nav/_sidemenu.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/tenders_controller.rb" />
+        <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
+        <option value="$PROJECT_DIR$/app/views/tenders/_document_upload.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tenders/document_upload/_new_ducument_table.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tenders/new_tender.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/tenders/_documents.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       </list>
     </option>
   </component>
@@ -141,7 +423,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="724" />
+    <option name="height" value="722" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -168,17 +450,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="RailsProjectView" />
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -194,6 +465,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -240,6 +525,54 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tenders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tenders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="document_upload" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -391,7 +724,18 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="RailsProjectView" />
       <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -621,35 +965,36 @@
       <workItem from="1481030039515" duration="1178000" />
       <workItem from="1481031524365" duration="1994000" />
       <workItem from="1481067237444" duration="23831000" />
-      <workItem from="1481117662102" duration="2039000" />
+      <workItem from="1481117662102" duration="2282000" />
+      <workItem from="1481152690150" duration="2515000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70829000" />
+    <option name="totallyTimeSpent" value="73587000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="724" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1280" height="722" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2956381" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30048466" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -688,13 +1033,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/users/edit_profile.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="70" column="91" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/login.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="156">
@@ -739,13 +1077,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tenders/document_upload/_new_ducument_table.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="130" column="146" selection-start-line="130" selection-start-column="100" selection-end-line="130" selection-end-column="146" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tenders/_search_by_documents.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -757,13 +1088,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="51" column="1" selection-start-line="51" selection-start-column="1" selection-end-line="51" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -795,13 +1119,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tenders/document_upload/_new_added_folder.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="72" column="15" selection-start-line="44" selection-start-column="2" selection-end-line="72" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tenders/_new_site.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -828,13 +1145,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="561">
           <caret line="78" column="10" selection-start-line="78" selection-start-column="10" selection-end-line="78" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tenders/document_upload/_new_directory_name_table.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="34" column="9" selection-start-line="9" selection-start-column="0" selection-end-line="34" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -896,28 +1206,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tenders/_documents.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tenders/_document_upload.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="68" column="6" selection-start-line="68" selection-start-column="6" selection-end-line="68" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="1304" column="62" selection-start-line="1304" selection-start-column="62" selection-end-line="1304" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/trades_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-79">
@@ -925,19 +1213,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tenders/new_tender.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="37" selection-start-line="6" selection-start-column="37" selection-end-line="6" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4560">
           <caret line="304" column="42" selection-start-line="304" selection-start-column="42" selection-end-line="304" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -952,7 +1231,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -960,14 +1238,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
           <caret line="48" column="37" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8100">
-          <caret line="540" column="55" selection-start-line="540" selection-start-column="55" selection-end-line="540" selection-end-column="55" />
           <folding />
         </state>
       </provider>
@@ -983,9 +1253,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
           <caret line="110" column="8" selection-start-line="110" selection-start-column="7" selection-end-line="110" selection-end-column="7" />
-          <folding>
-            <marker date="1481097602000" expanded="true" signature="5701:5712" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -993,7 +1260,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1007,7 +1273,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/helpers/tenders_helper.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
+        <state relative-caret-position="5325">
           <caret line="355" column="18" selection-start-line="355" selection-start-column="6" selection-end-line="355" selection-end-column="18" />
           <folding />
         </state>
@@ -1017,7 +1283,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="536">
           <caret line="874" column="9" selection-start-line="874" selection-start-column="9" selection-end-line="874" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1031,24 +1296,115 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tenders/invited_tender.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="668">
+        <state relative-caret-position="765">
           <caret line="51" column="12" selection-start-line="51" selection-start-column="11" selection-end-line="51" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="50" column="23" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_sidemenu.html.erb">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="158" column="27" selection-start-line="158" selection-start-column="27" selection-end-line="158" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/vendors/global/plugins/datatables/datatables.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="499" column="53" selection-start-line="499" selection-start-column="53" selection-end-line="499" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="559">
+          <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tenders/document_upload/_new_added_folder.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="63" column="62" selection-start-line="63" selection-start-column="62" selection-end-line="63" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tenders/document_upload/_new_directory_name_table.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="86" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tenders/new_tender.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2073">
+          <caret line="213" column="101" selection-start-line="213" selection-start-column="101" selection-end-line="213" selection-end-column="101" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#3;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#5;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tenders/_document_upload.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="214" column="42" selection-start-line="214" selection-start-column="37" selection-end-line="214" selection-end-column="42" />
+          <folding>
+            <marker date="1481161136000" expanded="true" signature="6324:6351" ph="..." />
+            <marker date="1481161136000" expanded="true" signature="7073:7100" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tenders/_documents.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="886">
+          <caret line="313" column="10" selection-start-line="313" selection-start-column="10" selection-end-line="313" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tenders/document_upload/_new_ducument_table.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
-          <caret line="167" column="29" selection-start-line="167" selection-start-column="29" selection-end-line="167" selection-end-column="29" />
+          <caret line="35" column="86" selection-start-line="35" selection-start-column="15" selection-end-line="35" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="40" column="70" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="540" column="47" selection-start-line="540" selection-start-column="47" selection-end-line="540" selection-end-column="47" />
           <folding />
         </state>
       </provider>
