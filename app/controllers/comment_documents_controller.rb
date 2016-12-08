@@ -1,5 +1,5 @@
 class CommentDocumentsController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
   def create_comment_document
     tender = Tender.find(params[:tender_id])
     @comment_document = CommentDocument.new

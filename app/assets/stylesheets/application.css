@@ -38,6 +38,17 @@
     color: #000000;
 }
 
+.addenda_dropzone{
+    height: 300px;
+    border: 2px dashed #cccccc;
+    text-align: center;
+}
+
+.addenda_dropzone.dragover{
+    border-color: #000000;
+    color: #000000;
+}
+
 .invite_dropzone{
     height: 300px;
     border: 2px dashed #cccccc;
@@ -52,5 +63,5 @@
 }
 
 .modal{
-    margin-left: 300px;
+    margin-left: 150px;
 }

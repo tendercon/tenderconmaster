@@ -1,6 +1,6 @@
 class CalendarsController < ApplicationController
   SCOPES = [ 'openid', 'profile', 'offline_access', 'https://outlook.office.com/mail.read','https://outlook.office.com/calendars.read' ]
-
+  skip_before_action :verify_authenticity_token
   def index
     #begin
       token = get_access_token

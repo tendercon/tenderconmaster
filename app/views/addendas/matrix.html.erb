@@ -1,3 +1,65 @@
+<style>
+  .table-header-rotated td{
+    width: 40px;
+    border-top: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .table-header-rotated th.rotate-45{
+    height: 80px;
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
+    position: relative;
+    vertical-align: bottom;
+    padding: 0;
+    font-size: 12px;
+    line-height: 0.8;
+  }
+
+  .table-header-rotated th.rotate-45 > div{
+    position: relative;
+    top: 0px;
+    left: 40px; /* 80 * tan(45) / 2 = 40 where 80 is the height on the cell and 45 is the transform angle*/
+    height: 100%;
+    -ms-transform:skew(-45deg,0deg);
+    -moz-transform:skew(-45deg,0deg);
+    -webkit-transform:skew(-45deg,0deg);
+    -o-transform:skew(-45deg,0deg);
+    transform:skew(-45deg,0deg);
+    overflow: hidden;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    border-top: 1px solid #dddddd;
+  }
+
+  .table-header-rotated th.rotate-45 span {
+    -ms-transform:skew(45deg,0deg) rotate(315deg);
+    -moz-transform:skew(45deg,0deg) rotate(315deg);
+    -webkit-transform:skew(45deg,0deg) rotate(315deg);
+    -o-transform:skew(45deg,0deg) rotate(315deg);
+    transform:skew(45deg,0deg) rotate(315deg);
+    position: absolute;
+    bottom: 30px; /* 40 cos(45) = 28 with an additional 2px margin*/
+    left: -25px; /*Because it looked good, but there is probably a mathematical link here as well*/
+    display: inline-block;
+  // width: 100%;
+    width: 85px; /* 80 / cos(45) - 40 cos (45) = 85 where 80 is the height of the cell, 40 the width of the cell and 45 the transform angle*/
+    text-align: left;
+  // white-space: nowrap; /*whether to display in one line or not*/
+  }
+
+  table td.highlighted {
+    background-color:#999;
+  }
+
+  table td.ui-selected {
+    background-color: lightgrey;
+  }
+</style>
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -13,13 +75,13 @@
 </ol>
 
 <%= form_tag(create_partitions_tenders_path, :html => { :multipart => true }) do |f| %> 
-    <div class="row setup-content" id="step-4"> 
+    <div class="row"> 
       <input type="hidden" name="tender_id" class="tender_id" value="<%= @tender.id %>">
       <input type="hidden" name="addenda" class="addenda" value="<%= @addenda.id %>">
-      <div class="col-xs-24 matrix">  
+      <div class="col-md-12 matrix">  
 
         <div class="row">
-          <div class="col-md-20">
+          <div class="col-md-12">
             <div class="scrollable-table">
               <table class="table table-header-rotated" id="our_table">
                 <thead>
@@ -290,244 +352,216 @@
 
 
 <script>
-  var last_array = [];
-
-  $('.per_field').change(function(){
-    var id = $(this).attr('title');
-    console.log("id-------->"+id)
-    if($(this).is(':checked')){
-      $('input:checkbox[id="'+id+'"]').prop("checked",true);
-    }else{
-      $('input:checkbox[id="'+id+'"]').prop("checked",false);
-    }
-
-
-  });
-
-
-  $('.undo').click(function(){
-
-
-    $.each(session_array, function(i, el){
-      if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
-    });
-    if(uniqueNames.length > 5){
-      last_array = uniqueNames.slice(Math.max(uniqueNames.length - 5, 1))
-
-      for(var a = 0; a < last_array.length; a++){
-        if($("input[alt='"+last_array[a]+"']").is(':checked')){
-          $("input[alt='"+last_array[a]+"']").prop('checked',false);
-        }else{
-          $("input[alt='"+last_array[a]+"']").prop('checked',true);
-        }
-      }
-      last_array = [];
-    }else{
-
-      for(var a = 0; a < uniqueNames.length; a++){
-        if($("input[alt='"+uniqueNames[a]+"']").is(':checked')){
-          console.log("uniqueNames[a]:"+uniqueNames[a]);
-          $("input[alt='"+uniqueNames[a]+"']").prop('checked',false);
-        }else{
-          $("input[alt='"+uniqueNames[a]+"']").prop('checked',true);
-        }
-      }
-      uniqueNames = [];
-    }
-  });
-
-  $('input[name *="package"]').change(function(){
-    session_array.push($(this).attr('alt'));
-  });
-
-  $('.trade_doc').focusin(function(){
-    $(this).prop('checked',true);
-
-  });
-
-  $('.directory').click(function () {
-    var dir = $(this).attr('id');
-    $('.'+dir).each(function () {
-      $(this).toggle();
-    })
-  });
-
-  $('.package_trade').change(function(){
-    var id = $(this).attr('id');
-    var check = $(this).is(':checked');
-
-    if(check){
-      $('.'+id).each(function () {
-        $(this).prop('checked', true);
-        session_array.push($(this).attr('alt'));
-      })
-    }else{
-      $('.'+id).each(function () {
-        $(this).prop('checked', false);
-        session_array.push($(this).attr('alt'));
-      })
-    }
-  });
-
-  $('.category').click(function(){
-    var id = $(this).attr('id');
-    var tender_id = $('.tender_id').val();
-    var vals = []
-    $('input[type="checkbox"]').each(function() {
+  $(document).ready(function(){
+    var last_array = [];
+    var session_array = []
+    $('.per_field').change(function(){
+      var id = $(this).attr('title');
+      console.log("id-------->"+id)
       if($(this).is(':checked')){
-        if($(this).val() != 'on'){
-          vals.push($(this).val());
-        }
+        $('input:checkbox[id="'+id+'"]').click();
+        $('input:checkbox[id="'+id+'"]').prop("checked",true);
+      }else{
+        $('input:checkbox[id="'+id+'"]').click();
+        $('input:checkbox[id="'+id+'"]').prop("checked",false);
       }
     });
 
-    $.ajax({
-      method: "POST",
-      data : {id:id,tender_id:tender_id,vals:vals},
-      url: "/tenders/filter_by_categories"
-    }).done(function (data) {
-      //$('#selectable').html('');
-      $('.matrix').html(data);
+
+
+    $('input[name *="package"]').change(function(){
+      session_array.push($(this).attr('alt'));
     });
 
-  });
+    $('.trade_doc').focusin(function(){
+      $(this).prop('checked',true);
 
-  $('.search').keyup(function(){
-    var search = $('.search').val();
-    var tender_id = $('.tender_id').val();
-    var vals = []
-    $('input[type="checkbox"]').each(function() {
-      if($(this).is(':checked')){
-        if($(this).val() != 'on'){
-          vals.push($(this).val());
-        }
-      }
     });
-    console.log("vals:------------>"+vals);
-    if(search.length > 1){
-      $.ajax({
-        method: "POST",
-        data : {search:search,tender_id:tender_id,vals:vals},
-        url: "/tenders/search_by_documents"
-      }).done(function (data) {
-        $('#selectable').html('');
-        $('#selectable').html(data);
-        //$('.matrix').html(data);
-      });
-    }else{
-      $.ajax({
-        method: "POST",
-        data : {search:search,tender_id:tender_id,vals:vals},
-        url: "/tenders/search_by_documents"
-      }).done(function (data) {
-        $('#selectable').html('');
-        $('#selectable').html(data);
-        //$('.matrix').html(data);
-      });
-    }
 
+    $('.directory').click(function () {
+      var dir = $(this).attr('id');
+      $('.'+dir).each(function () {
+        $(this).toggle();
+      })
+    });
 
+    $('.package_trade').change(function(){
+      var id = $(this).attr('id');
+      var check = $(this).is(':checked');
 
-  });
-  var selected = [];
-  $('#selectable').selectable({
-    //cancel: 'a',
-    delay: 150,
-    start: function(event, ui) {
-      $currentlySelected = $('#selectable');
-
-    },
-    stop: function(event, ui) {
-      var titles = [];
-      var ids = [];
-
-      //if($(this).attr('class') == 'ui-selectable ui-selected'){
-
-      $('.ui-selected').each(function () {
-        if($(this).attr('alt') != undefined){
-          titles.push($(this).attr('alt'));
+      if(check){
+        $('.'+id).each(function () {
+          $(this).click();
+          $(this).prop('checked', true);
           session_array.push($(this).attr('alt'));
-        }
-      });
-
-      $(document).keypress(function(e) {
-
-        if(e.which == 13) {
-          for (var i = 0; i < titles.length; i++) {
-            $("input[alt='"+titles[i]+"']").prop('checked',true);
-            $("input[alt='"+titles[i]+"']").css({'background-color': ''});
-          }
-
-          titles = [];
-
-        }
-      });
-    },
-    selecting: function(event, ui) {
-      $currentlySelected.addClass('ui-selected');
-
-
-    },
-    selected: function(event, ui) {
-      selected.push(ui.selected);
-
-      var selected_ids = [];
-      for (var i = 0; i < selected.length; i++) {
-        selected_ids.push(selected[i].id);
-        $('#'+selected[i].id).toggleClass("ui-selectee");
-
-      }
-    }
-  });
-
-  $('#our_table td').hover(function() {
-
-    var row =  $(this).attr('id');
-    var col =  $(this).attr('data-col');
-    $(this).css('background-color','grey');
-    if(parseInt(row) > 0 && parseInt(col) > 0){
-      $('#doc_'+row).css('background-color','grey');
-      $('#'+col).css('background-color','grey');
-    }
-
-  });
-
-  $('#our_table td').on('mouseleave',function(){
-
-
-    var row =  $(this).attr('id');
-    var col =  $(this).attr('data-col');
-    $(this).css('background-color','');
-    if(parseInt(row) > 0 && parseInt(col) > 0){
-      $('#doc_'+row).css('background-color','');
-      $('#'+col).css('background-color','');
-    }
-  });
-  var vals = [];
-  $('.copy').click(function(){
-    var id = $(this).attr('id');
-
-    $('.'+id).each(function(){
-      if($(this).is(':checked')){
-        vals.push($(this).attr('id'));
+        })
+      }else{
+        $('.'+id).each(function () {
+          $(this).click();
+          $(this).prop('checked', false);
+          session_array.push($(this).attr('alt'));
+        })
       }
     });
+
+    $('.category').click(function(){
+      var id = $(this).attr('id');
+      var tender_id = $('.tender_id').val();
+      var vals = []
+      $('input[type="checkbox"]').each(function() {
+        if($(this).is(':checked')){
+          if($(this).val() != 'on'){
+            vals.push($(this).val());
+          }
+        }
+      });
+
+      $.ajax({
+        method: "POST",
+        data : {id:id,tender_id:tender_id,vals:vals},
+        url: "/tenders/filter_by_categories"
+      }).done(function (data) {
+        //$('#selectable').html('');
+        $('.matrix').html(data);
+      });
+
+    });
+
+    $('.search').keyup(function(){
+      var search = $('.search').val();
+      var tender_id = $('.tender_id').val();
+      var vals = []
+      $('input[type="checkbox"]').each(function() {
+        if($(this).is(':checked')){
+          if($(this).val() != 'on'){
+            vals.push($(this).val());
+          }
+        }
+      });
+      console.log("vals:------------>"+vals);
+      if(search.length > 1){
+        $.ajax({
+          method: "POST",
+          data : {search:search,tender_id:tender_id,vals:vals},
+          url: "/tenders/search_by_documents"
+        }).done(function (data) {
+          $('#selectable').html('');
+          $('#selectable').html(data);
+          //$('.matrix').html(data);
+        });
+      }else{
+        $.ajax({
+          method: "POST",
+          data : {search:search,tender_id:tender_id,vals:vals},
+          url: "/tenders/search_by_documents"
+        }).done(function (data) {
+          $('#selectable').html('');
+          $('#selectable').html(data);
+          //$('.matrix').html(data);
+        });
+      }
+
+
+
+    });
+    var selected = [];
+    $('#selectable').selectable({
+      //cancel: 'a',
+      delay: 150,
+      start: function(event, ui) {
+        $currentlySelected = $('#selectable');
+
+      },
+      stop: function(event, ui) {
+        var titles = [];
+        var ids = [];
+
+        //if($(this).attr('class') == 'ui-selectable ui-selected'){
+
+        $('.ui-selected').each(function () {
+          if($(this).attr('alt') != undefined){
+            titles.push($(this).attr('alt'));
+            session_array.push($(this).attr('alt'));
+          }
+        });
+
+        $(document).keypress(function(e) {
+
+          if(e.which == 13) {
+            for (var i = 0; i < titles.length; i++) {
+              $("input[alt='"+titles[i]+"']").click();
+              $("input[alt='"+titles[i]+"']").prop('checked',false);
+              $("input[alt='"+titles[i]+"']").css({'background-color': ''});
+            }
+
+            titles = [];
+
+          }
+        });
+      },
+      selecting: function(event, ui) {
+        $currentlySelected.addClass('ui-selected');
+
+
+      },
+      selected: function(event, ui) {
+        selected.push(ui.selected);
+
+        var selected_ids = [];
+        for (var i = 0; i < selected.length; i++) {
+          selected_ids.push(selected[i].id);
+          $('#'+selected[i].id).toggleClass("ui-selectee");
+
+        }
+      }
+    });
+
+    $('#our_table td').hover(function() {
+
+      var row =  $(this).attr('id');
+      var col =  $(this).attr('data-col');
+      $(this).css('background-color','grey');
+      if(parseInt(row) > 0 && parseInt(col) > 0){
+        $('#doc_'+row).css('background-color','grey');
+        $('#'+col).css('background-color','grey');
+      }
+
+    });
+
+    $('#our_table td').on('mouseleave',function(){
+
+
+      var row =  $(this).attr('id');
+      var col =  $(this).attr('data-col');
+      $(this).css('background-color','');
+      if(parseInt(row) > 0 && parseInt(col) > 0){
+        $('#doc_'+row).css('background-color','');
+        $('#'+col).css('background-color','');
+      }
+    });
+    var vals = [];
+    $('.copy').click(function(){
+      var id = $(this).attr('id');
+
+      $('.'+id).each(function(){
+        if($(this).is(':checked')){
+          vals.push($(this).attr('id'));
+        }
+      });
+    });
+
+    $('.paste').click(function(){
+      var id = $(this).attr('id');
+
+      for(var a=0;a < vals.length; a++){
+        session_array.push(vals[a]+"_"+id);
+        $("input[alt='"+vals[a]+'_'+id+"']").prop('checked',true);
+      }
+    });
+
+    $('.update_package').click(function(){
+      $('#edit_tender_trade_Modal').modal('show');
+    });
   });
-
-  $('.paste').click(function(){
-    var id = $(this).attr('id');
-
-    for(var a=0;a < vals.length; a++){
-      session_array.push(vals[a]+"_"+id);
-      $("input[alt='"+vals[a]+'_'+id+"']").prop('checked',true);
-    }
-  });
-
-  $('.update_package').click(function(){
-    $('#edit_tender_trade_Modal').modal('show');
-  });
-
-
-
 </script>
 

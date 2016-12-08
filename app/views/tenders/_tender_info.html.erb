@@ -10,71 +10,70 @@
 <% end %>
 
 
-<div class="col-md-22">
-
-  <label>Trades <i class="fa fa-question-circle" aria-hidden="true" style="color: green"></i></label>
-  <% if session[:role] == 'Sub Contractor' %>
-    <p>Status of the trades you have applied to tender for</p>
-  <% end %>
-  <div class="trade_div">
-    <table  class="table table-bordered">
-      <tbody>
-      <% if session[:role] == 'Sub Contractor' %>
-        <% if (get_tender_request @tender.id,session[:user_logged_id]).present? %>
-          <% (get_tender_request @tender.id,session[:user_logged_id]).each do |a| %>
-            <tr>
-              <td>
-                <label><%= get_trade_name a.trade_id %></label>
-              </td>
-              <% if a.status == 'approved' %>
-                  <td><button class="btn btn-success">Tendering</button></td>
-              <% elsif a.status == 'declined' %>
-                  <td><button class="btn btn-danger">Declined</button></td>
-              <% else %>
-                  <td><button class="btn btn-warning">Pending</button></td>
-              <% end %>
-            </tr>
-          <% end %>
-        <% end %>
-
-        <% if (get_tender_invite_status @tender.id,session[:user_logged_id]).present? %>
-          <% (get_tender_invite_status @tender.id,session[:user_logged_id]).each do |a| %>
-              <tr>
-                <td>
-                  <label><%= get_trade_name a.trade_id %></label>
-                </td>
-                <% if a.status == 'rejected' %>
-                    <td><button class="btn btn-danger">Invite Declined</button></td>
-                <% else %>
-                    <td><button class="btn btn-warning">Invite Pending</button></td>
+<div class="row">
+  <div class="col-md-12">
+    <label>Trades <i class="fa fa-question-circle" aria-hidden="true" style="color: green"></i></label>
+    <% if session[:role] == 'Sub Contractor' %>
+        <p>Status of the trades you have applied to tender for</p>
+    <% end %>
+    <div class="trade_div">
+      <table  class="table table-bordered">
+        <tbody>
+        <% if session[:role] == 'Sub Contractor' %>
+            <% if (get_tender_request @tender.id,session[:user_logged_id]).present? %>
+                <% (get_tender_request @tender.id,session[:user_logged_id]).each do |a| %>
+                    <tr>
+                      <td>
+                        <label><%= get_trade_name a.trade_id %></label>
+                      </td>
+                      <% if a.status == 'approved' %>
+                          <td><button class="btn btn-success">Tendering</button></td>
+                      <% elsif a.status == 'declined' %>
+                          <td><button class="btn btn-danger">Declined</button></td>
+                      <% else %>
+                          <td><button class="btn btn-warning">Pending</button></td>
+                      <% end %>
+                    </tr>
                 <% end %>
-              </tr>
-          <% end %>
+            <% end %>
+
+            <% if (get_tender_invite_status @tender.id,session[:user_logged_id]).present? %>
+                <% (get_tender_invite_status @tender.id,session[:user_logged_id]).each do |a| %>
+                    <tr>
+                      <td>
+                        <label><%= get_trade_name a.trade_id %></label>
+                      </td>
+                      <% if a.status == 'rejected' %>
+                          <td><button class="btn btn-danger">Invite Declined</button></td>
+                      <% else %>
+                          <td><button class="btn btn-warning">Invite Pending</button></td>
+                      <% end %>
+                    </tr>
+                <% end %>
+            <% end %>
         <% end %>
 
-
-      <% end %>
-
-      <% if session[:role] == 'Head Contractor' %>
-        <% if (get_tender_trades @tender.id).present? %>
-          <% (get_tender_trades @tender.id).each do |a| %>
-            <tr>
-              <td>
-                <label><%= get_trade_name a.trade_id %></label>
-              </td>
-            </tr>
-          <% end %>
+        <% if session[:role] == 'Head Contractor' %>
+            <% if (get_tender_trades @tender.id).present? %>
+                <% (get_tender_trades @tender.id).each do |a| %>
+                    <tr>
+                      <td>
+                        <label><%= get_trade_name a.trade_id %></label>
+                      </td>
+                    </tr>
+                <% end %>
+            <% end %>
         <% end %>
-      <% end %>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
+
+    <% if session[:role] == 'Sub Contractor' %>
+        <button class="btn btn-default apply_more_trade">
+          Apply For more Trades
+        </button>
+    <% end %>
   </div>
-
-  <% if session[:role] == 'Sub Contractor' %>
-    <button class="btn btn-default apply_more_trade">
-      Apply For more Trades
-    </button>
-  <% end %>
 </div>
 
 

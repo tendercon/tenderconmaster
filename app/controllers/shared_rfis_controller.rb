@@ -1,5 +1,5 @@
 class SharedRfisController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
   def shared_by_trade
     rfi_id = params[:rfi_id]
     trade_id = params[:trade_id]

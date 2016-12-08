@@ -1,5 +1,5 @@
 class RequestUpgradesController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
   def save_request_upgrade
     user_id = params[:user_id]
     plan = params[:plan]

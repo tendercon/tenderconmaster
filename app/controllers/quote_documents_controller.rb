@@ -1,5 +1,5 @@
 class QuoteDocumentsController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
   def create_document
     tender_id = params[:tender_id]
 

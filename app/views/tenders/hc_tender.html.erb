@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="container">
+  <div class="col-md-12">
     <input type="hidden" class="tender_id" value="<%= @tender.id %>">
-    <div id="content">
+
       <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
         <% if params[:addenda].present? %>
             <li ><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
@@ -25,48 +25,48 @@
           <div class="form-group"></div>
         </div>
         <% if params[:addenda].present? %>
-            <div class="tab-pane  col-md-21" id="info">
+            <div class="tab-pane  col-md-12" id="info">
               <%= render 'tender_info' %>
             </div>
         <% else %>
-            <div class="tab-pane active col-md-21" id="info">
+            <div class="tab-pane active col-md-12" id="info">
               <%= render 'tender_info' %>
             </div>
         <% end %>
 
-        <div class="tab-pane col-md-21" id="sub">
+        <div class="tab-pane col-md-12" id="sub">
           <%#= render 'sub_contractors_quotes' %>
         </div>
 
         <% if params[:addenda].present? %>
-            <div class="tab-pane active col-md-21" id="addenda">
+            <div class="tab-pane active col-md-12" id="addenda">
               <%= render :partial => 'addendas/new_lists', :locals => { :addendas => @addendas,:tender => @tender} %>
             </div>
         <% else %>
-            <div class="tab-pane col-md-21" id="addenda">
+            <div class="tab-pane col-md-12" id="addenda">
 
             </div>
         <% end %>
 
 
-        <div class="tab-pane col-md-21" id="rfi">
+        <div class="tab-pane col-md-12" id="rfi">
 
         </div>
-        <div class="tab-pane  col-md-21" id="document_control">
+        <div class="tab-pane  col-md-12" id="document_control">
           <div class="row>">
             <div class="form-group"></div>
             <br>
             <%= render 'document_control' %>
           </div>
         </div>
-        <div class="tab-pane col-md-21" id="chat">
+        <div class="tab-pane col-md-12" id="chat">
           <%#= render 'tender_chat' %>
         </div>
-        <div class="tab-pane col-md-21" id="quote">
+        <div class="tab-pane col-md-12" id="quote">
 
         </div>
       </div>
-    </div>
+
   </div>
 
   <div class="row">

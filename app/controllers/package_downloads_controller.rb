@@ -1,5 +1,5 @@
 class PackageDownloadsController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
   def save_download
     tender_id = params[:tender_id]
     user_id = params[:user_id]

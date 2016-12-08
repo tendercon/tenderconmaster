@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
   def index
     @tender_id = params[:tender]
     @trade = params[:trade]

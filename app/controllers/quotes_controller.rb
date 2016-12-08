@@ -1,5 +1,5 @@
 class QuotesController < ApplicationController
-
+  skip_before_action :verify_authenticity_token
   def get_latest_quotes
     @tender = Tender.find(params[:tender_id])
     @quote_document = QuoteDocument.new

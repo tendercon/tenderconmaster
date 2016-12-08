@@ -1,8 +1,10 @@
 class AddendasController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
     puts "INDEX"
     @tender = Tender.find(params[:id])
+    TenderDocument.where("user_id = #{session[:user_logged_id]} and addenda_id is null and action_type = 'addenda'").delete_all()
   end
 
   def new
@@ -16,11 +18,20 @@ class AddendasController < ApplicationController
   def create
     subject = params[:addenda][:subject]
     details = params[:addenda][:details]
+    qoute_date = params[:qoute]
+    qoute_time = params[:qoute_time]
+
 
     addenda_id = params[:addenda_id]
     if addenda_id.present?
       Addenda.where(:id => addenda_id).update_all(:subject => subject,:details => details)
       if params[:addenda_type] == 'details'
+        if qoute_date.present? && qoute_time.present?
+          addenda = Addenda.find(addenda_id)
+          new_quote_date = "#{qoute_date} #{(qoute_time[0...-2]).strip}"
+          quote = TenderQuote.where(:tender_id => addenda.tender_id).first
+          TenderQuote.where(:id => quote.id).update_all(:quote_date => new_quote_date,:previous_date => quote.quote_date)
+        end
         redirect_to review_addendas_path(:id => params[:tender_id],:addenda => addenda_id,:addenda_type => 'details')
       else
         redirect_to matrix_addendas_path(:tender_id => params[:tender_id],:addenda => addenda_id,:addenda_type => 'documents')
@@ -36,6 +47,11 @@ class AddendasController < ApplicationController
       if @addenda.save
         Addenda.where(:id => @addenda.id).update_all(:ref_no => @addenda.id)
         if params[:addenda_type] == 'details'
+          if qoute_date.present? && qoute_time.present?
+            new_quote_date = "#{qoute_date} #{(qoute_time[0...-2]).strip}"
+            quote = TenderQuote.where(:tender_id => params[:tender_id]).first
+            TenderQuote.where(:id => quote.id).update_all(:quote_date => new_quote_date,:previous_date => quote.quote_date)
+          end
           redirect_to review_addendas_path(:id => params[:tender_id],:addenda => @addenda,:addenda_type => 'details')
         else
           redirect_to matrix_addendas_path(:tender_id => params[:tender_id],:addenda => @addenda)
