@@ -60,100 +60,24 @@
     background-color: lightgrey;
   }
 </style>
-
-<div class="row" style="position:fixed;z-index: 1;">
-  <div class="col-md-11" style="background-color: whitesmoke;border-radius:10px;margin-top: -25px">
-    <div class="container" >
-      <div class="mt-element-step" >
-        <div class="row step-line">
-          <% if params[:details] == 'true' %>
-              <div class="col-md-2 mt-step-col active">
-                <div class="mt-step-number bg-dark font-grey">1</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Details</div>
-              </div>
-          <% else %>
-              <div class="col-md-2 mt-step-col done">
-                <div class="mt-step-number bg-dark font-grey">1</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Details</div>
-              </div>
-          <% end %>
-
-          <% if params[:addenda_type] == 'details' %>
-              <% if params[:updates] == 'true' %>
-                  <div class="col-md-2 mt-step-col active">
-                    <div class="mt-step-number bg-dark font-grey">2</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Updates</div>
-                  </div>
-              <% else %>
-                  <div class="col-md-2 mt-step-col done">
-                    <div class="mt-step-number bg-dark font-grey">2</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Updates</div>
-                  </div>
-              <% end %>
-          <% else %>
-              <% if params[:documents] == 'true' %>
-                  <div class="col-md-2 mt-step-col active">
-                    <div class="mt-step-number bg-dark font-grey">2</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
-                  </div>
-              <% else %>
-                  <div class="col-md-2 mt-step-col done">
-                    <div class="mt-step-number bg-dark font-grey">2</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
-                  </div>
-              <% end %>
-          <% end %>
-
-          <% if params[:matrix] == 'true' %>
-              <div class="col-md-3 mt-step-col active">
-                <div class="mt-step-number bg-dark font-grey">3</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Matrix</div>
-              </div>
-          <% else %>
-              <div class="col-md-3 mt-step-col done">
-                <div class="mt-step-number bg-dark font-grey">3</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Matrix</div>
-              </div>
-          <% end %>
-
-          <% if params[:matrix] != 'true' %>
-              <% if params[:review] == 'true' %>
-                  <div class="col-md-3 mt-step-col active">
-                    <div class="mt-step-number bg-dark font-grey">3</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Review</div>
-                  </div>
-              <% else %>
-                  <div class="col-md-3 mt-step-col done">
-                    <div class="mt-step-number bg-dark font-grey">3</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Review</div>
-                  </div>
-              <% end %>
-          <% end %>
-
-
-          <% if params[:notify] == 'true' %>
-              <div class="col-md-3 mt-step-col active">
-                <div class="mt-step-number bg-dark font-grey">4</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Notify</div>
-              </div>
-          <% else %>
-              <div class="col-md-3 mt-step-col done">
-                <div class="mt-step-number bg-dark font-grey">4</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Notify</div>
-              </div>
-          <% end %>
-        </div>
-      </div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Issue Addenda</a>
     </div>
   </div>
-</div>
+</nav>
 
-<div style="height: 150px"></div>
+<ol class="breadcrumb">
+  <li><a href="<%= addendas_path(:id => tender.id ) %>">Home</a></li>
+  <li><a href="/addendas/new?id=<%= tender.id %>&type=document&addenda=<%= addenda.id %>">Details</a></li>
+  <li class="active">Matrix</li>
+</ol>
 
 <%= form_tag(create_partitions_tenders_path, :html => { :multipart => true }) do |f| %> 
     <div class="row"> 
-      <input type="hidden" name="tender_id" class="tender_id" value="<%= @tender.id %>">
-      <input type="hidden" name="addenda" class="addenda" value="<%= @addenda.id %>">
+      <input type="hidden" name="tender_id" class="tender_id" value="<%= tender.id %>">
+      <input type="hidden" name="addenda" class="addenda" value="<%= addenda.id %>">
       <div class="col-md-12 matrix">  
 
         <div class="row">
@@ -165,20 +89,20 @@
                   <!-- First column header is not rotated -->
                   <th></th>
                   <!-- Following headers are rotated -->
-                  <th class="rotate-45"><div><span></span></div></th>
+                  <th class="rotate-45"><div><span>Filter By</span></div></th>
                   <th class="rotate-45"><div><span>FullSet</span></div></th>
-                  <% if @package_array.present? %>
-                      <% @tender_packages.each do |p| %>
-                          <% if !@tender_package_array.include? p.category_id %>
-                              <% @tender_package_array << p.category_id %>
+                  <% if package_array.present? %>
+                      <% tender_packages.each do |p| %>
+                          <% if !tender_package_array.include? p.category_id %>
+                              <% tender_package_array << p.category_id %>
                               <th class="rotate-45" style="font-weight: bolder;font-size: 16px">
                                 <div>
                                   <span><%= get_trade_category_name p.category_id %></span>
                                 </div>
                               </th>
-                              <% if (get_trade_list_from_package p.category_id,@tender.id).present? %>
+                              <% if (get_trade_list_from_package p.category_id,tender.id).present? %>
 
-                                  <% (get_trade_list_from_package p.category_id,@tender.id).each do |t| %>
+                                  <% (get_trade_list_from_package p.category_id,tender.id).each do |t| %>
                                       <th class="rotate-45">
                                         <div id="<%= t.trade_id %>">
                                           <span><%= get_trade_name t.trade_id  %></span>
@@ -194,17 +118,26 @@
                   <th></th>
                   <th>
                     <div class="dropdown">
-
+                      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+                        <span class="caret"></span></button>
+                      <ul class="dropdown-menu">
+                        <% if @category_array.present? %>
+                            <li><a href="#!" class="category" id="0">All</a> </li>
+                            <% @category_array.uniq.each_with_index do |a,index| %>
+                                <li><a href="#!" class="category" id="<%= a %>"> <%= get_trade_category_name  a %></a> </li>
+                            <% end %>
+                        <% end %>
+                      </ul>
                     </div>
                   </th>
                   <th><div><span></span></div></th>
-                  <% if @tender_packages.present? %>
-                      <% @tender_packages.each do |p| %>
-                          <% if !@tender_package_header.include? p.category_id %>
-                              <% @tender_package_header << p.category_id %>
+                  <% if tender_packages.present? %>
+                      <% tender_packages.each do |p| %>
+                          <% if !tender_package_header.include? p.category_id %>
+                              <% tender_package_header << p.category_id %>
                               <th><div><span></span></div></th>
-                              <% if (get_trade_list_from_package p.category_id,@tender.id).present? %>
-                                  <% (get_trade_list_from_package p.category_id,@tender.id).each do |t| %>
+                              <% if (get_trade_list_from_package p.category_id,tender.id).present? %>
+                                  <% (get_trade_list_from_package p.category_id,tender.id).each do |t| %>
                                       <th><div><span>
                             <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
@@ -222,18 +155,17 @@
                   <% end %>
                 </tr>
                 <tr class="document_matrix_search">
-                  <th>
-                  </th>
+                  <th></th>
                   <!-- Following headers are rotated -->
                   <th><div></div></th>
                   <th><div><span></span></div></th>
-                  <% if @tender_packages.present? %>
-                      <% @tender_packages.each do |p| %>
-                          <% if !@tender_package_array_1.include? p.category_id %>
-                              <% @tender_package_array_1 << p.category_id %>
+                  <% if tender_packages.present? %>
+                      <% tender_packages.each do |p| %>
+                          <% if !tender_package_array_1.include? p.category_id %>
+                              <% tender_package_array_1 << p.category_id %>
                               <th><div><span></span></div></th>
-                              <% if (get_trade_list_from_package p.category_id,@tender.id).present? %>
-                                  <% (get_trade_list_from_package p.category_id,@tender.id).each do |t| %>
+                              <% if (get_trade_list_from_package p.category_id,tender.id).present? %>
+                                  <% (get_trade_list_from_package p.category_id,tender.id).each do |t| %>
                                       <th><div><span><input type="checkbox" class="package_trade" id="<%= t.trade_id %>"></span></div></th>
                                   <% end %>
                               <% end %>
@@ -243,12 +175,14 @@
                 </tr>
                 </thead>
                 <tbody id="selectable">
-                <% if @documents.present? %>
-                    <% @documents.each do |t| %>
-                        <% if !@directory_array.include? t.directory %>
-                            <% @directory_array << t.directory %>
-                            <% if params[:id].present? %>
-                                <% if (get_file_directory params[:id]) == t.directory %>
+
+                <% if documents.present? %>
+                    <% documents.each do |t| %>
+                        <% if !directory_array.include? t.directory %>
+                            <%= puts "djkdjkadjsakdjkadja=======> #{directory_array.inspect}" %>
+                            <% directory_array << t.directory %>
+                            <%# if params[:id].present? %>
+                                <% if (get_file_directory t.id) == t.directory %>
                                     <tr>
                                       <th class="row-header">
                                         <a href="#!"  class="directory" id="<%= replace_char_to_string t.directory %>" title="<%= t.directory %>"> <i class="fa fa-chevron-circle-up" aria-hidden="true"> </i> <%= t.directory %></a>
@@ -256,54 +190,40 @@
                                       <th class="row-header"><div><span></span></div></th>
                                       <th class="row-header"><div><span></span></div></th>
 
-                                      <% if @tender_package_count.present? %>
-                                          <% for i in 0..((@tender_package_count + @directory_array_1.uniq.size) - 1) %>
+                                      <% if tender_package_count.present? %>
+                                          <% for i in 0..((tender_package_count + directory_array_1.uniq.size) - 1) %>
                                               <th class="row-header"></th>
                                           <% end %>
                                       <% end %>
                                     </tr>
                                 <% end %>
-                            <% else %>
-                                <tr>
-                                  <th class="row-header">
-                                    <a href="#!"  class="directory" id="<%= replace_char_to_string t.directory %>" title="<%= t.directory %>"> <i class="fa fa-chevron-circle-up" aria-hidden="true"> </i> <%= t.directory %></a>
-                                  </th>
-                                  <th class="row-header"><div><span></span></div></th>
-                                  <th class="row-header"><div><span></span></div></th>
+                            <%# else %>
 
-                                  <% if @tender_package_count.present? %>
-                                      <% for i in 0..((@tender_package_count + @directory_array_1.uniq.size) - 1) %>
-                                          <th class="row-header"></th>
-                                      <% end %>
-                                  <% end %>
-                                </tr>
-                            <% end %>
+                            <%# end %>
                         <% end %>
 
-                        <% if @directory_array.present? %>
-                            <% @directory_array.uniq.each_with_index do |f,index| %>
-                                <% if (document_list f,@tender.id).present? %>
-                                    <% (document_list f,@tender.id).each_with_index do |a,i| %>
+                        <% if directory_array.present? %>
+                            <% directory_array.uniq.each_with_index do |f,index| %>
+                                <% if (document_list_addenda f,tender.id).present? %>
+                                    <% (document_list_addenda f,tender.id).each_with_index do |a,i| %>
                                         <% if a.document_file_name.present? %>
-                                            <% if params[:id].present? %>
-
-
-                                                <% if ((get_file_directory params[:id]).to_s == f.to_s) && (!@document_array.include? index) %>
-                                                    <% @document_array << index %>
+                                            <% if a.id.present? %>
+                                                <% if ((get_file_directory a.id).to_s == f.to_s) && (!document_array.include? index) %>
+                                                    <% document_array << index %>
                                                     <tr id="demo" class="<%= replace_char_to_string a.directory %>">
                                                       <td id="doc_<%= a.id %>"><%= a.document_file_name %></td>
                                                       <td><input type="checkbox" id="per_field" class="per_field" title="<%= a.id %>"></td>
                                                       <td><input type="checkbox" checked></td>
-                                                      <% @package_array.each do |d| %>
+                                                      <% package_array.each do |d| %>
                                                           <% if d.to_i > 0 %>
                                                               <% if params[:cmd].present? %>
-                                                                  <% if @package_lists.include? "#{a.id}_#{d}" %>
+                                                                  <% if package_lists.include? "#{a.id}_#{d}" %>
                                                                       <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>" checked></td>
                                                                   <% else %>
                                                                       <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>"></td>
                                                                   <% end %>
                                                               <% else %>
-                                                                  <% if @package_lists.include? "#{a.id}_#{d}" %>
+                                                                  <% if package_lists.include? "#{a.id}_#{d}" %>
                                                                       <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>" checked></td>
                                                                   <% else %>
                                                                       <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>"></td>
@@ -316,25 +236,25 @@
                                                     </tr>
                                                 <% end %>
                                             <% else %>
-                                                <% if !@document_array.include? "#{a.document_file_name}_#{f}" %>
+                                                <% if !document_array.include? "#{a.document_file_name}_#{f}" %>
 
-                                                    <% @document_array << "#{a.document_file_name}_#{f}"  %>
+                                                    <% document_array << "#{a.document_file_name}_#{f}"  %>
 
-                                                    <%= puts "@document_array------------> #{@document_array.inspect}" %>
+                                                    <%= puts "document_array------------> #{document_array.inspect}" %>
                                                     <tr id="demo" class="<%= replace_char_to_string a.directory %>">
                                                       <td id="doc_<%= a.id %>"><%= a.document_file_name %></td>
                                                       <td><input type="checkbox" id="per_field" class="per_field" title="<%= a.id %>"></td>
                                                       <td><input type="checkbox" checked></td>
-                                                      <% @package_array.each do |d| %>
+                                                      <% package_array.each do |d| %>
                                                           <% if d.to_i > 0 %>
                                                               <% if params[:cmd].present? %>
-                                                                  <% if @package_lists.include? "#{a.id}_#{d}" %>
+                                                                  <% if package_lists.include? "#{a.id}_#{d}" %>
                                                                       <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>" checked></td>
                                                                   <% else %>
                                                                       <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>"></td>
                                                                   <% end %>
                                                               <% else %>
-                                                                  <% if @package_lists.include? "#{a.id}_#{d}" %>
+                                                                  <% if package_lists.include? "#{a.id}_#{d}" %>
                                                                       <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>" checked></td>
                                                                   <% else %>
                                                                       <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>"></td>
@@ -358,11 +278,11 @@
               </table>
             </div>
           </div>
-          <% if @documents.present? %>
-              <% @documents.each do |t| %>
+          <% if documents.present? %>
+              <% documents.each do |t| %>
                   <div class="col-md-22">
-                    <% if !@directory_array.include? t.directory %>
-                        <% @directory_array << t.directory %>
+                    <% if !directory_array.include? t.directory %>
+                        <% directory_array << t.directory %>
                         <div class="panel-group">
                           <div class="panel panel-default">
                             <div class="panel-heading">
@@ -371,8 +291,8 @@
 
                                 <% if t.document_file_name.present? %>
                                     <div id="collapse<%= t.id %>" class="panel-collapse collapse">
-                                      <% if (document_list t.directory,@tender.id).present?   %>
-                                          <% (document_list t.directory,@tender.id).each do |a| %>
+                                      <% if (document_list t.directory,tender.id).present?   %>
+                                          <% (document_list t.directory,tender.id).each do |a| %>
                                               <% if a.document_file_name != ".DS_Store" %>
                                                   <div class="row">
                                                     <div class="col-md-12">
@@ -402,12 +322,10 @@
       </div> 
     </div>  
     <div class="col-md-20"> 
-      <a href="/addendas/new?id=<%= @tender.id %>&type=document&addenda=<%= @addenda.id %>&documents=true">
+      <a href="/addendas/new?id=<%= tender.id %>&type=document&addenda=<%= addenda.id %>">
         <button type="button" class="btn btn-danger">Back</button>
       </a>
-      <a href="<%= new_addenda_path(:id => @tender.id,:addenda => @addenda.id,:addenda_type => params[:addenda_type],:notify => true) %>">
-        <button type="button" class="btn btn-success">Next</button>
-      </a>
+      <button class="btn btn-default"  type="submit">Nex</button>
     </div> 
 <% end %>
 

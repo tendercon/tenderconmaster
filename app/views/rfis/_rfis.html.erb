@@ -349,129 +349,131 @@
 </div>
 
 <script>
-  var ids = [];
-  $('.download_btn').click(function(){
-    var link = $(".zip_link");
-    link.click();
-    window.location.href = link.attr("href");
-  });
+  $(document).ready(function(){
+    var ids = [];
+    $('.download_btn').click(function(){
+      var link = $(".zip_link");
+      link.click();
+      window.location.href = link.attr("href");
+    });
 
-  $('.rfi_shared').click(function(){
+    $('.rfi_shared').click(function(){
 
 
-    $("input:checkbox:checked").map(function()
-    {
-      ids.push($(this).val());
-    })
-    console.log("rfi_shared:"+ids);
+      $("input:checkbox:checked").map(function()
+      {
+        ids.push($(this).val());
+      })
+      console.log("rfi_shared:"+ids);
 
-    $('#shared_modal').modal('show');
+      $('#shared_modal').modal('show');
 
-  });
+    });
 
-  $('.shared_option').click(function(){
-    var option_id = $(this).attr('id');
+    $('.shared_option').click(function(){
+      var option_id = $(this).attr('id');
 
-    if(option_id == 1){
-      $('#option1_modal').modal('show');
-      $('#option2_modal').modal('hide');
-      $('#option3_modal').modal('hide');
-    }else if(option_id == 2){
-      $('#option2_modal').modal('show');
-      $('#option1_modal').modal('hide');
-      $('#option3_modal').modal('hide');
+      if(option_id == 1){
+        $('#option1_modal').modal('show');
+        $('#option2_modal').modal('hide');
+        $('#option3_modal').modal('hide');
+      }else if(option_id == 2){
+        $('#option2_modal').modal('show');
+        $('#option1_modal').modal('hide');
+        $('#option3_modal').modal('hide');
 
-       var subs = [];
-      subs = ids;
+        var subs = [];
+        subs = ids;
 
+        $.ajax({
+          method: "POST",
+          data: {subs:subs},
+          url: "/shared_rfis/shared_by_approved_sub"
+        }).done(function (data) {
+          $('#shared_modal').modal('hide');
+          subs = [];
+          $("input:checkbox:checked").map(function()
+          {
+            $(this).prop('checked',false);
+          })
+
+          $('.shared_option').prop('checked',false);
+        });
+      }else{
+        $('#option3_modal').modal('show');
+        $('#option1_modal').modal('hide');
+        $('#option2_modal').modal('hide');
+      }
+    });
+
+    $('.all_sub').click(function(){
+
+      console.log("all_sub:"+ids);
       $.ajax({
         method: "POST",
-        data: {subs:subs},
-        url: "/shared_rfis/shared_by_approved_sub"
+        data: {ids:ids},
+        url: "/shared_rfis/shared_by_trade"
       }).done(function (data) {
+        ids = [];
         $('#shared_modal').modal('hide');
-        subs = [];
+        $('#option3_modal').modal('hide');
+        $('#option1_modal').modal('hide');
+        $('#option2_modal').modal('hide');
+        $('.all_sub_body').html(data);
+        $('#success_all_sub_modal').modal('show');
         $("input:checkbox:checked").map(function()
         {
           $(this).prop('checked',false);
         })
 
         $('.shared_option').prop('checked',false);
+
       });
-    }else{
-      $('#option3_modal').modal('show');
-      $('#option1_modal').modal('hide');
-      $('#option2_modal').modal('hide');
-    }
-  });
-
-  $('.all_sub').click(function(){
-
-    console.log("all_sub:"+ids);
-    $.ajax({
-      method: "POST",
-      data: {ids:ids},
-      url: "/shared_rfis/shared_by_trade"
-    }).done(function (data) {
-      ids = [];
-      $('#shared_modal').modal('hide');
-      $('#option3_modal').modal('hide');
-      $('#option1_modal').modal('hide');
-      $('#option2_modal').modal('hide');
-      $('.all_sub_body').html(data);
-      $('#success_all_sub_modal').modal('show');
-      $("input:checkbox:checked").map(function()
-      {
-        $(this).prop('checked',false);
-      })
-
-      $('.shared_option').prop('checked',false);
-
-    });
-  });
-
-  $('.manually_select').click(function(){
-    $('#manual_modal').modal('show');
-  });
-
-  $('.user_list_master').click(function(){
-    var id = $(this).attr('id');
-    console.log(id);
-
-
-    console.log($('.user_list_'+id).prop('checked'));
-    if($('.user_list_'+id).prop('checked')){
-      $('.user_list_'+id).prop('checked',false);
-    }else{
-      $('.user_list_'+id).prop('checked',true);
-    }
-  });
-
-  $('.share_rfi').click(function(){
-    var user_ids =[];
-    var trades = [];
-    var manual_rfis = [];
-    manual_rfis = ids;
-    $.each($("input[name='user_list']:checked"), function(){
-      trades.push($(this).attr('title'));
-      user_ids.push($(this).val());
     });
 
-    var rfi_id = $('.rfi_id').val();
-
-    $.ajax({
-      method: "POST",
-      data: {rfi_id:rfi_id,trades:trades,user_ids:user_ids,manual_rfis:manual_rfis},
-      url: "/shared_rfis/shared_by_trade"
-    }).done(function (data) {
-      $('#shared_modal').modal('hide');
-      $('#option3_modal').modal('hide');
-      $('#option1_modal').modal('hide');
-      $('#option2_modal').modal('hide');
-      $('.manual_body').html(data);
-      $('#success_manual_modal').modal('show');
-      //window.location.reload();
+    $('.manually_select').click(function(){
+      $('#manual_modal').modal('show');
     });
 
+    $('.user_list_master').click(function(){
+      var id = $(this).attr('id');
+      console.log(id);
+
+
+      console.log($('.user_list_'+id).prop('checked'));
+      if($('.user_list_'+id).prop('checked')){
+        $('.user_list_'+id).prop('checked',false);
+      }else{
+        $('.user_list_'+id).prop('checked',true);
+      }
+    });
+
+    $('.share_rfi').click(function(){
+      var user_ids =[];
+      var trades = [];
+      var manual_rfis = [];
+      manual_rfis = ids;
+      $.each($("input[name='user_list']:checked"), function(){
+        trades.push($(this).attr('title'));
+        user_ids.push($(this).val());
+      });
+
+      var rfi_id = $('.rfi_id').val();
+
+      $.ajax({
+        method: "POST",
+        data: {rfi_id:rfi_id,trades:trades,user_ids:user_ids,manual_rfis:manual_rfis},
+        url: "/shared_rfis/shared_by_trade"
+      }).done(function (data) {
+        $('#shared_modal').modal('hide');
+        $('#option3_modal').modal('hide');
+        $('#option1_modal').modal('hide');
+        $('#option2_modal').modal('hide');
+        $('.manual_body').html(data);
+        $('#success_manual_modal').modal('show');
+        //window.location.reload();
+      });
+
+    });
   });
 </script>

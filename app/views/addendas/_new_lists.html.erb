@@ -42,7 +42,7 @@
     <% if addendas.present? %>
         <% addendas.each_with_index do |t,index| %>
             <tr>
-              <td class="text-center"><%=  "Addendum ##{t.ref_no}" %></td>
+              <td class="text-center"><%=  "#{t.ref_no}" %></td>
               <td class="text-center"><%=  t.subject %></td>
               <td class="text-center"><%=  t.created_at.strftime("%d.%m.%Y %H:%M %p") %></td>
               <td class="text-center">
@@ -180,7 +180,10 @@
 <script>
   $(document).ready(function(){
 
-    $('#addenda_table').DataTable();
+    $('#addenda_table').DataTable({
+          "bPaginate": false,
+          "bInfo": false
+    });
 
     $('.view_addenda').click(function(){
       var id = $(this).attr('id');

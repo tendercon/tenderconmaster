@@ -75,7 +75,9 @@ module TendersHelper
 
   def get_file_directory id
     document = TenderDocument.where(:id => id).first
-    document.directory
+    if document.present?
+      document.directory
+    end
   end
 
 
@@ -91,6 +93,22 @@ module TendersHelper
           unzip
         end
       end
+
+  end
+
+  def document_list_addenda directory,tender_id
+
+    documents = TenderDocument.where(:directory => directory,:tender_id => tender_id,:action_type => 'addenda')
+
+    puts " document_list_addenda =====================> #{documents.inspect}"
+    if documents.present?
+      documents
+    else
+      unzip = UnzipFile.where(:directory => directory,:tender_id => tender_id)
+      if unzip.present?
+        unzip
+      end
+    end
 
   end
 

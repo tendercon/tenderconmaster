@@ -171,7 +171,7 @@
           console.log("I -------> :"+i);
           if ( last !== group ) {
             $(rows).eq( i ).before(
-                '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '"><input type="checkbox"  id="'+ group+ '"> '+ group+ '</td>' +
+                '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '"><input type="checkbox" class="document_list" name="documents[]" id="'+ group+ '"> '+ group+ '</td>' +
                 '<td> <i class="fa fa-file-text add_files" aria-hidden="true"  id="'+ group+ '"></i>'+
                 '</td></tr>'
             );

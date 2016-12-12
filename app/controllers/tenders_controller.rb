@@ -327,13 +327,13 @@ class TendersController < ApplicationController
         end
       end
 
-      @directory_array = []
-      @directory_array_1 = []
-      @directory_array_2 = []
-      @document_array = []
-      @category_array = []
-      @tender_packages = TenderPackage.where(:tender_id => @tender_id).order("category_id asc")
-      @all_tender_packages = TenderPackage.where(:tender_id => @tender_id)
+      # @directory_array = []
+      # @directory_array_1 = []
+      # @directory_array_2 = []
+      # @document_array = []
+       @category_array = []
+       @tender_packages = TenderPackage.where(:tender_id => @tender_id)
+       @all_tender_packages = TenderPackage.where(:tender_id => @tender_id)
 
       if @all_tender_packages.present?
         @all_tender_packages.each do |v|
@@ -351,7 +351,7 @@ class TendersController < ApplicationController
             @package_array << tc.title
           end
           @package_array << a.trade_id
-          @directory_array_1 << a.category_id
+          #@directory_array_1 << a.category_id
         end
       end
 
@@ -375,32 +375,41 @@ class TendersController < ApplicationController
           packages.each do |a|
             if a.code.include? "#{@trade_id}"
               doc_id =  a.code.split('_')[0]
-              trade_id =  a.code.split('_')[1]
+              #trade_id =  a.code.split('_')[1]
               @package_ids << doc_id
             end
           end
         end
       end
+      @tender_packages = TenderPackage.where(:tender_id => @tender_id,:trade_id => @trade_id)
+      tender_document_array = []
+      if @tender_packages.present?
+        @tender_packages.each do |t|
+          tender_document_array << t.tender_document_id
+        end
+      end
 
-      if @trade_id.to_i > 0
-        @unzips = UnzipFile.where(:id => @package_ids,:tender_id => @tender_id)
-        @documents = TenderDocument.where(:id => @package_ids,:tender_id => @tender_id).where("directory != 'unzip'")
+      if tender_document_array.present?
+        @documents = TenderDocument.where(:id => @package_ids,:tender_id => @tender_id)
       else
-        @unzips = UnzipFile.where("user_id = #{session[:user_logged_id]} and tender_id = #{ @tender_id} ")
+        @documents = nil
+      end
+
+      if @trade_id.to_i == 0
         @documents = TenderDocument.where(" user_id = #{session[:user_logged_id]} and tender_id = #{ @tender_id} and directory !='unzip' ")
       end
       urls = []
       @directories = []
 
-      if @documents.present?
-        @documents.each do |u|
-          if u.directory != 'unzip'
-            @directories << u.directory
-            urls << request.host_with_port+"/assets/tender/document/#{u.id}/original/#{u.document_file_name}"
-          end
-        end
-      end
-      @new_direcotires = @directories.reject { |c| c.present? ?  c.empty? : nil }
+      # if @documents.present?
+      #   @documents.each do |u|
+      #     if u.directory != 'unzip'
+      #       @directories << u.directory
+      #       urls << request.host_with_port+"/assets/tender/document/#{u.id}/original/#{u.document_file_name}"
+      #     end
+      #   end
+      # end
+      #@new_direcotires = @directories.reject { |c| c.present? ?  c.empty? : nil }
     end
     @data = render :partial => 'tenders/search_document_control'
   end
@@ -2335,6 +2344,13 @@ class TendersController < ApplicationController
     puts Dir.glob("#{file_path.gsub(@tender.document_file_name)}").inspect
   end
 
+
+  def edit_details
+    @tender = Tender.find(params[:id])
+    @categories = Category.all
+    @values = TenderValue.all
+  end
+
   def update
     @tender = Tender.find(params[:id])
   end
@@ -2551,7 +2567,7 @@ class TendersController < ApplicationController
     @approved_quotes = TenderApprovedTrade.where(:tender_id => @tender.id,:hc_id => session[:user_logged_id])
     @tender_invites = TenderInvite.where(:tender_id => @tender.id)
     @tender_invite_count = TenderInvite.where(:tender_id => @tender.id).count()
-    @addendas = Addenda.where(:tender_id => @tender.id)
+    @addendas = Addenda.where(:tender_id => @tender.id,:status => 'completed')
     @tender_document = TenderDocument.new
     if @approved_quotes.present?
       @approved_quotes.each do |t|
@@ -2584,23 +2600,8 @@ class TendersController < ApplicationController
       end
     end
 
-    @directories = []
-    if @documents.present?
-      @documents.each do |u|
-        if u.directory != 'unzip'
-          @directories << u.directory
-        end
-      end
-    end
 
-    @new_direcotires = @directories.reject { |c| c.present? ?  c.empty? : nil }
-    @unzips = UnzipFile.where(:user_id => session[:user_logged_id],:tender_id => @tender.id)
 
-    if @unzips.present?
-      @unzips.each do |u|
-        @new_direcotires << u.directory
-      end
-    end
   end
 
   def sc_tender

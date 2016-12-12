@@ -174,6 +174,7 @@ Rails.application.routes.draw do
       get 'document_matrix'
       get 'hc_tender'
       get 'sc_tender'
+      get 'edit_details'
 
       # post
       post 'new_site'
@@ -297,6 +298,7 @@ Rails.application.routes.draw do
       get 'review'
       get 'notify_subcontractors'
       get 'matrix'
+      get 'update_details'
 
 
       # post
@@ -307,6 +309,7 @@ Rails.application.routes.draw do
       post 'issue_addenda'
       post 'get_documents'
       post 'delete_documents'
+      post 'move_files'
     end
   end
 

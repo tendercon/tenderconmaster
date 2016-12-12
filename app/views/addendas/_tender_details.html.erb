@@ -1,41 +1,116 @@
 <div class="row">
   <div class="col-md-12">
+    <div class="portlet light bordered">
+      <div class="portlet-body form">
+        <div class="form-body">
+          <div class="form-group">
+            <div class="text-center">
+              <h3>Quotes are currently due to be submitted by the</h3>
+              <h4 class="quote_date_label"><%= (tender.tender_quote.quote_date.to_datetime).strftime("%m/%d/%Y %H:%M %p") %></h4>
+              <div style="height: 20px"></div>
+              <button type="button" class="btn btn-success revise" id="<%= tender.tender_quote.id %>">Update</button>
+              <div style="height: 20px"></div>
+            </div>
 
-    <div class="text-center">
-      <h3>Quotes are currently due to be submitted by the</h3>
-      <h4><%= (tender.tender_quote.quote_date.to_datetime).strftime("%m/%d/%Y %H:%M %p") %></h4>
-      <div style="height: 20px"></div>
-      <button type="button" class="btn btn-success revise" id="<%= tender.tender_quote.id %>">Revise</button>
-      <div style="height: 20px"></div>
-    </div>
-  </div>
-  <div class="quote_date_field" style="display: none">
-    <div class="col-md-2"></div>
-    <div class="col-md-4">
-      <div class="form-group">
-        <div class="input-group date  quote_meridian_datetime" data-date-format="yyyy-mm-dd" data-date-start-date="+0d">
-          <input type="text" class="form-control quote" name="qoute"  value="<%= (tender.tender_quote.quote_date.to_datetime).strftime("%Y-%m-%d") %>" readonly/>
-          <span class="input-group-btn">
-              <button class="btn default date-reset" type="button">
-                  <i class="fa fa-times"></i>
-              </button>
-              <button class="btn default date-set" type="button">
-                  <i class="fa fa-calendar"></i>
-              </button>
-          </span>
+
+          </div>
+
+          <div class="quote_date_field" style="display: none">
+            <div class="row">
+              <div class="col-md-3"></div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="input-group date quote_meridian_datetime" data-date="2012-12-21T15:25:00Z">
+                    <input type="text" class="form-control quote" name="quote" value="<%= tender.present? ? tender.tender_quote.present? ? tender.tender_quote.quote_date : nil : nil %>"/>
+                    <span class="input-group-btn">
+                      <button class="btn default date-reset" type="button">
+                        <i class="fa fa-times"></i>
+                      </button>
+                      <button class="btn default date-set" type="button">
+                        <i class="fa fa-calendar"></i>
+                      </button>
+                    </span>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="text-center">
+                    <button class="btn btn-default done_quote" id="<%= tender.tender_quote.id %>">
+                      Done
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="input-group bootstrap-timepicker timepicker">
-        <input id="timepicker1" type="text" name="qoute_time" class="form-control input-small" value="<%= (tender.tender_quote.quote_date.to_datetime).strftime("%H:%M %p") %>">
-        <button class="btn default calender_time" type="button">
-          <i class="glyphicon glyphicon-time"></i>
-        </button>
+
+    <div class="portlet light bordered">
+      <div class="portlet-body form">
+        <div class="form-body">
+          <div class="form-group">
+            <div class="text-center">
+              <h3>Select your tendering status below</h3>
+              <% if tender.status == '1' %>
+                  <h4 class="tendering_label">Tendering - Your organization is still tendering for this project.</h4>
+              <% else %>
+                  <h4 class="tendering_label">Awarded - This tender has been awarded yo your organization or this your project.</h4>
+              <% end %>
+              <div style="height: 20px"></div>
+              <button type="button" class="btn btn-success update_tendering" id="<%= tender.id %>">Update</button>
+              <div style="height: 20px"></div>
+            </div>
+            <div class="tendering_div" style="display: none">
+              <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-8">
+                  <% if tender.present? %>
+                      <% if tender.status == '1' %>
+                          <div class="radio-list">
+                            <label><input type="radio" name="tendering" class="tendering form-control" id="1"  value="1" checked>Tendering - Your organization is still tendering for this project.</label> 
+                            <label><input type="radio" name="tendering" class="tendering form-control" id="2" value="2">Awarded - This tender has been awarded yo your organization or this your project.</label> 
+                          </div>
+                      <% else %>
+                          <div class="radio-list">
+                            <label><input type="radio" class="tendering form-control" name="tendering" value="1" >Tendering - Your organization is still tendering for this project.</label> 
+                            <label><input type="radio" name="tendering" class="tendering form-control" value="2" checked>Awarded - This tender has been awarded yo your organization or this your project.</label> 
+                          </div>
+                      <% end %>
+                  <% end %>
+                </div>
+                <div class="form-group">
+                  <div class="text-center">
+                    <button class="btn btn-default done_tendering" id="<%= tender.id %>">
+                      Done
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-md-2"></div>
   </div>
+
+    <div class="col-md-12">
+      <% if params[:addenda_type] == 'documents' %>
+          <a href="/addendas/matrix?tender_id=<%= tender.id %>&addenda=<%= addenda %>&type=documents&documents=true">
+            <button type="button" class="btn btn-danger">Back</button>
+          </a>
+      <% else %>
+          <a href="/addendas/new?id=<%= tender.id %>&addenda=<%= addenda %>&type=details&details=true">
+            <button type="button" class="btn btn-danger">Back</button>
+          </a>
+      <% end %>
+
+      <a href="<%= new_addenda_path(:id => tender.id,:addenda => addenda,:addenda_type=> 'details',:review => true) %>">
+        <button type="button" class="btn btn-default">Next</button>
+      </a>
+    </div>
+
 </div>
 
 
@@ -43,58 +118,69 @@
   $(document).ready(function(){
     var date = new Date();
     date.setDate(date.getDate());
-    $('.quote_meridian_datetime').datetimepicker({
-      startDate: date,
-      pickTime: false,
-      minView : 2
-    });
-
-
-
-    $('#timepicker1').timepicker({
-      showInputs: false
-    });
-
+    $('.quote_meridian_datetime').datetimepicker(
+        {
+          startDate: date,
+          format:"yyyy-mm-dd  HH:ii P",
+          showMeridian:true,
+          autoclose:true,
+          todayBtn:true
+        }
+    );
 
     $('.revise').click(function(){
       var id = $(this).attr('id');
       var quote_due = $('.quote_due').val();
+      $('.quote_date_label').text('');
       $(this).hide();
       $('.quote_date_field').show();
-      var quote_date = $('.quote_meridian_datetime').val();
-      var timepicker = $('.timepicker').val();
-      /*$.ajax({
+    });
+
+    var status;
+    $('.tendering').change(function(){
+      $('.tendering').prop('checked', false);
+      status = $(this).val();
+    });
+
+    $('.update_tendering').click(function(){
+      $('.tendering_div').show();
+      $(this).hide();
+      $('.tendering_label').hide();
+    });
+
+    $('.done_tendering').click(function(){
+      var tender_id = $(this).attr('id');
+      $.ajax({
+        method: "POST",
+        data: {status:status,tender_id:tender_id,type:"status"},
+        url: "/addendas/update_quote_due "
+      }).done(function (data) {
+        $('.tendering_div').hide();
+        $('.update_tendering').show();
+        $('.tendering_label').show();
+        if(data.tender_status == '1'){
+          $('.tendering_label').text('Tendering - Your organization is still tendering for this project.');
+        }else{
+          $('.tendering_label').text('Awarded - This tender has been awarded yo your organization or this your project.');
+        }
+        $('.tendering').prop('checked', false);
+      });
+    });
+
+    $('.done_quote').click(function(){
+      var id = $(this).attr('id');
+      var quote_due = $('.quote').val();
+      $.ajax({
         method: "POST",
         data: {quote_id:id,quote_date:quote_due,type:"quote"},
         url: "/addendas/update_quote_due  "
       }).done(function (data) {
-        alert("Successfully update the Quote Due");
-      });*/
-    });
-
-
-    $('.update_site_due').click(function(){
-      var id = $(this).attr('id');
-      var quote_due = $('.site_due_date_'+id).val();
-      $.ajax({
-        method: "POST",
-        data: {quote_id:id,quote_date:quote_due,type:"site"},
-        url: "/addendas/update_quote_due  "
-      }).done(function (data) {
-        alert("Successfully update the Site Due");
+        $('.quote_date_label').text(data.quote);
+        $('.revise').show();
+        $('.quote_date_field').hide();
+        $('.quote').val('');
       });
     });
 
-    $('.tendering').change(function(){
-      var status = $(this).val();
-      var tender_id = $('.tender_id').val();
-      $.ajax({
-        method: "POST",
-        data: {status:status,tender_id:tender_id,type:"status"},
-        url: "/addendas/update_quote_due  "
-      }).done(function (data) {
-        alert("Successfully upd ate the Tender Status");
-      });
-    });
   });
 </script>

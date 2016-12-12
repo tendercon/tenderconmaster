@@ -1,0 +1,177 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet light bordered">
+      <div class="portlet-body form">
+        <div class="form-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="portlet box green">
+                <div class="portlet-title">
+                  <div class="caption">
+                    <label><i class="fa fa-pencil-square-o"></i> Edit Tender Details</label>
+                  </div>
+                  <div class="tools">
+                    <div class="actions">
+                      <div class="btn-group">
+                        <a class="btn green-haze btn-outline btn-circle btn-sm" href="javascript:;" data-toggle="dropdown" data-hover="dropdown" data-close-others="true"> Actions
+                          <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                          <li>
+                            <a href="/tenders/hc_tender?id=<%= @tender.id %>">Back</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="portlet-body">
+                  <div class="portlet light bordered">
+                    <div class="portlet-body form">
+                      <div class="form-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <%= form_for @tender do |f| %> 
+
+                                <div class="form-body">
+                                  <div class="form-group">
+                                    <label class="control-label">Client</label> 
+                                    <input maxlength="200" type="text" name="client"  class="form-control client" value="<%= @tender.present? ? @tender.client : nil  %>" /> 
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="control-label">Architect</label>
+                                    <input maxlength="200" type="text" name="architect"  class="form-control architect" value="<%= @tender.present? ? @tender.architect : nil  %>"/> 
+                                  </div>
+                                </div>
+
+                                <div class="form-body">
+                                  <div class="form-group">
+                                    <label class="control-label">Values</label>
+                                    <%= select_tag "values",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@values, 'id','range',@tender.present? ? @tender.tender_value_id : nil)+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control'} %> 
+                                    <% if @value_error.present? %>
+                                        <i style="color:red"><%= @value_error %></i>
+                                    <% end %>
+                                  </div>
+                                </div>
+
+                                <div class="portlet-body form">
+                                  <div class="form-body">
+                                    <label class="control-label">Description</label> 
+                                    <%= text_area_tag('about_me',@tender.present? ? @tender.description.html_safe : nil,:cols => '109',:rows => '8',:class => 'form-control wysihtml5') %> 
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="control-label">Quotes Due</label> 
+                                  <div class="input-group date col-md-10 form_meridian_datetime" data-date="2012-12-21T15:25:00Z">
+                                    <input type="text" class="form-control quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>"/>
+                                <span class="input-group-btn">
+                                  <button class="btn default date-reset" type="button">
+                                    <i class="fa fa-times"></i>
+                                  </button>
+                                  <button class="btn default date-set" type="button">
+                                    <i class="fa fa-calendar"></i>
+                                  </button>
+                                </span>
+                                  </div>
+
+                                  <% if @quote_due_error.present? %>
+                                      <i style="color:red"><%= @quote_due_error %></i>
+                                  <% end %>
+                                </div>
+
+                                <div class="input-group date col-md-10 site_meridian_datetime" data-date="2012-12-21T15:25:00Z">
+                                  <input type="text" class="form-control site" name="site[]"/>
+                              <span class="input-group-btn">
+                                  <button class="btn default date-reset" type="button">
+                                      <i class="fa fa-times"></i>
+                                  </button>
+                                  <button class="btn default date-set" type="button">
+                                      <i class="fa fa-calendar"></i>
+                                  </button>
+                              </span>
+                                </div>
+                                <div style="height: 5px"></div>
+                                <div class="form-group">
+                                  <a href="#!">
+                                    <button class="btn btn-success add" type="button">
+                                      Add Inspection Date
+                                    </button>
+                                  </a>
+                                </div>
+                                <div style="height: 5px"></div>
+                                <div class="previous_site">  
+                                  <% if @tender.tender_sites.present?  %>
+                                      <table  class="table table-bordered responsive new_directory_document_table"   cellspacing="0" width="100%">
+                                        <thead>
+                                        <tr>
+                                          <th>Dates</th>
+                                          <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="searchable">
+                                        <% @tender.tender_sites.each_with_index do |a,index| %>
+                                            <tr>
+                                              <td><%= a.site_date %></td>
+                                              <td>
+                                                <a href="#!">
+                                                  <button type="button" class="btn btn-danger remove" id="<%= a.id %>">
+                                                    Remove
+                                                  </button>
+                                                </a>
+                                              </td>
+                                            </tr>
+                                        <% end %>
+                                        </tbody>
+                                      </table>
+                                  <% end %>
+                                </div>
+                                <div class="form-actions">
+                                  <button type="submit" class="btn blue">Update</button>
+                                </div>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $(document).ready(function(){
+    var date = new Date();
+    date.setDate(date.getDate());
+    $('.form_meridian_datetime').datetimepicker(
+        {
+          startDate: date,
+          format:"yyyy-mm-dd  HH:ii P",
+          showMeridian:true,
+          autoclose:true,
+          todayBtn:true
+        }
+    );
+    $('.site_meridian_datetime').datetimepicker(
+        {
+          startDate: date,
+          format:"yyyy-mm-dd  HH:ii P",
+          showMeridian:true,
+          autoclose:true,
+          todayBtn:true
+        }
+    );
+
+    $('.site_calendar').click(function(){
+      $('#picker1').datetimepicker({ minDate:new Date()});
+    })
+  });
+</script>

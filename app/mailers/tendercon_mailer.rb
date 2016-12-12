@@ -159,17 +159,14 @@ class TenderconMailer < ActionMailer::Base
     mail(to: email, subject: "Trade Quotes Rejected")
   end
 
-  def tender_changed email,user_name,tender_title,addenda_type
+  def tender_changed subject,details,email,user_name,tender_title,addenda_type
     @email = email
     @first_name = user_name
     if addenda_type == 'details'
-      @messages = "#{tender_title} details was changed."
+      @messages = "#{details}"
     else
-      @messages = "#{tender_title} document was changed."
+      @messages = "#{details}"
     end
-
-
-
-    mail(to: email, subject: "Tender Changed")
+    mail(to: email, subject: "#{subject}")
   end
 end

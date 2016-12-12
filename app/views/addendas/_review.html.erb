@@ -1,0 +1,107 @@
+<div class="portlet light bordered">
+  <div class="portlet-body form">
+    <div class="form-body">
+      <table class="table table-bordered responsive"  cellspacing="0" width="100%">
+        <tbody>
+          <tr>
+            <td>Addendum #</td>
+            <td><%= addenda.ref_no %></td>
+          </tr>
+          <tr>
+            <td>Subject</td>
+            <td><%= addenda.subject %></td>
+          </tr>
+          <tr>
+            <td>Details</td>
+            <td><%= addenda.details %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note note-info note-bordered">
+        <p> Changes </p>
+      </div>
+      <% if tender.tender_quote.previous_date.present? %>
+          <table class="table table-bordered responsive"  cellspacing="0" width="100%">
+            <tbody>
+            <tr>
+              <td>Quotes Due</td>
+              <td><%= tender.tender_quote.quote_date %></td>
+              <td>Updated</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><%= tender.tender_quote.previous_date %></td>
+              <td>Previously</td>
+            </tr>
+
+            <% if tender.status_updated == 'true' %>
+                <tr>
+                  <td>Status</td>
+                  <% if tender.status == 1 %>
+                      <td>Tendering - Your organization is still tendering for this project.</td>
+                  <% else %>
+                      <td>Awarded - This tender has been awarded yo your organization or this your project.</td>
+                  <% end %>
+
+                  <td>Updated</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <% if tender.status == 1 %>
+                      <td>Awarded - This tender has been awarded yo your organization or this your project.</td>
+                  <% else %>
+                      <td>Tendering - Your organization is still tendering for this project.</td>
+                  <% end %>
+
+                  <td>Previously</td>
+                </tr>
+            <% end %>
+
+            </tbody>
+          </table>
+      <% end %>
+
+
+      <% if params[:addenda_type] == 'documents' %>
+          <div class="row">
+            <div style="height: 30px;"></div>
+          </div>
+          <fieldset>
+            <h2>Documents</h2>
+          </fieldset>
+          <div class="table-responsive" >
+            <table class="table table-bordered responsive" id="updated_addenda_document_table" cellspacing="0" width="100%">
+              <thead>
+              <th class="text-center">Filename</th>
+              <th class="text-center">Size</th>
+              </thead>
+              <tbody>
+              <% if @documents.present? %>
+                  <% @documents.each_with_index do |t,index| %>
+                      <tr>
+                        <td class="text-center"><%= t.document_file_name  %></td>
+                        <td class="text-center"><%= convert_kb_to_mb t.document_file_size %> MB</td>
+                      </tr>
+                  <% end %>
+              <% end %>
+              </tbody>
+            </table>
+
+          </div>
+          <div class="row">
+            <div style="height: 30px;"></div>
+          </div>
+      <% end %>
+
+      <a href="/addendas/new?id=<%= tender.id %>&addenda=<%= addenda.id %>&type=details&updates=true">
+        <button type="button" class="btn btn-danger">Back</button>
+      </a>
+
+      <a href="<%= new_addenda_path(:id => tender.id,:addenda => addenda.id,:addenda_type => params[:addenda_type],:notify => true) %>">
+        <button type="button" class="btn btn-success">Next</button>
+      </a>
+    </div>
+  </div>
+</div>
+
+

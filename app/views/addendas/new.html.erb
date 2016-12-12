@@ -1,18 +1,97 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Issue Addenda</a>
+
+<div class="row" style="position:fixed;z-index: 1;">
+  <div class="col-md-11" style="background-color: whitesmoke;border-radius:10px;margin-top: -25px">
+    <div class="container" >
+      <div class="mt-element-step" >
+        <div class="row step-line">
+          <% if params[:details] == 'true' %>
+              <div class="col-md-2 mt-step-col active">
+                <div class="mt-step-number bg-dark font-grey">1</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Details</div>
+              </div>
+          <% else %>
+              <div class="col-md-2 mt-step-col done">
+                <div class="mt-step-number bg-dark font-grey">1</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Details</div>
+              </div>
+          <% end %>
+
+          <% if params[:addenda_type] == 'details' || params[:type] == 'details' %>
+            <% if params[:updates] == 'true' %>
+              <div class="col-md-2 mt-step-col active">
+                <div class="mt-step-number bg-dark font-grey">2</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Updates</div>
+              </div>
+            <% else %>
+              <div class="col-md-2 mt-step-col done">
+                <div class="mt-step-number bg-dark font-grey">2</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Updates</div>
+              </div>
+            <% end %>
+          <% else %>
+
+            <% if params[:documents] == 'true' && params[:type] == 'documents' || params[:addenda_type] == 'documents' %>
+              <div class="col-md-2 mt-step-col active">
+                <div class="mt-step-number bg-dark font-grey">2</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
+              </div>
+            <% else %>
+              <div class="col-md-2 mt-step-col done">
+                <div class="mt-step-number bg-dark font-grey">2</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
+              </div>
+            <% end %>
+          <% end %>
+
+          <% if  params[:type] == 'documents' || params[:addenda_type] == 'documents'  %>
+            <% if params[:matrix] == 'true' %>
+              <div class="col-md-3 mt-step-col active">
+                <div class="mt-step-number bg-dark font-grey">3</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Matrix</div>
+              </div>
+            <% else %>
+              <div class="col-md-3 mt-step-col done">
+                <div class="mt-step-number bg-dark font-grey">3</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Matrix</div>
+              </div>
+            <% end %>
+          <% end %>
+
+          <% if params[:addenda_type] == 'details' ||  params[:type] == 'details' %>
+              <% if params[:review] == 'true' %>
+                  <div class="col-md-3 mt-step-col active">
+                    <div class="mt-step-number bg-dark font-grey">3</div>
+                    <div class="mt-step-title uppercase font-grey-cascade">Review</div>
+                  </div>
+              <% else %>
+                  <div class="col-md-3 mt-step-col done">
+                    <div class="mt-step-number bg-dark font-grey">3</div>
+                    <div class="mt-step-title uppercase font-grey-cascade">Review</div>
+                  </div>
+              <% end %>
+          <% end %>
+
+
+          <% if params[:notify] == 'true' %>
+              <div class="col-md-3 mt-step-col active">
+                <div class="mt-step-number bg-dark font-grey">4</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Notify</div>
+              </div>
+          <% else %>
+              <div class="col-md-3 mt-step-col done">
+                <div class="mt-step-number bg-dark font-grey">4</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Notify</div>
+              </div>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
+</div>
 
-<ol class="breadcrumb">
-  <li><a href="<%= addendas_path(:id => @tender.id ) %>">Home</a></li>
-  <li class="active"><a href="#">Details</a></li>
-</ol>
-
+<input type="hidden" class="tender_id" value="<%= @tender.id %>">
 <div class="row">
-  <div style="height: 30px;"></div>
+  <div style="height: 250px;"></div>
 </div>
 <div class="form-group has-feedback">
   <% if flash[:error] %>
@@ -32,15 +111,23 @@
       </div>
   <%- end %>
 </div>
-<div class="row">
+<div class="row" style="position: fixed;  z-index: 9995;">
+
   <div style="height: 40px;"></div>
 </div>
-<%= form_for(@addenda)  do |f| %>
+<% if params[:details] == 'true' %>
+  <%= form_for(@addenda)  do |f| %>
+    <input type="hidden" name="addenda_type" value="<%= params[:type] %>">
     <div class="portlet light bordered">
       <div class="portlet-body form">
         <div class="form-body">
           <input type="hidden" name="tender_id" value="<%= @tender.id %>">
           <input type="hidden" name="addenda_id" value="<%= @edited_addenda.present? ? @edited_addenda.id : nil %>">
+          <div class="form-group">
+            <%= f.label 'Addendum #' %>
+            <%= f.text_field :ref_no,:class => 'form-control',:value => "#{@ref_num}",:readonly => true %>
+
+          </div>
           <div class="form-group">
             <%= f.label :subject %>
             <%= f.text_field :subject,:class => 'form-control',:value => @edited_addenda.present? ? @edited_addenda.subject : nil  %>
@@ -54,103 +141,160 @@
         </div>
       </div>
     </div>
-    <% if params[:type] == 'details' %>
-      <div class="portlet light bordered">
-        <div class="portlet-body form">
-          <div class="form-body">
-            <input type="hidden" name="addenda_type" value="details">
-            <%= render :partial => 'addendas/tender_details', :locals => { :tender => @tender} %>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-md-12">
+        <a href="<%= addendas_path(:id => @tender.id ) %>">
+          <button type="button" class="btn btn-danger">Cancel</button>
+        </a>
+        <button type="submit" class="btn btn-default">Next</button>
       </div>
-    <% end %>
-
-
-
-  <% if params[:type] == 'document' %>
-        <div class="portlet light bordered">
-          <div class="portlet-body form">
-            <div class="form-body">
-              <input type="hidden" name="addenda_type" value="documents">
-              <div  style="height: 20px"></div>
-              <div class="col-md-12 document_div"> 
-                <div class="row">
-                  <div style="height: 40px;"></div>
-                </div>
-
-                <div class="document_upload">
-                  <div class="col-md-12" type="file" id="dir-select" webkitdirectory name="document"> 
-
-                    <div class="col-md-6  col-md-offset-3 addenda_dropzone">
-                      <div style="height: 60px;"></div>
-                      <p class="text-center">
-                        <i class="fa fa-cloud-upload fa-5x upload " aria-hidden="true"></i>
-                      </p>
-                      <h1 class="text-center">DRAG AND DROP</h1>
-                      <p class="text-center">your files anywhere</p> 
-
-                    </div>
-                  </div>  
-                </div>
-
-                <div class="table-responsive addenda_table_list" >
-                  <% if @documents.present? %>
-                      <div class="row">
-                        <div style="height: 40px;"></div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-7">
-                          <a href="#!" class="remove_document" id="<%= @tender.id %>">
-                            <button class="btn btn-danger" type="button">
-                              <i class="fa fa-trash" aria-hidden="true"></i> Remove Document
-                            </button>
-                          </a>
-                        </div>
-                      </div>
-
-                      <table class="table table-bordered responsive" id="addenda_document_table" cellspacing="0" width="100%">
-                        <thead>
-                        <th class="text-center"><input type="checkbox" class="document_list_master" name="document_list_master"></th>
-                        <th class="text-center">Filename</th>
-                        <th class="text-center">Size</th>
-                        <th class="text-center">Directory</th>
-                        </thead>
-                        <tbody>
-                        <% @documents.each_with_index do |t,index| %>
-                            <tr>
-                              <td class="text-center"><input type="checkbox" class="document_list" name="document_list" value="<%= t.id %>"></td>
-                              <td class="text-center"><%= t.document_file_name  %></td>
-                              <td class="text-center"><%= convert_kb_to_mb t.document_file_size %> MB</td>
-                              <td class="text-center"><%=  t.directory %></td>
-                            </tr>
-                        <% end %>
-                        </tbody>
-                      </table>
-                  <% end %>
-                </div>
-              </div>  
-            </div>
-          </div>
-        </div>
-  <% end %>
-
-  <div class="row">
-    <div class="col-md-12">
-      <a href="<%= addendas_path(:id => @tender.id ) %>">
-        <button type="button" class="btn btn-danger">Cancel</button>
-      </a>
-      <button type="submit" class="btn btn-default">Next</button>
     </div>
-  </div>
+  <% end %>
+<% end %>
+
+<% if params[:updates] == 'true' && params[:type] == 'details' %>
+   <%= render :partial => 'addendas/tender_details', :locals => {:tender => @tender,:addenda => params[:addenda] }  %>
+<% end %>
+
+<% if params[:review] == 'true' %>
+    <%= render :partial => 'addendas/review', :locals => {:tender => @tender,:addenda => @edited_addenda }  %>
+<% end %>
+
+<% if params[:notify] == 'true' %>
+    <%= render :partial => 'addendas/notify', :locals => {:tender => @tender,:addenda => @edited_addenda }  %>
+<% end %>
+
+<% if params[:documents] == 'true' %>
+    <%= render :partial => 'addendas/documents/documents', :locals => {:tender => @tender,:addenda => @edited_addenda,:documents => @documents }  %>
+<% end %>
+
+<% if params[:matrix] == 'true' %>
+    <%= render :partial => 'addendas/matrix', :locals => {:tender => @tender,:addenda => @edited_addenda,:documents => @documents, :package_array => @package_array,:tender_packages => @tender_packages ,:document_array => @document_array, :directory_array => @directory_array, :package_lists => @package_lists,:tender_package_array => @tender_package_array,:tender_package_header => @tender_package_header,:tender_package_array_1 => @tender_package_array_1, :tender_package_count => @tender_package_count,:directory_array_1 => @directory_array_1 }  %>
 <% end %>
 
 <div style="background-color: transparent;display: none"> 
   <%= form_for @addenda_document, :url => create_addenda_document_addendas_path,:html => {:multipart => true,:class => 'addenda_document'} do |m| %> 
       <input type="hidden" name="tender_id" value="<%= @tender.id %>">
       <input type="hidden" class="addenda_directory" name="directory">
-      <input type="file" id="dir-select" name="document" webkitdirectory directory multiple /> 
+      <input type="file" class="upload_file" id="dir-select" name="document" webkitdirectory directory multiple /> 
   <% end %>
 </div> 
+
+<div class="add_file">
+  <div id="add_file_Modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;margin-left: 50px;" data-backdrop="false">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close rejected_close" data-dismiss="modal">&times;</button>
+          <div class="col-md-12">
+            <h2 class="text-center" style="font-size: 18px;color: black">Add Files</h2>
+          </div>
+          <div class="row">
+            <div class="form-group" >
+
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="modal-body">
+          <div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
+            <div class="row">
+
+              <div class="col-md-12">
+
+                <div class="new_drop_zone" id="new_drop_zone">
+                  <div style="height: 40px"></div>
+                  <p class="text-center">
+                    <i class="fa fa-cloud-upload fa-5x upload " aria-hidden="true"></i>
+                  </p>
+                  <h1 class="text-center">DRAG AND DROP</h1>
+                  <p class="text-center">your files anywhere, or browse</p> 
+                  <div style="background-color: transparent;"> 
+                    <input id="files_input" type="file" style="display: none" name="documents"> 
+                  </div> 
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="row">
+
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+
+            </div>
+            <div class="form-group">
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="move_file">
+  <div id="remove_file_Modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" data-backdrop="false">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close rejected_close" data-dismiss="modal">&times;</button>
+          <div class="col-md-12">
+            <h1 class="text-center">Move Files</h1>
+          </div>
+          <div class="row">
+            <div class="form-group" >
+
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="modal-body">
+          <div class="scroller" style="height:400px" data-always-visible="1" data-rail-visible1="1">
+            <div class="row">
+              <div class="col-md-12">
+                <p class="text-center" style="font-size: 14px;font-weight: bold" >Move to existing folder</p>
+                <div class="col-md-6 col-md-offset-3">
+                  <div class="form-group"> 
+                    <%= select_tag "directory",content_tag(:option,'None',:value=>'')+options_for_select(@new_direcotires.uniq),{:class=> 'form-control categories',:required => true} %> 
+                  </div> 
+                  <p class="text-center" style="font-size: 18px;">OR</p>
+                  <input type="hidden" class="document_ids">
+                </div>
+              </div>
+
+              <div class="col-md-6 col-md-offset-3">
+                <div class="form-group">
+                  <p class="text-center" style="font-size: 14px;font-weight: bold" >Move to new folder</p>
+                  <input type="text" class="form-control newly_folder" >
+                </div>
+              </div>
+
+
+              <div class="col-md-12 col-md-offset-4">
+                <a href="#!">
+                  <button class="btn btn-info move_documents" data-dismiss="modal" type="button">MOVE DOCUMENTS</button>
+                </a>
+              </div>
+            </div>
+
+            <div class="row">
+
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="modal fade" id="uploading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:100px;">
   <div class="modal-dialog">
@@ -189,7 +333,8 @@
           console.log("I -------> :"+i);
           if ( last !== group ) {
             $(rows).eq( i ).before(
-                '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '">'+ group+ '</td>' +
+                '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
+                '<td class="text-center"> <i class="fa fa-file-text add_files" aria-hidden="true"  id="'+ group+ '"></i>'+
                 '</td></tr>'
             );
 
@@ -218,9 +363,62 @@
       }).done(function (data) {
         $('.addenda_table_list').html('');
         $('.addenda_table_list').html(data);
+        //location.reload();
+      });
+    });
+
+    $('.document_upload').click(function(){
+      $('.upload_file').click();
+    });
+
+    $('.add_files').click(function(){
+      $('.addenda_directory').val('');
+      var directory = $(this).attr('id')
+      $('.addenda_directory').val(directory);
+      $('#add_file_Modal').modal('show');
+    });
+
+    $('.new_drop_zone').click(function(){
+      //$('.upload_file').click();
+
+    });
+
+    $('.move_document').click(function()
+    {
+      var ids = []
+      $('.document_list').each(function()
+      {
+        if($(this).is(':checked')){
+          ids.push($(this).val());
+          $('#remove_file_Modal').modal('show');
+
+        }
+
+        $('.document_ids').val(ids);
+      })
+    });
+
+    $('.move_documents').click(function(){
+      var ids = $('.document_ids').val();
+      var new_folder_name = $('.newly_folder').val();
+      var directory = $('#directory').val();
+      var tender_id = $('.tender_id').val();
+      console.log(directory);
+
+      console.log("IDS:"+ids);
+      $.ajax({
+        method: "POST",
+        data: {ids:ids,new_folder_name:new_folder_name,directory:directory,tender_id:tender_id},
+        url: "/addendas/move_files"
+      }).done(function (data) {
+        $('.addenda_table_list').html('');
+        $('.addenda_table_list').html(data);
+        $('#remove_file_Modal').modal('hide');
+
       });
     });
   });
+
 
   var out = [];
   var directories = [];
@@ -262,17 +460,21 @@
       $('#progress .progress-bar').css( 'width', progress + '%');
     }
   }).bind('fileuploadstop', function (e) {
-    var tender_id = '<%= @tender.id %>'
+    var tender_id = '<%= @tender.id %>';
+    var directory = $('.addenda_directory').val();
     $.ajax({
       method: "POST",
-      data: {out: out,directories:directories,tender_id:tender_id},
+      data: {out: out,directories:directories,tender_id:tender_id,directory:directory},
       url: "/addendas/get_documents"
     }).done(function (data) {
+      $('.addenda_directory').val('');
       $('.addenda_table_list').html('');
-      $('.addenda_table_list').html(data);
+      //$('.addenda_table_list').html(data);
       out =  [];
       directories = [];
+      $('#add_file_Modal').modal('hide');
       $('#uploading').modal('hide');
+      location.reload();
     });
   });
 </script>

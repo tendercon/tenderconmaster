@@ -99,25 +99,6 @@
       $('#file_input').click();
     });
 
-    $('#new_rfi_document').fileupload({
-      dataType: 'json',    done: function (e, data) {
-        $.each(data, function (index, file) {
-          if (index == 'done') {
-            $.ajax({
-              method: "POST",
-              data: {},
-              url: "/rfis/get_rfi_documents"
-            }).done(function (data) {
-              console.log("data"+data);
-              $('.rfi_document_lists').html(data);
-            });
-          }
-        });
-      },progress: function (e, data) {
-
-      }
-    });
-
 
     $('.rfi_download').click(function(){
       var ids = [];
@@ -270,4 +251,23 @@
   function sent_rfi_btn(){
     $('#confirm_rfi').modal('show');
   }
+
+  $('#new_rfi_document').fileupload({
+    dataType: 'json',    done: function (e, data) {
+      $.each(data, function (index, file) {
+        if (index == 'done') {
+          $.ajax({
+            method: "POST",
+            data: {},
+            url: "/rfis/get_rfi_documents"
+          }).done(function (data) {
+            console.log("data"+data);
+            $('.rfi_document_lists').html(data);
+          });
+        }
+      });
+    },progress: function (e, data) {
+
+    }
+  });
 </script>

@@ -435,20 +435,186 @@
 
 
 <script>
+  $(document).ready(function(){
+    var req = $('.request').val();
+    console.log("req"+req)
+    if(req == 'true'){
+      console.log("SHOW")
+      $('#request_myModal').modal('show');
+    }
 
-  var req = $('.request').val();
-  console.log("req"+req)
-  if(req == 'true'){
-    console.log("SHOW")
-    $('#request_myModal').modal('show');
-  }
+    $('.add_comment').click(function(){
+      $('.comment_area').show();
+    });
 
-  $('.add_comment').click(function(){
-    $('.comment_area').show();
-  });
+    $('.cancel_comment').click(function(){
+      $('.comment_area').hide();
+    });
 
-  $('.cancel_comment').click(function(){
-    $('.comment_area').hide();
+    $('.submit_comment').click(function(){
+      var message = $('.message').val();
+      var rfi_id = $('.rfi_id').val();
+      var tender_id = $('.tender_id').val();
+      var str_token = $('.str_token').attr('id');
+      $.ajax({
+        method: "POST",
+        data: {message:message,rfi_id:rfi_id,tender_id:tender_id,str_token:str_token},
+        url: "/rfi_comments/create_comment"
+      }).done(function (data) {
+        $('.str_token').html('');
+        $('.message').val('');
+        $('.comment_area').hide();
+        console.log(data);
+        $('.comment_lists').html(data);
+      });
+    });
+
+    $('.mark_resolved').click(function(){
+      var rfi_id = $('.rfi_id').val();
+      $.ajax({
+        method: "POST",
+        data: {rfi_id:rfi_id},
+        url: "/rfis/update_status"
+      }).done(function (data) {
+        $('.mark_resolved').text("Resolved");
+        window.location.reload();
+      });
+    });
+
+    $('.btn_resolve').click(function(){
+      var rfi_id = $('.rfi_id').val();
+      var tender_id = $('.tender_id').val();
+      $.ajax({
+        method: "POST",
+        data: {rfi_id:rfi_id},
+        url: "/rfis/update_status"
+      }).done(function (data) {
+        $('.mark_resolved').text("Resolved");
+        $('#request_myModal').modal('hide');
+        window.location.href = "/rfis/comments?id="+rfi_id+"&tender_id="+tender_id;
+
+      });
+    });
+
+    $('.btn_no').click(function(){
+      var rfi_id = $('.rfi_id').val();
+      var tender_id = $('.tender_id').val();
+      $.ajax({
+        method: "POST",
+        data: {rfi_id:rfi_id,no:'No'},
+        url: "/rfis/update_status"
+      }).done(function (data) {
+        $('#request_myModal').modal('hide');
+        window.location.href = "/rfis/comments?id="+rfi_id+"&tender_id="+tender_id;
+      });
+    })
+
+    $('.request_mark_resolved').click(function(){
+      var rfi_id = $('.rfi_id').val();
+      $.ajax({
+        method: "POST",
+        data: {rfi_id:rfi_id},
+        url: "/rfis/request_to_resolve"
+      }).done(function (data) {
+
+      });
+    });
+
+    $('.shared_rfi_btn').click(function(){
+      $('#shared_modal').modal('show');
+    });
+
+    $('.shared_option').click(function(){
+      var option_id = $(this).attr('id');
+
+      if(option_id == 1){
+        $('#option1_modal').modal('show');
+        $('#option2_modal').modal('hide');
+        $('#option3_modal').modal('hide');
+      }else if(option_id == 2){
+        $('#option2_modal').modal('show');
+        $('#option1_modal').modal('hide');
+        $('#option3_modal').modal('hide');
+
+        var trade_id = $('.trade_id').val();
+        var rfi_id = $('.rfi_id').val();
+
+        $.ajax({
+          method: "POST",
+          data: {rfi_id:rfi_id,trade_id:trade_id},
+          url: "/shared_rfis/shared_by_approved_sub"
+        }).done(function (data) {
+          $('#shared_modal').modal('hide');
+          window.location.reload();
+        });
+      }else{
+        $('#option3_modal').modal('show');
+        $('#option1_modal').modal('hide');
+        $('#option2_modal').modal('hide');
+      }
+    });
+
+    $('.all_sub').click(function(){
+      var trade_id = $('.trade_id').val();
+      var rfi_id = $('.rfi_id').val();
+
+      $.ajax({
+        method: "POST",
+        data: {rfi_id:rfi_id,trade_id:trade_id},
+        url: "/shared_rfis/shared_by_trade"
+      }).done(function (data) {
+        $('#shared_modal').modal('hide');
+        $('#option3_modal').modal('hide');
+        $('#option1_modal').modal('hide');
+        $('#option2_modal').modal('hide');
+        $('.all_sub_body').html(data);
+        $('#success_all_sub_modal').modal('show');
+        //window.location.reload();
+      });
+    });
+
+    $('.manually_select').click(function(){
+      $('#manual_modal').modal('show');
+    });
+
+    $('.user_list_master').click(function(){
+      var id = $(this).attr('id');
+      console.log(id);
+
+
+      console.log($('.user_list_'+id).prop('checked'));
+      if($('.user_list_'+id).prop('checked')){
+        $('.user_list_'+id).prop('checked',false);
+      }else{
+        $('.user_list_'+id).prop('checked',true);
+      }
+    });
+
+    $('.share_rfi').click(function(){
+      var user_ids =[];
+      var trades = [];
+      $.each($("input[name='user_list']:checked"), function(){
+        trades.push($(this).attr('title'));
+        user_ids.push($(this).val());
+      });
+
+      var rfi_id = $('.rfi_id').val();
+
+      $.ajax({
+        method: "POST",
+        data: {rfi_id:rfi_id,trades:trades,user_ids:user_ids},
+        url: "/shared_rfis/shared_by_trade"
+      }).done(function (data) {
+        $('#shared_modal').modal('hide');
+        $('#option3_modal').modal('hide');
+        $('#option1_modal').modal('hide');
+        $('#option2_modal').modal('hide');
+        $('.manual_body').html(data);
+        $('#success_manual_modal').modal('show');
+        //window.location.reload();
+      });
+
+    });
   });
 
   $('#new_comment_document').fileupload({
@@ -470,170 +636,4 @@
 
     }
   });
-
-  $('.submit_comment').click(function(){
-    var message = $('.message').val();
-    var rfi_id = $('.rfi_id').val();
-    var tender_id = $('.tender_id').val();
-    var str_token = $('.str_token').attr('id');
-    $.ajax({
-      method: "POST",
-      data: {message:message,rfi_id:rfi_id,tender_id:tender_id,str_token:str_token},
-      url: "/rfi_comments/create_comment"
-    }).done(function (data) {
-       $('.str_token').html('');
-       $('.message').val('');
-       $('.comment_area').hide();
-        console.log(data);
-       $('.comment_lists').html(data);
-    });
-  });
-
-  $('.mark_resolved').click(function(){
-    var rfi_id = $('.rfi_id').val();
-    $.ajax({
-      method: "POST",
-      data: {rfi_id:rfi_id},
-      url: "/rfis/update_status"
-    }).done(function (data) {
-      $('.mark_resolved').text("Resolved");
-      window.location.reload();
-    });
-  });
-
-  $('.btn_resolve').click(function(){
-    var rfi_id = $('.rfi_id').val();
-    var tender_id = $('.tender_id').val();
-    $.ajax({
-      method: "POST",
-      data: {rfi_id:rfi_id},
-      url: "/rfis/update_status"
-    }).done(function (data) {
-      $('.mark_resolved').text("Resolved");
-      $('#request_myModal').modal('hide');
-      window.location.href = "/rfis/comments?id="+rfi_id+"&tender_id="+tender_id;
-
-    });
-  });
-
-  $('.btn_no').click(function(){
-    var rfi_id = $('.rfi_id').val();
-    var tender_id = $('.tender_id').val();
-    $.ajax({
-      method: "POST",
-      data: {rfi_id:rfi_id,no:'No'},
-      url: "/rfis/update_status"
-    }).done(function (data) {
-      $('#request_myModal').modal('hide');
-      window.location.href = "/rfis/comments?id="+rfi_id+"&tender_id="+tender_id;
-    });
-  })
-
-  $('.request_mark_resolved').click(function(){
-    var rfi_id = $('.rfi_id').val();
-    $.ajax({
-      method: "POST",
-      data: {rfi_id:rfi_id},
-      url: "/rfis/request_to_resolve"
-    }).done(function (data) {
-
-    });
-  });
-
-  $('.shared_rfi_btn').click(function(){
-    $('#shared_modal').modal('show');
-  });
-
-  $('.shared_option').click(function(){
-    var option_id = $(this).attr('id');
-
-    if(option_id == 1){
-      $('#option1_modal').modal('show');
-      $('#option2_modal').modal('hide');
-      $('#option3_modal').modal('hide');
-    }else if(option_id == 2){
-      $('#option2_modal').modal('show');
-      $('#option1_modal').modal('hide');
-      $('#option3_modal').modal('hide');
-
-      var trade_id = $('.trade_id').val();
-      var rfi_id = $('.rfi_id').val();
-
-      $.ajax({
-        method: "POST",
-        data: {rfi_id:rfi_id,trade_id:trade_id},
-        url: "/shared_rfis/shared_by_approved_sub"
-      }).done(function (data) {
-        $('#shared_modal').modal('hide');
-        window.location.reload();
-      });
-    }else{
-      $('#option3_modal').modal('show');
-      $('#option1_modal').modal('hide');
-      $('#option2_modal').modal('hide');
-    }
-  });
-
-  $('.all_sub').click(function(){
-    var trade_id = $('.trade_id').val();
-    var rfi_id = $('.rfi_id').val();
-
-    $.ajax({
-      method: "POST",
-      data: {rfi_id:rfi_id,trade_id:trade_id},
-      url: "/shared_rfis/shared_by_trade"
-    }).done(function (data) {
-      $('#shared_modal').modal('hide');
-      $('#option3_modal').modal('hide');
-      $('#option1_modal').modal('hide');
-      $('#option2_modal').modal('hide');
-      $('.all_sub_body').html(data);
-      $('#success_all_sub_modal').modal('show');
-      //window.location.reload();
-    });
-  });
-
-  $('.manually_select').click(function(){
-    $('#manual_modal').modal('show');
-  });
-
-  $('.user_list_master').click(function(){
-    var id = $(this).attr('id');
-    console.log(id);
-
-
-    console.log($('.user_list_'+id).prop('checked'));
-    if($('.user_list_'+id).prop('checked')){
-      $('.user_list_'+id).prop('checked',false);
-    }else{
-      $('.user_list_'+id).prop('checked',true);
-    }
-  });
-
-  $('.share_rfi').click(function(){
-    var user_ids =[];
-    var trades = [];
-    $.each($("input[name='user_list']:checked"), function(){
-      trades.push($(this).attr('title'));
-      user_ids.push($(this).val());
-    });
-
-    var rfi_id = $('.rfi_id').val();
-
-    $.ajax({
-      method: "POST",
-      data: {rfi_id:rfi_id,trades:trades,user_ids:user_ids},
-      url: "/shared_rfis/shared_by_trade"
-    }).done(function (data) {
-      $('#shared_modal').modal('hide');
-      $('#option3_modal').modal('hide');
-      $('#option1_modal').modal('hide');
-      $('#option2_modal').modal('hide');
-      $('.manual_body').html(data);
-      $('#success_manual_modal').modal('show');
-      //window.location.reload();
-    });
-
-  });
-
 </script>

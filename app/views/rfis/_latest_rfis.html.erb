@@ -354,25 +354,6 @@
       $('#file_input').click();
     });
 
-    $('#new_rfi_document').fileupload({
-      dataType: 'json',    done: function (e, data) {
-        $.each(data, function (index, file) {
-          if (index == 'done') {
-            $.ajax({
-              method: "POST",
-              data: {},
-              url: "/rfis/get_rfi_documents"
-            }).done(function (data) {
-              console.log("data"+data);
-              $('.rfi_document_lists').html(data);
-            });
-          }
-        });
-      },progress: function (e, data) {
-
-      }
-    });
-
 
     $('.rfi_download').click(function(){
       var ids = [];
@@ -520,30 +501,50 @@
         $('.rfi_lists').html(data);
       });
     });
+
+    function remove_fri_btn(){
+      var tender_id = $('.tender_id').val();
+      var r = confirm("Are you sure you want to delete this item?");
+      if (r == true) {
+        var ids = [];
+
+        $("input:checkbox:checked").map(function()
+        {
+          ids.push($(this).val());
+        })
+        console.log("ids:"+ids);
+        $.ajax({
+          method: "POST",
+          data: {ids:ids,tender_id:tender_id},
+          url: "/rfis/delete_rfis"
+        }).done(function (data) {
+          $('.rfi_lists').html(data);
+        });
+      }
+    }
+
+    function sent_rfi_btn(){
+      $('#confirm_rfi').modal('show');
+    }
   });
 
-  function remove_fri_btn(){
-    var tender_id = $('.tender_id').val();
-    var r = confirm("Are you sure you want to delete this item?");
-    if (r == true) {
-      var ids = [];
-
-      $("input:checkbox:checked").map(function()
-      {
-        ids.push($(this).val());
-      })
-      console.log("ids:"+ids);
-      $.ajax({
-        method: "POST",
-        data: {ids:ids,tender_id:tender_id},
-        url: "/rfis/delete_rfis"
-      }).done(function (data) {
-        $('.rfi_lists').html(data);
+  $('#new_rfi_document').fileupload({
+    dataType: 'json',    done: function (e, data) {
+      $.each(data, function (index, file) {
+        if (index == 'done') {
+          $.ajax({
+            method: "POST",
+            data: {},
+            url: "/rfis/get_rfi_documents"
+          }).done(function (data) {
+            console.log("data"+data);
+            $('.rfi_document_lists').html(data);
+          });
+        }
       });
-    }
-  }
+    },progress: function (e, data) {
 
-  function sent_rfi_btn(){
-    $('#confirm_rfi').modal('show');
-  }
+    }
+  });
+
 </script>

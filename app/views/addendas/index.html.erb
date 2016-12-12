@@ -12,13 +12,13 @@
 
   <div class="col-md-12">
     <div class="pull-right close_icon">
-      <a href="<%= "/tenders/hc_tender?id=#{@tender.id}&addenda=true" %>">
+      <a href="<%= "/tenders/hc_tender?id=#{@tender.id}&addenda=true&details=true" %>">
         <i class="fa fa-times fa-2x" aria-hidden="true"></i>
       </a>
     </div>
   </div>
   <div class="col-md-12  text-center">
-      <a  href="<%= "/tenders/hc_tender?id=#{@tender.id}&addenda=true" %>">
+      <a  href="<%= "/tenders/hc_tender?id=#{@tender.id}&addenda=true&details=true" %>">
         <button class="btn btn-success">
           <i class="fa fa-hand-o-left fa-1x" aria-hidden="true" style="color: green"></i> Back to Addendas
         </button>
@@ -92,13 +92,13 @@
     $('.document_div').click(function(){
       $('.document_spinner').show();
       $('.detail_spinner').hide();
-      window.location.href = '/addendas/new?id='+tender_id+"&type=document";
+      window.location.href = '/addendas/new?id='+tender_id+"&type=documents&details=true";
     });
 
     $('.detail_div').click(function(){
       $('.document_spinner').hide();
       $('.detail_spinner').show();
-      window.location.href = '/addendas/new?id='+tender_id+"&type=details";;
+      window.location.href = '/addendas/new?id='+tender_id+"&type=details&details=true";;
     });
 
     $(".document_div_element").hover(function(){

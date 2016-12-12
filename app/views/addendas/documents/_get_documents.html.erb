@@ -9,16 +9,22 @@
           <i class="fa fa-trash" aria-hidden="true"></i> Remove Document
         </button>
       </a>
+      <a href="#!" class="move_document" id="<%= @tender.id %>">
+        <button class="btn btn-warning" type="button">
+          <i class="fa fa-arrows" aria-hidden="true"></i> Move Files
+        </button>
+      </a>
     </div>
   </div>
 <% end %>
 
 <table class="table table-bordered responsive" id="updated_addenda_document_table" cellspacing="0" width="100%">
   <thead>
-  <th class="text-center"><input type="checkbox" class="document_list_master" name="document_list_master"></th>
-  <th>Filename</th>
-  <th>Size</th>
-  <th>Directory</th>
+    <th class="text-center"><input type="checkbox" class="document_list_master" name="document_list_master"></th>
+    <th>Filename</th>
+    <th>Size</th>
+    <th>Directory</th>
+    <th></th>
   </thead>
   <tbody>
     <% if @documents.present? %>
@@ -28,6 +34,7 @@
           <td class="text-center"><%= t.document_file_name  %></td>
           <td class="text-center"><%= convert_kb_to_mb t.document_file_size %> MB</td>
           <td class="text-center"><%=  t.directory %></td>
+          <td></td>
         </tr>
       <% end %>
     <% end %>
@@ -56,7 +63,8 @@
           console.log("I -------> :"+i);
           if ( last !== group ) {
             $(rows).eq( i ).before(
-                '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '">'+ group+ '</td>' +
+                '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
+                '<td class="text-center"> <i class="fa fa-file-text add_files" aria-hidden="true"  id="'+ group+ '"></i>'+
                 '</td></tr>'
             );
 
@@ -87,5 +95,54 @@
         $('.addenda_table_list').html(data);
       });
     });
+
+    $('.add_files').click(function(){
+      $('.addenda_directory').val('');
+      var directory = $(this).attr('id')
+      $('.addenda_directory').val(directory);
+      $('#add_file_Modal').modal('show');
+    });
+
+    $('.new_drop_zone').click(function(){
+      $('.upload_file').click();
+
+    });
+
+    $('.move_document').click(function()
+    {
+      var ids = []
+      $('.document_list').each(function()
+      {
+        if($(this).is(':checked')){
+          ids.push($(this).val());
+          $('#remove_file_Modal').modal('show');
+
+        }
+
+        $('.document_ids').val(ids);
+      })
+    });
+
+    $('.move_documents').click(function(){
+      var ids = $('.document_ids').val();
+      var new_folder_name = $('.newly_folder').val();
+      var directory = $('#directory').val();
+      var tender_id = $('.tender_id').val();
+      console.log(directory);
+
+      console.log("IDS:"+ids);
+      $.ajax({
+        method: "POST",
+        data: {ids:ids,new_folder_name:new_folder_name,directory:directory,tender_id:tender_id},
+        url: "/addendas/move_files"
+      }).done(function (data) {
+        $('.addenda_table_list').html('');
+        $('.addenda_table_list').html(data);
+        $('#remove_file_Modal').modal('hide');
+
+      });
+    });
+
+
   });
 </script>

@@ -2,20 +2,20 @@
   <div class="col-md-12">
 
   </div>
-  <div class="col-md-12">
-    <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit" class="pull-right">
+  <!--<div class="col-md-12">
+    <a href="/tenders/new_tender?package=true&info_id=<%#= @tender.id %>&cmd=edit" class="pull-right">
       <button class="btn btn-success" type="button">Edit</button>
     </a>
   </div>
 
   <div class="col-md-24">
     <div class="form-group"></div>
-  </div>
+  </div>-->
 
 </div>
 
 <div class="row">
-  <div class="col-md-6">
+  <!--<div class="col-md-6">
     <div class="form-group">
       <div class="input-group input-group-unstyled">
         <input type="text" class="form-control search_text" placeholder="Search"/>
@@ -26,9 +26,10 @@
 
   <div class="col-md-6">
 
-  </div>
+  </div>-->
 
-  <div class="col-md-12 pull-right">
+  <div class="col-md-6 pull-right">
+    <label>Filter by Trade</label>
     <div class="form-group">
       <select class="form-control trades">
         <% if @trades.present? %>
@@ -43,246 +44,102 @@
 </div>
 
 <div class="documents">
-  <table  class="table table-bordered document_table col-md-12">
+  <table  class="table table-bordered" id="document_table">
     <thead>
-    <% if @documents.present? || @unzips.present? %>
       <tr>
-        <th>Document</th>
-        <th>Revision</th>
-        <th>Size</th>
-        <th>Updated</th>
-        <th>Packages</th>
+          <th class="text-center">Document</th>
+          <th class="text-center">Directory</th>
+          <th class="text-center">Size</th>
+          <th class="text-center">Updated</th>
+          <th class="text-center">Packages</th>
       </tr>
-    <% end %>
     </thead>
     <tbody>
-    <% if @documents.present? || @unzip.present? %>
-      <% if @directories.present? %>
-        <% @directories.uniq.each do |c| %>
-          <% if c.present? %>
-            <% if(!@docs1.include? "#{c}") && (!@unzip_dirs.include? "#{c}") %>
-              <% @docs1 << "#{c}" %>
-              <% @unzip_dirs << "#{c}" %>
-              <tr>
-                <td>
-                  <a href="#!" class="directory" value="<%=  replace_char_to_string c  %>"  id="<%=  replace_char_to_string c  %>">
-                    <i class="fa fa-chevron-circle-up" aria-hidden="true"> </i> <%= c %>
-                  </a>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <% if @documents.present? %>
-                <% @documents.each_with_index do |u,index| %>
-                  <% if u.directory == c && u.document_file_name.present? %>
-                    <tr class="<%= replace_char_to_string u.directory  %>">
-                      <td class="text-center" title="<%= u.document_file_name %>"><%= truncate(u.document_file_name, :length => 45) %></td>
-                      <td><%= u.revision.present? ? u.revision : nil %></td>
-                      <td><%= u.document_file_size %> kbs</td>
-                      <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
-                      <% if (get_document_package u.id,@tender.id).to_i > 0 %>
-                          <td>
-                            <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= u.id %>">
-                              <span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span>
-                            </a>
-                          </td>
-                      <% else %>
-                          <td>
-                            <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= u.id %>">
-                              <span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span>
-                            </a>
-                          </td>
-                      <% end %>
-                    </tr>
-                  <% end %>
-                <% end %>
-              <% end %>
-              <% if @unzips.present? %>
-                <% @unzips.each do |u| %>
-                  <% if u.directory.to_s == c.to_s %>
-                    <tr class="<%= replace_char_to_string u.directory  %>">
-                      <td><%= truncate(u.filename, :length => 45) %></td>
-                      <td><%= u.revision.present? ? u.revision : nil %></td>
-                      <td><%= u.file_size %> kbs</td>
-                      <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
-                      <% if (get_document_package u.id,@tender.id).to_i > 0 %>
-                          <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
-                      <% else %>
-                          <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
-                      <% end %>
-                    </tr>
-                  <% end %>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% else %>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <% if @documents.present? %>
-              <% @documents.each_with_index do |u,index| %>
-                <tr>
-                  <% if u.document_file_name.present? %>
-                    <% if !u.directory.present? && File.exist?(u.document.path) %>
-                      <td class="text-center" title="<%= u.document_file_name %>"><%= truncate(u.document_file_name, :length => 45) %></td>
-                      <td><%= u.revision.present? ? u.revision : nil %></td>
-                      <td><%= u.document_file_size %> kbs</td>
-                      <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
-                      <% if (get_document_package u.id,@tender.id).to_i > 0 %>
-                        <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
-                      <% else %>
-                        <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </tr>
-              <% end %>
-            <% end %>
-            <% end %>
-        <% end %>
-      <% else %>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <% if @documents.present? %>
-          <% @documents.each_with_index do |u,index| %>
-            <tr>
-              <% if u.document_file_name.present? %>
-                <% if !u.directory.present? && File.exist?(u.document.path) %>
-                  <td class="text-center" title="<%= u.document_file_name %>"><%= truncate(u.document_file_name, :length => 45) %></td>
-                  <td><%= u.revision.present? ? u.revision : nil %></td>
-                  <td><%= u.document_file_size %> kbs</td>
-                  <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
-                  <% if (get_document_package u.id,@tender.id).to_i > 0 %>
-                    <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
-                  <% else %>
-                    <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </tr>
-          <% end %>
-        <% end %>
-      <% end %>
-
-      <% if @unzips.present? %>
-        <% @unzips.each_with_index do |u,index| %>
-          <% if  u.directory.present? && u.filename.present?  %>
-            <% if(!@unzip_dirs.include? "#{u.directory}") && (!@docs1.include? "#{u.directory}") %>
-              <% @unzip_dirs << "#{u.directory}" %>
-              <% @docs1 << "#{u.directory}" %>
-              <tr>
-                <td>
-                  <a href="#!" class="directory" value="<%=  replace_char_to_string u.directory  %>"  id="<%=  replace_char_to_string u.directory  %>">
-                    <i class="fa fa-chevron-circle-up" aria-hidden="true"> </i> <%= u.directory %>
-                  </a>
-                </td>
-                <td></td>
-                <td></td>
-                <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
-                <td></td>
-              </tr>
-              <tr class="<%= replace_char_to_string u.directory %>">
-                <td class="text-center" title="<%= u.filename %>"><%= truncate(u.filename, :length => 45) %></td>
-                <td><%= u.revision.present? ? u.revision : nil %></td>
-                <td><%= u.file_size %> kbs</td>
-                <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
-                <% if (get_document_package u.id,@tender.id).to_i > 0 %>
-                    <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
-                <% else %>
-                    <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
-                <% end %>
-              </tr>
-
-              <% if @documents.present? %>
-                <% @documents.each_with_index do |d,index| %>
-                  <% if d.directory == u.directory %>
-                    <tr class="<%= replace_char_to_string u.directory %>">
-                      <td title="<%= d.document_file_name %>"><%= truncate(u.document_file_name, :length => 45) %></td>
-                      <td><%= u.revision.present? ? u.revision : nil %></td>
-                      <td><%= d.document_file_size %> kbs</td>
-                      <% if (get_document_package u.id,@tender.id).to_i > 0 %>
-                        <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
-                      <% else %>
-                        <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
-                      <% end %>
-                    </tr>
-                  <% end %>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% else %>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr class="<%= replace_char_to_string u.directory %>">
-              <td class="text-center" title="<%= u.filename %>"><%= truncate(u.filename, :length => 45) %></td>
-              <td><%= u.revision.present? ? u.revision : nil %></td>
-              <td><%= u.file_size %> kbs</td>
-              <td><%= (u.updated_at).strftime("%d.%m.%Y") %></td>
-              <% if (get_document_package u.id,@tender.id).to_i > 0 %>
-                  <td><span class="badge progress-bar-success"><%= get_document_package u.id,@tender.id  %></span></td>
+    <% if @documents.present? %>
+      <% @documents.each do |t| %>
+          <tr>
+            <td class="text-center"><%= t.document_file_name %></td>
+            <td class="text-center"><%= t.directory %></td>
+            <td class="text-center"> <%= convert_kb_to_mb t.document_file_size %> MB</td>
+            <td class="text-center"><%= (t.updated_at).strftime("%d.%m.%Y") %></td>
+            <td class="text-center">
+              <% if (get_document_package t.id,@tender.id).to_i > 0 %>
+                <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= t.id %>">
+                  <span class="badge progress-bar-success"><%= get_document_package t.id,@tender.id  %></span>
+                </a>
               <% else %>
-                  <td><span class="badge progress-bar-warning"><%= get_document_package u.id,@tender.id  %></span></td>
+                  <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= t.id %>">
+                    <span class="badge progress-bar-warning"><%= get_document_package t.id,@tender.id  %></span>
+                  </a>
               <% end %>
-            </tr>
-          <% end %>
-        <% end %>
+            </td>
+          </tr>
       <% end %>
-    <% else %>
-      <tr>
-        <td style="color: grey;">No document available.</td>
-      </tr>
     <% end %>
     </tbody>
   </table>
 </div>
 <input type="hidden" class="tender_id" name="<%= @tender.id %>">
 <script>
-  $('.directory').click(function () {
-    var dir = $(this).attr('id');
-    $('.'+dir).each(function(){
-      $(this).toggle();
-    })
-  });
+  $(document).ready(function(){
 
-  $('#search').click(function(){
-    var tender_id = $('.tender_id').val();
-    var search = $('.search_text').val();
-    var document_control = 'true'
+    $('#document_table').DataTable({
+      "columnDefs": [
+        { "visible": false, "targets": 1 }
+      ],
+      "order": [[ 1, 'asc' ]],
+      "displayLength": 25,
+      "drawCallback": function ( settings ) {
+        var api = this.api();
+        var rows = api.rows( {page:'current'} ).nodes();
+        var last=null;
 
-    $.ajax({
-      method: "POST",
-      data: {search:search,tender_id:tender_id,document_control:document_control},
-      url: "/tenders/search_by_documents"
-    }).done(function (data) {
-       $('.documents').html(data);
+        api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+          console.log("group:"+group);
+          console.log("I -------> :"+i);
+          if ( last !== group ) {
+            $(rows).eq( i ).before(
+                '<tr class="group"><td colspan="4" class="editable" id="'+ i + '" title="'+ group+ '">'+ group+ '</td>' +
+                '</tr>'
+            );
+
+            last = group;
+          }
+        } );
+      }
+    } );
+
+    $('.directory').click(function () {
+      var dir = $(this).attr('id');
+      $('.'+dir).each(function(){
+        $(this).toggle();
+      })
     });
-  });
 
-  $('.trades').change(function(){
-    var trade_id = $(this).val();
-    var tender_id = $('.tender_id').val();
-    $.ajax({
-      method: "POST",
-      data: {tender_id:tender_id,trade_id:trade_id},
-      url: "/tenders/search_by_trades"
-    }).done(function (data) {
-      $('.documents').html(data);
+    $('#search').click(function(){
+      var tender_id = $('.tender_id').val();
+      var search = $('.search_text').val();
+      var document_control = 'true'
+
+      $.ajax({
+        method: "POST",
+        data: {search:search,tender_id:tender_id,document_control:document_control},
+        url: "/tenders/search_by_documents"
+      }).done(function (data) {
+        $('.documents').html(data);
+      });
+    });
+
+    $('.trades').change(function(){
+      var trade_id = $(this).val();
+      var tender_id = $('.tender_id').val();
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id,trade_id:trade_id},
+        url: "/tenders/search_by_trades"
+      }).done(function (data) {
+        $('.documents').html(data);
+      });
     });
   });
 </script>
