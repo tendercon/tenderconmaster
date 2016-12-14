@@ -9,14 +9,14 @@
            </p>
          </div>
         <% end %>
-        <div class="col-md-18">
+        <div class="col-md-12">
           <% @trade_cats = [] %>
           <% @trades = [] %>
           <% @trade_categories.each do |tc|  %> 
               <% if (get_tender_trades @tender.id).present? %>
                   <% (get_tender_trades @tender.id).each_with_index do |t,index| %>
                       <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
-                          <div class="col-md-24"> 
+                          <div class="col-md-12"> 
                             <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
                                 <% if !@trade_cats.include? tc.title %>
                                     <% @trade_cats << tc.title %>
@@ -24,7 +24,7 @@
                                 <% end %>
                             <% end %>
                           </div>
-                          <div class="col-md-22">
+                          <div class="col-md-12">
                             <div class="col-md-6">
 
                               <%# if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
@@ -63,7 +63,7 @@
 </div>
 <div class="row">
   <div class="form-group"></div>
-  <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+  <div class="text-center">
     <% if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
         <a href="#!">
           <button class=" btn btn-info quotes" type="button">I AM INTERESTED</button>

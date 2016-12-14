@@ -62,43 +62,43 @@
 </style>
 
 <div class="row" style="position:fixed;z-index: 1;">
-  <div class="col-md-11" style="background-color: whitesmoke;border-radius:10px;margin-top: -25px">
+  <div class="col-md-11" style="background-color: white;border-radius:10px;margin-top: -25px">
     <div class="container" >
       <div class="mt-element-step" >
         <div class="row step-line">
           <% if params[:details] == 'true' %>
               <div class="col-md-2 mt-step-col active">
-                <div class="mt-step-number bg-dark font-grey">1</div>
+                <div class="mt-step-number bg-white font-grey">1</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Details</div>
               </div>
           <% else %>
               <div class="col-md-2 mt-step-col done">
-                <div class="mt-step-number bg-dark font-grey">1</div>
+                <div class="mt-step-number bg-white font-grey">1</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Details</div>
               </div>
           <% end %>
 
           <% if params[:addenda_type] == 'details' %>
               <% if params[:updates] == 'true' %>
-                  <div class="col-md-2 mt-step-col active">
-                    <div class="mt-step-number bg-dark font-grey">2</div>
+                  <div class="col-md-3 mt-step-col active">
+                    <div class="mt-step-number bg-white font-grey">2</div>
                     <div class="mt-step-title uppercase font-grey-cascade">Updates</div>
                   </div>
               <% else %>
-                  <div class="col-md-2 mt-step-col done">
-                    <div class="mt-step-number bg-dark font-grey">2</div>
+                  <div class="col-md-3 mt-step-col done">
+                    <div class="mt-step-number bg-white font-grey">2</div>
                     <div class="mt-step-title uppercase font-grey-cascade">Updates</div>
                   </div>
               <% end %>
           <% else %>
               <% if params[:documents] == 'true' %>
-                  <div class="col-md-2 mt-step-col active">
-                    <div class="mt-step-number bg-dark font-grey">2</div>
+                  <div class="col-md-3 mt-step-col active">
+                    <div class="mt-step-number bg-white font-grey">2</div>
                     <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
                   </div>
               <% else %>
-                  <div class="col-md-2 mt-step-col done">
-                    <div class="mt-step-number bg-dark font-grey">2</div>
+                  <div class="col-md-3 mt-step-col done">
+                    <div class="mt-step-number bg-white font-grey">2</div>
                     <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
                   </div>
               <% end %>
@@ -106,12 +106,12 @@
 
           <% if params[:matrix] == 'true' %>
               <div class="col-md-3 mt-step-col active">
-                <div class="mt-step-number bg-dark font-grey">3</div>
+                <div class="mt-step-number bg-white font-grey">3</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Matrix</div>
               </div>
           <% else %>
               <div class="col-md-3 mt-step-col done">
-                <div class="mt-step-number bg-dark font-grey">3</div>
+                <div class="mt-step-number bg-white font-grey">3</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Matrix</div>
               </div>
           <% end %>
@@ -119,12 +119,12 @@
           <% if params[:matrix] != 'true' %>
               <% if params[:review] == 'true' %>
                   <div class="col-md-3 mt-step-col active">
-                    <div class="mt-step-number bg-dark font-grey">3</div>
+                    <div class="mt-step-number bg-white font-grey">3</div>
                     <div class="mt-step-title uppercase font-grey-cascade">Review</div>
                   </div>
               <% else %>
                   <div class="col-md-3 mt-step-col done">
-                    <div class="mt-step-number bg-dark font-grey">3</div>
+                    <div class="mt-step-number bg-white font-grey">3</div>
                     <div class="mt-step-title uppercase font-grey-cascade">Review</div>
                   </div>
               <% end %>
@@ -133,12 +133,12 @@
 
           <% if params[:notify] == 'true' %>
               <div class="col-md-3 mt-step-col active">
-                <div class="mt-step-number bg-dark font-grey">4</div>
+                <div class="mt-step-number bg-white font-grey">4</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Notify</div>
               </div>
           <% else %>
               <div class="col-md-3 mt-step-col done">
-                <div class="mt-step-number bg-dark font-grey">4</div>
+                <div class="mt-step-number bg-white font-grey">4</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Notify</div>
               </div>
           <% end %>
@@ -402,7 +402,7 @@
       </div> 
     </div>  
     <div class="col-md-20"> 
-      <a href="/addendas/new?id=<%= @tender.id %>&type=document&addenda=<%= @addenda.id %>&documents=true">
+      <a href="/addendas/new?id=<%= @tender.id %>&type=documents&addenda=<%= @addenda.id %>&documents=true">
         <button type="button" class="btn btn-danger">Back</button>
       </a>
       <a href="<%= new_addenda_path(:id => @tender.id,:addenda => @addenda.id,:addenda_type => params[:addenda_type],:notify => true) %>">

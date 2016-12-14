@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212082847) do
+ActiveRecord::Schema.define(version: 20161214153400) do
 
   create_table "addendas", force: :cascade do |t|
     t.integer  "tender_id",    limit: 4
@@ -474,6 +474,7 @@ ActiveRecord::Schema.define(version: 20161212082847) do
     t.datetime "tender_open_date"
     t.datetime "tender_acceptance_date"
     t.datetime "tender_declined_date"
+    t.string   "company",                limit: 255
   end
 
   create_table "tender_packages", force: :cascade do |t|

@@ -1,131 +1,80 @@
 
-<!-- END THEME PANEL -->
-<!-- BEGIN PAGE BAR -->
-<div class="page-bar">
-   <div class="row">
-     <div class="col-md-12">
-       <div  data-spy="affix"> </div>
-     </div>
-   </div>
-</div>
+<div class="row" style="position:fixed;z-index: 10;">
+  <div class="col-md-11" style="background-color: white;border-radius:10px;margin-top: -25px">
+    <div class="container" >
+      <div class="mt-element-step" >
+        <div class="row step-line">
+          <% if params[:info] == 'true' %>
+              <div class="col-md-2 mt-step-col active">
+                <div class="mt-step-number bg-white font-grey">1</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Details</div>
+              </div>
+          <% else %>
+              <div class="col-md-2 mt-step-col done">
+                <div class="mt-step-number bg-white font-grey">1</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Details</div>
+              </div>
+          <% end %>
+
+          <% if params[:trades] == 'true' %>
+              <div class="col-md-2 mt-step-col active">
+                <div class="mt-step-number bg-white font-grey">2</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
+              </div>
+          <% else %>
+              <div class="col-md-2 mt-step-col done">
+                <div class="mt-step-number bg-white font-grey">2</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
+              </div>
+          <% end %>
 
 
-<div class="row">
-  <div class="col-md-12">
-    <div class="portlet light portlet-fit bordered">
-
-
-      <div class="portlet-body bg-dark">
-        <div class="mt-element-step">
-
-          <div class="row step-line">
-            <% if params[:info] == 'true' %>
-                <div class="col-md-2 mt-step-col active">
-                  <div class="mt-step-number bg-dark font-grey">1</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Details</div>
-                </div>
-            <% else %>
-                <div class="col-md-2 mt-step-col done">
-                  <div class="mt-step-number bg-dark font-grey">1</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Details</div>
-                </div>
-            <% end %>
-
-            <% if params[:trades] == 'true' %>
-                <div class="col-md-2 mt-step-col active">
-                  <div class="mt-step-number bg-dark font-grey">2</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
-                </div>
-            <% else %>
-                <div class="col-md-2 mt-step-col done">
-                  <div class="mt-step-number bg-dark font-grey">2</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
-                </div>
-            <% end %>
-
-
-            <% if params[:document] == 'true' %>
-              <div class="col-md-3 mt-step-col active">
-                <div class="mt-step-number bg-dark font-grey">3</div>
+          <% if params[:document] == 'true' %>
+              <div class="col-md-2 mt-step-col active">
+                <div class="mt-step-number bg-white font-grey">3</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
               </div>
-            <% else %>
-              <div class="col-md-3 mt-step-col done">
-                <div class="mt-step-number bg-dark font-grey">3</div>
+          <% else %>
+              <div class="col-md-2 mt-step-col done">
+                <div class="mt-step-number bg-white font-grey">3</div>
                 <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
               </div>
-            <% end %>
+          <% end %>
 
-            <% if params[:package] == 'true' %>
-                <div class="col-md-3 mt-step-col active">
-                  <div class="mt-step-number bg-dark font-grey">4</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
-                </div>
-            <% else %>
-                <div class="col-md-3 mt-step-col done">
-                  <div class="mt-step-number bg-dark font-grey">4</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
-                </div>
-            <% end %>
+          <% if params[:package] == 'true' %>
+              <div class="col-md-2 mt-step-col active">
+                <div class="mt-step-number bg-white font-grey">4</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
+              </div>
+          <% else %>
+              <div class="col-md-2 mt-step-col done">
+                <div class="mt-step-number bg-white font-grey">4</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
+              </div>
+          <% end %>
 
-            <% if params[:invites] == 'true' %>
-                <div class="col-md-2 mt-step-col last">
-                  <div class="mt-step-number bg-dark font-grey">5</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
-                </div>
-            <% else %>
-                <div class="col-md-2 mt-step-col">
-                  <div class="mt-step-number bg-dark font-grey">5</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
-                </div>
-            <% end %>
-          </div>
+          <% if params[:invites] == 'true' %>
+              <div class="col-md-2 mt-step-col last">
+                <div class="mt-step-number bg-white font-grey">5</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
+              </div>
+          <% else %>
+              <div class="col-md-2 mt-step-col">
+                <div class="mt-step-number bg-white font-grey">5</div>
+                <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
+              </div>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
+<div style="height: 200px;"></div>
 
-<!-- END : STEPS -->
 
 <div class="row" id="main_trade"> 
-  <!--<div  data-spy="affix"> 
-    <div class="stepwizard" > 
-      <div class="stepwizard-row setup-panel "> 
-        <div class="stepwizard-step"> 
-          <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a> 
-          <p>Details</p> 
-        </div> 
-
-        <div class="stepwizard-step"> 
-          <a href="#step-2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a> 
-          <p>Trades</p> 
-        </div> 
-        <div class="stepwizard-step"> 
-          <a href="#step-3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a> 
-          <p>Documents</p> 
-        </div> 
-        <div class="stepwizard-step"> 
-          <a href="#step-4" type="button" class="btn btn-default btn-circle" disabled="disabled">4</a> 
-          <p>Packages</p> 
-        </div> 
-        <div class="stepwizard-step"> 
-          <a href="#step-5" type="button" class="btn btn-default btn-circle" disabled="disabled">5</a> 
-          <p>Invitations</p> 
-        </div> 
-        <div class="stepwizard-step"> 
-          <a href="#step-6" type="button" class="btn btn-default btn-circle" disabled="disabled">Review</a> 
-          <p>Review</p> 
-        </div> 
-      </div> 
-    </div> 
-  </div> -->
-  <div class="row tender_form"> 
-
-  </div> 
 
   <% if !params[:trades].present? && !params[:document].present? && !params[:package].present? && !params[:invites].present? && !params[:reviews].present? %>
-      <%= puts "sdksjdkajdakjdkas:#{}" %>
       <%= render 'info' %>
   <% end %>
 

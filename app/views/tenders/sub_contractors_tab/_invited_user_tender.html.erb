@@ -3,6 +3,7 @@
     <thead>
         <th>Company Name</th>
         <th>Contact Name</th>
+        <th>Email</th>
         <th>Invitation Sent</th>
         <th>Invitation Open</th>
         <th>Status</th>
@@ -14,10 +15,11 @@
             <tr class="trade" id="<%= index + 1 %>" data-title="<%= get_trade_name t.trade_id %>">
               <td class="text-center"><%= get_invite_company_name t.email %></td>
               <td class="text-center"><%= get_user_tender_per_email t.email %></td>
+              <td class="text-center"><p><%=  t.email %></p></td>
               <td class="text-center"><p><%=  t.email_sent.strftime("%d.%m.%Y %H:%M %p") %></p></td>
               <td class="text-center"><p><%=  t.tender_open_date.present? ? t.tender_open_date.strftime("%d.%m.%Y %H:%M %p") : 'Not yet' %></p></td>
               <% if t.status == nil %>
-                  <td class="text-center"><p><%=  Time.now.strftime("%d.%m.%Y %H:%M %p") %></p></td>
+                  <td class="text-center"><p>Pending Acceptance</p></td>
               <% elsif t.tender_declined_date.present? %>
                   <td class="text-center">
                     <p style="color: red">Invitation Declined</p>
@@ -29,7 +31,7 @@
                     <p><%=  t.tender_acceptance_date.strftime("%d.%m.%Y %H:%M %p") %></p>
                   </td>
               <% else %>
-                  <td class="text-center"><p><%=  Time.now.strftime("%d.%m.%Y %H:%M %p") %></p></td>
+                  <td class="text-center"><p>Pending Acceptance</p></td>
               <% end %>
               <td class="text-center"><%=  get_trade_name t.trade_id %></td>
             </tr>
@@ -42,19 +44,19 @@
 
 <script>
   $(document).ready(function(){
-
+    $('.invite_cnt').text("<%= @tender_invites.present? ? @tender_invites.size : 0 %>");
     $('#invited_table').DataTable({
       "columnDefs": [
-        { "visible": false, "targets": 5 }
+        { "visible": false, "targets": 6 }
       ],
-      "order": [[ 5, 'asc' ]],
+      "order": [[ 6, 'asc' ]],
       "displayLength": 25,
       "drawCallback": function ( settings ) {
         var api = this.api();
         var rows = api.rows( {page:'current'} ).nodes();
         var last=null;
 
-        api.column(5, {page:'current'} ).data().each( function ( group, i ) {
+        api.column(6, {page:'current'} ).data().each( function ( group, i ) {
           console.log(group);
           if ( last !== group ) {
             $(rows).eq( i ).before(

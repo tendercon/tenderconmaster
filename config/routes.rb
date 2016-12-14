@@ -220,6 +220,7 @@ Rails.application.routes.draw do
       post 'approved_tender_request'
       post 'sub_contractor_tabs'
       post 'add_directory'
+      post 'get_document_control'
     end
   end
 

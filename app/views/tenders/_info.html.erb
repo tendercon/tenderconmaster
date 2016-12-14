@@ -132,7 +132,7 @@
       <div class="portlet light bordered">
         <div class="portlet-body form">
           <div class="form-body">
-            <div id="map" style="height:180px;width:450px;"></div> 
+            <div id="map" style="height:392px;width:450px;"></div> 
           </div>
         </div>
       </div>
@@ -238,6 +238,12 @@
                         <button class="btn default date-set" type="button">
                             <i class="fa fa-calendar"></i>
                         </button>
+                        <a href="#!">
+                          <button class="btn btn-success add" type="button">
+                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
+                             Add Inspection Date
+                          </button>
+                        </a>
                     </span>
                   </div>
                     <!--<div class="input-group date" id="picker1"> 
@@ -248,11 +254,7 @@
 
                   <div style="height: 5px"></div>
                   <div class="form-group">
-                    <a href="#!">
-                      <button class="btn btn-success add" type="button">
-                         Add Inspection Date
-                      </button>
-                    </a>
+
                     <!--<i class="fa fa-plus-circle fa-2x add" aria-hidden="true" style="color: green" id="1"></i> 
                     <i class="fa fa-minus-circle fa-2x remove" aria-hidden="true" style="color: red;display: none" id="1"></i> -->
                   </div>
@@ -498,9 +500,22 @@
       }
 
     })
-
-    $('.form_meridian_datetime').datetimepicker({ minDate:new Date()});
-    $('.site_meridian_datetime').datetimepicker({ minDate:new Date()});
+    var date = new Date();
+    date.setDate(date.getDate());
+    $('.form_meridian_datetime').datetimepicker({
+      startDate: date,
+      format:"yyyy-mm-dd  HH:ii P",
+      showMeridian:true,
+      autoclose:true,
+      todayBtn:true
+    });
+    $('.site_meridian_datetime').datetimepicker({
+      startDate: date,
+      format:"yyyy-mm-dd  HH:ii P",
+      showMeridian:true,
+      autoclose:true,
+      todayBtn:true
+    });
 
     $('.site_calendar').click(function(){
       $('#picker1').datetimepicker({ minDate:new Date()});

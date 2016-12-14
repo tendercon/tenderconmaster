@@ -5,7 +5,7 @@
           <% (get_tender_request @tender_id,session[:user_logged_id]).each do |a| %>
               <tr>
                 <td>
-                  <label><%= get_trade_name ((get_sc_tender_trade a.id).trade_id) %></label>
+                  <label><%= get_trade_name a.trade_id %></label>
                 </td>
                 <td><button class="btn btn-warning">Pending</button></td>
               </tr>

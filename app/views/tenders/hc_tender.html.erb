@@ -1,29 +1,28 @@
 <div class="row">
   <div class="col-md-12">
-      <div class="portlet-body">
-        <div class="tabbable-line">
-          <ul class="nav nav-tabs ">
-            <% if params[:addenda].present? %>
-                <li ><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
-            <% else %>
-                <li class="active"><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
-            <% end %>
+    <div class="portlet-body">
+      <div class="tabbable-line">
+        <ul class="nav nav-tabs ">
+          <% if params[:addenda].present? %>
+              <li ><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
+          <% else %>
+              <li class="active"><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
+          <% end %>
 
-            <li><a href="#sub" data-toggle="tab" id="<%= @tender.id %>">Subcontractors</a></li>
+          <li><a href="#sub" data-toggle="tab" id="<%= @tender.id %>">Subcontractors</a></li>
 
-            <li><a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">Document Control</a></li>
-            <% if params[:addenda].present? %>
-                <li class="active"><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
-            <% else %>
-                <li><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
-            <% end %>
-            <li><a href="#chat" data-toggle="tab" id="<%= @tender.id %>">Chat</a></li>
-            <li ><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs</a></li>
+          <li><a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">Document Control</a></li>
+          <% if params[:addenda].present? %>
+              <li class="active"><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
+          <% else %>
+              <li><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
+          <% end %>
+          <li><a href="#chat" data-toggle="tab" id="<%= @tender.id %>">Chat</a></li>
+          <li ><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs</a></li>
 
 
-            <li><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
-          </ul>
-        </div>
+          <li><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
+        </ul>
       </div>
     </div>
     <input type="hidden" class="tender_id" value="<%= @tender.id %>">
@@ -82,11 +81,7 @@
 
         </div>
         <div class="tab-pane  col-md-12" id="document_control">
-          <div class="row>">
-            <div class="form-group"></div>
-            <br>
-            <%= render 'document_control' %>
-          </div>
+
         </div>
         <div class="tab-pane col-md-12" id="chat">
           <%#= render 'tender_chat' %>
@@ -176,10 +171,10 @@
   <div id="invite_more_modal" class="modal fade"   style="margin-top: 100px; width: 100%" >
     <div class="modal-dialog">
       <!-- Modal content-->
-      <div class="modal-content col-md-24">
+      <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <div class="col-md-24 col-md-20 col-md-offset-2">
+          <div class="text-center">
             <p class="text-center" style="font-size: 20px">
               Invite More Sub contractors
             </p>
@@ -191,65 +186,68 @@
         <br>
 
         <div class="modal-body" style="overflow-y: auto;height: 250px;">
-          <div class="col-md-24">
-            <button class="btn btn-success add_more" type="button">
-              <i class="fa fa-plus-circle" aria-hidden="true"></i> ADD MORE
-            </button>
-          </div>
 
 
           <div class="row">
             <div class="form-group"></div>
           </div>
           <br><br>
-          <div class="col-md-24">
+          <div class="col-md-12">
+            <button class="btn btn-success add_more" type="button">
+              <i class="fa fa-plus-circle" aria-hidden="true"></i>Invite More
+            </button>
+            <div style="height: 30px"></div>
             <div class="new_invite">
-              <div class="col-md-20">
-                <div class="col-md-8">
-                  <div class="form-group">
-                    <label class="control-label">Full Name</label>
-                  </div>
-
-                  <div class="form-group">
-                    <input class="form-control f_name" name="names[]" value="">
-                  </div>
-                </div>
-
-                <div class="col-md-8">
-                  <div class="form-group">
-                    <label class="control-label">Email</label>
-                  </div>
-
-                  <div class="form-group">
-                    <input class="form-control email" name="emails[]" value="">
-                  </div>
-                </div>
-
-                <div class="col-md-8">
-                  <div class="form-group">
-                    <label class="control-label">TO QUOTE FOR</label>
-                  </div>
-
-                  <div class="form-group">
-                    <select class="form-control trades">
-                      <option value="all">None</option>
-                      <% if @tender_trades.present? %>
-                        <% @tender_trades.uniq.each do |t| %>
-                          <option value="<%= t.trade_id %>"><%= get_trade_name t.trade_id %></option>
-                        <% end %>
-                      <% end %>
-                    </select> 
-                  </div>
-                </div>
+              <div class="form-group">
+                <label class="control-label">Company</label>
               </div>
-              <div class="col-md-20 new_invite_div">
 
+              <div class="form-group">
+                <input class="form-control company" name="companies[]" value="">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Full Name</label>
+              </div>
+
+              <div class="form-group">
+                <input class="form-control f_name" name="names[]" value="">
+              </div>
+
+              <div class="form-group">
+                  <label class="control-label">Email</label>
+              </div>
+
+              <div class="form-group">
+                <input class="form-control email" name="emails[]" value="">
+              </div>
+
+              <div class="form-group">
+                <label class="control-label">TO QUOTE FOR</label>
+              </div>
+
+              <div class="form-group">
+                <select class="form-control trades">
+                  <option value="all">None</option>
+                  <% if @tender_trades.present? %>
+                    <% @tender_trades.uniq.each do |t| %>
+                      <option value="<%= t.trade_id %>"><%= get_trade_name t.trade_id %></option>
+                    <% end %>
+                  <% end %>
+                </select> 
               </div>
             </div>
           </div>
+          <div style="height: 40px"></div>
+          <div class="col-md-12">
+            <div style="height: 40px"></div>
+            <div class="new_invite_div"></div>
+
+          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-info send_invite" data-dismiss="modal">Invite</button>
+          <div class="text-center">
+            <button type="button" class="btn btn-info send_invite" data-dismiss="modal">Invite</button>
+          </div>
         </div>
       </div>
     </div>
@@ -271,7 +269,12 @@
       var emails = [];
       var names = [];
       var trades = [];
+      var companies = [];
       var tender_id = $('.tender_id').val();
+
+      $('.company').each(function(){
+        companies.push($(this).val());
+      });
 
       $('.f_name').each(function(){
         names.push($(this).val());
@@ -289,11 +292,25 @@
       });
       $.ajax({
         method: "POST",
-        data: {tender_id:tender_id,emails:emails,names:names,trades:trades},
+        data: {tender_id:tender_id,emails:emails,names:names,trades:trades,companies:companies},
         url: "/tenders/invite_more_sub"
       }).done(function (data) {
         //$('.contractors').html(data);
-        $('.invited_div').html('');
+        $('.f_name').each(function(){
+          $(this).val('');
+        });
+        console.log('names:'+names);
+        $('.email').each(function(){
+         $(this).val('');
+
+        });
+        $('.trades').each(function(){
+          if(parseInt($(this).val()) > 0){
+            $(this).val('')
+          }
+
+        });
+
         $('.invited_div').html(data);
       });
 
@@ -363,6 +380,14 @@
           url: "/addendas/get_addendas"
         }).done(function (data) {
           $('#addenda').html(data);
+        });
+      }else if(target == '#document_control'){
+        $.ajax({
+          method: "POST",
+          data: {tender_id:tender_id},
+          url: "/tenders/get_document_control"
+        }).done(function (data) {
+          $('#document_control').html(data);
         });
       }
     });

@@ -19,6 +19,7 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'dropzonejs-rails'
 
+
 gem 'thin'
 
 gem 'font-awesome-rails'

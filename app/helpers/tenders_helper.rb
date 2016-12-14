@@ -215,10 +215,12 @@ module TendersHelper
 
   def get_trade_name id
 
-    t = Trade.find(id)
+    t = Trade.where(:id => id).first
 
     if t.present?
       t.name
+    else
+      nil
     end
   end
 
@@ -325,7 +327,17 @@ module TendersHelper
 
   def check_tender_trade_per_sc tender_id,sc_id,trade_id
     tender_approved = TenderApprovedTrade.where(:tender_id => tender_id,:sc_id => sc_id,:trade_id => trade_id).first
+    puts "tender_approved =============> #{tender_approved.inspect}"
+    if tender_approved.present?
+      true
+    else
+      false
+    end
+  end
 
+  def check_request_trade_quotes  tender_id,sc_id,trade_id
+
+    tender_approved = TenderRequestQuote.where(:tender_id => tender_id,:sc_id => sc_id,:trade_id => trade_id).first
     if tender_approved.present?
       true
     else
@@ -485,7 +497,7 @@ module TendersHelper
 
   def get_tender_request tender_id,sc_id
     tender_request = TenderRequestQuote.where(:tender_id => tender_id,:sc_id => sc_id)
-
+    puts "tender_request =====> #{tender_request.inspect}"
     if tender_request.present?
       tender_request
     else
@@ -570,6 +582,8 @@ module TendersHelper
       puts "sdjdhajdhja---------> #{tender_trade.inspect}"
       if tender_trade.present?
         tender_trade
+      else
+        nil
       end
 
     else

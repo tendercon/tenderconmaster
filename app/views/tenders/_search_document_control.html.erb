@@ -40,6 +40,8 @@
     $('#document_table').DataTable({
       "bSort" : false,
       "bPaginate": false,
+      "bInfo" : false,
+      "dom":'fltip',
       "columnDefs": [
         { "visible": false, "targets": 1 }
       ],
@@ -119,3 +121,9 @@
     });
   });
 </script>
+
+<style>
+  .dataTables_wrapper .dataTables_filter {
+    float: left;
+  }
+</style>

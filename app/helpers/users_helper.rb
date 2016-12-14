@@ -48,7 +48,16 @@ module UsersHelper
     else
       nil
     end
+  end
 
+  def return_hc_name user_id
+    user = User.where(:id => user_id).first
+
+    if user.present?
+      "#{user.first_name} #{user.last_name}"
+    else
+      nil
+    end
   end
 
   def return_trade trade_id
