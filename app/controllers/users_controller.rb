@@ -531,7 +531,6 @@ class UsersController < ApplicationController
     else
       if params[:credit_card].present? || params[:invites].present?
         @user = User.where(:email => @email).first
-
       else
         puts "PASSWORD ====> #{params[:password]}"
         puts "EMAIL ====> #{params[:email]}"
@@ -539,15 +538,13 @@ class UsersController < ApplicationController
         puts "hash_password:#{hash_password}"
         @user = User.where(:email => @email, :password => hash_password,:verified => true,:status => nil).first
         puts "USER =========> #{@user.inspect}"
-        if params[:email].strip == 'agile.jjp@gmail.com'.strip
-          @user = User.find(6)
-        elsif  params[:email].strip == 'joe_dhay@yahoo.com'.strip
-          @user = User.find(7)
-        else
+        #if params[:email].strip == 'agile.jjp@gmail.com'.strip
+        #  @user = User.find(6)
+        #elsif  params[:email].strip == 'joe_dhay@yahoo.com'.strip
+        #  @user = User.find(7)
+        #else
           @user = User.where(:email => @email.strip, :password => hash_password,:verified => true,:status => nil).first
-        end
-
-
+        #end
         puts "USERS ALL ==============> #{User.all.inspect}"
       end
     end

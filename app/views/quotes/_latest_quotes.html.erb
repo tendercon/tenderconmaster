@@ -1,5 +1,5 @@
 <div class="quote_all_lists">
-  <div class="col-md-24">
+  <div class="row">
     <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
         <a href="#!" class="new_quote">
           <button class="btn btn-info">Send Quote</button>
@@ -9,14 +9,14 @@
 
     <% end %>
     <br><br>
-    <div class="col-md-24 quote_lists">
+    <div class="col-md-12 quote_lists">
       <%= render :partial => 'quotes/quotes', :locals => {:quotes => @refs,:tender_id =>@tender.id} %>
     </div>
   </div>
 
 
 
-  <div style="background-color: transparent;"> 
+  <div style="display: none;"> 
     <input id="file_input" type="file" style="background-color: transparent;" name="documents"> 
   </div> 
 
@@ -26,125 +26,142 @@
     <a href="" class="download_link" target="_blank"></a>
   </div>
 
-  <div id="new_quote" class="modal fade col-md-28" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;overflow-y:scroll;" >
-    <div class="modal-dialog">
-      <!-- Modal content-->
-      <div class="modal-content col-md-24">
-        <div class="modal-header">
-          <button type="button" class="close new_rfi_close" data-dismiss="modal">&times;</button>
-          <div class="col-md-24 col-md-20 col-md-offset-2">
-            <p class="text-center" style="font-size: 20px">
-              Send Quote
-            </p>
+  <div id="new_quote" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;overflow-y:scroll;" >
+    <div class="row">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content col-md-12">
+          <div class="modal-header">
+            <button type="button" class="close new_rfi_close" data-dismiss="modal">&times;</button>
+            <div class="text-center">
+              <p class="text-center" style="font-size: 20px">
+                Send Quote
+              </p>
+            </div>
+            <div class="text-center" id="error"></div>
+            <div class="row">
+              <div class="form-group"></div>
+            </div>
           </div>
-          <div class="col-md-24 col-md-20 col-md-offset-2" id="error"></div>
-          <div class="row">
-            <div class="form-group"></div>
-          </div>
-        </div>
-        <br>
-        <div class="modal-body">
-          <div class="row">
-            <div class="container">
-              <div id="content">
-                <div class="col-md-6">
-                  <label>Ref#</label>
-                  <input type="text" class="form-control ref_no" value="<%= @ref_no %>" id="ref_no" name="ref_no" disabled>
-                  <label>To</label>
-                  <input type="text" class="form-control to" value="<%= @user.company %>" id="to"  disabled>
-                  <label>Attention</label>
-                  <input type="text" class="form-control attention" value="<%= "#{@user.first_name} #{@user.last_name} " %>" id="attention" >
-                  <label>Date</label>
-                  <input type="text" class="form-control quote_date" value="<%= Time.now.strftime("%Y-%m-%d")  %>" id="quote_date" >
-                  <label>Title</label>
-                  <input type="text" class="form-control title"  id="title">
-                </div>
+          <br>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div id="content">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Ref#</label>
+                      <input type="text" class="form-control ref_no" value="<%= @ref_no %>" id="ref_no" name="ref_no" disabled>
+                    </div>
+                    <div class="form-group">
+                      <label>To</label>
+                      <input type="text" class="form-control to" value="<%= @user.company %>" id="to"  disabled>
+                    </div>
+                    <div class="form-group">
+                      <label>Attention</label>
+                      <input type="text" class="form-control attention" value="<%= "#{@user.first_name} #{@user.last_name} " %>" id="attention" >
+                    </div>
+                    <div class="form-group">
+                      <label>Date</label>
+                      <input type="text" class="form-control quote_date" value="<%= Time.now.strftime("%Y-%m-%d")  %>" id="quote_date" >
+                    </div>
+                    <div class="form-group">
+                      <label>Title</label>
+                      <input type="text" class="form-control title"  id="title">
+                    </div>
+                  </div>
 
 
-                <div class="col-md-6">
-                  <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
-                  <br/> <br/>
-                  <div class="form-group">
-                    <label>Company</label>
-                    <input type="text" class="form-control company" value="<%= @sc_user.company %>" id="company">
-                    <label>From</label>
-                    <input type="text" class="form-control from" value="<%= "#{@sc_user.first_name} #{@sc_user.last_name}" %>" id="form">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+                    </div>
+
+                    <div class="form-group">
+                      <label>Company</label>
+                      <input type="text" class="form-control company" value="<%= @sc_user.company %>" id="company">
+                    </div>
+
+                    <div class="form-group">
+                      <label>From</label>
+                      <input type="text" class="form-control from" value="<%= "#{@sc_user.first_name} #{@sc_user.last_name}" %>" id="form">
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-24">
-              <br>
-              <label>Trade</label>
-              <br/>
-              <% if @trades.present? %>
-                  <% @trades.each do |t| %>
-                      <label class="checkbox-inline"><input type="checkbox" class="trade_array" value="<%= t.id %>" id="<%= t.name %>"><%= t.name %></label>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Trades</label>
+                </div>
+                <div class="form-group">
+                  <% if @trades.present? %>
+                      <% @trades.each do |t| %>
+                          <label class="checkbox-inline"><input type="checkbox" class="trade_array" value="<%= t.id %>" id="<%= t.name %>"><%= t.name %></label>
+                      <% end %>
                   <% end %>
-              <% end %>
-              <input type="text" class="form-control">
-            </div>
-            <div class="col-md-24">
-              <label>Description</label>
-              <textarea class="form-control quote_desc" rows="5" id="quote_desc"></textarea>
-            </div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea class="form-control quote_desc" rows="5" id="quote_desc"></textarea>
+                </div>
+              </div>
 
-            <div class="col-md-12">
-              <label>Price</label>
-              <input type="text" class="form-control price"  id="price">
-            </div>
-            <div class="col-md-12">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Price</label>
+                  <input type="text" class="form-control price"  id="price">
+                </div>
+              </div>
 
-            </div>
-
-            <div class="col-md-24">
-
-              <div class="col-md-24">
-                <div class="col-md-24" style="height: 5px"></div>
-                <div class="col-md-24">
-                  <div class="quote_files">
+              <div class="col-md-12">
+                <div class="quote_files">
+                  <div class="form-group">
                     <label>Attach Quote</label>
                     <%= form_for @quote_document, :url => create_document_quote_documents_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
                         <input type="hidden" value="<%= @tender.id%>" name="tender_id" class="tender_id">
-                        <input type="file" id="file_comment" class="btn btn-success" name="document" webkitdirectory directory multiple /> 
+                        <input type="file" id="file_comment" class="btn btn-success" name="document"  /> 
                         <div style="display: none">
-                          <button type="submit" class="submit_document"></button>
+                          <button type="submit" class="doc_submit_document"></button>
                         </div>
                     <% end %>
-                    <div class="quote_documents"></div>
+                  </div>
+
+                  <div class="quote_documents"></div>
+
+                  <div class="form-group">
                     <label>Attach Supporting files(Optional)</label>
                     <%= form_for @quote_document_optional, :url => create_document_quote_document_optionals_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
                         <input type="hidden" value="<%= @tender.id%>" name="tender_id" class="tender_id">
-                        <input type="file" id="file_comment" class="btn btn-success" name="document" webkitdirectory directory multiple /> 
+                        <input type="file" id="file_comment" class="btn btn-success" name="document" /> 
                         <div style="display: none">
                           <button type="submit" class="submit_document"></button>
                         </div>
                     <% end %>
-                    <div class="quote_document_optional"></div>
                   </div>
 
-                  <div class="col-md-24" style="height: 5px"></div>
+                  <div class="quote_document_optional"></div>
+                </div>
+
+                <div class="rfi_document_lists">
+
                 </div>
               </div>
-              <div class="rfi_document_lists">
+            </div>
 
+            <div class="row">
+
+              <div class="text-center">
+                <a href="#!">
+                  <button class=" btn btn-info button_preview" type="button" >Preview</button>
+                </a>
+                <a href="#!" onclick="sent_rfi_btn();">
+                  <button class=" btn btn-success button_done" type="button">Send</button>
+                </a>
               </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="form-group">
-
-            </div>
-            <div class="col-md-20 col-md-offset-8">
-              <a href="#!">
-                <button class=" btn btn-info button_preview" type="button" >Preview</button>
-              </a>
-              <a href="#!" onclick="sent_rfi_btn();">
-                <button class=" btn btn-success button_done" type="button">Send</button>
-              </a>
             </div>
           </div>
         </div>
@@ -159,43 +176,65 @@
       <div class="modal-content col-md-24">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <div class="col-md-24 col-md-20 col-md-offset-2">
+          <div class="text-center">
             <p class="text-center" style="font-size: 20px">
               Preview Quote
             </p>
-          </div>
-
-          <div class="row">
-            <div class="form-group"></div>
           </div>
         </div>
         <br>
         <div class="modal-body">
           <div class="row">
-            <div class="container">
+            <div class="col-md-12">
               <div id="content">
                 <div class="col-md-6">
-                  <label>Ref#</label>
-                  <p class="quote_no_preview"></p>
-                  <label>To</label>
-                  <p class="to_preview"></p>
-                  <label>Attention</label>
-                  <p class="attention_preview"></p>
-                  <label>Date</label>
-                  <p class="quote_date_preview"></p>
-                  <label>Trade</label>
-                  <p class="trade_preview"></p>
-                  <label>Title</label>
-                  <p class="heading_preview"></p>
+                  <div class="form-group">
+                    <label>Ref#</label>
+                    <p class="quote_no_preview"></p>
+                  </div>
+
+                  <div class="form-group">
+                    <label>To</label>
+                    <p class="to_preview"></p>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Attention</label>
+                    <p class="attention_preview"></p>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Date</label>
+                    <p class="quote_date_preview"></p>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Trade</label>
+                    <p class="trade_preview"></p>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Title</label>
+                    <p class="heading_preview"></p>
+                  </div>
                 </div>
 
                 <div class="col-md-6">
-                  <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+                  <div class="form-group">
+                    <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+                  </div>
+
                   <div class="form-group">
                     <label>Company</label>
                     <p class="company_preview"><%= @sc_user.company %></p>
+                  </div>
+
+                  <div class="form-group">
                     <label>From</label>
                     <p class="from_preview"><%= "#{@sc_user.first_name} #{@sc_user.last_name}" %></p>
+                  </div>
+
+                  <div class="form-group">
                     <label>Price</label>
                     <p class="price_preview"></p>
                   </div>
@@ -204,11 +243,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-24">
-              <label>Description</label>
-              <textarea class="form-control quote_desc_preview" rows="5" id="quote_desc"></textarea>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control quote_desc_preview" rows="5" id="quote_desc"></textarea>
+              </div>
             </div>
-            <div class="col-md-24">
+            <div class="col-md-12">
               <div class="document_attached_files" > 
 
               </div>  
@@ -216,8 +257,7 @@
           </div>
 
           <div class="row">
-            <div class="form-group"></div>
-            <div class="col-md-20 col-md-offset-9">
+            <div class="text-center">
               <a href="#!">
                 <button class=" btn btn-info exit_preview" type="button" >Exit Preview</button>
               </a>
@@ -231,7 +271,7 @@
   <div id="success_quote" class="modal fade col-md-28" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; overflow-y:scroll;" >
     <div class="modal-dialog">
       <!-- Modal content-->
-      <div class="modal-content col-md-24">
+      <div class="modal-content col-md-12">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <div class="row">
@@ -242,7 +282,7 @@
           <div class="modal-body">
             <div class="row">
               <div class="form-group">
-                <div class="col-md-24 col-md-20 col-md-offset-2">
+                <div class="text-center">
                   <p class="text-center" style="font-size: 14px">
                     <i class="fa fa-check-circle fa-3x" aria-hidden="true"></i>
                   </p>
@@ -251,7 +291,7 @@
                   </p>
                 </div>
               </div>
-              <div class="col-md-20 col-md-offset-8">
+              <div class="text-center">
                 <a href="#!">
                   <button class=" btn btn-success register_quote" type="button" >Go to Quote Register</button>
                 </a>
@@ -269,8 +309,8 @@
 
 
 <script>
-  $(document).ready(function(){
 
+  $(document).ready(function(){
     $('.new_quote').click(function(){
       $('#new_quote').modal('show');
 
@@ -281,28 +321,6 @@
       }).done(function (data) {
         $('.ref_no').val(data.ref);
       });
-    });
-
-    $('.sort_trade').change(function(){
-      var id = $(this).val();
-      var tender_id = $('.tender_id').val();
-      console.log(id);
-      $.ajax({
-        method: "POST",
-        data: {trade_id:id,tender_id:tender_id},
-        url: "/rfis/get_rfi_by_trade"
-      }).done(function (data) {
-        console.log(data);
-        $('.quote_lists').html(data);
-      });
-    });
-
-
-
-    $('#duedatepicker').datetimepicker({format: 'DD-MM-YYYY hh:mm a'});
-
-    $('.rfi_dropzone').click(function(){
-      $('#file_input').click();
     });
 
     $('#new_quote_document').fileupload({
@@ -343,6 +361,25 @@
       }
     });
 
+    $('.sort_trade').change(function(){
+      var id = $(this).val();
+      var tender_id = $('.tender_id').val();
+      console.log(id);
+      $.ajax({
+        method: "POST",
+        data: {trade_id:id,tender_id:tender_id},
+        url: "/rfis/get_rfi_by_trade"
+      }).done(function (data) {
+        console.log(data);
+        $('.quote_lists').html(data);
+      });
+    });
+
+    $('#duedatepicker').datetimepicker({format: 'DD-MM-YYYY hh:mm a'});
+
+    $('.rfi_dropzone').click(function(){
+      $('#file_input').click();
+    });
 
 
     $('.button_preview').click(function(){
@@ -429,7 +466,7 @@
     var attention = $('.attention').val();
     var quote_date = $('.quote_date').val();
 
-    var title = $('.title').val();
+    var title = $('#title').val();
     var quote_desc = $('.quote_desc').val();
     var price = $('.price').val();
     var company = $('.company_preview').text();
@@ -462,6 +499,9 @@
       url: "/quotes/save_quotes"
     }).done(function (data) {
       if(data.state == 'valid'){
+        $('#title').val('');
+        $('.quote_desc').val('');
+        $('.price').val();
         $('#new_quote').modal('hide');
         $('#success_quote').modal('show');
       }else{

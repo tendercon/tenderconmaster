@@ -294,9 +294,11 @@ class QuotesController < ApplicationController
 
     @sc_user = User.find(session[:user_logged_id])
     @sc_user.company_avatars.each do |a|
-      @avatar_filename = a.image_file_name
-      @avatar_path = a.image.path
-      @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{a.id}/original/#{@avatar_filename}"
+      if a.image_file_name.present?
+        @avatar_filename = a.image_file_name
+        @avatar_path = a.image.path
+        @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{a.id}/original/#{@avatar_filename}"
+      end
     end
 
     trade = Trade.find(@quote.trade_id)
@@ -304,7 +306,15 @@ class QuotesController < ApplicationController
     dir1 = "#{Rails.root}/public/assets/quotes/#{project_name}/#{@quote.ref_no}"
     Dir.mkdir(dir1) unless File.exists?(dir1)
 
-    Quote.quote_link(@quote,hc_user,trade,project_name,@avatar_path)
+
+    if File.exist?(@avatar_path)
+      puts "PRESENT ========> "
+      Quote.quote_link(@quote,hc_user,trade,project_name,@avatar_path)
+    else
+      puts "ELSE ========> "
+      Quote.quote_link(@quote,hc_user,trade,project_name,nil)
+    end
+
 
     if @quote.quote_documents.present?
       @quote.quote_documents.each do |a|

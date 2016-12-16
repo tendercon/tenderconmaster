@@ -1,6 +1,9 @@
-<div class="container" style="background-color: #ffffff">
+<div class="row" style="background-color: #ffffff">
+  <div class="col-md-12">
+    <div style="height: 30px"></div>
+    <%= render :partial => 'users/headers/profile_header' %>
+  </div>
 
-  <%= render :partial => 'users/headers/profile_header' %>
 
   <% if @user.div_status == false %>
   <div class="form-group has-feedback">
@@ -21,18 +24,18 @@
       </div>
     <%- end %>
   </div>
-    <div class="col-md-23 information_header">
+    <div class="col-md-12 information_header">
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
-            <div class="col-md-14">
+            <div class="text-center">
               <div class="col-md-2"><i class="fa fa-lightbulb-o fa-4x" aria-hidden="true" style="color: #ffff00"></i></div>
               <div class="form-group"></div>
-              <div class="col-md-22">
+              <div class="col-md-6">
                 <p class="user_profile_header">This copy will describe what the user can do on this page and how it effects user account.</p>
               </div>
             </div>
-            <div class="col-md-10">
+            <div class="col-md-4">
               <div class="form-group"></div>
               <a href="<%= zendesk_index_path(:id => @user.id) %>" class="text-center new-account" target="_blank">
                 <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Learn More</button>
@@ -49,14 +52,14 @@
   <% end %>
 
   <% if !@avatar_id.present? || !@about_me.present? %>
-    <div class="col-md-23 information_header">
+    <div class="col-md-12 information_header">
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
-            <div class="col-md-14">
+            <div style="height: 10px"></div>
+            <div class="text-center">
               <div class="col-md-2"><i class="fa fa-info-circle fa-4x" aria-hidden="true" style="color: #4AD6F7"></i></div>
-              <div class="form-group"></div>
-              <div class="col-md-22">
+              <div class="col-md-6">
                 <p class="user_profile_2header">Your profile is almost complete. Please update the following fields.</p>
                 <% if !@avatar_id.present? %>
                   <p class="user_profile_2header">Add your professional photo in clicking ADD PROFILE PICTURE</p>
@@ -75,21 +78,20 @@
 
 
   <div class="profile_data">
-    <div class="col-md-24 col-md-12 col-md-offset-6">
-      <div class="col-md-16">
+    <div class="col-md-12">
+      <div class="text-center">
         <a href="#!" class="text-center new-account">
           <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Who can see this?</button>
         </a>
       </div>
 
-      <div class="col-md-8">
+      <div class="text-center">
         <a href="<%= edit_profile_users_path(:id => @user.id) %>" class="text-center new-account">
           <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Edit Profile</button>
         </a>
         <div class="row">
-          <div class="form-group"></div>
-          <div class="form-group">
-            <div class="col-md-24">
+          <div style="height: 20px">
+            <div class="col-md-12">
               <a href="<%= download_profile_users_path(format: 'pdf') %>" class="text-center new-account" style="text-decoration: none; color: #000000">
                 <i class="fa fa-download fa-2x" aria-hidden="true"></i>
               </a>

@@ -1,34 +1,34 @@
+<div style="height: 30px"></div>
 <label>Quote Document</label>
 <div class="quote_documents">
   <div class="row">
-    <div class="col-md-22">
-      <table  class="table table-bordered document_table col-md-12">
+    <div class="col-md-12">
+      <table  class="table table-bordered document_table">
         <thead>
         <% if @quote_documents.present? %>
             <tr>
               <th>Document</th>
-              <th></th>
               <th></th>
             </tr>
         <% end %>
         </thead>
         <tbody>
         <% if @quote_documents.present? %>
-            <% @quote_documents.each do |d| %>
-                <tr>
-                  <% if d.document_file_name != '.DS_Store'  %>
-                      <td><%= d.document_file_name %></td>
-                      <td>
-                        <a href="<%= root_path <<  "assets/quotes/#{d.id}/original/"+ d.document_file_name%>" target="_blank">
-                          <button class="btn btn-default">View</button>
-                        </a>
-                        <a href="<%= root_path <<  "assets/quotes/#{d.id}/original/"+ d.document_file_name%>" download>
-                          <button class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></button>
-                        </a>
-                      </td>
-                  <% end %>
-                </tr>
-            <% end %>
+          <% @quote_documents.each do |d| %>
+            <tr>
+              <% if d.document_file_name != '.DS_Store'  %>
+                <td><%= d.document_file_name %></td>
+                <td>
+                  <a href="<%= root_path <<  "assets/quotes/#{d.id}/original/"+ d.document_file_name%>" target="_blank">
+                    <button class="btn btn-default">View</button>
+                  </a>
+                  <a href="<%= root_path <<  "assets/quotes/#{d.id}/original/"+ d.document_file_name%>" download>
+                    <button class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></button>
+                  </a>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
         <% end %>
         </tbody>
       </table>
@@ -40,8 +40,8 @@
 <label>Supporting files(Optional)</label>
 <div class="quote_document_optional">
   <div class="row">
-    <div class="col-md-22">
-      <table  class="table table-bordered document_table col-md-12">
+    <div class="col-md-12">
+      <table  class="table table-bordered document_table">
         <thead>
         <% if @quote_document_optionals.present? %>
             <tr>
