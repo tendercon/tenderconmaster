@@ -896,7 +896,9 @@ class TendersController < ApplicationController
       puts "tender_detail ---------------> "
       ids.each do |i|
         if i != 'on'
-          if !TenderRequestQuote.check_sc_tender_trade_exists? tender_id,t,sc_id,tender.user_id
+          if !TenderRequestQuote.check_sc_tender_trade_exists? tender_id,i,sc_id,tender.user_id
+            puts "==================> tender_detail"
+            puts "TRADE ID =========> #{i}"
             tender_request_quote = TenderRequestQuote.new
             tender_request_quote.tender_id = tender_id
             tender_request_quote.sc_id = sc_id
@@ -915,6 +917,7 @@ class TendersController < ApplicationController
       ids.each do |i|
         if !TenderRequestQuote.check_sc_tender_trade_exists? tender_id,i,sc_id,tender.user_id
           if i.to_i > 0
+            puts "==================> OPEN TENDER SAVE"
             tender_request_quote = TenderRequestQuote.new
             tender_request_quote.tender_id = tender_id
             tender_request_quote.sc_id = sc_id
@@ -938,6 +941,7 @@ class TendersController < ApplicationController
 
           if !TenderRequestQuote.check_sc_tender_trade_exists? tender_id,t,sc_id,tender.user_id
             if t.to_i > 0
+              puts "==================> boolean_array"
               tender_request_quote = TenderRequestQuote.new
               tender_request_quote.tender_id = tender_id
               tender_request_quote.sc_id = sc_id

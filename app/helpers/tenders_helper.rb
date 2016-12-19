@@ -496,7 +496,7 @@ module TendersHelper
   end
 
   def get_tender_request tender_id,sc_id
-    tender_request = TenderRequestQuote.where(:tender_id => tender_id,:sc_id => sc_id)
+    tender_request = TenderRequestQuote.where(:tender_id => tender_id,:sc_id => sc_id,:status => nil)
     puts "tender_request =====> #{tender_request.inspect}"
     if tender_request.present?
       tender_request
