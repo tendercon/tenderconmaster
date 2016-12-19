@@ -306,14 +306,18 @@ class QuotesController < ApplicationController
     dir1 = "#{Rails.root}/public/assets/quotes/#{project_name}/#{@quote.ref_no}"
     Dir.mkdir(dir1) unless File.exists?(dir1)
 
-
-    if File.exist?(@avatar_path)
-      puts "PRESENT ========> "
-      Quote.quote_link(@quote,hc_user,trade,project_name,@avatar_path)
+    if @avatar_path.present?
+      if File.exist?(@avatar_path)
+        puts "PRESENT ========> "
+        Quote.quote_link(@quote,hc_user,trade,project_name,@avatar_path)
+      else
+        puts "ELSE ========> "
+        Quote.quote_link(@quote,hc_user,trade,project_name,nil)
+      end
     else
-      puts "ELSE ========> "
       Quote.quote_link(@quote,hc_user,trade,project_name,nil)
     end
+
 
 
     if @quote.quote_documents.present?
