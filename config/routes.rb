@@ -423,6 +423,7 @@ Rails.application.routes.draw do
       # get
       get 'view'
       get 'update_quote'
+      get 'delete_quote'
 
       # post
       post 'get_latest_quotes'

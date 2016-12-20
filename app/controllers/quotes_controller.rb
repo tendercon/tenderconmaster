@@ -1,5 +1,6 @@
 class QuotesController < ApplicationController
   skip_before_action :verify_authenticity_token
+
   def get_latest_quotes
     @tender = Tender.find(params[:tender_id])
     @quote_document = QuoteDocument.new
@@ -20,6 +21,7 @@ class QuotesController < ApplicationController
       if @quotes.present?
         @refs = []
         @quotes.each do |a|
+
           @refs << a.ref_no
         end
         puts "------------> #{@refs.inspect}"
@@ -267,13 +269,19 @@ class QuotesController < ApplicationController
     if ids.present?
       ids.each do |id|
         if id != 'on'
-          Quote.where(:ref_no => id).delete_all
+          Quote.where(:ref_no => id).update_all(:status => 'Deleted')
         end
       end
     end
 
     get_quotes
 
+  end
+
+  def delete_quote
+    Quote.where(:id => params[:id]).update_all(:status => 'Deleted')
+
+    redirect_to :back
   end
 
   def view

@@ -1,5 +1,6 @@
 class RfisController < ApplicationController
   skip_before_action :verify_authenticity_token
+
   def get_latest_rfis
     @tender = Tender.find(params[:tender_id])
 

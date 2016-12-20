@@ -1,48 +1,44 @@
-<div class="col-md-24">
+<div class="row">
   <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
     <a href="#!" class="new_rfi">
       <button class="btn btn-info">Create New RFI</button>
     </a>
   <% end %>
   <% if session[:role] == 'Head Contractor' %>
-    <div class="container">
-      <div class="col-md-24">
-        <div class="col-md-13"></div>
-        <div class="col-md-9">
-          <label>Sort By:</label>
-          <select multiple id="trade_option" style="width:200px">
-            <optgroup label="Trades">
-              <option value="all">All</option>
-              <% @trades.each do |v| %>
-                  <option value="<%= v.id %>"><%= v.name %></option>
-              <% end %>
-            </optgroup>
-          </select>
+    <div class="col-md-12">
+        <label>Sort By:</label>
+        <select multiple id="trade_option" style="width:200px">
+          <optgroup label="Trades">
+            <option value="all">All</option>
+            <% @trades.each do |v| %>
+                <option value="<%= v.id %>"><%= v.name %></option>
+            <% end %>
+          </optgroup>
+        </select>
 
-          <a href="#!">
-            <button class="btn btn-success search_filter">
-              Search
-            </button>
-          </a>
+        <a href="#!">
+          <button class="btn btn-success search_filter">
+            Search
+          </button>
+        </a>
           <%#= select_tag "trade",content_tag(:option,'Sort By',:value=>'')+content_tag(:option,'All',:value=>'all')+options_from_collection_for_select(@trades, 'id','name'),{:class=> 'form-control sort_trade'} %>
-        </div>
-      </div>
+
     </div>
   <% end %>
   <br><br>
-  <div class="col-md-24 rfi_lists">
+  <div class="col-md-12 rfi_lists">
     <%= render :partial => 'rfis/rfis', :locals => {:rfis => @rfis} %>
   </div>
 </div>
 
 
-<div id="new_rfi" class="modal fade col-md-28" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;overflow-y:scroll;" >
+<div id="new_rfi" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;overflow-y:scroll;" >
   <div class="modal-dialog">
     <!-- Modal content-->
-    <div class="modal-content col-md-24">
+    <div class="modal-content col-md-12">
       <div class="modal-header">
         <button type="button" class="close new_rfi_close" data-dismiss="modal">&times;</button>
-        <div class="col-md-24 col-md-20 col-md-offset-2">
+        <div class="text-center">
           <p class="text-center" style="font-size: 20px">
             New RFI
           </p>
@@ -54,7 +50,7 @@
       <br>
       <div class="modal-body">
         <div class="row">
-          <div class="container">
+          <div class="col-md-12">
             <div id="content">
               <div class="col-md-6">
                 <label>Ref#</label>
@@ -95,11 +91,11 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-24">
+          <div class="col-md-12">
             <label>Description</label>
             <textarea class="form-control rfi_desc" rows="5" id="rfi_desc"></textarea>
           </div>
-          <div class="col-md-24">
+          <div class="col-md-12">
             <label>Attach files</label>
             <p>Note: Once RFI has been sent files will get compressed into a zip format(view in preview mode for more details)</p>
             <div class="col-md-24" type="file" id="dir-select" webkitdirectory name="document"> 
@@ -296,7 +292,7 @@
   </div>
 </div>
 
-<div style="background-color: transparent;"> 
+<div style="display: none;"> 
   <input id="file_input" type="file" style="background-color: transparent;" name="documents"> 
 </div> 
 

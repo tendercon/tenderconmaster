@@ -126,4 +126,19 @@ module QuotesHelper
     end
   end
 
+  def get_quote_user_company ref_no
+    quote = Quote.where(:ref_no =>ref_no).first
+
+    if quote.present?
+      user = User.where(:id => quote.user_id).first
+
+      if user.present?
+        user.company
+      end
+    end
+  end
+
+  def get_quote_count tender_id
+    Quote.where(:tender_id => tender_id).count()
+  end
 end
