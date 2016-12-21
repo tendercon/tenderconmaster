@@ -19,6 +19,8 @@
 Quote.delete_all
 QuoteDocument.delete_all
 QuoteDocumentOptional.delete_all
+Rfi.delete_all
+RfiDocument.delete_all
 
 #User.where(:email => 'agile.jjp@gmail.com').update_all(:company => 'Test Company')
 #User.where(:email => 'joe_dhay@yahoo.com').update_all(:company => 'First Company')
