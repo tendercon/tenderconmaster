@@ -401,6 +401,7 @@ Rails.application.routes.draw do
     collection do
       # get
       get 'comments'
+      get 'resolved_rfi'
 
       # post
       post 'get_latest_rfis'

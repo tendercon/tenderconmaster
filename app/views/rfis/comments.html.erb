@@ -1,13 +1,13 @@
 <div class="row">
   <% if !@rfi.status.present? %>
-    <div class="col-md-23 information_header">
+    <!--<div class="col-md-12 information_header">
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
-            <div class="col-md-24">
+            <div class="col-md-12">
               <div class="col-md-2"><i class="fa fa-lightbulb-o fa-3x" aria-hidden="true" style="color: #91be24"></i></div>
               <div class="form-group"></div>
-              <div class="col-md-22">
+              <div class="col-md-10">
                 <a href="#!">
                   This RFI can be shared with other Sub Contractors onces it get reolved.
                   <button class="btn btn-lg btn-default btn-sm " type="button">Resolve RFI
@@ -19,18 +19,18 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
   <% end %>
 
   <% if @rfi.status.present? && !(rfi_is_shared? @rfi.id) %>
-    <div class="col-md-23 information_header">
+    <div class="col-md-12 information_header">
       <div class="panel panel-default">
         <div class="panel-heading">
           <div class="row">
-            <div class="col-md-24">
+            <div class="col-md-12">
               <div class="col-md-2"><i class="fa fa-lightbulb-o fa-3x" aria-hidden="true" style="color:limegreen"></i></div>
               <div class="form-group"></div>
-              <div class="col-md-22">
+              <div class="col-md-12">
                 <a href="#!">
                   Share this RFI with other Sub Contractors.
                   <button class="btn btn-lg btn-default btn-sm shared_rfi_btn" type="button">Share RFI
@@ -51,33 +51,59 @@
       <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to RFI Register</button>
   </a>
   <div style="height: 10px"></div>
-  <div class="container">
+  <div class="col-md-12">
     <div id="content">
-      <div class="col-md-12">
-        <label>Ref#</label>
-        <p class="rfi_no_preview"><%= @rfi.ref_no %></p>
-        <label>To</label>
-        <p class="to_preview"><%= @rfi.to %></p>
-        <label>Attention</label>
-        <p class="attention_preview"><%= @rfi.attention %></p>
-        <label>Date</label>
-        <p class="rfi_date_preview"><%= @rfi.rfi_date %></p>
-        <label>Response Due</label>
-        <p class="response_due_preview"><%= @rfi.response_date %></p>
-        <label>Trade</label>
-        <p class="trade_preview"><%= get_trade_name @rfi.trade_id %></p>
-        <label>Heading</label>
-        <p class="heading_preview"><%= @rfi.heading %></p>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Ref#</label>
+          <h4 class="rfi_no_preview"><%= @rfi.ref_no %></h4>
+        </div>
+        <div class="form-group">
+          <label>To</label>
+          <h4 class="to_preview"><%= @rfi.to %></h4>
+        </div>
+
+        <div class="form-group">
+          <label>Attention</label>
+          <h4 class="attention_preview"><%= @rfi.attention %></h4>
+        </div>
+
+        <div class="form-group">
+          <label>Date</label>
+          <h4 class="rfi_date_preview"><%= @rfi.rfi_date %></h4>
+        </div>
+
+        <div class="form-group">
+          <label>Response Due</label>
+          <h4 class="response_due_preview"><%= @rfi.response_date %></h4>
+        </div>
+
+        <div class="form-group">
+          <label>Trade</label>
+          <h4 class="trade_preview"><%= get_trade_name @rfi.trade_id %></h4>
+        </div>
+
+        <div class="form-group">
+          <label>Heading</label>
+          <h4 class="heading_preview"><%= @rfi.heading %></h4>
+        </div>
       </div>
 
       <div class="col-md-6">
-        <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+        <div class="form-group">
+          <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+        </div>
+
         <div class="form-group">
           <label>Company</label>
-          <p class="company_preview"><%= @sc_user.company %></p>
-          <label>From</label>
-          <p class="from_preview"><%= "#{@sc_user.first_name} #{@sc_user.last_name}" %></p>
+          <h4 class="company_preview"><%= @sc_user.company %></h4>
         </div>
+
+        <div class="form-group">
+          <label>From</label>
+          <h4 class="from_preview"><%= "#{@sc_user.first_name} #{@sc_user.last_name}" %></h4>
+        </div>
+
         <div class="form-group">
           <label>Status</label>
           <% if @rfi.status.present? %>
@@ -109,14 +135,15 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-24">
-    <label>Description</label>
-    <textarea class="form-control rfi_desc_preview" rows="5" id="rfi_desc" value="<%= @rfi.description %>"><%= @rfi.description %></textarea>
+  <div class="col-md-12">
+     <div class="form-group">
+       <label>Description</label>
+       <textarea class="form-control rfi_desc_preview" rows="5" id="rfi_desc" value="<%= @rfi.description %>"><%= @rfi.description %></textarea>
+     </div>
   </div>
-  <div class="col-md-24">
+  <div class="col-md-12">
     <label>Attach files</label>
-    <div class="col-md-24" > 
-      <div class="col-md-20  col-md-offset-2 rfi_preview_dropzone">
+    <div class="text-center rfi_preview_dropzone">
         <br/>
         <p class="text-center">
           <i class="fa fa-file-o fa-5x" aria-hidden="true"></i>
@@ -127,20 +154,20 @@
             <i class="fa fa-download fa-2x" aria-hidden="true"></i>
           </a>
         </p>
-      </div>
-    </div>  
+    </div>
+
   </div>
-  <div class="col-md-24" style="height: 5px"></div>
-  <div class="col-md-20 col-md-offset-10">
+
+  <div class="text-center">
     <a href="#!">
       <% if @rfi.status == nil %>
-        <button class=" btn btn-info mark_resolved" type="button" >Mark as Resolved</button>
+        <!--<button class=" btn btn-info mark_resolved" type="button" >Mark as Resolved</button>-->
       <%# else %>
         <!--<button class=" btn btn-info mark_resolved" type="button" >Resolved</button>-->
       <% end %>
 
       <% if session[:role] == 'Head Contractor' %>
-          <button class=" btn btn-info request_mark_resolved" type="button" >Request To Resolve</button>
+          <!--<button class=" btn btn-info request_mark_resolved" type="button" >Request To Resolve</button>-->
       <% end %>
     </a>
   </div>
@@ -153,7 +180,7 @@
     <%= render :partial => 'rfi_comments/comment_document_lists' %>
   </div>
 
-  <div class="col-md-20 col-md-offset-10">
+  <div class="text-center">
     <a href="#!">
       <button class=" btn btn-info add_comment" type="button" >Add Comment</button>
     </a>
@@ -161,11 +188,11 @@
   <div class="form-group">
     <br/>
   </div>
-  <div class="col-md-16 col-md-offset-4 comment_area" style="display: none;">
-    <div class="col-md-24" style="height: 5px"></div>
-    <div class="col-md-24">
+  <div class="col-md-12 comment_area" style="display: none;">
+    <div  style="height: 5px"></div>
+    <div class="row">
       <textarea class="form-control message" rows="5" cols="20"></textarea>
-      <div class="col-md-24" style="height: 2px"></div>
+      <div class="col-md-12" style="height: 2px"></div>
       <%= form_for @comment_document, :url => create_comment_document_comment_documents_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
           <input type="hidden" value="<%= @tender.id%>" name="tender_id" class="tender_id">
           <input type="hidden" value="<%= @str_token %>" name="token" class="token">
@@ -179,7 +206,7 @@
       <button class="btn btn-info cancel_comment">
         Cancel
       </button>
-      <div class="col-md-24" style="height: 5px"></div>
+      <div  style="height: 5px"></div>
     </div>
   </div>
 </div>
@@ -188,7 +215,7 @@
 <input type="hidden" value="<%= @rfi.id %>" class="rfi_id">
 
 
-<div id="request_myModal"  class="modal fade col-md-28" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="request_myModal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -206,7 +233,7 @@
   </div>
 </div>
 
-<div id="shared_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="shared_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -220,17 +247,17 @@
       </div>
       <div class="modal-body">
         <div class="container">
-          <div class="col-md-24">
+          <div class="col-md-12">
             <div class="radio">
               <label><input type="radio" name="optradio" class="shared_option" id="1">Share with all Sub Contractors Relevant Trade</label>
             </div>
           </div>
-          <div class="col-md-24">
+          <div class="col-md-12">
             <div class="radio">
               <label><input type="radio" name="optradio" class="shared_option" id="2">Share with all my tenderding Sub Contractors</label>
             </div>
           </div>
-          <div class="col-md-24">
+          <div class="col-md-12">
             <div class="radio disabled">
               <label><input type="radio" name="optradio" class="shared_option" id="3">Manually select Sub Contractors you wish to share with</label>
             </div>
@@ -245,7 +272,7 @@
   </div>
 </div>
 
-<div id="option1_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="option1_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -279,7 +306,7 @@
   </div>
 </div>
 
-<div id="option2_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="option2_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -312,7 +339,7 @@
   </div>
 </div>
 
-<div id="option3_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="option3_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -347,7 +374,7 @@
   </div>
 </div>
 
-<div id="manual_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="manual_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -391,7 +418,7 @@
   </div>
 </div>
 
-<div id="success_manual_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="success_manual_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -412,7 +439,7 @@
   </div>
 </div>
 
-<div id="success_all_sub_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="success_all_sub_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

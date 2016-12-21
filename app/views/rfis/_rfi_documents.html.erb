@@ -1,6 +1,6 @@
 <div class="row">
   <input type="hidden" value="<%= @tender_id %>" class="tender_id">
-  <div class="col-md-22">
+  <div class="col-md-12">
     <i class="fa fa-file-text-o rfi_file" aria-hidden="true"></i>
     <i class="fa fa-trash remove" aria-hidden="true" onclick="remove_btn();"></i>
     <button type="button" class="btn btn-danger remove_btn" style="display: none" onclick="return confirm('Are you sure you want to delete this item?');">
@@ -37,26 +37,25 @@
       $('.document_list').prop('checked',$(this).prop("checked"));
     });
 
-    function remove_btn(){
-      var tender_id = $('.tender_id').val();
-      var r = confirm("Are you sure you want to delete this item?");
-      if (r == true) {
-        var ids = [];
-
-        $("input:checkbox:checked").map(function()
-        {
-          ids.push($(this).val());
-        })
-        console.log("ids:"+ids);
-        $.ajax({
-          method: "POST",
-          data: {ids:ids,tender_id:tender_id},
-          url: "/rfis/delete_rfi_documents"
-        }).done(function (data) {
-          $('.rfi_document_lists').html(data);
-        });
-      }
-    }
-
   });
+  function remove_btn(){
+    var tender_id = $('.tender_id').val();
+    var r = confirm("Are you sure you want to delete this item?");
+    if (r == true) {
+      var ids = [];
+
+      $("input:checkbox:checked").map(function()
+      {
+        ids.push($(this).val());
+      })
+      console.log("ids:"+ids);
+      $.ajax({
+        method: "POST",
+        data: {ids:ids,tender_id:tender_id},
+        url: "/rfis/delete_rfi_documents"
+      }).done(function (data) {
+        $('.rfi_document_lists').html(data);
+      });
+    }
+  }
 </script>

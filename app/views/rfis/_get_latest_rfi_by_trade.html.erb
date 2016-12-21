@@ -17,8 +17,8 @@
         <th>Due by</th>
         <th>Trade</th>
         <th>Status</th>
-        <th></th>
-        <th></th>
+        <th>Action</th>
+
       </tr>
   <% end %>
   </thead>
@@ -40,15 +40,33 @@
             <% end %>
             <td><%= d.response_date.strftime("%Y.%m.%d") %></td>
             <td><%= get_trade_name d.trade_id %></td>
-            <td><%= d.status.present? ? d.status : "Outstanding" %></td>
             <td>
-              <a href="<%= comments_rfis_path(:id => d.id,:tender_id => d.tender_id) %>">
-                <button class="btn btn-default view">
-                  View
+              <% if d.status.present? %>
+                <button class="btn btn-success">
+                  <%= d.status.present? ? d.status : "Outstanding" %>
+                  <% if session[:role] == 'Head Contractor' %>
+                    <% if (rfi_is_shared? d.id) %>
+                      <span class="label label-primary">S</span>
+                    <% end %>
+                  <% end %>
                 </button>
-              </a>
+              <% else %>
+                <button class="btn btn-warning">
+                  <%= d.status.present? ? d.status : "Outstanding" %>
+                </button>
+              <% end %>
             </td>
-            <td></td>
+            <td>
+              <div class="dropdown">
+                <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Action
+                  <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="<%= comments_rfis_path(:id => d.id,:tender_id => d.tender_id) %>">View</a></li>
+                  <li><a href="<%= resolved_rfi_rfis_path(:id => d.id) %>">Resolved</a></li>
+                </ul>
+              </div>
+
+            </td>
           </tr>
       <% end %>
   <% else %>

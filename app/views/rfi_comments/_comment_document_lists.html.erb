@@ -1,115 +1,140 @@
-<div class="row comment-details">
-  <% if @comments.present? %>
-      <% @comments.each do |comment| %>
-        <input type="hidden" class="rfi_id" value="<%= comment.rfi_id %>">
-        <% if @rfi.date_resolved.present? %>
-          <% if comment.created_at <  @rfi.date_resolved  %>
-            <div class="col-md-24 col-md-offset-12 comment_div" >
-              <div class="col-md-24" style="height: 10px;"></div>
-
-              <h5 id="sender">
-                <img src="<%= get_user_avatar comment.sender %>" class="img-rounded" width="50px" height="50px">
-                <%= get_user_name comment.sender %>
-              </h5>
-
-              <p id="sender-comments">
-                <%=  comment.comment %>
-              </p>
-
-              <p id="posted-details">
-                Posted: <span id="posted-date-time"> <%=  comment.created_at %></span>
-              </p>
-
-              <% if check_if_have_docs? comment.id %>
-                <div class="container">
-                  <div class="col-md-5">
-                    <i class="fa fa-file-o" aria-hidden="true"></i>
-                    <%= get_document_path_name comment.id  %>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="<%= get_comment_document_path comment.id  %>">
-                      <i class="fa fa-download" aria-hidden="true">Download Attached File</i>
-                    </a>
-                  </div>
-                </div>
-              <% end %>
-
-            </div>
-            <div class="col-md-24" style="height: 10px;"></div>
-
-          <% else %>
-
-            <div class="col-md-24" style="height: 10px;"></div>
-            <div class="col-md-24 col-md-offset-12 comment_div" >
-              <div class="col-md-24" style="height: 10px;"></div>
-              <h5 id="sender">
-                <img src="<%= get_user_avatar comment.sender %>" class="img-rounded" width="50px" height="50px">
-                <%= get_user_name comment.sender %>
-              </h5>
-
-              <p id="sender-comments">
-                <%=  comment.comment %>
-              </p>
-
-              <p id="posted-details">
-                Posted: <span id="posted-date-time"> <%=  comment.created_at %></span>
-              </p>
-              <p>
-                <i class="fa fa-thumbs-up fa-2x" aria-hidden="true" style="color: red"> </i>
-              </p>
-
-              <% if check_if_have_docs? comment.id %>
-                <div class="container">
-                  <div class="col-md-5">
-                    <i class="fa fa-file-o" aria-hidden="true"></i>
-                    <%= get_document_path_name comment.id  %>
-                  </div>
-                  <div class="col-md-6">
-                    <a href="<%= get_comment_document_path comment.id  %>">
-                      <i class="fa fa-download" aria-hidden="true">Download Attached File</i>
-                    </a>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-            <div class="col-md-24" style="height: 10px;"></div>
-          <% end %>
-        <% else %>
-          <div class="col-md-24 col-md-offset-12 comment_div" >
-            <div class="col-md-24" style="height: 10px;"></div>
-
-            <h5 id="sender">
-              <img src="<%= get_user_avatar comment.sender %>" class="img-rounded" width="50px" height="50px">
-              <%= get_user_name comment.sender %>
-            </h5>
-
-            <p id="sender-comments">
-              <%=  comment.comment %>
-            </p>
-
-            <p id="posted-details">
-              Posted: <span id="posted-date-time"> <%=  comment.created_at %></span>
-            </p>
-
-            <% if check_if_have_docs? comment.id %>
-              <div class="container">
-                <div class="col-md-5">
-                  <i class="fa fa-file-o" aria-hidden="true"></i>
-                  <%= get_document_path_name comment.id  %>
-                </div>
-                <div class="col-md-6">
-                  <a href="<%= get_comment_document_path comment.id  %>">
-                    <i class="fa fa-download" aria-hidden="true">Download Attached File</i>
-                  </a>
+<div class="col-md-12">
+  <div class="portlet light bordered">
+    <div class="portlet-body form">
+      <div class="form-body">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="portlet box green">
+              <div class="portlet-title">
+                <div class="caption">
+                  <label><i class="fa fa-question-circle"></i> Comment</label>
                 </div>
               </div>
-            <% end %>
+              <div class="portlet-body">
+                <div class="table-scrollable">
+                  <div class="row comment-details">
+                    <% if @comments.present? %>
+                        <% @comments.each do |comment| %>
+                            <input type="hidden" class="rfi_id" value="<%= comment.rfi_id %>">
+                            <% if @rfi.date_resolved.present? %>
+                                <% if comment.created_at <  @rfi.date_resolved  %>
+                                    <div class="col-md-12 comment_div" >
+                                      <div  style="height: 10px;"></div>
+
+                                      <h5 id="sender">
+                                        <img src="<%= get_user_avatar comment.sender %>" class="img-rounded" width="50px" height="50px">
+                                        <%= get_user_name comment.sender %>
+                                      </h5>
+
+                                      <p id="sender-comments">
+                                        <%=  comment.comment %>
+                                      </p>
+
+                                      <p id="posted-details">
+                                        Posted: <span id="posted-date-time"> <%=  comment.created_at %></span>
+                                      </p>
+
+                                      <% if check_if_have_docs? comment.id %>
+                                          <div class="container">
+                                            <div class="col-md-6">
+                                              <i class="fa fa-file-o" aria-hidden="true"></i>
+                                              <%= get_document_path_name comment.id  %>
+                                            </div>
+                                            <div class="col-md-6">
+                                              <a href="<%= get_comment_document_path comment.id  %>">
+                                                <i class="fa fa-download" aria-hidden="true">Download Attached File</i>
+                                              </a>
+                                            </div>
+                                          </div>
+                                      <% end %>
+
+                                    </div>
+                                    <div style="height: 10px;"></div>
+
+                                <% else %>
+
+                                    <div  style="height: 10px;"></div>
+                                    <div class="col-md-12 comment_div" >
+                                      <div  style="height: 10px;"></div>
+                                      <h5 id="sender">
+                                        <img src="<%= get_user_avatar comment.sender %>" class="img-rounded" width="50px" height="50px">
+                                        <%= get_user_name comment.sender %>
+                                      </h5>
+
+                                      <p id="sender-comments">
+                                        <%=  comment.comment %>
+                                      </p>
+
+                                      <p id="posted-details">
+                                        Posted: <span id="posted-date-time"> <%=  comment.created_at %></span>
+                                      </p>
+                                      <p>
+                                        <i class="fa fa-thumbs-up fa-2x" aria-hidden="true" style="color: red"> </i>
+                                      </p>
+
+                                      <% if check_if_have_docs? comment.id %>
+                                          <div class="container">
+                                            <div class="col-md-6">
+                                              <i class="fa fa-file-o" aria-hidden="true"></i>
+                                              <%= get_document_path_name comment.id  %>
+                                            </div>
+                                            <div class="col-md-6">
+                                              <a href="<%= get_comment_document_path comment.id  %>">
+                                                <i class="fa fa-download" aria-hidden="true">Download Attached File</i>
+                                              </a>
+                                            </div>
+                                          </div>
+                                      <% end %>
+                                    </div>
+                                    <div  style="height: 10px;"></div>
+                                <% end %>
+                            <% else %>
+                                <div class="col-md-12 comment_div" >
+                                  <div  style="height: 10px;"></div>
+
+                                  <h5 id="sender">
+                                    <img src="<%= get_user_avatar comment.sender %>" class="img-rounded" width="50px" height="50px">
+                                    <%= get_user_name comment.sender %>
+                                  </h5>
+
+                                  <p id="sender-comments">
+                                    <%=  comment.comment %>
+                                  </p>
+
+                                  <p id="posted-details">
+                                    Posted: <span id="posted-date-time"> <%=  comment.created_at %></span>
+                                  </p>
+
+                                  <% if check_if_have_docs? comment.id %>
+                                      <div class="container">
+                                        <div class="col-md-6">
+                                          <i class="fa fa-file-o" aria-hidden="true"></i>
+                                          <%= get_document_path_name comment.id  %>
+                                        </div>
+                                        <div class="col-md-6">
+                                          <a href="<%= get_comment_document_path comment.id  %>">
+                                            <i class="fa fa-download" aria-hidden="true">Download Attached File</i>
+                                          </a>
+                                        </div>
+                                      </div>
+                                  <% end %>
+                                </div>
+                                <div  style="height: 10px;"></div>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="col-md-24" style="height: 10px;"></div>
-        <% end %>
-      <% end %>
-  <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+
 
 
 <script>

@@ -370,17 +370,18 @@ class RfisController < ApplicationController
     if File.directory? "#{Rails.root}/public/assets/rfi/preview-#{project_name}"
       puts "EXIST"
       FileUtils.rm_rf("#{Rails.root}/public/assets/rfi/preview-#{project_name}")
+
     end
 
+    puts "CREATE =====> "
     dir = "#{Rails.root}/public/assets/rfi/preview-#{project_name}"
-    Dir.mkdir(dir) unless File.exists?(dir)
+    Dir.mkdir(dir)
 
     if rfi_documents.present?
       rfi_documents.each do |a|
         if a.document.path.present?
           FileUtils.cp a.document.path, dir
         end
-
       end
     end
 
@@ -394,7 +395,7 @@ class RfisController < ApplicationController
 
 
     Prawn::Document.generate  "#{Rails.root}/public/assets/rfi/preview-#{project_name}/#{project_name}.pdf" do |a|
-      if @avatar_path.present?
+      if File.exists? @avatar_path
         a.image open(@avatar_path), :width => 100,:height => 100, position:  :right
       end
 
@@ -516,7 +517,7 @@ class RfisController < ApplicationController
 
     trade = Trade.find(@rfi.trade_id)
     Prawn::Document.generate  "#{Rails.root}/public/assets/rfi/preview-#{project_name}/#{project_name}.pdf" do |a|
-      if @avatar_path.present?
+      if File.exists? @avatar_path
         a.image open(@avatar_path), :width => 100,:height => 100, position:  :right
       end
 
@@ -602,6 +603,11 @@ class RfisController < ApplicationController
     end
 
     render :json => { :state => 'valid'}
+  end
+
+  def resolved_rfi
+    Rfi.where(:id => params[:id]).update_all(:status  => 'Resolved')
+    redirect_to :back
   end
 
 end

@@ -6,21 +6,23 @@
   <% end %>
   <% if session[:role] == 'Head Contractor' %>
     <div class="col-md-12">
-        <label>Sort By:</label>
-        <select multiple id="trade_option" style="width:200px">
-          <optgroup label="Trades">
-            <option value="all">All</option>
-            <% @trades.each do |v| %>
-                <option value="<%= v.id %>"><%= v.name %></option>
-            <% end %>
-          </optgroup>
-        </select>
+      <div class="row">
+         <div class="col-md-6">
+           <label>Sort By:</label>
+           <div class="form-group">
+             <select class="form-control trade_option">
+               <% if @trades.present? %>
+                   <option value="all">All</option>
+                   <% @trades.each do |v| %>
+                       <option value="<%= v.id %>"><%= v.name %></option>
+                   <% end %>
+               <% end %>
+             </select>
+           </div>
+         </div>
+        <div class="col-md-6"></div>
+      </div>
 
-        <a href="#!">
-          <button class="btn btn-success search_filter">
-            Search
-          </button>
-        </a>
           <%#= select_tag "trade",content_tag(:option,'Sort By',:value=>'')+content_tag(:option,'All',:value=>'all')+options_from_collection_for_select(@trades, 'id','name'),{:class=> 'form-control sort_trade'} %>
 
     </div>
@@ -53,36 +55,71 @@
           <div class="col-md-12">
             <div id="content">
               <div class="col-md-6">
-                <label>Ref#</label>
-                <input type="text" class="form-control ref_no" value="<%= @ref_no %>" id="ref_no" name="ref_no" disabled>
-                <label>To</label>
-                <input type="text" class="form-control to" value="<%= @user.company %>" id="to"  disabled>
-                <label>Attention</label>
-                <input type="text" class="form-control attention" value="<%= "#{@user.first_name} #{@user.last_name} " %>" id="attention" >
-                <label>Date</label>
-                <input type="text" class="form-control rfi_date" value="<%= Time.now.strftime("%Y-%m-%d")  %>" id="rfi_date" >
-                <label>Response Due</label>
                 <div class="form-group">
+                  <label>Ref#</label>
+                  <input type="text" class="form-control ref_no" value="<%= @ref_no %>" id="ref_no" name="ref_no" disabled>
+                </div>
+
+                <div class="form-group">
+                  <label>To</label>
+                  <input type="text" class="form-control to" value="<%= @user.company %>" id="to"  disabled>
+                </div>
+
+                <div class="form-group">
+                  <label>Attention</label>
+                  <input type="text" class="form-control attention" value="<%= "#{@user.first_name} #{@user.last_name} " %>" id="attention" >
+                </div>
+
+                <div class="form-group">
+                  <label>Date</label>
+                  <input type="text" class="form-control rfi_date" value="<%= Time.now.strftime("%Y-%m-%d")  %>" id="rfi_date" >
+                </div>
+
+                <div class="form-group">
+                  <label>Response Due</label>
+                  <div class="input-group date form_meridian_datetime" data-date="2012-12-21T15:25:00Z">
+                    <input type="text" class="form-control response_date">
+                  <span class="input-group-btn">
+                      <button class="btn default date-reset" type="button">
+                          <i class="fa fa-times"></i>
+                      </button>
+                      <button class="btn default date-set" type="button">
+                          <i class="fa fa-calendar"></i>
+                      </button>
+                  </span>
+                  </div>
+                </div>
+                <!--<div class="form-group">
                   <div class='input-group date' id='duedatepicker'>
                     <input type='text' class="form-control response_date" />
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                   </div>
+                </div>-->
+                <div class="form-group">
+                  <label>Heading</label>
+                  <input type="text" class="form-control heading"  id="heading">
                 </div>
-                <label>Heading</label>
-                <input type="text" class="form-control heading"  id="heading">
               </div>
 
 
               <div class="col-md-6">
-                <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
-                <br/> <br/> <br/><br><br>
+                <div class="form-group">
+                  <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+                </div>
+
                 <div class="form-group">
                   <label>Company</label>
                   <input type="text" class="form-control company" value="<%= @sc_user.company %>" id="company">
+                </div>
+
+                <div class="form-group">
                   <label>From</label>
                   <input type="text" class="form-control from" value="<%= "#{@sc_user.first_name} #{@sc_user.last_name}" %>" id="form">
+                </div>
+
+                <div class="form-group">
                   <label>Trade</label>
                   <%= select_tag "trade",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@trades, 'id','name'),{:class=> 'form-control trade'} %>
                 </div>
@@ -96,10 +133,13 @@
             <textarea class="form-control rfi_desc" rows="5" id="rfi_desc"></textarea>
           </div>
           <div class="col-md-12">
-            <label>Attach files</label>
-            <p>Note: Once RFI has been sent files will get compressed into a zip format(view in preview mode for more details)</p>
-            <div class="col-md-24" type="file" id="dir-select" webkitdirectory name="document"> 
-              <div class="col-md-20  col-md-offset-2 rfi_dropzone">
+            <div class="form-group">
+              <label>Attach files</label>
+              <p>Note: Once RFI has been sent files will get compressed into a zip format(view in preview mode for more details)</p>
+            </div>
+            <div class="text-center" type="file" id="dir-select" webkitdirectory name="document"> 
+              <div class="col-md-12  rfi_dropzone">
+                <div style="height: 50px"></div>
                 <p class="text-center">
                   <i class="fa fa-cloud-upload fa-5x upload " aria-hidden="true"></i>
                 </p>
@@ -118,7 +158,7 @@
           <div class="form-group">
 
           </div>
-          <div class="col-md-20 col-md-offset-8">
+          <div class="text-center">
             <a href="#!">
               <button class=" btn btn-info button_preview" type="button" >Preview</button>
             </a>
@@ -133,13 +173,13 @@
 </div>
 
 
-<div id="preview_rfi" class="modal fade col-md-28" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; overflow-y:scroll;" >
+<div id="preview_rfi" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; overflow-y:scroll;" >
   <div class="modal-dialog">
     <!-- Modal content-->
-    <div class="modal-content col-md-24">
+    <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <div class="col-md-24 col-md-20 col-md-offset-2">
+        <div class="text-center">
           <p class="text-center" style="font-size: 20px">
             New RFI
           </p>
@@ -151,30 +191,56 @@
       <br>
       <div class="modal-body">
         <div class="row">
-          <div class="container">
+          <div class="col-md-12">
             <div id="content">
               <div class="col-md-6">
-                <label>Ref#</label>
-                <p class="rfi_no_preview"></p>
-                <label>To</label>
-                <p class="to_preview"></p>
-                <label>Attention</label>
-                <p class="attention_preview"></p>
-                <label>Date</label>
-                <p class="rfi_date_preview"></p>
-                <label>Response Due</label>
-                <p class="response_due_preview"></p>
-                <label>Trade</label>
-                <p class="trade_preview"></p>
-                <label>Heading</label>
-                <p class="heading_preview"></p>
+                <div class="form-group">
+                  <label>Ref#</label>
+                  <p class="rfi_no_preview"></p>
+                </div>
+
+                <div class="form-group">
+                  <label>To</label>
+                  <p class="to_preview"></p>
+                </div>
+
+                <div class="form-group">
+                  <label>Attention</label>
+                  <p class="attention_preview"></p>
+                </div>
+
+                <div class="form-group">
+                  <label>Date</label>
+                  <p class="rfi_date_preview"></p>
+                </div>
+
+                <div class="form-group">
+                  <label>Response Due</label>
+                  <p class="response_due_preview"></p>
+                </div>
+
+                <div class="form-group">
+                  <label>Trade</label>
+                  <p class="trade_preview"></p>
+                </div>
+
+                <div class="form-group">
+                  <label>Heading</label>
+                  <p class="heading_preview"></p>
+                </div>
               </div>
 
               <div class="col-md-6">
-                <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+                <div class="form-group">
+                  <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+                </div>
+
                 <div class="form-group">
                   <label>Company</label>
                   <p class="company_preview"><%= @sc_user.company %></p>
+                </div>
+
+                <div class="form-group">
                   <label>From</label>
                   <p class="from_preview"><%= "#{@sc_user.first_name} #{@sc_user.last_name}" %></p>
                 </div>
@@ -183,30 +249,33 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-md-24">
+          <div class="col-md-12">
             <label>Description</label>
             <textarea class="form-control rfi_desc_preview" rows="5" id="rfi_desc"></textarea>
           </div>
-          <div class="col-md-24">
-            <label>Attach files</label>
-            <div class="col-md-24" > 
-              <div class="col-md-20  col-md-offset-2 rfi_preview_dropzone">
-                <br/>
-                <p class="text-center">
-                  <i class="fa fa-file-o fa-5x" aria-hidden="true"></i>
-                </p>
-                <h2 class="text-center prev_ref"><%= "#{@ref_no}-#{@tender.title}" %></h2>
-                <p class="text-center download_btn">
-                  <i class="fa fa-download fa-2x" aria-hidden="true"></i>
-                </p>
-              </div>
-            </div>  
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Attach files</label>
+            </div>
+
+            <div class="form-group">
+              <p class="text-center">
+                <i class="fa fa-file-o fa-5x" aria-hidden="true"></i>
+              </p>
+            </div>
+
+            <div class="form-group">
+              <h2 class="text-center prev_ref"><%= "#{@ref_no}-#{@tender.title}" %></h2>
+              <p class="text-center download_btn">
+                <i class="fa fa-download fa-2x" aria-hidden="true"></i>
+              </p>
+            </div>
           </div>
         </div>
 
         <div class="row">
           <div class="form-group"></div>
-          <div class="col-md-20 col-md-offset-9">
+          <div class="text-center">
             <a href="#!">
               <button class=" btn btn-info exit_preview" type="button" >Exit Preview</button>
             </a>
@@ -217,13 +286,13 @@
   </div>
 </div>
 
-<div id="confirm_rfi" class="modal fade col-md-28" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; overflow-y:scroll;" >
+<div id="confirm_rfi" class="modal fade " role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; overflow-y:scroll;" >
   <div class="modal-dialog">
     <!-- Modal content-->
-    <div class="modal-content col-md-24">
+    <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <div class="col-md-24 col-md-20 col-md-offset-2">
+        <div class="text-center">
           <p class="text-center" style="font-size: 14px">
             Are you sure you want to sent this rfi? Note that rfi cannot be deleted
           </p>
@@ -240,7 +309,7 @@
           <div class="form-group">
 
           </div>
-          <div class="col-md-20 col-md-offset-8">
+          <div class="text-center">
             <a href="#!">
               <button class=" btn btn-info cancel_rfi" type="button" >Cancel</button>
             </a>
@@ -254,10 +323,10 @@
   </div>
 </div>
 
-<div id="success_rfi" class="modal fade col-md-28" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; overflow-y:scroll;" >
+<div id="success_rfi" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; overflow-y:scroll;" >
   <div class="modal-dialog">
     <!-- Modal content-->
-    <div class="modal-content col-md-24">
+    <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <div class="row">
@@ -268,7 +337,7 @@
         <div class="modal-body">
           <div class="row">
             <div class="form-group">
-              <div class="col-md-24 col-md-20 col-md-offset-2">
+              <div class="text-center">
                 <p class="text-center" style="font-size: 14px">
                   <i class="fa fa-check-circle fa-3x" aria-hidden="true"></i>
                 </p>
@@ -277,7 +346,7 @@
                 </p>
               </div>
             </div>
-            <div class="col-md-20 col-md-offset-8">
+            <div class="text-center">
               <a href="#!">
                 <button class=" btn btn-info create_rfi" type="button" >Create New RFI</button>
               </a>
@@ -342,9 +411,19 @@
       });
     });
 
+    var date = new Date();
+    date.setDate(date.getDate());
+    $('.form_meridian_datetime').datetimepicker({
+      startDate: date,
+      format:"yyyy-mm-dd  HH:ii P",
+      showMeridian:true,
+      autoclose:true,
+      todayBtn:true
+    });
 
+    //$('#duedatepicker').datetimepicker({ minDate:new Date()});
 
-    $('#duedatepicker').datetimepicker({format: 'DD-MM-YYYY hh:mm a'});
+    //$('#duedatepicker').datetimepicker({format: 'DD-MM-YYYY hh:mm a'});
 
     $('.rfi_dropzone').click(function(){
       $('#file_input').click();
@@ -433,7 +512,7 @@
       var attention = $('.attention').val();
       var rfi_date = $('.rfi_date').val();
       var response_date = $('.response_date').val();
-      var heading = $('.heading').val();
+      var heading = $('#heading').val();
       var trade = $('.trade').val();
       var rfi_desc = $('.rfi_desc').val();
       var tender_id = $('.tender_id').val();
@@ -493,36 +572,54 @@
         data: {filters:filters,tender_id:tender_id},
         url: "/rfis/get_rfi_by_trade"
       }).done(function (data) {
-        console.log(data);
+
         $('.rfi_lists').html(data);
       });
     });
 
-    function remove_fri_btn(){
+    $('.trade_option').change(function(){
+      var filters = $(this).val();
       var tender_id = $('.tender_id').val();
-      var r = confirm("Are you sure you want to delete this item?");
-      if (r == true) {
-        var ids = [];
+      console.log("FILTER:"+filters);
+      $.ajax({
+        method: "POST",
+        data: {filters:filters,tender_id:tender_id},
+        url: "/rfis/get_rfi_by_trade"
+      }).done(function (data) {
 
-        $("input:checkbox:checked").map(function()
-        {
-          ids.push($(this).val());
-        })
-        console.log("ids:"+ids);
-        $.ajax({
-          method: "POST",
-          data: {ids:ids,tender_id:tender_id},
-          url: "/rfis/delete_rfis"
-        }).done(function (data) {
-          $('.rfi_lists').html(data);
-        });
-      }
-    }
+        $('.rfi_lists').html(data);
+      });
+    });
 
-    function sent_rfi_btn(){
-      $('#confirm_rfi').modal('show');
-    }
+
+
+
   });
+
+  function sent_rfi_btn(){
+    $('#confirm_rfi').modal('show');
+  }
+
+  function remove_fri_btn(){
+    var tender_id = $('.tender_id').val();
+    var r = confirm("Are you sure you want to delete this item?");
+    if (r == true) {
+      var ids = [];
+
+      $("input:checkbox:checked").map(function()
+      {
+        ids.push($(this).val());
+      })
+      console.log("ids:"+ids);
+      $.ajax({
+        method: "POST",
+        data: {ids:ids,tender_id:tender_id},
+        url: "/rfis/delete_rfis"
+      }).done(function (data) {
+        $('.rfi_lists').html(data);
+      });
+    }
+  }
 
   $('#new_rfi_document').fileupload({
     dataType: 'json',    done: function (e, data) {
@@ -533,7 +630,7 @@
             data: {},
             url: "/rfis/get_rfi_documents"
           }).done(function (data) {
-            console.log("data"+data);
+
             $('.rfi_document_lists').html(data);
           });
         }

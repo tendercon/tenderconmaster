@@ -63,6 +63,20 @@
     color: #000000;
 }
 
+
+.rfi_dropzone{
+    height: 300px;
+    border: 2px dashed #cccccc;
+
+
+    text-align: center;
+}
+
+.rfi_dropzone.dragover{
+    border-color: #000000;
+    color: #000000;
+}
+
 .modal{
     margin-left: 150px;
 }

@@ -21,8 +21,8 @@
         <th>Due by</th>
         <th>Trade</th>
         <th>Status</th>
-        <th></th>
-        <th></th>
+        <th>Action</th>
+
       </tr>
     <% end %>
   </thead>
@@ -61,13 +61,17 @@
 
           </td>
           <td>
-            <a href="<%= comments_rfis_path(:id => d.id,:tender_id => d.tender_id) %>">
-              <button class="btn btn-default view">
-                View
-              </button>
-            </a>
+            <div class="dropdown">
+              <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Action
+                <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a href="<%= comments_rfis_path(:id => d.id,:tender_id => d.tender_id) %>">View</a></li>
+                <li><a href="<%= resolved_rfi_rfis_path(:id => d.id) %>">Resolved</a></li>
+              </ul>
+            </div>
+
+
           </td>
-          <td></td>
         </tr>
       <% end %>
     <% end %>
@@ -102,8 +106,8 @@
                   View
                 </button>
               </a>
+              <%= select_tag "trade",options_for_select([ "None", "Resolved" ], "None"),{:class=> 'form-control trade'} %>
             </td>
-            <td></td>
           </tr>
         <% end %>
       <% end %>
