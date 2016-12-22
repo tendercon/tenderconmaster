@@ -505,7 +505,8 @@ class RfisController < ApplicationController
     end
 
     dir = "#{Rails.root}/public/assets/rfi/preview-#{project_name}"
-    Dir.mkdir(dir) unless File.exists?(dir)
+    FileUtils.makedirs(dir)
+
 
     if rfi_documents.present?
       rfi_documents.each do |a|
