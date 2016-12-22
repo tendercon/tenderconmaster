@@ -519,7 +519,10 @@ class RfisController < ApplicationController
     trade = Trade.find(@rfi.trade_id)
     Prawn::Document.generate  "#{Rails.root}/public/assets/rfi/preview-#{project_name}/#{project_name}.pdf" do |a|
       if  @avatar_path.present?
-        a.image open(@avatar_path), :width => 100,:height => 100, position:  :right
+        if File.exists? @avatar_path
+          a.image open(@avatar_path), :width => 100,:height => 100, position:  :right
+        end
+
       end
 
       a.text "Ref #:                                                                                                   Company: ", size: 12, style: :bold, color: "000000"

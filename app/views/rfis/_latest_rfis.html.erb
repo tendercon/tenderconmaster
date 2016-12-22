@@ -517,25 +517,30 @@
       var rfi_desc = $('.rfi_desc').val();
       var tender_id = $('.tender_id').val();
 
-      $.ajax({
-        method: "POST",
-        data: {ref_no:ref_no,to:to,attention:attention,rfi_date:rfi_date,
-          response_date:response_date,heading:heading,trade:trade,rfi_desc:rfi_desc,tender_id:tender_id
-        },
-        url: "/rfis/create_rfi"
-      }).done(function (data) {
-        $('#confirm_rfi').modal('hide');
-        $('#new_rfi').modal('hide');
-        $('#success_rfi').modal('show');
-        $('.rfi_lists').html(data);
+      if(trade.length > 0){
         $.ajax({
           method: "POST",
-          data: {},
-          url: "/rfis/get_new_ref"
+          data: {ref_no:ref_no,to:to,attention:attention,rfi_date:rfi_date,
+            response_date:response_date,heading:heading,trade:trade,rfi_desc:rfi_desc,tender_id:tender_id
+          },
+          url: "/rfis/create_rfi"
         }).done(function (data) {
-          $('.ref_no').val(data.ref);
+          $('#confirm_rfi').modal('hide');
+          $('#new_rfi').modal('hide');
+          $('#success_rfi').modal('show');
+          $('.rfi_lists').html(data);
+          $.ajax({
+            method: "POST",
+            data: {},
+            url: "/rfis/get_new_ref"
+          }).done(function (data) {
+            $('.ref_no').val(data.ref);
+          });
         });
-      });
+      }else{
+        alert("Trade is required.");
+      }
+
     });
 
     $('.create_rfi').click(function(){
