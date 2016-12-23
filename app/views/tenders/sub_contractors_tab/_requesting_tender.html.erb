@@ -1,12 +1,12 @@
 <div class="table-responsive requested_div">
   <table class="table table-bordered responsive" id="requesting_table"  cellspacing="0" width="100%">
     <thead>
-    <th>Company Name</th>
-    <th>Contact Name</th>
-    <th>Trade</th>
-    <th>Request Sent</th>
-    <th>Staus</th>
-    <th>Action</th>
+    <th class="text-center">Company Name</th>
+    <th class="text-center">Contact Name</th>
+    <th class="text-center">Trade</th>
+    <th class="text-center">Request Sent</th>
+    <th class="text-center">Staus</th>
+    <th class="text-center">Action</th>
     </thead>
     <tbody>
     <% if @tender_requesting.present? %>
@@ -52,12 +52,12 @@
   <div class="col-md-20" style="height: 70px"></div>
   <table class="table table-bordered responsive" id="requested_table"  cellspacing="0" width="100%">
     <thead>
-      <th>Company Name</th>
-      <th>Contact Name</th>
-      <th>Trade</th>
-      <th>Request Sent</th>
-      <th>Staus</th>
-      <th>Action</th>
+      <th class="text-center">Company Name</th>
+      <th class="text-center">Contact Name</th>
+      <th class="text-center">Trade</th>
+      <th class="text-center">Request Sent</th>
+      <th class="text-center">Staus</th>
+      <th class="text-center">Action</th>
     </thead>
     <tbody>
     <% if @tender_request_quotes.present? %>
@@ -99,6 +99,9 @@
 <script>
   $(document).ready(function(){
     $('#requested_table').DataTable({
+      "bSort" : false,
+      "bPaginate": false,
+      "bInfo" : false,
       "columnDefs": [
         { "visible": false, "targets": 2 }
       ],
@@ -123,6 +126,9 @@
     });
 
     $('#requesting_table').DataTable({
+      "bSort" : false,
+      "bPaginate": false,
+      "bInfo" : false,
       "columnDefs": [
         { "visible": false, "targets": 2 }
       ],

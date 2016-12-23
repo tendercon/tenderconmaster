@@ -1,13 +1,13 @@
 <div class="table-responsive" >
   <table class="table table-bordered responsive" id="invited_table"  cellspacing="0" width="100%">
     <thead>
-        <th>Company Name</th>
-        <th>Contact Name</th>
-        <th>Email</th>
-        <th>Invitation Sent</th>
-        <th>Invitation Open</th>
-        <th>Status</th>
-        <th>Trade</th>
+        <th class="text-center">Company Name</th>
+        <th class="text-center">Contact Name</th>
+        <th class="text-center">Email</th>
+        <th class="text-center">Invitation Sent</th>
+        <th class="text-center">Invitation Opened</th>
+        <th class="text-center">Status</th>
+        <th class="text-center">Trade</th>
     </thead>
     <tbody>
     <% if @tender_invites.present? %>
@@ -46,6 +46,9 @@
   $(document).ready(function(){
     $('.invite_cnt').text("<%= @tender_invites.present? ? @tender_invites.size : 0 %>");
     $('#invited_table').DataTable({
+      "bSort" : false,
+      "bPaginate": false,
+      "bInfo" : false,
       "columnDefs": [
         { "visible": false, "targets": 6 }
       ],

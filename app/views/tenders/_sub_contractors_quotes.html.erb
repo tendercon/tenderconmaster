@@ -62,7 +62,7 @@
           </div>
 
 
-          <div  style="height: 10px"></div>
+          <div  style="height: 30px"></div>
           <div class="col-md-12">
             <div  style="height: 10px"></div>
             <a href="#!" class="invite_more_sub" id="<%= @tender.id %>">
@@ -122,18 +122,22 @@
               </div>
             </div>
           </div>
-          <div style="height: 10px"></div>
+          <div style="height: 30px"></div>
 
           <div class="row">
+
             <div class="col-md-12">
-              Filter by Trades:
-              <select id="trade2" multiple="multiple" class="trade_filter" title="request">
-                <% if @trades_ids.present? %>
-                    <% @trades_ids.uniq.each do |t| %>
-                        <option value="<%= t %>"><%= get_trade_name t %></option>
-                    <% end %>
-                <% end %>
-              </select>
+              <div style="height: 30px"></div>
+
+                Filter by Trades:
+                <select id="trade2" multiple="multiple" class="trade_filter" title="request">
+                  <% if @trades_ids.present? %>
+                      <% @trades_ids.uniq.each do |t| %>
+                          <option value="<%= t %>"><%= get_trade_name t %></option>
+                      <% end %>
+                  <% end %>
+                </select>
+
             </div>
           </div>
           <div style="height: 40px"></div>
@@ -174,14 +178,13 @@
                 <p class="text-center" style="font-size: 24px">
                   <%= get_quote_submitted_count @tender.id %>
                 </p>
-                <div  style="height: 10px"></div>
+                <div  style="height: 30px"></div>
                 <p class="text-center">Quotes Submitted</p>
               </div>
             </div>
           </div>
-          <div class="col-md-20" style="height: 10px"></div>
-          <div class="col-md-20" style="height: 10px"></div>
-          <div class="col-md-20">
+          <div  style="height: 30px"></div>
+          <div class="col-md-12">
             <div class="row">
               <div class="col-md-12">
                 Filter by Trades:

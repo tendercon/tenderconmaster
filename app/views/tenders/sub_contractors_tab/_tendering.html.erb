@@ -1,11 +1,11 @@
 <table class="table table-bordered responsive" id="tendering_table"  cellspacing="0" width="100%">
   <thead>
-  <th>Company Name</th>
-  <th>Contact Name</th>
-  <th>Trade</th>
-  <th>Joined</th>
-  <th>Packages</th>
-  <th>Status</th>
+  <th class="text-center">Company Name</th>
+  <th class="text-center">Contact Name</th>
+  <th class="text-center">Trade</th>
+  <th class="text-center">Joined</th>
+  <th class="text-center">Packages</th>
+  <th class="text-center">Status</th>
   </thead>
   <tbody>
   <% if @tendering.present? %>
@@ -35,6 +35,9 @@
 <script>
   $(document).ready(function(){
     $('#tendering_table').DataTable({
+      "bSort" : false,
+      "bPaginate": false,
+      "bInfo" : false,
       "columnDefs": [
         { "visible": false, "targets": 2 }
       ],

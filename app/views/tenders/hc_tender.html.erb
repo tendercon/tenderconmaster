@@ -308,7 +308,12 @@
           if(parseInt($(this).val()) > 0){
             $(this).val('')
           }
+        });
 
+        $('.company').each(function(){
+          if(parseInt($(this).val()) > 0){
+            $(this).val('')
+          }
         });
 
         $('.invited_div').html(data);
