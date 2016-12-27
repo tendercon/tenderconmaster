@@ -153,8 +153,12 @@ class QuotesController < ApplicationController
     require 'zip'
     tender = Tender.find(params[:tender_id])
     project_name = "#{tender.tendercon_id}-#{tender.title}"
+
     dir = "#{Rails.root}/public/assets/quotes/#{project_name}"
-    Dir.mkdir(dir) unless File.exists?(dir)
+    FileUtils.makedirs(dir)
+
+    #dir = "#{Rails.root}/public/assets/quotes/#{project_name}"
+    #Dir.mkdir(dir) unless File.exists?(dir)
     ids = params[:ids]
     quote_id = params[:quote_id]
 
@@ -172,8 +176,11 @@ class QuotesController < ApplicationController
       trade = Trade.find(quote.trade_id)
       hc_user = User.find(tender.user_id)
       puts "hc_user:#{hc_user.first_name}"
+
       dir1 = "#{Rails.root}/public/assets/quotes/#{project_name}/#{quote.ref_no}"
-      Dir.mkdir(dir1) unless File.exists?(dir1)
+      FileUtils.makedirs(dir1)
+      #dir1 = "#{Rails.root}/public/assets/quotes/#{project_name}/#{quote.ref_no}"
+      #Dir.mkdir(dir1) unless File.exists?(dir1)
 
       Quote.quote_link(quote,hc_user,trade,project_name,@avatar_path)
 
