@@ -2452,7 +2452,7 @@ class TendersController < ApplicationController
     end
 
     #@tender_trade_requests = TenderRequestTrade.where(:tender_request_quote_id => @quote_array.uniq)
-    @tender_invites = TenderInvite.where(:tender_id => @tender.id)
+    @tender_invites = TenderInvite.where(:tender_id => @tender.id).order('trade_id asc')
 
     # @tender_trade_array = []
     # if @tender_trade_requests.present?

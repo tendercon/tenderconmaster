@@ -1,0 +1,226 @@
+<input type="hidden" class="tender_id" value="<%= @tender.id%>" >
+<table  class="table table-bordered document_table" id="quotes_table">
+  <thead>
+  <tr>
+    <th class="text-center"><input type="checkbox" class="quote_list_master"></th>
+    <th class="text-center">Quote#</th>
+    <th class="text-center">Title</th>
+    <% if session[:role] == 'Head Contractor' %>
+        <th class="text-center">Received</th>
+    <% end %>
+    <th class="text-center">Trade</th>
+    <% if session[:role] == 'Sub Contractor' %>
+        <th class="text-center">Sent</th>
+    <% end %>
+    <th class="text-center">Price</th>
+    <th class="text-center">Status</th>
+    <th class="text-center">Action</th>
+    <% if session[:role] == 'Head Contractor' %>
+        <th class="text-center">Company</th>
+        <th class="text-center"></th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <% if @refs.present? %>
+      <% @refs.uniq.each do |d| %>
+          <tr>
+            <td class="text-center"><input type="checkbox" class="quote_list" name="documents[]" value="<%= d %>"></td>
+            <td class="text-center"><%= d %></td>
+            <% if (get_status d) == "Active" %>
+                <td class="text-center">
+                  <%= get_title d %>
+                </td>
+            <% else %>
+                <td class="text-center">
+                  <strike><%= get_title d %></strike>
+                </td>
+            <% end %>
+            <% if session[:role] == 'Head Contractor' %>
+                <td class="text-center"><%= get_received d %></td>
+            <% end %>
+
+            <td class="text-center"><%= get_trade_counts d %></td>
+            <% if session[:role] == 'Sub Contractor' %>
+                <td class="text-center">
+                  <%= get_created d %>
+                  <% if (get_seen_status d) == 1 %>
+                      <i class="fa fa-eye" aria-hidden="true" style="color: green"></i>
+                  <% else %>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                  <% end %>
+                </td>
+            <% end %>
+            <td class="text-center"><%= "$ #{(get_price d)}" %></td>
+            <% if (get_status d) == "Active" %>
+                <td class="text-center">
+                  <button class="btn btn-success">
+                    <%= get_status d %>
+                  </button>
+                </td>
+            <% else %>
+                <td class="text-center">
+                  <button class="btn btn-danger">
+                    <%= get_status d %>
+                  </button>
+                </td>
+            <% end %>
+            <td class="text-center">
+              <a href="<%= view_quotes_path(:ref_no => d,:tender_id => @tender.id) %>">
+                <button class="btn btn-default view">
+                  View
+                </button>
+              </a>
+              <% if session[:role] == 'Sub Contractor' %>
+                  <a href="<%= delete_quote_quotes_path(:id => (get_id d)) %>">
+                    <button class="btn btn-danger edit">
+                      Delete
+                    </button>
+                  </a>
+              <% end %>
+            </td>
+            <% if session[:role] == 'Head Contractor' %>
+                <td class="text-center"><%= get_quote_user_company d %></td>
+                <td class="text-center"></td>
+            <% end %>
+          </tr>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+
+<script>
+  $(document).ready(function(){
+
+      <% if session[:role] == 'Sub Contractor' %>
+      $('#quotes_table').DataTable({
+        "bSort" : false,
+        "bPaginate": false,
+        "bInfo" : false,
+        "dom":'fltip'
+      });
+      <% else %>
+      $('#quotes_table').DataTable({
+        "bSort" : false,
+        "bPaginate": false,
+        "bInfo" : false,
+        "dom":'fltip',
+        "columnDefs": [
+          { "visible": false, "targets": 8 }
+        ],
+        "order": [[ 8, 'asc' ]],
+        "displayLength": 25,
+        "drawCallback": function ( settings ) {
+          var api = this.api();
+          var rows = api.rows( {page:'current'} ).nodes();
+          var last=null;
+
+          api.column(8, {page:'current'} ).data().each( function ( group, i ) {
+
+            if ( last !== group ) {
+              $(rows).eq( i ).before(
+                  '<tr class="group"><td colspan="8" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
+                  '<td class="text-center"> <span class="badge progress-bar-danger">'+ <%= get_quote_count @tender.id %> +'</span>'+
+                  '</td></tr>'
+              );
+
+              last = group;
+            }
+          } );
+        }
+      });
+    <% end %>
+
+    var ids = [];
+    $('.quote_download').click(function(){
+
+      var tender_id = $('.tender_id').val();
+      $("input:checkbox:checked").map(function()
+      {
+        ids.push($(this).val());
+      })
+      console.log("ids:"+ids);
+      $.ajax({
+        method: "POST",
+        data: {ids:ids,tender_id:tender_id},
+        url: "/quotes/download_quotes"
+      }).done(function (data) {
+        $('.download_link').attr('href', data.link)
+        var link = $(".download_link");
+        link.click();
+        window.location.href = link.attr("href");
+      });
+
+    });
+
+    $('.remove_quote').click(function(){
+      var tender_id = $('.tender_id').val();
+      $("input:checkbox:checked").map(function()
+      {
+        ids.push($(this).val());
+      })
+      console.log("ids:"+ids);
+      $.ajax({
+        method: "POST",
+        data: {ids:ids,tender_id:tender_id},
+        url: "/quotes/delete_quotes"
+      }).done(function (data) {
+        $('.quote_all_lists').html(data);
+      });
+
+    });
+
+    $('.all_sub').click(function(){
+
+      console.log("all_sub:"+ids);
+      $.ajax({
+        method: "POST",
+        data: {ids:ids},
+        url: "/shared_rfis/shared_by_trade"
+      }).done(function (data) {
+        ids = [];
+        $('#shared_modal').modal('hide');
+        $('#option3_modal').modal('hide');
+        $('#option1_modal').modal('hide');
+        $('#option2_modal').modal('hide');
+        $('.all_sub_body').html(data);
+        $('#success_all_sub_modal').modal('show');
+        $("input:checkbox:checked").map(function()
+        {
+          $(this).prop('checked',false);
+        })
+
+        $('.shared_option').prop('checked',false);
+
+      });
+    });
+
+
+    $('.quote_list_master').click(function(){
+
+      if($('.quote_list').prop('checked')){
+        $('.quote_list').prop('checked',false);
+      }else{
+        $('.quote_list').prop('checked',true);
+      }
+    });
+
+    $('.trades').change(function(){
+      var tender_id = $('.tender_id').val();
+      var trade_id = $(this).val();
+      console.log("tender_id:"+tender_id);
+      console.log("trade_id:"+trade_id);
+
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id,trade_id:trade_id},
+        url: "/quotes/search_by_trade"
+      }).done(function (data) {
+        $('.quote_list_table').html('');
+        $('.quote_list_table').html(data);
+      });
+    });
+  });
+</script>

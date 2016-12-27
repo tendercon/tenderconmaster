@@ -10,9 +10,9 @@
         <table>
           <tbody>
           <tr>
-            <td class="col-md-5"><%= get_trade_name a %></td>
+            <td class="col-md-6"><%= get_trade_name a %></td>
 
-            <td class="col-md-5">
+            <td class="col-md-6">
               <select class="btn btn-info trade_status_button" id="<%= session[:user_logged_id] %>" alt="<%= a %>" title="<%= @tender.id %>">
                 <option class="white" value="None">None</option>
                 <option class="red" value="Accept">Accept</option>
@@ -29,24 +29,23 @@
 <% end %>
 
 <div class="row">
-  <div class="container">
-    <div class="col-md-24" style="height: 20px"></div>
+    <div  style="height: 20px"></div>
     <div id="content">
       <div class="tab-pane" id="orange">
-        <div class="col-md-12">
+        <div class="text-center">
           <p class="text-center" style="font-size: 16px">
             I want to request for the following trades:
           </p>
         </div>
-        <div class="col-md-18">
+        <div class="col-md-12">
 
         </div>
       </div>
     </div>
-  </div>
+
 </div>
 <div class="row">
-  <div class="col-md-24 col-md-20 col-md-offset-2">
+  <div class="text-center">
     <p class="text-center">
       <a href="#!">
         <button class="btn btn-default other_trades">
@@ -61,7 +60,7 @@
         <% if (get_tender_trades @tender.id).present? %>
           <% (get_tender_trades @tender.id).each_with_index do |t,index| %>
             <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
-              <div class="col-md-24"> 
+              <div class="col-md-12"> 
                 <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
                   <% if !@trade_cats.include? tc.title %>
                     <% @trade_cats << tc.title %>
@@ -69,8 +68,8 @@
                   <% end %>
                 <% end %>
               </div>
-              <div class="col-md-22">
-                <div class="col-md-6">
+              <div class="col-md-12">
+                <div class="text-center">
                   <% if @invite_count > 0 %>
                       <label id="trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class" id="trade_<%= t.trade_id %>" disabled> <%= get_trade_name t.trade_id %></label> 
                   <% else %>
@@ -92,7 +91,7 @@
   <div class="form-group">
 
   </div>
-  <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+  <div class="text-center">
 
     <a href="#!">
       <button class=" btn btn-info quotes" type="button" disabled>Save and Notify Head Contractor</button>
@@ -112,6 +111,7 @@
       data: {tender_id:tender_id,trade_id:trade_id,sc_id:ids,txt:txt.trim()},
       url: "/invites/update_tender_invite"
     }).done(function (data){
+      $('.quotes').prop('disabled',false);
       $('#trade_invited_body').html(data);
     });
   });

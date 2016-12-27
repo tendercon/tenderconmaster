@@ -191,7 +191,7 @@
   <div class="col-md-12 comment_area" style="display: none;">
     <div  style="height: 5px"></div>
     <div class="row">
-      <textarea class="form-control message" rows="5" cols="20"></textarea>
+      <textarea class="form-control message" id="message" rows="5" cols="20"></textarea>
       <div class="col-md-12" style="height: 2px"></div>
       <%= form_for @comment_document, :url => create_comment_document_comment_documents_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
           <input type="hidden" value="<%= @tender.id%>" name="tender_id" class="tender_id">
@@ -473,19 +473,19 @@
     });
 
     $('.submit_comment').click(function(){
-      var message = $('.message').val();
+      var message = $('#message').val();
       var rfi_id = $('.rfi_id').val();
       var tender_id = $('.tender_id').val();
       var str_token = $('.str_token').attr('id');
+      console.log("MESSAGES:"+$('#message').val());
       $.ajax({
         method: "POST",
         data: {message:message,rfi_id:rfi_id,tender_id:tender_id,str_token:str_token},
         url: "/rfi_comments/create_comment"
       }).done(function (data) {
         $('.str_token').html('');
-        $('.message').val('');
+        $('#message').val('');
         $('.comment_area').hide();
-        console.log(data);
         $('.comment_lists').html(data);
       });
     });

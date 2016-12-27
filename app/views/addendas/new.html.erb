@@ -176,7 +176,7 @@
   <%= form_for @addenda_document, :url => create_addenda_document_addendas_path,:html => {:multipart => true,:class => 'addenda_document'} do |m| %> 
       <input type="hidden" name="tender_id" value="<%= @tender.id %>">
       <input type="hidden" class="addenda_directory" name="directory">
-      <input type="file" class="upload_file" id="dir-select" name="document" webkitdirectory directory multiple /> 
+      <input type="file" class="upload_file" id="dir-select" name="document"  /> 
   <% end %>
 </div> 
 

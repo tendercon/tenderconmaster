@@ -2,6 +2,7 @@ class InvitesController < ApplicationController
   layout 'users_layout', :on => [:registration]
   layout 'application', :on => [:index]
   before_filter :is_logged?,  :except => [:registration,:update_invited_user,:update,:user,:save_invited_user]
+  skip_before_action :verify_authenticity_token
 
   def index
 

@@ -432,6 +432,7 @@ Rails.application.routes.draw do
       post 'save_quotes'
       post 'download_quotes'
       post 'delete_quotes'
+      post 'search_by_trade'
     end
   end
 

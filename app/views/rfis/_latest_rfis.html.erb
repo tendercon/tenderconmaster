@@ -137,7 +137,7 @@
               <label>Attach files</label>
               <p>Note: Once RFI has been sent files will get compressed into a zip format(view in preview mode for more details)</p>
             </div>
-            <div class="text-center" type="file" id="dir-select" webkitdirectory name="document"> 
+            <div class="text-center" type="file" id="drag_zone" webkitdirectory name="document"> 
               <div class="col-md-12  rfi_dropzone">
                 <div style="height: 50px"></div>
                 <p class="text-center">
@@ -373,12 +373,12 @@
 
 
 
-<div style="background-color: transparent;display: none"> 
+<div style="display: none"> 
   <%= form_for @rfi_document, :url => create_rfi_document_rfis_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
       <%= m.text_field :user_id,:value =>  session[:user_logged_id]  %> 
       <%= m.text_field :tender_id,:value =>  @tender.id  %> 
       <%= m.text_field :ref_no,:value =>  @ref_no  %> 
-      <input type="file" id="dir-select" name="document" webkitdirectory directory multiple /> 
+      <input type="file" id="dir-select" name="document" multiple /> 
   <% end %>
 </div> 
 
@@ -426,7 +426,7 @@
     //$('#duedatepicker').datetimepicker({format: 'DD-MM-YYYY hh:mm a'});
 
     $('.rfi_dropzone').click(function(){
-      $('#file_input').click();
+      $('#dir-select').click();
     });
 
 
