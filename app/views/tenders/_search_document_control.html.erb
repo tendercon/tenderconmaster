@@ -5,6 +5,7 @@
       <th class="text-center">Directory</th>
       <th class="text-center">Size</th>
       <th class="text-center">Updated</th>
+      <th class="text-center">Added from Addendas</th>
       <th class="text-center">Packages</th>
     </tr>
   </thead>
@@ -16,6 +17,13 @@
         <td class="text-center"><%= t.directory %></td>
         <td class="text-center"> <%= convert_kb_to_mb t.document_file_size %> MB</td>
         <td class="text-center"><%= (t.updated_at).strftime("%d.%m.%Y") %></td>
+        <td class="text-center">
+          <% if t.action_type == 'addenda' %>
+              "Addenda"
+          <% else %>
+              <%= nil %>
+          <% end %>
+        </td>
         <td class="text-center">
           <% if (get_document_package t.id,@tender.id).to_i > 0 %>
             <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= t.id %>">
@@ -57,7 +65,7 @@
           console.log("I -------> :"+i);
           if ( last !== group ) {
             $(rows).eq( i ).before(
-                '<tr class="group"><td colspan="4" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
+                '<tr class="group"><td colspan="5" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
                 '</tr>'
             );
 

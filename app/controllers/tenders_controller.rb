@@ -2498,6 +2498,21 @@ class TendersController < ApplicationController
     @data = render :partial => 'tenders/quoting'
   end
 
+  def get_document_control_per_sc
+    @tender = Tender.find(params[:tender_id])
+    @tender_approved = TenderApprovedTrade.where(:tender_id => @tender.id)
+
+    @trades_approved = []
+    if @tender_approved.present?
+      @tender_approved.each do |t|
+        trade = Trade.find(t.trade_id)
+        @trades_approved << trade.name
+      end
+    end
+
+    @data = render :partial => 'tenders/document_upload/get_document_control'
+  end
+
   def hc_tender
     @tender = Tender.find(params[:id])
     @trade_categories = TradeCategory.all

@@ -580,7 +580,7 @@ class RfisController < ApplicationController
       end
     end
     File.rename("#{Rails.root}/public/assets/rfi/preview-#{project_name}/preview-#{project_name}.zip", "#{Rails.root}/public/assets/rfi/preview-#{project_name}/#{project_name}.zip")
-    @download_link = "http://#{request.host_with_port}/assets/rfi/preview-#{project_name}/#{project_name}.zip"
+    @download_link = "http://#{request.host_with_port}/assets/rfi/preview-#{project_name}/#{project_name}.pdf"
     @str_token = Digest::MD5.hexdigest(rand(0...1000000).to_s)
   end
 

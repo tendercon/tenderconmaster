@@ -1,0 +1,46 @@
+<div class="row>">
+  <div class="form-group"></div>
+  <br>
+  <% if !@tender.hide_document.present? || @tender.hide_document == '0'  %>
+      <div class="text-center">
+        <p class="text-center" style="font-size: 18px">
+          <b>Head Contractor has uploaded documents</b>
+        </p>
+        <% if (get_tender_document_package @tender.id).present? %>
+            <select onchange="location = this.options[this.selectedIndex].value;" class="form-control download_package">
+              <option value="#!">None</option>
+              <% (get_tender_document_package @tender.id).each do |d| %>
+                  <option value="<%= d.url %>"><%= File.basename(d.url) %></option>
+              <% end %>
+            </select>
+        <% end %>
+      </div>
+  <% else %>
+      <div class="text-center">
+
+        <% if @tender_approved.present? %>
+          <p class="text-center" style="font-size: 18px">
+            <b>Head Contractor has uploaded documents</b>
+          </p>
+          <% if (get_tender_document_package @tender.id).present? %>
+            <select onchange="location = this.options[this.selectedIndex].value;" class="form-control download_package">
+              <option value="#!">None</option>
+              <% (get_tender_document_package @tender.id).each do |d| %>
+                <% if @trades_approved.include? File.basename(d.path) %>
+                  <option value="<%= d.url %>"><%= File.basename(d.url) %></option>
+                <% end %>
+              <% end %>
+            </select>
+          <% end %>
+        <% else %>
+            <p class="text-center" style="font-size: 18px">
+              <b>Head Contractor has hidden the documents</b>
+            </p>
+            <p class="text-center" style="font-size: 16px">
+              Documents will be available after your request approved
+            </p>
+        <% end %>
+
+      </div>
+  <% end %>
+</div>

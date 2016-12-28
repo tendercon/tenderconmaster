@@ -61,6 +61,20 @@ module QuotesHelper
     end
   end
 
+  def get_quote_trades ref_no
+    quotes = Quote.where(:ref_no => ref_no)
+    trades = []
+    if quotes.present?
+      quotes.each do |t|
+        trade = Trade.find(t.trade_id)
+        trades << trade.name
+      end
+      trades.join(",")
+    else
+      nil
+    end
+  end
+
   def get_trades ref_no
     quotes = Quote.where(:ref_no => ref_no)
 

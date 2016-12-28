@@ -46,10 +46,23 @@
   <% end %>
 
 
-  <a href="<%= sc_tender_tenders_path(:id => @tender.id,:rfi => 'true') %>">
-    <button class="btn btn-warning" type="button" >
-      <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to RFI Register</button>
-  </a>
+  <div class="text-center">
+    <a href="<%= sc_tender_tenders_path(:id => @tender.id,:rfi => 'true') %>">
+      <button class="btn btn-warning" type="button" >
+        <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to RFI Register</button>
+    </a>
+    <a href="<%= @download_link %>" target="_blank" class="download" download>
+      <button class="btn btn-primary">Download</button>
+    </a>
+    <a href="<%= @download_link %>" target="_blank" class="download">
+      <button class="btn btn-primary">View as PDF</button>
+    </a>
+  </div>
+
+  <div style="display: none;">
+    <a href="" class="download_link" target="_blank" download></a>
+  </div>
+
   <div style="height: 10px"></div>
   <div class="col-md-12">
     <div id="content">
@@ -143,18 +156,18 @@
   </div>
   <div class="col-md-12">
     <label>Attach files</label>
-    <div class="text-center rfi_preview_dropzone">
+    <!--<div class="text-center rfi_preview_dropzone">
         <br/>
         <p class="text-center">
           <i class="fa fa-file-o fa-5x" aria-hidden="true"></i>
         </p>
-        <h2 class="text-center prev_ref"><%= "#{@rfi.ref_no}-#{@tender.title}" %></h2>
+        <h2 class="text-center prev_ref"><%#= "#{@rfi.ref_no}-#{@tender.title}" %></h2>
         <p class="text-center download_btn">
-          <a href="<%= @download_link %>" >
+          <a href="<%#= @download_link %>" >
             <i class="fa fa-download fa-2x" aria-hidden="true"></i>
           </a>
         </p>
-    </div>
+    </div>-->
 
   </div>
 

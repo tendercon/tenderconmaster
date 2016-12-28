@@ -4,8 +4,8 @@
     <th class="text-center">Company Name</th>
     <th class="text-center">Contact Name</th>
     <th class="text-center">Trade</th>
-    <th class="text-center">Request Sent</th>
-    <th class="text-center">Staus</th>
+    <th class="text-center">Request Received</th>
+    <th class="text-center">Status</th>
     <th class="text-center">Action</th>
     </thead>
     <tbody>
@@ -36,10 +36,10 @@
                 <span class="label label-danger label-as-badge">Declined</span>
             <% else %>
                 <button class="btn btn-success action_request" id="<%= t.id %>">
-                  Approved
+                  Approve
                 </button>
                 <button class="btn btn-danger action_request" id="<%= t.id %>">
-                  Declined
+                  Decline
                 </button>
             <% end %>
           </td>
@@ -55,9 +55,8 @@
       <th class="text-center">Company Name</th>
       <th class="text-center">Contact Name</th>
       <th class="text-center">Trade</th>
-      <th class="text-center">Request Sent</th>
-      <th class="text-center">Staus</th>
-      <th class="text-center">Action</th>
+      <th class="text-center">Requested</th>
+      <th class="text-center">Status</th>
     </thead>
     <tbody>
     <% if @tender_request_quotes.present? %>
@@ -68,23 +67,16 @@
             <td class="text-center"><%= get_user_name t.sc_id %></td>
             <td class="text-center"><%= get_trade_name t.trade_id  %></td>
             <td class="text-center"><p><%= (t.request_date).strftime("%d.%m.%Y %H:%M %p")  %></p></td>
-            <td>
-              <% if t.approved_date.present? %>
-                <p class="text-center" style="color: green">
-                  <%= (t.approved_date).strftime("%d.%m.%Y %H:%M %p") %>
-                </p>
-              <% end %>
-              <% if t.declined_date.present? %>
-                <p class="text-center" style="color: red">
-                  <%= (t.declined_date).strftime("%d.%m.%Y %H:%M %p") %>
-                </p>
-              <% end %>
-            </td>
+
             <td class="text-center">
               <% if t.approved_date.present? %>
                 <span class="label label-success label-as-badge">Approved</span>
+                <br/>
+                <label><%= (t.approved_date).strftime("%d.%m.%Y %H:%M %p") %></label>
               <% elsif t.declined_date.present? %>
                 <span class="label label-danger label-as-badge">Declined</span>
+                <br/>
+                <label style="color: red"><%= (t.declined_date).strftime("%d.%m.%Y %H:%M %p") %></label>
               <% end %>
             </td>
         </tr>
@@ -129,7 +121,7 @@
       "bSort" : false,
       "bPaginate": false,
       "bInfo" : false,
-      "columnDefs": [
+      /*"columnDefs": [
         { "visible": false, "targets": 2 }
       ],
       "order": [[ 2, 'asc' ]],
@@ -149,7 +141,7 @@
             last = group;
           }
         } );
-      }
+      }*/
     });
 
     $('.action_request').click(function(){

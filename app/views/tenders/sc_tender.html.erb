@@ -54,34 +54,7 @@
         <% end %>
 
         <div class="tab-pane  col-md-12" id="document_control">
-          <div class="row>">
-            <div class="form-group"></div>
-            <br>
-            <% if !@tender.hide_document.present? || @tender.hide_document == '0'  %>
-              <div class="text-center">
-                <p class="text-center" style="font-size: 18px">
-                  <b>Head Contractor has uploaded documents</b>
-                </p>
-                <% if (get_tender_document_package @tender.id).present? %>
-                  <select onchange="location = this.options[this.selectedIndex].value;" class="form-control download_package">
-                    <option value="#!">None</option>
-                    <% (get_tender_document_package @tender.id).each do |d| %>
-                        <option value="<%= d.url %>"><%= File.basename(d.url) %></option>
-                    <% end %>
-                  </select>
-                <% end %>
-              </div>
-            <% else %>
-              <div class="text-center">
-                <p class="text-center" style="font-size: 18px">
-                  <b>Head Contractor has hidden the documents</b>
-                </p>
-                <p class="text-center" style="font-size: 16px">
-                  Documents will be available after your request approved
-                </p>
-              </div>
-            <% end %>
-          </div>
+
         </div>
         <div class="tab-pane col-md-12" id="chat">
           <%= render 'tender_chat' %>
@@ -194,6 +167,15 @@
           url: "/addendas/get_addendas"
         }).done(function (data) {
           $('#addenda').html(data);
+        });
+      }else if(target == '#document_control'){
+        var tender_id = $('.tender_id').val();
+        $.ajax({
+          method: "POST",
+          data: {tender_id:tender_id},
+          url: "/tenders/get_document_control_per_sc"
+        }).done(function (data) {
+          $('#document_control').html(data);
         });
       }
     });

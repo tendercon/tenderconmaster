@@ -9,6 +9,9 @@
         <a href="<%= @pdf_link %>" class="download" download>
           <button class="btn btn-primary">Download</button>
         </a>
+        <a href="<%= @pdf_link %>" class="download" target="_blank">
+          <button class="btn btn-primary">View as PDF</button>
+        </a>
         <% if session[:role] == 'Sub Contractor' %>
             <a href="<%= update_quote_quotes_path(:quote_id => @quote.id) %>">
               <button class="btn btn-danger">Delete</button>
