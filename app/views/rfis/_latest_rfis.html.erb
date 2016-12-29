@@ -612,7 +612,17 @@
   });
 
   function sent_rfi_btn(){
-    $('#confirm_rfi').modal('show');
+   var response_date = $('.response_date').val();
+    var heading = $('#heading').val();
+    var trade = $('.trade').val();
+
+    if(response_date.length > 0 && heading.length > 0 && trade.length > 0){
+      $('#confirm_rfi').modal('show');
+    }else{
+      alert("Response Due date, heading, trade and document are required.");
+    }
+
+
   }
 
   function remove_fri_btn(){
