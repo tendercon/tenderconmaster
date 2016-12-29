@@ -383,7 +383,7 @@ class QuotesController < ApplicationController
 
     new_destination =  "#{Rails.root}/public/assets/quotes/"
     old_folder = "#{Rails.root}/public/assets/quotes/#{project_name}/#{project_name}.zip"
-    FileUtils.cp_r old_folder, new_destination
+    #FileUtils.cp_r old_folder, new_destination
 
     @pdf_link = "http://#{request.host_with_port}/assets/quotes/#{project_name}/#{@quote.ref_no}.pdf"
 
