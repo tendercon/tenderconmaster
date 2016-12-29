@@ -327,6 +327,17 @@ class TendersController < ApplicationController
         end
       end
 
+      if session[:role] == 'Sub Contractor'
+        @tender_approved = TenderApprovedTrade.where(:tender_id => @tender.id,:status => 'approved')
+
+        @trades_approved = []
+        if @tender_approved.present?
+          @tender_approved.each do |t|
+            trade = Trade.find(t.trade_id)
+            @trades_approved << trade.id
+          end
+        end
+      end
       # @directory_array = []
       # @directory_array_1 = []
       # @directory_array_2 = []
@@ -396,7 +407,12 @@ class TendersController < ApplicationController
       end
 
       if @trade_id.to_i == 0
-        @documents = TenderDocument.where(" user_id = #{session[:user_logged_id]} and tender_id = #{ @tender_id} and directory !='unzip' ")
+        if session[:role] == 'Sub Contractor'
+          @documents = TenderDocument.where("tender_id = #{ @tender_id}")
+        else
+          @documents = TenderDocument.where(" user_id = #{session[:user_logged_id]} and tender_id = #{ @tender_id}")
+        end
+
       end
       urls = []
       @directories = []
@@ -2499,18 +2515,42 @@ class TendersController < ApplicationController
   end
 
   def get_document_control_per_sc
+    # @tender = Tender.find(params[:tender_id])
+    # @tender_approved = TenderApprovedTrade.where(:tender_id => @tender.id)
+    #
+    # @trades_approved = []
+    # if @tender_approved.present?
+    #   @tender_approved.each do |t|
+    #     trade = Trade.find(t.trade_id)
+    #     @trades_approved << trade.name
+    #   end
+    # end
+    #
+    # @data = render :partial => 'tenders/document_upload/get_document_control'
     @tender = Tender.find(params[:tender_id])
-    @tender_approved = TenderApprovedTrade.where(:tender_id => @tender.id)
+    @tender_request_quotes = TenderRequestQuote.where(:tender_id => @tender.id)
+    @documents = TenderDocument.where(:tender_id => @tender.id)
+    @tender_trades = TenderTrade.where(:tender_id => @tender.id)
+    @tender_approved = TenderApprovedTrade.where(:tender_id => @tender.id,:status => 'approved')
 
     @trades_approved = []
     if @tender_approved.present?
       @tender_approved.each do |t|
         trade = Trade.find(t.trade_id)
-        @trades_approved << trade.name
+        @trades_approved << trade.id
       end
     end
 
-    @data = render :partial => 'tenders/document_upload/get_document_control'
+    @trades = []
+
+    if @tender_trades.present?
+      @tender_trades.each do |t|
+        #if @trades_approved.include? t.trade_id
+          @trades << t.trade_id
+        #end
+      end
+    end
+    @data = render :partial => 'tenders/document_control'
   end
 
   def hc_tender
@@ -2817,7 +2857,7 @@ class TendersController < ApplicationController
       approved.sc_id = tender_request_quote.sc_id
       approved.hc_id = tender_request_quote.hc_id
       approved.trade_id = tender_request_quote.trade_id
-      if label == 'Approved'
+      if label == 'Approve'
         approved.status = 'approved'
       else
         approved.status = 'declined'

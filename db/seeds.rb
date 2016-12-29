@@ -6,16 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-#TenderRequestQuote.delete_all
-#TenderApprovedTrade.delete_all
-#TenderInvite.delete_all
-#Tender.delete_all
-#TenderQuote.delete_all
-#TenderDocument.delete_all
-#OpenTender.delete_all
-#TenderTrade.delete_all
-#Package.delete_all
-#Addenda.delete_all
+TenderRequestQuote.delete_all
+TenderApprovedTrade.delete_all
+TenderInvite.delete_all
+Tender.delete_all
+TenderQuote.delete_all
+TenderDocument.delete_all
+OpenTender.delete_all
+TenderTrade.delete_all
+Package.delete_all
+Addenda.delete_all
 Quote.delete_all
 QuoteDocument.delete_all
 QuoteDocumentOptional.delete_all

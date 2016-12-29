@@ -3,7 +3,10 @@
     <i class="fa fa-download " aria-hidden="true"></i>
   </button>
   <% if session[:role] == 'Sub Contractor' %>
-    <i class="fa fa-trash remove_quote" aria-hidden="true"></i>
+    <button class="btn btn-success remove_quote"> Delete
+      <i class="fa fa-trash remove_quote" aria-hidden="true"></i>
+    </button>
+
   <% end %>
 <% end %>
 
@@ -181,20 +184,28 @@
       var tender_id = $('.tender_id').val();
       $("input:checkbox:checked").map(function()
       {
-        ids.push($(this).val());
+        if(parseInt($(this).val()) > 0){
+          ids.push($(this).val());
+        }
+
       })
       console.log("ids:"+ids);
-      $.ajax({
-        method: "POST",
-        data: {ids:ids,tender_id:tender_id},
-        url: "/quotes/download_quotes"
-      }).done(function (data) {
-        $('.download_link').attr('href', data.link)
-        var link = $(".download_link");
-        link.click();
-        window.location.href = link.attr("href");
-        ids = [];
-      });
+      if(ids.length > 0){
+        $.ajax({
+          method: "POST",
+          data: {ids:ids,tender_id:tender_id},
+          url: "/quotes/download_quotes"
+        }).done(function (data) {
+          $('.download_link').attr('href', data.link)
+          var link = $(".download_link");
+          link.click();
+          window.location.href = link.attr("href");
+          ids = [];
+        });
+      }else{
+        alert("Please select quote first.")
+      }
+
 
     });
 
@@ -202,16 +213,24 @@
       var tender_id = $('.tender_id').val();
       $("input:checkbox:checked").map(function()
       {
-        ids.push($(this).val());
+        if(parseInt($(this).val()) > 0){
+          ids.push($(this).val());
+        }
+
       })
       console.log("ids:"+ids);
-      $.ajax({
-        method: "POST",
-        data: {ids:ids,tender_id:tender_id},
-        url: "/quotes/delete_quotes"
-      }).done(function (data) {
-        $('.quote_all_lists').html(data);
-      });
+      if(ids.length > 0){
+        $.ajax({
+          method: "POST",
+          data: {ids:ids,tender_id:tender_id},
+          url: "/quotes/delete_quotes"
+        }).done(function (data) {
+          $('.quote_all_lists').html(data);
+        });
+      }else{
+        alert("Please select quote first.")
+      }
+
 
     });
 

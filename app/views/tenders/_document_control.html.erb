@@ -8,10 +8,16 @@
           <div class="form-group">
             <select class="form-control trades">
               <% if @trades.present? %>
-                  <option value="0">All</option>
-                  <% @trades.each do |t| %>
+                <option value="0">All</option>
+                <% @trades.each do |t| %>
+                  <% if session[:role] == 'Sub Contractor' %>
+                    <% if @trades_approved.include? t %>
                       <option value="<%= t %>"><%= get_trade_name t %></option>
+                    <% end %>
+                  <% else %>
+                    <option value="<%= t %>"><%= get_trade_name t %></option>
                   <% end %>
+                <% end %>
               <% end %>
             </select>
           </div>
@@ -33,16 +39,17 @@
           <tbody>
           <% if @documents.present? %>
               <% @documents.each do |t| %>
+                <% if session[:role] == 'Head Contractor' %>
                   <tr>
                     <td class="text-center"><%= t.document_file_name %></td>
                     <td class="text-center"><%= t.directory %></td>
                     <td class="text-center"> <%= convert_kb_to_mb t.document_file_size %> MB</td>
                     <td class="text-center"><%= (t.updated_at).strftime("%d.%m.%Y") %></td>
-                    <td>
+                    <td class="text-center">
                       <% if t.action_type == 'addenda' %>
-                        "Addenda"
+                          "Addenda"
                       <% else %>
-                        <%= nil %>
+                          <%= nil %>
                       <% end %>
                     </td>
                     <td class="text-center">
@@ -56,8 +63,40 @@
                           </a>
                       <% end %>
                     </td>
-
                   </tr>
+                <% else %>
+                  <% if @trades_approved.present? %>
+                    <% @trades_approved.each do |d| %>
+                      <% if check_if_sc_trade_approved @tender.id,d,t.id %>
+                        <tr>
+                          <td class="text-center"><%= t.document_file_name %></td>
+                          <td class="text-center"><%= t.directory %></td>
+                          <td class="text-center"> <%= convert_kb_to_mb t.document_file_size %> MB</td>
+                          <td class="text-center"><%= (t.updated_at).strftime("%d.%m.%Y") %></td>
+                          <td class="text-center">
+                            <% if t.action_type == 'addenda' %>
+                                "Addenda"
+                            <% else %>
+                                <%= nil %>
+                            <% end %>
+                          </td>
+                          <td class="text-center">
+                            <% if (get_document_package t.id,@tender.id).to_i > 0 %>
+                                <a href="#!">
+                                  <span class="badge progress-bar-success"><%= get_document_package t.id,@tender.id  %></span>
+                                </a>
+                            <% else %>
+                                <a href="#!">
+                                  <span class="badge progress-bar-warning"><%= get_document_package t.id,@tender.id  %></span>
+                                </a>
+                            <% end %>
+                          </td>
+                        </tr>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+
               <% end %>
           <% end %>
           </tbody>

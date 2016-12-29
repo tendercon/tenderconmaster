@@ -12,30 +12,63 @@
   <tbody>
   <% if @documents.present? %>
     <% @documents.each do |t| %>
-      <tr>
-        <td class="text-center"><%= t.document_file_name %></td>
-        <td class="text-center"><%= t.directory %></td>
-        <td class="text-center"> <%= convert_kb_to_mb t.document_file_size %> MB</td>
-        <td class="text-center"><%= (t.updated_at).strftime("%d.%m.%Y") %></td>
-        <td class="text-center">
-          <% if t.action_type == 'addenda' %>
-              "Addenda"
+          <% if session[:role] == 'Head Contractor' %>
+              <tr>
+                <td class="text-center"><%= t.document_file_name %></td>
+                <td class="text-center"><%= t.directory %></td>
+                <td class="text-center"> <%= convert_kb_to_mb t.document_file_size %> MB</td>
+                <td class="text-center"><%= (t.updated_at).strftime("%d.%m.%Y") %></td>
+                <td class="text-center">
+                  <% if t.action_type == 'addenda' %>
+                      "Addenda"
+                  <% else %>
+                      <%= nil %>
+                  <% end %>
+                </td>
+                <td class="text-center">
+                  <% if (get_document_package t.id,@tender.id).to_i > 0 %>
+                      <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= t.id %>">
+                        <span class="badge progress-bar-success"><%= get_document_package t.id,@tender.id  %></span>
+                      </a>
+                  <% else %>
+                      <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= t.id %>">
+                        <span class="badge progress-bar-warning"><%= get_document_package t.id,@tender.id  %></span>
+                      </a>
+                  <% end %>
+                </td>
+              </tr>
           <% else %>
-              <%= nil %>
+              <% if @trades_approved.present? %>
+                  <% @trades_approved.each do |d| %>
+                      <% if check_if_sc_trade_approved @tender.id,d,t.id %>
+                          <tr>
+                            <td class="text-center"><%= t.document_file_name %></td>
+                            <td class="text-center"><%= t.directory %></td>
+                            <td class="text-center"> <%= convert_kb_to_mb t.document_file_size %> MB</td>
+                            <td class="text-center"><%= (t.updated_at).strftime("%d.%m.%Y") %></td>
+                            <td class="text-center">
+                              <% if t.action_type == 'addenda' %>
+                                  "Addenda"
+                              <% else %>
+                                  <%= nil %>
+                              <% end %>
+                            </td>
+                            <td class="text-center">
+                              <% if (get_document_package t.id,@tender.id).to_i > 0 %>
+                                  <a href="#!">
+                                    <span class="badge progress-bar-success"><%= get_document_package t.id,@tender.id  %></span>
+                                  </a>
+                              <% else %>
+                                  <a href="#!">
+                                    <span class="badge progress-bar-warning"><%= get_document_package t.id,@tender.id  %></span>
+                                  </a>
+                              <% end %>
+                            </td>
+                          </tr>
+                      <% end %>
+                  <% end %>
+              <% end %>
           <% end %>
-        </td>
-        <td class="text-center">
-          <% if (get_document_package t.id,@tender.id).to_i > 0 %>
-            <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= t.id %>">
-              <span class="badge progress-bar-success"><%= get_document_package t.id,@tender.id  %></span>
-            </a>
-          <% else %>
-            <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= t.id %>">
-              <span class="badge progress-bar-warning"><%= get_document_package t.id,@tender.id  %></span>
-            </a>
-          <% end %>
-        </td>
-      </tr>
     <% end %>
   <% end %>
   </tbody>

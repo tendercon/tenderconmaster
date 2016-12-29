@@ -36,12 +36,8 @@
           <% elsif t.declined_date.present? %>
               <span class="label label-danger label-as-badge">Declined</span>
           <% else %>
-            <button class="btn btn-success action_request" id="<%= t.id %>">
-              Approve
-            </button>
-            <button class="btn btn-danger action_request" id="<%= t.id %>">
-              Decline
-            </button>
+            <button class="btn btn-success action_request" id="<%= t.id %>">Approve</button>
+            <button class="btn btn-danger action_request" id="<%= t.id %>">Decline</button>
           <% end %>
         </td>
       </tr>
