@@ -333,7 +333,8 @@ class QuotesController < ApplicationController
     trade = Trade.find(@quote.trade_id)
     hc_user = User.find(@tender.user_id)
     dir1 = "#{Rails.root}/public/assets/quotes/#{project_name}/#{@quote.ref_no}"
-    Dir.mkdir(dir1) unless File.exists?(dir1)
+    FileUtils.makedirs(dir1)
+    #Dir.mkdir(dir1) unless File.exists?(dir1)
 
     if @avatar_path.present?
       if File.exist?(@avatar_path)

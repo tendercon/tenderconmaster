@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/rfis/_rfis.html.erb" afterPath="$PROJECT_DIR$/app/views/rfis/_rfis.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/quotes_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/quotes_controller.rb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/quotes_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="587">
-              <caret line="439" column="6" selection-start-line="439" selection-start-column="6" selection-end-line="439" selection-end-column="6" />
+              <caret line="392" column="5" selection-start-line="392" selection-start-column="5" selection-end-line="392" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -62,8 +62,8 @@
       <file leaf-file-name="rfis_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/rfis_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="367" column="64" selection-start-line="367" selection-start-column="7" selection-end-line="367" selection-end-column="7" />
+            <state relative-caret-position="120">
+              <caret line="507" column="32" selection-start-line="507" selection-start-column="3" selection-end-line="507" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -131,7 +131,6 @@
         <option value="$PROJECT_DIR$/app/views/addendas/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/rfi_comments/_comment_document_lists.html.erb" />
         <option value="$PROJECT_DIR$/app/views/quotes/_search_by_trade.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/quotes_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/rfis_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/rfis/comments.html.erb" />
         <option value="$PROJECT_DIR$/app/views/quotes/view.html.erb" />
@@ -148,6 +147,7 @@
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" />
         <option value="$PROJECT_DIR$/app/views/rfis/_rfis.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/quotes_controller.rb" />
       </list>
     </option>
   </component>
@@ -642,12 +642,12 @@
       <workItem from="1482560698171" duration="578000" />
       <workItem from="1482797938649" duration="16651000" />
       <workItem from="1482917542479" duration="14000" />
-      <workItem from="1482971892438" duration="4134000" />
+      <workItem from="1482971892438" duration="4362000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="207917000" />
+    <option name="totallyTimeSpent" value="208145000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
@@ -1062,8 +1062,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/rfis_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="367" column="64" selection-start-line="367" selection-start-column="7" selection-end-line="367" selection-end-column="7" />
+        <state relative-caret-position="120">
+          <caret line="507" column="32" selection-start-line="507" selection-start-column="3" selection-end-line="507" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -1071,7 +1071,7 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/quotes_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="587">
-          <caret line="439" column="6" selection-start-line="439" selection-start-column="6" selection-end-line="439" selection-end-column="6" />
+          <caret line="392" column="5" selection-start-line="392" selection-start-column="5" selection-end-line="392" selection-end-column="5" />
           <folding />
         </state>
       </provider>
