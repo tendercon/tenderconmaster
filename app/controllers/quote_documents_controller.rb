@@ -22,8 +22,8 @@ class QuoteDocumentsController < ApplicationController
     @quote_document_optional = QuoteDocumentOptional.new
 
     if params[:view].present?
-      @quote_documents =  QuoteDocument.where("tender_id = #{@tender_id} and user_id = #{session[:user_logged_id]} and  quote_id = #{params[:quote_id]}")
-      @quote_document_optionals = QuoteDocumentOptional.where("tender_id = #{@tender_id} and user_id = #{session[:user_logged_id]} and quote_id = #{params[:quote_id]}")
+      @quote_documents =  QuoteDocument.where("tender_id = #{@tender_id} and  quote_id = #{params[:quote_id]}")
+      @quote_document_optionals = QuoteDocumentOptional.where("tender_id = #{@tender_id} and  quote_id = #{params[:quote_id]}")
     else
       @quote_documents =  QuoteDocument.where(:tender_id => @tender_id,:user_id => session[:user_logged_id],:quote_id => nil)
       @quote_document_optionals = QuoteDocumentOptional.where(:tender_id => @tender_id,:user_id => session[:user_logged_id],:quote_id => nil)
