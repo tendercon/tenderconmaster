@@ -264,28 +264,28 @@
       </div>
       <div class="modal-body">
         <% if @trade_array.present? %>
-            <% @trade_array.uniq.each do |a| %>
-                <table  class="table table-bordered document_table">
-                  <thead>
-                  <tr>
-                    <th><input type="checkbox" id="<%= a %>" class="user_list_master" name="document_list_master"> <%= get_trade_name a  %></th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <% if (get_user_company a).present? %>
-                      <% (get_user_company a).each do |d| %>
-                          <tr>
-                            <td class="col-md-3"><input type="checkbox" value="<%= d.user_id%>" class="user_list_<%= a %>" name="user_list" title="<%= a %>"> <%= get_company d.user_id  %></td>
-                          </tr>
-                      <% end %>
-                  <% else %>
-                      <tr>
-                        <td>No User</td>
-                      </tr>
+          <% @trade_array.uniq.each do |a| %>
+            <table  class="table table-bordered document_table">
+              <thead>
+              <tr>
+                <th><input type="checkbox" id="<%= a %>" class="user_list_master" name="document_list_master"> <%= get_trade_name a  %></th>
+              </tr>
+              </thead>
+              <tbody>
+                <% if (get_user_company a).present? %>
+                  <% (get_user_company a).each do |d| %>
+                    <tr>
+                      <td class="col-md-3"><input type="checkbox" value="<%= d.user_id%>" class="user_list_<%= a %>" name="user_list" title="<%= a %>"> <%= get_company d.user_id  %></td>
+                    </tr>
                   <% end %>
-                  </tbody>
-                </table>
-            <% end %>
+                <% else %>
+                  <tr>
+                    <td>No User</td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          <% end %>
         <% end %>
       </div>
       <div class="modal-footer">
