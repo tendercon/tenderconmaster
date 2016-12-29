@@ -115,7 +115,7 @@
   </tbody>
 </table>
 
-<div id="shared_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="shared_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -128,21 +128,17 @@
         </p>
       </div>
       <div class="modal-body">
-        <div class="container">
-          <div class="col-md-24">
-            <div class="radio">
-              <label><input type="radio" name="optradio" class="shared_option" id="1">Share with all Sub Contractors Relevant Trade</label>
-            </div>
+        <div class="row">
+          <div class="col-md-12">
+            <label><input type="radio" name="optradio" class="shared_option" id="1"> Share with all Sub Contractors Relevant Trade</label>
+
           </div>
-          <div class="col-md-24">
-            <div class="radio">
-              <label><input type="radio" name="optradio" class="shared_option" id="2">Share with all my tenderding Sub Contractors</label>
-            </div>
+          <div class="col-md-12">
+            <label><input type="radio" name="optradio" class="shared_option" id="2"> Share with all my tenderding Sub Contractors</label>
+
           </div>
-          <div class="col-md-24">
-            <div class="radio disabled">
-              <label><input type="radio" name="optradio" class="shared_option" id="3">Manually select Sub Contractors you wish to share with</label>
-            </div>
+          <div class="col-md-12">
+            <label><input type="radio" name="optradio" class="shared_option" id="3"> Manually select Sub Contractors you wish to share with</label>
           </div>
         </div>
       </div>
@@ -155,7 +151,7 @@
 </div>
 
 
-<div id="option1_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="option1_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -189,7 +185,7 @@
   </div>
 </div>
 
-<div id="option2_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="option2_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -222,7 +218,7 @@
   </div>
 </div>
 
-<div id="option3_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="option3_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -257,7 +253,7 @@
   </div>
 </div>
 
-<div id="manual_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="manual_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -301,7 +297,7 @@
   </div>
 </div>
 
-<div id="success_manual_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="success_manual_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -322,7 +318,7 @@
   </div>
 </div>
 
-<div id="success_all_sub_modal"  class="modal fade col-md-24" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
+<div id="success_all_sub_modal"  class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; margin-left: 20px; overflow-y:scroll;" >
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -366,48 +362,64 @@
 
       $("input:checkbox:checked").map(function()
       {
-        ids.push($(this).val());
+        if(parseInt($(this).val()) > 0){
+          ids.push($(this).val());
+        }
+
       })
       console.log("rfi_shared:"+ids);
 
-      $('#shared_modal').modal('show');
+      if(ids.length > 0){
+        $('#shared_modal').modal('show');
+      }else{
+        alert("Please select RFI's first.");
+      }
+
 
     });
 
     $('.shared_option').click(function(){
-      var option_id = $(this).attr('id');
+      var subs = [];
+      subs = ids;
 
-      if(option_id == 1){
-        $('#option1_modal').modal('show');
-        $('#option2_modal').modal('hide');
-        $('#option3_modal').modal('hide');
-      }else if(option_id == 2){
-        $('#option2_modal').modal('show');
-        $('#option1_modal').modal('hide');
-        $('#option3_modal').modal('hide');
+      if(subs.length > 0){
+        var option_id = $(this).attr('id');
 
-        var subs = [];
-        subs = ids;
+        if(option_id == 1){
+          $('#option1_modal').modal('show');
+          $('#option2_modal').modal('hide');
+          $('#option3_modal').modal('hide');
+        }else if(option_id == 2){
+          $('#option2_modal').modal('show');
+          $('#option1_modal').modal('hide');
+          $('#option3_modal').modal('hide');
 
-        $.ajax({
-          method: "POST",
-          data: {subs:subs},
-          url: "/shared_rfis/shared_by_approved_sub"
-        }).done(function (data) {
-          $('#shared_modal').modal('hide');
-          subs = [];
-          $("input:checkbox:checked").map(function()
-          {
-            $(this).prop('checked',false);
-          })
 
-          $('.shared_option').prop('checked',false);
-        });
+
+          $.ajax({
+            method: "POST",
+            data: {subs:subs},
+            url: "/shared_rfis/shared_by_approved_sub"
+          }).done(function (data) {
+            $('#shared_modal').modal('hide');
+            subs = [];
+            $("input:checkbox:checked").map(function()
+            {
+              $(this).prop('checked',false);
+            })
+
+            $('.shared_option').prop('checked',false);
+          });
+        }else{
+          $('#option3_modal').modal('show');
+          $('#option1_modal').modal('hide');
+          $('#option2_modal').modal('hide');
+        }
       }else{
-        $('#option3_modal').modal('show');
-        $('#option1_modal').modal('hide');
-        $('#option2_modal').modal('hide');
+        alert("Please select RFI's");
       }
+
+
     });
 
     $('.all_sub').click(function(){

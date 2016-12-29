@@ -435,19 +435,29 @@
       var tender_id = $('.tender_id').val();
       $("input:checkbox:checked").map(function()
       {
-        ids.push($(this).val());
+        if(parseInt($(this).val()) > 0){
+          ids.push($(this).val());
+        }
+
       })
       console.log("ids:"+ids);
-      $.ajax({
-        method: "POST",
-        data: {ids:ids,tender_id:tender_id},
-        url: "/rfis/download_rfis"
-      }).done(function (data) {
-        $('.download_link').attr('href', data.link)
-        var link = $(".download_link");
-        link.click();
-        window.location.href = link.attr("href");
-      });
+      if(ids.length > 0){
+        $.ajax({
+          method: "POST",
+          data: {ids:ids,tender_id:tender_id},
+          url: "/rfis/download_rfis"
+        }).done(function (data) {
+          $('.download_link').attr('href', data.link)
+          var link = $(".download_link");
+          link.click();
+          window.location.href = link.attr("href");
+        });
+      }else{
+        alert("Please select RFI's first.")
+      }
+
+
+
     });
 
 
