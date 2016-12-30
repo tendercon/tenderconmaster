@@ -5,27 +5,28 @@
     </a>
   <% end %>
   <% if session[:role] == 'Head Contractor' %>
-    <div class="col-md-12">
-      <div class="row">
-         <div class="col-md-6">
-           <label>Sort By:</label>
-           <div class="form-group">
-             <select class="form-control trade_option">
-               <% if @trades.present? %>
-                   <option value="all">All</option>
-                   <% @trades.each do |v| %>
-                       <option value="<%= v.id %>"><%= v.name %></option>
-                   <% end %>
-               <% end %>
-             </select>
+    <% if @rfis.present? %>
+      <div class="col-md-12">
+        <div class="row">
+           <div class="col-md-6">
+             <label>Sort By:</label>
+             <div class="form-group">
+               <select class="form-control trade_option">
+                 <% if @trades.present? %>
+                     <option value="all">All</option>
+                     <% @trades.each do |v| %>
+                         <option value="<%= v.id %>"><%= v.name %></option>
+                     <% end %>
+                 <% end %>
+               </select>
+             </div>
            </div>
-         </div>
-        <div class="col-md-6"></div>
+          <div class="col-md-6"></div>
+        </div>
+
+            <%#= select_tag "trade",content_tag(:option,'Sort By',:value=>'')+content_tag(:option,'All',:value=>'all')+options_from_collection_for_select(@trades, 'id','name'),{:class=> 'form-control sort_trade'} %>
       </div>
-
-          <%#= select_tag "trade",content_tag(:option,'Sort By',:value=>'')+content_tag(:option,'All',:value=>'all')+options_from_collection_for_select(@trades, 'id','name'),{:class=> 'form-control sort_trade'} %>
-
-    </div>
+    <% end %>
   <% end %>
   <br><br>
   <div class="col-md-12 rfi_lists">
@@ -411,11 +412,12 @@
       });
     });
 
-    var date = new Date();
-    date.setDate(date.getDate());
+    var nowDate = new Date();
+    var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
     $('.form_meridian_datetime').datetimepicker({
-      startDate: date,
+      startDate: today,
       format:"yyyy-mm-dd  HH:ii P",
+      minDate: moment(12, 'h'),
       showMeridian:true,
       autoclose:true,
       todayBtn:true

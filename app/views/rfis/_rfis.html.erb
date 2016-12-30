@@ -3,7 +3,9 @@
 <% end %>
 
 <% if session[:role] == 'Head Contractor' %>
-  <i class="fa fa-share-square rfi_shared" aria-hidden="true"></i>
+  <% if rfis.present? %>
+    <i class="fa fa-share-square rfi_shared" aria-hidden="true"></i>
+  <% end %>
 <% end %>
 
 <table  class="table table-bordered document_table">
