@@ -1,4 +1,7 @@
-<i class="fa fa-download rfi_download" aria-hidden="true"></i>
+<% if rfis.present? %>
+    <i class="fa fa-download rfi_download" aria-hidden="true"></i>
+<% end %>
+
 <% if session[:role] == 'Head Contractor' %>
   <i class="fa fa-share-square rfi_shared" aria-hidden="true"></i>
 <% end %>

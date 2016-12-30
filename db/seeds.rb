@@ -14,6 +14,7 @@ TenderQuote.delete_all
 TenderDocument.delete_all
 OpenTender.delete_all
 TenderTrade.delete_all
+TenderSite.delete_all
 Package.delete_all
 Addenda.delete_all
 Quote.delete_all

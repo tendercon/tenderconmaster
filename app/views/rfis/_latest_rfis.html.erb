@@ -537,7 +537,7 @@
         }).done(function (data) {
           $('#confirm_rfi').modal('hide');
           $('#new_rfi').modal('hide');
-          $('#success_rfi').modal('show');
+
           $('.rfi_lists').html(data);
           $.ajax({
             method: "POST",
@@ -545,6 +545,7 @@
             url: "/rfis/get_new_ref"
           }).done(function (data) {
             window.location.href = "/tenders/sc_tender?id="+tender_id+"&reload=true";
+            //$('#success_rfi').modal('show');
             //$('.ref_no').val(data.ref);
           });
         });

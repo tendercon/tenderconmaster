@@ -53,7 +53,7 @@ class QuotesController < ApplicationController
     puts "USER:#{@sc_user.company}"
 
     if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member'
-      tender_approved_trades = TenderApprovedTrade.where(:sc_id => session[:user_logged_id],:tender_id => @tender.id)
+      tender_approved_trades = TenderApprovedTrade.where(:sc_id => session[:user_logged_id],:tender_id => @tender.id,:status => 'approved')
     else
       tender_approved_trades = TenderApprovedTrade.where(:hc_id => session[:user_logged_id],:tender_id => @tender.id)
     end
