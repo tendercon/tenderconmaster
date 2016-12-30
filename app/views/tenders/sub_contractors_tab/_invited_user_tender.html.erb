@@ -23,12 +23,12 @@
               <% elsif t.tender_declined_date.present? %>
                   <td class="text-center">
                     <p style="color: red">Invitation Declined</p>
-                    <p><%=  t.tender_declined_date.strftime("%d.%m.%Y %H:%M %p") %></p>
+                    <p><%=  t.tender_declined_date.present? ? t.tender_declined_date.strftime("%d.%m.%Y %H:%M %p") : nil %></p>
                   </td>
               <% elsif t.tender_acceptance_date.present? %>
                   <td class="text-center">
                     <p style="color: green">Invitation Accepted</p>
-                    <p><%=  t.tender_acceptance_date.strftime("%d.%m.%Y %H:%M %p") %></p>
+                    <p><%=  t.tender_acceptance_date.present? ? t.tender_acceptance_date.strftime("%d.%m.%Y %H:%M %p") : nil %></p>
                   </td>
               <% else %>
                   <td class="text-center"><p>Pending Acceptance</p></td>
