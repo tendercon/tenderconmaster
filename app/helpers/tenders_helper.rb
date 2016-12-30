@@ -313,8 +313,8 @@ module TendersHelper
 
   def get_tender_sites_per_user id
     tender = Tender.where(:id => id).first
-    sites = TenderSite.where(:tender_id => id,:user_id => tender.user_id)
-
+    sites = TenderSite.where(:tender_id => tender.id,:user_id => tender.user_id)
+    puts "sites =======> #{sites.inspect}"
     if sites.present?
       sites
     else
