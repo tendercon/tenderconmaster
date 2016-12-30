@@ -16,7 +16,7 @@ class TendersController < ApplicationController
     @trade_categories = TradeCategory.all
     @tender_document = TenderDocument.new
     @tender_files = TenderDocument.new
-
+    @trades = Tr
     @trade_names = []
     if @trades.present?
       @trades.each do |t|
@@ -1276,6 +1276,7 @@ class TendersController < ApplicationController
     @id = (params[:id]).to_i + 1
     tender_date = params[:site_date]
     quote = params[:quote_date]
+
 
     if tender_date.to_datetime >  quote.to_datetime
       render :json => { :state => 'invalid',:error => 'Quote'}
@@ -2739,7 +2740,7 @@ class TendersController < ApplicationController
       @tender_invites = TenderInvite.where(:tender_id => tender_id)
       @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
     elsif tab == 'request'
-      @tender_request_quotes = TenderRequestQuote.where("tender_id = #{tender_id} and status is not null")
+      @tender_request_quotes = TenderRequestQuote.where("tender_id = #{tender_id} and (status is not null AND status != 'declined')")
       @tender_requesting = TenderRequestQuote.where("tender_id = #{tender_id} and status is null")
       @data = render :partial => 'tenders/sub_contractors_tab/requesting_tender'
     elsif tab == 'tendering'
@@ -2870,8 +2871,9 @@ class TendersController < ApplicationController
       elsif approved.status == 'declined'
         TenderRequestQuote.where(:id => tender_request_quote.id).update_all(:status => approved.status,:declined_date => Time.now,:approved_date => nil)
       end
-      @tender_requesting = TenderRequestQuote.where("tender_id = #{tender_id} and status is null")
-      @tender_request_quotes = TenderRequestQuote.where(:tender_id => tender_id)
+
+      @tender_requesting = TenderRequestQuote.where("tender_id = #{tender_id} and (status is null)")
+      @tender_request_quotes = TenderRequestQuote.where("tender_id = #{tender_id} and (status is not null AND status != 'declined')")
       @data = render :partial => 'tenders/sub_contractors_tab/requesting_tender'
     end
   end

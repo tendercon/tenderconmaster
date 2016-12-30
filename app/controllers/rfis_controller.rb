@@ -35,7 +35,7 @@ class RfisController < ApplicationController
     puts "USER:#{@sc_user.company}"
 
     if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member'
-      tender_approved_trades = TenderApprovedTrade.where(:sc_id => session[:user_logged_id],:tender_id => params[:tender_id])
+      tender_approved_trades = TenderApprovedTrade.where(:sc_id => session[:user_logged_id],:tender_id => params[:tender_id],:status => 'approved')
     else
       tender_approved_trades = TenderApprovedTrade.where(:hc_id => session[:user_logged_id],:tender_id => params[:tender_id])
     end
@@ -46,6 +46,7 @@ class RfisController < ApplicationController
         trade_array << t.trade_id
       end
     end
+    puts "TRADES ===>"
     @rfi_document = RfiDocument.new
     @trades = Trade.where(:id => trade_array)
 

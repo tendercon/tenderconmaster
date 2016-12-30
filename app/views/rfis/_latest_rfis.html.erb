@@ -544,7 +544,8 @@
             data: {},
             url: "/rfis/get_new_ref"
           }).done(function (data) {
-            $('.ref_no').val(data.ref);
+            window.location.href = "/tenders/sc_tender?id="+tender_id+"&reload=true";
+            //$('.ref_no').val(data.ref);
           });
         });
       }else{

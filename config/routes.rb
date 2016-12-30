@@ -256,10 +256,12 @@ Rails.application.routes.draw do
       # get
       get 'delete'
 
+
       # post
       post 'get_all_lists'
       post 'new_trade'
       post 'delete_trades'
+      post 'search'
 
     end
   end

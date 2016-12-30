@@ -500,18 +500,21 @@
       }
 
     })
-    var date = new Date();
-    date.setDate(date.getDate());
+
+    var nowDate = new Date();
+    var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
     $('.form_meridian_datetime').datetimepicker({
-      startDate: date,
+      startDate: today,
       format:"yyyy-mm-dd  HH:ii P",
+      minDate: moment(12, 'h'),
       showMeridian:true,
       autoclose:true,
       todayBtn:true
     });
     $('.site_meridian_datetime').datetimepicker({
-      startDate: date,
+      startDate: today,
       format:"yyyy-mm-dd  HH:ii P",
+      minDate: moment(12, 'h'),
       showMeridian:true,
       autoclose:true,
       todayBtn:true
@@ -528,24 +531,29 @@
         var quote_date = $('.quote').val();
         var site_date = $('.site').val();
         var id  = $(this).attr('id');
-        $.ajax({
-          method: "POST",
-          data: {id:id,site_date:site_date,quote_date:quote_date},
-          url: "/tenders/new_site"
-        }).done(function (data) {
-          if(data.state != 'invalid'){
-            $('.previous_site').html('');
-            $('.site').val('');
-            $('.new_site').html(data);
-          }else{
-            if(data.error == 'Quote'){
-              alert("Date should not higher than quote date. Please try again.");
+        if(quote_date.length > 0){
+          $.ajax({
+            method: "POST",
+            data: {id:id,site_date:site_date,quote_date:quote_date},
+            url: "/tenders/new_site"
+          }).done(function (data) {
+            if(data.state != 'invalid'){
+              $('.previous_site').html('');
+              $('.site').val('');
+              $('.new_site').html(data);
             }else{
-              alert("Date already exist. Please try again.");
+              if(data.error == 'Quote'){
+                alert("Date should not higher than quote date. Please try again.");
+              }else{
+                alert("Date already exist. Please try again.");
+              }
             }
-          }
 
-        });
+          });
+        }else{
+          alert("Please insert Due date first.");
+        }
+
       }
     });
 

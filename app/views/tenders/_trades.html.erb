@@ -98,14 +98,48 @@
       $('.search_trade').hide();
     });
 
-    function get_trades(){
-      var trades = '<%= @trade_names %>';
-      var new_trades = JSON.parse(trades.replace(/&quot;/g,'"'))
-      return new_trades;
-    }
+
 
     $(".trade" ).autocomplete({
-      source: get_trades()
+      source: get_trades(),
+      autoFill: true,
+      select: function (event, ui) {
+
+
+          console.log("ID:"+JSON.stringify(ui.item.label));
+        $.ajax({
+          method: "POST",
+          data: {trade:ui.item.label},
+          url: "/trades/search"
+        }).done(function (data) {
+          if(data.state == 'invalid'){
+            $('.search_trade').show();
+            $('.error1').html('<p style="color: red;"><i>Opps: This trade already exists in the lists of trade above.</i></p>')
+            var id = data.id
+            $('.all').css('background-color','');
+            if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ) {
+              $('html, body').animate({scrollTop: $('#trade_id_'+id).offset().top + 100 }, 'slow');
+            } else if(navigator.userAgent.indexOf("Chrome") != -1 ) {
+              //document.getElementById("trade_id_"+id).scrollIntoView(true);
+              $('html, body').animate({scrollTop: $('#trade_id_'+id).offset().top - 200 }, 'slow');
+            } else if(navigator.userAgent.indexOf("Safari") != -1) {
+              $('html, body').animate({scrollTop: $('#trade_id_'+id).offset().top + 100 }, 'slow');
+            } else if(navigator.userAgent.indexOf("Firefox") != -1 ) {
+              $('html, body').animate({scrollTop: $('#trade_id_'+id).offset().top + 100 }, 'slow');
+            } else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )){
+              $('html, body').animate({scrollTop: $('#trade_id_'+id).offset().top + 100 }, 'slow');
+            }
+            $('#trade_id_'+id).css('background-color','yellow');
+          }else{
+            trade = $('.trade1').val('');
+            $('.error'+id).html('');
+            $('.remove_trade').show();
+            $('.search_trade').hide();
+            $('.new_trade_added').html(data);
+          }
+        });
+
+      }
     });
 
     $('.trade').keyup(function(){
@@ -168,14 +202,9 @@
       var value_array = [];
       $('.trade_class').each(function()
       {
-
-
         if($(this).is(':checked')){
           ids.push($(this).val());
-
         }
-
-
       });
 
       $('.trade').each(function()
@@ -218,5 +247,11 @@
       $('#trade_id_'+id).css('background-color','yellow');
     });
   })
+
+  function get_trades(){
+    var trades = '<%= @trade_names %>';
+    var new_trades = JSON.parse(trades.replace(/&quot;/g,'"'))
+    return new_trades;
+  }
 
 </script>

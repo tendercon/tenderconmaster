@@ -23,12 +23,12 @@
       <% end %>
       <% if (get_sc_trade_declined @tender_id,session[:user_logged_id]).present? %>
           <% (get_sc_trade_declined @tender_id,session[:user_logged_id]).each do |a| %>
-              <tr>
+              <!--<tr>
                 <td>
-                  <label><%= get_trade_name ((a).trade_id) %></label>
+                  <label><%#= get_trade_name ((a).trade_id) %></label>
                 </td>
                 <td><button class="btn btn-danger">Decline</button></td>
-              </tr>
+              </tr>-->
           <% end %>
       <% end %>
 

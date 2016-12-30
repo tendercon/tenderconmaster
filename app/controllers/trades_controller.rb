@@ -95,6 +95,21 @@ class TradesController < ApplicationController
     end
   end
 
+  def search
+    new_inserted_trade = params[:trade]
+
+    upper_case = new_inserted_trade.strip.upcase
+    lower_case = new_inserted_trade.strip.downcase
+    upcase_first_letter = new_inserted_trade.strip.titleize
+
+    trade = Trade.where("name ='#{upper_case}' OR name = '#{lower_case}' OR name = '#{upcase_first_letter}'").first
+
+
+    if trade.present?
+      render :json => { :state => 'invalid',:id => trade.id}
+    end
+  end
+
 
   private
 
