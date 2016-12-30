@@ -16,7 +16,7 @@ class TendersController < ApplicationController
     @trade_categories = TradeCategory.all
     @tender_document = TenderDocument.new
     @tender_files = TenderDocument.new
-    @trades = Tr
+    @trades = []
     @trade_names = []
     if @trades.present?
       @trades.each do |t|

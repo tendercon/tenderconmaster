@@ -2,185 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/158/original/t3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/159/original/smile.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/160/original/t3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/161/original/smile.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/162/original/Hello.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/163/original/smile.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/164/original/t3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/RFI-JC-1-92/RFI-JC-1-Supporting Files.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/RFI-JC-1-92/t3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/RFI-JC-1-93/RFI-JC-1-Supporting Files.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/RFI-JC-1-93/smile.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/RFI-JC-1-94/RFI-JC-1-Supporting Files.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/RFI-JC-1-94/t3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/RFI-JC-1-95/Hello.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/RFI-JC-1-95/RFI-JC-1-Supporting Files.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/RFI-JC-1-95/smile.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/RFI-JC-1-96/RFI-JC-1-Supporting Files.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/comments/RFI-JC-1-96/t3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/quotes/VZZ-7396-Tender01.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/quotes/VZZ-7396-Tender01/Q-JC-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/quotes/VZZ-7396-Tender01/VZZ-7396-Tender01.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/rfi/190/original/t3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/rfi/191/original/t3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/rfi/preview-RFI-JC-1-Tender01/RFI-JC-1-Tender01.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/rfi/preview-RFI-JC-1-Tender01/RFI-JC-1-Tender01.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/rfi/preview-RFI-JC-1-Tender01/t3.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-5454/9960/original/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-5454/9961/original/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-5454/9963/original/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-5454/9964/original/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-5454/9965/original/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-5454/9966/original/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-5454/VZZ-5454.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-5454/original/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-8460/9949/original/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-8460/9950/original/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-8460/9952/original/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-8460/9953/original/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-8460/9954/original/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-8460/9955/original/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-8460/VZZ-8460.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-8460/original/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-9235/9938/original/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-9235/9939/original/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-9235/9941/original/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-9235/9942/original/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-9235/9943/original/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-9235/9944/original/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-9235/VZZ-9235.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/VZZ-9235/original/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9934/original/.DS_Store." afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9935/original/.DS_Store." afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9936/original/.DS_Store." afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9937/original/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9938/original/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9939/original/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9940/original/.DS_Store." afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9941/original/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9942/original/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9943/original/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9944/original/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9945/original/.DS_Store." afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9946/original/.DS_Store." afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9947/original/.DS_Store." afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9948/original/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9949/original/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9950/original/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9951/original/.DS_Store." afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9952/original/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9953/original/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9954/original/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9955/original/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9956/original/.DS_Store." afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9957/original/.DS_Store." afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9958/original/.DS_Store." afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9959/original/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9960/original/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9961/original/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9962/original/.DS_Store." afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9963/original/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9964/original/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9965/original/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/9966/original/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers/SONY REFURB/STRUCTURAL/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Bricklayers/SONY REFURB/STRUCTURAL/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Civil Works.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Civil Works/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Civil Works/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Civil Works/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Civil Works/SONY REFURB/STRUCTURAL/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Cranes.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Cranes/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Cranes/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Cranes/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Cranes/SONY REFURB/STRUCTURAL/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-5454.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-5454/Civil Works.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-5454/Cranes.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-5454/Security.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-8460.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-8460/Bricklayers.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-8460/Light Steel Framing.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-8460/Operable Walls.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-8460/Precast Concrete.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-8460/Workstations.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-9235.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-9235/Bricklayers.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-9235/Civil Works.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-9235/Hoarding.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-9235/Water Tanks.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Fullset-VZZ-9235/Waterproofing.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Hoarding.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Hoarding/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Hoarding/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Hoarding/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Hoarding/SONY REFURB/STRUCTURAL/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Light Steel Framing.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Light Steel Framing/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Light Steel Framing/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Light Steel Framing/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Light Steel Framing/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Light Steel Framing/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Light Steel Framing/SONY REFURB/STRUCTURAL/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Operable Walls.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Operable Walls/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Operable Walls/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Operable Walls/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Operable Walls/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Operable Walls/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Operable Walls/SONY REFURB/STRUCTURAL/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Precast Concrete.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Precast Concrete/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Precast Concrete/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Precast Concrete/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Precast Concrete/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Precast Concrete/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Precast Concrete/SONY REFURB/STRUCTURAL/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Security/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Water Tanks.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Water Tanks/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Water Tanks/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Water Tanks/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Water Tanks/SONY REFURB/STRUCTURAL/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/SONY REFURB/Architectural/OLD DRAWINGS copy/2C.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Waterproofing/SONY REFURB/STRUCTURAL/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Workstations.zip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Workstations/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Workstations/SONY REFURB/Architectural/NEW DRAWINGS/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Workstations/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-1.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Workstations/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-3.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Workstations/SONY REFURB/Architectural/OLD DRAWINGS copy/RFI-AB-4.pdf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/assets/tender/document/Workstations/SONY REFURB/STRUCTURAL/2C.pdf" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/rfis_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/rfis_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/tenders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/tenders_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/trades_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/trades_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" afterPath="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/_info.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/_info.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/_trades.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/_trades.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/info/_tender_details.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/info/_tender_details.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/sc_tender.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/sc_tender.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -227,11 +49,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
               <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tenders_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -292,10 +124,10 @@
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_trades.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/info/_tender_details.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/tenders_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/rfis_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/sc_tender.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/tenders_controller.rb" />
       </list>
     </option>
   </component>
@@ -922,12 +754,12 @@
       <workItem from="1482560698171" duration="578000" />
       <workItem from="1482797938649" duration="16651000" />
       <workItem from="1482917542479" duration="14000" />
-      <workItem from="1482971892438" duration="16688000" />
+      <workItem from="1482971892438" duration="16793000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220471000" />
+    <option name="totallyTimeSpent" value="220576000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
@@ -1352,14 +1184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="2875" column="133" selection-start-line="2875" selection-start-column="133" selection-end-line="2875" selection-end-column="133" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tenders/_info.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-60">
@@ -1399,6 +1223,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="18" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
           <folding />
         </state>
       </provider>
