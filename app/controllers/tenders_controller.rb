@@ -1290,7 +1290,7 @@ class TendersController < ApplicationController
         tender_site.site_date =  tender_date
         tender_site.user_id = session[:user_logged_id]
         tender_site.save
-        @tender_sites = TenderSite.where(:user_id => session[:user_logged_id])
+        @tender_sites = TenderSite.where(:user_id => session[:user_logged_id],:tender_id => nil)
         @data = render :partial => 'tenders/tender_sites/lists'
       end
 

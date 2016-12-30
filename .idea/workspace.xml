@@ -62,8 +62,18 @@
       <file leaf-file-name="tenders_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+            <state relative-caret-position="466">
+              <caret line="1292" column="96" selection-start-line="1292" selection-start-column="96" selection-end-line="1292" selection-end-column="96" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_info.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/tenders/_info.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="233">
+              <caret line="537" column="35" selection-start-line="537" selection-start-column="27" selection-end-line="537" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -754,12 +764,12 @@
       <workItem from="1482560698171" duration="578000" />
       <workItem from="1482797938649" duration="16651000" />
       <workItem from="1482917542479" duration="14000" />
-      <workItem from="1482971892438" duration="16793000" />
+      <workItem from="1482971892438" duration="17081000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="220576000" />
+    <option name="totallyTimeSpent" value="220864000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
@@ -1184,14 +1194,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tenders/_info.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-60">
-          <caret line="392" column="0" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/tenders/_trades.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="406">
@@ -1227,10 +1229,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tenders/_info.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="537" column="35" selection-start-line="537" selection-start-column="27" selection-end-line="537" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="16" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+        <state relative-caret-position="466">
+          <caret line="1292" column="96" selection-start-line="1292" selection-start-column="96" selection-end-line="1292" selection-end-column="96" />
           <folding />
         </state>
       </provider>
