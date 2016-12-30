@@ -27,7 +27,7 @@ class TendersController < ApplicationController
     if params[:info_id].present?
       @tender = Tender.find(params[:info_id])
       @tender_count = TenderSite.where(:tender_id => @tender.id).count()
-      @tender_sites = TenderSite.where(:tender_id => @tender.id)
+      @tender_sites = TenderSite.where(:tender_id => @tender.id,:user_id => session[:user_logged_id])
       @tender_trades = TenderTrade.where(:tender_id => @tender.id)
       @trade_categories = TradeCategory.all
       #@trades = TenderTrade.where(:tender_id => params[:info_id])

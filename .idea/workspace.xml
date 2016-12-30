@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/tenders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/tenders_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/_trades.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/_trades.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/tenders_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/tenders_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/open_tender.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/open_tender.html.erb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,11 +61,41 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tenders_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tenders_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="24" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+            <state relative-caret-position="560">
+              <caret line="57" column="99" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="open_tender.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/tenders/open_tender.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="211" column="61" selection-start-line="211" selection-start-column="61" selection-end-line="211" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tenders_helper.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/helpers/tenders_helper.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="346">
+              <caret line="313" column="31" selection-start-line="313" selection-start-column="6" selection-end-line="313" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_reviews.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/tenders/_reviews.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1796">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -101,7 +132,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/open_tenders/_open_tender_request.html.erb" />
         <option value="$PROJECT_DIR$/db/migrate/20161214153400_add_company_tender_invites.rb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_invites_for_modal.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/new_tender.html.erb" />
@@ -135,7 +165,6 @@
         <option value="$PROJECT_DIR$/app/controllers/quote_documents_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/quotes/_quotes.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/sub_contractors_tab/_request_tender_quotes.html.erb" />
-        <option value="$PROJECT_DIR$/app/helpers/tenders_helper.rb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_search_document_control.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_document_control.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_sub_contractors_quotes.html.erb" />
@@ -152,6 +181,8 @@
         <option value="$PROJECT_DIR$/app/views/tenders/sc_tender.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_trades.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/tenders_controller.rb" />
+        <option value="$PROJECT_DIR$/app/helpers/tenders_helper.rb" />
+        <option value="$PROJECT_DIR$/app/views/tenders/open_tender.html.erb" />
       </list>
     </option>
   </component>
@@ -778,12 +809,12 @@
       <workItem from="1482560698171" duration="578000" />
       <workItem from="1482797938649" duration="16651000" />
       <workItem from="1482917542479" duration="14000" />
-      <workItem from="1482971892438" duration="17410000" />
+      <workItem from="1482971892438" duration="18033000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="221193000" />
+    <option name="totallyTimeSpent" value="221816000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
@@ -848,13 +879,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/tenders/_tender_info.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="48" selection-start-line="29" selection-start-column="16" selection-end-line="30" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/rfi_comments/_get_latest_comment_document.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -866,13 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="471">
           <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/tenders/open_tender.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6390">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1045,14 +1062,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="388">
           <caret line="93" column="46" selection-start-line="93" selection-start-column="23" selection-end-line="93" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/tenders_helper.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="555" column="58" selection-start-line="555" selection-start-column="6" selection-end-line="555" selection-end-column="58" />
           <folding />
         </state>
       </provider>
@@ -1251,10 +1260,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tenders/_reviews.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1796">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="24" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
+        <state relative-caret-position="560">
+          <caret line="57" column="99" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/helpers/tenders_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="313" column="31" selection-start-line="313" selection-start-column="6" selection-end-line="313" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/tenders/open_tender.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="211" column="61" selection-start-line="211" selection-start-column="61" selection-end-line="211" selection-end-column="61" />
           <folding />
         </state>
       </provider>

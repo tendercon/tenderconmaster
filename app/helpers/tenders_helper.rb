@@ -311,6 +311,17 @@ module TendersHelper
     end
   end
 
+  def get_tender_sites_per_user id
+    tender = Tender.where(:id => id).first
+    sites = TenderSite.where(:tender_id => id,:user_id => tender.user_id)
+
+    if sites.present?
+      sites
+    else
+      nil
+    end
+  end
+
   def get_tender_trades id
     trades = TenderTrade.where(:tender_id => id)
 

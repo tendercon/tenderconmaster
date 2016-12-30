@@ -204,12 +204,12 @@
                               <label><%= get_distance u.id,session[:user_logged_id] %></label>
                             </div>
 
-                            <% if (get_tender_sites u.id).present? %>
+                            <% if (get_tender_sites_per_user u.id).present? %>
                                 <div class="col-md-6">
                                   <label>Site Inspection</label>
                                 </div>
                                 <div class="col-md-6"></div>
-                                <% (get_tender_sites u.id).each do |a| %>
+                                <% (get_tender_sites_per_user u.id).each do |a| %>
                                     <div class="col-md-6"></div>
                                     <div class="col-md-6"><label><%= a.site_date %></label></div>
                                 <% end %>
