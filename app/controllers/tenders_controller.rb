@@ -1132,7 +1132,7 @@ class TendersController < ApplicationController
             end
           end
           TenderSite.where(:site_date => '').destroy_all()
-          TenderSite.where(:user_id => session[:user_logged_id]).update_all(:tender_id => @tender.id)
+          TenderSite.where(:user_id => session[:user_logged_id],:tender_id => nil).update_all(:tender_id => @tender.id)
           redirect_to "/tenders/new_tender?trades=true&info_id=#{@tender.id}"
 
         end

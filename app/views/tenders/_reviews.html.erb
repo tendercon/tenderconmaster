@@ -79,7 +79,7 @@
                                 <td> Site Inspections </td>
                                 <td></td>
                               </tr>
-                            <% @tender.tender_sites.each do |a| %>
+                            <% (get_tender_sites_per_user @tender.id).each do |a| %>
                                   <tr>
                                     <td> </td>
                                     <td><%= get_tender_site_dates a.id %></td>
