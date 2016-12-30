@@ -104,9 +104,7 @@
       source: get_trades(),
       autoFill: true,
       select: function (event, ui) {
-
-
-          console.log("ID:"+JSON.stringify(ui.item.label));
+        console.log("ID:"+JSON.stringify(ui.item.label));
         $.ajax({
           method: "POST",
           data: {trade:ui.item.label},
@@ -250,7 +248,8 @@
 
   function get_trades(){
     var trades = '<%= @trade_names %>';
-    var new_trades = JSON.parse(trades.replace(/&quot;/g,'"'))
+    var new_trades = JSON.parse(trades.replace(/&quot;/g,'"'));
+    console.log("new_trades:"+new_trades);
     return new_trades;
   }
 
