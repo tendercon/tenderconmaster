@@ -11,19 +11,21 @@
 <% end %>
 
 <div class="row">
-  <div class="col-md-6 pull-right">
-    <label>Filter by Trade</label>
-    <div class="form-group">
-      <select class="form-control trades">
-        <% if @trades.present? %>
+  <% if quotes.present? %>
+    <div class="col-md-6 pull-right">
+      <label>Filter by Trade</label>
+      <div class="form-group">
+        <select class="form-control trades">
+          <% if @trades.present? %>
             <option value="0">All</option>
             <% @trades.each do |t| %>
-                <option value="<%= t.id %>"><%= get_trade_name t %></option>
+              <option value="<%= t.id %>"><%= get_trade_name t %></option>
             <% end %>
-        <% end %>
-      </select>
+          <% end %>
+        </select>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
 
 <div class="quote_list_table">

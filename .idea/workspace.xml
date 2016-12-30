@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/quotes_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/quotes_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/rfi_comments/_comment_document_lists.html.erb" afterPath="$PROJECT_DIR$/app/views/rfi_comments/_comment_document_lists.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" afterPath="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/rfis/_rfis.html.erb" afterPath="$PROJECT_DIR$/app/views/rfis/_rfis.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/rfis/comments.html.erb" afterPath="$PROJECT_DIR$/app/views/rfis/comments.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quotes/_quotes.html.erb" afterPath="$PROJECT_DIR$/app/views/quotes/_quotes.html.erb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -104,17 +99,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_quotes.html.erb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_quotes.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/quotes/_quotes.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3396">
-              <caret line="230" column="43" selection-start-line="230" selection-start-column="43" selection-end-line="230" selection-end-column="43" />
+            <state relative-caret-position="225">
+              <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quotes_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="quotes_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/quotes_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="392">
@@ -168,7 +163,6 @@
         <option value="$PROJECT_DIR$/app/views/tenders/sub_contractors_tab/_requesting_tender.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/quote_documents_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/quotes/_quotes.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/sub_contractors_tab/_request_tender_quotes.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_search_document_control.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_document_control.html.erb" />
@@ -193,6 +187,7 @@
         <option value="$PROJECT_DIR$/app/views/rfis/comments.html.erb" />
         <option value="$PROJECT_DIR$/app/views/rfi_comments/_comment_document_lists.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/quotes_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/quotes/_quotes.html.erb" />
       </list>
     </option>
   </component>
@@ -841,12 +836,12 @@
       <workItem from="1482560698171" duration="578000" />
       <workItem from="1482797938649" duration="16651000" />
       <workItem from="1482917542479" duration="14000" />
-      <workItem from="1482971892438" duration="19490000" />
+      <workItem from="1482971892438" duration="19554000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="223273000" />
+    <option name="totallyTimeSpent" value="223337000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
@@ -1288,14 +1283,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/quotes/_quotes.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3396">
-          <caret line="230" column="43" selection-start-line="230" selection-start-column="43" selection-end-line="230" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="536">
@@ -1324,6 +1311,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="392">
           <caret line="55" column="117" selection-start-line="55" selection-start-column="117" selection-end-line="55" selection-end-column="117" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/quotes/_quotes.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="21" column="14" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
           <folding />
         </state>
       </provider>
