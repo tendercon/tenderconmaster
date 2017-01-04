@@ -78,7 +78,9 @@
           <input type="hidden" name="file_id" class="tender_id" value="<%= params[:id] %>">
       <% end %>
       <input type="hidden" name="tender_id" class="tender_id" value="<%= params[:info_id] %>">
-      <input type="hidden" name="control"  value="true">
+      <% if params[:control].present? %>
+        <input type="hidden" name="control"  value="true">
+      <% end %>
       <div class="col-md-12 matrix">  
 
             <div class="scrollable-table">
