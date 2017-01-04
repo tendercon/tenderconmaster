@@ -3,7 +3,7 @@
     <div class="portlet-body">
       <div class="tabbable-line">
         <ul class="nav nav-tabs ">
-          <% if params[:addenda].present? || params[:control].present? || params[:rfi].present? %>
+          <% if params[:addenda].present? || params[:control].present? || params[:rfi].present? || params[:quote].present? %>
               <li ><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
           <% else %>
               <li class="active"><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
@@ -28,7 +28,12 @@
           <% else %>
               <li ><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs</a></li>
           <% end %>
-          <li><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
+          <% if params[:quote].present? %>
+              <li class="active"><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
+          <% else %>
+              <li><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
+          <% end %>
+
         </ul>
       </div>
     </div>
@@ -37,7 +42,7 @@
         <div class="row">
           <div class="form-group"></div>
         </div>
-        <% if params[:addenda].present? || params[:control].present? || params[:rfi].present? %>
+        <% if params[:addenda].present? || params[:control].present? || params[:rfi].present? || params[:quote].present? %>
             <div class="tab-pane  col-md-12" id="info">
               <%= render 'tender_info' %>
             </div>
@@ -85,9 +90,16 @@
         <div class="tab-pane col-md-12" id="chat">
           <%#= render 'tender_chat' %>
         </div>
-        <div class="tab-pane col-md-12" id="quote">
+        <% if params[:quote].present? %>
+            <div class="tab-pane active col-md-12" id="quote">
 
-        </div>
+            </div>
+        <% else %>
+            <div class="tab-pane col-md-12" id="quote">
+
+            </div>
+        <% end %>
+
       </div>
 
   </div>
@@ -345,6 +357,16 @@
         url: "/rfis/get_latest_rfis"
       }).done(function (data) {
         $('#rfi').html(data);
+      });
+    <% end %>
+
+    <% if params[:quote].present? %>
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id},
+        url: "/quotes/get_latest_quotes"
+      }).done(function (data) {
+        $('#quote').html(data);
       });
     <% end %>
 
