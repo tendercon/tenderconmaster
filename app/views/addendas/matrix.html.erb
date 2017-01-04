@@ -247,23 +247,7 @@
                     <% @documents.each do |t| %>
                         <% if !@directory_array.include? t.directory %>
                             <% @directory_array << t.directory %>
-                            <% if params[:id].present? %>
-                                <% if (get_file_directory params[:id]) == t.directory %>
-                                    <tr>
-                                      <th class="row-header">
-                                        <a href="#!"  class="directory" id="<%= replace_char_to_string t.directory %>" title="<%= t.directory %>"> <i class="fa fa-chevron-circle-up" aria-hidden="true"> </i> <%= t.directory %></a>
-                                      </th>
-                                      <th class="row-header"><div><span></span></div></th>
-                                      <th class="row-header"><div><span></span></div></th>
 
-                                      <% if @tender_package_count.present? %>
-                                          <% for i in 0..((@tender_package_count + @directory_array_1.uniq.size) - 1) %>
-                                              <th class="row-header"></th>
-                                          <% end %>
-                                      <% end %>
-                                    </tr>
-                                <% end %>
-                            <% else %>
                                 <tr>
                                   <th class="row-header">
                                     <a href="#!"  class="directory" id="<%= replace_char_to_string t.directory %>" title="<%= t.directory %>"> <i class="fa fa-chevron-circle-up" aria-hidden="true"> </i> <%= t.directory %></a>
@@ -277,7 +261,7 @@
                                       <% end %>
                                   <% end %>
                                 </tr>
-                            <% end %>
+
                         <% end %>
 
                         <% if @directory_array.present? %>
@@ -285,67 +269,36 @@
                                 <% if (document_list f,@tender.id).present? %>
                                     <% (document_list f,@tender.id).each_with_index do |a,i| %>
                                         <% if a.document_file_name.present? %>
-                                            <% if params[:id].present? %>
 
+                                            <% if !@document_array.include? "#{a.document_file_name}_#{f}" %>
 
-                                                <% if ((get_file_directory params[:id]).to_s == f.to_s) && (!@document_array.include? index) %>
-                                                    <% @document_array << index %>
-                                                    <tr id="demo" class="<%= replace_char_to_string a.directory %>">
-                                                      <td id="doc_<%= a.id %>"><%= a.document_file_name %></td>
-                                                      <td><input type="checkbox" id="per_field" class="per_field" title="<%= a.id %>"></td>
-                                                      <td><input type="checkbox" checked></td>
-                                                      <% @package_array.each do |d| %>
-                                                          <% if d.to_i > 0 %>
-                                                              <% if params[:cmd].present? %>
-                                                                  <% if @package_lists.include? "#{a.id}_#{d}" %>
-                                                                      <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>" checked></td>
-                                                                  <% else %>
-                                                                      <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>"></td>
-                                                                  <% end %>
+                                                <% @document_array << "#{a.document_file_name}_#{f}"  %>
+
+                                                <%= puts "@document_array------------> #{@document_array.inspect}" %>
+                                                <tr id="demo" class="<%= replace_char_to_string a.directory %>">
+                                                  <td id="doc_<%= a.id %>"><%= a.document_file_name %></td>
+                                                  <td><input type="checkbox" id="per_field" class="per_field" title="<%= a.id %>"></td>
+                                                  <td><input type="checkbox" checked></td>
+                                                  <% @package_array.each do |d| %>
+                                                      <% if d.to_i > 0 %>
+                                                          <% if params[:cmd].present? %>
+                                                              <% if @package_lists.include? "#{a.id}_#{d}" %>
+                                                                  <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>" checked></td>
                                                               <% else %>
-                                                                  <% if @package_lists.include? "#{a.id}_#{d}" %>
-                                                                      <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>" checked></td>
-                                                                  <% else %>
-                                                                      <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>"></td>
-                                                                  <% end %>
+                                                                  <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>"></td>
                                                               <% end %>
                                                           <% else %>
-                                                              <td></td>
-                                                          <% end %>
-                                                      <% end %>
-                                                    </tr>
-                                                <% end %>
-                                            <% else %>
-                                                <% if !@document_array.include? "#{a.document_file_name}_#{f}" %>
-
-                                                    <% @document_array << "#{a.document_file_name}_#{f}"  %>
-
-                                                    <%= puts "@document_array------------> #{@document_array.inspect}" %>
-                                                    <tr id="demo" class="<%= replace_char_to_string a.directory %>">
-                                                      <td id="doc_<%= a.id %>"><%= a.document_file_name %></td>
-                                                      <td><input type="checkbox" id="per_field" class="per_field" title="<%= a.id %>"></td>
-                                                      <td><input type="checkbox" checked></td>
-                                                      <% @package_array.each do |d| %>
-                                                          <% if d.to_i > 0 %>
-                                                              <% if params[:cmd].present? %>
-                                                                  <% if @package_lists.include? "#{a.id}_#{d}" %>
-                                                                      <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>" checked></td>
-                                                                  <% else %>
-                                                                      <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>"></td>
-                                                                  <% end %>
+                                                              <% if @package_lists.include? "#{a.id}_#{d}" %>
+                                                                  <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>" checked></td>
                                                               <% else %>
-                                                                  <% if @package_lists.include? "#{a.id}_#{d}" %>
-                                                                      <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>" checked></td>
-                                                                  <% else %>
-                                                                      <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>"></td>
-                                                                  <% end %>
+                                                                  <td data-row="<%= a.id %>" data-col="<%= d %>"  id="<%= a.id %>" alt="<%= "#{a.id}_#{d}" %>"><input type="checkbox" title="<%= a.document_file_name %>"  value="<%= "#{a.id}_#{d}" %>" class="<%= d %>"  id="<%= a.id %>" name="package[]" alt="<%= "#{a.id}_#{d}" %>"></td>
                                                               <% end %>
-                                                          <% else %>
-                                                              <td></td>
                                                           <% end %>
+                                                      <% else %>
+                                                          <td></td>
                                                       <% end %>
-                                                    </tr>
-                                                <% end %>
+                                                  <% end %>
+                                                </tr>
                                             <% end %>
                                         <% end %>
                                     <% end %>
@@ -550,8 +503,10 @@
 
           if(e.which == 13) {
             for (var i = 0; i < titles.length; i++) {
-              $("input[alt='"+titles[i]+"']").click();
+
               $("input[alt='"+titles[i]+"']").prop('checked',false);
+              $("input[alt='"+titles[i]+"']").click();
+
               $("input[alt='"+titles[i]+"']").css({'background-color': ''});
             }
 

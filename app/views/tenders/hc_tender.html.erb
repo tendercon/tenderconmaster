@@ -3,24 +3,31 @@
     <div class="portlet-body">
       <div class="tabbable-line">
         <ul class="nav nav-tabs ">
-          <% if params[:addenda].present? %>
+          <% if params[:addenda].present? || params[:control].present? || params[:rfi].present? %>
               <li ><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
           <% else %>
               <li class="active"><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
           <% end %>
 
           <li><a href="#sub" data-toggle="tab" id="<%= @tender.id %>">Subcontractors</a></li>
+          <% if params[:control].present? %>
+              <li class="active"><a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">Document Control</a></li>
+          <% else %>
+              <li><a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">Document Control</a></li>
+          <% end %>
 
-          <li><a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">Document Control</a></li>
           <% if params[:addenda].present? %>
               <li class="active"><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
           <% else %>
               <li><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
           <% end %>
           <li><a href="#chat" data-toggle="tab" id="<%= @tender.id %>">Chat</a></li>
-          <li ><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs</a></li>
 
-
+          <% if params[:rfi].present? %>
+              <li class="active"><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs</a></li>
+          <% else %>
+              <li ><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs</a></li>
+          <% end %>
           <li><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
         </ul>
       </div>
@@ -30,7 +37,7 @@
         <div class="row">
           <div class="form-group"></div>
         </div>
-        <% if params[:addenda].present? %>
+        <% if params[:addenda].present? || params[:control].present? || params[:rfi].present? %>
             <div class="tab-pane  col-md-12" id="info">
               <%= render 'tender_info' %>
             </div>
@@ -40,10 +47,11 @@
             </div>
         <% end %>
 
-        <div class="tab-pane col-md-12" id="sub">
-          <%#= render 'sub_contractors_quotes' %>
-        </div>
 
+
+        <div class="tab-pane col-md-12" id="sub">
+
+        </div>
         <% if params[:addenda].present? %>
             <div class="tab-pane active col-md-12" id="addenda">
               <%= render :partial => 'addendas/new_lists', :locals => { :addendas => @addendas,:tender => @tender} %>
@@ -54,13 +62,26 @@
             </div>
         <% end %>
 
+        <% if params[:rfi].present? %>
+            <div class="tab-pane active col-md-12" id="rfi">
 
-        <div class="tab-pane col-md-12" id="rfi">
+            </div>
+        <% else %>
+            <div class="tab-pane col-md-12" id="rfi">
 
-        </div>
-        <div class="tab-pane  col-md-12" id="document_control">
+            </div>
+        <% end %>
 
-        </div>
+        <% if params[:control].present? %>
+            <div class="tab-pane active  col-md-12" id="document_control">
+
+            </div>
+        <% else %>
+            <div class="tab-pane  col-md-12" id="document_control">
+
+            </div>
+        <% end %>
+
         <div class="tab-pane col-md-12" id="chat">
           <%#= render 'tender_chat' %>
         </div>
@@ -305,6 +326,29 @@
       var add = $('.add'+id).val();
     });
 
+    var tender_id = $('.tender_id').val();
+
+    <% if params[:control] %>
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id},
+        url: "/tenders/get_document_control"
+      }).done(function (data) {
+        $('#document_control').html(data);
+      });
+    <% end %>
+
+    <% if params[:rfi].present? %>
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id},
+        url: "/rfis/get_latest_rfis"
+      }).done(function (data) {
+        $('#rfi').html(data);
+      });
+    <% end %>
+
+
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       var target = $(e.target).attr("href"); // activated tab
       var id = $(e.target).attr("id");
@@ -337,7 +381,7 @@
         }).done(function (data) {
           $('#quote').html(data);
         });*/
-        var tender_id = $('.tender_id').val();
+
         $.ajax({
           method: "POST",
           data: {tender_id:tender_id},
@@ -375,7 +419,7 @@
       }
     });
 
-    $(document).ready(function(){
+
       var map;
       var id = $('.tender_id').val();
       var myLatLng;
@@ -415,7 +459,7 @@
         load_map();
       });
 
-    });
+
 
 
   })

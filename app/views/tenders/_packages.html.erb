@@ -60,15 +60,16 @@
     background-color: lightgrey;
   }
 </style>
+<% if !params[:control].present? %>
+    <button class="btn btn-warning undo" type="button">
+      Undo
+    </button>
 
-<button class="btn btn-warning undo" type="button">
-  Undo
-</button>
-<%# if params[:cmd].present? %>
-<button class="btn btn-success update_package" type="button">
-  Update
-</button>
-<%# end %>
+    <button class="btn btn-success update_package" type="button">
+      Update
+    </button>
+<% end %>
+
 
 
 <%= form_tag(create_partitions_tenders_path, :html => { :multipart => true }) do |f| %> 
@@ -77,6 +78,7 @@
           <input type="hidden" name="file_id" class="tender_id" value="<%= params[:id] %>">
       <% end %>
       <input type="hidden" name="tender_id" class="tender_id" value="<%= params[:info_id] %>">
+      <input type="hidden" name="control"  value="true">
       <div class="col-md-12 matrix">  
 
             <div class="scrollable-table">
@@ -152,16 +154,22 @@
                   <% end %>
                 </tr>
                 <tr class="document_matrix_search">
-                  <th>
-                    <div class="input-group">
-                      <input type="Search" placeholder="Search..." class="form-control search" />
-                      <div class="input-group-btn">
-                        <button class="btn btn-default search_btn" type="button">
-                          <i class="fa fa-search" aria-hidden="true"></i>
-                        </button>
+                  <% if !params[:control].present? %>
+                    <th>
+                      <div class="input-group">
+                        <input type="Search" placeholder="Search..." class="form-control search" />
+                        <div class="input-group-btn">
+                          <button class="btn btn-default search_btn" type="button">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  </th>
+                      </th>
+                  <% else %>
+                      <th></th>
+
+                  <% end %>
+
                   <!-- Following headers are rotated -->
                   <th><div></div></th>
                   <th><div><span></span></div></th>
@@ -363,9 +371,16 @@
 
 
         <div class="form-actions">
-          <a href="/tenders/new_tender?document=true&info_id=<%= @tender.id %>"> 
-            <button class="btn btn-default  next_info"  type="button">BACK</button>
-          </a>   
+          <% if params[:control].present? %>
+              <a href="/tenders/hc_tender?id=<%= @tender.id %>&control=true"> 
+                <button class="btn btn-default  next_info"  type="button">BACK</button>
+              </a>   
+        <% else %>
+              <a href="/tenders/new_tender?document=true&info_id=<%= @tender.id %>"> 
+                <button class="btn btn-default  next_info"  type="button">BACK</button>
+              </a>   
+          <% end %>
+
           <a href="#!"> 
             <button class="btn btn-primary" type="submit">SAVE AND CONTINUE</button>
           </a>   

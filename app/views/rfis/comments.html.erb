@@ -47,10 +47,17 @@
 
 
   <div class="text-center">
-    <a href="<%= sc_tender_tenders_path(:id => @tender.id,:rfi => 'true') %>">
-      <button class="btn btn-warning" type="button" >
-        <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to RFI Register</button>
-    </a>
+    <% if session[:role] == 'Head Contractor' %>
+        <a href="<%= hc_tender_tenders_path(:id => @tender.id,:rfi => 'true') %>">
+          <button class="btn btn-warning" type="button" >
+            <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to RFI Register</button>
+        </a>
+    <% else %>
+        <a href="<%= sc_tender_tenders_path(:id => @tender.id,:rfi => 'true') %>">
+          <button class="btn btn-warning" type="button" >
+            <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to RFI Register</button>
+        </a>
+    <% end %>
     <a href="<%= @download_link %>" target="_blank" class="download" download>
       <button class="btn btn-primary">Download</button>
     </a>

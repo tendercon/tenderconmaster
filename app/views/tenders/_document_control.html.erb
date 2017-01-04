@@ -54,11 +54,11 @@
                     </td>
                     <td class="text-center">
                       <% if (get_document_package t.id,@tender.id).to_i > 0 %>
-                          <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= t.id %>">
+                          <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= t.id %>&control=true">
                             <span class="badge progress-bar-success"><%= get_document_package t.id,@tender.id  %></span>
                           </a>
                       <% else %>
-                          <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= t.id %>">
+                          <a href="/tenders/new_tender?package=true&info_id=<%= @tender.id %>&cmd=edit&id=<%= t.id %>&control=true">
                             <span class="badge progress-bar-warning"><%= get_document_package t.id,@tender.id  %></span>
                           </a>
                       <% end %>

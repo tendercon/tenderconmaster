@@ -3,68 +3,71 @@
   <div class="col-md-11" style="background-color: white;border-radius:10px;margin-top: -25px">
     <div class="container" >
       <div class="mt-element-step" >
-        <div class="row step-line">
-          <% if params[:info] == 'true' %>
-              <div class="col-md-2 mt-step-col active">
-                <div class="mt-step-number bg-white font-grey">1</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Details</div>
-              </div>
-          <% else %>
-              <div class="col-md-2 mt-step-col done">
-                <div class="mt-step-number bg-white font-grey">1</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Details</div>
-              </div>
-          <% end %>
+        <% if !params[:control].present? %>
+          <div class="row step-line">
+            <% if params[:info] == 'true' %>
+                <div class="col-md-2 mt-step-col active">
+                  <div class="mt-step-number bg-white font-grey">1</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Details</div>
+                </div>
+            <% else %>
+                <div class="col-md-2 mt-step-col done">
+                  <div class="mt-step-number bg-white font-grey">1</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Details</div>
+                </div>
+            <% end %>
 
-          <% if params[:trades] == 'true' %>
-              <div class="col-md-2 mt-step-col active">
-                <div class="mt-step-number bg-white font-grey">2</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
-              </div>
-          <% else %>
-              <div class="col-md-2 mt-step-col done">
-                <div class="mt-step-number bg-white font-grey">2</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
-              </div>
-          <% end %>
+            <% if params[:trades] == 'true' %>
+                <div class="col-md-2 mt-step-col active">
+                  <div class="mt-step-number bg-white font-grey">2</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
+                </div>
+            <% else %>
+                <div class="col-md-2 mt-step-col done">
+                  <div class="mt-step-number bg-white font-grey">2</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
+                </div>
+            <% end %>
 
 
-          <% if params[:document] == 'true' %>
-              <div class="col-md-2 mt-step-col active">
-                <div class="mt-step-number bg-white font-grey">3</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
-              </div>
-          <% else %>
-              <div class="col-md-2 mt-step-col done">
-                <div class="mt-step-number bg-white font-grey">3</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
-              </div>
-          <% end %>
+            <% if params[:document] == 'true' %>
+                <div class="col-md-2 mt-step-col active">
+                  <div class="mt-step-number bg-white font-grey">3</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
+                </div>
+            <% else %>
+                <div class="col-md-2 mt-step-col done">
+                  <div class="mt-step-number bg-white font-grey">3</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
+                </div>
+            <% end %>
 
-          <% if params[:package] == 'true' %>
-              <div class="col-md-2 mt-step-col active">
-                <div class="mt-step-number bg-white font-grey">4</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
-              </div>
-          <% else %>
-              <div class="col-md-2 mt-step-col done">
-                <div class="mt-step-number bg-white font-grey">4</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
-              </div>
-          <% end %>
+            <% if params[:package] == 'true' %>
+                <div class="col-md-2 mt-step-col active">
+                  <div class="mt-step-number bg-white font-grey">4</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
+                </div>
+            <% else %>
+                <div class="col-md-2 mt-step-col done">
+                  <div class="mt-step-number bg-white font-grey">4</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
+                </div>
+            <% end %>
 
-          <% if params[:invites] == 'true' %>
-              <div class="col-md-2 mt-step-col last">
-                <div class="mt-step-number bg-white font-grey">5</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
-              </div>
-          <% else %>
-              <div class="col-md-2 mt-step-col">
-                <div class="mt-step-number bg-white font-grey">5</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
-              </div>
-          <% end %>
-        </div>
+            <% if params[:invites] == 'true' %>
+                <div class="col-md-2 mt-step-col last">
+                  <div class="mt-step-number bg-white font-grey">5</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
+                </div>
+            <% else %>
+                <div class="col-md-2 mt-step-col">
+                  <div class="mt-step-number bg-white font-grey">5</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
+                </div>
+            <% end %>
+          </div>
+        <% end %>
+
       </div>
     </div>
   </div>

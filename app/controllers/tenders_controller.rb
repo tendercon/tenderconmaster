@@ -1762,8 +1762,8 @@ class TendersController < ApplicationController
         end
       end
     end
-    if addenda.present?
-      redirect_to review_addendas_path(:id => tender_id,:addenda => addenda,:addenda_type => 'documents')
+    if params[:control].present?
+      redirect_to "/tenders/hc_tender?id=#{tender_id}&control=true"
     else
       redirect_to "/tenders/new_tender?invites=true&info_id=#{tender_id}"
     end
