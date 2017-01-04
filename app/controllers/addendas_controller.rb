@@ -310,6 +310,97 @@ class AddendasController < ApplicationController
 
   end
 
+
+  def create_packages
+    packages = params[:package]
+    tender_id = params[:tender_id]
+    addenda = params[:addenda]
+    docs = Hash.new
+    document_array = []
+    @addenda = Addenda.find(addenda)
+    @array = []
+    @tender = Tender.find(tender_id)
+    if !addenda.present?
+      if params[:file_id].present?
+        Package.where("code LIKE ?", "%#{params[:file_id]}%").destroy_all
+      else
+        Package.where(:tender_id => tender_id).destroy_all
+      end
+    end
+
+
+    if packages.present?
+      packages.each do |a|
+        package = Package.new
+        package.tender_id = tender_id
+        package.code = a
+        package.save
+
+        b =  a.split('_')[0]
+        c =  a.split('_')[1]
+        document_array << c
+        if a.include? "#{c}"
+          @array << b
+          docs["#{c}"] = @array.uniq
+        end
+      end
+    end
+
+    if document_array.present?
+      document_array.uniq.each do |a|
+        trade = Trade.find(a)
+        if trade.present?
+          if trade.name.include? "/"
+            dir = "#{Rails.root}/public/assets/tender/document/#{trade.name.gsub!('/','-')}"
+          else
+            dir = "#{Rails.root}/public/assets/tender/document/#{trade.name}"
+          end
+
+          Dir.mkdir(dir) unless File.exists?(dir)
+
+          if packages.any? { |s| s.include?("#{a}") }
+            new_array =  packages.each_index.select{|i| packages[i] =~ /#{a}/}
+            if new_array.present?
+              new_array.each do |f|
+                b =  packages[f].split('_')[0]
+                puts "ddhfjdshfjdhsfjhdsj-----------> #{b}"
+                c =  packages[f].split('_')[1]
+                begin
+                  doc = TenderDocument.where(:id => b).first
+                  puts "doc-------------------------> #{doc.document_path}"
+                  if doc.present?
+                    if doc.document_path.present?
+                      dir_1 = "#{dir}/#{doc.directory}"
+                      FileUtils.mkdir_p "#{dir_1}"
+                      if File.file?(doc.document_path)
+                        FileUtils.cp(doc.document_path, dir_1)
+                      end
+                    else
+                      file_path = "#{Rails.root}/public/assets/tender/document/#{doc.id}/original/#{document_file_name}"
+                      FileUtils.cp(file_path, dir_1)
+                    end
+                  else
+
+                  end
+
+                rescue
+
+
+                end
+              end
+            end
+          end
+          DocumentPackage.where(:tender_id =>  tender_id).destroy_all
+          Tender.delay.compressed_document_matrix(dir,tender_id,session[:user_logged_id],request.host_with_port)
+        end
+      end
+    end
+    puts "dsakjdksakdjsakdjksadjsa=====================>"
+    redirect_to new_addenda_path(:id => @tender.id,:addenda => @addenda.id,:addenda_type => params[:addenda_type],:notify => true)
+
+
+  end
+
   def get_addendas
     @tender = Tender.find(params[:tender_id])
     if session[:role] == 'Head Contractor'

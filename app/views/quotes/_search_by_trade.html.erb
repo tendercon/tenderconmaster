@@ -40,7 +40,11 @@
                 <td class="text-center"><%= get_received d %></td>
             <% end %>
 
-            <td class="text-center"><%= get_trade_counts d %></td>
+            <td class="text-center">
+              <a href="#!" title="Trades" class="popoverData" data-toggle="popover" data-trigger="focus" data-content="<%= get_quote_trades d %>">
+                <span class="badge progress-bar-success"><%= get_trade_counts d %></span>
+              </a>
+            </td>
             <% if session[:role] == 'Sub Contractor' %>
                 <td class="text-center">
                   <%= get_created d %>
@@ -222,5 +226,7 @@
         $('.quote_list_table').html(data);
       });
     });
+
+    $('.popoverData').popover({ trigger: "hover" });
   });
 </script>

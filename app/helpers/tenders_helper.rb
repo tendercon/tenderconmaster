@@ -564,15 +564,32 @@ module TendersHelper
     end
   end
 
-  def check_if_sc_trade_approved tender_id,trade_id,doc_id
-    code = "#{doc_id}_#{trade_id}"
-    package = Package.where(:tender_id => tender_id,:code => code).first
+  def check_if_sc_trade_approved tender_id,trades,doc_id
 
-    if package.present?
-      true
-    else
-      false
+    if trades.present?
+      new_trades = trades.compact.reject(&:blank?)
     end
+
+    if new_trades.present?
+      new_trades.each do |t|
+        code = "#{doc_id}_#{t}"
+        package = Package.where(:tender_id => tender_id,:code => code).first
+
+        if package.present?
+          true
+        else
+          false
+        end
+
+      end
+    end
+
+
+    # if package.present?
+    #   true
+    # else
+    #   false
+    # end
   end
 
   def check_if_has_documents tender_id

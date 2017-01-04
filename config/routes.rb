@@ -314,6 +314,7 @@ Rails.application.routes.draw do
       post 'get_documents'
       post 'delete_documents'
       post 'move_files'
+      post 'create_packages'
     end
   end
 

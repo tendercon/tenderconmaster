@@ -39,8 +39,8 @@
               </tr>
           <% else %>
               <% if @trades_approved.present? %>
-                  <% @trades_approved.each do |d| %>
-                      <% if check_if_sc_trade_approved @tender.id,d,t.id %>
+                  <%# @trades_approved.each do |d| %>
+                    <% if check_if_sc_trade_approved @tender.id,@trades_approved,t.id %>
                           <tr>
                             <td class="text-center"><%= t.document_file_name %></td>
                             <td class="text-center"><%= t.directory %></td>
@@ -65,8 +65,8 @@
                               <% end %>
                             </td>
                           </tr>
-                      <% end %>
-                  <% end %>
+                    <% end %>
+                  <%# end %>
               <% end %>
           <% end %>
     <% end %>

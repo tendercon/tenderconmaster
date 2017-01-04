@@ -55,7 +55,7 @@
     <% if quotes.present? %>
       <% quotes.uniq.each do |d| %>
         <tr>
-          <td class="text-center"><input type="checkbox" class="quote_list" name="documents[]" value="<%= d %>"></td>
+          <td class="text-center"><input type="checkbox" class="quote_list" name="documents[]" value="<%= get_id d %>"></td>
           <td class="text-center"><%= d %></td>
           <% if (get_status d) == "Active" %>
               <td class="text-center">
@@ -184,6 +184,7 @@
     $('.quote_download').click(function(){
 
       var tender_id = $('.tender_id').val();
+
       $("input:checkbox:checked").map(function()
       {
         if(parseInt($(this).val()) > 0){
@@ -227,6 +228,7 @@
           data: {ids:ids,tender_id:tender_id},
           url: "/quotes/delete_quotes"
         }).done(function (data) {
+          ids = [];
           $('.quote_all_lists').html(data);
         });
       }else{
@@ -267,6 +269,7 @@
       if($('.quote_list').prop('checked')){
         $('.quote_list').prop('checked',false);
       }else{
+
         $('.quote_list').prop('checked',true);
       }
     });

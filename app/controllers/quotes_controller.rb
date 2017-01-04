@@ -66,7 +66,7 @@ class QuotesController < ApplicationController
     end
 
     @trades = Trade.where(:id => trade_array)
-
+    puts "@trades =============> #{@trades}"
     @primary_trades = PrimaryTrade.all
     @trade_array = []
 
@@ -206,7 +206,7 @@ class QuotesController < ApplicationController
     if ids.present?
       ids.each do |a|
         if a != 'on'
-          quote = Quote.where(:ref_no => a).first
+          quote = Quote.where(:id => a).first
           trade = Trade.find(quote.trade_id)
           hc_user = User.find(tender.user_id)
           puts "hc_user:#{hc_user.first_name}"
@@ -284,7 +284,7 @@ class QuotesController < ApplicationController
     if ids.present?
       ids.each do |id|
         if id != 'on'
-          Quote.where(:ref_no => id).update_all(:status => 'Deleted')
+          Quote.where(:id => id).update_all(:status => 'Deleted')
         end
       end
     end
@@ -292,6 +292,7 @@ class QuotesController < ApplicationController
     get_quotes
 
   end
+
 
   def delete_quote
     Quote.where(:id => params[:id]).update_all(:status => 'Deleted')

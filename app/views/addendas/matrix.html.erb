@@ -150,7 +150,7 @@
 
 <div style="height: 150px"></div>
 
-<%= form_tag(create_partitions_tenders_path, :html => { :multipart => true }) do |f| %> 
+<%= form_tag(create_packages_addendas_path, :html => { :multipart => true }) do |f| %> 
     <div class="row"> 
       <input type="hidden" name="tender_id" class="tender_id" value="<%= @tender.id %>">
       <input type="hidden" name="addenda" class="addenda" value="<%= @addenda.id %>">
@@ -405,8 +405,8 @@
       <a href="/addendas/new?id=<%= @tender.id %>&type=documents&addenda=<%= @addenda.id %>&documents=true">
         <button type="button" class="btn btn-danger">Back</button>
       </a>
-      <a href="<%= new_addenda_path(:id => @tender.id,:addenda => @addenda.id,:addenda_type => params[:addenda_type],:notify => true) %>">
-        <button type="button" class="btn btn-success">Next</button>
+      <a href="<%#= new_addenda_path(:id => @tender.id,:addenda => @addenda.id,:addenda_type => params[:addenda_type],:notify => true) %>">
+        <button type="submit" class="btn btn-success">Next</button>
       </a>
     </div> 
 <% end %>

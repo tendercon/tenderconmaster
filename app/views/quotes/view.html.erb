@@ -2,10 +2,17 @@
   <div class="col-md-12">
     <div id="content">
       <div class="text-center">
-        <a href="<%= sc_tender_tenders_path(:id => @tender.id,:quote => 'true') %>">
-          <button class="btn btn-warning" type="button" >
-            <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to Quote Register</button>
-        </a>
+        <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member'  %>
+          <a href="<%= sc_tender_tenders_path(:id => @tender.id,:quote => 'true') %>">
+            <button class="btn btn-warning" type="button" >
+              <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to Quote Register</button>
+          </a>
+        <% else %>
+          <a href="<%= hc_tender_tenders_path(:id => @tender.id,:quote => 'true') %>">
+            <button class="btn btn-warning" type="button" >
+              <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to Quote Register</button>
+          </a>
+        <% end %>
         <a href="<%= @pdf_link %>" class="download" download>
           <button class="btn btn-primary">Download</button>
         </a>

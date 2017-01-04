@@ -401,7 +401,7 @@ class TendersController < ApplicationController
       end
 
       if tender_document_array.present?
-        @documents = TenderDocument.where(:id => @package_ids,:tender_id => @tender_id)
+        @documents = TenderDocument.where(:id => @package_ids,:tender_id => @tender_id).order('created_at desc,directory desc')
       else
         @documents = nil
       end
@@ -2516,21 +2516,9 @@ class TendersController < ApplicationController
   end
 
   def get_document_control_per_sc
-    # @tender = Tender.find(params[:tender_id])
-    # @tender_approved = TenderApprovedTrade.where(:tender_id => @tender.id)
-    #
-    # @trades_approved = []
-    # if @tender_approved.present?
-    #   @tender_approved.each do |t|
-    #     trade = Trade.find(t.trade_id)
-    #     @trades_approved << trade.name
-    #   end
-    # end
-    #
-    # @data = render :partial => 'tenders/document_upload/get_document_control'
     @tender = Tender.find(params[:tender_id])
     @tender_request_quotes = TenderRequestQuote.where(:tender_id => @tender.id)
-    @documents = TenderDocument.where(:tender_id => @tender.id)
+    @documents = TenderDocument.where(:tender_id => @tender.id).order('created_at desc,directory desc')
     @tender_trades = TenderTrade.where(:tender_id => @tender.id)
     @tender_approved = TenderApprovedTrade.where(:tender_id => @tender.id,:status => 'approved')
 
@@ -2546,9 +2534,7 @@ class TendersController < ApplicationController
 
     if @tender_trades.present?
       @tender_trades.each do |t|
-        #if @trades_approved.include? t.trade_id
-          @trades << t.trade_id
-        #end
+        @trades << t.trade_id
       end
     end
     @data = render :partial => 'tenders/document_control'
@@ -2611,7 +2597,7 @@ class TendersController < ApplicationController
   def get_document_control
     @tender = Tender.find(params[:tender_id])
     @tender_request_quotes = TenderRequestQuote.where(:tender_id => @tender.id)
-    @documents = TenderDocument.where(:user_id => session[:user_logged_id],:tender_id => @tender.id)
+    @documents = TenderDocument.where(:user_id => session[:user_logged_id],:tender_id => @tender.id).order('created_at desc,directory desc')
     @tender_trades = TenderTrade.where(:tender_id => @tender.id)
 
     @trades = []
