@@ -1,105 +1,154 @@
-<div class="row">
-  <div class="col-md-12">
-    <div id="content">
-      <div class="text-center">
+
+<div class="clearfix"> </div>
+
+<div class="page-container">
+  <div class="page-bar">
+    <ul class="page-breadcrumb">
+      <li>
         <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member'  %>
-          <a href="<%= sc_tender_tenders_path(:id => @tender.id,:quote => 'true') %>">
-            <button class="btn btn-warning" type="button" >
-              <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to Quote Register</button>
-          </a>
+            <a href="<%= sc_tender_tenders_path(:id => @tender.id,:quote => 'true') %>">
+              Return to Quote Register
+            </a>
         <% else %>
-          <a href="<%= hc_tender_tenders_path(:id => @tender.id,:quote => 'true') %>">
-            <button class="btn btn-warning" type="button" >
-              <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to Quote Register</button>
-          </a>
-        <% end %>
-        <a href="<%= @pdf_link %>" class="download" download>
-          <button class="btn btn-primary">Download</button>
-        </a>
-        <a href="<%= @pdf_link %>" class="download" target="_blank">
-          <button class="btn btn-primary">View as PDF</button>
-        </a>
-        <% if session[:role] == 'Sub Contractor' %>
-            <a href="<%= update_quote_quotes_path(:quote_id => @quote.id) %>">
-              <button class="btn btn-danger">Delete</button>
+            <a href="<%= hc_tender_tenders_path(:id => @tender.id,:quote => 'true') %>">
+              Return to Quote Register
             </a>
         <% end %>
+        <i class="fa fa-circle"></i>
+      </li>
+      <li>
+        <a href="<%= @pdf_link %>" class="download" download> Download</a>
+        <i class="fa fa-circle"></i>
+      </li>
+      <li>
+        <a href="<%= @pdf_link %>" class="download" target="_blank"> View as PDF
+        </a>
+        <i class="fa fa-circle"></i>
+      </li>
+      <% if session[:role] == 'Sub Contractor' %>
+        <li>
+          <a href="<%= update_quote_quotes_path(:quote_id => @quote.id) %>"> Delete</a>
+          <i class="fa fa-circle"></i>
+        </li>
+      <% end %>
+      <li>
+        <a class="" onclick="javascript:window.print();">Print</a>
+      </li>
+
+    </ul>
+
+  </div>
+  <!-- END PAGE BAR -->
+  <!-- BEGIN PAGE TITLE-->
+  <!--<h3 class="page-title"> Invoice 2
+    <small>invoice sample</small>
+  </h3>-->
+  <!-- END PAGE TITLE-->
+  <!-- END PAGE HEADER-->
+  <div class="invoice-content-2 bordered">
+    <div class="row invoice-head">
+      <div class="col-md-7 col-xs-6">
+        <div class="invoice-logo">
+          <img src="<%= @link %>" class="img-responsive" width="200px" height="100px" />
+        </div>
       </div>
-      <div style="height: 40px"></div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <label>Ref#</label>
-          <p class="quote_no_preview"><%= @quote.ref_no %></p>
-        </div>
-
-        <div class="form-group">
-          <label>To</label>
-          <p class="to_preview"><%= @quote.to %></p>
-        </div>
-
-        <div class="form-group">
-          <label>Attention</label>
-          <p class="attention_preview"><%= @quote.attention %></p>
-        </div>
-
-        <div class="form-group">
-          <label>Date</label>
-          <p class="quote_date_preview"><%= @quote.quote_date %></p>
-        </div>
-
-        <div class="form-group">
-          <label>Trade</label>
-          <% if (get_trades @quote.ref_no).present? %>
-            <% (get_trades @quote.ref_no).each do |t| %>
-              <p class="trade_preview"><%= get_trade_name t.trade_id %></p>
-            <% end %>
+      <div class="col-md-5 col-xs-6">
+        <div class="company-address">
+          <span class="bold uppercase"><%= @sc_user.company %></span>
+          <br/> <%= "#{@sc_user.first_name} #{@sc_user.last_name}" %>
+          <% if @sc_user.address.present? %>
+              <br/> <%= @sc_user.address.location %>
           <% end %>
-        </div>
+          <br/>
 
-        <div class="form-group">
-          <label>Title</label>
-          <p class="heading_preview"><%= @quote.title %></p>
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <div class="form-group">
-          <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
-        </div>
-
-        <div class="form-group">
-          <label>Company</label>
-          <p class="company_preview"><%= @sc_user.company %></p>
-        </div>
-
-        <div class="form-group">
-          <label>From</label>
-          <p class="from_preview"><%= "#{@sc_user.first_name} #{@sc_user.last_name}" %></p>
-        </div>
-
-        <div class="form-group">
-          <label>Price</label>
-          <p class="price_preview"><%= @quote.price %></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="form-group">
-            <label>Description</label>
-            <textarea class="form-control quote_desc_preview" rows="5" id="quote_desc"><%= @quote.description %></textarea>
-          </div>
-        </div>
-        <div style="height: 30px"></div>
-        <div class="col-md-12">
-          <div class="document_attached_files" > 
-
-          </div>  
+          <span class="bold">E</span> <%= @sc_user.email %>
+          <br/>
+          <span class="bold"></span>
         </div>
       </div>
     </div>
+    <div class="row invoice-cust-add">
+      <div class="col-xs-3">
+        <h2 class="invoice-title uppercase">Ref#</h2>
+        <p class="invoice-desc"><%= @quote.ref_no %></p>
+      </div>
+      <div class="col-xs-3">
+        <h2 class="invoice-title uppercase">Date</h2>
+        <p class="invoice-desc"><%= @quote.quote_date.present? ? @quote.quote_date.strftime('%Y.%m.%d') : nil %></p>
+      </div>
+      <div class="col-xs-2">
+        <h2 class="invoice-title uppercase">Attention</h2>
+        <p class="invoice-desc"><%= @quote.attention %></p>
+      </div>
+      <div class="col-xs-2">
+        <h2 class="invoice-title uppercase">Price</h2>
+        <p class="invoice-desc">
+          $ <%= @quote.price %>
+        </p>
+      </div>
+      <div class="col-xs-2">
+        <h2 class="invoice-title uppercase">Status</h2>
+        <p class="invoice-desc">
+           <%= @quote.status %>
+        </p>
+      </div>
+    </div>
+    <div class="row invoice-body">
+      <div class="col-xs-12 table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th class="invoice-title uppercase">Description</th>
+            <th class="invoice-title uppercase text-center">Title</th>
+            <th class="invoice-title uppercase text-center">Trade</th>
+            <th class="invoice-title uppercase text-center">From</th>
+            <th class="invoice-title uppercase text-center">To</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h3><%= @quote.description %></h3>
+              </td>
+              <td class="text-center sbold"><%= @quote.title %></td>
+              <td class="text-center sbold">
+                <% if (get_trades @quote.ref_no).present? %>
+                    <% (get_trades @quote.ref_no).each do |t| %>
+                        <p class="trade_preview"><%= get_trade_name t.trade_id %></p>
+                    <% end %>
+                <% end %>
+              </td>
+              <td class="text-center sbold"><%= "#{@sc_user.first_name} #{@sc_user.last_name}" %></td>
+              <td class="text-center sbold"><%= @quote.to %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row invoice-subtotal">
+      <div class="col-xs-3">
+        <h2 class="invoice-title uppercase">Subtotal</h2>
+        <p class="invoice-desc">23,800$</p>
+      </div>
+      <div class="col-xs-3">
+        <h2 class="invoice-title uppercase">Tax (0%)</h2>
+        <p class="invoice-desc">0$</p>
+      </div>
+      <div class="col-xs-6">
+        <h2 class="invoice-title uppercase">Total</h2>
+        <p class="invoice-desc grand-total">23,800$</p>
+      </div>
+    </div>
+
+  </div>
+  <div style="height: 30px"></div>
+  <div class="col-md-12">
+    <div class="document_attached_files" > 
+
+    </div>  
   </div>
 </div>
+
 <input type="hidden" class="tender_id" value="<%= @tender.id %>">
 <input type="hidden" class="quote_id" value="<%= @quote.id %>">
 
@@ -119,19 +168,20 @@
   });
 
   /*$('.download').click(function(){
-    var tender_id = $('.tender_id').val();
-    console.log("djsdjshadhajdha")
-    $.ajax({
-      method: "POST",
-      data: {tender_id:tender_id,quote_id:quote_id},
-      url: "/quotes/download_quotes"
-    }).done(function (data) {
-      console.log(data.link);
-      $('.download_link').attr('href', data.link)
-      var link = $(".download_link");
-      link.click();
-      window.location.href = link.attr("href");
-    });
-  });*/
+   var tender_id = $('.tender_id').val();
+   console.log("djsdjshadhajdha")
+   $.ajax({
+   method: "POST",
+   data: {tender_id:tender_id,quote_id:quote_id},
+   url: "/quotes/download_quotes"
+   }).done(function (data) {
+   console.log(data.link);
+   $('.download_link').attr('href', data.link)
+   var link = $(".download_link");
+   link.click();
+   window.location.href = link.attr("href");
+   });
+   });*/
 </script>
+
 

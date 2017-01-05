@@ -1,0 +1,137 @@
+<div class="row">
+  <div class="col-md-12">
+    <div id="content">
+      <div class="text-center">
+        <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member'  %>
+            <a href="<%= sc_tender_tenders_path(:id => @tender.id,:quote => 'true') %>">
+              <button class="btn btn-warning" type="button" >
+                <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to Quote Register</button>
+            </a>
+        <% else %>
+            <a href="<%= hc_tender_tenders_path(:id => @tender.id,:quote => 'true') %>">
+              <button class="btn btn-warning" type="button" >
+                <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to Quote Register</button>
+            </a>
+        <% end %>
+        <a href="<%= @pdf_link %>" class="download" download>
+          <button class="btn btn-primary">Download</button>
+        </a>
+        <a href="<%= @pdf_link %>" class="download" target="_blank">
+          <button class="btn btn-primary">View as PDF</button>
+        </a>
+        <% if session[:role] == 'Sub Contractor' %>
+            <a href="<%= update_quote_quotes_path(:quote_id => @quote.id) %>">
+              <button class="btn btn-danger">Delete</button>
+            </a>
+        <% end %>
+      </div>
+      <div style="height: 40px"></div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Ref#</label>
+          <p class="quote_no_preview"><%= @quote.ref_no %></p>
+        </div>
+
+        <div class="form-group">
+          <label>To</label>
+          <p class="to_preview"><%= @quote.to %></p>
+        </div>
+
+        <div class="form-group">
+          <label>Attention</label>
+          <p class="attention_preview"><%= @quote.attention %></p>
+        </div>
+
+        <div class="form-group">
+          <label>Date</label>
+          <p class="quote_date_preview"><%= @quote.quote_date %></p>
+        </div>
+
+        <div class="form-group">
+          <label>Trade</label>
+          <% if (get_trades @quote.ref_no).present? %>
+              <% (get_trades @quote.ref_no).each do |t| %>
+                  <p class="trade_preview"><%= get_trade_name t.trade_id %></p>
+              <% end %>
+          <% end %>
+        </div>
+
+        <div class="form-group">
+          <label>Title</label>
+          <p class="heading_preview"><%= @quote.title %></p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+        </div>
+
+        <div class="form-group">
+          <label>Company</label>
+          <p class="company_preview"><%= @sc_user.company %></p>
+        </div>
+
+        <div class="form-group">
+          <label>From</label>
+          <p class="from_preview"><%= "#{@sc_user.first_name} #{@sc_user.last_name}" %></p>
+        </div>
+
+        <div class="form-group">
+          <label>Price</label>
+          <p class="price_preview"><%= @quote.price %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label>Description</label>
+            <textarea class="form-control quote_desc_preview" rows="5" id="quote_desc"><%= @quote.description %></textarea>
+          </div>
+        </div>
+        <div style="height: 30px"></div>
+        <div class="col-md-12">
+          <div class="document_attached_files" > 
+
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<input type="hidden" class="tender_id" value="<%= @tender.id %>">
+<input type="hidden" class="quote_id" value="<%= @quote.id %>">
+
+<div style="display: none;">
+  <a href="" class="download_link" target="_blank" download></a>
+</div>
+
+<script>
+  var tender_id = $('.tender_id').val();
+  var quote_id = $('.quote_id').val();
+  $.ajax({
+    method: "POST",
+    data: {tender_id:tender_id,view:'true',quote_id:quote_id},
+    url: "/quote_documents/get_documents"
+  }).done(function (data) {
+    $('.document_attached_files').html(data);
+  });
+
+  /*$('.download').click(function(){
+   var tender_id = $('.tender_id').val();
+   console.log("djsdjshadhajdha")
+   $.ajax({
+   method: "POST",
+   data: {tender_id:tender_id,quote_id:quote_id},
+   url: "/quotes/download_quotes"
+   }).done(function (data) {
+   console.log(data.link);
+   $('.download_link').attr('href', data.link)
+   var link = $(".download_link");
+   link.click();
+   window.location.href = link.attr("href");
+   });
+   });*/
+</script>
+

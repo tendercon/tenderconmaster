@@ -43,29 +43,11 @@
           <li class="nav-item start">
       <% end %>
 
-        <a href="javascript:;" class="nav-link nav-toggle">
-          <i class="icon-home"></i>
+        <a href="<%= dashboard_index_path %>" class="nav-link ">
+          <i class="icon-bar-chart"></i>
           <span class="title">Dashboard</span>
           <span class="selected"></span>
-          <% if params[:controller] == 'dashboard' %>
-              <span class="arrow open"></span>
-          <% else %>
-              <span class="arrow"></span>
-          <% end %>
         </a>
-        <ul class="sub-menu">
-          <% if params[:controller] == 'dashboard' %>
-              <li class="nav-item start active open">
-          <% else %>
-              <li class="nav-item start">
-          <% end %>
-            <a href="<%= dashboard_index_path %>" class="nav-link ">
-              <i class="icon-bar-chart"></i>
-              <span class="title">Analytics</span>
-              <span class="selected"></span>
-            </a>
-          </li>
-        </ul>
       </li>
       <li class="heading">
         <h3 class="uppercase">Features</h3>
@@ -74,113 +56,93 @@
       <% if params[:controller] == 'calendars' %>
           <li class="nav-item start active open">
       <% else %>
-          <li class="nav-item  ">
+          <li class="nav-item  start">
       <% end %>
-        <a href="javascript:;" class="nav-link nav-toggle">
-          <i class="icon-diamond"></i>
-          <span class="title">Calendar Features</span>
-          <% if params[:controller] == 'calendars' %>
-              <span class="arrow open"></span>
-          <% else %>
-              <span class="arrow"></span>
-          <% end %>
+        <a href="<%= calendars_path %>" class="nav-link ">
+          <i class="fa fa-calendar-check-o"></i>
+          <span class="title">Calendar</span>
+          <span class="selected"></span>
         </a>
-        <ul class="sub-menu">
-          <% if params[:controller] == 'calendars' %>
+      </li>
+      <li class="heading">
+        <h3 class="uppercase">Tenders</h3>
+      </li>
+
+      <% if session[:role] == 'Head Contractor' %>
+          <% if params[:action] == 'new_tender' %>
               <li class="nav-item start active open">
                 <span class="selected"></span>
           <% else %>
               <li class="nav-item">
           <% end %>
-            <a href="<%= calendars_path %>" class="nav-link ">
-              <span class="title">Calendar</span>
-            </a>
+          <a href="<%= '/tenders/new_tender?info=true' %>" class="nav-link ">
+            <i class="fa fa-plus-square"></i>
+            <span class="title">Post Tender</span>
+            <% if params[:action] == 'new_tender' %>
+                <span class="selected"></span>
+            <% end %>
+          </a>
           </li>
-        </ul>
-      </li>
-      <% if params[:controller] == 'tenders' %>
+      <% end %>
+
+      <% if session[:role] == 'Sub Contractor' %>
+          <% if params[:action] == 'invited_tender' %>
+              <li class="nav-item start active open">
+                <span class="selected"></span>
+          <% else %>
+              <li class="nav-item">
+          <% end %>
+          <a href="<%= '/tenders/invited_tender' %>" class="nav-link ">
+            <i class="fa fa-envelope"></i>
+            <span class="title">Invited Tender</span>
+            <% if params[:action] == 'invited_tender' %>
+                <span class="selected"></span>
+            <% end %>
+            <span class="badge badge-danger"><%= @tender_invites.present? ? @tender_invites.size : 0 %></span>
+          </a>
+          </li>
+
+          <% if params[:action] == 'open_tender' %>
+              <li class="nav-item start active open">
+                <span class="selected"></span>
+          <% else %>
+              <li class="nav-item">
+          <% end %>
+          <a href="<%= '/tenders/open_tender' %>" class="nav-link ">
+            <i class="fa fa-opencart" aria-hidden="true"></i>
+            <span class="title">Open Tender</span>
+            <% if params[:action] == 'open_tender' %>
+                <span class="selected"></span>
+            <% end %>
+            <% if params[:action] == 'invited_tender' %>
+                <span class="selected"></span>
+            <% end %>
+            <span class="badge badge-danger"><%= @open_tenders.present? ? @open_tenders.size : 0 %></span>
+          </a>
+          </li>
+
+      <% end %>
+
+
+      <% if params[:action] == 'my_tender' || params[:action] == 'hc_tender' || params[:action] == 'sc_tender' || params[:controller] == 'quotes' || params[:controller] == 'rfis' %>
           <li class="nav-item start active open">
+            <span class="selected"></span>
       <% else %>
-          <li class="nav-item  ">
+          <li class="nav-item">
       <% end %>
-        <a href="javascript:;" class="nav-link nav-toggle">
-          <i class="icon-puzzle"></i>
-          <span class="title">Tenders</span>
-          <% if params[:controller] == 'tenders' %>
-              <span class="arrow open"></span>
-          <% else %>
-              <span class="arrow"></span>
-          <% end %>
 
-        </a>
-        <ul class="sub-menu">
-          <% if session[:role] == 'Head Contractor' %>
-              <% if params[:action] == 'new_tender' %>
-                  <li class="nav-item start active open">
-                    <span class="selected"></span>
-              <% else %>
-                  <li class="nav-item">
-              <% end %>
-                <a href="<%= '/tenders/new_tender?info=true' %>" class="nav-link ">
-                  <span class="title">Post Tender</span>
-                  <% if params[:action] == 'new_tender' %>
-                      <span class="selected"></span>
-                  <% end %>
-                </a>
-              </li>
-          <% end %>
-
-          <% if session[:role] == 'Sub Contractor' %>
-              <% if params[:action] == 'invited_tender' %>
-                  <li class="nav-item start active open">
-                    <span class="selected"></span>
-              <% else %>
-                  <li class="nav-item">
-              <% end %>
-                <a href="<%= '/tenders/invited_tender' %>" class="nav-link ">
-                  <span class="title">Invited Tender</span>
-                  <% if params[:action] == 'invited_tender' %>
-                      <span class="selected"></span>
-                  <% end %>
-                  <span class="badge badge-danger"><%= @tender_invites.present? ? @tender_invites.size : 0 %></span>
-                </a>
-              </li>
-
-              <% if params[:action] == 'open_tender' %>
-                  <li class="nav-item start active open">
-                    <span class="selected"></span>
-              <% else %>
-                  <li class="nav-item">
-              <% end %>
-                <a href="<%= '/tenders/open_tender' %>" class="nav-link ">
-                  <span class="title">Open Tender</span>
-                  <% if params[:action] == 'invited_tender' %>
-                      <span class="selected"></span>
-                  <% end %>
-                  <span class="badge badge-danger"><%= @open_tenders.present? ? @open_tenders.size : 0 %></span>
-                </a>
-              </li>
-
+      <a href="<%= '/tenders/my_tender' %>" class="nav-link ">
+        <i class="fa fa-university"></i>
+        <span class="title">My Tender</span>
+        <% if params[:action] == 'my_tender' || params[:action] == 'hc_tender' || params[:action] == 'sc_tender' || params[:controller] == 'quotes'  || params[:controller] == 'rfis' %>
+            <span class="selected"></span>
         <% end %>
-
-
-          <% if params[:action] == 'my_tender' %>
-              <li class="nav-item start active open">
-                <span class="selected"></span>
-          <% else %>
-              <li class="nav-item">
-          <% end %>
-
-            <a href="<%= '/tenders/my_tender' %>" class="nav-link ">
-              <span class="title">My Tender</span>
-              <% if session[:role] == 'Head Contractor' %>
-                <span class="badge badge-danger"><%= @tenders.present? ? @tenders.size : 0 %></span>
-              <% end %>
-            </a>
-          </li>
-
-        </ul>
+        <% if session[:role] == 'Head Contractor' %>
+            <span class="badge badge-danger"><%= @tenders.present? ? @tenders.size : 0 %></span>
+        <% end %>
+      </a>
       </li>
+
     </ul>
     <!-- END SIDEBAR MENU -->
     <!-- END SIDEBAR MENU -->

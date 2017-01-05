@@ -12,7 +12,7 @@
                   </div>
                 </div>
                 <div class="portlet-body">
-                  <div class="table-scrollable">
+                  <div class="row">
                     <div class="row comment-details">
                       <% if @comments.present? %>
                           <% @comments.each do |comment| %>
@@ -41,7 +41,7 @@
                                                 <i class="fa fa-file-o" aria-hidden="true"></i>
                                                 <%= get_document_path_name comment.id  %>
                                               </div>
-                                              <div class="col-md-6">
+                                              <div class="col-md-4">
                                                 <a href="<%= get_comment_document_path comment.id  %>">
                                                   <i class="fa fa-download" aria-hidden="true">Download Attached File</i>
                                                 </a>
