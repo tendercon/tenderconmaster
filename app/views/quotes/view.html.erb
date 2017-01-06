@@ -7,36 +7,43 @@
       <li>
         <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member'  %>
             <a href="<%= sc_tender_tenders_path(:id => @tender.id,:quote => 'true') %>">
-              Return to Quote Register
+              <button class="btn btn-default"><i class="fa fa-hand-o-left"></i> Return to Quote Register</button>
             </a>
         <% else %>
             <a href="<%= hc_tender_tenders_path(:id => @tender.id,:quote => 'true') %>">
-              Return to Quote Register
+              <button class="btn btn-default"><i class="fa fa-hand-o-left"></i> Return to Quote Register</button>
             </a>
         <% end %>
-        <i class="fa fa-circle"></i>
+
       </li>
-      <li>
-        <a href="<%= @pdf_link %>" class="download" download> Download</a>
-        <i class="fa fa-circle"></i>
-      </li>
-      <li>
-        <a href="<%= @pdf_link %>" class="download" target="_blank"> View as PDF
-        </a>
-        <i class="fa fa-circle"></i>
-      </li>
-      <% if session[:role] == 'Sub Contractor' %>
-        <li>
-          <a href="<%= update_quote_quotes_path(:quote_id => @quote.id) %>"> Delete</a>
-          <i class="fa fa-circle"></i>
-        </li>
-      <% end %>
-      <li>
-        <a class="" onclick="javascript:window.print();">Print</a>
-      </li>
+
 
     </ul>
+    <div class="page-toolbar">
+      <div class="btn-group pull-right">
+        <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
+          <i class="fa fa-angle-down"></i>
+        </button>
+        <ul class="dropdown-menu pull-right" role="menu">
+          <li>
+            <a href="<%= @pdf_link %>" class="download" download><i class="fa fa-cloud-download"></i> Download</a>
 
+          </li>
+          <li>
+            <a href="<%= @pdf_link %>" class="download" target="_blank"><i class="fa fa-file-pdf-o"></i> View as PDF</a>
+          </li>
+          <% if session[:role] == 'Sub Contractor' %>
+              <li>
+                <a href="<%= update_quote_quotes_path(:quote_id => @quote.id) %>"><i class="fa fa-trash-o"></i> Delete</a>
+              </li>
+          <% end %>
+          <li>
+            <a class="" onclick="javascript:window.print();"><i class="fa fa-print"></i> Print</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
   </div>
   <!-- END PAGE BAR -->
   <!-- BEGIN PAGE TITLE-->
@@ -77,20 +84,47 @@
         <p class="invoice-desc"><%= @quote.quote_date.present? ? @quote.quote_date.strftime('%Y.%m.%d') : nil %></p>
       </div>
       <div class="col-xs-2">
+        <h2 class="invoice-title uppercase">To</h2>
+        <p class="invoice-desc">
+          <%= @quote.to %>
+        </p>
+      </div>
+      <div class="col-xs-2">
         <h2 class="invoice-title uppercase">Attention</h2>
         <p class="invoice-desc"><%= @quote.attention %></p>
       </div>
-      <div class="col-xs-2">
-        <h2 class="invoice-title uppercase">Price</h2>
-        <p class="invoice-desc">
-          $ <%= @quote.price %>
-        </p>
+
+
+    </div>
+    <div class="row invoice-body">
+      <div class="col-xs-4 table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th class="invoice-title uppercase">Title</th>
+            <th class="sbold span3"><%= @quote.title %></th>
+          </tr>
+          </thead>
+
+        </table>
       </div>
-      <div class="col-xs-2">
-        <h2 class="invoice-title uppercase">Status</h2>
-        <p class="invoice-desc">
-           <%= @quote.status %>
-        </p>
+    </div>
+    <div class="row invoice-body">
+      <div class="col-xs-4 table-responsive">
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th class="invoice-title uppercase">Trade</th>
+            <th class="text-center sbold">
+              <% if (get_trades @quote.ref_no).present? %>
+                  <% (get_trades @quote.ref_no).each do |t| %>
+                      <p class="trade_preview"><%= get_trade_name t.trade_id %></p>
+                  <% end %>
+              <% end %>
+            </th>
+          </tr>
+          </thead>
+        </table>
       </div>
     </div>
     <div class="row invoice-body">
@@ -99,28 +133,15 @@
           <thead>
           <tr>
             <th class="invoice-title uppercase">Description</th>
-            <th class="invoice-title uppercase text-center">Title</th>
-            <th class="invoice-title uppercase text-center">Trade</th>
-            <th class="invoice-title uppercase text-center">From</th>
-            <th class="invoice-title uppercase text-center">To</th>
+
           </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <h3><%= @quote.description %></h3>
-              </td>
-              <td class="text-center sbold"><%= @quote.title %></td>
-              <td class="text-center sbold">
-                <% if (get_trades @quote.ref_no).present? %>
-                    <% (get_trades @quote.ref_no).each do |t| %>
-                        <p class="trade_preview"><%= get_trade_name t.trade_id %></p>
-                    <% end %>
-                <% end %>
-              </td>
-              <td class="text-center sbold"><%= "#{@sc_user.first_name} #{@sc_user.last_name}" %></td>
-              <td class="text-center sbold"><%= @quote.to %></td>
-            </tr>
+          <tr>
+            <td>
+              <h3><%= @quote.description %></h3>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -128,25 +149,29 @@
     <div class="row invoice-subtotal">
       <div class="col-xs-3">
         <h2 class="invoice-title uppercase">Subtotal</h2>
-        <p class="invoice-desc">23,800$</p>
+        <p class="invoice-desc">$<%= @quote.price %></p>
       </div>
       <div class="col-xs-3">
         <h2 class="invoice-title uppercase">Tax (0%)</h2>
-        <p class="invoice-desc">0$</p>
+        <p class="invoice-desc">10</p>
       </div>
       <div class="col-xs-6">
         <h2 class="invoice-title uppercase">Total</h2>
-        <p class="invoice-desc grand-total">23,800$</p>
+        <p class="invoice-desc grand-total">$<%= get_tax_computation @quote.price %></p>
+      </div>
+    </div>
+
+    <div class="row invoice-subtotal">
+      <div style="height: 30px"></div>
+      <div class="col-md-12">
+        <div class="document_attached_files" > 
+
+        </div>  
       </div>
     </div>
 
   </div>
-  <div style="height: 30px"></div>
-  <div class="col-md-12">
-    <div class="document_attached_files" > 
 
-    </div>  
-  </div>
 </div>
 
 <input type="hidden" class="tender_id" value="<%= @tender.id %>">

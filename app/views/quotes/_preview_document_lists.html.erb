@@ -1,5 +1,6 @@
 <div style="height: 30px"></div>
-<label>Quote Document</label>
+<h2 class="invoice-title uppercase">Quote Document</h2>
+
 <div class="quote_documents">
   <div class="row">
     <div class="col-md-12">
@@ -7,7 +8,7 @@
         <thead>
         <% if @quote_documents.present? %>
             <tr>
-              <th>Document</th>
+              <th class="invoice-desc">Document</th>
               <th></th>
             </tr>
         <% end %>
@@ -17,7 +18,7 @@
           <% @quote_documents.each do |d| %>
             <tr>
               <% if d.document_file_name != '.DS_Store'  %>
-                <td><%= d.document_file_name %></td>
+                <td class="invoice-desc"><%= d.document_file_name %></td>
                 <td>
                   <a href="<%= root_path <<  "assets/quotes/#{d.id}/original/"+ d.document_file_name%>" target="_blank">
                     <button class="btn btn-default">View</button>
@@ -37,7 +38,8 @@
   </div>
 
 </div>
-<label>Supporting files(Optional)</label>
+
+<h2 class="invoice-title uppercase">Supporting files(Optional)</h2>
 <div class="quote_document_optional">
   <div class="row">
     <div class="col-md-12">
@@ -45,7 +47,7 @@
         <thead>
         <% if @quote_document_optionals.present? %>
             <tr>
-              <th>Document</th>
+              <th class="invoice-desc">Document</th>
               <th></th>
             </tr>
         <% end %>
@@ -55,7 +57,7 @@
             <% @quote_document_optionals.each do |d| %>
                 <tr>
                   <% if d.document_file_name != '.DS_Store'  %>
-                      <td><%= d.document_file_name %></td>
+                      <td class="invoice-desc"><%= d.document_file_name %></td>
 
                       <td>
                         <a href="<%= root_path <<  "assets/quote_optionals/#{d.id}/original/"+ d.document_file_name %>" target="_blank">

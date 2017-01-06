@@ -13,57 +13,39 @@
   <div class="page-bar">
     <ul class="page-breadcrumb">
       <li>
-        <% if session[:role] == 'Head Contractor' %>
-            <a href="<%= hc_tender_tenders_path(:id => @tender.id,:rfi => 'true') %>"> Return to RFI Register
-              <!--<button class="btn btn-warning" type="button" >
-                <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to RFI Register</button>-->
+        <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member'  %>
+            <a href="<%= sc_tender_tenders_path(:id => @tender.id,:rfi => 'true') %>">
+              <button class="btn btn-default"><i class="fa fa-hand-o-left"></i> Return to RFI Register</button>
             </a>
         <% else %>
-            <a href="<%= sc_tender_tenders_path(:id => @tender.id,:rfi => 'true') %>"> Return to RFI Register
-              <!--<button class="btn btn-warning" type="button" >
-                <i class="fa fa-arrow-left fa-1x" aria-hidden="true"></i> Return to RFI Register</button>-->
+            <a href="<%= hc_tender_tenders_path(:id => @tender.id,:rfi => 'true') %>">
+              <button class="btn btn-default"><i class="fa fa-hand-o-left"></i> Return to RFI Register</button>
             </a>
         <% end %>
-        <i class="fa fa-circle"></i>
+
       </li>
-      <li>
-        <a href="<%= @download_link %>" target="_blank" class="download" download> Download</a>
-        <i class="fa fa-circle"></i>
-      </li>
-      <li>
-        <a href="<%= @download_link %>" target="_blank" class="download"> View as PDF</a>
-        <i class="fa fa-circle"></i>
-      </li>
-      <li>
-        <a class="" onclick="javascript:window.print();">Print</a>
-      </li>
+
     </ul>
-    <!--<div class="page-toolbar">
+    <div class="page-toolbar">
       <div class="btn-group pull-right">
         <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
           <i class="fa fa-angle-down"></i>
         </button>
         <ul class="dropdown-menu pull-right" role="menu">
           <li>
-            <a href="#">
-              <i class="icon-bell"></i> Action</a>
+            <a href="<%= @download_link %>" class="download" download><i class="fa fa-cloud-download"></i> Download</a>
+
           </li>
           <li>
-            <a href="#">
-              <i class="icon-shield"></i> Another action</a>
+            <a href="<%= @download_link %>" class="download" target="_blank"><i class="fa fa-file-pdf-o"></i> View as PDF</a>
           </li>
           <li>
-            <a href="#">
-              <i class="icon-user"></i> Something else here</a>
+            <a class="" onclick="javascript:window.print();"><i class="fa fa-print"></i> Print</a>
           </li>
-          <li class="divider"> </li>
-          <li>
-            <a href="#">
-              <i class="icon-bag"></i> Separated link</a>
-          </li>
+
         </ul>
       </div>
-    </div>-->
+    </div>
   </div>
   <!-- END PAGE BAR -->
   <!-- BEGIN PAGE TITLE-->

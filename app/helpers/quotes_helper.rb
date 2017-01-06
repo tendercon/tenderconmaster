@@ -155,4 +155,14 @@ module QuotesHelper
   def get_quote_count tender_id
     Quote.where(:tender_id => tender_id).count()
   end
+
+  def get_tax_computation price
+    if price.present?
+      net = (price * (0.10))  + price
+      net
+    else
+      0
+    end
+
+  end
 end
