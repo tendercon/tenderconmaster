@@ -102,7 +102,7 @@
           <thead>
           <tr>
             <th class="invoice-title uppercase">Title</th>
-            <th class="sbold span3"><%= @quote.title %></th>
+            <th class="sbold"><%= @quote.title %></th>
           </tr>
           </thead>
 
@@ -115,10 +115,11 @@
           <thead>
           <tr>
             <th class="invoice-title uppercase">Trade</th>
-            <th class="text-center sbold">
+            <th class="invoice-desc">
               <% if (get_trades @quote.ref_no).present? %>
                   <% (get_trades @quote.ref_no).each do |t| %>
-                      <p class="trade_preview"><%= get_trade_name t.trade_id %></p>
+                      <label class="invoice-desc"><%= get_trade_name t.trade_id %></label>
+                      <br/>
                   <% end %>
               <% end %>
             </th>
