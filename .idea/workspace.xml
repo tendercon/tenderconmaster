@@ -2,26 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/quotes/VZZ-6803-Tender01/VZZ-6803-Tender01.zip" afterPath="$PROJECT_DIR$/public/assets/quotes/VZZ-6803-Tender01/VZZ-6803-Tender01.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/rfi/preview-RFI-JC-1-Tender01/RFI-JC-1-Tender01.zip" afterPath="$PROJECT_DIR$/public/assets/rfi/preview-RFI-JC-1-Tender01/RFI-JC-1-Tender01.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/quotes_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/quotes_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/users_layout.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/users_layout.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quotes/_latest_quotes.html.erb" afterPath="$PROJECT_DIR$/app/views/quotes/_latest_quotes.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quotes/_quotes.html.erb" afterPath="$PROJECT_DIR$/app/views/quotes/_quotes.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quotes/_search_by_trade.html.erb" afterPath="$PROJECT_DIR$/app/views/quotes/_search_by_trade.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quotes/backup_view.html.erb" afterPath="$PROJECT_DIR$/app/views/quotes/backup_view.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/hc_tender.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/hc_tender.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/sc_tender.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/sc_tender.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/login.html.erb" afterPath="$PROJECT_DIR$/app/views/users/login.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/register.html.erb" afterPath="$PROJECT_DIR$/app/views/users/register.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/registration_completed.html.erb" afterPath="$PROJECT_DIR$/app/views/users/registration_completed.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/steps_completed.html.erb" afterPath="$PROJECT_DIR$/app/views/users/steps_completed.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/welcome_page.html.erb" afterPath="$PROJECT_DIR$/app/views/users/welcome_page.html.erb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -117,11 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registration_completed.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/users/registration_completed.html.erb">
+      <file leaf-file-name="_search_by_trade.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/quotes/_search_by_trade.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
+            <state relative-caret-position="548">
+              <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -200,7 +181,6 @@
         <option value="$PROJECT_DIR$/app/views/quotes/_latest_quotes.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/hc_tender.html.erb" />
         <option value="$PROJECT_DIR$/app/views/quotes/_quotes.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/quotes/_search_by_trade.html.erb" />
         <option value="$PROJECT_DIR$/app/views/tenders/sc_tender.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/users_layout.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/welcome_page.html.erb" />
@@ -209,6 +189,7 @@
         <option value="$PROJECT_DIR$/app/views/users/register.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/registration_completed.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/quotes/_search_by_trade.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       </list>
     </option>
@@ -298,28 +279,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tendercon_v2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tendercon_v2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="users" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -766,12 +725,12 @@
       <workItem from="1483686190494" duration="12641000" />
       <workItem from="1483859645759" duration="1547000" />
       <workItem from="1483861435297" duration="1950000" />
-      <workItem from="1483863499466" duration="983000" />
+      <workItem from="1483863499466" duration="1307000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="268707000" />
+    <option name="totallyTimeSpent" value="269031000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
@@ -1092,13 +1051,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/quotes/_search_by_trade.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="75" column="54" selection-start-line="75" selection-start-column="54" selection-end-line="75" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/quotes/_quotes.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1005">
@@ -1196,6 +1148,14 @@
             <marker date="1483864467000" expanded="true" signature="19078:19090" ph="..." />
             <marker date="1483864467000" expanded="true" signature="19570:19582" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/quotes/_search_by_trade.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="548">
+          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
