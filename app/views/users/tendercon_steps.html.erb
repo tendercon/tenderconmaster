@@ -1,7 +1,7 @@
 <div class="users_step">
-  <div class="col-md-24 step1">
+  <div class="col-md-12 step1">
     <input type="hidden" class="user_id" id="user_id" value="<%= @user.id %>">
-    <div class="col-md-12 step1_lf">
+    <div class="col-md-6 step1_lf">
       <div class="step_div">
         <!--<img src="/assets/img-4.jpg" width="30px" class="img-responsive center-block">-->
         <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
@@ -41,11 +41,11 @@
       <br> <br> <br> <br>
     </div>
 
-    <div class="col-md-12 step1_rg" style="background-color:#165bf7">
-      <div class="col-sm-24 col-md-14 col-md-offset-5 my_profile">
+    <div class="col-md-6 step1_rg" style="background-color:#165bf7">
+      <div class="my_profile">
         <br>
         <p class="company_profile">MY PROFILE</p>
-        <p class="company_line">________________________________________________________________________</p>
+        <hr>
         <br/>
         <img id="profile-img" class=" img-circle center-block" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <br>
@@ -57,29 +57,23 @@
           <p class="profile_text">POSITION <label class="position_value pull-right"></label></p>
         </form>
 
-
-        <p class="company_line">________________________________________________________________________</p>
+        <hr>
         <br>
         <br>
         <br>
 
       </div>
       <br>
-      <br>
-      <br>
     </div>
     <br>
   </div>
 
 
-  <div class="col-md-24 step2" style="display: none;">
-    <div class="col-md-12">
+  <div class="col-md-12 step2" style="display: none;">
+    <div class="col-md-6">
       <div class="step_div">
         <!--<img src="/assets/img-4.jpg" width="30px" class="img-responsive center-block">-->
         <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
-
-        <br>
-        <br>
         <p class="text-center login-title">Your Company Information</p>
         <br/>
         <form class="form-group form-inline">
@@ -111,14 +105,14 @@
           <button class="btn  btn-primary btn-login step3_btn" type="button">Next</button>
         </a>
       </div>
-      <br> <br> <br> <br>
+      <br>
     </div>
 
-    <div class="col-md-12" style="background-color:#165bf7">
-      <div class="col-sm-24 col-md-14 col-md-offset-5 company_profile">
+    <div class="col-md-6" style="background-color:#165bf7">
+      <div class="company_profile">
         <br>
         <p class="company_profile">COMPANY PROFILE</p>
-        <p class="company_line">________________________________________________________________________</p>
+        <hr>
         <br/>
         <img id="profile-img" class=" img-circle center-block" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <br>
@@ -138,26 +132,21 @@
           <p class="profile_text">TENDERCON ID  <label class="tendercon_value pull-right"></label></p>
         </form>
 
-        <p class="company_line">________________________________________________________________________</p>
-        <br>
-        <br>
-        <br>
-        <br>
+        <hr>
+
       </div>
       <br>
-      <br>
-      <br>
+
     </div>
-    <br>
   </div>
 
 
-  <div class="col-md-24 step3" style="display: none;">
-    <div class="col-md-12 step3_div_lf">
+  <div class="col-md-12 step3" style="display: none;">
+    <div class="col-md-6 step3_div_lf">
       <div class="step_div">
         <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
         <br>
-        <br>
+
         <p class="text-center login-title">Your Company Information</p>
         <br/>
         <label> ADDRESS</label>
@@ -169,37 +158,40 @@
         <label> SUBURB</label>
         <input type="text" class="form-control"  id="suburb" name="suburb" value="" required autofocus>
         <br>
+        <label> STATE</label>
+        <input type="text" class="form-control"  id="state" name="state" value="" required autofocus>
+        <br>
+        <label> POSTCODE</label>
+        <input type="text" class="form-control"  id="postcode" name="postcode" value="" required autofocus>
 
-        <form class="form-group form-inline">
-          <label> STATE</label>
-          <input type="text" class="form-control"  id="state" name="state" value="" required autofocus>
-          <label> POSTCODE</label>
-          <input type="text" class="form-control"  id="postcode" name="postcode" value="" required autofocus>
-        </form>
         <br>
         <label> TIMEZONE</label>
         <input type="text" class="form-control"  id="timezone" name="timezone" value="" required autofocus>
         <br>
-
         <a href="#!">
+
           <button class="btn  btn-default btn-login back3_btn" type="button">Back</button>
           <% if session[:role] == 'Head Contractor' %>
             <button class="btn  btn-primary btn-login step4_btn" type="button" title="finish_hc">Next</button>
             <!--<button class="btn  btn-primary btn-login step4_btn" type="submit">Next</button>-->
-          <% elsif session[:role] == 'Sub Contractor' %>
+          <% else %>
             <button class="btn  btn-primary btn-login step4_btn" type="button">Next</button>
           <% end %>
-
         </a>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <div style="height: 300px;"></div>
       </div>
-      <br> <br> <br> <br>
     </div>
 
-    <div class="col-md-12 step3_div_rg" style="background-color:#165bf7">
-      <div class="col-sm-24 col-md-14 col-md-offset-5 company_profile">
+    <div class="col-md-6 step3_div_rg" style="background-color:#165bf7">
+      <div class="company_profile">
         <br>
         <p class="company_profile">COMPANY PROFILE</p>
-        <p class="company_line">________________________________________________________________________</p>
+        <hr>
         <br/>
         <img id="profile-img" class=" img-circle center-block" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <br>
@@ -219,7 +211,7 @@
           <p class="profile_text">TENDERCON ID  <label class="tendercon_value pull-right"></label></p>
         </form>
 
-        <p class="company_line">________________________________________________________________________</p>
+        <hr>
         <br>
         <form class="form-group form-inline">
           <p class="profile_text">ADDRESS <label class="address_value pull-right"></label></p>
@@ -231,14 +223,14 @@
         </form>
         <br>
       </div>
-      <br><br>
+      <div style="height: 50px;"></div>
 
     </div>
 
   </div>
 
-  <div class="col-md-24 step4" style="display: none;">
-    <div class="col-md-12">
+  <div class="col-md-12 step4" style="display: none;">
+    <div class="col-md-6">
       <div class="step_div">
         <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
         <br>
@@ -299,11 +291,10 @@
       <br> <br> <br> <br>
     </div>
 
-    <div class="col-md-12" style="background-color:#165bf7">
-      <div class="col-sm-24 col-md-14 col-md-offset-5 company_profile">
+    <div class="col-md-6" style="background-color:#165bf7">
+      <div class="company_profile">
         <br>
         <p class="company_profile">TRADE PROFILE</p>
-        <p class="company_line">________________________________________________________________________</p>
         <br/>
         <img id="profile-img" class=" img-circle center-block" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <br>
@@ -336,8 +327,6 @@
         </form>
         <br>
       </div>
-      <br>
-      <br>
       <br>
     </div>
     <br>
@@ -388,502 +377,503 @@
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8&libraries=places&sensor=false"></script>
 <script>
 
-  activate_next2_btn();
-  activate_next3_btn();
-  activate_next4_btn();
-  activate_address_btn();
-   var user_id = <%= @user.id %>
-   $('.trade_value').text($('#trade_name').val());
-   $('.abn_value').text($('#abn').val());
-   $('.company_value').text($('#company').val());
-   $('.tendercon_value').text($('#tendercon_id').val());
-
-   var l_name = $('#last_name').val();
-   var f_name = $('#first_name').val();
-   console.log("l_name.length:"+l_name);
-   if(l_name != undefined){
-     $('.name_value').text(f_name + " " + l_name);
-   }else{
-     $('.name_value').text(f_name);
-   }
-
-
-
-   $('#trade_name').keyup(function(){
-     $('.trade_value').text($(this).val());
-   });
-
-   $('#abn').keyup(function(){
-    var abn_value = $($('#abn').val());
-     activate_address_btn();
-   });
-
-  $('#abn').focusout(function(){
-    var abn_value = $($('#abn').val());
+  $(document).ready(function(){
+    activate_next2_btn();
+    activate_next3_btn();
+    activate_next4_btn();
     activate_address_btn();
-  });
+    var user_id = <%= @user.id %>
+        $('.trade_value').text($('#trade_name').val());
+    $('.abn_value').text($('#abn').val());
+    $('.company_value').text($('#company').val());
+    $('.tendercon_value').text($('#tendercon_id').val());
 
-  $('#company').focusout(function(){
-    var company = $(this).val();
-
-    if(company.length > 0){
-      $('.step3_btn').prop('disabled',false);
+    var l_name = $('#last_name').val();
+    var f_name = $('#first_name').val();
+    console.log("l_name.length:"+l_name);
+    if(l_name != undefined){
+      $('.name_value').text(f_name + " " + l_name);
     }else{
-      $('.step3_btn').prop('disabled',true);
+      $('.name_value').text(f_name);
     }
 
-    activate_address_btn();
-  });
-  $('.step3_btn').prop('disabled',true);
-  function activate_address_btn(){
 
-    if($('#abn').val().length > 11 && $('#company').val().length > 2 && $('#trade_name').val().length > 2 && $('#tendercon_id').val().length > 2){
-      $('.step3_btn').prop('disabled',false);
-    }else{
 
-      $('.step3_btn').prop('disabled',true);
+    $('#trade_name').keyup(function(){
+      $('.trade_value').text($(this).val());
+    });
+
+    $('#abn').keyup(function(){
+      var abn_value = $($('#abn').val());
+      activate_address_btn();
+    });
+
+    $('#abn').focusout(function(){
+      var abn_value = $($('#abn').val());
+      activate_address_btn();
+    });
+
+    $('#company').focusout(function(){
+      var company = $(this).val();
+
+      if(company.length > 0){
+        $('.step3_btn').prop('disabled',false);
+      }else{
+        $('.step3_btn').prop('disabled',true);
+      }
+
+      activate_address_btn();
+    });
+    $('.step3_btn').prop('disabled',true);
+    function activate_address_btn(){
+
+      if($('#abn').val().length > 11 && $('#company').val().length > 2 && $('#trade_name').val().length > 2 && $('#tendercon_id').val().length > 2){
+        $('.step3_btn').prop('disabled',false);
+      }else{
+
+        $('.step3_btn').prop('disabled',true);
+      }
     }
-  }
 
-  $('.verify').click(function(){
-    var abn_value = $('#abn').val();
-    if(abn_validation(abn_value)){
-      $.ajax({
-        method: "POST",
-        data: {str: abn_value},
-        url: "/users/check_abn"
-      }).done(function (data) {
-        console.log(data.state == 'valid')
-        if(data.state == 'valid'){
-          console.log("VALID");
-          $('.abn_value').text(abn_value);
+    $('.verify').click(function(){
+      var abn_value = $('#abn').val();
+      if(abn_validation(abn_value)){
+        $.ajax({
+          method: "POST",
+          data: {str: abn_value},
+          url: "/users/check_abn"
+        }).done(function (data) {
+          console.log(data.state == 'valid')
+          if(data.state == 'valid'){
+            console.log("VALID");
+            $('.abn_value').text(abn_value);
 
-          $('#company').val(data.company_name);
-          $('#company').attr('disabled','disabled');
-          $('.company_value').text(data.company_name);
-          $('.error_abn').html('<p style="color: green;"><i>Valid ABN</i></p>');
-          $('.step3_btn').prop('disabled',false);
-        }else{
-          cnt += 1;
+            $('#company').val(data.company_name);
+            $('#company').attr('disabled','disabled');
+            $('.company_value').text(data.company_name);
+            $('.error_abn').html('<p style="color: green;"><i>Valid ABN</i></p>');
+            $('.step3_btn').prop('disabled',false);
+          }else{
+            cnt += 1;
 
-          if(cnt == 1){
-            $('.first').val(abn_value);
-          }else if(cnt == 2){
-            $('.second').val(abn_value);
+            if(cnt == 1){
+              $('.first').val(abn_value);
+            }else if(cnt == 2){
+              $('.second').val(abn_value);
+            }
+
+            if(cnt >=3){
+              $('.third').val(abn_value);
+              $('#suspended_Modal').modal('show');
+              appear = 1;
+            }
+            $('.error_abn').html('<p style="color: grey;"><i>'+data.error+'</i></p>');
+            console.log("CNT:"+cnt);
+
+          }
+        });
+      }else{
+        cnt += 1;
+        console.log("ELSE ERROR:"+cnt);
+        if(cnt == 1){
+          $('.first').val(abn_value);
+        }else if(cnt == 2){
+          $('.second').val(abn_value);
+        }
+
+        if(cnt >=3){
+          $('.third').val(abn_value);
+          $('#suspended_Modal').modal('show');
+          appear = 1;
+        }
+        $('.error_abn').html('<p style="color: grey;"><i>Invalid ABN</i></p>');
+
+      }
+    });
+
+    var cnt = 0;
+    /*$('#abn').focusout(function(){
+     var abn_value = $('#abn').val();
+     if(abn_validation(abn_value)){
+     $.ajax({
+     method: "POST",
+     data: {str: abn_value},
+     url: "/users/check_abn"
+     }).done(function (data) {
+     console.log(data.state == 'valid')
+     if(data.state = 'valid'){
+     $('.error_abn').html('<p style="color: green;"><i>Valid ABN</i></p>');
+     }else{
+     $('.error_abn').html('<p style="color: red;"><i>Invalid ABN</i></p>');
+     }
+     });
+
+     $('.abn_value').text($(this).val());
+
+     }else{
+     cnt += 1;
+
+     if(cnt == 1){
+     $('.first').val(abn_value);
+     }else if(cnt == 2){
+     $('.second').val(abn_value);
+     }
+
+     if(cnt >=3){
+     $('.third').val(abn_value);
+     $('#suspended_Modal').modal('show');
+     appear = 1;
+     }
+     $('.error_abn').html('<p style="color: red;"><i>Invalid ABN</i></p>');
+
+     }
+
+     });
+     */
+
+    var appear = 0;
+    $(document).mousemove(function(){
+      var shown = $('#suspended_Modal').hasClass('in');
+      $(document).click(function(evt){
+        if(shown == false){
+          if(appear == 1){
+            var myClass = $(evt.target).attr('class')
+
+            appear = 0;
+            var contact = $('#contact').val();
+            var time_availabity = $('#time_availabity').val();
+            var id = $('#id').val();
+            var email = $('#email').val();
+            var first = $('.first').val();
+            var second = $('.second').val();
+            var third = $('.third').val();
+            var status = 'status';
+
+            if(myClass == 'modal fade'){
+              console.log("myClass"+myClass);
+              console.log("its close");
+              $.ajax({
+                method: "POST",
+                data: {contact: contact,time_availabity:time_availabity,id:id,email:email,first:first,second:second,third:third,status:status},
+                url: "/users/submit_request"
+              }).done(function (data) {
+                if(data.state == 'valid'){
+                  window.location = '/users/logout'
+                }
+              });
+            }
           }
 
-          if(cnt >=3){
-            $('.third').val(abn_value);
-            $('#suspended_Modal').modal('show');
-            appear = 1;
-          }
-          $('.error_abn').html('<p style="color: grey;"><i>'+data.error+'</i></p>');
-          console.log("CNT:"+cnt);
-
-        }
-      });
-    }else{
-      cnt += 1;
-      console.log("ELSE ERROR:"+cnt);
-      if(cnt == 1){
-        $('.first').val(abn_value);
-      }else if(cnt == 2){
-        $('.second').val(abn_value);
-      }
-
-      if(cnt >=3){
-        $('.third').val(abn_value);
-        $('#suspended_Modal').modal('show');
-        appear = 1;
-      }
-      $('.error_abn').html('<p style="color: grey;"><i>Invalid ABN</i></p>');
-
-    }
-  });
-
-  var cnt = 0;
-  /*$('#abn').focusout(function(){
-    var abn_value = $('#abn').val();
-    if(abn_validation(abn_value)){
-      $.ajax({
-        method: "POST",
-        data: {str: abn_value},
-        url: "/users/check_abn"
-      }).done(function (data) {
-        console.log(data.state == 'valid')
-        if(data.state = 'valid'){
-          $('.error_abn').html('<p style="color: green;"><i>Valid ABN</i></p>');
         }else{
-          $('.error_abn').html('<p style="color: red;"><i>Invalid ABN</i></p>');
+          appear = 1;
         }
+
       });
 
-      $('.abn_value').text($(this).val());
+    });
 
-    }else{
-      cnt += 1;
+    $('#contact').keyup(function(){
+      var contact = $(this).val();
 
-      if(cnt == 1){
-        $('.first').val(abn_value);
-      }else if(cnt == 2){
-        $('.second').val(abn_value);
+      if(contact.length > 7 && contact.length < 11){
+        $('.btn-submit-contact').show();
+        $('.contact_error').hide();
+      }else{
+        $('.btn-submit-contact').hide();
+        $('.contact_error').show();
       }
+    });
 
-      if(cnt >=3){
-        $('.third').val(abn_value);
-        $('#suspended_Modal').modal('show');
-        appear = 1;
-      }
-      $('.error_abn').html('<p style="color: red;"><i>Invalid ABN</i></p>');
 
-    }
 
-  });
-*/
+    $('#company').keyup(function(){
+      $('.company_value').text($(this).val());
+    });
 
-  var appear = 0;
-  $(document).mousemove(function(){
-    var shown = $('#suspended_Modal').hasClass('in');
-    $(document).click(function(evt){
-      if(shown == false){
-        if(appear == 1){
-          var myClass = $(evt.target).attr('class')
-
-          appear = 0;
-          var contact = $('#contact').val();
-          var time_availabity = $('#time_availabity').val();
-          var id = $('#id').val();
-          var email = $('#email').val();
-          var first = $('.first').val();
-          var second = $('.second').val();
-          var third = $('.third').val();
-          var status = 'status';
-
-          if(myClass == 'modal fade'){
-            console.log("myClass"+myClass);
-            console.log("its close");
+    $('#tendercon_id').keyup(function(){
+      var code = $(this).val();
+      console.log("CODE:"+code);
+      console.log("CODELENGHT:"+code.lenght);
+      $('.tendercon_value').text($(this).val());
+      if(code.length > 2){
+        if(check_tendercon_id_valid(code)){
+          console.log('valid code')
+          if(is_uppercase(code)){
+            console.log("true");
             $.ajax({
               method: "POST",
-              data: {contact: contact,time_availabity:time_availabity,id:id,email:email,first:first,second:second,third:third,status:status},
-              url: "/users/submit_request"
+              data: {code: code},
+              url: "/users/validate_tendercon_id"
             }).done(function (data) {
               if(data.state == 'valid'){
-                window.location = '/users/logout'
+                $('.error_tendercon_id').hide();
+                $('.step3_btn').prop('disabled',false);
+                $('.tendercon_value').text(code);
+
+              }else{
+                $('.tendercon_value').text('');
+                $('.error_tendercon_id').show();
+                $('.step3_btn').prop('disabled',true);
               }
             });
+          }else{
+            $('.error_tendercon_id').show();
+            $('.tendercon_value').text('');
+            $('.step3_btn').prop('disabled',true);
           }
+        }else{
+          console.log("ELSE");
+          $('.tendercon_value').text('');
+          $('.error_tendercon_id').show();
+          $('.step3_btn').prop('disabled',true);
         }
 
       }else{
-        appear = 1;
+        console.log("test");
+        $('.tendercon_value').text(code);
+        $('.error_tendercon_id').show();
+        $('.step3_btn').prop('disabled',true);
       }
 
     });
 
-  });
+    $('#first_name').keyup(function(){
+      var f_name = $(this).val();
+      var l_name = $('#last_name').val();
+      $('.name_value').text(f_name + " " + l_name);
+      activate_next2_btn();
+    });
 
-  $('#contact').keyup(function(){
-    var contact = $(this).val();
+    $('#last_name').keyup(function(){
+      var l_name = $(this).val();
+      var f_name = $('#first_name').val();
+      $('.name_value').text(f_name + " " + l_name);
+      activate_next2_btn();
+    });
 
-    if(contact.length > 7 && contact.length < 11){
-      $('.btn-submit-contact').show();
-      $('.contact_error').hide();
-    }else{
-      $('.btn-submit-contact').hide();
-      $('.contact_error').show();
-    }
-  });
+    $('#position').change(function(){
+      var pos_value = $(this).val();
 
+      if(pos_value == 'last'){
+        $('.others').show();
+        $('.access').prop('disabled',true);
+        $('#others').keyup(function(){
+          var new_postion = $('#others').val();
 
-
-   $('#company').keyup(function(){
-     $('.company_value').text($(this).val());
-   });
-
-   $('#tendercon_id').keyup(function(){
-     var code = $(this).val();
-     console.log("CODE:"+code);
-     console.log("CODELENGHT:"+code.lenght);
-     $('.tendercon_value').text($(this).val());
-     if(code.length > 2){
-       if(check_tendercon_id_valid(code)){
-         console.log('valid code')
-         if(is_uppercase(code)){
-           console.log("true");
-           $.ajax({
-             method: "POST",
-             data: {code: code},
-             url: "/users/validate_tendercon_id"
-           }).done(function (data) {
-             if(data.state == 'valid'){
-               $('.error_tendercon_id').hide();
-               $('.step3_btn').prop('disabled',false);
-               $('.tendercon_value').text(code);
-
-             }else{
-               $('.tendercon_value').text('');
-               $('.error_tendercon_id').show();
-               $('.step3_btn').prop('disabled',true);
-             }
-           });
-         }else{
-           $('.error_tendercon_id').show();
-           $('.tendercon_value').text('');
-           $('.step3_btn').prop('disabled',true);
-         }
-       }else{
-         console.log("ELSE");
-         $('.tendercon_value').text('');
-         $('.error_tendercon_id').show();
-         $('.step3_btn').prop('disabled',true);
-       }
-
-     }else{
-       console.log("test");
-       $('.tendercon_value').text(code);
-       $('.error_tendercon_id').show();
-       $('.step3_btn').prop('disabled',true);
-     }
-
-   });
-
-   $('#first_name').keyup(function(){
-     var f_name = $(this).val();
-     var l_name = $('#last_name').val();
-     $('.name_value').text(f_name + " " + l_name);
-     activate_next2_btn();
-   });
-
-   $('#last_name').keyup(function(){
-     var l_name = $(this).val();
-     var f_name = $('#first_name').val();
-     $('.name_value').text(f_name + " " + l_name);
-     activate_next2_btn();
-   });
-
-   $('#position').change(function(){
-     var pos_value = $(this).val();
-
-     if(pos_value == 'last'){
-       $('.others').show();
-       $('.access').prop('disabled',true);
-       $('#others').keyup(function(){
-         var new_postion = $('#others').val();
-
-         if(new_postion.length > 1){
-           console.log(new_postion);
+          if(new_postion.length > 1){
+            console.log(new_postion);
 
 
-           $.ajax({
-             method: "POST",
-             data: {position: new_postion},
-             url: "/users/validate_position"
-           }).done(function (data) {
-             if(data.state == 'valid'){
-               var availableTags =  data.positions
+            $.ajax({
+              method: "POST",
+              data: {position: new_postion},
+              url: "/users/validate_position"
+            }).done(function (data) {
+              if(data.state == 'valid'){
+                var availableTags =  data.positions
 
-               $("#others").autocomplete({
-                 source: availableTags,
-                 select: function(evt,ui){
-                   $('.step2_btn').prop('disabled',true);
-                   $('.access').prop('disable',true);
-                   $('.error_position').show();
-                 }
-               });
-               $('.access').prop('disabled',false);
-               $('.position_value').text(new_postion);
-               $('.error_position').hide();
-               activate_next2_btn();
+                $("#others").autocomplete({
+                  source: availableTags,
+                  select: function(evt,ui){
+                    $('.step2_btn').prop('disabled',true);
+                    $('.access').prop('disable',true);
+                    $('.error_position').show();
+                  }
+                });
+                $('.access').prop('disabled',false);
+                $('.position_value').text(new_postion);
+                $('.error_position').hide();
+                activate_next2_btn();
 
-             }else{
-               $('.position_value').text('');
-               $('.error_position').show();
-               activate_next2_btn();
-             }
-           });
-         }else{
-           $('.error_position').hide();
-           $('.position_value').text(new_postion);
-           activate_next2_btn();
-         }
-       });
+              }else{
+                $('.position_value').text('');
+                $('.error_position').show();
+                activate_next2_btn();
+              }
+            });
+          }else{
+            $('.error_position').hide();
+            $('.position_value').text(new_postion);
+            activate_next2_btn();
+          }
+        });
 
-     }else{
-       $('.error_position').hide();
-       $('.access').prop('disabled',false);
-       $('.others').hide();
-       $.ajax({
-         method: "POST",
-         data: {id: pos_value},
-         url: "/users/get_position_value"
-       }).done(function (data) {
-         if(data.state == 'valid'){
-           $('.position_value').text(data.title);
-           activate_next2_btn();
-         }
-       });
-     }
-   });
+      }else{
+        $('.error_position').hide();
+        $('.access').prop('disabled',false);
+        $('.others').hide();
+        $.ajax({
+          method: "POST",
+          data: {id: pos_value},
+          url: "/users/get_position_value"
+        }).done(function (data) {
+          if(data.state == 'valid'){
+            $('.position_value').text(data.title);
+            activate_next2_btn();
+          }
+        });
+      }
+    });
 
 
-   $('#position').select2({
-     theme: "bootstrap"
-   });
+    $('#position').select2({
+      theme: "bootstrap"
+    });
 
-  $('#primary_trade').select2({
-    theme: "bootstrap"
-  });
+    $('#primary_trade').select2({
+      theme: "bootstrap"
+    });
 
-  $('#secondary_trade').select2({
-    theme: "bootstrap"
-  });
+    $('#secondary_trade').select2({
+      theme: "bootstrap"
+    });
 
-   $('.step2_btn').click(function(){
-     $('.step1').hide();
-     $('.step2').show();
-     //window.history.pushState('page2','step',"/users/tendercon_steps?id="+user_id+"&step=2")
-   });
+    $('.step2_btn').click(function(){
+      $('.step1').hide();
+      $('.step2').show();
+      //window.history.pushState('page2','step',"/users/tendercon_steps?id="+user_id+"&step=2")
+    });
 
-   $('.step3_btn').click(function(){
-     $('.step2').hide();
-     $('.step3').show();
-   });
+    $('.step3_btn').click(function(){
+      $('.step2').hide();
+      $('.step3').show();
+    });
 
-   $('.back2_btn').click(function(){
-     $('.step1').show();
-     $('.step2').hide();
-   });
+    $('.back2_btn').click(function(){
+      $('.step1').show();
+      $('.step2').hide();
+    });
 
-  $('.back3_btn').click(function(){
-    $('.step2').show();
-    $('.step3').hide();
-  });
+    $('.back3_btn').click(function(){
+      $('.step2').show();
+      $('.step3').hide();
+    });
 
-  $('.back4_btn').click(function(){
-    $('.step3').show();
-    $('.step4').hide();
-  });
+    $('.back4_btn').click(function(){
+      $('.step3').show();
+      $('.step4').hide();
+    });
 
-  $('#address').keyup(function(){
-    initAutocomplete();
-    var str = $(this).val();
-    //activate_next4_btn();
-    if(str.length > 3){
-      $.ajax({
-        method: "POST",
-        data: {str: str},
-        url: "/users/get_similar_address"
-      }).done(function (data) {
-        if(data.state == 'valid'){
+    $('#address').keyup(function(){
+      initAutocomplete();
+      var str = $(this).val();
+      //activate_next4_btn();
+      if(str.length > 3){
+        $.ajax({
+          method: "POST",
+          data: {str: str},
+          url: "/users/get_similar_address"
+        }).done(function (data) {
+          if(data.state == 'valid'){
 
-          var availableTags =  data.data
-          /*$( "#address" ).autocomplete({
-           source: availableTags
-           });*/
-        }
-      });
+            var availableTags =  data.data
+            /*$( "#address" ).autocomplete({
+             source: availableTags
+             });*/
+          }
+        });
+      }
+
+    });
+
+    $('#address').focusout(function(){
+      var address = $(this).val();
+      activate_next4_btn();
+      if(address.length <= 0){
+        $('#state').val('');
+        $('#suburb').val('');
+        $('#postcode').val('');
+        $('.address_value').text('');
+        $('#timezone').val('');
+        $('.timezone_value').text('');
+        $('#map').hide();
+      }else{
+        get_address_info(address);
+        $('#map').show();
+      }
+    });
+
+    $('#postcode').keyup(function(){
+      activate_next4_btn();
+    });
+
+    $('#postcode').focusout(function(){
+      activate_next4_btn();
+    });
+
+    $('#timezone').keyup(function(){
+      activate_next4_btn();
+    });
+
+    $('#timezone').focusout(function(){
+      activate_next4_btn();
+    });
+
+    $('#suburb').keyup(function(){
+      activate_next4_btn();
+    });
+
+    $('#suburb').focusout(function(){
+      activate_next4_btn();
+    });
+
+    $('#state').keyup(function(){
+      activate_next4_btn();
+    });
+
+    $('#state').focusout(function(){
+      activate_next4_btn();
+    });
+
+    function activate_next2_btn(){
+      if($('.name_value').text().length <= 2 || $('.position_value').text().length <= 1){
+        $('.step2_btn').prop('disabled',true);
+        $('.access').prop('disable',true);
+      }else{
+        $('.step2_btn').prop('disabled',false);
+        $('.access').prop('disable',false);
+      }
     }
 
-  });
-
-  $('#address').focusout(function(){
-    var address = $(this).val();
-    activate_next4_btn();
-    if(address.length <= 0){
-      $('#state').val('');
-      $('#suburb').val('');
-      $('#postcode').val('');
-      $('.address_value').text('');
-      $('#timezone').val('');
-      $('.timezone_value').text('');
-      $('#map').hide();
-    }else{
-      get_address_info(address);
-      $('#map').show();
+    function activate_next3_btn(){
+      if($('.name_value').text().length <= 2 || $('.position_value').text().length <= 1){
+        $('.step2_btn').prop('disabled',true);
+      }else{
+        $('.step2_btn').prop('disabled',false);
+      }
     }
-  });
 
-  $('#postcode').keyup(function(){
-    activate_next4_btn();
-  });
-
-  $('#postcode').focusout(function(){
-    activate_next4_btn();
-  });
-
-  $('#timezone').keyup(function(){
-    activate_next4_btn();
-  });
-
-  $('#timezone').focusout(function(){
-    activate_next4_btn();
-  });
-
-  $('#suburb').keyup(function(){
-    activate_next4_btn();
-  });
-
-  $('#suburb').focusout(function(){
-    activate_next4_btn();
-  });
-
-  $('#state').keyup(function(){
-    activate_next4_btn();
-  });
-
-  $('#state').focusout(function(){
-    activate_next4_btn();
-  });
-
-   function activate_next2_btn(){
-     if($('.name_value').text().length <= 2 || $('.position_value').text().length <= 1){
-       $('.step2_btn').prop('disabled',true);
-       $('.access').prop('disable',true);
-     }else{
-       $('.step2_btn').prop('disabled',false);
-       $('.access').prop('disable',false);
-     }
-   }
-
-  function activate_next3_btn(){
-    if($('.name_value').text().length <= 2 || $('.position_value').text().length <= 1){
-      $('.step2_btn').prop('disabled',true);
-    }else{
-      $('.step2_btn').prop('disabled',false);
+    function check_tendercon_id_valid(str){
+      var new_str = str.replace(/\s/g,'');
+      if(new_str.match(/^[a-zA-Z]+$/)){
+        console.log("1");
+        return true;
+      }else{
+        console.log("0");
+        return false;
+      }
     }
-  }
 
-   function check_tendercon_id_valid(str){
-     var new_str = str.replace(/\s/g,'');
-     if(new_str.match(/^[a-zA-Z]+$/)){
-       console.log("1");
-       return true;
-     }else{
-       console.log("0");
-       return false;
-     }
-   }
+    function is_uppercase(str){
+      return str === str.toUpperCase();
+    }
 
-   function is_uppercase(str){
-     return str === str.toUpperCase();
-   }
+    function abn_validation(str){
+      console.log("str length:"+str.length);
+      if(str.length > 10){
+        return true;
+      }else{
+        //$('.step3_btn').prop('disabled',true);
+        return false;
+      }
 
-   function abn_validation(str){
-     console.log("str length:"+str.length);
-     if(str.length > 10){
-       return true;
-     }else{
-       //$('.step3_btn').prop('disabled',true);
-       return false;
-     }
-
-   }
+    }
 
 
 
-  $('.step4_btn').click(function(){
-    var bnt_title = $('.step4_btn').attr('title');
-    console.log(bnt_title);
+    $('.step4_btn').click(function(){
+      var bnt_title = $('.step4_btn').attr('title');
+      console.log(bnt_title);
       if(bnt_title == 'finish_hc'){
         var state = $('#state').val();
         var suburb = $('#suburb').val();
@@ -941,78 +931,78 @@
         $('.step3').hide();
       }
 
-  });
+    });
 
-  $('.step5_btn').prop('disabled',true);
-  $('#primary_trade').change(function(){
-    var prime_value = $(this).val();
-    console.log('prime_value:'+prime_value);
-    if(prime_value == 'last'){
-      $('.error_primary').hide();
-      $('.error_primary1').hide();
-      $('.secondary_div').hide();
-      $('.primary_others').show();
-      $('#primary_others').keyup(function(){
-        var new_primary = $('#primary_others').val();
-        if(new_primary == 0){
-          $('.step5_btn').prop('disabled',true);
-        }
-        if(new_primary.length > 0){
-          console.log(new_primary);
-          $.ajax({
-            method: "POST",
-            data: {trade: new_primary},
-            url: "/users/validate_trade"
-          }).done(function (data) {
-            if(data.state == 'valid'){
-              $('.new_trade').text(data.title);
-              $('.error_primary').hide();
-              $('.error_primary1').hide();
-              $('.step5_btn').prop('disabled',false);
-              $('.secondary_div').show();
-            }else{
-              $('.secondary_div').hide();
-              $('.error_primary').show();
-              $('.step5_btn').prop('disabled',true)
-            }
-          });
-        }else{
-          $('.secondary_div').hide();
-          $('.error_primary').show();
-          $('.step5_btn').prop('disabled',true)
+    $('.step5_btn').prop('disabled',true);
+    $('#primary_trade').change(function(){
+      var prime_value = $(this).val();
+      console.log('prime_value:'+prime_value);
+      if(prime_value == 'last'){
+        $('.error_primary').hide();
+        $('.error_primary1').hide();
+        $('.secondary_div').hide();
+        $('.primary_others').show();
+        $('#primary_others').keyup(function(){
+          var new_primary = $('#primary_others').val();
+          if(new_primary == 0){
+            $('.step5_btn').prop('disabled',true);
+          }
+          if(new_primary.length > 0){
+            console.log(new_primary);
+            $.ajax({
+              method: "POST",
+              data: {trade: new_primary},
+              url: "/users/validate_trade"
+            }).done(function (data) {
+              if(data.state == 'valid'){
+                $('.new_trade').text(data.title);
+                $('.error_primary').hide();
+                $('.error_primary1').hide();
+                $('.step5_btn').prop('disabled',false);
+                $('.secondary_div').show();
+              }else{
+                $('.secondary_div').hide();
+                $('.error_primary').show();
+                $('.step5_btn').prop('disabled',true)
+              }
+            });
+          }else{
+            $('.secondary_div').hide();
+            $('.error_primary').show();
+            $('.step5_btn').prop('disabled',true)
 
-        }
-      });
+          }
+        });
 
-    }else if(prime_value == 0){
-      $('.new_trade').text('');
-      $('.secondary_div').hide();
-      $('.error_primary1').show();
-      $('.step5_btn').prop('disabled',true);
-      $('.primary_others').val('');
-      $('.primary_others').hide();
-    }else{
-      $('.error_primary').hide();
-      $.ajax({
-        method: "POST",
-        data: {id: prime_value},
-        url: "/users/get_trade_value"
-      }).done(function (data) {
-        if(data.state == 'valid'){
-          $('.error_primary').hide();
-          $('.error_primary1').hide();
-          $('.primary_others').val('');
-          $('.primary_others').hide();
-          $('.new_trade').text(data.title);
-          $('.secondary_div').show();
-          $('.step5_btn').prop('disabled',false);
-        }else{
-          $('.secondary_div').hide();
-          $('.step5_btn').prop('disabled',true);
-        }
-      });
-    }
-  });
+      }else if(prime_value == 0){
+        $('.new_trade').text('');
+        $('.secondary_div').hide();
+        $('.error_primary1').show();
+        $('.step5_btn').prop('disabled',true);
+        $('.primary_others').val('');
+        $('.primary_others').hide();
+      }else{
+        $('.error_primary').hide();
+        $.ajax({
+          method: "POST",
+          data: {id: prime_value},
+          url: "/users/get_trade_value"
+        }).done(function (data) {
+          if(data.state == 'valid'){
+            $('.error_primary').hide();
+            $('.error_primary1').hide();
+            $('.primary_others').val('');
+            $('.primary_others').hide();
+            $('.new_trade').text(data.title);
+            $('.secondary_div').show();
+            $('.step5_btn').prop('disabled',false);
+          }else{
+            $('.secondary_div').hide();
+            $('.step5_btn').prop('disabled',true);
+          }
+        });
+      }
+    });
 
     $('#secondary_trade').change(function(){
       var secondary_value = $(this).val();
@@ -1086,277 +1076,278 @@
       }
     });
 
-  $('.add').click(function(){
-    var second_trade = $('#secondary_trade').val();
-    console.log("second_trade:"+second_trade);
-    if(second_trade > 0){
-      var ids = [];
-      $('.ids').each(function(){
-        var id = $(this).val();
-        console.log("ID:"+id);
-        ids.push(id);
-      });
+    $('.add').click(function(){
+      var second_trade = $('#secondary_trade').val();
+      console.log("second_trade:"+second_trade);
+      if(second_trade > 0){
+        var ids = [];
+        $('.ids').each(function(){
+          var id = $(this).val();
+          console.log("ID:"+id);
+          ids.push(id);
+        });
 
-      console.log("ids:"+ids);
-      var search = ids.indexOf(second_trade);
-      console.log("search:"+search);
-      if(search == -1){
-        $.ajax({
-          method: "POST",
-          data: {id: second_trade},
-          url: "/users/get_trade_value"
-        }).done(function (data) {
-          if(data.state == 'valid'){
-            $('.step5_btn').prop('disabled',false);
-            console.log("$(:"+$('#secondary1').val() == '0');
-            if($('#secondary_value1').val() == '0'){
-              $('#secondary_value1').val(second_trade);
-              $('.secondary_value1').html('<label>'+data.title+'</label> <i class="glyphicon glyphicon-minus-sign remove" id='+second_trade+' aria-hidden="true" title="secondary_value1"  onclick="remove_trade('+second_trade+');"></i>');
-            }else if($('#secondary_value2').val() == '0'){
-              $('#secondary_value2').val(second_trade);
-              $('.secondary_value2').html('<label>'+data.title+'</label> <i class="glyphicon glyphicon-minus-sign remove" id='+second_trade+' aria-hidden="true" title="secondary_value2" onclick="remove_trade('+second_trade+');"></i>');
-            }else if($('#secondary_value3').val() == '0'){
-              $('#secondary_value3').val(second_trade);
-              $('.secondary_value3').html('<label>'+data.title+'</label> <i class="glyphicon glyphicon-minus-sign remove" id='+second_trade+' aria-hidden="true" title="secondary_value3" onclick="remove_trade('+second_trade+');"></i>');
-            }else if($('#secondary_value4').val() == '0'){
-              $('#secondary_value4').val(second_trade);
-              $('.secondary_value4').html('<label>'+data.title+'</label> <i class="glyphicon glyphicon-minus-sign remove" id='+second_trade+' aria-hidden="true" title="secondary_value4" onclick="remove_trade('+second_trade+');"></i>');
-            }else if($('#secondary_value5').val() == '0'){
-              $('#secondary_value5').val(second_trade);
-              $('.secondary_value5').html('<label>'+data.title+'</label> <i class="glyphicon glyphicon-minus-sign remove" id='+second_trade+' aria-hidden="true" title="secondary_value5" onclick="remove_trade('+second_trade+');"></i>');
-            }else if($('#secondary_value6').val() == '0'){
-              $('#secondary_value6').val(second_trade);
-              $('.secondary_value6').html('<label>'+data.title+'</label> <i class="glyphicon glyphicon-minus-sign remove" id='+second_trade+' aria-hidden="true" title="secondary_value6" onclick="remove_trade('+second_trade+');"></i>');
+        console.log("ids:"+ids);
+        var search = ids.indexOf(second_trade);
+        console.log("search:"+search);
+        if(search == -1){
+          $.ajax({
+            method: "POST",
+            data: {id: second_trade},
+            url: "/users/get_trade_value"
+          }).done(function (data) {
+            if(data.state == 'valid'){
+              $('.step5_btn').prop('disabled',false);
+              console.log("$(:"+$('#secondary1').val() == '0');
+              if($('#secondary_value1').val() == '0'){
+                $('#secondary_value1').val(second_trade);
+                $('.secondary_value1').html('<label>'+data.title+'</label> <i class="glyphicon glyphicon-minus-sign remove" id='+second_trade+' aria-hidden="true" title="secondary_value1"  onclick="remove_trade('+second_trade+');"></i>');
+              }else if($('#secondary_value2').val() == '0'){
+                $('#secondary_value2').val(second_trade);
+                $('.secondary_value2').html('<label>'+data.title+'</label> <i class="glyphicon glyphicon-minus-sign remove" id='+second_trade+' aria-hidden="true" title="secondary_value2" onclick="remove_trade('+second_trade+');"></i>');
+              }else if($('#secondary_value3').val() == '0'){
+                $('#secondary_value3').val(second_trade);
+                $('.secondary_value3').html('<label>'+data.title+'</label> <i class="glyphicon glyphicon-minus-sign remove" id='+second_trade+' aria-hidden="true" title="secondary_value3" onclick="remove_trade('+second_trade+');"></i>');
+              }else if($('#secondary_value4').val() == '0'){
+                $('#secondary_value4').val(second_trade);
+                $('.secondary_value4').html('<label>'+data.title+'</label> <i class="glyphicon glyphicon-minus-sign remove" id='+second_trade+' aria-hidden="true" title="secondary_value4" onclick="remove_trade('+second_trade+');"></i>');
+              }else if($('#secondary_value5').val() == '0'){
+                $('#secondary_value5').val(second_trade);
+                $('.secondary_value5').html('<label>'+data.title+'</label> <i class="glyphicon glyphicon-minus-sign remove" id='+second_trade+' aria-hidden="true" title="secondary_value5" onclick="remove_trade('+second_trade+');"></i>');
+              }else if($('#secondary_value6').val() == '0'){
+                $('#secondary_value6').val(second_trade);
+                $('.secondary_value6').html('<label>'+data.title+'</label> <i class="glyphicon glyphicon-minus-sign remove" id='+second_trade+' aria-hidden="true" title="secondary_value6" onclick="remove_trade('+second_trade+');"></i>');
 
+              }else{
+                $('.add').hide();
+              }
+
+
+              if($('#secondary_value6').val() > 0 && $('#secondary_value5').val() > 0 && $('#secondary_value4').val() > 0 && $('#secondary_value3').val() > 0 && $('#secondary_value2').val() > 0 && $('#secondary_value1').val() > 0){
+                $('.add').hide();
+              }else{
+                $('.add').show();
+              }
+              $('.error_secondary').hide();
+              $('.step5_btn').prop('disabled',false);
             }else{
-              $('.add').hide();
+              $('.secondary_div').hide();
+              $('.step5_btn').prop('disabled',true);
             }
+          });
+        }else{
+          $('.error_secondary').show();
+          $('.step5_btn').prop('disabled',true);
+        }
+      }
+    });
 
 
-            if($('#secondary_value6').val() > 0 && $('#secondary_value5').val() > 0 && $('#secondary_value4').val() > 0 && $('#secondary_value3').val() > 0 && $('#secondary_value2').val() > 0 && $('#secondary_value1').val() > 0){
-              $('.add').hide();
-            }else{
-              $('.add').show();
-            }
-            $('.error_secondary').hide();
-            $('.step5_btn').prop('disabled',false);
-          }else{
-            $('.secondary_div').hide();
-            $('.step5_btn').prop('disabled',true);
-          }
-        });
+    function remove_trade(id){
+      var id = id;
+
+      var title = $('#'+id).attr('title');
+
+      console.log("ID:"+title);
+      $('.'+title).html('')
+      $('#'+title).val('0');
+
+      if($('#secondary_value6').val() > 0 && $('#secondary_value5').val() > 0 && $('#secondary_value4').val() > 0 && $('#secondary_value3').val() > 0 && $('#secondary_value2').val() > 0 && $('#secondary_value1').val() > 0){
+        $('.add').hide();
       }else{
-        $('.error_secondary').show();
-        $('.step5_btn').prop('disabled',true);
+        $('.add').show();
       }
-    }
-  });
 
-
-  function remove_trade(id){
-    var id = id;
-
-    var title = $('#'+id).attr('title');
-
-    console.log("ID:"+title);
-    $('.'+title).html('')
-    $('#'+title).val('0');
-
-    if($('#secondary_value6').val() > 0 && $('#secondary_value5').val() > 0 && $('#secondary_value4').val() > 0 && $('#secondary_value3').val() > 0 && $('#secondary_value2').val() > 0 && $('#secondary_value1').val() > 0){
-      $('.add').hide();
-    }else{
-      $('.add').show();
     }
 
-  }
-
-  $('.step5_btn').click(function(){
-    console.log("step5_btn");
+    $('.step5_btn').click(function(){
+      console.log("step5_btn");
 
 
-    var state = $('#state').val();
-    var suburb = $('#suburb').val();
-    var postcode = $('#postcode').val();
-    var address = $('#address').val();
-    var timezone = $('#timezone').val();
-    var abn = $('#abn').val();
-    var company = $('#company').val();
-    var trade_name = $('#trade_name').val();
-    var tendercon_id = $('#tendercon_id').val();
-    var first_name = $('#first_name').val();
-    var last_name = $('#last_name').val();
-    var pos_value = $('#position').val();
-    var primary_value = $('#primary_trade').val();
+      var state = $('#state').val();
+      var suburb = $('#suburb').val();
+      var postcode = $('#postcode').val();
+      var address = $('#address').val();
+      var timezone = $('#timezone').val();
+      var abn = $('#abn').val();
+      var company = $('#company').val();
+      var trade_name = $('#trade_name').val();
+      var tendercon_id = $('#tendercon_id').val();
+      var first_name = $('#first_name').val();
+      var last_name = $('#last_name').val();
+      var pos_value = $('#position').val();
+      var primary_value = $('#primary_trade').val();
 
-    if(pos_value  == 'last'){
-      var position = $('#others').val();
-    }else{
-      var position = $('#position').val();
-    }
-
-    if(primary_value == 'last'){
-      var primary_trade = $('#primary_others').val();
-    }else{
-      var primary_trade = $('#primary_trade').val();
-    }
-
-
-    var user_id = $('#user_id').val();
-
-
-    var secondary_value1 = $('#secondary_value1').val();
-    var secondary_value2 = $('#secondary_value2').val();
-    var secondary_value3 = $('#secondary_value3').val();
-    var secondary_value4 = $('#secondary_value4').val();
-    var secondary_value5 = $('#secondary_value5').val();
-    var secondary_value6 = $('#secondary_value6').val();
-
-
-    console.log("state:"+state);
-    console.log("suburb:"+suburb);
-    console.log("postcode:"+postcode);
-    console.log("address:"+address);
-    console.log("timezone:"+timezone);
-    console.log("abn:"+abn);
-    console.log("company:"+company);
-    console.log("first_name:"+first_name);
-    console.log("last_name:"+last_name);
-    console.log("trade_name:"+trade_name);
-    console.log("tendercon_id:"+tendercon_id);
-    console.log("position:"+position);
-    console.log("user_id:"+user_id);
-    console.log("primary_trade:"+primary_trade);
-    console.log("secondary_value1:"+secondary_value1);
-    console.log("secondary_value2:"+secondary_value2);
-    console.log("secondary_value3:"+secondary_value3);
-    console.log("secondary_value4:"+secondary_value4);
-    console.log("secondary_value5:"+secondary_value5);
-    console.log("secondary_value6:"+secondary_value6);
-
-    $.ajax({
-      method: "POST",
-      data: {state: state,suburb:suburb,postcode:postcode,address:address,timezone:timezone,
-        abn:abn,company:company,first_name:first_name,last_name:last_name,trade_name:trade_name,
-        tendercon_id:tendercon_id,position:position,user_id:user_id,primary_trade:primary_trade,
-        secondary_value1:secondary_value1,secondary_value2:secondary_value2,secondary_value3:secondary_value3,
-        secondary_value4:secondary_value4,secondary_value5:secondary_value5,secondary_value6:secondary_value6},
-      url: "/users/update_user"
-    }).done(function (data) {
-      console.log(data.state)
-      if(data.state = 'valid'){
-
-        window.location = "steps_completed";
-      }
-    });
-
-  });
-
-  function activate_next4_btn(){
-    if($('#address').val().length <= 0 || $('#suburb').val().length <= 0 || $('#state').val().length <= 0 || $('#postcode').val().length <= 0){
-      $('.step4_btn').prop('disabled',true);
-      //$('.address_error').show();
-    }else{
-      $('.step4_btn').prop('disabled',false);
-      $('.address_error').hide();
-    }
-  }
-
-  //initAutocomplete();
-  function initAutocomplete() {
-    autocomplete = new google.maps.places.Autocomplete(
-           (document.getElementById('address')),
-            {types: ['geocode'],componentRestrictions: {country: "au"}});
-
-    google.maps.event.addListener(autocomplete,'place_changed',function(){
-
-      var address = $("#address").val();
-      console.log("test:"+address);
-      get_address_info(address);
-      activate_next4_btn();
-    });
-  }
-
-  function geolocate() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var geolocation = {
-          lat:  -33.8688,
-          lng: 151.2195
-        };
-        var circle = new google.maps.Circle({
-          center: geolocation,
-          radius: position.coords.accuracy
-        });
-        autocomplete.setBounds(circle.getBounds());
-      });
-    }
-  }
-
-  function get_address_info(address){
-    $.ajax({
-      method: "POST",
-      data: {address: address},
-      url: "/users/get_address_info"
-    }).done(function (data) {
-      if(data.state = 'valid') {
-        console.log("postal:" + data.postal);
-        console.log("state:" + data.add_state);
-        console.log("suburb:" + data.suburb);
-        $('#state').val(data.add_state);
-        $('#suburb').val(data.suburb);
-        $('#postcode').val(data.postal);
-        $('.address_value').text(address);
-        $('#timezone').val(data.timezone);
-        console.log(data.timezone)
-        $('.timezone_value').text(data.timezone);
-
-
-        var myLatLng = {lat:data.latitude, lng: data.longitude};
-
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: myLatLng
-        });
-
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Hello World!'
-        });
-        activate_next4_btn();
-        $('.address_error').hide();
-        console.log("Test");
+      if(pos_value  == 'last'){
+        var position = $('#others').val();
       }else{
-        $('.address_error').show();
+        var position = $('#position').val();
       }
-    });
-  }
 
-  $('.access').prop('disabled',true);
-  $('.access').click(function(){
-    var user_id = $('.user_id').val();
-    var position = $('#position').val();
-    var new_position = $('#others').val();
-    var l_name = $('#last_name').val();
-    var f_name = $('#first_name').val();
+      if(primary_value == 'last'){
+        var primary_trade = $('#primary_others').val();
+      }else{
+        var primary_trade = $('#primary_trade').val();
+      }
 
-    if(position > 0 || new_position.length > 0){
-      $('.access').prop('disabled',false);
+
+      var user_id = $('#user_id').val();
+
+
+      var secondary_value1 = $('#secondary_value1').val();
+      var secondary_value2 = $('#secondary_value2').val();
+      var secondary_value3 = $('#secondary_value3').val();
+      var secondary_value4 = $('#secondary_value4').val();
+      var secondary_value5 = $('#secondary_value5').val();
+      var secondary_value6 = $('#secondary_value6').val();
+
+
+      console.log("state:"+state);
+      console.log("suburb:"+suburb);
+      console.log("postcode:"+postcode);
+      console.log("address:"+address);
+      console.log("timezone:"+timezone);
+      console.log("abn:"+abn);
+      console.log("company:"+company);
+      console.log("first_name:"+first_name);
+      console.log("last_name:"+last_name);
+      console.log("trade_name:"+trade_name);
+      console.log("tendercon_id:"+tendercon_id);
+      console.log("position:"+position);
+      console.log("user_id:"+user_id);
+      console.log("primary_trade:"+primary_trade);
+      console.log("secondary_value1:"+secondary_value1);
+      console.log("secondary_value2:"+secondary_value2);
+      console.log("secondary_value3:"+secondary_value3);
+      console.log("secondary_value4:"+secondary_value4);
+      console.log("secondary_value5:"+secondary_value5);
+      console.log("secondary_value6:"+secondary_value6);
+
       $.ajax({
         method: "POST",
-        data: {id: user_id,postion:position,new_position:new_position,f_name:f_name,l_name:l_name},
-        url: "/invites/add_user_position"
+        data: {state: state,suburb:suburb,postcode:postcode,address:address,timezone:timezone,
+          abn:abn,company:company,first_name:first_name,last_name:last_name,trade_name:trade_name,
+          tendercon_id:tendercon_id,position:position,user_id:user_id,primary_trade:primary_trade,
+          secondary_value1:secondary_value1,secondary_value2:secondary_value2,secondary_value3:secondary_value3,
+          secondary_value4:secondary_value4,secondary_value5:secondary_value5,secondary_value6:secondary_value6},
+        url: "/users/update_user"
       }).done(function (data) {
-        window.location = "steps_completed";
+        console.log(data.state)
+        if(data.state = 'valid'){
+
+          window.location = "steps_completed";
+        }
       });
-    }else{
-      $('.error_position').show();
-      $('.access').prop('disabled',true);
+
+    });
+
+    function activate_next4_btn(){
+      if($('#address').val().length <= 0 || $('#suburb').val().length <= 0 || $('#state').val().length <= 0 || $('#postcode').val().length <= 0){
+        $('.step4_btn').prop('disabled',true);
+        //$('.address_error').show();
+      }else{
+        $('.step4_btn').prop('disabled',false);
+        $('.address_error').hide();
+      }
     }
 
+    //initAutocomplete();
+    function initAutocomplete() {
+      autocomplete = new google.maps.places.Autocomplete(
+          (document.getElementById('address')),
+          {types: ['geocode'],componentRestrictions: {country: "au"}});
 
-  });
+      google.maps.event.addListener(autocomplete,'place_changed',function(){
 
+        var address = $("#address").val();
+        console.log("test:"+address);
+        get_address_info(address);
+        activate_next4_btn();
+      });
+    }
+
+    function geolocate() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var geolocation = {
+            lat:  -33.8688,
+            lng: 151.2195
+          };
+          var circle = new google.maps.Circle({
+            center: geolocation,
+            radius: position.coords.accuracy
+          });
+          autocomplete.setBounds(circle.getBounds());
+        });
+      }
+    }
+
+    function get_address_info(address){
+      $.ajax({
+        method: "POST",
+        data: {address: address},
+        url: "/users/get_address_info"
+      }).done(function (data) {
+        if(data.state = 'valid') {
+          console.log("postal:" + data.postal);
+          console.log("state:" + data.add_state);
+          console.log("suburb:" + data.suburb);
+          $('#state').val(data.add_state);
+          $('#suburb').val(data.suburb);
+          $('#postcode').val(data.postal);
+          $('.address_value').text(address);
+          $('#timezone').val(data.timezone);
+          console.log(data.timezone)
+          $('.timezone_value').text(data.timezone);
+
+
+          var myLatLng = {lat:data.latitude, lng: data.longitude};
+
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15,
+            center: myLatLng
+          });
+
+          var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            title: 'Hello World!'
+          });
+          activate_next4_btn();
+          $('.address_error').hide();
+          console.log("Test");
+        }else{
+          $('.address_error').show();
+        }
+      });
+    }
+
+    $('.access').prop('disabled',true);
+    $('.access').click(function(){
+      var user_id = $('.user_id').val();
+      var position = $('#position').val();
+      var new_position = $('#others').val();
+      var l_name = $('#last_name').val();
+      var f_name = $('#first_name').val();
+
+      if(position > 0 || new_position.length > 0){
+        $('.access').prop('disabled',false);
+        $.ajax({
+          method: "POST",
+          data: {id: user_id,postion:position,new_position:new_position,f_name:f_name,l_name:l_name},
+          url: "/invites/add_user_position"
+        }).done(function (data) {
+          window.location = "steps_completed";
+        });
+      }else{
+        $('.error_position').show();
+        $('.access').prop('disabled',true);
+      }
+
+
+    });
+
+  })
 
 
 </script>

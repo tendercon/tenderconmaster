@@ -1,27 +1,85 @@
 <input type="hidden" class="tender_id" value="<%= @tender.id%>" >
+<div class="admin-form">
+  <div class="row">
+    <div class="col-md-6">
+
+      <% if @refs.present? %>
+          <button class="button btn-default quote_download" disabled>
+            <i class="fa fa-download " aria-hidden="true"></i> Download
+          </button>
+          <% if session[:role] == 'Sub Contractor' %>
+              <button class="button btn-danger remove_quote" disabled> Delete
+                <i class="fa fa-trash remove_quote" aria-hidden="true"></i>
+              </button>
+
+          <% end %>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <% if @refs.present? %>
+          <div class="section">
+            <label class="field select">
+              <select class="trades">
+                <% if @trades.present? %>
+
+                    <% @trades.each_with_index do |t,index| %>
+                        <% if index == 0 %>
+                            <option value="0">Default</option>
+                        <% end %>
+
+                        <% if t.id.to_i == @trade_id.to_i %>
+                            <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+                        <% else %>
+                            <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                        <% end %>
+
+                    <% end %>
+                <% end %>
+              </select>
+              <i class="arrow"></i>
+            </label>
+          </div>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+      <div class="section">
+        <div class="smart-widget sm-left sml-50">
+          <label class="field">
+            <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Here">
+          </label>
+          <label for="sm3" class="button">
+            <i class="fa fa-search"></i>
+          </label>
+        </div>
+        <!-- end .smart-widget section -->
+      </div>
+    </div>
+  </div>
+</div>
 <table  class="table table-bordered document_table" id="quotes_table">
   <thead>
   <tr>
     <th class="text-center"><input type="checkbox" class="quote_list_master"></th>
-    <th class="text-center">Quote#</th>
-    <th class="text-center">Title</th>
+    <th class="text-center" style="color: #484D61">Quote#</th>
+    <th class="text-center" style="color: #484D61">Title</th>
     <% if session[:role] == 'Head Contractor' %>
-        <th class="text-center">Received</th>
+        <th class="text-center" style="color: #484D61">Received</th>
     <% end %>
-    <th class="text-center">Trade</th>
+    <th class="text-center" style="color: #484D61">Trade</th>
     <% if session[:role] == 'Sub Contractor' %>
-        <th class="text-center">Sent</th>
+        <th class="text-center" style="color: #484D61">Sent</th>
     <% end %>
-    <th class="text-center">Price</th>
-    <th class="text-center">Status</th>
-    <th class="text-center">Action</th>
+    <th class="text-center" style="color: #484D61">Price</th>
+    <th class="text-center" style="color: #484D61">Status</th>
+    <th class="text-center" style="color: #484D61">Action</th>
     <% if session[:role] == 'Head Contractor' %>
-        <th class="text-center">Company</th>
+        <th class="text-center" style="color: #484D61">Company</th>
         <th class="text-center"></th>
+        <th class="text-center" style="display: none">Company Row</th>
     <% end %>
   </tr>
   </thead>
-  <tbody>
+  <tbody class="searchable">
   <% if @refs.present? %>
       <% @refs.uniq.each do |d| %>
           <tr>
@@ -86,6 +144,7 @@
             <% if session[:role] == 'Head Contractor' %>
                 <td class="text-center"><%= get_quote_user_company d %></td>
                 <td class="text-center"></td>
+                <td class="text-center" style="display: none"><%= get_quote_user_company d %></td>
             <% end %>
           </tr>
       <% end %>
@@ -102,7 +161,9 @@
         "bSort" : false,
         "bPaginate": false,
         "bInfo" : false,
-        "dom":'fltip'
+        "dom":'fltip',
+        "bFilter": 'false',
+        searching: false,
       });
       <% else %>
       $('#quotes_table').DataTable({
@@ -110,6 +171,8 @@
         "bPaginate": false,
         "bInfo" : false,
         "dom":'fltip',
+        "bFilter": 'false',
+        searching: false,
         "columnDefs": [
           { "visible": false, "targets": 8 }
         ],
@@ -200,13 +263,30 @@
       });
     });
 
+    $('.quote_list').click(function(){
+      $('.quote_list').each(function(index) {
+        if($(this).prop('checked')){
+          $('.quote_download').prop('disabled', false);
+          $('.remove_quote').prop('disabled', false);
+        }else{
+          $('.quote_download').prop('disabled', true);
+          $('.remove_quote').prop('disabled', true);
+        }
+      })
+    });
+
 
     $('.quote_list_master').click(function(){
 
       if($('.quote_list').prop('checked')){
         $('.quote_list').prop('checked',false);
+        $('.quote_download').prop('disabled', true);
+        $('.remove_quote').prop('disabled', true);
       }else{
+
         $('.quote_list').prop('checked',true);
+        $('.quote_download').prop('disabled', false);
+        $('.remove_quote').prop('disabled', false);
       }
     });
 
@@ -228,5 +308,15 @@
     });
 
     $('.popoverData').popover({ trigger: "hover" });
+
+    $('#filter').keyup(function () {
+
+      var rex = new RegExp($(this).val(), 'i');
+      $('.searchable tr').hide();
+      $('.searchable tr').filter(function () {
+        return rex.test($(this).text());
+      }).show();
+
+    })
   });
 </script>

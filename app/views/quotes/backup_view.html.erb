@@ -135,3 +135,99 @@
    });*/
 </script>
 
+
+
+<table  class="table table-bordered document_table" id="quote_table">
+  <thead>
+  <tr>
+    <th class="text-center"><input type="checkbox" class="quote_list_master"></th>
+    <th class="text-center">Quote#</th>
+    <th class="text-center">Title</th>
+    <% if session[:role] == 'Head Contractor' %>
+        <th class="text-center">Received</th>
+    <% end %>
+    <th class="text-center">Trade</th>
+    <% if session[:role] == 'Sub Contractor' %>
+        <th class="text-center">Sent</th>
+    <% end %>
+    <th class="text-center">Price</th>
+    <th class="text-center">Status</th>
+    <th class="text-center">Action</th>
+    <% if session[:role] == 'Head Contractor' %>
+        <th class="text-center">Company</th>
+        <th class="text-center"></th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <% if quotes.present? %>
+      <% quotes.uniq.each do |d| %>
+          <tr>
+            <td class="text-center"><input type="checkbox" class="quote_list" name="documents[]" value="<%= get_id d %>"></td>
+            <td class="text-center"><%= d %></td>
+            <% if (get_status d) == "Active" %>
+                <td class="text-center">
+                  <%= get_title d %>
+                </td>
+            <% else %>
+                <td class="text-center">
+                  <strike><%= get_title d %></strike>
+                </td>
+            <% end %>
+            <% if session[:role] == 'Head Contractor' %>
+                <td class="text-center"><%= get_received d %></td>
+            <% end %>
+
+            <td class="text-center">
+              <a href="#!" title="Trades" class="popoverData" data-toggle="popover" data-trigger="focus" data-content="<%= get_quote_trades d %>">
+                <span class="badge progress-bar-success"><%= get_trade_counts d %></span>
+              </a>
+            </td>
+            <% if session[:role] == 'Sub Contractor' %>
+                <td class="text-center">
+                  <%= get_created d %>
+                  <% if (get_seen_status d) == 1 %>
+                      <i class="fa fa-eye" aria-hidden="true" style="color: green"></i>
+                  <% else %>
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                  <% end %>
+                </td>
+            <% end %>
+            <td class="text-center"><%= "$ #{(get_price d)}" %></td>
+            <% if (get_status d) == "Active" %>
+                <td class="text-center">
+                  <button class="btn btn-success">
+                    <%= get_status d %>
+                  </button>
+                </td>
+            <% else %>
+                <td class="text-center">
+                  <button class="btn btn-danger">
+                    <%= get_status d %>
+                  </button>
+                </td>
+            <% end %>
+            <td class="text-center">
+              <a href="<%= view_quotes_path(:ref_no => d,:tender_id => tender_id) %>">
+                <button class="btn btn-default view">
+                  View
+                </button>
+              </a>
+              <% if session[:role] == 'Sub Contractor' %>
+                  <a href="<%= delete_quote_quotes_path(:id => (get_id d)) %>">
+                    <button class="btn btn-danger edit">
+                      Delete
+                    </button>
+                  </a>
+              <% end %>
+            </td>
+            <% if session[:role] == 'Head Contractor' %>
+                <td class="text-center"><%= get_quote_user_company d %></td>
+                <td class="text-center"></td>
+            <% end %>
+          </tr>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>
+

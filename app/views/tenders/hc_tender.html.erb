@@ -33,7 +33,26 @@
           <% else %>
               <li><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
           <% end %>
+          <li class="pull-right">
+            <a href="#" class="wiki">
+              <i class="fa fa-question-circle fa-2x"></i>
+            </a>
+          </li>
+          <li class="pull-right">
+            <div class="page-toolbar">
+              <div class="btn-group pull-right">
+                <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
+                  <i class="fa fa-angle-down"></i>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                  <li>
+                    <a href="#!" class="full_screen" ><i class="fa fa-arrows-alt"></i> Full Screen</a>
 
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -266,6 +285,90 @@
 
 </div>
 
+
+<div id="sample_modal" class=" popup-basic admin-form mfp-with-anim mfp-hide">
+  <div class="panel">
+    <div class="panel-heading">
+              <span class="panel-title">
+                <i class="fa fa-rocket"></i>Leave a comment</span>
+    </div>
+    <!-- end .panel-heading section -->
+
+    <form method="post" action="/" id="comment">
+      <div class="panel-body p25">
+        <div class="section row">
+          <div class="col-md-6">
+            <label for="firstname" class="field prepend-icon">
+              <input type="text" name="firstname" id="firstname" class="gui-input" placeholder="First name...">
+              <label for="firstname" class="field-icon">
+                <i class="fa fa-user"></i>
+              </label>
+            </label>
+          </div>
+          <!-- end section -->
+
+          <div class="col-md-6">
+            <label for="lastname" class="field prepend-icon">
+              <input type="text" name="lastname" id="lastname" class="gui-input" placeholder="Last name...">
+              <label for="lastname" class="field-icon">
+                <i class="fa fa-user"></i>
+              </label>
+            </label>
+          </div>
+          <!-- end section -->
+
+        </div>
+        <!-- end section row section -->
+
+        <div class="section row">
+          <div class="col-md-6">
+            <label for="email" class="field prepend-icon">
+              <input type="email" name="email" id="email" class="gui-input" placeholder="Email address">
+              <label for="email" class="field-icon">
+                <i class="fa fa-envelope"></i>
+              </label>
+            </label>
+          </div>
+          <!-- end section -->
+
+          <div class="col-md-6">
+            <label for="website" class="field prepend-icon">
+              <input type="url" name="website" id="lastname" class="gui-input" placeholder="Website url...">
+              <label for="website" class="field-icon">
+                <i class="fa fa-globe"></i>
+              </label>
+            </label>
+          </div>
+          <!-- end section -->
+
+        </div>
+        <!-- end section row section -->
+
+        <div class="section">
+          <label for="comment" class="field prepend-icon">
+            <textarea class="gui-textarea" id="comment" name="comment" placeholder="Your comment"></textarea>
+            <label for="comment" class="field-icon">
+              <i class="fa fa-comments"></i>
+            </label>
+                    <span class="input-footer">
+                      <strong>Hey You:</strong> We expect a great comment...</span>
+          </label>
+        </div>
+        <!-- end section -->
+
+      </div>
+      <!-- end .form-body section -->
+
+      <div class="panel-footer">
+        <button type="submit" class="button btn-primary">Post Comment</button>
+        <button type="button" class="button btn-default popup-modal-dismiss">Close</button>
+      </div>
+      <!-- end .form-footer section -->
+    </form>
+  </div>
+  <!-- end: .panel -->
+</div>
+
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8&libraries=places&sensor=false"></script> 
 <script>
 
@@ -481,7 +584,22 @@
         load_map();
       });
 
+      $('.full_screen').click(function(){
+        $('.menu-toggler').click();
+      });
 
+
+      $('.wiki').magnificPopup({
+        type: 'inline',
+        items: {src: '#sample_modal'},
+        preloader: false,
+        modal: true
+      });
+
+      $('.popup-modal-dismiss').click(function(){
+        $.magnificPopup.close();
+        $('form')[0].reset();
+      });
 
 
   })

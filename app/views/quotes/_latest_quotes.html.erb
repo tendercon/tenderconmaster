@@ -1,14 +1,16 @@
 <div class="quote_all_lists">
   <div class="row">
     <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
-        <a href="#!" class="new_quote">
-          <button class="btn btn-info">Send Quote</button>
-        </a>
-    <% end %>
-    <% if session[:role] == 'Head Contractor' %>
+        <div class="col-md-12">
+          <div class="admin-form">
+            <button class="button btn-info new_quote">Send Quote</button>
+            <div style="height: 30px;"></div>
+          </div>
+        </div>
 
     <% end %>
-    <br><br>
+
+    <div style="height: 50px;"></div>
     <div class="col-md-12 quote_lists">
       <%= render :partial => 'quotes/quotes', :locals => {:quotes => @refs,:tender_id =>@tender.id} %>
     </div>

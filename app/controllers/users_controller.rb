@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  layout 'users_layout', :on => [:login],:except => [:profile,:company_profile,:index,:edit_profile,:billing,:change_password,:edit_company_profile,:subscription]
+  layout 'users_layout', :on => [:login],:except => [:profile,:company_profile,:index,:edit_profile,:billing,:change_password,:edit_company_profile,:subscription,:register,:welcome_page,
+                                                    :tendercon_steps,:steps_completed,:registration_completed]
   skip_before_action :verify_authenticity_token
 
   def index
@@ -168,11 +169,17 @@ class UsersController < ApplicationController
       old_company = nil
     else
       @user = User.new(user_premitted_params)
+      if params[:role] == 'SC'
+        @user.role = 'Sub Contractor'
+      elsif  params[:role] == 'HC'
+        @user.role = 'Head Contractor'
+      end
       @name = params[:user][:first_name]
       @email = params[:user][:email]
       @company = params[:user][:company][:name]
       @password = params[:user][:password]
       @confirmed_password = params[:user][:confirmed_password]
+
 
       old_company = Company.where(:name => @company)
     end

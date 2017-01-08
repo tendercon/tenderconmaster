@@ -402,7 +402,7 @@ class QuotesController < ApplicationController
 
   def search_by_trade
     @tender = Tender.find(params[:tender_id])
-
+    @trade_id = params[:trade_id]
     @quote_document = QuoteDocument.new
     @quote_document_optional = QuoteDocumentOptional.new
     if session[:role] == 'Head Contractor'
