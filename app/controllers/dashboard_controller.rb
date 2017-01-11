@@ -1,6 +1,8 @@
 class DashboardController < ApplicationController
 
   def index
+    a = Time.now.end_of_day - Time.now
+    puts "a =========> #{a}"
     if session[:role] == 'Admin'
       @users_count = User.all.count()
       @users_completed = User.where("abn is not null").count();
