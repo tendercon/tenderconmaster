@@ -1,21 +1,21 @@
 <input type="hidden" class="tender_id" value="<%= @tender.id%>" >
 <div class="admin-form">
   <div class="row">
-    <div class="col-md-6">
+    <!--<div class="col-md-6">-->
 
       <%# if @refs.present? %>
-          <button class="button btn-default quote_download" disabled>
+          <!--<button class="button btn-default quote_download" disabled>
             <i class="fa fa-download " aria-hidden="true"></i> Download
           </button>
-          <% if session[:role] == 'Sub Contractor' %>
+          <%# if session[:role] == 'Sub Contractor' %>
               <button class="button btn-danger remove_quote" disabled> Delete
                 <i class="fa fa-trash remove_quote" aria-hidden="true"></i>
               </button>
 
-          <% end %>
+          <%# end %>-->
       <%# end %>
-    </div>
-    <div class="col-md-3">
+    <!--</div>-->
+    <div class="col-md-6">
       <%# if @refs.present? %>
           <div class="section">
             <label class="field select">
@@ -41,6 +41,7 @@
           </div>
       <%# end %>
     </div>
+    <div class="col-md-3"></div>
     <div class="col-md-3">
       <div class="section">
         <div class="smart-widget sm-left sml-50">

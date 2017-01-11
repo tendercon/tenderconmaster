@@ -2,21 +2,21 @@
 
   <div class="admin-form">
     <div class="row">
-      <div class="col-md-6">
+      <!--<div class="col-md-6">
 
-        <% if quotes.present? %>
+        <%# if quotes.present? %>
             <button class="button btn-default quote_download" disabled>
               <i class="fa fa-download " aria-hidden="true"></i> Download
             </button>
-            <% if session[:role] == 'Sub Contractor' %>
+            <%# if session[:role] == 'Sub Contractor' %>
                 <button class="button btn-danger remove_quote" disabled> Delete
                   <i class="fa fa-trash remove_quote" aria-hidden="true"></i>
                 </button>
 
-            <% end %>
-        <% end %>
-      </div>
-      <div class="col-md-3">
+            <%# end %>
+        <%# end %>
+      </div>-->
+      <div class="col-md-6">
         <% if quotes.present? %>
           <div class="section">
             <label class="field select">
@@ -33,6 +33,7 @@
           </div>
         <% end %>
       </div>
+      <div class="col-md-3"></div>
       <div class="col-md-3">
         <div class="section">
           <div class="smart-widget sm-left sml-50">
@@ -49,21 +50,27 @@
     </div>
   </div>
   <table class="table table-striped" id="new_quote_table">
+
     <thead>
       <tr>
-        <th class="text-center"><input type="checkbox" class="quote_list_master"></th>
-        <th class="text-center" style="color: #484D61">Quote#</th>
-        <th class="text-center" style="color: #484D61">Title</th>
+        <!--<th class="text-center"><input type="checkbox" class="quote_list_master"></th>-->
         <% if session[:role] == 'Head Contractor' %>
             <th class="text-center" style="color: #484D61">Received</th>
         <% end %>
-        <th class="text-center" style="color: #484D61">Trade</th>
         <% if session[:role] == 'Sub Contractor' %>
             <th class="text-center" style="color: #484D61">Sent</th>
         <% end %>
-        <th class="text-center" style="color: #484D61">Price</th>
-        <th class="text-center" style="color: #484D61">Status</th>
-        <th class="text-center" style="color: #484D61">Action</th>
+        <th class="text-center" style="color: #484D61">Quote#</th>
+        <th class="text-center" style="color: #484D61">Title</th>
+
+        <th class="text-center" style="color: #484D61">Trades</th>
+
+        <th class="text-center" style="color: #484D61">A$(ex GST)</th>
+        <% if session[:role] == 'Sub Contractor' %>
+            <th class="text-center" style="color: #484D61">Viewed By HC</th>
+        <% end %>
+       <!-- <th class="text-center" style="color: #484D61">Status</th>
+        <th class="text-center" style="color: #484D61">Action</th>-->
         <% if session[:role] == 'Head Contractor' %>
             <th class="text-center" style="color: #484D61">Company</th>
             <th class="text-center"></th>
@@ -75,26 +82,11 @@
     <% if quotes.present? %>
         <% quotes.uniq.each do |d| %>
             <tr>
-              <td class="text-center"><input type="checkbox" class="quote_list" name="documents[]" value="<%= get_id d %>"></td>
-              <td class="text-center"><%= d %></td>
-              <% if (get_status d) == "Active" %>
-                  <td class="text-center">
-                    <%= get_title d %>
-                  </td>
-              <% else %>
-                  <td class="text-center">
-                    <strike><%= get_title d %></strike>
-                  </td>
-              <% end %>
+              <!--<td class="text-center"><input type="checkbox" class="quote_list" name="documents[]" value="<%#= get_id d %>"></td>-->
+
               <% if session[:role] == 'Head Contractor' %>
                   <td class="text-center"><%= get_received d %></td>
               <% end %>
-
-              <td class="text-center">
-                <a href="#!" title="Trades" class="popoverData" data-toggle="popover" data-trigger="focus" data-content="<%= get_quote_trades d %>">
-                  <span class="badge progress-bar-success"><%= get_trade_counts d %></span>
-                </a>
-              </td>
               <% if session[:role] == 'Sub Contractor' %>
                   <td class="text-center">
                     <%= get_created d %>
@@ -105,34 +97,55 @@
                     <% end %>
                   </td>
               <% end %>
-              <td class="text-center"><%= "$ #{(get_price d)}" %></td>
+              <td class="text-center"><%= d %></td>
               <% if (get_status d) == "Active" %>
                   <td class="text-center">
-                    <button class="btn btn-success">
-                      <%= get_status d %>
-                    </button>
+                    <%= get_title d %>
                   </td>
               <% else %>
                   <td class="text-center">
-                    <button class="btn btn-danger">
-                      <%= get_status d %>
-                    </button>
+                    <strike><%= get_title d %></strike>
                   </td>
               <% end %>
+
+
               <td class="text-center">
-                <a href="<%= view_quotes_path(:ref_no => d,:tender_id => tender_id) %>">
+                <a href="#!" title="Trades" class="popoverData" data-toggle="popover" data-trigger="focus" data-content="<%= get_quote_trades d %>">
+                  <span class="badge progress-bar-success"><%= get_trade_counts d %></span>
+                </a>
+              </td>
+
+              <td class="text-center"><%= "$ #{(get_price d)}" %></td>
+              <% if session[:role] == 'Sub Contractor' %>
+                <td class="text-center"><%= Time.now.strftime("%d.%m.%Y") %></td>
+              <% end %>
+              <%# if (get_status d) == "Active" %>
+                  <!--<td class="text-center">
+                    <button class="btn btn-success">
+                      <%#= get_status d %>
+                    </button>
+                  </td>-->
+              <%# else %>
+                  <!--<td class="text-center">
+                    <button class="btn btn-danger">
+                      <%#= get_status d %>
+                    </button>
+                  </td>-->
+              <%# end %>
+              <!--<td class="text-center">
+                <a href="<%#= view_quotes_path(:ref_no => d,:tender_id => tender_id) %>">
                   <button class="btn btn-default view">
                     View
                   </button>
                 </a>
-                <% if session[:role] == 'Sub Contractor' %>
-                    <a href="<%= delete_quote_quotes_path(:id => (get_id d)) %>">
+                <%# if session[:role] == 'Sub Contractor' %>
+                    <a href="<%#= delete_quote_quotes_path(:id => (get_id d)) %>">
                       <button class="btn btn-danger edit">
                         Delete
                       </button>
                     </a>
-                <% end %>
-              </td>
+                <%# end %>
+              </td>-->
               <% if session[:role] == 'Head Contractor' %>
                   <td class="text-center"><%= get_quote_user_company d %></td>
                   <td class="text-center"></td>
@@ -176,20 +189,20 @@
         "bFilter": 'false',
         searching: false,
         "columnDefs": [
-          { "visible": false, "targets": 8 }
+          { "visible": false, "targets": 5 }
         ],
-        "order": [[ 8, 'asc' ]],
+        "order": [[ 5, 'asc' ]],
         "displayLength": 25,
         "drawCallback": function ( settings ) {
           var api = this.api();
           var rows = api.rows( {page:'current'} ).nodes();
           var last=null;
 
-          api.column(8, {page:'current'} ).data().each( function ( group, i ) {
+          api.column(5, {page:'current'} ).data().each( function ( group, i ) {
 
             if ( last !== group ) {
               $(rows).eq( i ).before(
-                  '<tr class="group"><td colspan="8" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
+                  '<tr class="group"><td colspan="5" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
                   '<td class="text-center"> <span class="badge progress-bar-danger">'+ <%= get_quote_count @tender.id %> +'</span>'+
                   '</td></tr>'
               );
