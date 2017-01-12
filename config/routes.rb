@@ -53,8 +53,8 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  #root 'home#index'
-  root 'users#login'
+  root 'home#coming_soon'
+  #root 'users#login'
   resources :dashboard do
     collection do
       # get
@@ -145,9 +145,10 @@ Rails.application.routes.draw do
   resources :home do
     collection do
       # get
-
+       get 'coming_soon'
 
       # post
+      post 'notify_tendercon'
 
     end
   end

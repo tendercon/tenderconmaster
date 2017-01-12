@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <title>Tendercon</title>
+  <meta name="keywords" content="HTML5 Bootstrap 3 Admin Template UI Theme" />
+  <meta name="description" content="AdminDesigns - A Responsive HTML5 Admin UI Framework">
+  <meta name="author" content="AdminDesigns">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font CSS (Via CDN) -->
+  <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+
+  <!-- Theme CSS -->
+  <link href="../vendors/global/css/theme.css" rel="stylesheet"  type="text/css" />
+
+  <!-- Admin Forms CSS -->
+  <link rel="stylesheet" type="text/css" href="../vendors/global/css/admin-forms.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="external-page sb-l-c sb-r-c">
+
+<!-- Start: Main -->
+<div id="main" class="animated fadeIn">
+
+  <!-- Start: Content-Wrapper -->
+  <section id="content_wrapper">
+
+    <!-- Begin: Animated Canvas BG -->
+    <div id="canvas-wrapper">
+      <canvas id="demo-canvas"></canvas>
+    </div>
+
+    <!-- Begin: Content -->
+    <section id="content">
+      <div class="admin-form theme-info" id="login1" style="margin-top: 6%;">
+        <a href="/users/login">
+          <img src="/img/logos/tendercon.png" title="AdminDesigns Logo" class="img-responsive w200 ml10">
+        </a>
+      </div>
+
+
+      <div class="admin-form theme-info" id="login1" style="margin-top: 6%;">
+        <div id="counter"></div>
+
+        <h1 class="coming-soon-title"> We're Getting Ready To Launch!</h1>
+        <div class="panel panel-info bw10">
+
+          <!-- end .form-header section -->
+          <form  id="contact">
+            <div class="panel-menu">
+              <div class="row">
+                <div class="col-md-9">
+                  <label for="password" class="field prepend-icon">
+                    <input type="text" name="password" id="password" class="gui-input email" placeholder="Your Email Address">
+                    <label for="password" class="field-icon">
+                      <i class="fa fa-envelope-o"></i>
+                    </label>
+                  </label>
+                </div>
+                <div class="col-md-3">
+                  <button type="button" class="button btn-info mr10 btn-block notify">Notify</button>
+                </div>
+              </div>
+            </div>
+            <!-- end .form-body section -->
+
+          </form>
+        </div>
+      </div>
+
+    </section>
+    <!-- End: Content -->
+
+  </section>
+  <!-- End: Content-Wrapper -->
+
+</div>
+<!-- End: Main -->
+
+<!-- BEGIN: PAGE SCRIPTS -->
+
+<!-- jQuery -->
+<!--<script src="vendor/jquery/jquery-1.11.1.min.js"></script>
+<script src="vendor/jquery/jquery_ui/jquery-ui.min.js"></script>-->
+<script src="../vendors/global/plugins/jquery.min.js" type="text/javascript"></script>
+<script src="../vendors/global/plugins/jquery-ui.js" type="text/javascript"></script>
+<!-- Countdown Plugin -->
+
+
+
+<script src="../vendors/global//plugins/countdown/jquery.plugin.min.js"></script>
+<script src="../vendors/global/plugins/countdown/jquery.countdown.min.js" type="text/javascript"></script>
+<script src="../vendors/global/plugins/canvasbg/canvasbg.js" type="text/javascript"></script>
+
+<!-- Theme Javascript -->
+<script src="../vendors/global/plugins/utility/utility.js" type="text/javascript"></script>
+<script src="../vendors/global/plugins/demo.js" type="text/javascript"></script>
+<script src="../vendors/global/plugins/main.js" type="text/javascript"></script>
+
+<!-- Page Javascript -->
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+
+    $('.notify').click(function(){
+      var email = $('.email').val();
+      if(email.length > 0){
+        $.ajax({
+          method: "POST",
+          data: {email: email},
+          url: "/home/notify_tendercon"
+        }).done(function (data) {
+          console.log(data);
+          if(data.state = 'valid') {
+            $('.email').val('');
+            alert("Thank You for your expression of interest, a Tendercon team member will be in touch shortly on how to gain a first look into the Tendercon platform.")
+          }
+        });
+      }else{
+        alert("Please insert valid email");
+      }
+
+    });
+
+
+
+    "use strict";
+
+    // Init Theme Core
+    Core.init();
+
+    // Init Demo JS
+    Demo.init();
+
+    // Init CanvasBG and pass target starting location
+    CanvasBG.init({
+      Loc: {
+        x: window.innerWidth / 10,
+        y: window.innerHeight / 20
+      },
+    });
+
+    // Init Countdown Plugin
+    var newYear = new Date();
+    newYear = new Date(newYear.getFullYear() + 1, 1 - 6, 1);
+    console.log(newYear);
+    $('#counter').countdown({
+      until: new Date(2017,1,14)
+    });
+
+    // For further documentation, settings, and examples
+    // see http://keith-wood.name/countdownRef.html
+
+
+
+  });
+</script>
+
+<!-- END: PAGE SCRIPTS -->
+
+</body>
+
+</html>
