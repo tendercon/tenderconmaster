@@ -1,13 +1,25 @@
 <div class="quote_all_lists">
+  <div style="height: 30px;"></div>
   <div class="row">
     <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
         <div class="col-md-12">
-          <div class="admin-form  pull-right">
+
+          <div class="admin-form">
+            <div class="row">
+              <a href="#!" class="btn new_quote">
+                <button class="button btn-info" > Send New Quote
+
+                </button>
+              </a>
+            </div>
+          </div>
+          <div style="height: 30px;"></div>
+          <!--<div class="admin-form  pull-right">
             <a href="#!" class="btn new_quote">
               <span class="fa fa-plus-circle  fa-3x" style="color:  #000099"><h4 class="btn_send" style="display: none">Send New Quote</h4></span>
             </a>
             <div style="height: 30px;"></div>
-          </div>
+          </div>-->
         </div>
 
     <% end %>
@@ -316,13 +328,13 @@
 
   $(document).ready(function(){
 
-    $( ".new_quote" ).hover(
+    /*$( ".new_quote" ).hover(
         function() {
           $('.btn_send').show();
         }, function() {
           $('.btn_send').hide();
         }
-    );
+    );*/
 
     $('.new_quote').click(function(){
       $('#new_quote').modal('show');
