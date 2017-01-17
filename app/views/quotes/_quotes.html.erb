@@ -136,13 +136,13 @@
                     View
                   </button>
                 </a>
-                <% if session[:role] == 'Sub Contractor' %>
-                    <a href="<%= delete_quote_quotes_path(:id => (get_id d)) %>">
+                <%# if session[:role] == 'Sub Contractor' %>
+                    <!--<a href="<%#= delete_quote_quotes_path(:id => (get_id d)) %>">
                       <button class="btn btn-danger edit">
                         Delete
                       </button>
-                    </a>
-                <% end %>
+                    </a>-->
+                <%# end %>
               </td>
               <% if session[:role] == 'Head Contractor' %>
                   <td class="text-center"><%= get_quote_user_company d %></td>
