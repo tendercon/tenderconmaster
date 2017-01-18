@@ -2,44 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/font-awesome/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/font-awesome/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/font-awesome/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/font-awesome/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/background1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/background2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/background3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/background4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/favicon.ico" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/h1-bg-white.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/h1-bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/icon-location.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/overlay.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/team/1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/team/2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/team/3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/css/animate.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/font-awesome/css/font-awesome.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/font-awesome/css/font-awesome.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/font-awesome/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/icon-controller.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/images/icon-location.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/js/jquery.ajaxchimp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/js/jquery.backstretch.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/js/jquery.countdown.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/js/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/js/jquery.validate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/js/jquery.youtubebackground.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/js/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/js/scrollReveal.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/js/smooth-scroll.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/home_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/home_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/coming_soon.html.erb" afterPath="$PROJECT_DIR$/app/views/home/coming_soon.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,6 +29,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="home_controller.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="17" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="coming_soon.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/home/coming_soon.html.erb">
           <provider selected="true" editor-type-id="text-editor">
@@ -78,11 +51,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="coming_soon_layout.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="coming_soon_layout.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
               <caret line="17" column="94" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/routes.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="56" column="2" selection-start-line="56" selection-start-column="2" selection-end-line="56" selection-end-column="2" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="application_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="159" selection-start-line="9" selection-start-column="159" selection-end-line="9" selection-end-column="159" />
               <folding />
             </state>
           </provider>
@@ -136,7 +129,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/tenders/open_tender.html.erb" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/views/tenders/_tender_info.html.erb" />
         <option value="$PROJECT_DIR$/app/views/rfis/_rfis.html.erb" />
@@ -187,6 +179,7 @@
         <option value="$PROJECT_DIR$/public/vendors/coming_soon/css/style.css" />
         <option value="$PROJECT_DIR$/public/vendors/coming_soon/js/main.js" />
         <option value="$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
       </list>
     </option>
   </component>
@@ -833,12 +826,12 @@
       <workItem from="1484572517466" duration="284000" />
       <workItem from="1484611905899" duration="2332000" />
       <workItem from="1484649680659" duration="472000" />
-      <workItem from="1484713419544" duration="7469000" />
+      <workItem from="1484713419544" duration="7661000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="309554000" />
+    <option name="totallyTimeSpent" value="309746000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="731" extended-state="6" />
@@ -918,13 +911,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/vendors/global/css/magnific-popup.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1175,22 +1161,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1734">
-          <caret line="150" column="28" selection-start-line="150" selection-start-column="28" selection-end-line="150" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="7" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/quotes/_latest_quotes.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1286,6 +1256,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="17" column="94" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="56" column="2" selection-start-line="56" selection-start-column="2" selection-end-line="56" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="17" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="159" selection-start-line="9" selection-start-column="159" selection-end-line="9" selection-end-column="159" />
           <folding />
         </state>
       </provider>

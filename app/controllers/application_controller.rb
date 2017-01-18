@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
                                                                   :forgot_password,:reset_password,:user_company_exist,
                                                                   :account_taken,:registration_completed,:resent_email_notification,
                                                                   :validate_user_email,:email_authentication,:validation_complete,:update_password,
-                                                                  :password_changed,:validate_account,:token_expired,:generate_new_token,:gettoken]
+                                                                  :password_changed,:validate_account,:token_expired,:generate_new_token,:gettoken,:coming_soon]
   before_filter :notify, :except => [:logout,:login,:register,:create_user]
 
 
