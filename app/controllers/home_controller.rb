@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_filter :is_logged?, except: [:index]
+  before_filter :is_logged?, except: [:index,:coming_soon]
   layout 'home_layout', :on => [:index]
   layout 'coming_soon_layout', :on => [:coming_soon]
   skip_before_action :verify_authenticity_token
