@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   layout 'home_layout', :on => [:index]
   layout 'coming_soon_layout', :on => [:coming_soon]
   skip_before_action :verify_authenticity_token
+
   def index
 
   end
