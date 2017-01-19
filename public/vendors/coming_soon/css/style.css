@@ -333,7 +333,7 @@ header .social-icons > ul:before
 header .social-icons > ul:after
 			{
 				right: 100%;
-				margin-right: 1px;
+				margin-right: 10px;
 			}
 
 header .button {
