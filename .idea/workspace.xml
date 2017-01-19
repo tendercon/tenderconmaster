@@ -53,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="333">
-              <caret line="59" column="66" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
+              <caret line="59" column="65" selection-start-line="59" selection-start-column="65" selection-end-line="59" selection-end-column="65" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -801,12 +801,12 @@
       <workItem from="1484611905899" duration="2332000" />
       <workItem from="1484649680659" duration="472000" />
       <workItem from="1484713419544" duration="8559000" />
-      <workItem from="1484783071528" duration="4636000" />
+      <workItem from="1484783071528" duration="4752000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="315280000" />
+    <option name="totallyTimeSpent" value="315396000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="729" extended-state="6" />
@@ -1231,7 +1231,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="333">
-          <caret line="59" column="66" selection-start-line="59" selection-start-column="66" selection-end-line="59" selection-end-column="66" />
+          <caret line="59" column="65" selection-start-line="59" selection-start-column="65" selection-end-line="59" selection-end-column="65" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
