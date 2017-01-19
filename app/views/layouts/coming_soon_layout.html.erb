@@ -45,8 +45,14 @@
 
 
   <div class="welcome">
-    <div class="logo"><img src="/img/logos/tendercon.png" alt="" width="500px;"> </div>
+    <div class="logo">
+      <img src="/img/logos/tendercon.png" alt="" width="500px;">
 
+    </div>
+    <div style="height: 100px"></div>
+    <p class="animated fadeInUp">
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </p>
     <hr class="animated fadeInUp">
     <p class="animated fadeInUp">Our website is under construction.</p>
 
@@ -60,11 +66,11 @@
     <!-- Social Icons -->
     <div class="social-icons">
       <ul class="animated fadeInDownBig">
-        <li><a href=""><i class="fa fa-fw fa-youtube"></i></a></li>
-        <li><a href=""><i class="fa fa-fw fa-twitter"></i></a></li>
-        <li><a href=""><i class="fa fa-fw fa-facebook"></i></a></li>
+        <li><a href=""><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
+        <li><a href=""><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+        <!--<li><a href=""><i class="fa fa-fw fa-facebook"></i></a></li>
         <li><a href=""><i class="fa fa-fw fa-dribbble"></i></a></li>
-        <li><a href=""><i class="fa fa-fw fa-google-plus"></i></a></li>
+        <li><a href=""><i class="fa fa-fw fa-google-plus"></i></a></li>-->
       </ul>
     </div>
     <!-- /Social Icons -->
@@ -251,7 +257,7 @@
   <div class="container">
     <div class="row">
 
-      <div class="copyright" data-sr="wait 0.5s, then enter bottom and move 40px over 1s">Copyright © 2015 <a href="http://themeforest.net/user/MountainTheme?ref=MountainTheme" target="_blank"> MountainTheme</a>. All rights reserved.
+      <div class="copyright" data-sr="wait 0.5s, then enter bottom and move 40px over 1s">Copyright © 2017 <a href="http://themeforest.net/user/MountainTheme?ref=MountainTheme" target="_blank"> TenderconTheme</a>. All rights reserved.
       </div>
 
     </div>
@@ -289,7 +295,7 @@
     date: endDate,
     render: function(data) {
 
-      $(this.el).html("<div>"  + this.leadingZeros(data.days, 3) + " <span>days</span></div><div class='border_clock'>" + this.leadingZeros(data.hours, 2) + " <span>hours</span></div><div class='border_clock'>" + this.leadingZeros(data.min, 2) + " <span>minutes</span></div><div class='border_clock'>" + this.leadingZeros(data.sec, 2) + " <span>seconds</span></div>");
+      $(this.el).html("<div>"  + this.leadingZeros(data.days, 2) + " <span>days</span></div><div class='border_clock'>" + this.leadingZeros(data.hours, 2) + " <span>hours</span></div><div class='border_clock'>" + this.leadingZeros(data.min, 2) + " <span>minutes</span></div><div class='border_clock'>" + this.leadingZeros(data.sec, 2) + " <span>seconds</span></div>");
     }
   });
 </script>
