@@ -62,12 +62,12 @@ html, body {
 }
 
 #video {
-	position: absolute;
+	/*position: absolute;
 	left: 0;
 	top: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 1;
+	z-index: 1;*/
 }
 
 #constellation {
@@ -79,7 +79,7 @@ html, body {
 }
 
 #video:after {
-	content: '';
+	/*content: '';
 	position: absolute;
 	height: 150%;
 	width: 100%;
@@ -92,7 +92,7 @@ html, body {
   -moz-transition: all 0.4s ease 0s;
   -webkit-transition: all 0.4s ease 0s;
   -o-transition: all 0.4s ease 0s;
-  -ms-transition: all 0.4s ease 0s;
+  -ms-transition: all 0.4s ease 0s;*/
 }
 
 
@@ -186,6 +186,7 @@ header {
 	width: 100%;
 	overflow: hidden;
 	padding-top: 330px;
+
 }
 
 .welcome {
@@ -195,6 +196,7 @@ header {
     left: 0;
     right: 0;
     padding-top: 330px;
+	height: 900px;
 }
 
 header img {
