@@ -165,4 +165,12 @@ class TenderconMailer < ActionMailer::Base
     @messages = "New Notification."
     mail(to: email, subject: "#{subject}")
   end
+
+  def get_in_touch subject,email,new_email,name,msg
+    @email = email
+    @new_email = new_email
+    @name = name
+    @messages = msg
+    mail(to: email, subject: "#{subject}")
+  end
 end

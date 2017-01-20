@@ -45,7 +45,7 @@ gem 'omniauth-linkedin'
 gem 'omniauth-facebook'
 gem 'linkedin-scraper'
 
-gem 'bootstrap-wysihtml5-rails', github: 'nerian/bootstrap-wysihtml5-rails'
+#gem 'bootstrap-wysihtml5-rails'
 
 gem 'jspdf-rails'
 

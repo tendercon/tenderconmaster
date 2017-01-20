@@ -149,6 +149,7 @@ Rails.application.routes.draw do
 
       # post
       post 'notify_tendercon'
+      post 'get_in_touch'
 
     end
   end

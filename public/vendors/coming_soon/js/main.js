@@ -234,9 +234,9 @@ $('#video').YTPlayer({
 /* ================================= */
 
   //set your google maps parameters
-  var latitude = -37.8602828,
-    longitude = 145.079616,
-    map_zoom = 10;
+  var latitude = -33.921506,
+    longitude = 51.1991044,
+    map_zoom = 18;
 
   //google map custom marker icon - .png fallback for IE11
   var is_internetExplorer11= navigator.userAgent.toLowerCase().indexOf('trident') > -1;

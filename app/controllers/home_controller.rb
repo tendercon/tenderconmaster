@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_filter :is_logged?, except: [:index,:coming_soon]
+  before_filter :is_logged?, except: [:index,:coming_soon,:get_in_touch,:notify_tendercon]
   layout 'home_layout', :on => [:index]
   layout 'coming_soon_layout', :on => [:coming_soon]
   skip_before_action :verify_authenticity_token
@@ -9,7 +9,8 @@ class HomeController < ApplicationController
   end
 
   def coming_soon
-
+    user_loc = Geocoder.search("205/414 Garderners Rd, Rosebery, NSW 2018")
+    puts "user_loc ====> #{user_loc.inspect}"
   end
 
   def notify_tendercon
@@ -17,4 +18,13 @@ class HomeController < ApplicationController
     TenderconMailer.delay.home_notifcation('New Notification','info@tendercon.com',email)
     render :json => { :state => 'valid'}
   end
+
+  def get_in_touch
+    name = params[:name]
+    email = params[:email]
+    msg  = params[:msg]
+    TenderconMailer.delay.get_in_touch('Get in Touch','info@tendercon.com',email,name,msg)
+    render :json => { :state => 'valid'}
+  end
+
 end

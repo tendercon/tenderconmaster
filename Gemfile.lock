@@ -5,13 +5,6 @@ GIT
     geocoder (1.4.1)
 
 GIT
-  remote: git://github.com/nerian/bootstrap-wysihtml5-rails.git
-  revision: 245d7a99250cf999cc7a0bd4ca9785f74af0357b
-  specs:
-    bootstrap-wysihtml5-rails (0.3.3.8)
-      railties (>= 3.0)
-
-GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: 7c81e7813e75950d111885b44d33c08358e5e46c
   specs:
@@ -428,7 +421,6 @@ DEPENDENCIES
   abn_search
   activerecord-session_store
   bootstrap-multiselect-rails
-  bootstrap-wysihtml5-rails!
   byebug
   capybara
   coffee-rails (~> 4.1.0)
@@ -489,4 +481,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.12.5
+   1.13.7

@@ -48,20 +48,21 @@
 
 
   <div class="welcome" style='background-image: url("/img/logos/tender_background.jpg");background-size: 100% 100%;background-repeat: no-repeat;'>
-    <div class="logo">
+    <div class="logo" >
       <img src="/img/logos/tendercon_log_transparent.png" alt="">
     </div>
 
-    <div style="height: 100px"></div>
+    <div style="height: 50px"></div>
     <p class="animated fadeInUp" style="font-size: 24px">
       Construction Tendering. Online & Reinvented.
 
     </p>
-
+    <div style="height: 40px"></div>
     <!-- BUTTON SCROLL-->
     <ul class="actions animated fadeInUpBig">
       <li><a href="#countdown" class="button">Discover</a></li>
     </ul>
+
     <!-- /BUTTON SCROLL -->
 
 
@@ -101,7 +102,7 @@
 <section class="services">
   <div class="container">
     <div class="row">
-      <h3 data-sr="wait 0.5s, then enter top and move 40px over 1s">Why Tendercon,</h3>
+      <h3 data-sr="wait 0.5s, then enter top and move 40px over 1s">WHY TENDERCON,</h3>
       <div class="col-md-12">
         <div class="col-md-4" data-sr="wait 0.25s, then enter left and move 40px over 1s">
           <div class="icon">
@@ -162,7 +163,7 @@
       <h2 data-sr="wait 0.5s, then enter top and move 40px over 1s">TELL ME MORE</h2>
       <form id="ajaxChimp" data-sr="wait 0.5s, then enter bottom and move 40px over 1s">
         <input id="mc-email" type="text" placeholder="Enter your email address">
-        <button type="submit"><i class="fa fa-fw fa-envelope"></i></button>
+        <button type="submit" class="tell_me_submit"><i class="fa fa-fw fa-envelope"></i></button>
         <label for="mc-email"></label>
       </form>
     </div>
@@ -187,8 +188,8 @@
           <!-- Social Icons -->
           <div class="social-icons">
             <ul>
-              <li><a href=""><i class="fa fa-linkedin-square"></i></a></li>
-              <li><a href=""><i class="fa fa-instagram"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/sandrobotic/"><i class="fa fa-linkedin-square"></i></a></li>
+              <li><a href="https://www.instagram.com/sandrobotic/"><i class="fa fa-instagram"></i></a></li>
               <!--<li><a href=""><i class="fa fa-fw fa-dribbble"></i></a></li>
               <li><a href=""><i class="fa fa-fw fa-google-plus"></i></a></li>-->
             </ul>
@@ -203,7 +204,7 @@
           <!-- Social Icons -->
           <div class="social-icons">
             <ul>
-              <li><a href=""><i class="fa fa-linkedin-square"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/ryanhe/"><i class="fa fa-linkedin-square"></i></a></li>
               <!--<li><a href=""><i class="fa fa-fw fa-facebook"></i></a></li>
               <li><a href=""><i class="fa fa-fw fa-dribbble"></i></a></li>
               <li><a href=""><i class="fa fa-fw fa-google-plus"></i></a></li>-->
@@ -225,11 +226,11 @@
       <div class="col-md-12">
         <div id="note"></div>
         <div id="fields">
-          <form id="ajax-contact-form">
+          <form id="ajax-contact-form" >
             <input type="text" name="name" id="name" placeholder="Name" value="" data-sr="enter left move 25px, after 0.3s"/>
             <input type="email" name="email" id="email" placeholder="Email" value="" data-sr="enter right move 25px, after 0.3s"/>
             <textarea name="msg" id="msg" placeholder="Message"  data-sr="enter bottom move 25px, after 0.3s"></textarea>
-            <input type="submit" name="submit" id="submit" value="Send message" data-sr="wait 0.8s, then enter top and move 40px after 0.3s"/>
+            <input type="submit" name="submit" class="get_intouch_submit" id="submit" value="Send message" data-sr="wait 0.8s, then enter top and move 40px after 0.3s"/>
           </form>
         </div>
       </div>
@@ -241,7 +242,7 @@
 
 <!-- GOOGLE MAP  -->
 <section class="google-map">
-  <div id="google-container"></div>
+  <div id="google-container1"></div>
   <div id="zoom-in"></div>
   <div id="zoom-out"></div>
   <div class="contact-info">
@@ -309,12 +310,110 @@
       $(this.el).html("<div>"  + this.leadingZeros(data.days, 2) + " <span>days</span></div><div class='border_clock'>" + this.leadingZeros(data.hours, 2) + " <span>hours</span></div><div class='border_clock'>" + this.leadingZeros(data.min, 2) + " <span>minutes</span></div><div class='border_clock'>" + this.leadingZeros(data.sec, 2) + " <span>seconds</span></div>");
     }
   });
+
+  $('.get_intouch_submit').click(function(){
+    var name = $('#name').val();
+    var email = $('#email').val();
+    var msg = $('#msg').val();
+
+    $.ajax({
+      method: "POST",
+      data: {name: name, email:email, msg:msg},
+      url: "/home/get_in_touch"
+    }).done(function (data) {
+      console.log(data);
+      if(data.state = 'valid') {
+        $('#name').val('');
+        $('#email').val('');
+        $('#msg').val('');
+      }
+    });
+  });
+
+  $('.tell_me_submit').click(function(){
+    var email = $('#mc-email').val();
+    $.ajax({
+      method: "POST",
+      data: { email:email},
+      url: "/home/notify_tendercon"
+    }).done(function (data) {
+      console.log(data);
+      if(data.state = 'valid') {
+        $('#mc-email').val('');
+      }
+    });
+  })
+
+
+  $(document).ready(function(){
+
+    function initialize() {
+      var latitude = -33.921506,
+          longitude = 151.1991044,
+          map_zoom = 13;
+
+
+      //set google map options
+      var map_options = {
+        center: new google.maps.LatLng(latitude, longitude),
+        zoom: map_zoom,
+        panControl: true,
+        zoomControl: false,
+        mapTypeControl: false,
+        streetViewControl: false,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        scrollwheel: false,
+        styles: style,
+      }
+      //inizialize the map
+      var map = new google.maps.Map(document.getElementById('google-container1'), map_options);
+      //add a custom marker to the map
+
+
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(latitude, longitude),
+        map: map,
+        visible: true
+      });
+
+
+
+      google.maps.event.addDomListener(window, "resize", function() {
+        var center = map.getCenter();
+        google.maps.event.trigger(map, "resize");
+        map.setCenter(center);
+      });
+
+      //add custom buttons for the zoom-in/zoom-out on the map
+      function CustomZoomControl(controlDiv, map) {
+        //grap the zoom elements from the DOM and insert them in the map
+        var controlUIzoomIn= document.getElementById('zoom-in'),
+            controlUIzoomOut= document.getElementById('zoom-out');
+        controlDiv.appendChild(controlUIzoomIn);
+        controlDiv.appendChild(controlUIzoomOut);
+
+        // Setup the click event listeners and zoom-in or out according to the clicked element
+        google.maps.event.addDomListener(controlUIzoomIn, 'click', function() {
+          map.setZoom(map.getZoom()+1)
+        });
+        google.maps.event.addDomListener(controlUIzoomOut, 'click', function() {
+          map.setZoom(map.getZoom()-1)
+        });
+      }
+
+      var zoomControlDiv = document.createElement('div');
+      var zoomControl = new CustomZoomControl(zoomControlDiv, map);
+
+      //insert the zoom div on the top left of the map
+      map.controls[google.maps.ControlPosition.LEFT_TOP].push(zoomControlDiv);
+    }
+    google.maps.event.addDomListener(window, "load", initialize);
+  });
 </script>
 
 <style>
-  header{
-    background: #000000 url(http://www.yoursite.com/folder/image.jpg) 100% 100% no-repeat;
-  }
+
+
 
   .counter{
     font-size: 5em;
