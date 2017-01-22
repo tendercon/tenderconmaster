@@ -162,6 +162,13 @@
     <div class="row">
       <h2 data-sr="wait 0.5s, then enter top and move 40px over 1s">TELL ME MORE</h2>
       <form id="ajaxChimp" data-sr="wait 0.5s, then enter bottom and move 40px over 1s">
+        <select  id="opt">
+          <option>None</option>
+          <option>Head Contractor</option>
+          <option>Sub Contractor</option>
+        </select>
+        <div style="height: 20px"></div>
+        <input id="mc-name" type="text" placeholder="Enter your name">
         <input id="mc-email" type="text" placeholder="Enter your email address">
         <button type="submit" class="tell_me_submit"><i class="fa fa-fw fa-envelope"></i></button>
         <label for="mc-email"></label>
@@ -188,8 +195,8 @@
           <!-- Social Icons -->
           <div class="social-icons">
             <ul>
-              <li><a href="https://www.linkedin.com/in/sandrobotic/"><i class="fa fa-linkedin-square"></i></a></li>
-              <li><a href="https://www.instagram.com/sandrobotic/"><i class="fa fa-instagram"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/sandrobotic/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+              <li><a href="https://www.instagram.com/sandrobotic/" target="_blank"><i class="fa fa-instagram"></i></a></li>
               <!--<li><a href=""><i class="fa fa-fw fa-dribbble"></i></a></li>
               <li><a href=""><i class="fa fa-fw fa-google-plus"></i></a></li>-->
             </ul>
@@ -204,7 +211,7 @@
           <!-- Social Icons -->
           <div class="social-icons">
             <ul>
-              <li><a href="https://www.linkedin.com/in/ryanhe/"><i class="fa fa-linkedin-square"></i></a></li>
+              <li><a href="https://www.linkedin.com/in/ryanhe/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
               <!--<li><a href=""><i class="fa fa-fw fa-facebook"></i></a></li>
               <li><a href=""><i class="fa fa-fw fa-dribbble"></i></a></li>
               <li><a href=""><i class="fa fa-fw fa-google-plus"></i></a></li>-->
@@ -266,8 +273,8 @@
     <div class="row">
       <div class="copyright" data-sr="wait 0.5s, then enter bottom and move 40px over 1s">
         <ul class="list-inline">
-          <li style="list-style: none"><a href=""><i class="fa fa-linkedin-square" ></i></a></li>
-          <li style="list-style: none"><a href=""><i class="fa fa-instagram"></i></a></li>
+          <li style="list-style: none"><a href="https://www.linkedin.com/company/tendercon" target="_blank"><i class="fa fa-linkedin-square" ></i></a></li>
+          <li style="list-style: none"><a href="https://www.instagram.com/tendercon/" target="_blank"><i class="fa fa-instagram"></i></a></li>
         </ul>
         Copyright © 2017 <a href="http://themeforest.net/user/MountainTheme?ref=MountainTheme" target="_blank"> TenderconTheme</a>. All rights reserved.
       </div>
@@ -487,6 +494,19 @@
     background:#394F6F;
     color:#fff;
   }
+
+  .subscribe #opt {
+    background-color: rgba(255, 255, 255, 0);
+    border: solid 2px rgba(255, 255, 255, 1);
+    height: 54px;
+    width: 30%;
+    color: #fff;
+    word-spacing: 1px;
+    padding-left: 20px;
+    font-size: 13px;
+    outline: none;
+  }
+
 
 </style>
 
