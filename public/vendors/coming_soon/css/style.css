@@ -600,17 +600,6 @@ header .button:hover {
     border-bottom: 6px solid #393A4C;
 }
 
-.subscribe h2 {
-	font-weight: 600;
-	font-size: 30px;
-	color: #fff;
-	padding-bottom: 25px;
-	letter-spacing: 1px;
-	background: url(../vendors/coming_soon/images/h1-bg-white.png) 50% 100% no-repeat;
-	text-align: center;
-	text-transform: uppercase;
-	margin-bottom: 50px;
-}
 
 .subscribe i.fa.fa-paper-plane {
 	font-size: 29px;
@@ -637,8 +626,8 @@ header .button:hover {
 
 
 .subscribe button {
-	background-color: rgba(235, 80, 84, 1);
-	border: 2px solid rgba(235, 80, 84, 1);
+	background-color: #2caea1;
+	border: 2px solid #2caea1;
 	color: #fff;
 	width: 7%;
 	outline: none;
@@ -749,7 +738,7 @@ header .button:hover {
 
 
 .contact input[type='submit'] {	
-	background-color: rgba(22, 182, 234, 0); 
+	background-color: rgba(22, 182, 234, 0);
 	border: 2px solid #FFFFFF;
 	color: #FFFFFF; 
 	float: right;
@@ -844,36 +833,9 @@ header .button:hover {
   position: relative;
 }
 
-#zoom-in, #zoom-out {
-  height: 32px;
-  width: 32px;
-  cursor: pointer;
-  margin-left: 50px;
-  margin-top: 20px;
-  background-color: #2caea1;
-  background-repeat: no-repeat;
-  background-size: 32px 64px;
-  background-image: url("/img/logos/icon-controller.svg");
-    transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-}
 
-#zoom-in:hover, #zoom-out:hover {
-  background-color: #2caea1;
 
-}
 
-#zoom-in {
-  background-position: 50% 0;
-  margin-top: 50px;
-  margin-bottom: 1px;
-}
-
-#zoom-out {
-  background-position: 50% -32px;
-}
 
 .google-map .contact-info {
   position: absolute;
@@ -981,6 +943,7 @@ header .actions:after {
 
 	.contact input[type="submit"] {
 		width: 20%;
+
 	}
 
 	.contact .error .name {

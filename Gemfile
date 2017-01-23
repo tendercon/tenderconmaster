@@ -63,7 +63,7 @@ gem 'pdfkit'
 gem 'prawn-rails'
 
 # for uploading
-gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
+gem 'paperclip'#, git: 'git://github.com/thoughtbot/paperclip.git'
 
 # jquery file upload
 gem 'jquery-fileupload-rails'

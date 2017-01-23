@@ -5,17 +5,6 @@ GIT
     geocoder (1.4.1)
 
 GIT
-  remote: git://github.com/thoughtbot/paperclip.git
-  revision: 7c81e7813e75950d111885b44d33c08358e5e46c
-  specs:
-    paperclip (5.1.0)
-      activemodel (>= 4.2.0)
-      activesupport (>= 4.2.0)
-      cocaine (~> 0.5.5)
-      mime-types
-      mimemagic (~> 0.3.0)
-
-GIT
   remote: https://github.com/zquestz/omniauth-google-oauth2.git
   revision: ff5a7e2618a35b102b16ef841c622722f91ef19d
   specs:
@@ -95,8 +84,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
+    climate_control (0.1.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.1.1)
@@ -259,6 +247,12 @@ GEM
     omniauth-oauth2 (1.4.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
+    paperclip (5.1.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (~> 0.3.0)
     pdf-core (0.6.1)
     pdfkit (0.8.2)
     pg (0.18.4)
@@ -456,7 +450,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-google-oauth2!
   omniauth-linkedin
-  paperclip!
+  paperclip
   pdfkit
   pg
   prawn-rails

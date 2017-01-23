@@ -102,7 +102,7 @@
 <section class="services">
   <div class="container">
     <div class="row">
-      <h3 data-sr="wait 0.5s, then enter top and move 40px over 1s">WHY TENDERCON,</h3>
+      <h3 data-sr="wait 0.5s, then enter top and move 40px over 1s">WHY TENDERCON</h3>
       <div class="col-md-12">
         <div class="col-md-4" data-sr="wait 0.25s, then enter left and move 40px over 1s">
           <div class="icon">
@@ -161,6 +161,7 @@
   <div class="container">
     <div class="row">
       <h2 data-sr="wait 0.5s, then enter top and move 40px over 1s">TELL ME MORE</h2>
+      <p data-sr="wait 0.5s, then enter top and move 40px over 1s" style="color: #FFFFFF;text-align: center; font-size: 12px">Register your construction company to be one of the first in Australia to get an exclusive look at the Tendercon Platform before your competitors do.</p>
       <form id="ajaxChimp" data-sr="wait 0.5s, then enter bottom and move 40px over 1s">
        <!-- <select  id="opt">
           <option>None</option>
@@ -170,7 +171,7 @@
         <div style="height: 20px"></div>
         <input id="mc-name" type="text" placeholder="Enter your name">
         <div style="height: 20px"></div>  -->
-        <input id="mc-company" type="text" placeholder="Enter your company">
+        <input id="mc-company" type="text" placeholder="Enter your company name">
         <div style="height: 20px"></div>
         <input id="mc-email" type="text" placeholder="Enter your email address">
        <!-- <div style="height: 20px"></div>-->
@@ -215,7 +216,7 @@
           <p>Co-Founder</p>
           <p>Coming from digital marketing, Ryan brings his experience in creating the optimal user experience for Tendercon users, from platform to customer service. When he’s not catching up on the mountain of articles under the To Read folder. find him travling Sydney streets for the best ramen.</p>
           <!-- Social Icons -->
-          <div class="social-icons">
+          <div class="social-icons" style="text-align: center">
             <ul>
               <li><a href="https://www.linkedin.com/in/ryanhe/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
               <!--<li><a href=""><i class="fa fa-fw fa-facebook"></i></a></li>
@@ -243,9 +244,11 @@
             <input type="text" name="name" id="name" placeholder="Name" value="" data-sr="enter left move 25px, after 0.3s"/>
             <input type="email" name="email" id="email" placeholder="Email" value="" data-sr="enter right move 25px, after 0.3s"/>
             <textarea name="msg" id="msg" placeholder="Message"  data-sr="enter bottom move 25px, after 0.3s"></textarea>
-            <input type="submit" name="submit" class="get_intouch_submit" id="submit" value="Send message" data-sr="wait 0.8s, then enter top and move 40px after 0.3s"/>
+            <input type="submit" name="submit"  id="submit" value="Send message" data-sr="wait 0.8s, then enter top and move 40px after 0.3s""/>
           </form>
+          <div class="get_in_touch_result" style="color: #FFFFFF;text-align: center"></div>
         </div>
+
       </div>
     </div>
   </div>
@@ -256,8 +259,8 @@
 <!-- GOOGLE MAP  -->
 <section class="google-map">
   <div id="google-container1"></div>
-  <div id="zoom-in"></div>
-  <div id="zoom-out"></div>
+  <div id="zoom-in">+</div>
+  <div id="zoom-out">-</div>
   <div class="contact-info">
     <div class="container">
       <div class="row">
@@ -282,7 +285,7 @@
           <li style="list-style: none"><a href="https://www.linkedin.com/company/tendercon" target="_blank"><i class="fa fa-linkedin-square" ></i></a></li>
           <li style="list-style: none"><a href="https://www.instagram.com/tendercon/" target="_blank"><i class="fa fa-instagram"></i></a></li>
         </ul>
-        Copyright © 2017 <a href="http://themeforest.net/user/MountainTheme?ref=MountainTheme" target="_blank"> TenderconTheme</a>. All rights reserved.
+        Copyright © 2017 <a href="#!"> Tendercon</a>. All rights reserved.
       </div>
 
     </div>
@@ -325,7 +328,7 @@
   });
 
   $(function(){
-    $('.tell_me_submit').on("click", function() {
+    $('#submit').on("click", function() {
       // validate and process form here
       $("#ajax-contact-form").validate({
 
@@ -372,7 +375,7 @@
 
           // Create variables that will be sent in a URL string to contact.php
           var dataString = '&name='+ name + '&email=' + email + '&msg=' + msg;
-          console.log("SENT");
+
           $.ajax({
             type: "POST",
             url: "/home/get_in_touch",
@@ -385,6 +388,8 @@
               } else {
                 result = data;
               }
+              alert();
+              $('.get_in_touch_result').html('<p>Your email was sent. Thanks!</p>');
               $('#note').html(result);
 
             }
@@ -395,6 +400,8 @@
       });
     });
   });
+
+
 
 
 
@@ -413,6 +420,8 @@
         $('#name').val('');
         $('#email').val('');
         $('#msg').val('');
+
+        $('.get_in_touch_result').html('<p>Your email was sent. Thanks!</p>')
       }
     });
   });
@@ -430,16 +439,16 @@
         if(data.state = 'valid') {
           $('#mc-email').val('');
           $('#mc-company').val('');
-          $('.result').html('<p>We will be in touch soon!</p>')
+          $('.result').html('<p><i class="fa fa-check"></i> We will be in touch soon!</p>')
         }
       });
     }else{
       if(email.length <= 0 && company.length > 0){
-        $('.result').html('<p>E-mail address is not valid.</p>')
+        $('.result').html('<p><i class="fa fa-exclamation-triangle name"></i> E-mail address is not valid.</p>')
       }else if(company.length <= 0 && email.length > 0){
-        $('.result').html('<p>Company is required.</p>')
+        $('.result').html('<p><i class="fa fa-exclamation-triangle name"></i> Company is required.</p>')
       }else if(email.length <= 0 && company.length <= 0){
-        $('.result').html('<p>E-mail address is not valid.</p><p>Company is required.</p>')
+        $('.result').html('<p><i class="fa fa-exclamation-triangle name"></i> E-mail address is not valid.</p><p><i class="fa fa-exclamation-triangle name"></i> Company is required.</p>')
       }
 
     }
@@ -601,6 +610,65 @@
     font-size: 13px;
     outline: none;
   }
+
+  .subscribe h2 {
+    font-weight: 600;
+    font-size: 30px;
+    color: #fff;
+    letter-spacing: 1px;
+    /*background: url(../vendors/coming_soon/images/h1-bg-white.png) 50% 100% no-repeat;*/
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  .subscribe p {
+    font-weight: 600;
+    font-size: 16px;
+    color: #fff;
+    letter-spacing: 1px;
+    /*background: url(../vendors/coming_soon/images/h1-bg-white.png) 50% 100% no-repeat;*/
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+  }
+
+
+  #zoom-in, #zoom-out {
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+    margin-left: 50px;
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+    font-size: 22px;
+    background-color: #2caea1;
+    background-repeat: no-repeat;
+    background-size: 32px 64px;
+    background-image: url("/img/logos/icon-controller.svg");
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+  }
+
+  #zoom-in:hover, #zoom-out:hover {
+    background-color: #2caea1;
+
+  }
+
+  #zoom-in {
+    background-position: 50% 0;
+    margin-top: 50px;
+    margin-bottom: 1px;
+  }
+
+  #zoom-out {
+    background-position: 50% -32px;
+  }
+
+
 
 
 </style>

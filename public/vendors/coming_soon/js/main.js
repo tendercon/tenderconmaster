@@ -110,8 +110,7 @@ $(window).load(function() {
 /* :::::::: 6. Contact form :::::::: */
 /* ================================= */
 
-/*
-$(function(){
+/*$(function(){
       $('#submit').on("click", function() {
            // validate and process form here
            $("#ajax-contact-form").validate({
@@ -159,7 +158,7 @@ $(function(){
 
                      // Create variables that will be sent in a URL string to contact.php
                      var dataString = '&name='+ name + '&email=' + email + '&msg=' + msg;
-                        console.log("SENT");
+
                         $.ajax({
                             type: "POST",
                             url: "/home/get_in_touch",
@@ -181,8 +180,7 @@ $(function(){
                }
           });
     });
-});
-*/
+});*/
 
 
 /* ================================= */
