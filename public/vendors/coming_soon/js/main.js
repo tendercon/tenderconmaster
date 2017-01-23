@@ -110,11 +110,12 @@ $(window).load(function() {
 /* :::::::: 6. Contact form :::::::: */
 /* ================================= */
 
+/*
 $(function(){
-      $('#submit').on("click", function() {  
-           // validate and process form here 
+      $('#submit').on("click", function() {
+           // validate and process form here
            $("#ajax-contact-form").validate({
-             
+
                   rules:{
 
                         name:{
@@ -152,35 +153,36 @@ $(function(){
                 submitHandler: function(form) {
 
                      // Create variables from the form
-                     var name = $('input#name').val(); 
-                     var email = $('input#email').val();  
+                     var name = $('input#name').val();
+                     var email = $('input#email').val();
                      var msg = $('textarea#msg').val();
 
                      // Create variables that will be sent in a URL string to contact.php
                      var dataString = '&name='+ name + '&email=' + email + '&msg=' + msg;
-        
+                        console.log("SENT");
                         $.ajax({
                             type: "POST",
-                            url: "php/contact.php",
+                            url: "/home/get_in_touch",
                             data: dataString,
                             success: function(data) {
                                   if(data == 'OK') {
                                     var result = '<div class="notification_ok"><i class="fa fa-check"></i> Your email was sent. Thanks!</div>';
                                     $("#ajax-contact-form").find('input[type=text], input[type=email], textarea').val("");
-                                   
+
                                   } else {
                                   result = data;
                                  }
                           $('#note').html(result);
-           
+
                           }
-                         
+
                       });
                      return false;
                }
           });
     });
 });
+*/
 
 
 /* ================================= */
@@ -188,10 +190,10 @@ $(function(){
 /* ================================= */
 
     // Example MailChimp url: http://xxx.xxx.list-manage.com/subscribe/post?u=xxx&id=xxx
-    $('#ajaxChimp').ajaxChimp({
+    /*$('#ajaxChimp').ajaxChimp({
       language: 'eng',
       url: 'http://stevedogs.us9.list-manage.com/subscribe/post?u=df0aa2ea10f32337b29b342d4&id=41ddc569b4'
-    });
+    });*/
 
     // Mailchimp translation
     //
@@ -204,7 +206,7 @@ $(function(){
     //  4: 'The username portion of the email address is invalid (the portion before the @: )',
     //  5: 'This email address looks fake or invalid. Please enter a real email address'
 
-    $.ajaxChimp.translations.eng = {
+    /*$.ajaxChimp.translations.eng = {
       'submit': 'Submitting...',
       0: '<i class="fa fa-check"></i> We will be in touch soon!',
       1: '<i class="fa fa-warning"></i> You must enter a valid e-mail address.',
@@ -212,7 +214,7 @@ $(function(){
       3: '<i class="fa fa-warning"></i> E-mail address is not valid.',
       4: '<i class="fa fa-warning"></i> E-mail address is not valid.',
       5: '<i class="fa fa-warning"></i> E-mail address is not valid.'
-    }
+    }*/
 
 /* ================================= */
 /* :: 8. Player Youtube Controls ::  */

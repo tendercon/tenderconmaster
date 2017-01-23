@@ -159,9 +159,10 @@ class TenderconMailer < ActionMailer::Base
     mail(to: email, subject: "Trade Quotes Rejected")
   end
 
-  def home_notifcation subject,email,new_email
+  def home_notifcation subject,email,new_email,company
     @email = email
     @new_email = new_email
+    @company =  company
     @messages = "New Notification."
     mail(to: email, subject: "#{subject}")
   end

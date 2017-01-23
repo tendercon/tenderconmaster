@@ -15,7 +15,8 @@ class HomeController < ApplicationController
 
   def notify_tendercon
     email = params[:email];
-    TenderconMailer.delay.home_notifcation('New Notification','info@tendercon.com',email)
+    company = params[:company]
+    TenderconMailer.delay.home_notifcation('New Notification','info@tendercon.com',email,company)
     render :json => { :state => 'valid'}
   end
 

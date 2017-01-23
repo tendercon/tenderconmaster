@@ -9,3 +9,6 @@
 	<rect x="12" y="15" fill="#FFFFFF" width="8" height="2"/>
 </g>
 </svg>
+
+
+rvm use 1.8.7-p374@global

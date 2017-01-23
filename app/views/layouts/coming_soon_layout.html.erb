@@ -162,17 +162,23 @@
     <div class="row">
       <h2 data-sr="wait 0.5s, then enter top and move 40px over 1s">TELL ME MORE</h2>
       <form id="ajaxChimp" data-sr="wait 0.5s, then enter bottom and move 40px over 1s">
-        <select  id="opt">
+       <!-- <select  id="opt">
           <option>None</option>
           <option>Head Contractor</option>
           <option>Sub Contractor</option>
         </select>
         <div style="height: 20px"></div>
         <input id="mc-name" type="text" placeholder="Enter your name">
+        <div style="height: 20px"></div>  -->
+        <input id="mc-company" type="text" placeholder="Enter your company">
+        <div style="height: 20px"></div>
         <input id="mc-email" type="text" placeholder="Enter your email address">
-        <button type="submit" class="tell_me_submit"><i class="fa fa-fw fa-envelope"></i></button>
+       <!-- <div style="height: 20px"></div>-->
+        <div style="height: 20px"></div>
+        <button type="button" class="tell_me_submit"><i class="fa fa-fw fa-envelope"></i></button>
         <label for="mc-email"></label>
       </form>
+      <div class="result" style="color: #FFFFFF;text-align: center"></div>
     </div>
   </div>
 </section>
@@ -318,6 +324,80 @@
     }
   });
 
+  $(function(){
+    $('.tell_me_submit').on("click", function() {
+      // validate and process form here
+      $("#ajax-contact-form").validate({
+
+        rules:{
+
+          name:{
+            required: true,
+          },
+
+          email:{
+            required: true,
+            email: true,
+          },
+
+          msg:{
+            required: true,
+          },
+        },
+
+        messages:{
+
+          name:{
+            required: "<i class='fa fa-exclamation-triangle name'></i>",
+          },
+
+          email:{
+            required: "<i class='fa fa-exclamation-triangle email'></i>",
+            email: "<i class='fa fa-exclamation-triangle email'></i>",
+          },
+
+          msg:{
+            required: "<i class='fa fa-exclamation-triangle message'></i>",
+          },
+
+        },
+
+        // JQuery's awesome submit handler.
+        submitHandler: function(form) {
+
+          // Create variables from the form
+          var name = $('input#name').val();
+          var email = $('input#email').val();
+          var msg = $('textarea#msg').val();
+
+          // Create variables that will be sent in a URL string to contact.php
+          var dataString = '&name='+ name + '&email=' + email + '&msg=' + msg;
+          console.log("SENT");
+          $.ajax({
+            type: "POST",
+            url: "/home/get_in_touch",
+            data: dataString,
+            success: function(data) {
+              if(data == 'OK') {
+                var result = '<div class="notification_ok"><i class="fa fa-check"></i> Your email was sent. Thanks!</div>';
+                $("#ajax-contact-form").find('input[type=text], input[type=email], textarea').val("");
+
+              } else {
+                result = data;
+              }
+              $('#note').html(result);
+
+            }
+
+          });
+          return false;
+        }
+      });
+    });
+  });
+
+
+
   $('.get_intouch_submit').click(function(){
     var name = $('#name').val();
     var email = $('#email').val();
@@ -339,16 +419,31 @@
 
   $('.tell_me_submit').click(function(){
     var email = $('#mc-email').val();
-    $.ajax({
-      method: "POST",
-      data: { email:email},
-      url: "/home/notify_tendercon"
-    }).done(function (data) {
-      console.log(data);
-      if(data.state = 'valid') {
-        $('#mc-email').val('');
+    var company = $('#mc-company').val();
+    if(email.length > 0 && company.length > 0){
+      $.ajax({
+        method: "POST",
+        data: { email:email,company:company},
+        url: "/home/notify_tendercon"
+      }).done(function (data) {
+        console.log(data);
+        if(data.state = 'valid') {
+          $('#mc-email').val('');
+          $('#mc-company').val('');
+          $('.result').html('<p>We will be in touch soon!</p>')
+        }
+      });
+    }else{
+      if(email.length <= 0 && company.length > 0){
+        $('.result').html('<p>E-mail address is not valid.</p>')
+      }else if(company.length <= 0 && email.length > 0){
+        $('.result').html('<p>Company is required.</p>')
+      }else if(email.length <= 0 && company.length <= 0){
+        $('.result').html('<p>E-mail address is not valid.</p><p>Company is required.</p>')
       }
-    });
+
+    }
+
   })
 
 
