@@ -207,15 +207,18 @@ header img {
 
 header p {
     color: rgba(255, 255, 255, 0.7);
-    word-spacing: 1px;
+    /*word-spacing: 1px;
     line-height: 25px;
-    font-size: 18px;
+    font-size: 18px;*/
     margin-top: -42px;
     margin-left:10px;
     font-weight: 300;
-    font-family: "Khand", sans-serif;
+    /*font-family: "Khand", sans-serif;*/
     position: relative;
     z-index: 99;
+	font-size: 15px;
+	font-family: Roboto;
+	line-height: 20px;
 }
 
 
@@ -258,6 +261,8 @@ header .actions {
 
 .actions li a {
 	text-decoration: none!important;
+	font-family: Roboto;
+	ine-height: 20px;
 }
 
 header .actions:after {
@@ -284,6 +289,8 @@ header .social-icons li a {
 	-webkit-transition: all 0.4s ease 0s;
 	-o-transition: all 0.4s ease 0s;
 	-ms-transition: all 0.4s ease 0s;
+	font-family: Roboto;
+	ine-height: 20px;
 }
 
 header .social-icons li a:hover {
@@ -540,14 +547,7 @@ header .button:hover {
     font-weight: 500;
 }
 
-.about p {
-	color: #50547A;
-	text-align: left;
-	word-spacing: 1px;
-	line-height: 25px;
-	font-size: 15px;
-	margin-bottom: 15px;
-}
+
 
 .about  i.fa {
   background: rgba(22, 182, 234, 0);
@@ -737,7 +737,33 @@ header .button:hover {
 }
 
 
+.contact input[type='submit'] {
+	background-color: rgba(22, 182, 234, 0);
+	border: 2px solid #FFFFFF;
+	color: #FFFFFF;
+	float: right;
+	left: -45%;
+	position: relative;
+	width: 11%;
+	display:block;
+	word-spacing: 1px;
+	outline: none;
+	font-size: 15px;
+	padding-top: 3px;
+	margin-top:20px;
+	font-weight: 300;
+	height: 54px;
+    -webkit-transition: all 0.3s ease-in-out !important;
+    -moz-transition: all 0.3s ease-in-out !important;
+    -ms-transition: all 0.3s ease-in-out !important;
+    -o-transition: all 0.3s ease-in-out !important;
+    transition: all 0.3s ease-in-out !important;
+}
 
+.contact input[type="submit"]:hover {
+	background: #FFFFFF;
+	color: #000;
+}
 
 .contact .error .email {
     text-align: right;
@@ -832,12 +858,15 @@ header .button:hover {
 
 .google-map address {
   margin-bottom:0;
-  font-size: 16px;
+  /*font-size: 16px;*/
   position: relative;
   top: 15px;
   font-weight: 300;
   margin-top: 4px;
   padding-left:5px;
+  font-size: 15px;
+  font-family: Roboto;
+  line-height: 20px;
 }
 
 .google-map .phone {
@@ -883,6 +912,8 @@ footer a {
 	-webkit-transition: all 0.5s ease; 
 	-o-transition: all 0.5s ease; 
 	color: rgba(236,240,241,0.4);
+	font-family: Roboto;
+	ine-height: 20px;
 }
 
 footer a:hover {
