@@ -53,8 +53,8 @@
     </div>
 
     <div style="height: 50px"></div>
-    <p class="animated fadeInUp" style="font-size: 24px">
-      Construction Tendering. Online & Reinvented.
+    <p class="animated fadeInUp" style="font-size: 36px;color: #ffffff">
+      <strong>Construction Tendering. Online & Reinvented.</strong>
 
     </p>
     <div style="height: 40px"></div>
@@ -171,9 +171,9 @@
         <div style="height: 20px"></div>
         <input id="mc-name" type="text" placeholder="Enter your name">
         <div style="height: 20px"></div>  -->
-        <input id="mc-company" type="text" placeholder="Enter your company name">
+        <input id="mc-company" type="text" placeholder="I work for">
         <div style="height: 20px"></div>
-        <input id="mc-email" type="text" placeholder="Enter your email address">
+        <input id="mc-email" type="text" placeholder="My work email address">
        <!-- <div style="height: 20px"></div>-->
         <div style="height: 20px"></div>
         <button type="button" class="tell_me_submit"><i class="fa fa-fw fa-envelope"></i></button>
@@ -244,7 +244,10 @@
             <input type="text" name="name" id="name" placeholder="Name" value="" data-sr="enter left move 25px, after 0.3s"/>
             <input type="email" name="email" id="email" placeholder="Email" value="" data-sr="enter right move 25px, after 0.3s"/>
             <textarea name="msg" id="msg" placeholder="Message"  data-sr="enter bottom move 25px, after 0.3s"></textarea>
-            <input type="submit" name="submit"  id="submit" value="Send message" data-sr="wait 0.8s, then enter top and move 40px after 0.3s"/>
+            <div class="text-center">
+              <input type="submit" name="submit"  id="submit" value="Send message" data-sr="wait 0.8s, then enter top and move 40px after 0.3s"/>
+            </div>
+
           </form>
           <div class="get_in_touch_result" style="color: #FFFFFF;text-align: center"></div>
         </div>
@@ -285,7 +288,7 @@
           <li style="list-style: none"><a href="https://www.linkedin.com/company/tendercon" target="_blank"><i class="fa fa-linkedin-square" ></i></a></li>
           <li style="list-style: none"><a href="https://www.instagram.com/tendercon/" target="_blank"><i class="fa fa-instagram"></i></a></li>
         </ul>
-        Copyright © 2017 <a href="#!"> Tendercon</a>. All rights reserved.
+        Copyright © 2017  Tendercon. All rights reserved.
       </div>
 
     </div>
@@ -389,7 +392,7 @@
                 result = data;
               }
 
-              $('.get_in_touch_result').html('<p style="font-size: 12px">Your email was sent. Thanks!</p>');
+              $('.get_in_touch_result').html('<p style="font-size: 12px">Thank you for contacting us. a Tendercon team member will be in touch shortly to address your enquiry.</p>');
               $('#note').html(result);
 
             }
@@ -421,7 +424,7 @@
         $('#email').val('');
         $('#msg').val('');
 
-        $('.get_in_touch_result').html('<p style="font-size: 12px"><i class="fa fa-check"></i> Your email was sent. Thanks!</p>')
+        $('.get_in_touch_result').html('<p style="font-size: 12px;"><i class="fa fa-check"></i> Thank you for contacting us. a Tendercon team member will be in touch shortly to address your enquiry.</p>')
       }
     });
   });
@@ -439,7 +442,7 @@
         if(data.state = 'valid') {
           $('#mc-email').val('');
           $('#mc-company').val('');
-          $('.result').html('<p style="font-size: 12px"><i class="fa fa-check"></i> ' +
+          $('.result').html('<p style="font-size: 12px;color: #2caea1"><i class="fa fa-check"></i> ' +
               ' Well done, you are one step closer to giving your company a first look at the Tendercon platform. A Tendercon team member will be in touch shortly with more information. Stay tuned!' +
               '</p>')
         }
@@ -631,7 +634,6 @@
     letter-spacing: 1px;
     /*background: url(../vendors/coming_soon/images/h1-bg-white.png) 50% 100% no-repeat;*/
     text-align: center;
-    text-transform: uppercase;
     margin-bottom: 50px;
   }
 
@@ -668,6 +670,34 @@
 
   #zoom-out {
     background-position: 50% -32px;
+  }
+
+  .contact input[type='submit'] {
+    background-color: rgba(22, 182, 234, 0);
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    float: right;
+    left: -45%;
+    position: relative;
+    width: 11%;
+    display:block;
+    word-spacing: 1px;
+    outline: none;
+    font-size: 15px;
+    padding-top: 3px;
+    margin-top:20px;
+    font-weight: 300;
+    height: 54px;
+    -webkit-transition: all 0.3s ease-in-out !important;
+    -moz-transition: all 0.3s ease-in-out !important;
+    -ms-transition: all 0.3s ease-in-out !important;
+    -o-transition: all 0.3s ease-in-out !important;
+    transition: all 0.3s ease-in-out !important;
+  }
+
+  .contact input[type="submit"]:hover {
+    background: #FFFFFF;
+    color: #000;
   }
 
 

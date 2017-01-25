@@ -737,31 +737,7 @@ header .button:hover {
 }
 
 
-.contact input[type='submit'] {	
-	background-color: rgba(22, 182, 234, 0);
-	border: 2px solid #FFFFFF;
-	color: #FFFFFF; 
-	float: right;
-	width: 11%;
-	display:block;
-	word-spacing: 1px;
-	outline: none;
-	font-size: 15px;
-	padding-top: 3px;
-	margin-top:20px;
-	font-weight: 300;
-	height: 54px;
-    -webkit-transition: all 0.3s ease-in-out !important;
-    -moz-transition: all 0.3s ease-in-out !important;
-    -ms-transition: all 0.3s ease-in-out !important;
-    -o-transition: all 0.3s ease-in-out !important;
-    transition: all 0.3s ease-in-out !important;
-}
 
-.contact input[type="submit"]:hover { 
-	background: #FFFFFF; 
-	color: #000; 
-}
 
 .contact .error .email {
     text-align: right;
