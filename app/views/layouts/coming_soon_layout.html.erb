@@ -12,7 +12,7 @@
   <meta name="author" content="MountainTheme">
 -->
 
-  <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+  <!--<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
   <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
@@ -21,14 +21,16 @@
   <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-icon-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
   <link rel="manifest" href="/manifest.json">
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#ffffff">-->
+  <link rel="shortcut icon" type="image/png" href="/img/logos/TRANSPARENT_LOGO_ICON ABOVE BRAND_clipped_rev_1-1.png"/>
+  <link rel="shortcut icon" type="image/png" href="http://eg.com/favicon.png"/>
 
   <title>Tendercon - Coming Soon Page</title>
 
@@ -194,10 +196,10 @@
         <div style="height: 20px"></div>  -->
         <input id="mc-name" type="text" placeholder="Name" style="font-size:15px;font-family: Roboto;line-height: 20px;">
         <div style="height: 20px"></div>
-        <input id="mc-company" type="text" placeholder="Construction Company" style="font-size:15px;font-family: Roboto;line-height: 20px;">
+        <!--<input id="mc-company" type="text" placeholder="Construction Company" style="font-size:15px;font-family: Roboto;line-height: 20px;">
         <div style="height: 20px"></div>
         <input id="mc-position" type="text" placeholder="Construction Position" style="font-size:15px;font-family: Roboto;line-height: 20px;">
-        <div style="height: 20px"></div>
+        <div style="height: 20px"></div>-->
         <input id="mc-email" type="text" placeholder="Work Email Address" style="font-size:15px;font-family: Roboto;line-height: 20px;">
         <div style="height: 20px"></div>
         <button type="button" class="tell_me_submit"><i class="fa fa-fw fa-envelope"></i></button>
@@ -270,7 +272,7 @@
             <input type="email" name="email" id="email" placeholder="Email" value="" data-sr="enter right move 25px, after 0.3s" style="font-size:15px;font-family: Roboto;line-height: 20px;"/>
             <textarea name="msg" id="msg" placeholder="Message"  data-sr="enter bottom move 25px, after 0.3s" style="font-size:15px;font-family: Roboto;line-height: 20px;"></textarea>
             <div class="text-center">
-              <button type="submit" name="submit"  id="submit" data-sr="wait 0.8s, then enter top and move 40px after 0.3s"
+              <!--<button type="submit" name="submit"  id="submit" data-sr="wait 0.8s, then enter top and move 40px after 0.3s"
               style="
               background-color: #1E5D8E;
                   border: 2px solid #1E5D8E;
@@ -285,8 +287,8 @@
                   -webkit-transition: all 0.5s ease;
                   -o-transition: all 0.5s ease;
               "
-              ><i class="fa fa-fw fa-envelope"></i></button>
-              <!--<input type="submit" name="submit"  id="submit" value="Send message"  font-size:15px;font-family: Roboto;line-height: 20px;/>-->
+              ><i class="fa fa-fw fa-envelope"></i></button>-->
+              <input type="submit" name="submit"  id="submit" value="Send message"  font-size:15px;font-family: Roboto;line-height: 20px;/>
             </div>
 
           </form>
@@ -473,20 +475,20 @@
 
   $('.tell_me_submit').click(function(){
     var email = $('#mc-email').val();
-    var company = $('#mc-company').val();
-    var position = $('#mc-position').val();
+    /*var company = $('#mc-company').val();
+    var position = $('#mc-position').val();*/
     var name = $('#mc-name').val();
     if(email.length > 0 && company.length > 0 && position.length > 0 && name.length > 0 ){
       $.ajax({
         method: "POST",
-        data: { email:email,company:company, position:position, name:name},
+        data: { email:email, name:name},
         url: "/home/notify_tendercon"
       }).done(function (data) {
         console.log(data);
         if(data.state = 'valid') {
           $('#mc-email').val('');
-          $('#mc-company').val('');
-          $('#mc-position').val('');
+          /*$('#mc-company').val('');
+          $('#mc-position').val('');*/
           $('#mc-name').val('');
           $('.result').html('<p style="font-size:15px;font-family: Roboto;line-height: 20px;color: #2caea1"><i class="fa fa-check"></i> ' +
               ' Well done, you are one step closer to giving your company a first look at the Tendercon platform. A Tendercon team member will be in touch shortly with more information. Stay tuned!' +
@@ -494,19 +496,15 @@
         }
       });
     }else{
-      if(email.length <= 0 && company.length > 0 && position.length > 0 && name.length > 0){
+      if(email.length <= 0  && name.length > 0){
         $('.result').html('<p style="font-size:15px;font-family: Roboto;line-height: 20px;"><i class="fa fa-exclamation-triangle name"></i> E-mail address is not valid.</p>')
-      }else if(company.length <= 0 && email.length > 0 && position.length > 0 && name.length > 0){
-        $('.result').html('<p style="font-size:15px;font-family: Roboto;line-height: 20px;"><i class="fa fa-exclamation-triangle name"></i> Company is required.</p>')
-      }else if(name.length <= 0 && email.length > 0 && position.length > 0 && company.length > 0){
+      }else if(name.length <= 0 && email.length > 0){
         $('.result').html('<p style="font-size:15px;font-family: Roboto;line-height: 20px;"><i class="fa fa-exclamation-triangle name"></i> Name is required.</p>')
-      }else if(position.length <= 0 && email.length > 0 && company.length > 0 && name.length > 0){
-        $('.result').html('<p style="font-size:15px;font-family: Roboto;line-height: 20px;"><i class="fa fa-exclamation-triangle name"></i> Position is required.</p>')
       }else if(email.length <= 0 && company.length <= 0 && position.length <= 0 && name.length <= 0){
         $('.result').html('<p style="font-size:15px;font-family: Roboto;line-height: 20px;"><i class="fa fa-exclamation-triangle name"></i> E-mail address is not valid.</p>' +
-            '<p style="font-size:15px;font-family: Roboto;line-height: 20px;"><i class="fa fa-exclamation-triangle name"></i> Company is required.</p>' +
+            '' +
             '<p style="font-size:15px;font-family: Roboto;line-height: 20px;"><i class="fa fa-exclamation-triangle name"></i> Name is required.</p>' +
-            '<p style="font-size:15px;font-family: Roboto;line-height: 20px;"><i class="fa fa-exclamation-triangle name"></i> Position is required.</p>')
+            '')
       }
 
     }
@@ -764,6 +762,27 @@
     border: 2px solid #394F6F;
     height: 80px;
     width: 80px;
+  }
+
+  .contact input[type='submit'] {
+    background-color: rgba(22, 182, 234, 0);
+    border: 2px solid #FFFFFF;
+    color: #FFFFFF;
+    float: right;
+    width: 11%;
+    display:block;
+    word-spacing: 1px;
+    outline: none;
+    font-size: 15px;
+    padding-top: 3px;
+    margin-top:20px;
+    font-weight: 300;
+    height: 54px;
+    -webkit-transition: all 0.3s ease-in-out !important;
+    -moz-transition: all 0.3s ease-in-out !important;
+    -ms-transition: all 0.3s ease-in-out !important;
+    -o-transition: all 0.3s ease-in-out !important;
+    transition: all 0.3s ease-in-out !important;
   }
 
 
