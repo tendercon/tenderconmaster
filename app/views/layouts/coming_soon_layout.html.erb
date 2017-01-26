@@ -45,9 +45,9 @@
 
 </div>
 <header>
-
-
-  <div class="welcome" style='background-image: url("/img/logos/iStock.jpg");background-size: 100% 100%;background-repeat: no-repeat;'>
+  <canvas id="constellation"></canvas>
+  <!--background-image: url("/img/logos/iStock.jpg");background-size: 100% 100%;background-repeat: no-repeat;-->
+  <div class="welcome" style='background-color: #303440'>
     <div class="logo" >
       <img src="/img/logos/tendercon_log_transparent.png" alt="">
     </div>
@@ -346,7 +346,7 @@
     date: endDate,
     render: function(data) {
 
-      $(this.el).html("<div>"  + this.leadingZeros(data.days, 2) + " <span style='font-size:30px;font-family: Roboto;line-height: 20px;'>days</span></div><div class='border_clock'>" + this.leadingZeros(data.hours, 2) + " <span style='font-size:30px;font-family: Roboto;line-height: 20px;'>hours</span></div><div class='border_clock'>" + this.leadingZeros(data.min, 2) + " <span style='font-size:30px;font-family: Roboto;line-height: 20px;'>minutes</span></div><div class='border_clock'>" + this.leadingZeros(data.sec, 2) + " <span style='font-size:30px;font-family: Roboto;line-height: 20px;'>seconds</span></div>");
+      $(this.el).html("<div>"  + this.leadingZeros(data.days, 2) + " <span>days</span></div><div class='border_clock'>" + this.leadingZeros(data.hours, 2) + " <span >hours</span></div><div class='border_clock'>" + this.leadingZeros(data.min, 2) + " <span>minutes</span></div><div class='border_clock'>" + this.leadingZeros(data.sec, 2) + " <span>seconds</span></div>");
     }
   });
 
