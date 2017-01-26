@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/avatars/Ryan-He_clipped_rev_1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/img/avatars/Sandro-Botic_clipped_rev_1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/vendors/coming_soon/css/style.css" afterPath="$PROJECT_DIR$/public/vendors/coming_soon/css/style.css" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -95,37 +93,28 @@
       <file leaf-file-name="coming_soon_layout.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="196" column="38" selection-start-line="196" selection-start-column="38" selection-end-line="196" selection-end-column="38" />
+            <state relative-caret-position="431">
+              <caret line="167" column="61" selection-start-line="167" selection-start-column="61" selection-end-line="167" selection-end-column="61" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#section#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <marker date="1485406519000" expanded="true" signature="18257:18310" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="19037:19089" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="19037:19090" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="19970:20022" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="19970:20037" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="20455:20508" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="20470:20508" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="20729:20782" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="20995:21048" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="21258:21311" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="21528:21581" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="21690:21743" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="21844:21897" ph="..." />
-                <marker date="1485406519000" expanded="true" signature="21995:22048" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="19586:19639" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="20366:20418" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="20366:20419" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="21299:21351" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="21299:21366" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="21784:21837" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="21799:21837" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="22058:22111" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="22324:22377" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="22587:22640" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="22857:22910" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="23019:23072" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="23173:23226" ph="..." />
+                <marker date="1485412414000" expanded="true" signature="23324:23377" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tendercon.svg" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/img/logos/tendercon.svg">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="1182" selection-start-line="0" selection-start-column="1182" selection-end-line="0" selection-end-column="1182" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -133,8 +122,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/vendors/coming_soon/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7545">
-              <caret line="503" column="61" selection-start-line="503" selection-start-column="61" selection-end-line="503" selection-end-column="61" />
+            <state relative-caret-position="120">
+              <caret line="475" column="0" selection-start-line="475" selection-start-column="0" selection-end-line="475" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -196,8 +185,8 @@
         <option value="$PROJECT_DIR$/app/mailers/tendercon_mailer.rb" />
         <option value="$PROJECT_DIR$/app/views/tendercon_mailer/home_notifcation.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/home_controller.rb" />
-        <option value="$PROJECT_DIR$/public/vendors/coming_soon/css/style.css" />
         <option value="$PROJECT_DIR$/public/img/logos/tendercon.svg" />
+        <option value="$PROJECT_DIR$/public/vendors/coming_soon/css/style.css" />
         <option value="$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb" />
       </list>
     </option>
@@ -383,6 +372,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="stock" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="img" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="logos" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -406,46 +417,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="avatars" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tendercon_v2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tendercon_v2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fonts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tendercon_v2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tendercon_v2" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fonts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="font-awesome" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -588,9 +559,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/img/logos" />
       <recent name="$PROJECT_DIR$/public/img/avatars" />
       <recent name="$PROJECT_DIR$/public/vendors/coming_soon/images" />
-      <recent name="$PROJECT_DIR$/public/img/logos" />
       <recent name="$PROJECT_DIR$/public/fonts/font-awesome" />
       <recent name="$PROJECT_DIR$/public/vendors/coming_soon" />
     </key>
@@ -847,12 +818,12 @@
       <workItem from="1485076364134" duration="59000" />
       <workItem from="1485079372674" duration="22142000" />
       <workItem from="1485323041974" duration="15379000" />
-      <workItem from="1485405729924" duration="733000" />
+      <workItem from="1485405729924" duration="3492000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="378785000" />
+    <option name="totallyTimeSpent" value="381544000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="6" />
@@ -862,6 +833,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -876,7 +848,6 @@
       <window_info id="Thumbnails" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32930514" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="CSS Styles" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32978722" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3292683" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -918,13 +889,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/users/register.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="40" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1249,14 +1213,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/vendors/coming_soon/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7545">
-          <caret line="503" column="61" selection-start-line="503" selection-start-column="61" selection-end-line="503" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/img/logos/tendercon.svg">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1270,28 +1226,45 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/public/img/logos/big-bug.eps">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/vendors/coming_soon/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="475" column="0" selection-start-line="475" selection-start-column="0" selection-end-line="475" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="196" column="38" selection-start-line="196" selection-start-column="38" selection-end-line="196" selection-end-column="38" />
+        <state relative-caret-position="431">
+          <caret line="167" column="61" selection-start-line="167" selection-start-column="61" selection-end-line="167" selection-end-column="61" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#section#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#1;n#div#0;n#div#0;n#section#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#section#3;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1485406519000" expanded="true" signature="18257:18310" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="19037:19089" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="19037:19090" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="19970:20022" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="19970:20037" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="20455:20508" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="20470:20508" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="20729:20782" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="20995:21048" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="21258:21311" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="21528:21581" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="21690:21743" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="21844:21897" ph="..." />
-            <marker date="1485406519000" expanded="true" signature="21995:22048" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="19586:19639" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="20366:20418" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="20366:20419" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="21299:21351" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="21299:21366" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="21784:21837" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="21799:21837" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="22058:22111" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="22324:22377" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="22587:22640" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="22857:22910" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="23019:23072" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="23173:23226" ph="..." />
+            <marker date="1485412414000" expanded="true" signature="23324:23377" ph="..." />
           </folding>
         </state>
       </provider>
