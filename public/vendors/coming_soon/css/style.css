@@ -195,12 +195,11 @@ header {
     top: 0;
     left: 0;
     right: 0;
-
 	height: 900px;
 }
 
 header img {
-	margin-top: -100px !important;
+	margin-top: -125px !important;
 	position: relative;
 	z-index: 99;
 }
@@ -432,7 +431,7 @@ header .button:hover {
 .countdown div {
 	display:inline-block;
     width:190px;
- 	padding-top:12px; 
+ 	padding-top:12px;
 }
 
 .countdown-section .fa-clock-o {
