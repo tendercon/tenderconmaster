@@ -1,0 +1,236 @@
+<div class="portlet-title tabbable-line">
+  <div class="caption caption-md">
+    <i class="icon-globe theme-font hide"></i>
+    <span class="caption-subject font-blue-madison bold uppercase">Profile Account</span>
+  </div>
+  <ul class="nav nav-tabs">
+    <li class="active">
+      <a href="#tab_1_1" data-toggle="tab">Personal Info</a>
+    </li>
+    <li>
+      <a href="#tab_1_2" data-toggle="tab">Change Avatar</a>
+    </li>
+    <li>
+      <a href="#tab_1_3" data-toggle="tab">Change Password</a>
+    </li>
+    <li>
+      <a href="#tab_1_4" data-toggle="tab">Privacy Settings</a>
+    </li>
+  </ul>
+</div>
+
+<!-- PERSONAL INFO TAB -->
+<div class="tab-pane active" id="tab_1_1">
+  <div style="height: 10px"></div>
+  <div class="alert alert-success open-sans-regular" id="users_success" style="display: none">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <div class="notice" style="font-size: 14px;">Successfully Updated Info.</div>
+
+  </div>
+  <form  id="info" action="" method="POST">
+    <div class="form-group">
+      <label class="control-label">First Name</label>
+      <input type="text"  class="form-control" value="<%= "#{@user.first_name}" %>" name="f_name" />
+    </div>
+    <div class="form-group">
+      <label class="control-label">Last Name</label>
+      <input type="text" class="form-control" value="<%= "#{@user.last_name}" %> " name="l_name" />
+    </div>
+    <div class="form-group">
+      <label class="control-label">Email</label>
+      <input type="text" class="form-control" value="<%= "#{@user.email}" %> " name="email"/>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Company</label>
+      <input type="text" value="<%= "#{@user.company}" %>" class="form-control" name="company" />
+    </div>
+    <div class="form-group">
+      <label class="control-label">Address</label>
+      <input type="text"  class="form-control" value="<%= "#{@user.address.present? ? @user.address.location : nil}" %>" name="location" />
+    </div>
+    <div class="margiv-top-10">
+      <a href="#!" class="btn green">
+        <button class="btn green" type="submit">
+          Save Changes
+        </button>
+
+      </a>
+      <a href="#!" class="btn default">
+        <button class="btn default">
+          Cancel
+        </button>
+      </a>
+    </div>
+  </form>
+</div>
+<!-- END PERSONAL INFO TAB -->
+<!-- CHANGE AVATAR TAB -->
+<div class="tab-pane" id="tab_1_2">
+  <div style="height: 20px"></div>
+  <form action="#" role="form" id="avatar">
+    <div class="form-group">
+      <div class="fileinput fileinput-new" data-provides="fileinput">
+        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
+        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+        <div>
+          <span class="btn default btn-file">
+          <input type="file" name="avatar"> </span>
+          <!--<a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>-->
+        </div>
+      </div>
+
+    </div>
+    <div class="margin-top-10">
+      <a href="javascript:;" class="btn green"> Update </a>
+    </div>
+  </form>
+</div>
+<!-- END CHANGE AVATAR TAB -->
+<!-- CHANGE PASSWORD TAB -->
+<div class="tab-pane" id="tab_1_3">
+  <div style="height: 10px"></div>
+  <div class="alert alert-warning open-sans-regular" id="users_old_password" style="display: none">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <div class="notice" style="font-size: 14px;">Current Password is wrong.</div>
+  </div>
+
+  <div class="alert alert-warning open-sans-regular" id="users_not_match" style="display: none">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <div class="notice" style="font-size: 14px;">Password does not match.</div>
+  </div>
+  <div class="alert alert-success open-sans-regular" id="password_success" style="display: none">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <div class="notice" style="font-size: 14px;">Successfully Updated Password.</div>
+
+  </div>
+  <form action="#" id="password">
+    <div class="form-group">
+      <label class="control-label">Current Password</label>
+      <input type="password" class="form-control current_pass" name="current_pass"/> </div>
+    <div class="form-group">
+      <label class="control-label">New Password</label>
+      <input type="password" class="form-control new_pass" name="new_pass" /> </div>
+    <div class="form-group">
+      <label class="control-label">Re-type New Password</label>
+      <input type="password" class="form-control confirmed" name="confirmed"/> </div>
+    <div class="margin-top-10">
+      <a href="#!" class="btn green">
+        <button class="btn green" type="submit">
+          Save Changes
+        </button>
+
+      </a>
+      <a href="#!" class="btn default">
+        <button class="btn default">
+          Cancel
+        </button>
+      </a>
+    </div>
+  </form>
+</div>
+<!-- END CHANGE PASSWORD TAB -->
+<!-- PRIVACY SETTINGS TAB -->
+<div class="tab-pane" id="tab_1_4">
+  <form action="#">
+    <table class="table table-light table-hover">
+      <tr>
+        <td> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.. </td>
+        <td>
+          <label class="uniform-inline">
+            <input type="radio" name="optionsRadios1" value="option1" /> Yes </label>
+          <label class="uniform-inline">
+            <input type="radio" name="optionsRadios1" value="option2" checked/> No </label>
+        </td>
+      </tr>
+      <tr>
+        <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
+        <td>
+          <label class="uniform-inline">
+            <input type="checkbox" value="" /> Yes </label>
+        </td>
+      </tr>
+      <tr>
+        <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
+        <td>
+          <label class="uniform-inline">
+            <input type="checkbox" value="" /> Yes </label>
+        </td>
+      </tr>
+      <tr>
+        <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
+        <td>
+          <label class="uniform-inline">
+            <input type="checkbox" value="" /> Yes </label>
+        </td>
+      </tr>
+    </table>
+    <!--end profile-settings-->
+    <div class="margin-top-10">
+      <a href="javascript:;" class="btn red"> Save Changes </a>
+      <a href="javascript:;" class="btn default"> Cancel </a>
+    </div>
+  </form>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('#info').on('submit', function (e) {
+
+      e.preventDefault();
+
+      $.ajax({
+        method: "POST",
+        data: $('#info').serialize(),
+        url: "/users/update_info"
+      }).done(function (data) {
+        console.log(data);
+        if(data.state == 'valid'){
+          $('#users_success').show();
+        }
+      });
+
+
+    });
+
+    $('#password').on('submit', function (e) {
+
+      e.preventDefault();
+      var current_pass = $('.current_pass').val();
+      var new_pass = $('.new_pass').val();
+      var confirmed = $('.confirmed').val();
+
+      if(current_pass.length > 6 && new_pass.length > 6 && confirmed.length > 6){
+        $.ajax({
+          method: "POST",
+          data: $('#password').serialize(),
+          url: "/users/profile_update_password"
+        }).done(function (data) {
+          console.log(data);
+          if(data.state == 'old_password'){
+            $('#users_old_password').show();
+            $('#users_not_match').hide();
+            $('#password_success').hide();
+          }else if(data.state == 'not_match'){
+            $('#users_not_match').show();
+            $('#users_old_password').hide();
+            $('#password_success').hide();
+          }else{
+            $('#users_not_match').hide();
+            $('#users_old_password').hide();
+            $('#password_success').show();
+
+          }
+        });
+      }else{
+        alert("All Field are required and it should be 8 charactes.");
+      }
+
+
+
+
+    });
+
+  });
+</script>
+

@@ -349,6 +349,37 @@ class UsersController < ApplicationController
 
   end
 
+  def update_info
+    user = User.find(session[:user_logged_id])
+
+    if user.present?
+      User.where(:id => user.id).update_all(:first_name => params[:f_name],
+                                            :last_name => params[:l_name],
+                                            :email => params[:email],
+                                            :company => params[:company])
+
+      if params[:location].present?
+        Address.where(:user_id => user.id).update_all(:location => params[:location])
+      end
+
+      render :json => { :state => 'valid'}
+    end
+  end
+
+  def profile_update_password
+    user = User.find(session[:user_logged_id])
+
+    if user.password != (User.rehash_password(params[:current_pass]))
+      render :json => { :state => 'old_password'}
+    elsif  user.password == (User.rehash_password(params[:current_pass]))  && params[:new_pass] != params[:confirmed]
+      render :json => { :state => 'not_match'}
+    else
+      User.where(:id => user.id).update_all(:password =>  User.rehash_password(params[:new_pass]),
+                                            :confirmed_password => User.rehash_password(params[:new_pass]))
+      render :json => { :state => 'valid'}
+    end
+  end
+
 
   def update_user
     # Address Table
@@ -1581,6 +1612,16 @@ class UsersController < ApplicationController
       @profile_image = "https://s-media-cache-ak0.pinimg.com/236x/9a/de/a4/9adea4e40b39301576ff29f7ddebfd5b.jpg"
       render json: { avatar:@profile_image}
     end
+  end
+
+  def profile_control_tabs
+    @user = User.find(session[:user_logged_id])
+    if params[:tab] == 'account_settings'
+      @data = render :partial => 'users/tabs/account_settings'
+    elsif params[:tab] == 'overview'
+      @data = render :partial => 'users/tabs/overview'
+    end
+
   end
 
 

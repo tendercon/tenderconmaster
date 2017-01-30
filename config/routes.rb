@@ -138,6 +138,9 @@ Rails.application.routes.draw do
       post 'add_new_trade'
       post 'get_user_company'
       post 'get_user_avatar'
+      post 'profile_control_tabs'
+      post 'update_info'
+      post 'profile_update_password'
 
     end
   end

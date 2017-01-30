@@ -65,6 +65,7 @@ License: You must have a valid license purchased only from themeforest(the above
   <link href="../vendors/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
   <link href="../vendors/global/plugins/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
   <link href="../vendors/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+  <link href="../vendors/global/css/profile.min.css" rel="stylesheet" type="text/css" />
   <!-- END THEME LAYOUT STYLES -->
   <link rel="shortcut icon" href="favicon.ico" /> </head>
 <!-- END HEAD -->
@@ -87,7 +88,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN TOP NAVIGATION MENU -->
     <%= puts "session[:user_logged_id] ==> #{session[:user_logged_id].present?}" %>
     <%= puts "params[:controller] == 'users' =======#{!params[:controller] == 'users'}" %>
-    <% if session[:user_logged_id].present? && params[:controller] != 'users' %>
+    <% if session[:user_logged_id].present?  %>
       <%= render :partial => 'layouts/nav/topmenu' %>
     <% end %>
     <!-- END TOP NAVIGATION MENU -->
@@ -101,7 +102,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN CONTAINER -->
 <div class="page-container">
   <!-- BEGIN SIDEBAR -->
-  <% if session[:user_logged_id].present? && params[:controller] != 'users' %>
+  <% if session[:user_logged_id].present?  %>
     <%= render :partial => 'layouts/nav/sidemenu' %>
   <% end %>
   <!-- END SIDEBAR -->
