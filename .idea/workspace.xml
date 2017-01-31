@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/company_profile.html.erb" afterPath="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,7 +30,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="411">
@@ -38,6 +39,26 @@
                 <marker date="1485865792000" expanded="true" signature="24097:24385" ph="if ... end" />
                 <marker date="1485865792000" expanded="true" signature="24157:24375" ph="do ... end" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="company_profile.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/company_profile.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="76" selection-start-line="22" selection-start-column="76" selection-end-line="22" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_company_overview.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="36" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -98,9 +119,9 @@
         <option value="$PROJECT_DIR$/app/views/users/tabs/_account_settings.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/profile.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       </list>
     </option>
   </component>
@@ -740,12 +761,12 @@
       <workItem from="1485833269774" duration="6227000" />
       <workItem from="1485854396169" duration="2257000" />
       <workItem from="1485859559394" duration="1035000" />
-      <workItem from="1485861371366" duration="4143000" />
+      <workItem from="1485861371366" duration="4350000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="422358000" />
+    <option name="totallyTimeSpent" value="422565000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="725" extended-state="6" />
@@ -1122,14 +1143,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_settings.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="237" column="13" selection-start-line="222" selection-start-column="4" selection-end-line="237" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_account_settings.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -1156,22 +1169,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/company_profile.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="42" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="58" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
@@ -1180,6 +1177,30 @@
             <marker date="1485865792000" expanded="true" signature="24097:24385" ph="if ... end" />
             <marker date="1485865792000" expanded="true" signature="24157:24375" ph="do ... end" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_settings.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3204">
+          <caret line="237" column="13" selection-start-line="222" selection-start-column="4" selection-end-line="237" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/company_profile.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="76" selection-start-line="22" selection-start-column="76" selection-end-line="22" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="36" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>

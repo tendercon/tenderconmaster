@@ -19,7 +19,7 @@
       <div class="portlet light profile-sidebar-portlet ">
         <!-- SIDEBAR USERPIC -->
         <div class="profile-userpic">
-          <% if @user.avatar.present? %>
+          <% if @user.company_avatar.present? %>
             <% if File.exist?(@user.company_avatar.image.path(:original)) %>
               <img src="<%= @user.company_avatar.image.url(:original) %>" class="img-responsive" alt="">
             <% else %>
