@@ -8,10 +8,6 @@
     <li>
       <a href="#avatar" data-toggle="tab">Avatar</a>
     </li>
-    <li>
-      <a href="#password" data-toggle="tab">Password</a>
-    </li>
-
   </ul>
 </div>
 
@@ -25,36 +21,73 @@
   </div>
   <form  id="info" action="" method="POST">
     <div class="form-group">
-      <label class="control-label">First Name</label>
-      <input type="text"  class="form-control" value="<%= "#{@user.first_name}" %>" name="f_name" />
+      <label class="control-label">Tendercon id</label>
+      <input type="text"  class="form-control" value="<%= "#{@user.tendercon_id}" %>" name="tendercon_id" readonly/>
     </div>
     <div class="form-group">
-      <label class="control-label">Last Name</label>
-      <input type="text" class="form-control" value="<%= "#{@user.last_name}" %> " name="l_name" />
+      <label class="control-label">ABN</label>
+      <input type="text"  class="form-control" value="<%= "#{@user.abn}" %>" name="f_name" readonly/>
     </div>
     <div class="form-group">
-      <label class="control-label">Email</label>
-      <input type="text" class="form-control" value="<%= "#{@user.email}" %> " name="email"/>
+      <label class="control-label"><label style="font-size: 12px;font-weight: bold">ACN:</label></label>
+      <input type="text" class="form-control" name="acn" value="<%= @added_company_profile.present? ? @added_company_profile.acn : '' %>">
     </div>
     <div class="form-group">
-      <label class="control-label">Company</label>
-      <input type="text" value="<%= "#{@user.company}" %>" class="form-control" name="company" />
+      <label  style="font-size: 12px;font-weight: bold">Address:</label>
+      <input type="text" class="form-control" name="address" value="<%=  @user.address.location %>" id="address">
     </div>
     <div class="form-group">
-      <label class="control-label">Address</label>
-      <input type="text"  class="form-control" value="<%= "#{@user.address.present? ? @user.address.location : nil}" %>" name="location" />
+      <label class="control-label">Time zone</label>
+      <input type="text" value="<%= "#{@user.address.timezone}" %>" class="form-control" name="tiemzone" />
     </div>
     <div class="form-group">
-      <label class="control-label">About</label>
-      <input type="text"  class="form-control" value="<%= "#{@user.user_info.present? ? @user.user_info.about_me.html_safe : nil}" %>" name="about" />
+      <label class="control-label">About the Company</label>
+      <input type="text"  class="form-control" value="<%= @added_company_profile.present? ? @added_company_profile.about_me : nil %>" name="about_me" />
+    </div>
+    <% if session[:role] == 'Sub Contractor' %>
+      <div class="form-group">
+        <label class="control-label">Specialist Trades</label>
+      </div>
+      <div class="form-group">
+        <%= select_tag 'primary_trade',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name',@primary_trade.trade_id)+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control col-lg-12',:style=> 'width:300px;'} %>
+      </div>
+    <% end %>
+    <div class="form-group">
+      <label class="control-label">No. of Employees</label>
     </div>
     <div class="form-group">
-      <label class="control-label">Mobile</label>
-      <input type="text"  class="form-control" value="<%= "#{@user.mobile_number}" %>" name="mobile" />
+      <%= select_tag "number_of_employees", options_for_select([ "","1 to 5", "5 to 10","10-15","15-20","20-25","25-50","50-75","75-100","100+"] , @added_company_profile.present? ? @added_company_profile.number_of_employees : "" ),{:class => 'form-control'} %>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label">Commenced Operation</label>
+    </div>
+    <div class="form-group">
+      <%= select_tag "commenced_operation", options_for_select(@years.reverse , Time.now.strftime('%Y').to_i),{:class => 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Tendercon member since</label>
+      <input type="text" class="form-control" name="since" value="<%=  @user.created_at.strftime('%Y') %>">
+    </div>
+    <div class="form-group">
+      <label class="control-label">Project range</label>
+      <input type="text"  class="form-control" value="<%= @added_company_profile.present? ? @added_company_profile.project_range : nil %>" name="project_range" />
+    </div>
+    <div class="form-group">
+      <label class="control-label">Phone</label>
+      <input type="text" class="form-control phone" name="contact_number" value="<%= @added_company_profile.present? ? @added_company_profile.contact_number : '' %>">
+    </div>
+    <div class="form-group">
+      <label class="control-label">FAX</label>
+      <input type="text" class="form-control fax" name="fax_number" value="<%= @added_company_profile.present? ? @added_company_profile.fax_number : '' %>">
+    </div>
+    <div class="form-group">
+      <label class="control-label">Website</label>
+      <input type="text" class="form-control" name="website" value="<%= @added_company_profile.present? ? @added_company_profile.website : '' %>">
     </div>
     <div class="form-group">
       <label class="control-label">Linkedin</label>
-      <input type="text"  class="form-control" value="<%="#{@user.user_info.present? ? @user.user_info.linkedin : nil}" %>" name="linkedin" />
+      <input type="text" class="form-control" id="linkedin" name="linkedin" value="<%= @added_company_profile.present? ? @added_company_profile.linkedin : '' %>">
     </div>
     <div class="margiv-top-10">
       <a href="#!" class="btn green">
@@ -75,12 +108,12 @@
 <!-- CHANGE AVATAR TAB -->
 <div class="tab-pane" id="avatar" style="display: none">
   <div style="height: 20px"></div>
-  <form action="#"  id="upload_avatar" enctype="multipart/form-data">
+  <form action="#"  id="upload_company_avatar" enctype="multipart/form-data">
     <div class="form-group">
       <div class="fileinput fileinput-new" data-provides="fileinput">
         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
           <% if @user.avatar.present? %>
-              <img src="<%= @user.avatar.image.url(:original) %>"  class="img-responsive user_avatar">
+              <img src="<%= @user.company_avatar.image.url(:original) %>"  class="img-responsive user_avatar">
           <% else %>
               <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" class="img-responsive user_avatar">
           <% end %>
@@ -101,11 +134,11 @@
       </a>
     </div>
   </form>
-  <!--<div style="background-color: transparent;display: none"> 
-    <%#= form_for @avatar, :url => update_avatar_users_path,:html => {:class => 'avatar'} do |m| %> 
+  <div style="background-color: transparent;display: none"> 
+    <%= form_for @avatar, :url => update_avatar_users_path,:html => {:class => 'avatar'} do |m| %> 
         <input type="file" class="file_upload_filed"  id="dir-select" name="avatar"   /> 
-    <%# end %>
-  </div> -->
+    <% end %>
+  </div> 
 </div>
 <!-- END CHANGE AVATAR TAB -->
 <!-- CHANGE PASSWORD TAB -->
@@ -162,7 +195,7 @@
       $.ajax({
         method: "POST",
         data: $('#info').serialize(),
-        url: "/users/update_info"
+        url: "/users/update_company_info"
       }).done(function (data) {
         console.log(data);
         if(data.state == 'valid'){
@@ -171,10 +204,26 @@
       });
     });
 
-    $( '#upload_avatar' ).submit( function( e ) {
+    /*$('#upload_company_avatar').on('submit', function (e) {
+
+      e.preventDefault();
+
+      $.ajax({
+        method: "POST",
+        data: $('#upload_company_avatar').serialize(),
+        url: "/users/update_company_avatar"
+      }).done(function (data) {
+        console.log(data);
+        if(data.state == 'valid'){
+          $('#users_success').show();
+        }
+      });
+    });*/
+
+    $( '#upload_company_avatar' ).submit( function( e ) {
       e.preventDefault();
       $.ajax( {
-        url: '/users/update_avatar',
+        url: '/users/update_company_avatar',
         type: 'POST',
         data: new FormData( this ),
         processData: false,
@@ -182,47 +231,15 @@
       }).done(function (data) {
         console.log(data);
         if(data.state == 'valid'){
-          console.log(data.url);
-          $('.user_avatar').attr('src',data.url);
+          console.log(data.avatar_url);
+          $('.user_avatar').attr('src',data.avatar_url);
         }
       });
     });
 
 
 
-    $('#password').on('submit', function (e) {
 
-      e.preventDefault();
-      var current_pass = $('.current_pass').val();
-      var new_pass = $('.new_pass').val();
-      var confirmed = $('.confirmed').val();
-
-      if(current_pass.length > 6 && new_pass.length > 6 && confirmed.length > 6){
-        $.ajax({
-          method: "POST",
-          data: $('#password').serialize(),
-          url: "/users/profile_update_password"
-        }).done(function (data) {
-          console.log(data);
-          if(data.state == 'old_password'){
-            $('#users_old_password').show();
-            $('#users_not_match').hide();
-            $('#password_success').hide();
-          }else if(data.state == 'not_match'){
-            $('#users_not_match').show();
-            $('#users_old_password').hide();
-            $('#password_success').hide();
-          }else{
-            $('#users_not_match').hide();
-            $('#users_old_password').hide();
-            $('#password_success').show();
-
-          }
-        });
-      }else{
-        alert("All Fields are required and atleast 8 characters.");
-      }
-    });
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
       var target = $(e.target).attr("href"); // activated tab
@@ -271,8 +288,8 @@
           $('.user_avatar').attr('src',data.url);
         }
       });
-    });*/
-
+    });
+*/
   });
 </script>
 

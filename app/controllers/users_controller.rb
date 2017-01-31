@@ -802,13 +802,13 @@ class UsersController < ApplicationController
     @trades = Trade.all
 
     @company_avatar = CompanyAvatar.new
-    if @user.company_avatars
-      @user.company_avatars.each do |a|
-        @avatar_id = a.id
-        @avatar_filename = a.image_file_name
-        @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{@avatar_id}/original/#{@avatar_filename}"
-      end
-    end
+    # if @user.company_avatars
+    #   @user.company_avatars.each do |a|
+    #     @avatar_id = a.id
+    #     @avatar_filename = a.image_file_name
+    #     @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{@avatar_id}/original/#{@avatar_filename}"
+    #   end
+    # end
 
     @years = []
     @from = ['','1K','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M']
@@ -847,13 +847,13 @@ class UsersController < ApplicationController
     @trades = Trade.all
 
     @company_avatar = CompanyAvatar.new
-    if @user.company_avatars
-      @user.company_avatars.each do |a|
-        @avatar_id = a.id
-        @avatar_filename = a.image_file_name
-        @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{@avatar_id}/original/#{@avatar_filename}"
-      end
-    end
+    # if @user.company_avatars
+    #   @user.company_avatars.each do |a|
+    #     @avatar_id = a.id
+    #     @avatar_filename = a.image_file_name
+    #     @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{@avatar_id}/original/#{@avatar_filename}"
+    #   end
+    # end
 
     @years = []
     @from = ['','1K','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M']
@@ -997,6 +997,166 @@ class UsersController < ApplicationController
 
     end
     redirect_to company_profile_users_path(:id => params[:user_id])
+  end
+
+  def update_company_info
+    @company_profile = CompanyProfile.where(:user_id => session[:user_logged_id]).first
+    to = params[:to]
+    from = params[:from]
+    project_range = params[:project_range]
+
+    if @company_profile.present?
+
+      CompanyProfile.where(:user_id => session[:user_logged_id]).update_all(
+          :about_me => params[:about_me],
+          :number_of_employees => params[:number_of_employees],
+          :commenced_operation => params[:commenced_operation],
+          :since => params[:since],
+          :project_range => project_range,
+          :contact_number => params[:contact_number],
+          :fax_number => params[:fax_number],
+          :website => params[:website],
+          :linkedin => params[:linkedin],
+          :facebook => params[:fb],
+          :acn => params[:acn]
+      )
+
+      if params[:suburb].present?
+        Address.where(:user_id => params[:user_id]).update_all(:location => params[:address],:suburb => params[:suburb],:postcode => params[:postcode],:state => params[:state], :timezone => params[:timezone])
+      else
+        Address.where(:user_id => params[:user_id]).update_all(:location => params[:address])
+      end
+
+      PrimaryTrade.where(:user_id => session[:user_logged_id]).destroy_all
+
+      primary = PrimaryTrade.new
+      primary.trade_id = params[:primary_trade]
+      primary.user_id = session[:user_logged_id]
+      primary.save
+
+      SecondaryTrade.where(:user_id => session[:user_logged_id]).destroy_all
+
+      s_array = []
+
+      if params[:secondary_trade1].present? && params[:secondary_trade1].to_i > 0
+        s_array << params[:secondary_trade1]
+      end
+
+      if params[:secondary_trade2].present? && params[:secondary_trade2].to_i > 0
+        s_array << params[:secondary_trade2]
+      end
+
+      if params[:secondary_trade3].present? && params[:secondary_trade3].to_i > 0
+        s_array << params[:secondary_trade3]
+      end
+
+      if params[:secondary_trade4].present? && params[:secondary_trade4].to_i > 0
+        s_array << params[:secondary_trade4]
+      end
+
+      if params[:secondary_trade5].present? && params[:secondary_trade5].to_i > 0
+        s_array << params[:secondary_trade5]
+      end
+
+
+      if s_array.present?
+        s_array.each do |s|
+          secondary = SecondaryTrade.new
+          secondary.trade_id = s
+          secondary.user_id = session[:user_logged_id]
+          secondary.save
+        end
+      end
+    else
+      @company_profile = CompanyProfile.new
+      @company_profile.user_id = session[:user_logged_id]
+      @company_profile.about_me = params[:about_me]
+      @company_profile.number_of_employees = params[:number_of_employees]
+      @company_profile.commenced_operation = params[:commenced_operation]
+      @company_profile.since = params[:since]
+      @company_profile.project_range = project_range
+      @company_profile.contact_number = params[:contact_number]
+      @company_profile.fax_number = params[:fax_number]
+      @company_profile.website = params[:website]
+      @company_profile.linkedin = params[:linkedin]
+      @company_profile.facebook = params[:fb]
+      @company_profile.acn = params[:acn]
+      @company_profile.save
+
+
+      if params[:suburb].present?
+        Address.where(:user_id => session[:user_logged_id]).update_all(:location => params[:address],:suburb => params[:suburb],:postcode => params[:postcode],:state => params[:state], :timezone => params[:timezone])
+      else
+        Address.where(:user_id => session[:user_logged_id]).update_all(:location => params[:address])
+      end
+
+      PrimaryTrade.where(:user_id => session[:user_logged_id]).destroy_all
+
+      primary = PrimaryTrade.new
+      primary.trade_id = params[:primary_trade]
+      primary.user_id = session[:user_logged_id]
+      primary.save
+
+      SecondaryTrade.where(:user_id => session[:user_logged_id]).destroy_all
+
+      s_array = []
+
+      if params[:secondary_trade1].present? && params[:secondary_trade1].to_i > 0
+        s_array << params[:secondary_trade1]
+      end
+
+      if params[:secondary_trade2].present? && params[:secondary_trade2].to_i > 0
+        s_array << params[:secondary_trade2]
+      end
+
+      if params[:secondary_trade3].present? && params[:secondary_trade3].to_i > 0
+        s_array << params[:secondary_trade3]
+      end
+
+      if params[:secondary_trade4].present? && params[:secondary_trade4].to_i > 0
+        s_array << params[:secondary_trade4]
+      end
+
+      if params[:secondary_trade5].present? && params[:secondary_trade5].to_i > 0
+        s_array << params[:secondary_trade5]
+      end
+
+      if s_array.present?
+        s_array.each do |s|
+          secondary = SecondaryTrade.new
+          secondary.trade_id = s
+          secondary.user_id = session[:user_logged_id]
+          secondary.save
+        end
+      end
+
+    end
+    render :json => { :state => 'valid'}
+  end
+
+  def update_company_avatar
+    user = User.find(session[:user_logged_id])
+
+    if params[:avatar].present?
+      if user.company_avatar.present?
+        user.company_avatar.update_attributes(:image => params[:avatar])
+      else
+        if params[:avatar].present?
+          avatar = CompanyAvatar.new
+          avatar.image = params[:avatar]
+          avatar.user_id = session[:user_logged_id]
+          avatar.save
+        end
+      end
+
+      render :json => { :state => 'valid',:avatar_url => user.company_avatar.image.url(:original)}
+    else
+      render :json => { :state => 'invalid'}
+    end
+
+
+
+
   end
 
   def create_company_avatar
@@ -1622,9 +1782,85 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_logged_id])
     if params[:tab] == 'edit_profile'
       @avatar = Avatar.new
-      @data = render :partial => 'users/tabs/account_settings'
+      if params[:tab_action].present?
+        @added_company_profile = CompanyProfile.where(:user_id => @user.id).first
+
+        if @added_company_profile.present?
+          @about_me = @added_company_profile.about_me
+        end
+
+        if @added_company_profile.present?
+          if @added_company_profile.project_range.present?
+            @p_to = @added_company_profile.project_range.split('-')
+          end
+        end
+
+        @primary_trade = PrimaryTrade.where(:user_id => @user.id).first
+        @secondary_trades = SecondaryTrade.where(:user_id => @user.id)
+        @secondary_trade_array = []
+        if @secondary_trades.present?
+          @secondary_trades.each do |s|
+            @secondary_trade_array << s.trade_id
+          end
+        end
+
+        @trades = Trade.all
+
+        @company_avatar = CompanyAvatar.new
+
+
+        @years = []
+        @from = ['','1K','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M']
+        @to = ['','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M','500M+']
+
+        for i in 1800..(Time.now.strftime('%Y').to_i) do
+          @years << i
+        end
+        @data = render :partial => 'users/tabs/company_settings'
+      else
+        @data = render :partial => 'users/tabs/account_settings'
+      end
+
     elsif params[:tab] == 'overview'
-      @data = render :partial => 'users/tabs/overview'
+      if params[:tab_action].present?
+        @added_company_profile = CompanyProfile.where(:user_id => @user.id).first
+
+        if @added_company_profile.present?
+          @about_me = @added_company_profile.about_me
+        end
+
+        if @added_company_profile.present?
+          if @added_company_profile.project_range.present?
+            @p_to = @added_company_profile.project_range.split('-')
+          end
+        end
+
+        @primary_trade = PrimaryTrade.where(:user_id => @user.id).first
+        @secondary_trades = SecondaryTrade.where(:user_id => @user.id)
+        @secondary_trade_array = []
+        if @secondary_trades.present?
+          @secondary_trades.each do |s|
+            @secondary_trade_array << s.trade_id
+          end
+        end
+
+        @trades = Trade.all
+
+        @company_avatar = CompanyAvatar.new
+
+
+        @years = []
+        @from = ['','1K','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M']
+        @to = ['','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M','500M+']
+
+        for i in 1800..(Time.now.strftime('%Y').to_i) do
+          @years << i
+        end
+        @data = render :partial => 'users/tabs/company_overview'
+      else
+        @data = render :partial => 'users/tabs/overview'
+      end
+
     end
 
   end
@@ -1640,7 +1876,7 @@ class UsersController < ApplicationController
       avatar.save
     end
 
-    render :json => { :state => 'valid'}
+    render :json => { :state => 'valid',:url => @user.avatar.image.url(:original)}
   end
 
   def get_user_avatar_path

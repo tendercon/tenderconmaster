@@ -5,9 +5,17 @@
     <!-- SIDEBAR USERPIC -->
     <div class="profile-userpic">
       <% if @user.avatar.present? %>
-          <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="">
-      <% else %>
+        <% if @user.avatar.present? %>
+          <% if File.exist?(@user.avatar.image.path(:original)) %>
+            <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="">
+          <% else %>
+            <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+          <% end %>
+        <% else %>
           <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+          <% end %>
+      <% else %>
+        <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
       <% end %>
     </div>
 

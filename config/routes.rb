@@ -143,7 +143,8 @@ Rails.application.routes.draw do
       post 'profile_update_password'
       post 'update_avatar'
       post 'get_user_avatar_path'
-
+      post 'update_company_info'
+      post 'update_company_avatar'
     end
   end
 

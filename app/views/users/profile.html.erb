@@ -6,11 +6,9 @@
         <li class="active"><a href="#overview" data-toggle="tab" id="">Overview</a></li>
         <li><a href="#edit_profile" data-toggle="tab" id="">Edit Profile</a></li>
         <li><a href="#subscription" data-toggle="tab" id="">Subscription</a></li>
-        <li><a href="#billing" data-toggle="tab" id="">Billing</a></li>
       </ul>
     </div>
   </div>
-
 
   <div class="col-md-12 profile_div">
     <!-- BEGIN PROFILE SIDEBAR -->
@@ -20,9 +18,13 @@
         <!-- SIDEBAR USERPIC -->
         <div class="profile-userpic">
           <% if @user.avatar.present? %>
+            <% if File.exist?(@user.avatar.image.path(:original)) %>
               <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="">
-          <% else %>
+            <% else %>
               <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+            <% end %>
+          <% else %>
+            <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
           <% end %>
         </div>
 

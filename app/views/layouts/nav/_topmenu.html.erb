@@ -193,6 +193,10 @@
           <a href="<%= profile_users_path(:id => session[:user_logged_id]) %>">
             <i class="icon-user"></i> My Profile </a>
         </li>
+        <li>
+          <a href="<%= company_profile_users_path(:id => session[:user_logged_id]) %>">
+            <i class="icon-user"></i> My Company </a>
+        </li>
         <li class="divider"> </li>
         <li>
           <a href="page_user_lock_1.html">

@@ -5,12 +5,12 @@ class User < ActiveRecord::Base
   has_one :request_upgrade
   has_one :company_profile
   has_one :avatar
+  has_one :company_avatar
   has_one  :user_info
   has_many :primary_trades
   has_many :secondary_trades
   has_many :email_notifications
   has_many :notifications
-  has_many :company_avatars
   has_many :project_portfolios
   has_many :package_downloads
   accepts_nested_attributes_for :companies

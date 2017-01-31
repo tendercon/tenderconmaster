@@ -1,0 +1,163 @@
+<div style="height: 30px"></div>
+<div class="profile-sidebar">
+  <!-- PORTLET MAIN -->
+  <div class="portlet light profile-sidebar-portlet ">
+    <!-- SIDEBAR USERPIC -->
+    <div class="profile-userpic">
+      <% if @user.avatar.present? %>
+        <% if File.exist?(@user.company_avatar.image.path(:original)) %>
+          <img src="<%= @user.company_avatar.image.url(:original) %>" class="img-responsive" alt="">
+        <% else %>
+          <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+        <% end %>
+      <% else %>
+        <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+      <% end %>
+    </div>
+
+    <div class="profile-usertitle">
+      <div class="profile-usertitle-name"> <%= "#{@user.company}" %> </div>
+    </div>
+    <!-- END SIDEBAR USER TITLE -->
+    <!-- SIDEBAR BUTTONS -->
+    <div class="profile-userbuttons">
+
+    </div>
+    <!-- END SIDEBAR BUTTONS -->
+    <!-- SIDEBAR MENU -->
+    <div class="profile-usermenu">
+
+    </div>
+    <!-- END MENU -->
+  </div>
+  <!-- END PORTLET MAIN -->
+  <!-- PORTLET MAIN -->
+  <div class="portlet light ">
+    <!-- STAT -->
+    <div class="row list-separated profile-stat">
+
+    </div>
+    <!-- END STAT -->
+    <div>
+
+    </div>
+  </div>
+  <!-- END PORTLET MAIN -->
+</div>
+<!-- END BEGIN PROFILE SIDEBAR -->
+<!-- BEGIN PROFILE CONTENT -->
+<div class="profile-content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="portlet light ">
+        <div class="portlet-title tabbable-line">
+          <div class="caption caption-md">
+            <i class="icon-globe theme-font hide"></i>
+            <span class="caption-subject font-blue-madison bold uppercase">Company Account</span>
+          </div>
+
+        </div>
+        <div class="portlet-body">
+          <div class="tab-content">
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <td colspan="2">Details</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <td>ABN</td>
+                <td><%= "#{@user.abn}" %></td>
+              </tr>
+              <tr>
+                <td>ACN</td>
+                <td><%= @added_company_profile.present? ? @added_company_profile.acn : nil %></td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td><%= "#{@user.address.location}" %></td>
+              </tr>
+              <tr>
+                <td>Time zone</td>
+                <td><%= "#{@user.address.timezone}" %></td>
+              </tr>
+              <tr>
+                <td colspan="2">About the Company</td>
+              </tr>
+              <tr>
+                <td>About</td>
+                <td><%= @added_company_profile.present? ? @added_company_profile.about_me : nil %></td>
+              </tr>
+
+              <% if session[:role] == 'Sub Contractor' %>
+                  <tr>
+                    <td colspan="2">Specialist Trades</td>
+                  </tr>
+                  <tr>
+                    <td>Primary Trade<</td>
+                    <td><%= (return_trade @primary_trade.trade_id) %></td>
+                  </tr>
+                  <tr>
+                    <td>Secondary Trade</td>
+                    <td></td>
+                  </tr>
+                  <% if @secondary_trade_array.present? %>
+                      <% @secondary_trade_array.each_with_index do |a,index| %>
+                          <tr>
+                            <td></td>
+                            <td><%= (return_trade a) %></td>
+                          </tr>
+                      <% end %>
+                  <% end %>
+              <% end %>
+              <tr>
+                <td colspan="2">More Info</td>
+              </tr>
+              <tr>
+                <td>Tendercon id</td>
+                <td><%= "#{@user.tendercon_id}" %></td>
+              </tr>
+              <tr>
+                <td>No. of Employees</td>
+                <td><%=  @added_company_profile.present? ? @added_company_profile.number_of_employees : nil %></td>
+              </tr>
+              <tr>
+                <td>Commenced Operation</td>
+                <td><%=  @added_company_profile.present? ? @added_company_profile.commenced_operation : nil %></td>
+              </tr>
+              <tr>
+                <td>Tendercon member since</td>
+                <td><%= @added_company_profile.present? ? @added_company_profile.since : nil %></td>
+              </tr>
+              <tr>
+                <td>Project range</td>
+                <td><%= @added_company_profile.present? ? @added_company_profile.project_range : nil %></td>
+              </tr>
+              <tr>
+                <td colspan="2">Contact</td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td><%= @added_company_profile.present? ? @added_company_profile.contact_number : nil %></td>
+              </tr>
+              <tr>
+                <td>FAX</td>
+                <td><%= @added_company_profile.present? ? @added_company_profile.fax_number : nil %></td>
+              </tr>
+              <tr>
+                <td>Website</td>
+                <td><%= @added_company_profile.present? ? @added_company_profile.website : nil %></td>
+              </tr>
+              <tr>
+                <td>Linkedin</td>
+                <td><%= @added_company_profile.present? ? @added_company_profile.linkedin : nil %></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
