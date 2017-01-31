@@ -141,6 +141,8 @@ Rails.application.routes.draw do
       post 'profile_control_tabs'
       post 'update_info'
       post 'profile_update_password'
+      post 'update_avatar'
+      post 'get_user_avatar_path'
 
     end
   end

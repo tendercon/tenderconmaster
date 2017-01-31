@@ -1,34 +1,18 @@
 
-<!-- END PAGE TITLE-->
-<!-- END PAGE HEADER-->
 <div class="row">
-  <div class="col-md-12">
-    <div class="portlet-body" style="color: #2B3642;">
-
-
-      <div class="tabbable-line">
-
-        <ul class="nav nav-tabs ">
-
-          <li class="active"><a href="#sub" data-toggle="tab" id="">My Profile</a></li>
-          <li><a href="#sub" data-toggle="tab" id="">Subscription</a></li>
-          <li><a href="#sub" data-toggle="tab" id="">My Billing</a></li>
-
-
-
-
-          <!--<li class="pull-right">
-            <div class="dropdown">
-              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                <i class="fa fa-bars" aria-hidden="true"></i> &lt;!&ndash;<span class="caret"></span>&ndash;&gt;</button>
-
-            </div>
-          </li>-->
-        </ul>
-      </div>
-
-
+  <div class="col-md-12 ">
+    <div class="tabbable-line">
+      <ul class="nav nav-tabs ">
+        <li class="active"><a href="#overview" data-toggle="tab" id="">Overview</a></li>
+        <li><a href="#edit_profile" data-toggle="tab" id="">Edit Profile</a></li>
+        <li><a href="#subscription" data-toggle="tab" id="">Subscription</a></li>
+        <li><a href="#billing" data-toggle="tab" id="">Billing</a></li>
+      </ul>
     </div>
+  </div>
+
+
+  <div class="col-md-12 profile_div">
     <!-- BEGIN PROFILE SIDEBAR -->
     <div class="profile-sidebar">
       <!-- PORTLET MAIN -->
@@ -36,41 +20,25 @@
         <!-- SIDEBAR USERPIC -->
         <div class="profile-userpic">
           <% if @user.avatar.present? %>
-              <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt=""> </div>
+              <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="">
           <% else %>
-              <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""> </div>
+              <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
           <% end %>
+        </div>
 
-        <!-- END SIDEBAR USERPIC -->
-        <!-- SIDEBAR USER TITLE -->
         <div class="profile-usertitle">
           <div class="profile-usertitle-name"> <%= "#{@user.first_name} #{@user.last_name}" %> </div>
-          <div class="profile-usertitle-job"> <%= get_postion @user.position %> </div>
+          <div class="profile-usertitle-job"> <%= "#{get_postion @user.position}" %>  </div>
         </div>
         <!-- END SIDEBAR USER TITLE -->
         <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
-          <button type="button" class="btn btn-circle green btn-sm">Follow</button>
-          <button type="button" class="btn btn-circle red btn-sm">Message</button>
+
         </div>
         <!-- END SIDEBAR BUTTONS -->
         <!-- SIDEBAR MENU -->
         <div class="profile-usermenu">
-          <ul class="nav">
-            <li class="active" id="overview">
-              <a href="#!" class="overview">
-                <i class="icon-home"></i> Overview </a>
-            </li>
-            <li  id="account_settings">
-              <a href="#!" class="account_settings">
-                <i class="icon-settings"></i> Account Settings
-              </a>
-            </li>
-            <li id="help">
-              <a href="#!" class="help">
-                <i class="icon-info"></i> Help </a>
-            </li>
-          </ul>
+
         </div>
         <!-- END MENU -->
       </div>
@@ -79,35 +47,11 @@
       <div class="portlet light ">
         <!-- STAT -->
         <div class="row list-separated profile-stat">
-          <div class="col-md-4 col-sm-4 col-xs-6">
-            <div class="uppercase profile-stat-title"> 37 </div>
-            <div class="uppercase profile-stat-text"> Projects </div>
-          </div>
-          <div class="col-md-4 col-sm-4 col-xs-6">
-            <div class="uppercase profile-stat-title"> 51 </div>
-            <div class="uppercase profile-stat-text"> Tasks </div>
-          </div>
-          <div class="col-md-4 col-sm-4 col-xs-6">
-            <div class="uppercase profile-stat-title"> 61 </div>
-            <div class="uppercase profile-stat-text"> Uploads </div>
-          </div>
+
         </div>
         <!-- END STAT -->
         <div>
-          <h4 class="profile-desc-title">About Marcus Doe</h4>
-          <span class="profile-desc-text"> Lorem ipsum dolor sit amet diam nonummy nibh dolore. </span>
-          <div class="margin-top-20 profile-desc-link">
-            <i class="fa fa-globe"></i>
-            <a href="http://www.keenthemes.com">www.keenthemes.com</a>
-          </div>
-          <div class="margin-top-20 profile-desc-link">
-            <i class="fa fa-twitter"></i>
-            <a href="http://www.twitter.com/keenthemes/">@keenthemes</a>
-          </div>
-          <div class="margin-top-20 profile-desc-link">
-            <i class="fa fa-facebook"></i>
-            <a href="http://www.facebook.com/keenthemes/">keenthemes</a>
-          </div>
+
         </div>
       </div>
       <!-- END PORTLET MAIN -->
@@ -118,42 +62,64 @@
       <div class="row">
         <div class="col-md-12">
           <div class="portlet light ">
+            <div class="portlet-title tabbable-line">
+              <div class="caption caption-md">
+                <i class="icon-globe theme-font hide"></i>
+                <span class="caption-subject font-blue-madison bold uppercase">Profile Account</span>
+              </div>
 
+            </div>
             <div class="portlet-body">
-              <div class="tab-content" id="profile_content">
-                <form role="form" action="#">
-                  <div class="form-group">
-                    <h4 class="profile-desc-title">First Name</h4>
-                    <span class="profile-desc-text"> <%= "#{@user.first_name}" %> </span>
-                  </div>
-                  <div class="form-group">
-                    <h4 class="profile-desc-title">Last Name</h4>
-                    <span class="profile-desc-text"> <%= "#{@user.last_name}" %> </span>
-                  </div>
-                  <div class="form-group">
-                    <h4 class="profile-desc-title">Email</h4>
-                    <span class="profile-desc-text"> <%= "#{@user.email}" %> </span>
-                  </div>
-                  <div class="form-group">
-                    <h4 class="profile-desc-title">Company</h4>
-                    <span class="profile-desc-text"> <%= "#{@user.company}" %> </span>
-                  </div>
-                  <div class="form-group">
-                    <h4 class="profile-desc-title">Address</h4>
-                    <span class="profile-desc-text"> <%= "#{@user.address.present? ? @user.address.location : nil}" %> </span>
-                  </div>
-
-                </form>
-                <!-- END PRIVACY SETTINGS TAB -->
+              <div class="tab-content">
+                <table class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <td colspan="2">Details</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Full Name</td>
+                      <td><%= "#{@user.first_name} #{@user.last_name}" %></td>
+                    </tr>
+                    <tr>
+                      <td>Position</td>
+                      <td><%= "#{get_postion @user.position}" %></td>
+                    </tr>
+                    <tr>
+                      <td>Company</td>
+                      <td><%= "#{@user.company}" %></td>
+                    </tr>
+                    <tr>
+                      <td>About</td>
+                      <td><%= "#{@user.user_info.present? ? @user.user_info.about_me.html_safe : nil}" %></td>
+                    </tr>
+                    <tr>
+                      <td colspan="2">Contact</td>
+                    </tr>
+                    <tr>
+                      <td>Email</td>
+                      <td><%= "#{@user.email}" %></td>
+                    </tr>
+                    <tr>
+                      <td>Mobile</td>
+                      <td><%= "#{@user.mobile_number}" %></td>
+                    </tr>
+                    <tr>
+                      <td>Linkedin</td>
+                      <td><%="#{@user.user_info.present? ? @user.user_info.linkedin : nil}" %></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- END PROFILE CONTENT -->
   </div>
 </div>
+
 
 <script>
   $(document).ready(function(){
@@ -192,6 +158,37 @@
       $('#help').addClass('active');
       $('#account_settings').removeClass('active');
       $('#profile_content').html('');
+    });
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      var target = $(e.target).attr("href"); // activated tab
+      var id = $(e.target).attr("id");
+      console.log("TARGET:"+target);
+
+      if(target == '#overview'){
+        $('.profile_div').html('');
+        $.ajax({
+          method: "POST",
+          data: {tab:'overview'},
+          url: "/users/profile_control_tabs"
+        }).done(function (data) {
+          $('.profile_div').html(data);
+        });
+      }else if(target == '#edit_profile'){
+        $('.profile_div').html('');
+        $.ajax({
+          method: "POST",
+          data: {tab:'edit_profile'},
+          url: "/users/profile_control_tabs"
+        }).done(function (data) {
+          $('.profile_div').html(data);
+        });
+      }else if(target == '#subscription'){
+
+      }else if(target == '#billing'){
+
+      }
+
     });
   })
 </script>

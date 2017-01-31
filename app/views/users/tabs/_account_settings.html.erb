@@ -1,26 +1,22 @@
+<div style="height: 30px"></div>
 <div class="portlet-title tabbable-line">
-  <div class="caption caption-md">
-    <i class="icon-globe theme-font hide"></i>
-    <span class="caption-subject font-blue-madison bold uppercase">Profile Account</span>
-  </div>
+
   <ul class="nav nav-tabs">
     <li class="active">
-      <a href="#tab_1_1" data-toggle="tab">Personal Info</a>
+      <a href="#details" data-toggle="tab">Details</a>
     </li>
     <li>
-      <a href="#tab_1_2" data-toggle="tab">Change Avatar</a>
+      <a href="#avatar" data-toggle="tab">Avatar</a>
     </li>
     <li>
-      <a href="#tab_1_3" data-toggle="tab">Change Password</a>
+      <a href="#password" data-toggle="tab">Password</a>
     </li>
-    <li>
-      <a href="#tab_1_4" data-toggle="tab">Privacy Settings</a>
-    </li>
+
   </ul>
 </div>
 
 <!-- PERSONAL INFO TAB -->
-<div class="tab-pane active" id="tab_1_1">
+<div class="tab-pane active" id="details">
   <div style="height: 10px"></div>
   <div class="alert alert-success open-sans-regular" id="users_success" style="display: none">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -48,6 +44,18 @@
       <label class="control-label">Address</label>
       <input type="text"  class="form-control" value="<%= "#{@user.address.present? ? @user.address.location : nil}" %>" name="location" />
     </div>
+    <div class="form-group">
+      <label class="control-label">About</label>
+      <input type="text"  class="form-control" value="<%= "#{@user.user_info.present? ? @user.user_info.about_me.html_safe : nil}" %>" name="about" />
+    </div>
+    <div class="form-group">
+      <label class="control-label">Mobile</label>
+      <input type="text"  class="form-control" value="<%= "#{@user.mobile_number}" %>" name="mobile" />
+    </div>
+    <div class="form-group">
+      <label class="control-label">Linkedin</label>
+      <input type="text"  class="form-control" value="<%="#{@user.user_info.present? ? @user.user_info.linkedin : nil}" %>" name="linkedin" />
+    </div>
     <div class="margiv-top-10">
       <a href="#!" class="btn green">
         <button class="btn green" type="submit">
@@ -65,30 +73,43 @@
 </div>
 <!-- END PERSONAL INFO TAB -->
 <!-- CHANGE AVATAR TAB -->
-<div class="tab-pane" id="tab_1_2">
+<div class="tab-pane" id="avatar" style="display: none">
   <div style="height: 20px"></div>
-  <form action="#" role="form" id="avatar">
+  <form action="#"  id="upload_avatar" enctype="multipart/form-data">
     <div class="form-group">
       <div class="fileinput fileinput-new" data-provides="fileinput">
         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-          <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" /> </div>
+          <% if @user.avatar.present? %>
+              <img src="<%= @user.avatar.image.url(:original) %>"  class="img-responsive user_avatar">
+          <% else %>
+              <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" class="img-responsive user_avatar">
+          <% end %>
+        </div>
         <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
         <div>
           <span class="btn default btn-file">
-          <input type="file" name="avatar"> </span>
-          <!--<a href="javascript:;" class="btn default fileinput-exists" data-dismiss="fileinput"> Remove </a>-->
+          <input type="file" name="avatar" class="image"> </span>
         </div>
       </div>
 
     </div>
-    <div class="margin-top-10">
-      <a href="javascript:;" class="btn green"> Update </a>
-    </div>
+    <!--<div class="margin-top-10">
+      <a href="#!" class="btn green">
+        <button class="btn green" type="submit">
+          Update
+        </button>
+      </a>
+    </div>-->
   </form>
+  <div style="background-color: transparent;display: none"> 
+    <%= form_for @avatar, :url => update_avatar_users_path,:html => {:class => 'avatar'} do |m| %> 
+        <input type="file" class="file_upload_filed"  id="dir-select" name="avatar"   /> 
+    <% end %>
+  </div> 
 </div>
 <!-- END CHANGE AVATAR TAB -->
 <!-- CHANGE PASSWORD TAB -->
-<div class="tab-pane" id="tab_1_3">
+<div class="tab-pane" id="password_tab" style="display: none">
   <div style="height: 10px"></div>
   <div class="alert alert-warning open-sans-regular" id="users_old_password" style="display: none">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -130,48 +151,7 @@
   </form>
 </div>
 <!-- END CHANGE PASSWORD TAB -->
-<!-- PRIVACY SETTINGS TAB -->
-<div class="tab-pane" id="tab_1_4">
-  <form action="#">
-    <table class="table table-light table-hover">
-      <tr>
-        <td> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus.. </td>
-        <td>
-          <label class="uniform-inline">
-            <input type="radio" name="optionsRadios1" value="option1" /> Yes </label>
-          <label class="uniform-inline">
-            <input type="radio" name="optionsRadios1" value="option2" checked/> No </label>
-        </td>
-      </tr>
-      <tr>
-        <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-        <td>
-          <label class="uniform-inline">
-            <input type="checkbox" value="" /> Yes </label>
-        </td>
-      </tr>
-      <tr>
-        <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-        <td>
-          <label class="uniform-inline">
-            <input type="checkbox" value="" /> Yes </label>
-        </td>
-      </tr>
-      <tr>
-        <td> Enim eiusmod high life accusamus terry richardson ad squid wolf moon </td>
-        <td>
-          <label class="uniform-inline">
-            <input type="checkbox" value="" /> Yes </label>
-        </td>
-      </tr>
-    </table>
-    <!--end profile-settings-->
-    <div class="margin-top-10">
-      <a href="javascript:;" class="btn red"> Save Changes </a>
-      <a href="javascript:;" class="btn default"> Cancel </a>
-    </div>
-  </form>
-</div>
+
 
 <script>
   $(document).ready(function(){
@@ -189,9 +169,9 @@
           $('#users_success').show();
         }
       });
-
-
     });
+
+
 
     $('#password').on('submit', function (e) {
 
@@ -223,12 +203,57 @@
           }
         });
       }else{
-        alert("All Field are required and it should be 8 charactes.");
+        alert("All Field are required and an");
       }
+    });
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      var target = $(e.target).attr("href"); // activated tab
+      var id = $(e.target).attr("id");
+      console.log("target"+target);
+
+      if(target == '#details'){
+        $('#details').show();
+        $('#avatar').hide();
+        $('#password_tab').hide();
+      }else if(target == '#avatar'){
+        $('#details').hide();
+        $('#avatar').show();
+        $('#password_tab').hide();
+      }else if(target == '#password'){
+        $('#details').hide();
+        $('#avatar').hide();
+        $('#password_tab').show();
+      }
+    });
+
+    $('.image').click(function(e){
+      $('.file_upload_filed').click();
+      e.preventDefault();
+    });
+
+    $('#new_avatar').fileupload({
+
+      dataType: 'json',    done: function (e, data) {
+
+        $.each(data, function (index, file) {
 
 
+        });
+      },progress: function (e, data) {
 
+      }
+    }).bind('fileuploadstop', function (e) {
+      $.ajax({
+        method: "POST",
+        url: "/users/get_user_avatar_path"
+      }).done(function (data) {
 
+        if(data.state == 'valid'){
+          console.log(data);
+          $('.user_avatar').attr('src',data.url);
+        }
+      });
     });
 
   });

@@ -356,7 +356,10 @@ class UsersController < ApplicationController
       User.where(:id => user.id).update_all(:first_name => params[:f_name],
                                             :last_name => params[:l_name],
                                             :email => params[:email],
-                                            :company => params[:company])
+                                            :company => params[:company],
+                                            :mobile_number => params[:mobile])
+
+      UserInfo.where(:user_id => user.id).update_all(:about_me => params[:about], :linkedin => params[:linkedin])
 
       if params[:location].present?
         Address.where(:user_id => user.id).update_all(:location => params[:location])
@@ -730,6 +733,7 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find(params[:id])
+    @avatar = Avatar.new
     #if @user.avatars
     #  @user.avatars.each do |a|
     #    puts "ID:#{a.id}"
@@ -739,12 +743,12 @@ class UsersController < ApplicationController
     #  end
     #end
 
-    if @user.user_infos
-      @user.user_infos.each do |a|
-        puts "ID:#{a.id}"
-        @linkedin = a.linkedin
-        @about_me = a.about_me
-      end
+    if @user.user_info
+      #@user.user_infos.each do |a|
+        # puts "ID:#{a.id}"
+        # @linkedin = a.linkedin
+        # @about_me = a.about_me
+      #end
     end
   end
 
@@ -761,12 +765,12 @@ class UsersController < ApplicationController
     #  end
     #end
 
-    if @user.user_infos
-      @user.user_infos.each do |a|
-        puts "ID:#{a.id}"
-        @linkedin = a.linkedin
-        @about_me = a.about_me
-      end
+    if @user.user_info
+      # @user.user_info.each do |a|
+      #   puts "ID:#{a.id}"
+      #   @linkedin = a.linkedin
+      #   @about_me = a.about_me
+      # end
     end
   end
 
@@ -1616,12 +1620,24 @@ class UsersController < ApplicationController
 
   def profile_control_tabs
     @user = User.find(session[:user_logged_id])
-    if params[:tab] == 'account_settings'
+    if params[:tab] == 'edit_profile'
+      @avatar = Avatar.new
       @data = render :partial => 'users/tabs/account_settings'
     elsif params[:tab] == 'overview'
       @data = render :partial => 'users/tabs/overview'
     end
 
+  end
+
+  def update_avatar
+    @user = User.find(session[:user_logged_id])
+    @user.avatar.update_attributes(:image => params[:avatar])
+    render :json => { :state => 'valid'}
+  end
+
+  def get_user_avatar_path
+    @user = User.find(session[:user_logged_id])
+    render :json => { :url => @user.avatar.image.url(:original),:state => 'valid'}
   end
 
 
