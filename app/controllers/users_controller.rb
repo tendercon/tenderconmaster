@@ -1631,7 +1631,15 @@ class UsersController < ApplicationController
 
   def update_avatar
     @user = User.find(session[:user_logged_id])
-    @user.avatar.update_attributes(:image => params[:avatar])
+    if @user.avatar.present?
+      @user.avatar.update_attributes(:image => params[:avatar])
+    else
+      avatar = Avatar.new
+      avatar.user_id = @user.id
+      avatar.image = params[:avatar]
+      avatar.save
+    end
+
     render :json => { :state => 'valid'}
   end
 

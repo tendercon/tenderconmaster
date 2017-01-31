@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/profile.html.erb" afterPath="$PROJECT_DIR$/app/views/users/profile.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_account_settings.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_account_settings.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,8 +32,8 @@
       <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="361" column="111" selection-start-line="361" selection-start-column="111" selection-end-line="361" selection-end-column="111" />
+            <state relative-caret-position="232">
+              <caret line="1639" column="18" selection-start-line="1639" selection-start-column="17" selection-end-line="1639" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -814,12 +808,12 @@
       <workItem from="1485405729924" duration="7875000" />
       <workItem from="1485485425701" duration="2129000" />
       <workItem from="1485736985573" duration="20640000" />
-      <workItem from="1485833269774" duration="2912000" />
+      <workItem from="1485833269774" duration="3216000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="411608000" />
+    <option name="totallyTimeSpent" value="411912000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="6" />
@@ -1255,8 +1249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="361" column="111" selection-start-line="361" selection-start-column="111" selection-end-line="361" selection-end-column="111" />
+        <state relative-caret-position="232">
+          <caret line="1639" column="18" selection-start-line="1639" selection-start-column="17" selection-end-line="1639" selection-end-column="17" />
           <folding />
         </state>
       </provider>
