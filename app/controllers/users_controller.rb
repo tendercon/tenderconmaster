@@ -358,11 +358,32 @@ class UsersController < ApplicationController
                                             :email => params[:email],
                                             :company => params[:company],
                                             :mobile_number => params[:mobile])
+      user_info = UserInfo.where(:user_id => user.id)
 
-      UserInfo.where(:user_id => user.id).update_all(:about_me => params[:about], :linkedin => params[:linkedin])
+      if user_info.present?
+        UserInfo.where(:user_id => user.id).update_all(:about_me => params[:about], :linkedin => params[:linkedin])
+      else
+        u_info = UserInfo.new
+        u_info.user_id = user.id
+        u_info.about_me = params[:about]
+        u_info.linkedin = params[:linkedin]
+        u_info.save
+      end
+
+
 
       if params[:location].present?
-        Address.where(:user_id => user.id).update_all(:location => params[:location])
+        address = Address.where(:user_id => user.id)
+
+        if address.present?
+          Address.where(:user_id => user.id).update_all(:location => params[:location])
+        else
+          add = Address.new
+          add.user_id = user.id
+          add.location = params[:location]
+          add.save
+        end
+
       end
 
       render :json => { :state => 'valid'}
