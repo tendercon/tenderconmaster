@@ -112,7 +112,7 @@
     <div class="form-group">
       <div class="fileinput fileinput-new" data-provides="fileinput">
         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-          <% if @user.avatar.present? %>
+          <% if @user.company_avatar.present? %>
               <img src="<%= @user.company_avatar.image.url(:original) %>"  class="img-responsive user_avatar">
           <% else %>
               <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" class="img-responsive user_avatar">
