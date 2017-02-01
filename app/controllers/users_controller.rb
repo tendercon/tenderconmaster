@@ -1806,7 +1806,8 @@ class UsersController < ApplicationController
       #@new_invited_users = User.where("parent_id = #{@user.id} AND email_acceptance = 0 AND invited = false")
       @newly_signup_members = User.where("parent_id = #{@user.id} and registered = true")
     else
-
+      Rails.logger.info "session[:user_logged_id]:#{session[:user_logged_id]}"
+      puts "session[:user_logged_id]:#{session[:user_logged_id]}"
       user = User.find(session[:user_logged_id])
       @users = User.where("id = #{user.parent_id} OR parent_id = #{user.parent_id} AND abn is not null ")
       @invited_users = User.where("parent_id = #{user.parent_id} AND position is null")

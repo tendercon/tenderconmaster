@@ -23,22 +23,22 @@
 # Rfi.delete_all
 # RfiDocument.delete_all
 
-UserPlan.where(:user_id =>6).destroy_all
-user_plan = UserPlan.new
-user_plan.user_id = 6
-user_plan.plan = 'STARTER PLAN $0'
-user_plan.amount = 0.00
-user_plan.save
+# UserPlan.where(:user_id =>6).destroy_all
+# user_plan = UserPlan.new
+# user_plan.user_id = 6
+# user_plan.plan = 'STARTER PLAN $0'
+# user_plan.amount = 0.00
+# user_plan.save
+#
+# UserPlan.where(:user_id =>7).destroy_all
+# user_plan = UserPlan.new
+# user_plan.user_id = 7
+# user_plan.plan = 'STARTER PLAN $0'
+# user_plan.amount = 0.00
+# user_plan.save
 
-UserPlan.where(:user_id =>7).destroy_all
-user_plan = UserPlan.new
-user_plan.user_id = 7
-user_plan.plan = 'STARTER PLAN $0'
-user_plan.amount = 0.00
-user_plan.save
-
-#User.where(:email => 'agile.jjp@gmail.com').update_all(:company => 'Test Company')
-#User.where(:email => 'joe_dhay@yahoo.com').update_all(:company => 'First Company')
+User.where(:email => 'agile.jjp@gmail.com').update_all(:role_type => 'Admin')
+User.where(:email => 'joe_dhay@yahoo.com').update_all(:role_type => 'role_type')
 
 
 # for i in 0..1997
