@@ -6,22 +6,36 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-TenderRequestQuote.delete_all
-TenderApprovedTrade.delete_all
-TenderInvite.delete_all
-Tender.delete_all
-TenderQuote.delete_all
-TenderDocument.delete_all
-OpenTender.delete_all
-TenderTrade.delete_all
-TenderSite.delete_all
-Package.delete_all
-Addenda.delete_all
-Quote.delete_all
-QuoteDocument.delete_all
-QuoteDocumentOptional.delete_all
-Rfi.delete_all
-RfiDocument.delete_all
+# TenderRequestQuote.delete_all
+# TenderApprovedTrade.delete_all
+# TenderInvite.delete_all
+# Tender.delete_all
+# TenderQuote.delete_all
+# TenderDocument.delete_all
+# OpenTender.delete_all
+# TenderTrade.delete_all
+# TenderSite.delete_all
+# Package.delete_all
+# Addenda.delete_all
+# Quote.delete_all
+# QuoteDocument.delete_all
+# QuoteDocumentOptional.delete_all
+# Rfi.delete_all
+# RfiDocument.delete_all
+
+UserPlan.where(:user_id =>6).destroy_all
+user_plan = UserPlan.new
+user_plan.user_id = 6
+user_plan.plan = 'STARTER PLAN $0'
+user_plan.amount = 0.00
+user_plan.save
+
+UserPlan.where(:user_id =>7).destroy_all
+user_plan = UserPlan.new
+user_plan.user_id = 7
+user_plan.plan = 'STARTER PLAN $0'
+user_plan.amount = 0.00
+user_plan.save
 
 #User.where(:email => 'agile.jjp@gmail.com').update_all(:company => 'Test Company')
 #User.where(:email => 'joe_dhay@yahoo.com').update_all(:company => 'First Company')

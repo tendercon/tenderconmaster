@@ -186,9 +186,14 @@
           $('.profile_div').html(data);
         });
       }else if(target == '#subscription'){
-
-      }else if(target == '#billing'){
-
+        $('.profile_div').html('');
+        $.ajax({
+          method: "POST",
+          data: {tab:'edit_profile'},
+          url: "/users/get_subscription"
+        }).done(function (data) {
+          $('.profile_div').html(data);
+        });
       }
 
     });

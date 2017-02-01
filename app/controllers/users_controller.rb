@@ -1776,6 +1776,26 @@ class UsersController < ApplicationController
 
   end
 
+  def get_subscription
+    @user = User.find(session[:user_logged_id])
+    @user_plan = UserPlan.where(:user_id => @user.id).first
+
+    @request_upgrade = RequestUpgrade.where(:user_id => @user.id,:status => 'pending').first
+    @upgraded = RequestUpgrade.where(:user_id => @user.id,:status => 'upgraded').first
+
+    @rejected = RequestUpgrade.where(:user_id => @user.id,:status => 'rejected').first
+
+    if @rejected.present?
+      RequestUpgrade.find(@rejected.id).destroy!
+    end
+
+    if @upgraded.present?
+      RequestUpgrade.find(@upgraded.id).destroy!
+    end
+
+    @data = render :partial => 'users/subscription/plan'
+  end
+
   def get_user_company
     user = User.find(params[:id])
 
