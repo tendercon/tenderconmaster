@@ -1801,6 +1801,7 @@ class UsersController < ApplicationController
       Rails.logger.info "session[:user_logged_id]:#{session[:user_logged_id]}"
       puts "session[:user_logged_id]:#{session[:user_logged_id]}"
       @user = User.find(session[:user_logged_id])
+      puts "@user1 ===> #{@user.inspect}"
       @users = User.where("id = #{@user.id} OR parent_id = #{@user.id} AND abn is not null ")
       @invited_users = User.where("parent_id = #{@user.id} AND position is null")
       #@new_invited_users = User.where("parent_id = #{@user.id} AND email_acceptance = 0 AND invited = false")
@@ -1809,6 +1810,7 @@ class UsersController < ApplicationController
       Rails.logger.info "session[:user_logged_id]:#{session[:user_logged_id]}"
       puts "session[:user_logged_id]:#{session[:user_logged_id]}"
       user = User.find(session[:user_logged_id])
+      puts "@user2 ===> #{user.inspect}"
       @users = User.where("id = #{user.parent_id} OR parent_id = #{user.parent_id} AND abn is not null ")
       @invited_users = User.where("parent_id = #{user.parent_id} AND position is null")
       @new_invited_users = User.where("parent_id = #{user.parent_id} AND email_acceptance = 0 AND invited = false")

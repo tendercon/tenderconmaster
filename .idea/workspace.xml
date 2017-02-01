@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,20 +29,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="1799" column="25" selection-start-line="1799" selection-start-column="16" selection-end-line="1799" selection-end-column="25" />
+            <state relative-caret-position="300">
+              <caret line="1816" column="19" selection-start-line="1816" selection-start-column="19" selection-end-line="1816" selection-end-column="19" />
               <folding>
-                <marker date="1485953070000" expanded="true" signature="24097:24385" ph="if ... end" />
-                <marker date="1485953070000" expanded="true" signature="24157:24375" ph="do ... end" />
+                <marker date="1485953561000" expanded="true" signature="24097:24385" ph="if ... end" />
+                <marker date="1485953561000" expanded="true" signature="24157:24375" ph="do ... end" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="seeds.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="419">
@@ -181,8 +180,8 @@
         <option value="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/views/users/company/_users.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
       </list>
     </option>
   </component>
@@ -894,12 +893,12 @@
       <workItem from="1485859559394" duration="1035000" />
       <workItem from="1485861371366" duration="4637000" />
       <workItem from="1485906823610" duration="15013000" />
-      <workItem from="1485952339080" duration="565000" />
+      <workItem from="1485952339080" duration="970000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="438430000" />
+    <option name="totallyTimeSpent" value="438835000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="6" />
@@ -1327,22 +1326,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="1799" column="25" selection-start-line="1799" selection-start-column="16" selection-end-line="1799" selection-end-column="25" />
-          <folding>
-            <marker date="1485953070000" expanded="true" signature="24097:24385" ph="if ... end" />
-            <marker date="1485953070000" expanded="true" signature="24157:24375" ph="do ... end" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="419">
           <caret line="40" column="78" selection-start-line="40" selection-start-column="78" selection-end-line="40" selection-end-column="78" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="1816" column="19" selection-start-line="1816" selection-start-column="19" selection-end-line="1816" selection-end-column="19" />
+          <folding>
+            <marker date="1485953561000" expanded="true" signature="24097:24385" ph="if ... end" />
+            <marker date="1485953561000" expanded="true" signature="24157:24375" ph="do ... end" />
+          </folding>
         </state>
       </provider>
     </entry>
