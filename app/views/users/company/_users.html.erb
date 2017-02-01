@@ -351,65 +351,67 @@
 
 
 <div class="upgrade_request">
-  <%  @users.each do |u| %>
-      <% if u.parent_id.to_i > 0 %>
-          <div id="request_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <div class="col-sm-24 col-md-14 col-md-offset-8">
-                    <h1>UPGRADE REQUEST</h1>
+  <% if @users.present? %>
+    <%  @users.each do |u| %>
+        <% if u.parent_id.to_i > 0 %>
+            <div id="request_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="col-sm-24 col-md-14 col-md-offset-8">
+                      <h1>UPGRADE REQUEST</h1>
+                    </div>
+                    <br>
                   </div>
                   <br>
-                </div>
-                <br>
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col-md-24">
-                      <div class="col-md-12">
-                        <p style="font-size: 14px;">Request Date</p>
-                        <p></p>
-                        <p style="font-size: 14px;">Team Member</p>
-                        <p></p>
-                        <p style="font-size: 14px;">Company Position</p>
-                        <p></p>
-                        <p style="font-size: 14px;">Plan</p>
-                        <p></p>
-                        <p style="font-size: 14px;">Total Cost</p>
-                      </div>
-                      <div class="col-md-12">
-                        <p style="font-size: 14px;" ><%= u.created_at.strftime("%m/%d/%Y") %></p>
-                        <p></p>
-                        <p style="font-size: 14px;"><%= "#{u.first_name} #{u.last_name}" %></p>
-                        <p></p>
-                        <p style="font-size: 14px;"><%= get_postion u.position %></p>
-                        <p></p>
-                        <p style="font-size: 14px;"><%= get_user_plan u.id %></p>
-                        <p></p>
-                        <p style="font-size: 14px;">$<%= compute_cost u.id %>(inc GST)</p>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-24">
+                        <div class="col-md-12">
+                          <p style="font-size: 14px;">Request Date</p>
+                          <p></p>
+                          <p style="font-size: 14px;">Team Member</p>
+                          <p></p>
+                          <p style="font-size: 14px;">Company Position</p>
+                          <p></p>
+                          <p style="font-size: 14px;">Plan</p>
+                          <p></p>
+                          <p style="font-size: 14px;">Total Cost</p>
+                        </div>
+                        <div class="col-md-12">
+                          <p style="font-size: 14px;" ><%= u.created_at.strftime("%m/%d/%Y") %></p>
+                          <p></p>
+                          <p style="font-size: 14px;"><%= "#{u.first_name} #{u.last_name}" %></p>
+                          <p></p>
+                          <p style="font-size: 14px;"><%= get_postion u.position %></p>
+                          <p></p>
+                          <p style="font-size: 14px;"><%= get_user_plan u.id %></p>
+                          <p></p>
+                          <p style="font-size: 14px;">$<%= compute_cost u.id %>(inc GST)</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group">
+                    <div class="row">
+                      <div class="form-group">
 
-                    </div>
-                    <div class="col-sm-24 col-md-14 col-md-offset-8 ">
-                      <a href="#!">
-                        <button class=" btn btn-success approved" type="button" id="<%= u.id %>">APPROVE</button>
-                      </a>
-                      <a href="#!">
-                        <button class=" btn btn-danger reject" type="button" id="<%= u.id %>" title="<%= u.request_upgrade.present? ? u.request_upgrade.plan : nil %>">REJECT</button>
-                      </a>
+                      </div>
+                      <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+                        <a href="#!">
+                          <button class=" btn btn-success approved" type="button" id="<%= u.id %>">APPROVE</button>
+                        </a>
+                        <a href="#!">
+                          <button class=" btn btn-danger reject" type="button" id="<%= u.id %>" title="<%= u.request_upgrade.present? ? u.request_upgrade.plan : nil %>">REJECT</button>
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-      <% end %>
+        <% end %>
+    <% end %>
   <% end %>
 </div>
 
@@ -546,369 +548,375 @@
 </div>
 
 <div class="submit_request">
-  <%  @users.each do |u| %>
-      <% if u.parent_id.to_i > 0 %>
-          <div id="submit_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <div class="col-sm-24 col-md-14 col-md-offset-8">
-                    <h1>PAYMENT PROCESSED</h1>
-                  </div>
-                  <br>
-                </div>
-                <br>
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col-sm-24 col-md-14 col-md-offset-5 ">
-                      <p class="text-center" style="font-size: 15px;"> Congratulations on the subscription upgrade</p>
+  <% if @users.present? %>
+      <%  @users.each do |u| %>
+          <% if u.parent_id.to_i > 0 %>
+              <div id="submit_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <div class="col-sm-24 col-md-14 col-md-offset-8">
+                        <h1>PAYMENT PROCESSED</h1>
+                      </div>
+                      <br>
                     </div>
-                    <div class="col-md-24">
-                      <p class="text-center" style="font-size: 15px;">
-                        The Professional Plan allows your team member to unlock all the tendering oppurtunities
-                        available on the Tendercon network.
-                      </p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group">
+                    <br>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-sm-24 col-md-14 col-md-offset-5 ">
+                          <p class="text-center" style="font-size: 15px;"> Congratulations on the subscription upgrade</p>
+                        </div>
+                        <div class="col-md-24">
+                          <p class="text-center" style="font-size: 15px;">
+                            The Professional Plan allows your team member to unlock all the tendering oppurtunities
+                            available on the Tendercon network.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
 
-                    </div>
+                        </div>
 
-                    <div class="col-md-12">
-                      <h1>WHAT HAPPENS</h1>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group"></div>
-                    <div class="form-group"></div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-24">
-                      <div class="col-md-3">
-                        <i class="fa fa-check-circle fa-3x" aria-hidden="true" style="color: green"></i>
+                        <div class="col-md-12">
+                          <h1>WHAT HAPPENS</h1>
+                        </div>
                       </div>
-                      <div class="col-md-21">
-                        <p class="success_invites">$<%= u.user_plan.amount %> has been charged to the company's credit card</p>
+                      <div class="row">
+                        <div class="form-group"></div>
+                        <div class="form-group"></div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-check-circle fa-3x" aria-hidden="true" style="color: green"></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p class="success_invites">$<%= u.user_plan.amount %> has been charged to the company's credit card</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
 
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-24">
-                      <div class="col-md-3">
-                        <i class="fa fa-power-off fa-3x" aria-hidden="true" style="color: blue"></i>
+                        </div>
                       </div>
-                      <div class="col-md-21">
-                        <p class="success_invites"><%= Time.now.strftime('%m/%d/%Y') %> is the start date of <%= get_user_plan u.id %> <%= u.user_plan.created_at.strftime('%m/%d/%Y') %></p>
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-power-off fa-3x" aria-hidden="true" style="color: blue"></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p class="success_invites"><%= Time.now.strftime('%m/%d/%Y') %> is the start date of <%= get_user_plan u.id %> <%= u.user_plan.created_at.strftime('%m/%d/%Y') %></p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group">
+                      <div class="row">
+                        <div class="form-group">
 
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-24">
-                      <div class="col-md-3">
-                        <i class="fa fa-users fa-3x" aria-hidden="true" style="color: blue"></i>
+                        </div>
                       </div>
-                      <div class="col-md-21">
-                        <p class="success_invites"><%= "#{u.first_name} #{u.last_name} has been alerted of the plan upgrade"  %></p>
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-users fa-3x" aria-hidden="true" style="color: blue"></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p class="success_invites"><%= "#{u.first_name} #{u.last_name} has been alerted of the plan upgrade"  %></p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group"></div>
+                      <div class="row">
+                        <div class="form-group"></div>
 
-                    <div class="col-md-12">
-                      <h1>WHAT HAPPENS NEXT?</h1>
-                    </div>
+                        <div class="col-md-12">
+                          <h1>WHAT HAPPENS NEXT?</h1>
+                        </div>
 
 
-                  </div>
-                  <div class="row">
-                    <div class="form-group"></div>
-                    <div class="form-group"></div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-24">
-                      <div class="col-md-3">
-                        <i class="fa fa-users fa-3x" aria-hidden="true" style="color: blue"></i>
                       </div>
-                      <div class="col-md-21">
-                        <p class="success_invites"><%= "#{u.first_name} #{u.last_name} will receive #{get_user_plan u.id} access within 5 minutes"  %></p>
+                      <div class="row">
+                        <div class="form-group"></div>
+                        <div class="form-group"></div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group"></div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-24">
-                      <div class="col-md-3">
-                        <i class="fa fa-clipboard fa-3x" aria-hidden="true" ></i>
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-users fa-3x" aria-hidden="true" style="color: blue"></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p class="success_invites"><%= "#{u.first_name} #{u.last_name} will receive #{get_user_plan u.id} access within 5 minutes"  %></p>
+                          </div>
+                        </div>
                       </div>
-                      <div class="col-md-21">
-                        <p class="success_invites">This transaction will appear to next invoice </p>
+                      <div class="row">
+                        <div class="form-group"></div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-clipboard fa-3x" aria-hidden="true" ></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p class="success_invites">This transaction will appear to next invoice </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
 
-                    </div>
-                    <div class="col-sm-24 col-md-14 col-md-offset-8 ">
-                      <p  style="font-size: 14px"> Don't keep the rest of your team in dark</p>
-                      <a href="<%= invites_path %>">
-                        <button class=" btn btn-success approve" type="button">UPGRADE MORE TEAM</button>
-                      </a>
+                        </div>
+                        <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+                          <p  style="font-size: 14px"> Don't keep the rest of your team in dark</p>
+                          <a href="<%= invites_path %>">
+                            <button class=" btn btn-success approve" type="button">UPGRADE MORE TEAM</button>
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+          <% end %>
       <% end %>
   <% end %>
 </div>
 
 <div class="approved_request">
-  <%  @users.each do |u| %>
-      <% if u.parent_id.to_i > 0 %>
-          <div id="approved_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <div class="col-sm-24 col-md-14 col-md-offset-8">
-                    <h1>CONFIRM UPGRADE</h1>
-                  </div>
-                  <br>
-                </div>
-                <br>
-                <div class="modal-body">
-
-                  <div class="row">
-                    <div class="form-group">
-
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-24">
-                      <div class="col-md-3">
-                        <i class="fa fa-credit-card fa-3x" aria-hidden="true" style="color: green"></i>
+  <% if @users.present? %>
+      <%  @users.each do |u| %>
+          <% if u.parent_id.to_i > 0 %>
+              <div id="approved_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <div class="col-sm-24 col-md-14 col-md-offset-8">
+                        <h1>CONFIRM UPGRADE</h1>
                       </div>
-                      <div class="col-md-21">
-                        <p></p>
-                        <p class="success_invites">Confirming $<%= compute_cost u.id %> will be charged to the company's credit card</p>
+                      <br>
+                    </div>
+                    <br>
+                    <div class="modal-body">
+
+                      <div class="row">
+                        <div class="form-group">
+
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <input class="approved_user" value="<%= u.id %>" type="hidden">
-                  <input class="approved_plan" value="<%= u.request_upgrade.present? ? u.request_upgrade.plan : nil %>" type="hidden">
-                  <div class="row">
-                    <div class="form-group">
 
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-24">
-                      <div class="col-md-3">
-                        <i class="fa fa-power-off fa-3x" aria-hidden="true" style="color: blue"></i>
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-credit-card fa-3x" aria-hidden="true" style="color: green"></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p></p>
+                            <p class="success_invites">Confirming $<%= compute_cost u.id %> will be charged to the company's credit card</p>
+                          </div>
+                        </div>
                       </div>
-                      <div class="col-md-21">
-                        <p></p>
-                        <p class="success_invites">The Plan will begin from date of credit card transaction</p>
+                      <input class="approved_user" value="<%= u.id %>" type="hidden">
+                      <input class="approved_plan" value="<%= u.request_upgrade.present? ? u.request_upgrade.plan : nil %>" type="hidden">
+                      <div class="row">
+                        <div class="form-group">
+
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group">
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-power-off fa-3x" aria-hidden="true" style="color: blue"></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p></p>
+                            <p class="success_invites">The Plan will begin from date of credit card transaction</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
 
-                    </div>
-                  </div>
-                  <div class="col-sm-24">
-                    <div class="checkbox">
-                      <label><input type="checkbox" value="" class="terms">I agree to the terms and conditions of Tendercon</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-24">
+                        <div class="checkbox">
+                          <label><input type="checkbox" value="" class="terms">I agree to the terms and conditions of Tendercon</label>
 
-                    </div>
-                  </div>
+                        </div>
+                      </div>
 
-                  <div class="row">
-                    <div class="form-group"></div>
-                    <div class="form-group"></div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group">
+                      <div class="row">
+                        <div class="form-group"></div>
+                        <div class="form-group"></div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
 
-                    </div>
-                    <div class="col-sm-24 col-md-14 col-md-offset-8 ">
-                      <a href="#!">
-                        <button class=" btn btn-success confirmed" type="button">Confirm</button>
-                      </a>
+                        </div>
+                        <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+                          <a href="#!">
+                            <button class=" btn btn-success confirmed" type="button">Confirm</button>
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+          <% end %>
       <% end %>
   <% end %>
 </div>
 
 <div class="admin_upgrade_request">
-  <%  @users.each do |u| %>
-      <% if u.parent_id.to_i > 0 %>
-          <div id="admin_request_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
-            <div class="modal-dialog">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <div class="col-sm-24 col-md-14 col-md-offset-5">
-                    <h1>TEAM MEMBER SUBSCRIPTION UPGRADE</h1>
-                  </div>
-                  <br>
-                </div>
-                <br>
-                <div class="modal-body">
-                  <div class="row">
-                    <div class="col-md-24">
-                      <div class="col-md-12">
-                        <p style="font-size: 14px;">Team Member</p>
-                        <p></p>
-                        <p style="font-size: 14px;">Company Position</p>
-                        <p></p>
-                        <p style="font-size: 14px;">Current Plan</p>
-
+  <% if @users.present? %>
+      <%  @users.each do |u| %>
+          <% if u.parent_id.to_i > 0 %>
+              <div id="admin_request_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <div class="col-sm-24 col-md-14 col-md-offset-5">
+                        <h1>TEAM MEMBER SUBSCRIPTION UPGRADE</h1>
                       </div>
-                      <div class="col-md-12">
-                        <p style="font-size: 14px;"><%= "#{u.first_name} #{u.last_name}" %></p>
-                        <p></p>
-                        <p style="font-size: 14px;"><%= get_postion u.position %></p>
-                        <p></p>
-                        <p style="font-size: 14px;"><%= get_user_plan u.id %></p>
-
-                      </div>
+                      <br>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group">
+                    <br>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-12">
+                            <p style="font-size: 14px;">Team Member</p>
+                            <p></p>
+                            <p style="font-size: 14px;">Company Position</p>
+                            <p></p>
+                            <p style="font-size: 14px;">Current Plan</p>
 
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-24">
-                        <p style="font-size: 16px;">UPGRADE TO PROFESSIONAL PLAN</p>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="form-group">
-
-                      </div>
-                      <div class="col-md-24">
-
-                        <div class="col-md-12">
-                          <% if u.user_plan.plan.to_i == 0 %>
-                              <div class="radio">
-                                <label><input type="radio" name="optradio" value="2" class="sub" checked>Pay Annually(SAVE 25%)</label>
-                              </div>
-                              <div class="radio">
-                                <label><input type="radio" name="optradio" value="1" class="sub">Pay Monthly</label>
-                              </div>
-                          <% elsif u.user_plan.plan.to_i == 1 %>
-                              <div class="radio">
-                                <label><input type="radio" name="optradio" value="2" class="sub" checked>Pay Annually(SAVE 25%)</label>
-                              </div>
-                          <% end %>
-                          <p>All plan are GST inclusive</p>
-                          <input type="hidden" class="admin_upgraded_user" value="<%= u.id %>">
-                          <input type="hidden" class="admin_upgraded_plan" value="2">
-                        </div>
-
-                        <div class="col-md-12" style="height: 150px;background-color: #d4d4d4;border-radius: 10px;">
-                          <div class="annual" style="margin-top: 70px;">
-                            <p class="user_profile_2header"><h1 class="text-center">$49.50</h1></p>
-                            <p class="user_profile_2header text-center">12 months</p>
                           </div>
-                          <div class="monthly" style="margin-top: 70px;display: none;">
-                            <p class="user_profile_2header"><h1 class="text-center">$66.00</h1></p>
-                            <p class="user_profile_2header text-center">per month</p>
+                          <div class="col-md-12">
+                            <p style="font-size: 14px;"><%= "#{u.first_name} #{u.last_name}" %></p>
+                            <p></p>
+                            <p style="font-size: 14px;"><%= get_postion u.position %></p>
+                            <p></p>
+                            <p style="font-size: 14px;"><%= get_user_plan u.id %></p>
+
                           </div>
                         </div>
                       </div>
-                    </div>
+                      <div class="row">
+                        <div class="form-group">
 
-                    <div class="row">
-                      <div class="form-group"></div>
-                      <div class="form-group"></div>
-                    </div>
+                        </div>
 
-                    <div class="row">
-                      <div class="col-md-24 charged_rate">
-                        <p style="font-size: 14px;">
-                          The company credit card on file will be charged $594.00 for this transaction
-                        </p>
+                        <div class="row">
+                          <div class="col-md-24">
+                            <p style="font-size: 16px;">UPGRADE TO PROFESSIONAL PLAN</p>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group">
+
+                          </div>
+                          <div class="col-md-24">
+
+                            <div class="col-md-12">
+                              <% if u.user_plan.plan.to_i == 0 %>
+                                  <div class="radio">
+                                    <label><input type="radio" name="optradio" value="2" class="sub" checked>Pay Annually(SAVE 25%)</label>
+                                  </div>
+                                  <div class="radio">
+                                    <label><input type="radio" name="optradio" value="1" class="sub">Pay Monthly</label>
+                                  </div>
+                              <% elsif u.user_plan.plan.to_i == 1 %>
+                                  <div class="radio">
+                                    <label><input type="radio" name="optradio" value="2" class="sub" checked>Pay Annually(SAVE 25%)</label>
+                                  </div>
+                              <% end %>
+                              <p>All plan are GST inclusive</p>
+                              <input type="hidden" class="admin_upgraded_user" value="<%= u.id %>">
+                              <input type="hidden" class="admin_upgraded_plan" value="2">
+                            </div>
+
+                            <div class="col-md-12" style="height: 150px;background-color: #d4d4d4;border-radius: 10px;">
+                              <div class="annual" style="margin-top: 70px;">
+                                <p class="user_profile_2header"><h1 class="text-center">$49.50</h1></p>
+                                <p class="user_profile_2header text-center">12 months</p>
+                              </div>
+                              <div class="monthly" style="margin-top: 70px;display: none;">
+                                <p class="user_profile_2header"><h1 class="text-center">$66.00</h1></p>
+                                <p class="user_profile_2header text-center">per month</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group"></div>
+                          <div class="form-group"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-24 charged_rate">
+                            <p style="font-size: 14px;">
+                              The company credit card on file will be charged $594.00 for this transaction
+                            </p>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-24 ">
+                            <p style="font-size: 14px;">
+                              New Subscription Plan will start on date admin upgrade this plan
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-24">
+                            <p style="font-size: 14px;">
+                              Subscription Plan will end depend on the plan selected.
+                            </p>
+                            <p style="font-size: 14px;"> 365 days for Pay Annually Plan</p>
+                            <p style="font-size: 14px;"> 30 days for Pay monthly plan</p>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group">
+
+                          </div>
+                        </div>
+                        <div class="col-sm-24">
+                          <div class="checkbox">
+                            <label><input type="checkbox" value="" class="terms">I agree to the terms and conditions of Tendercon</label>
+
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group"></div>
+                          <div class="form-group"></div>
+                        </div>
+
+                        <div class="col-sm-24 col-md-14 col-md-offset-10 ">
+                          <a href="#!">
+                            <button class=" btn btn-success upgrade_confirmed" type="button" id="<%= u.id %>">UPGRADE</button>
+                          </a>
+                        </div>
                       </div>
-
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-24 ">
-                        <p style="font-size: 14px;">
-                          New Subscription Plan will start on date admin upgrade this plan
-                        </p>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-24">
-                        <p style="font-size: 14px;">
-                          Subscription Plan will end depend on the plan selected.
-                        </p>
-                        <p style="font-size: 14px;"> 365 days for Pay Annually Plan</p>
-                        <p style="font-size: 14px;"> 30 days for Pay monthly plan</p>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="form-group">
-
-                      </div>
-                    </div>
-                    <div class="col-sm-24">
-                      <div class="checkbox">
-                        <label><input type="checkbox" value="" class="terms">I agree to the terms and conditions of Tendercon</label>
-
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="form-group"></div>
-                      <div class="form-group"></div>
-                    </div>
-
-                    <div class="col-sm-24 col-md-14 col-md-offset-10 ">
-                      <a href="#!">
-                        <button class=" btn btn-success upgrade_confirmed" type="button" id="<%= u.id %>">UPGRADE</button>
-                      </a>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+          <% end %>
       <% end %>
   <% end %>
 </div>
