@@ -112,7 +112,7 @@
                     </tr>
                     <tr>
                       <td class="col-md-3">Primary Trade<</td>
-                      <td><%= @primary_trade.trade_id.present? ? (return_trade @primary_trade.trade_id) : nil %></td>
+                      <td><%= @primary_trade.present? ? (return_trade @primary_trade.trade_id) : nil %></td>
                     </tr>
                     <tr>
                       <td class="col-md-3">Secondary Trade</td>

@@ -54,7 +54,7 @@
         <label class="control-label">Specialist Trades</label>
       </div>
       <div class="form-group">
-        <%= select_tag 'primary_trade',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name',(@primary_trade.trade_id.present? ? @primary_trade.trade_id : nil))+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control col-lg-12',:style=> 'width:300px;'} %>
+        <%= select_tag 'primary_trade',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name',(@primary_trade.present? ? @primary_trade.trade_id : nil))+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control col-lg-12',:style=> 'width:300px;'} %>
       </div>
     <% end %>
     <div class="form-group">
