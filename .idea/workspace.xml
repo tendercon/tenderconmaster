@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/company_profile.html.erb" afterPath="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_company_settings.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_company_settings.html.erb" />
     </list>
     <ignored path="tendercon_v2.iws" />
@@ -43,11 +45,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="company_profile.html.erb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="company_profile.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/users/company_profile.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="563">
-              <caret line="148" column="40" selection-start-line="148" selection-start-column="25" selection-end-line="148" selection-end-column="25" />
+            <state relative-caret-position="188">
+              <caret line="113" column="56" selection-start-line="113" selection-start-column="56" selection-end-line="113" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_company_overview.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="98" column="54" selection-start-line="98" selection-start-column="54" selection-end-line="98" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -63,11 +75,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_company_settings.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_company_settings.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_settings.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="56" column="148" selection-start-line="56" selection-start-column="148" selection-end-line="56" selection-end-column="148" />
+            <state relative-caret-position="255">
+              <caret line="57" column="261" selection-start-line="57" selection-start-column="261" selection-end-line="57" selection-end-column="261" />
               <folding />
             </state>
           </provider>
@@ -137,13 +149,13 @@
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/app/models/company_avatar.rb" />
         <option value="$PROJECT_DIR$/public/vendors/global/css/profile.min.css" />
-        <option value="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/profile.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/tabs/_account_settings.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/tabs/_company_settings.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
       </list>
     </option>
   </component>
@@ -806,12 +818,12 @@
       <workItem from="1485854396169" duration="2257000" />
       <workItem from="1485859559394" duration="1035000" />
       <workItem from="1485861371366" duration="4637000" />
-      <workItem from="1485906823610" duration="4959000" />
+      <workItem from="1485906823610" duration="6538000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="427811000" />
+    <option name="totallyTimeSpent" value="429390000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
@@ -1189,14 +1201,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="148" column="89" selection-start-line="148" selection-start-column="19" selection-end-line="148" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/profile.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -1234,18 +1238,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/company_profile.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_settings.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="148" column="40" selection-start-line="148" selection-start-column="25" selection-end-line="148" selection-end-column="25" />
+        <state relative-caret-position="255">
+          <caret line="57" column="261" selection-start-line="57" selection-start-column="261" selection-end-line="57" selection-end-column="261" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_settings.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
-          <caret line="56" column="148" selection-start-line="56" selection-start-column="148" selection-end-line="56" selection-end-column="148" />
+          <caret line="98" column="54" selection-start-line="98" selection-start-column="54" selection-end-line="98" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/company_profile.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="113" column="56" selection-start-line="113" selection-start-column="56" selection-end-line="113" selection-end-column="56" />
           <folding />
         </state>
       </provider>
