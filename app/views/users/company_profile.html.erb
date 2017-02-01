@@ -5,7 +5,7 @@
       <ul class="nav nav-tabs ">
         <li class="active"><a href="#overview" data-toggle="tab" id="">Overview</a></li>
         <li><a href="#edit_profile" data-toggle="tab" id="">Edit Profile</a></li>
-        <li><a href="#subscription" data-toggle="tab" id="">Users</a></li>
+        <li><a href="#users" data-toggle="tab" id="">Users</a></li>
         <li><a href="#portfolio" data-toggle="tab" id="">Portfolio</a></li>
         <li><a href="#billing" data-toggle="tab" id="">Billing</a></li>
       </ul>
@@ -240,8 +240,15 @@
         }).done(function (data) {
           $('.profile_div').html(data);
         });
-      }else if(target == '#subscription'){
-
+      }else if(target == '#users'){
+        $('.profile_div').html('');
+        $.ajax({
+          method: "POST",
+          data: {tab:'edit_profile'},
+          url: "/users/get_company_users"
+        }).done(function (data) {
+          $('.profile_div').html(data);
+        });
       }else if(target == '#billing'){
 
       }
