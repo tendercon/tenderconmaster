@@ -48,9 +48,9 @@
       <!-- PORTLET MAIN -->
       <div class="portlet light ">
         <!-- STAT -->
-        <div class="row list-separated profile-stat">
+        <!--<div class="row list-separated profile-stat">
 
-        </div>
+        </div>-->
         <!-- END STAT -->
         <div>
 
@@ -76,7 +76,7 @@
                 <table class="table table-bordered">
                   <thead>
                     <tr>
-                      <td colspan="2">Details</td>
+                      <td colspan="2" style="background-color: grey;color: white;"><strong>Details</strong></td>
                     </tr>
                   </thead>
                   <tbody>
@@ -97,7 +97,7 @@
                       <td><%= "#{@user.user_info.present? ? @user.user_info.about_me.html_safe : nil}" %></td>
                     </tr>
                     <tr>
-                      <td colspan="2">Contact</td>
+                      <td colspan="2" style="background-color: grey;color: white;"><strong>Contact</strong></td>
                     </tr>
                     <tr>
                       <td>Email</td>

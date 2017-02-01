@@ -1024,7 +1024,7 @@ class UsersController < ApplicationController
     @company_profile = CompanyProfile.where(:user_id => session[:user_logged_id]).first
     to = params[:to]
     from = params[:from]
-    project_range = params[:project_range]
+    project_range = "#{from}-#{to}"
 
     if @company_profile.present?
 
@@ -1501,7 +1501,7 @@ class UsersController < ApplicationController
       t = Timezone[new_response['timeZoneId']]
       now =  t.utc_to_local(Time.now).strftime('%H:%M:%S')
       real_timezone = now.to_s + " " + new_timezone[0].tr('()', '') + " " + "(#{(new_response['timeZoneName'].to_s)})"
-
+      puts "user_loc.first.postal_code ======> #{user_loc.first.inspect}"
       if user_loc.first.postal_code.present?
         render :json => { :state => 'valid', :postal => user_loc.first.postal_code,:add_state =>  user_loc.first.state, :suburb =>@suburb,:timezone => real_timezone, :latitude => @latitue, :longitude => @longitude}
       else
