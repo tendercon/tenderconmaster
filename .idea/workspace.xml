@@ -55,14 +55,14 @@
       <file leaf-file-name="_users.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/users/company/_users.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="565">
-              <caret line="978" column="15" selection-start-line="978" selection-start-column="0" selection-end-line="978" selection-end-column="0" />
+            <state relative-caret-position="180">
+              <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <marker date="1485954239000" expanded="true" signature="43091:43122" ph="..." />
-                <marker date="1485954239000" expanded="true" signature="43292:43305" ph="..." />
-                <marker date="1485954239000" expanded="true" signature="46446:46462" ph="..." />
-                <marker date="1485954239000" expanded="true" signature="46731:46747" ph="..." />
+                <marker date="1485954454000" expanded="true" signature="43153:43184" ph="..." />
+                <marker date="1485954454000" expanded="true" signature="43354:43367" ph="..." />
+                <marker date="1485954454000" expanded="true" signature="46508:46524" ph="..." />
+                <marker date="1485954454000" expanded="true" signature="46793:46809" ph="..." />
               </folding>
             </state>
           </provider>
@@ -893,12 +893,12 @@
       <workItem from="1485859559394" duration="1035000" />
       <workItem from="1485861371366" duration="4637000" />
       <workItem from="1485906823610" duration="15013000" />
-      <workItem from="1485952339080" duration="1535000" />
+      <workItem from="1485952339080" duration="1676000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="439400000" />
+    <option name="totallyTimeSpent" value="439541000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="6" />
@@ -1335,14 +1335,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/company/_users.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="978" column="15" selection-start-line="978" selection-start-column="0" selection-end-line="978" selection-end-column="0" />
+        <state relative-caret-position="180">
+          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <marker date="1485954239000" expanded="true" signature="43091:43122" ph="..." />
-            <marker date="1485954239000" expanded="true" signature="43292:43305" ph="..." />
-            <marker date="1485954239000" expanded="true" signature="46446:46462" ph="..." />
-            <marker date="1485954239000" expanded="true" signature="46731:46747" ph="..." />
+            <marker date="1485954454000" expanded="true" signature="43153:43184" ph="..." />
+            <marker date="1485954454000" expanded="true" signature="43354:43367" ph="..." />
+            <marker date="1485954454000" expanded="true" signature="46508:46524" ph="..." />
+            <marker date="1485954454000" expanded="true" signature="46793:46809" ph="..." />
           </folding>
         </state>
       </provider>
