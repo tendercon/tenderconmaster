@@ -1797,22 +1797,62 @@ class UsersController < ApplicationController
   end
 
   def get_company_users
-    @user = User.find(session[:user_logged_id])
-    @user_plan = UserPlan.where(:user_id => @user.id).first
-    puts "@user_plan =======> #{@user_plan.inspect}"
-    @request_upgrade = RequestUpgrade.where(:user_id => @user.id,:status => 'pending').first
-    @upgraded = RequestUpgrade.where(:user_id => @user.id,:status => 'upgraded').first
+    if session[:role_type] == 'Admin'
+      Rails.logger.info "session[:user_logged_id]:#{session[:user_logged_id]}"
+      puts "session[:user_logged_id]:#{session[:user_logged_id]}"
+      @user = User.find(session[:user_logged_id])
+      @users = User.where("id = #{@user.id} OR parent_id = #{@user.id} AND abn is not null ")
+      @invited_users = User.where("parent_id = #{@user.id} AND position is null")
+      #@new_invited_users = User.where("parent_id = #{@user.id} AND email_acceptance = 0 AND invited = false")
+      @newly_signup_members = User.where("parent_id = #{@user.id} and registered = true")
+    else
 
-    @rejected = RequestUpgrade.where(:user_id => @user.id,:status => 'rejected').first
+      user = User.find(session[:user_logged_id])
+      @users = User.where("id = #{user.parent_id} OR parent_id = #{user.parent_id} AND abn is not null ")
+      @invited_users = User.where("parent_id = #{user.parent_id} AND position is null")
+      @new_invited_users = User.where("parent_id = #{user.parent_id} AND email_acceptance = 0 AND invited = false")
+      @newly_signup_members = User.where("parent_id = #{user.parent_id} and registered = true")
+    end
+    @user_plans =  User.where("parent_id = #{session[:user_logged_id]}")
+    @user_array = []
+    @user_plan_frees = []
+    if @user_plans.present?
+      @user_plans.each do |a|
+        @user_array << a.id
+      end
 
-    if @rejected.present?
-      RequestUpgrade.find(@rejected.id).destroy!
+      if @user_array.present? && @user_array.size > 0
+        @plans = UserPlan.where(:user_id =>@user_array)
+
+        if @plans.present?
+          @plans.each do |p|
+            if p.plan == 'STARTER PLAN $0'
+              @user_plan_frees << p.id
+            end
+          end
+        end
+        puts "@user_plan_frees:#{@user_plan_frees}"
+      end
     end
 
-    if @upgraded.present?
-      RequestUpgrade.find(@upgraded.id).destroy!
+    @user = User.new
+    @subscription = UserSubscription.where(:user_id => session[:user_logged_id]).first
+    requested_users = User.where(:parent_id => session[:user_logged_id])
+    @upgraded_array = []
+    if requested_users.present?
+      requested_users.each do |u|
+        @upgraded_array << u.id
+      end
+
     end
 
+    if @upgraded_array.present? && @upgraded_array.size > 0
+      @upgraded_users = RequestUpgrade.where(:user_id => @upgraded_array,:status => 'upgraded')
+    end
+
+
+    puts "@upgraded_array:#{@upgraded_array}"
+    puts "@@upgraded_users:#{@upgraded_users.inspect}"
     @data = render :partial => 'users/company/users'
   end
 
