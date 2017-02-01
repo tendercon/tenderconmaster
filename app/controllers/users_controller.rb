@@ -1811,10 +1811,18 @@ class UsersController < ApplicationController
       puts "session[:user_logged_id]:#{session[:user_logged_id]}"
       user = User.find(session[:user_logged_id])
       puts "@user2 ===> #{user.inspect}"
-      @users = User.where("id = #{user.parent_id} OR parent_id = #{user.parent_id} AND abn is not null ")
-      @invited_users = User.where("parent_id = #{user.parent_id} AND position is null")
-      @new_invited_users = User.where("parent_id = #{user.parent_id} AND email_acceptance = 0 AND invited = false")
-      @newly_signup_members = User.where("parent_id = #{user.parent_id} and registered = true")
+      if user.parent_id.present?
+        @users = User.where("id = #{user.parent_id} OR parent_id = #{user.parent_id} AND abn is not null ")
+        @invited_users = User.where("parent_id = #{user.parent_id} AND position is null")
+        @new_invited_users = User.where("parent_id = #{user.parent_id} AND email_acceptance = 0 AND invited = false")
+        @newly_signup_members = User.where("parent_id = #{user.parent_id} and registered = true")
+      else
+        @users = nil
+        @invited_users = nil
+        @new_invited_users = nil
+        @newly_signup_members = nil
+      end
+
     end
     @user_plans =  User.where("parent_id = #{session[:user_logged_id]}")
     @user_array = []
