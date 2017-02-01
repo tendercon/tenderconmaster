@@ -1779,7 +1779,7 @@ class UsersController < ApplicationController
   def get_subscription
     @user = User.find(session[:user_logged_id])
     @user_plan = UserPlan.where(:user_id => @user.id).first
-
+    puts "@user_plan =======> #{@user_plan.inspect}"
     @request_upgrade = RequestUpgrade.where(:user_id => @user.id,:status => 'pending').first
     @upgraded = RequestUpgrade.where(:user_id => @user.id,:status => 'upgraded').first
 

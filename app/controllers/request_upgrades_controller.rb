@@ -10,32 +10,38 @@ class RequestUpgradesController < ApplicationController
 
     @user = User.find(user_id)
 
-    admin = User.find(@user.parent_id)
+    admin = User.where(:id => @user.parent_id).first
 
     name = "#{@user.first_name} #{@user.last_name}"
-    admin_name = "#{admin.first_name} #{admin.last_name}"
-    if request_upgrade.save
-      if @user.request_upgrade.plan.to_i == 0
-        @plan = "FREE - Starter Plan"
-      elsif @user.user_plan.plan.to_i == 1
-        @plan = "Professional Plan - monthly"
-      else
-        @plan = "Professional Plan - 12 months"
+
+    if admin.present?
+      admin_name = "#{admin.first_name} #{admin.last_name}"
+      if request_upgrade.save
+        if @user.request_upgrade.plan.to_i == 0
+          @plan = "FREE - Starter Plan"
+        elsif @user.user_plan.plan.to_i == 1
+          @plan = "Professional Plan - monthly"
+        else
+          @plan = "Professional Plan - 12 months"
+        end
+
+        notification = Notification.new
+        notification.description = "#{admin.first_name} #{admin.last_name} requested to upgrade his plan"
+        notification.user_id = admin.id
+        notification.save
+
+        email_notification = EmailNotification.new
+        email_notification.user_id = admin.id
+        email_notification.description = "#{@user.first_name} #{@user.last_name} requested to upgrade his plan"
+        email_notification.save
+
+        TenderconMailer.delay.sent_request_upgrade(admin.email,name,@plan,admin_name)
+        render :json => { :state => 'valid'}
       end
-
-      notification = Notification.new
-      notification.description = "#{admin.first_name} #{admin.last_name} requested to upgrade his plan"
-      notification.user_id = admin.id
-      notification.save
-
-      email_notification = EmailNotification.new
-      email_notification.user_id = admin.id
-      email_notification.description = "#{@user.first_name} #{@user.last_name} requested to upgrade his plan"
-      email_notification.save
-
-      TenderconMailer.delay.sent_request_upgrade(admin.email,name,@plan,admin_name)
+    else
       render :json => { :state => 'valid'}
     end
+
   end
 
 end
