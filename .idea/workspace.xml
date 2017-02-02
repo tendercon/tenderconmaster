@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/system/company_avatars/images/medium/icon_-_accelirate_growth-1.png" afterPath="$PROJECT_DIR$/public/system/company_avatars/images/medium/icon_-_accelirate_growth-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/system/company_avatars/images/thumb/icon_-_accelirate_growth-1.png" afterPath="$PROJECT_DIR$/public/system/company_avatars/images/thumb/icon_-_accelirate_growth-1.png" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/avatars/images/000/000/005/medium/icon_-_accelirate_growth-1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/avatars/images/000/000/005/original/icon_-_accelirate_growth-1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/system/avatars/images/000/000/005/thumb/icon_-_accelirate_growth-1.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/company_profile.html.erb" afterPath="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/profile.html.erb" afterPath="$PROJECT_DIR$/app/views/users/profile.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_account_settings.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_account_settings.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb" />
     </list>
@@ -40,10 +40,27 @@
       <file leaf-file-name="profile.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/profile.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="21" selection-start-line="20" selection-start-column="10" selection-end-line="28" selection-end-column="19" />
+            <state relative-caret-position="405">
+              <caret line="27" column="158" selection-start-line="27" selection-start-column="158" selection-end-line="27" selection-end-column="158" />
               <folding>
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_overview.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="158" selection-start-line="11" selection-start-column="100" selection-end-line="11" selection-end-column="158" />
+              <folding>
+                <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#3;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -52,8 +69,8 @@
       <file leaf-file-name="_topmenu.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="185" column="123" selection-start-line="185" selection-start-column="123" selection-end-line="185" selection-end-column="123" />
+            <state relative-caret-position="234">
+              <caret line="188" column="110" selection-start-line="188" selection-start-column="110" selection-end-line="188" selection-end-column="110" />
               <folding />
             </state>
           </provider>
@@ -62,9 +79,12 @@
       <file leaf-file-name="company_profile.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/company_profile.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-139">
-              <caret line="101" column="81" selection-start-line="101" selection-start-column="81" selection-end-line="101" selection-end-column="81" />
+            <state relative-caret-position="435">
+              <caret line="29" column="160" selection-start-line="29" selection-start-column="160" selection-end-line="29" selection-end-column="160" />
               <folding>
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#0;n#tr#6;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#0;n#tr#15;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -76,9 +96,12 @@
       <file leaf-file-name="_company_overview.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="85" column="77" selection-start-line="85" selection-start-column="77" selection-end-line="85" selection-end-column="77" />
+            <state relative-caret-position="195">
+              <caret line="13" column="154" selection-start-line="13" selection-start-column="154" selection-end-line="13" selection-end-column="154" />
               <folding>
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#0;n#tr#6;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#td#0;n#tr#15;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
@@ -140,9 +163,9 @@
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/users/company/_users.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/tabs/_account_settings.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/profile.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/users/tabs/_account_settings.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" />
@@ -858,12 +881,12 @@
       <workItem from="1485861371366" duration="4637000" />
       <workItem from="1485906823610" duration="15013000" />
       <workItem from="1485952339080" duration="3635000" />
-      <workItem from="1486001287469" duration="2079000" />
+      <workItem from="1486001287469" duration="3597000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="443579000" />
+    <option name="totallyTimeSpent" value="445097000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
@@ -1263,19 +1286,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/profile.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="158" selection-start-line="27" selection-start-column="158" selection-end-line="27" selection-end-column="158" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="563">
-          <caret line="95" column="14" selection-start-line="95" selection-start-column="14" selection-end-line="95" selection-end-column="14" />
-          <folding />
+        <state relative-caret-position="165">
+          <caret line="11" column="158" selection-start-line="11" selection-start-column="100" selection-end-line="11" selection-end-column="158" />
+          <folding>
+            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#3;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/company_profile.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-139">
-          <caret line="101" column="81" selection-start-line="101" selection-start-column="81" selection-end-line="101" selection-end-column="81" />
+        <state relative-caret-position="435">
+          <caret line="29" column="160" selection-start-line="29" selection-start-column="160" selection-end-line="29" selection-end-column="160" />
           <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#tr#6;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#tr#15;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
@@ -1285,9 +1328,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="85" column="77" selection-start-line="85" selection-start-column="77" selection-end-line="85" selection-end-column="77" />
+        <state relative-caret-position="195">
+          <caret line="13" column="154" selection-start-line="13" selection-start-column="154" selection-end-line="13" selection-end-column="154" />
           <folding>
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#2;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#tr#6;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#tr#15;n#tbody#0;n#table#0;n#div#0;n#div#0;n#div#2;n#!!top" expanded="true" />
@@ -1295,20 +1341,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/profile.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="21" selection-start-line="20" selection-start-column="10" selection-end-line="28" selection-end-column="19" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="185" column="123" selection-start-line="185" selection-start-column="123" selection-end-line="185" selection-end-column="123" />
+        <state relative-caret-position="234">
+          <caret line="188" column="110" selection-start-line="188" selection-start-column="110" selection-end-line="188" selection-end-column="110" />
           <folding />
         </state>
       </provider>

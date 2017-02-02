@@ -20,12 +20,12 @@
         <div class="profile-userpic">
           <% if @user.avatar.present? %>
             <% if File.exist?(@user.avatar.image.path(:original)) %>
-              <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="" width="200px" height="200px">
+              <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
             <% else %>
-              <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" width="200px" height="200px">
+              <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
             <% end %>
           <% else %>
-            <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" width="200px" height="200px">
+            <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
           <% end %>
         </div>
 
