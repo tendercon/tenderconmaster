@@ -9,19 +9,19 @@
           <% if File.exist?(@user.avatar.image.path(:original)) %>
             <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="">
           <% else %>
-            <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+            <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" width="200px" height="200px">
           <% end %>
         <% else %>
-          <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+          <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" width="200px" height="200px">
           <% end %>
       <% else %>
-        <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+        <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" width="200px" height="200px">
       <% end %>
     </div>
 
     <div class="profile-usertitle">
-      <div class="profile-usertitle-name"> <%= "#{@user.first_name} #{@user.last_name}" %> </div>
-      <div class="profile-usertitle-job"> <%= "#{ get_postion @user.position}" %>  </div>
+      <div class="profile-usertitle-name" style="color: #2C3E50;"> <%= "#{@user.first_name} #{@user.last_name}" %> </div>
+      <div class="profile-usertitle-job" style="color: #2C3E50;"> <%= "#{ get_postion @user.position}" %>  </div>
     </div>
     <!-- END SIDEBAR USER TITLE -->
     <!-- SIDEBAR BUTTONS -->
@@ -54,59 +54,46 @@
 <div class="profile-content">
   <div class="row">
     <div class="col-md-12">
-      <div class="portlet light ">
-        <div class="portlet-title tabbable-line">
-          <div class="caption caption-md">
-            <i class="icon-globe theme-font hide"></i>
-            <span class="caption-subject font-blue-madison bold uppercase">Profile Account</span>
-          </div>
-
-        </div>
-        <div class="portlet-body">
-          <div class="tab-content">
-            <table class="table table-bordered">
-              <thead>
-              <tr>
-                <td colspan="2" style="background-color: grey;color: white;"><strong>Details</strong></td>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td>Full Name</td>
-                <td><%= "#{@user.first_name} #{@user.last_name}" %></td>
-              </tr>
-              <tr>
-                <td>Position</td>
-                <td><%= "#{get_postion @user.position}" %></td>
-              </tr>
-              <tr>
-                <td>Company</td>
-                <td><%= "#{@user.company}" %></td>
-              </tr>
-              <tr>
-                <td>About</td>
-                <td><%= "#{@user.user_info.present? ? @user.user_info.about_me.html_safe : nil}" %></td>
-              </tr>
-              <tr>
-                <td colspan="2" style="background-color: grey;color: white;"><strong>Contact</strong></td>
-              </tr>
-              <tr>
-                <td>Email</td>
-                <td><%= "#{@user.email}" %></td>
-              </tr>
-              <tr>
-                <td>Mobile</td>
-                <td><%= "#{@user.mobile_number}" %></td>
-              </tr>
-              <tr>
-                <td>Linkedin</td>
-                <td><%="#{@user.user_info.present? ? @user.user_info.linkedin : nil}" %></td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Details</strong></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>Full Name</td>
+          <td><%= "#{@user.first_name} #{@user.last_name}" %></td>
+        </tr>
+        <tr>
+          <td>Position</td>
+          <td><%= "#{get_postion @user.position}" %></td>
+        </tr>
+        <tr>
+          <td>Company</td>
+          <td><%= "#{@user.company}" %></td>
+        </tr>
+        <tr>
+          <td>About</td>
+          <td><%= "#{@user.user_info.present? ? @user.user_info.about_me.html_safe : nil}" %></td>
+        </tr>
+        <tr>
+          <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Contact</strong></td>
+        </tr>
+        <tr>
+          <td>Email</td>
+          <td><%= "#{@user.email}" %></td>
+        </tr>
+        <tr>
+          <td>Mobile</td>
+          <td><%= "#{@user.mobile_number}" %></td>
+        </tr>
+        <tr>
+          <td>Linkedin</td>
+          <td><%="#{@user.user_info.present? ? @user.user_info.linkedin : nil}" %></td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>

@@ -14,6 +14,7 @@
 
   <div class="col-md-12 profile_div">
     <!-- BEGIN PROFILE SIDEBAR -->
+    <div style="height: 50px"></div>
     <div class="profile-sidebar">
       <!-- PORTLET MAIN -->
       <div class="portlet light profile-sidebar-portlet ">
@@ -21,17 +22,17 @@
         <div class="profile-userpic">
           <% if @user.company_avatar.present? %>
             <% if File.exist?(@user.company_avatar.image.path(:original)) %>
-              <img src="<%= @user.company_avatar.image.url(:original) %>" class="img-responsive" alt="">
+              <img src="<%= @user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" width="200px" height="200px">
             <% else %>
-              <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+              <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" width="200px" height="200px">
             <% end %>
           <% else %>
-              <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+              <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" width="200px" height="200px">
           <% end %>
         </div>
 
         <div class="profile-usertitle">
-          <div class="profile-usertitle-name"> <%= "#{@user.company}" %> </div>
+          <div class="profile-usertitle-name" style="color: #2C3E50;"> <%= "#{@user.company}" %> </div>
         </div>
         <!-- END SIDEBAR USER TITLE -->
         <!-- SIDEBAR BUTTONS -->
@@ -64,113 +65,100 @@
     <div class="profile-content">
       <div class="row">
         <div class="col-md-12">
-          <div class="portlet light ">
-            <div class="portlet-title tabbable-line">
-              <div class="caption caption-md">
-                <i class="icon-globe theme-font hide"></i>
-                <span class="caption-subject font-blue-madison bold uppercase">Company Account</span>
-              </div>
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Details</strong></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="col-md-3">Company</td>
+              <td><%= "#{@user.company}" %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">ABN</td>
+              <td><%= "#{@user.abn}" %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">ACN</td>
+              <td><%= @added_company_profile.present? ? @added_company_profile.acn : nil %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Address</td>
+              <td><%= @user.address.present? ? "#{@user.address.location}" : nil %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Time zone</td>
+              <td><%= @user.address.present? ? "#{@user.address.timezone}" : nil %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">About</td>
+              <td><%= @added_company_profile.present? ? @added_company_profile.about_me : nil %></td>
+            </tr>
 
-            </div>
-            <div class="portlet-body">
-              <div class="tab-content">
-                <table class="table table-bordered">
-                  <thead>
-                  <tr>
-                    <td colspan="2" style="background-color: grey;color: white;"><strong>Details</strong></td>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <tr>
-                    <td class="col-md-3">Company</td>
-                    <td><%= "#{@user.company}" %></td>
-                  </tr>
-                  <tr>
-                    <td class="col-md-3">ABN</td>
-                    <td><%= "#{@user.abn}" %></td>
-                  </tr>
-                  <tr>
-                    <td class="col-md-3">ACN</td>
-                    <td><%= @added_company_profile.present? ? @added_company_profile.acn : nil %></td>
-                  </tr>
-                  <tr>
-                    <td class="col-md-3">Address</td>
-                    <td><%= @user.address.present? ? "#{@user.address.location}" : nil %></td>
-                  </tr>
-                  <tr>
-                    <td class="col-md-3">Time zone</td>
-                    <td><%= @user.address.present? ? "#{@user.address.timezone}" : nil %></td>
-                  </tr>
-                  <tr>
-                    <td class="col-md-3">About</td>
-                    <td><%= @added_company_profile.present? ? @added_company_profile.about_me : nil %></td>
-                  </tr>
-
-                  <% if session[:role] == 'Sub Contractor' %>
-                    <tr>
-                      <td colspan="2">Specialist Trades</td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">Primary Trade</td>
-                      <td><%= @primary_trade.present? ? (return_trade @primary_trade.trade_id) : nil %></td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">Secondary Trade</td>
-                      <td></td>
-                    </tr>
-                    <% if @secondary_trade_array.present? %>
-                      <% @secondary_trade_array.each_with_index do |a,index| %>
+            <% if session[:role] == 'Sub Contractor' %>
+                <tr>
+                  <td colspan="2" style="background-color: #2C3E50;color: white;">Specialist Trades</td>
+                </tr>
+                <tr>
+                  <td class="col-md-3">Primary Trade</td>
+                  <td><%= @primary_trade.present? ? (return_trade @primary_trade.trade_id) : nil %></td>
+                </tr>
+                <tr>
+                  <td class="col-md-3">Secondary Trade</td>
+                  <td></td>
+                </tr>
+                <% if @secondary_trade_array.present? %>
+                    <% @secondary_trade_array.each_with_index do |a,index| %>
                         <tr>
                           <td class="col-md-3"></td>
                           <td><%= (return_trade a) %></td>
                         </tr>
-                      <% end %>
                     <% end %>
-                  <% end %>
-                    <tr>
-                      <td class="col-md-3">Tendercon id</td>
-                      <td><%= "#{@user.tendercon_id}" %></td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">No. of Employees</td>
-                      <td><%=  @added_company_profile.present? ? @added_company_profile.number_of_employees : nil %></td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">Commenced Operation</td>
-                      <td><%=  @added_company_profile.present? ? @added_company_profile.commenced_operation : nil %></td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">Tendercon member since</td>
-                      <td><%= @added_company_profile.present? ? @added_company_profile.since : nil %></td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">Project range</td>
-                      <td><%= @added_company_profile.present? ? @added_company_profile.project_range : nil %></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" style="background-color: grey;color: white;"><strong>Contact</strong></td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">Phone</td>
-                      <td><%= @added_company_profile.present? ? @added_company_profile.contact_number : nil %></td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">FAX</td>
-                      <td><%= @added_company_profile.present? ? @added_company_profile.fax_number : nil %></td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">Website</td>
-                      <td><%= @added_company_profile.present? ? @added_company_profile.website : nil %></td>
-                    </tr>
-                    <tr>
-                      <td class="col-md-3">Linkedin</td>
-                      <td><%= @added_company_profile.present? ? @added_company_profile.linkedin : nil %></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+                <% end %>
+            <% end %>
+            <tr>
+              <td class="col-md-3">Tendercon id</td>
+              <td><%= "#{@user.tendercon_id}" %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">No. of Employees</td>
+              <td><%=  @added_company_profile.present? ? @added_company_profile.number_of_employees : nil %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Commenced Operation</td>
+              <td><%=  @added_company_profile.present? ? @added_company_profile.commenced_operation : nil %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Tendercon member since</td>
+              <td><%= @added_company_profile.present? ? @added_company_profile.since : nil %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Project range</td>
+              <td><%= @added_company_profile.present? ? @added_company_profile.project_range : nil %></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Contact</strong></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Phone</td>
+              <td><%= @added_company_profile.present? ? @added_company_profile.contact_number : nil %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">FAX</td>
+              <td><%= @added_company_profile.present? ? @added_company_profile.fax_number : nil %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Website</td>
+              <td><%= @added_company_profile.present? ? @added_company_profile.website : nil %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Linkedin</td>
+              <td><%= @added_company_profile.present? ? @added_company_profile.linkedin : nil %></td>
+            </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
