@@ -1,10 +1,12 @@
-<div class="container">
-  <div class="col-sm-24 col-md-14 col-md-offset-5 ">
+<div class="row">
+  <div class="col-md-12  ">
     <div class="login_div">
       <div class="alert alert-danger open-sans-regular" id="users_error" style="display: none;">
 
       </div>
-      <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
+      <div class="text-center">
+        <img src="/img/logos/tendercon_log_transparent.png" width="300px">
+      </div>
       <h4 class="text-center login-title">You have type in this company name</h4>
       <h4 class="text-center login-title"><%= @name %></h4>
       <br>
@@ -12,7 +14,7 @@
       <h5 class="text-center login-title">Are any of the below organizations that you work at</h5>
       <input type="hidden" class="company_id">
       <br>
-        <div class="col-md-24 col-md-offset-10">
+        <div class="col-md-12">
           <table>
             <thead>
             <% if @companies.present? %>
@@ -46,15 +48,15 @@
               </div>
             </form>-->
           <%# end %>
-          <a href="#!" class="text-center yes_company" role="button">
-            <button class="btn  btn-primary " type="submit" style="border-radius: 10px;">Yes</button>
-          </a>
-          <a href="<%= create_user_users_path(:company => @name,:email => @email, :password => @password, :name => @user_name, :status => 'false') %>" class="text-center new-account" role="button">
-            <button class="btn  btn-primary " type="submit" style="border-radius: 10px;">No</button>
-          </a>
-          <!--<a href="<%#= register_users_path %>" class="text-center new-account" role="button">
-            <button class="btn  btn-default " type="submit" style="border-radius: 10px;">Back</button>
-          </a>-->
+          <div class="text-center">
+            <a href="#!" class="text-center yes_company" role="button">
+              <button class="btn  btn-primary " type="submit" style="border-radius: 10px;">Yes</button>
+            </a>
+            <a href="<%= create_user_users_path(:company => @name,:email => @email, :password => @password, :name => @user_name, :status => 'false') %>" class="text-center new-account" role="button">
+              <button class="btn  btn-primary " type="submit" style="border-radius: 10px;">No</button>
+            </a>
+          </div>
+
         </div>
       <br>
       <br>

@@ -1,24 +1,34 @@
 <div class="users_step">
   <div class="col-md-12 step1">
     <input type="hidden" class="user_id" id="user_id" value="<%= @user.id %>">
-    <div class="col-md-6 step1_lf">
+    <div class="col-md-6 step1_lf" style="background-color: #ffffff;height: 600px">
       <div class="step_div">
         <!--<img src="/assets/img-4.jpg" width="30px" class="img-responsive center-block">-->
-        <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
-
+        <div class="text-center">
+          <img src="/img/logos/tendercon_log_transparent.png" width="300px" height="100px">
+        </div>
         <br>
         <br>
         <p class="text-center login-title">Your Personal Information</p>
         <br/>
-        <label> FIRST NAME</label>
-        <input type="text" class="form-control"  id="first_name" name="first_name" value="<%= @user.first_name %>" required autofocus>
-        <br>
-        <label> LAST NAME</label>
-        <input type="text" class="form-control"  id="last_name" name="last_name" value="<%= @user.last_name.present? ? @user.last_name : nil %>" required autofocus>
-        <br>
+        <div class="form-group">
+          <label> FIRST NAME</label>
+          <input type="text" class="form-control"  id="first_name" name="first_name" value="<%= @user.first_name %>" required autofocus>
+          <br>
+        </div>
+        <div class="form-group">
+          <label> LAST NAME</label>
+          <input type="text" class="form-control"  id="last_name" name="last_name" value="<%= @user.last_name.present? ? @user.last_name : nil %>" required autofocus>
+        </div>
 
-        <label> YOUR COMPANY POSITION</label>
-        <%= select_tag 'position',content_tag(:option,'Select position',:value=>0)+options_from_collection_for_select(@positions, 'id','title')+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control'} %>
+        <div class="form-group">
+          <label> YOUR COMPANY POSITION</label>
+        </div>
+
+        <div class="form-group">
+          <%= select_tag 'position',content_tag(:option,'Select position',:value=>0)+options_from_collection_for_select(@positions, 'id','title')+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control'} %>
+        </div>
+
         <br>
         <div style="display: none" class="others">
           <input type="text" class="form-control"  id="others" name="others" value="" placeholder="Place your position here" required autofocus>
@@ -27,21 +37,23 @@
           <p style="font-size: 12px;color: grey;"><i>This position already exist.</i></p>
         </div>
         <br>
-        <% if params[:invites].present? %>
-            <a href="#!">
-              <button class="btn  btn-primary btn-login access" type="button">Access Tendercon</button>
-            </a>
-        <% else %>
-            <a href="#!">
-              <button class="btn  btn-primary btn-login step2_btn" type="button">Next</button>
-            </a>
-        <% end %>
+        <div class="text-center">
+          <% if params[:invites].present? %>
+              <a href="#!">
+                <button class="btn  btn-primary btn-login access" type="button">Access Tendercon</button>
+              </a>
+          <% else %>
+              <a href="#!">
+                <button class="btn  btn-primary btn-login step2_btn" type="button">Next</button>
+              </a>
+          <% end %>
+        </div>
 
       </div>
       <br> <br> <br> <br>
     </div>
 
-    <div class="col-md-6 step1_rg" style="background-color:#165bf7">
+    <div class="col-md-6 step1_rg" style="background-color: #2C3E50;height: 600px;color: #ffffff">
       <div class="my_profile">
         <br>
         <p class="company_profile">MY PROFILE</p>
@@ -70,45 +82,56 @@
 
 
   <div class="col-md-12 step2" style="display: none;">
-    <div class="col-md-6">
+    <div class="col-md-6" style="background-color: #ffffff;height: 600px">
       <div class="step_div">
         <!--<img src="/assets/img-4.jpg" width="30px" class="img-responsive center-block">-->
-        <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
+        <div class="text-center">
+          <img src="/img/logos/tendercon_log_transparent.png" width="300px" height="100px">
+        </div>
         <p class="text-center login-title">Your Company Information</p>
-        <br/>
+
         <form class="form-group form-inline">
           <a href="" style="color: #000000">ABN <span class="glyphicon glyphicon-time" data-toggle="tooltip" data-original-title="
   ABN Lookup is the public view of the Australian Business Register (ABR). It provides access to publicly available information supplied by businesses when they register for an Australian Business Number (ABN)." style="color: green"></span></a>
           <button class="btn  btn-default btn-login pull-right verify" type="button">Verify</button>
+          <div style="height: 5px"></div>
         </form>
 
         <input type="text" class="form-control"  id="abn" name="abn" required autofocus>
         <div class="error_abn">
 
         </div>
-        <br>
-        <label> COMPANY NAME </label>
-        <input type="text" class="form-control"  id="company" name="company" value="" required autofocus>
-        <br>
-        <label> TRADING NAME</label>
-        <input type="text" class="form-control"  id="trade_name" name="trade_name" value="<%= @company %>" required autofocus>
-        <br>
+
+        <div class="form-group">
+          <label> COMPANY NAME </label>
+          <input type="text" class="form-control"  id="company" name="company" value="" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label> TRADING NAME</label>
+          <input type="text" class="form-control"  id="trade_name" name="trade_name" value="<%= @company %>" required autofocus>
+        </div>
+
+
         <a href="" style="color: #000000">TENDERCONID <span class="glyphicon glyphicon-time" data-toggle="tooltip" data-original-title="TENDERCON ID is a unique key given by the system for each tendercon user." style="color: green"></span></a>
         <input type="text" class="form-control"  id="tendercon_id" name="tendercon_id" value="<%= @tender_code.name %>" required autofocus>
-        <br>
+
 
         <div style="display: none" class="error_tendercon_id">
           <p style="font-size: 12px;color: grey;"><i>Invalid Tendercon ID</i></p>
         </div>
-        <a href="#!">
-          <button class="btn  btn-default btn-login back2_btn" type="button">Back</button>
-          <button class="btn  btn-primary btn-login step3_btn" type="button">Next</button>
-        </a>
+        <div style="height: 5px;"></div>
+        <div class="text-center">
+          <a href="#!">
+            <button class="btn  btn-default btn-login back2_btn" type="button">Back</button>
+            <button class="btn  btn-primary btn-login step3_btn" type="button">Next</button>
+          </a>
+        </div>
       </div>
       <br>
     </div>
 
-    <div class="col-md-6" style="background-color:#165bf7">
+    <div class="col-md-6" style="background-color: #2C3E50;height: 600px;color: #ffffff ">
       <div class="company_profile">
         <br>
         <p class="company_profile">COMPANY PROFILE</p>
@@ -142,52 +165,56 @@
 
 
   <div class="col-md-12 step3" style="display: none;">
-    <div class="col-md-6 step3_div_lf">
+    <div class="col-md-6 step3_div_lf" style="background-color: #ffffff;height: 900px">
       <div class="step_div">
-        <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
-        <br>
+        <div class="text-center">
+          <img src="/img/logos/tendercon_log_transparent.png" width="300px" height="100px">
+        </div>
 
         <p class="text-center login-title">Your Company Information</p>
         <br/>
-        <label> ADDRESS</label>
-        <input type="text" class="typeahead tt-query form-control" autocomplete="off" spellcheck="false" id="address" name="address" onFocus="geolocate()" required autofocus>
-        <div class="address_error" style="display: none;">
-          <p style="font-size: 12px;color: grey;"><i>Invlid address.</i></p>
+        <div class="form-group">
+          <label> ADDRESS</label>
+          <input type="text" class="typeahead tt-query form-control" autocomplete="off" spellcheck="false" id="address" name="address" onFocus="geolocate()" required autofocus>
+          <div class="address_error" style="display: none;">
+            <p style="font-size: 12px;color: grey;"><i>Invlid address.</i></p>
+          </div>
         </div>
-        <br>
-        <label> SUBURB</label>
-        <input type="text" class="form-control"  id="suburb" name="suburb" value="" required autofocus>
-        <br>
-        <label> STATE</label>
-        <input type="text" class="form-control"  id="state" name="state" value="" required autofocus>
-        <br>
-        <label> POSTCODE</label>
-        <input type="text" class="form-control"  id="postcode" name="postcode" value="" required autofocus>
+        <div class="form-group">
+          <label> SUBURB</label>
+          <input type="text" class="form-control"  id="suburb" name="suburb" value="" required autofocus>
+        </div>
+        <div class="form-group">
+          <label> STATE</label>
+          <input type="text" class="form-control"  id="state" name="state" value="" required autofocus>
+        </div>
+        <div class="form-group">
+          <label> POSTCODE</label>
+          <input type="text" class="form-control"  id="postcode" name="postcode" value="" required autofocus>
+        </div>
+
+        <div class="form-group">
+          <label> TIMEZONE</label>
+          <input type="text" class="form-control"  id="timezone" name="timezone" value="" required autofocus>
+        </div>
 
         <br>
-        <label> TIMEZONE</label>
-        <input type="text" class="form-control"  id="timezone" name="timezone" value="" required autofocus>
-        <br>
-        <a href="#!">
+        <div class="text-center">
+          <a href="#!">
 
-          <button class="btn  btn-default btn-login back3_btn" type="button">Back</button>
-          <% if session[:role] == 'Head Contractor' %>
-            <button class="btn  btn-primary btn-login step4_btn" type="button" title="finish_hc">Next</button>
-            <!--<button class="btn  btn-primary btn-login step4_btn" type="submit">Next</button>-->
-          <% else %>
-            <button class="btn  btn-primary btn-login step4_btn" type="button">Next</button>
-          <% end %>
-        </a>
-
-        <br>
-        <br>
-        <br>
-        <br>
-        <div style="height: 300px;"></div>
+            <button class="btn  btn-default btn-login back3_btn" type="button">Back</button>
+            <% if session[:role] == 'Head Contractor' %>
+                <button class="btn  btn-primary btn-login step4_btn" type="button" title="finish_hc">Next</button>
+                <!--<button class="btn  btn-primary btn-login step4_btn" type="submit">Next</button>-->
+            <% else %>
+                <button class="btn  btn-primary btn-login step4_btn" type="button">Next</button>
+            <% end %>
+          </a>
+        </div>
       </div>
     </div>
 
-    <div class="col-md-6 step3_div_rg" style="background-color:#165bf7">
+    <div class="col-md-6 step3_div_rg" style="background-color: #2C3E50;height: 900px;color: #ffffff ">
       <div class="company_profile">
         <br>
         <p class="company_profile">COMPANY PROFILE</p>
@@ -215,7 +242,7 @@
         <br>
         <form class="form-group form-inline">
           <p class="profile_text">ADDRESS <label class="address_value pull-right"></label></p>
-          <div id="map" style="height:200px;width:300px; display: none;"></div>
+          <div id="map" style="height:200px;width:500px; display: none;"></div>
         </form>
 
         <form class="form-group form-inline">
@@ -230,68 +257,80 @@
   </div>
 
   <div class="col-md-12 step4" style="display: none;">
-    <div class="col-md-6">
+    <div class="col-md-6" style="background-color: #ffffff;height: 600px">
       <div class="step_div">
-        <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
-        <br>
-        <br>
+        <div class="text-center">
+          <img src="/img/logos/tendercon_log_transparent.png" width="300px">
+        </div>
         <p class="text-center login-title">You Company Information</p>
         <br/>
-        <label> Select Primary Trade</label>
-        <%= select_tag 'primary_trade',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name')+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control col-lg-12',:style=> 'width:300px;'} %>
-        <br>
-        <div style="display: none" class="primary_others">
-          <input type="text" class="form-control"  id="primary_others" name="primary_others" value="" placeholder="Place your trade here" required autofocus>
-        </div>
-        <div style="display: none" class="error_primary">
-          <p style="font-size: 12px;color: grey;"><i>This trade already exist.</i></p>
-        </div>
-        <div style="display: none" class="error_primary1">
-          <p style="font-size: 12px;color: grey;"><i>Please select valid trade.</i></p>
-        </div>
-        <br>
-        <div class="secondary_div" style="display: none">
-          <label> Select Secondary Trade</label>
-          <br>
+
+
+        <div class="text-center">
+          <label> Select Primary Trade</label>
+
           <div class="row">
             <form class="form-inline" role="form">
               <div class="form-group">
-                <%= select_tag 'secondary_trade',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name'),{:class=> 'form-control col-lg-12',:style=> 'width:300px;'} %>
+                <%= select_tag 'primary_trade',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name')+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control col-lg-12',:style=> 'width:300px;'} %>
                 <i class="glyphicon glyphicon-plus-sign add" aria-hidden="true" ></i>
               </div>
             </form>
 
           </div>
-          <br>
-          <input type="hidden" id="secondary_value1" value="0" class="ids">
-          <input type="hidden" id="secondary_value2" value="0" class="ids">
-          <input type="hidden" id="secondary_value3" value="0" class="ids">
-          <input type="hidden" id="secondary_value4" value="0" class="ids">
-          <input type="hidden" id="secondary_value5" value="0" class="ids">
-          <input type="hidden" id="secondary_value6" value="0" class="ids">
-
-          <div style="display: none" class="secondary_others">
-            <input type="text" class="form-control"  id="secondary_others" name="primary_others" value="" placeholder="Place your trade here" required autofocus>
+          <div style="display: none" class="primary_others">
+            <input type="text" class="form-control"  id="primary_others" name="primary_others" value="" placeholder="Place your trade here" required autofocus>
           </div>
-          <div style="display: none" class="error_secondary">
+          <div style="display: none" class="error_primary">
             <p style="font-size: 12px;color: grey;"><i>This trade already exist.</i></p>
           </div>
-          <div style="display: none" class="error_secondary1">
-            <p style="font-size: 12px;color: grey;"><i>This trade already selected as a primary</i></p>
+          <div style="display: none" class="error_primary1">
+            <p style="font-size: 12px;color: grey;"><i>Please select valid trade.</i></p>
           </div>
           <br>
+          <div class="secondary_div" style="display: none">
+            <label> Select Secondary Trade</label>
+            <br>
+            <div class="row">
+              <form class="form-inline" role="form">
+                <div class="form-group">
+                  <%= select_tag 'secondary_trade',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name'),{:class=> 'form-control col-lg-12',:style=> 'width:300px;'} %>
+                  <i class="glyphicon glyphicon-plus-sign add" aria-hidden="true" ></i>
+                </div>
+              </form>
+
+            </div>
+            <br>
+            <input type="hidden" id="secondary_value1" value="0" class="ids">
+            <input type="hidden" id="secondary_value2" value="0" class="ids">
+            <input type="hidden" id="secondary_value3" value="0" class="ids">
+            <input type="hidden" id="secondary_value4" value="0" class="ids">
+            <input type="hidden" id="secondary_value5" value="0" class="ids">
+            <input type="hidden" id="secondary_value6" value="0" class="ids">
+
+            <div style="display: none" class="secondary_others">
+              <input type="text" class="form-control"  id="secondary_others" name="primary_others" value="" placeholder="Place your trade here" required autofocus>
+            </div>
+            <div style="display: none" class="error_secondary">
+              <p style="font-size: 12px;color: grey;"><i>This trade already exist.</i></p>
+            </div>
+            <div style="display: none" class="error_secondary1">
+              <p style="font-size: 12px;color: grey;"><i>This trade already selected as a primary</i></p>
+            </div>
+            <br>
+          </div>
+          <a href="#!">
+            <button class="btn  btn-default btn-login back4_btn" type="button">Back</button>
+
+            <button class="btn  btn-primary btn-login step5_btn" type="button">Next</button>
+
+          </a>
         </div>
-        <a href="#!">
-          <button class="btn  btn-default btn-login back4_btn" type="button">Back</button>
-
-          <button class="btn  btn-primary btn-login step5_btn" type="button">Next</button>
-
-        </a>
       </div>
       <br> <br> <br> <br>
     </div>
 
-    <div class="col-md-6" style="background-color:#165bf7">
+    <div class="col-md-6" style="background-color: #2C3E50;height: 600px;color: #ffffff ">
       <div class="company_profile">
         <br>
         <p class="company_profile">TRADE PROFILE</p>

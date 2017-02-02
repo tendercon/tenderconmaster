@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
-  layout 'users_layout', :on => [:login],:except => [:profile,:company_profile,:index,:edit_profile,:billing,:change_password,:edit_company_profile,:subscription,:register,:welcome_page,
-                                                    :tendercon_steps,:steps_completed,:registration_completed]
+  #layout 'users_layout', :on => [:login],:except => [:profile,:company_profile,:index,:edit_profile,:billing,:change_password,:edit_company_profile,:subscription,:register,:welcome_page,
+  #                                                  :tendercon_steps,:steps_completed,:registration_completed]
+  #layout 'users_layout', :only => [:login]
+  layout 'in_apps_layout', :only => [:register,:tendercon_steps,:login,:token_expired,:registration_completed,
+                                     :welcome_page,:steps_completed,:user_company_exist,:account_taken,:forgot_password,
+                                     :validation_complete,:reset_password,:password_changed,:create_user,:token_expired]
   skip_before_action :verify_authenticity_token
 
   def index
@@ -1998,6 +2002,7 @@ class UsersController < ApplicationController
 
 
   private
+
 
   def user_premitted_params
     params.require(:user).permit(:id,:first_name,:email,:password,:confirmed_password,:role,:company_attributes => [:id,:name])

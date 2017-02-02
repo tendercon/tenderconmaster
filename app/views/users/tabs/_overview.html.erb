@@ -7,7 +7,7 @@
       <% if @user.avatar.present? %>
         <% if @user.avatar.present? %>
           <% if File.exist?(@user.avatar.image.path(:original)) %>
-            <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="">
+            <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
           <% else %>
             <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
           <% end %>

@@ -2,8 +2,10 @@
   <div>
     <div class="col-md-12">
       <%= form_for(@user,:url => create_user_users_path) do |f| %>
-          <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
-          <h1 class="text-center login-title">Log Into Your Tendercon Account</h1>
+          <div class="text-center">
+            <img src="/img/logos/tendercon_log_transparent.png" width="300px">
+          </div>
+          <h1 class="text-center login-title"></h1>
           <div class="form-group has-feedback">
             <%- if  @user.present?  %>
                 <% if @user.errors.present? %>
@@ -93,11 +95,8 @@
               </div>
             </div>
 
-            <div class="actions">
+            <div class="text-center actions">
               <%= f.submit 'SIGN UP FREE', :class => 'btn btn-primary', :style => 'border-radius: 10px'%>
-              <!--<a href="<%#= home_index_path %>" class="text-center new-account" role="button" >
-        <button class="btn btn-default " type="button" style="text-decoration: none; border-radius: 10px;">Back to Home</button>
-      </a>-->
             </div>
           </div>
       <% end %>

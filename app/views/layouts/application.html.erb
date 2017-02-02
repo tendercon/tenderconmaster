@@ -72,29 +72,31 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 <!-- BEGIN HEADER -->
-<div class="page-header navbar navbar-fixed-top">
-  <!-- BEGIN HEADER INNER -->
-  <div class="page-header-inner ">
-    <!-- BEGIN LOGO -->
-    <div class="page-logo">
-      <a href="index.html">
-        <img src="../vendors/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
-      <div class="menu-toggler sidebar-toggler"> </div>
+<% if session[:user_logged_id].present?  %>
+  <div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+      <!-- BEGIN LOGO -->
+      <div class="page-logo">
+        <a href="index.html">
+          <img src="../vendors/layouts/layout/img/logo.png" alt="logo" class="logo-default" /> </a>
+        <div class="menu-toggler sidebar-toggler"> </div>
+      </div>
+      <!-- END LOGO -->
+      <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+      <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+      <!-- END RESPONSIVE MENU TOGGLER -->
+      <!-- BEGIN TOP NAVIGATION MENU -->
+      <%= puts "session[:user_logged_id] ==> #{session[:user_logged_id].present?}" %>
+      <%= puts "params[:controller] == 'users' =======#{!params[:controller] == 'users'}" %>
+
+        <%= render :partial => 'layouts/nav/topmenu' %>
+
+      <!-- END TOP NAVIGATION MENU -->
     </div>
-    <!-- END LOGO -->
-    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-    <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
-    <!-- END RESPONSIVE MENU TOGGLER -->
-    <!-- BEGIN TOP NAVIGATION MENU -->
-    <%= puts "session[:user_logged_id] ==> #{session[:user_logged_id].present?}" %>
-    <%= puts "params[:controller] == 'users' =======#{!params[:controller] == 'users'}" %>
-    <% if session[:user_logged_id].present?  %>
-      <%= render :partial => 'layouts/nav/topmenu' %>
-    <% end %>
-    <!-- END TOP NAVIGATION MENU -->
+    <!-- END HEADER INNER -->
   </div>
-  <!-- END HEADER INNER -->
-</div>
+<% end %>
 <!-- END HEADER -->
 <!-- BEGIN HEADER & CONTENT DIVIDER -->
 <div class="clearfix"> </div>
