@@ -16,12 +16,12 @@ class RfisController < ApplicationController
 
     @sc_user = User.find(session[:user_logged_id])
 
-    @sc_user.company_avatars.each do |a|
-      @avatar_filename = a.image_file_name
-
-      @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{a.id}/original/#{@avatar_filename}"
-      puts "LINK:#{@link}"
-    end
+    #@sc_user.company_avatars.each do |a|
+    #  @avatar_filename = a.image_file_name
+    #
+    #  @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{a.id}/original/#{@avatar_filename}"
+    #  puts "LINK:#{@link}"
+    #end
 
     rfi = Rfi.where(:user_id => session[:user_logged_id]).last()
     result = @sc_user.company.split.map(&:first).join

@@ -844,6 +844,8 @@ class UsersController < ApplicationController
     end
   end
 
+
+
   def edit_company_profile
     @company_profile = CompanyProfile.new
     @user = User.find(session[:user_logged_id])
@@ -1865,7 +1867,14 @@ class UsersController < ApplicationController
       @upgraded_users = RequestUpgrade.where(:user_id => @upgraded_array,:status => 'upgraded')
     end
 
-
+    puts "params[:upgrade]    ===========> #{params[:upgrade].inspect}"
+    if params[:tab].present?
+      if params[:tab] == 'upgrade'
+        @upgrade = true
+      elsif params[:tab] == 'deleted'
+        @deleted = true
+      end
+    end
     puts "@upgraded_array:#{@upgraded_array}"
     puts "@@upgraded_users:#{@upgraded_users.inspect}"
     @data = render :partial => 'users/company/users'

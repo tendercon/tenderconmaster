@@ -63,6 +63,7 @@ class InvitesController < ApplicationController
     puts "@upgraded_array:#{@upgraded_array}"
     puts "@@upgraded_users:#{@upgraded_users.inspect}"
 
+    redirect_to "/users/company_profile?id=#{session[:user_logged_id]}&upgrade=true"
   end
 
   def new
@@ -454,7 +455,7 @@ class InvitesController < ApplicationController
       RequestUpgrade.where(:user_id => user.id).destroy_all
       flash[:notice] = 'Team Member successfully deleted.'
 
-      redirect_to invites_path
+      redirect_to "/users/company_profile?id=#{session[:user_logged_id]}&deleted=true"
 
     end
   end

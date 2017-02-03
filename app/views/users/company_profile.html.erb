@@ -3,9 +3,19 @@
   <div class="col-md-12 ">
     <div class="tabbable-line">
       <ul class="nav nav-tabs ">
-        <li class="active"><a href="#overview" data-toggle="tab" id="">Overview</a></li>
+        <% if params[:upgrade] == 'true' || params[:deleted] == 'true' %>
+            <li><a href="#overview" data-toggle="tab" id="">Overview</a></li>
+        <% else %>
+            <li class="active"><a href="#overview" data-toggle="tab" id="">Overview</a></li>
+        <% end %>
+
         <li><a href="#edit_profile" data-toggle="tab" id="">Edit Profile</a></li>
-        <li><a href="#users" data-toggle="tab" id="">Users</a></li>
+        <% if params[:upgrade] == 'true' || params[:deleted] == 'true' %>
+            <li class="active"><a href="#users" data-toggle="tab" id="">Users</a></li>
+        <% else %>
+            <li><a href="#users" data-toggle="tab" id="">Users</a></li>
+        <% end %>
+
         <li><a href="#portfolio" data-toggle="tab" id="">Portfolio</a></li>
         <li><a href="#billing" data-toggle="tab" id="">Billing</a></li>
       </ul>
@@ -168,6 +178,24 @@
 
 <script>
   $(document).ready(function(){
+
+    <% if params[:upgrade] == 'true' || params[:deleted] == 'true' %>
+      $('.profile_div').html('');
+      <% if params[:upgrade] == 'true'%>
+        var data = {tab:'upgrade'};
+      <% elsif  params[:deleted] == 'true' %>
+        var data = {tab:'deleted'};
+      <% end %>
+
+      $.ajax({
+        method: "POST",
+        data: data,
+        url: "/users/get_company_users"
+      }).done(function (data) {
+        $('.profile_div').html(data);
+      });
+    <% end %>
+
     $('.account_settings').click(function(){
       $('#overview').removeClass('active');
       $('#help').removeClass('active');

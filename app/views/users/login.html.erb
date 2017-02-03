@@ -52,6 +52,24 @@
       <section class="login_content">
         <%= form_tag(authenticate_users_path, {  :name=> "login",:class=>'form-signin' } )  do %>
           <h1>Login Form</h1>
+          <div class="form-group has-feedback">
+            <% if flash[:error] %>
+                <div class="alert alert-danger open-sans-regular" id="users_error">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <%= @error_alert %>
+                  <div class="notice" style="font-size: 14px;"><%= flash[:error].html_safe %></div>
+                  <% flash[:error]=nil %>
+                </div>
+            <% end %>
+            <%- if !flash[:notice].nil? %>
+                <div class="alert alert-success open-sans-regular" id="users_error">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <%= @error_alert %>
+                  <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
+                  <% flash[:notice]=nil %>
+                </div>
+            <%- end %>
+          </div>
           <div>
             <input type="text" class="form-control" placeholder="Username" id="email" name="email" required="" />
           </div>

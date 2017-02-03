@@ -56,7 +56,15 @@
     <div class="row invoice-head">
       <div class="col-md-7 col-xs-6">
         <div class="invoice-logo">
-          <img src="<%= @link %>" class="img-responsive" width="200px" height="100px" />
+          <% if @sc_user.company_avatar.present? %>
+            <% if File.exist?(@sc_user.company_avatar.image.path(:original)) %>
+                <img src="<%= @sc_user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" class="img-responsive" width="200px" height="100px">
+            <% else %>
+                <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""  width="200px" height="100px">
+            <% end %>
+          <% else %>
+            <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""  width="200px" height="100px">
+          <% end %>
         </div>
       </div>
       <div class="col-md-5 col-xs-6">

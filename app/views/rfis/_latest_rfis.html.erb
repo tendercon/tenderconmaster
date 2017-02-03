@@ -107,7 +107,15 @@
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+                  <% if @sc_user.company_avatar.present? %>
+                      <% if File.exist?(@sc_user.company_avatar.image.path(:original)) %>
+                          <img src="<%= @sc_user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" class="img-responsive" width="200px" height="100px">
+                      <% else %>
+                          <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""  width="200px" height="100px">
+                      <% end %>
+                  <% else %>
+                      <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""  width="200px" height="100px">
+                  <% end %>
                 </div>
 
                 <div class="form-group">
@@ -233,7 +241,15 @@
 
               <div class="col-md-6">
                 <div class="form-group">
-                  <img src="<%= @link %>" class=".img-thumbnail" width="200px" height="100px">
+                  <% if @sc_user.company_avatar.present? %>
+                    <% if File.exist?(@sc_user.company_avatar.image.path(:original)) %>
+                      <img src="<%= @sc_user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" class="img-responsive" width="200px" height="100px">
+                    <% else %>
+                      <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""  width="200px" height="100px">
+                    <% end %>
+                  <% else %>
+                    <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""  width="200px" height="100px">
+                  <% end %>
                 </div>
 
                 <div class="form-group">
