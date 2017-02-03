@@ -62,7 +62,8 @@ License: You must have a valid license purchased only from themeforest(the above
   <link rel="shortcut icon" href="favicon.ico" /> </head>
 <!-- END HEAD -->
 
-<body class=" login">
+<body class="<%= params[:action] == 'tendercon_steps' ? '': 'login' %>">
+
 <!-- BEGIN LOGO -->
 <div class="logo">
   <a href="#!">
@@ -106,7 +107,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <% else %>
     <%= puts params[:action] %>
-  <% if params[:action] == 'register' || params[:action] == 'create_user' || params[:action] == 'user_company_exist' || params[:action] == 'registration_completed' || params[:action] == 'steps_completed' || params[:action] == 'account_taken' || params[:action] == 'forgot_password' || params[:action] == 'validation_complete' || params[:action] == 'reset_password' || params[:action] == 'password_changed' || params[:action] == 'token_expired' %>
+  <% if params[:action] == 'register' || params[:action] == 'create_user' || params[:action] == 'user_company_exist' ||  params[:action] == 'steps_completed' || params[:action] == 'account_taken' || params[:action] == 'forgot_password' || params[:action] == 'validation_complete' || params[:action] == 'reset_password' || params[:action] == 'password_changed' || params[:action] == 'token_expired' %>
 
     <div class="content">
       <%= yield %>
@@ -117,7 +118,12 @@ License: You must have a valid license purchased only from themeforest(the above
     </div>
   <% end %>
 <% end %>
-<div class="copyright"> 2017 © Tendercon </div>
+<% if params[:action] == 'tendercon_steps' %>
+    <div style="height: 10px"></div>
+    <div class="copyright text-center"> 2017 © Tendercon </div>
+<% else %>
+    <div class="copyright"> 2017 © Tendercon </div>
+<% end %>
 </body>
 
 </html>

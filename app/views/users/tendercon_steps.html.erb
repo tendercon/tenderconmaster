@@ -21,11 +21,10 @@
           <input type="text" class="form-control"  id="last_name" name="last_name" value="<%= @user.last_name.present? ? @user.last_name : nil %>" required autofocus>
         </div>
 
-        <div class="form-group">
-          <label> YOUR COMPANY POSITION</label>
-        </div>
+        <div style="height: 10px"></div>
 
         <div class="form-group">
+          <label> YOUR COMPANY POSITION</label>
           <%= select_tag 'position',content_tag(:option,'Select position',:value=>0)+options_from_collection_for_select(@positions, 'id','title')+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control'} %>
         </div>
 
@@ -44,7 +43,7 @@
               </a>
           <% else %>
               <a href="#!">
-                <button class="btn  btn-primary btn-login step2_btn" type="button">Next</button>
+                <button class="btn  btn-primary btn-login step2_btn" type="button" style="background-color: #56A99F !important;">Next</button>
               </a>
           <% end %>
         </div>
@@ -91,17 +90,24 @@
         <p class="text-center login-title">Your Company Information</p>
 
         <form class="form-group form-inline">
-          <a href="" style="color: #000000">ABN <span class="glyphicon glyphicon-time" data-toggle="tooltip" data-original-title="
+          <a href="#!" style="color: #000000;text-decoration: none;" data-toggle="modal" data-target="#myModal">ABN <span class="fa fa-question-circle" data-toggle="tooltip" data-original-title="
   ABN Lookup is the public view of the Australian Business Register (ABR). It provides access to publicly available information supplied by businesses when they register for an Australian Business Number (ABN)." style="color: green"></span></a>
-          <button class="btn  btn-default btn-login pull-right verify" type="button">Verify</button>
+
           <div style="height: 5px"></div>
         </form>
 
-        <input type="text" class="form-control"  id="abn" name="abn" required autofocus>
+        <div class="row">
+          <div class="col-md-10">
+            <input type="text" class="form-control"  id="abn" name="abn" required autofocus>
+          </div>
+          <div class="col-md-2">
+            <button class="btn  btn-default btn-login pull-right verify" type="button">Verify</button>
+          </div>
+        </div>
         <div class="error_abn">
 
         </div>
-
+        <div style="height: 10px"></div>
         <div class="form-group">
           <label> COMPANY NAME </label>
           <input type="text" class="form-control"  id="company" name="company" value="" required autofocus>
@@ -113,8 +119,8 @@
         </div>
 
 
-        <a href="" style="color: #000000">TENDERCONID <span class="glyphicon glyphicon-time" data-toggle="tooltip" data-original-title="TENDERCON ID is a unique key given by the system for each tendercon user." style="color: green"></span></a>
-        <input type="text" class="form-control"  id="tendercon_id" name="tendercon_id" value="<%= @tender_code.name %>" required autofocus>
+        <a href="#!" style="color: #000000;text-decoration: none;" data-toggle="modal" data-target="#myModal">TENDERCONID <span class="fa fa-question-circle" data-toggle="tooltip" data-original-title="TENDERCON ID is a unique key given by the system for each tendercon user." style="color: green"></span></a>
+        <input type="text" class="form-control"  id="tendercon_id" name="tendercon_id" value="<%= @tender_code.name %>" required autofocus readonly>
 
 
         <div style="display: none" class="error_tendercon_id">
@@ -124,7 +130,7 @@
         <div class="text-center">
           <a href="#!">
             <button class="btn  btn-default btn-login back2_btn" type="button">Back</button>
-            <button class="btn  btn-primary btn-login step3_btn" type="button">Next</button>
+            <button class="btn  btn-primary btn-login step3_btn" type="button" style="background-color: #56A99F !important;">Next</button>
           </a>
         </div>
       </div>
@@ -161,6 +167,23 @@
       <br>
 
     </div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 
@@ -182,20 +205,20 @@
         </div>
         <div class="form-group">
           <label> SUBURB</label>
-          <input type="text" class="form-control"  id="suburb" name="suburb" value="" required autofocus>
+          <input type="text" class="form-control"  id="suburb" name="suburb" value="" required autofocus readonly>
         </div>
         <div class="form-group">
           <label> STATE</label>
-          <input type="text" class="form-control"  id="state" name="state" value="" required autofocus>
+          <input type="text" class="form-control"  id="state" name="state" value="" required autofocus readonly>
         </div>
         <div class="form-group">
           <label> POSTCODE</label>
-          <input type="text" class="form-control"  id="postcode" name="postcode" value="" required autofocus>
+          <input type="text" class="form-control"  id="postcode" name="postcode" value="" required autofocus readonly>
         </div>
 
         <div class="form-group">
           <label> TIMEZONE</label>
-          <input type="text" class="form-control"  id="timezone" name="timezone" value="" required autofocus>
+          <input type="text" class="form-control"  id="timezone" name="timezone" value="" required autofocus readonly>
         </div>
 
         <br>
@@ -242,7 +265,7 @@
         <br>
         <form class="form-group form-inline">
           <p class="profile_text">ADDRESS <label class="address_value pull-right"></label></p>
-          <div id="map" style="height:200px;width:500px; display: none;"></div>
+          <div id="map" style="height:200px;width:600px; display: none;"></div>
         </form>
 
         <form class="form-group form-inline">
@@ -273,7 +296,7 @@
             <form class="form-inline" role="form">
               <div class="form-group">
                 <%= select_tag 'primary_trade',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name')+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control col-lg-12',:style=> 'width:300px;'} %>
-                <i class="glyphicon glyphicon-plus-sign add" aria-hidden="true" ></i>
+               <!-- <i class="glyphicon glyphicon-plus-sign add" aria-hidden="true" ></i>-->
               </div>
             </form>
 
@@ -356,12 +379,14 @@
 
         <form class="form-group form-inline">
           <p class="profile_text">SECONDARY TRADE</p>
-          <div class="secondary_value1"></div>
-          <div class="secondary_value2"></div>
-          <div class="secondary_value3"></div>
-          <div class="secondary_value4"></div>
-          <div class="secondary_value5"></div>
-          <div class="secondary_value6"></div>
+          <div class="pull-right">
+            <div class="secondary_value1"></div>
+            <div class="secondary_value2"></div>
+            <div class="secondary_value3"></div>
+            <div class="secondary_value4"></div>
+            <div class="secondary_value5"></div>
+            <div class="secondary_value6"></div>
+          </div>
           <br>
         </form>
         <br>
@@ -1182,22 +1207,6 @@
     });
 
 
-    function remove_trade(id){
-      var id = id;
-
-      var title = $('#'+id).attr('title');
-
-      console.log("ID:"+title);
-      $('.'+title).html('')
-      $('#'+title).val('0');
-
-      if($('#secondary_value6').val() > 0 && $('#secondary_value5').val() > 0 && $('#secondary_value4').val() > 0 && $('#secondary_value3').val() > 0 && $('#secondary_value2').val() > 0 && $('#secondary_value1').val() > 0){
-        $('.add').hide();
-      }else{
-        $('.add').show();
-      }
-
-    }
 
     $('.step5_btn').click(function(){
       console.log("step5_btn");
@@ -1386,7 +1395,25 @@
 
     });
 
-  })
+  });
+
+  function remove_trade(id){
+    var id = id;
+
+    var title = $('#'+id).attr('title');
+
+    console.log("ID:"+title);
+    $('.'+title).html('')
+    $('#'+title).val('0');
+
+    if($('#secondary_value6').val() > 0 && $('#secondary_value5').val() > 0 && $('#secondary_value4').val() > 0 && $('#secondary_value3').val() > 0 && $('#secondary_value2').val() > 0 && $('#secondary_value1').val() > 0){
+      $('.add').hide();
+    }else{
+      $('.add').show();
+    }
+
+  }
+
 
 
 </script>

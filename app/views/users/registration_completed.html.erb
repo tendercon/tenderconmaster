@@ -1,39 +1,40 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="form-group has-feedback">
-      <% if flash[:error] %>
-          <div class="alert alert-danger open-sans-regular" id="users_error">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= @error_alert %>
-            <div class="notice" style="font-size: 14px;"><%= flash[:error] %></div>
-            <% flash[:error]=nil %>
-          </div>
-      <% end %>
-      <%- if !flash[:notice].nil? %>
-          <div class="alert alert-success open-sans-regular" id="users_error">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            <%= @error_alert %>
-            <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
-            <% flash[:notice]=nil %>
-          </div>
-      <%- end %>
-    </div>
     <div class="login_div">
-      <p class="text-center"><i class="glyphicon glyphicon-stats tendercon_icon" aria-hidden="true"></i></p>
-      <h1 class="text-center login-title">You're almost done - Activate your</h1>
-      <h1 class="text-center login-title">Account!</h1>
-      <br>
-      <br>
-      <br>
-      <p class="text-center registration_complete_text">You've just been sent an email that contains a<b> confirm link.</b></p>
-      <br>
-      <p class="text-center registration_complete_text">To activate your account, check your email and follow the simple instructions.</p>
-      <br><br>
-      <p class="text-center registration_complete_text">If you don't see that email in your inbox in the next 10 minutes</p>
       <div class="text-center">
-        <a href="<%= resent_email_notification_users_path(:id => @id) %>" class="text-center new-account" role="button" style="text-decoration: none; color: blue">click here</a>
+        <img src="/img/logos/tendercon_log_transparent.png" width="300px">
       </div>
-      <p class="text-center registration_complete_text">to have another copy sent to you again.</p>
+      <div class="container">
+        <div class="form-group has-feedback">
+          <% if flash[:error] %>
+              <div class="alert alert-danger open-sans-regular" id="users_error">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <%= @error_alert %>
+                <div class="notice text-center" style="font-size: 14px;"><%= flash[:error] %></div>
+                <% flash[:error]=nil %>
+              </div>
+          <% end %>
+          <%- if !flash[:notice].nil? %>
+              <div class="alert alert-success open-sans-regular" id="users_error">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <%= @error_alert %>
+                <div class="notice text-center" style="font-size: 14px;"><%= flash[:notice] %></div>
+                <% flash[:notice]=nil %>
+              </div>
+          <%- end %>
+        </div>
+      </div>
+      <h2 class="text-center login-title" style="color: #ffffff">You're almost done - Activate your Account!</h2>
+      <br>
+      <br>
+      <br>
+      <p class="text-center registration_complete_text" style="color: #ffffff">You've just been sent an email that contains a activation link.</p>
+      <p class="text-center registration_complete_text" style="color: #ffffff">To activate your account, check your email and follow the simple instructions.</p>
+      <p class="text-center registration_complete_text" style="color: #ffffff">If you don't see that email in your inbox in the next 10 minutes</p>
+      <div class="text-center">
+        <a href="<%= resent_email_notification_users_path(:id => @id) %>" class="text-center new-account" role="button" style="text-decoration: none; color: #ffffff"><strong>click here</strong></a>
+      </div>
+      <p class="text-center registration_complete_text" style="color: #ffffff">to have another copy sent to you again.</p>
     </div>
   </div>
 </div>
