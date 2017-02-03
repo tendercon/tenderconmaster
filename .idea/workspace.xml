@@ -2,469 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/authors/author-1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/authors/author-2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/authors/author-3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/authors/author-4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/authors/author-5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/authors/author-6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/authors/author-7.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/authors/author-8.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/blog-post-thumb-1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/blog-post-thumb-2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/blog-post-thumb-3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/blog-post-thumb-4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/blog-post-thumb-5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/blog-post-thumb-6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/blog-post-thumb-7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/blog-post-thumb-8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/blog-single/blog-post-figure-1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/featured-1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/featured-2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/featured-3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/blog/featured-4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/career/office-space.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/customers/customer-1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/customers/customer-2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/customers/customer-3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/customers/customer-4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/features/feature-1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/features/feature-2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/features/feature-3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/features/feature-4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/features/feature-5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/features/feature-6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-about.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-blog-single.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-blog.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-career.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-contact.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-features.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-job-single.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-pricing.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-stories.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-story-single-2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-story-single.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/hero/hero-support.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/imac-screen.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/ipad-screen.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/iphone-screen.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/macbook-screen.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/stories/profiles/profile-1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/stories/profiles/profile-2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/stories/profiles/profile-3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/stories/profiles/profile-4.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/stories/profiles/profile-5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/stories/profiles/profile-6.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/stories/story-1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/stories/story-2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/stories/story-3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/team.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/team/member-1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/team/member-2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/team/member-3.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/team/member-4.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/team/member-5.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/team/member-6.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/team/member-7.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/team/member-8.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/users/user-1.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/users/user-2.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/users/user-3.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/fonts/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-medium/eot/1110FC_0.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-medium/ttf/1110FC_0.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-medium/woff/1110FC_0.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-regular/eot/11014B_0.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-regular/ttf/11014B_0.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-regular/woff/11014B_0.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-semibold/eot/style_169898.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-semibold/ttf/style_169898.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-semibold/woff/style_169898.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/images/kitchen_adventurer_caramel.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/images/kitchen_adventurer_cheesecake_brownie.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/images/kitchen_adventurer_donut.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/images/kitchen_adventurer_lemon.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/images/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/fonts/flexslider-icon.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/fonts/flexslider-icon.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/fonts/flexslider-icon.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/images/bg_play_pause.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/fonts/fontawesome-webfont.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/css/styles-2.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/css/styles-3.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/css/styles-4.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/css/styles-5.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/css/styles-6.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/css/styles.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/arrow-icon.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/icons/chat-white.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/icons/clock-white.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/icons/presenter-white.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/logo.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/logos/logo-1.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/logos/logo-2.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/logos/logo-3.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/logos/logo-4.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/map.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/play-icon-md.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/play-icon.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/stories/client-logo-1.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/stories/client-logo-2.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/stories/client-logo-3.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/images/tick.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/js/demo/style-switcher.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/js/home.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/js/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/js/vimeo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/back-to-top.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap-hover-dropdown.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/.editorconfig" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/.gitattributes" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/.hound.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/css/bootstrap-theme.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/css/bootstrap-theme.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/css/bootstrap-theme.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/css/bootstrap-theme.min.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/css/bootstrap.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/css/bootstrap.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/css/bootstrap.min.css.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/js/bootstrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/js/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/bootstrap/js/npm.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/CONTRIBUTING.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/LICENSE.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/README.mdown" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/.bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/MIT-LICENSE.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/dist/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/dist/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/dist/jquery.min.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/ajax.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/ajax/jsonp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/ajax/load.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/ajax/parseJSON.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/ajax/parseXML.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/ajax/script.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/ajax/var/nonce.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/ajax/var/rquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/ajax/xhr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/attributes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/attributes/attr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/attributes/classes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/attributes/prop.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/attributes/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/attributes/val.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/callbacks.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/core.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/core/access.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/core/init.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/core/parseHTML.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/core/ready.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/core/var/rsingleTag.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/css.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/css/addGetHookIf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/css/curCSS.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/css/defaultDisplay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/css/hiddenVisibleSelectors.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/css/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/css/swap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/css/var/cssExpand.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/css/var/isHidden.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/css/var/rmargin.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/css/var/rnumnonpx.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/data/accepts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/data/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/deferred.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/deprecated.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/dimensions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/effects.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/effects/Tween.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/effects/animatedSelector.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/effects/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/event.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/event/ajax.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/event/alias.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/event/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/exports/amd.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/exports/global.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/intro.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/manipulation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/manipulation/_evalUrl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/manipulation/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/manipulation/var/rcheckableType.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/offset.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/outro.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/queue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/queue/delay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/selector-sizzle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/selector.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/serialize.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/sizzle/dist/sizzle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/sizzle/dist/sizzle.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/sizzle/dist/sizzle.min.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/traversing.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/traversing/findFilter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/traversing/var/rneedsContext.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/var/class2type.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/var/concat.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/var/deletedIds.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/var/hasOwn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/var/indexOf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/var/pnum.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/var/push.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/var/rnotwhite.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/var/slice.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/var/strundefined.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/var/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/var/toString.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/bower_components/jquery/src/wrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/changelog.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/css/base.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/css/font.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/css/mixins.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/css/resets.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/css/responsive.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/css/theme.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/css/variables.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/basic-carousel.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/basic-slider-with-caption.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/basic-slider-with-custom-direction-nav.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/carousel-min-max.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/css/demo.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/dynamic-carousel-min-max.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-medium/svg/1110FC_0.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-medium/svg/svg_test.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-regular/svg/11014B_0.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-regular/svg/svg_test.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-semibold/svg/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/fonts/webfonts/geo-semibold/svg/style_169898.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/js/demo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/js/froogaloop.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/js/jquery.easing.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/js/jquery.fitvid.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/js/jquery.mousewheel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/js/modernizr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/js/shBrushCss.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/js/shBrushJScript.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/js/shBrushXml.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/js/shCore.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/thumbnail-controlnav.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/thumbnail-slider.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/video-wistia.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/demo/video.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/flexslider.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/flexslider.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/fonts/flexslider-icon.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/jquery.flexslider-min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/jquery.flexslider.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/.bowerrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/.jscsrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/AUTHORS.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/CONTRIBUTING.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/MIT-LICENSE.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/dist/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/dist/jquery.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/dist/jquery.min.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/ajax.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/ajax/jsonp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/ajax/load.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/ajax/parseJSON.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/ajax/parseXML.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/ajax/script.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/ajax/var/nonce.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/ajax/var/rquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/ajax/xhr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/attributes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/attributes/attr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/attributes/classes.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/attributes/prop.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/attributes/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/attributes/val.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/callbacks.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/core.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/core/access.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/core/init.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/core/parseHTML.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/core/ready.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/core/var/rsingleTag.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/css.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/css/addGetHookIf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/css/curCSS.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/css/defaultDisplay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/css/hiddenVisibleSelectors.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/css/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/css/swap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/css/var/cssExpand.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/css/var/isHidden.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/css/var/rmargin.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/css/var/rnumnonpx.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/data.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/data/accepts.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/data/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/deferred.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/deprecated.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/dimensions.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/effects.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/effects/Tween.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/effects/animatedSelector.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/effects/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/event.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/event/ajax.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/event/alias.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/event/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/exports/amd.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/exports/global.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/intro.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/manipulation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/manipulation/_evalUrl.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/manipulation/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/manipulation/var/rcheckableType.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/offset.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/outro.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/queue.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/queue/delay.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/selector-sizzle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/selector.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/serialize.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/sizzle/dist/sizzle.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/sizzle/dist/sizzle.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/sizzle/dist/sizzle.min.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/sizzle/test/data/empty.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/sizzle/test/data/mixed_sort.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/sizzle/test/data/testinit.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/sizzle/test/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/sizzle/test/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/sizzle/test/unit/extending.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/sizzle/test/unit/selector.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/sizzle/test/unit/utilities.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/traversing.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/traversing/findFilter.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/traversing/var/rneedsContext.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/var/class2type.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/var/concat.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/var/deletedIds.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/var/hasOwn.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/var/indexOf.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/var/pnum.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/var/push.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/var/rnotwhite.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/var/slice.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/var/strundefined.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/var/support.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/var/toString.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/node_modules/jquery/src/wrap.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/flexslider/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/HELP-US-OUT.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/css/font-awesome.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/css/font-awesome.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/animated.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/bordered-pulled.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/core.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/fixed-width.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/font-awesome.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/icons.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/larger.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/list.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/mixins.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/path.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/rotated-flipped.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/screen-reader.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/stacked.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/less/variables.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_animated.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_bordered-pulled.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_core.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_fixed-width.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_icons.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_larger.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_list.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_mixins.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_path.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_rotated-flipped.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_screen-reader.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_stacked.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/_variables.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/font-awesome/scss/font-awesome.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-1.12.4.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/.jscsrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/.jshintrc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/CHANGELOG" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/bower.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/demo/css/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/demo/css/style.old.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/demo/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/demo/index.old.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/jquery.scrollTo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/jquery.scrollTo.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/tests/ElemMaxY-compat.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/tests/ElemMaxY-quirks.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/tests/WinMaxY-compat.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/tests/WinMaxY-quirks.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/tests/WinMaxY-to-iframe-compat.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/tests/WinMaxY-to-iframe-quirks.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/tests/WinMaxY-with-iframe-compat.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/tests/WinMaxY-with-iframe-quirks.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/tests/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/vendors/landing_page/plugins/jquery-scrollTo/tests/test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/quotes/VZZ-6803-Tender01/VZZ-6803-Tender01.zip" afterPath="$PROJECT_DIR$/public/assets/quotes/VZZ-6803-Tender01/VZZ-6803-Tender01.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/home_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/home_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/invites_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/invites_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/quotes_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/quotes_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/rfis_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/rfis_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/index.html.erb" afterPath="$PROJECT_DIR$/app/views/home/index.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/in_apps_layout.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/in_apps_layout.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quotes/_latest_quotes.html.erb" afterPath="$PROJECT_DIR$/app/views/quotes/_latest_quotes.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quotes/view.html.erb" afterPath="$PROJECT_DIR$/app/views/quotes/view.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" afterPath="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/account_taken.html.erb" afterPath="$PROJECT_DIR$/app/views/users/account_taken.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/company/_users.html.erb" afterPath="$PROJECT_DIR$/app/views/users/company/_users.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/company_profile.html.erb" afterPath="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/forgot_password.html.erb" afterPath="$PROJECT_DIR$/app/views/users/forgot_password.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/login.html.erb" afterPath="$PROJECT_DIR$/app/views/users/login.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/password_changed.html.erb" afterPath="$PROJECT_DIR$/app/views/users/password_changed.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/register.html.erb" afterPath="$PROJECT_DIR$/app/views/users/register.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/registration_completed.html.erb" afterPath="$PROJECT_DIR$/app/views/users/registration_completed.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/reset_password.html.erb" afterPath="$PROJECT_DIR$/app/views/users/reset_password.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/steps_completed.html.erb" afterPath="$PROJECT_DIR$/app/views/users/steps_completed.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/token_expired.html.erb" afterPath="$PROJECT_DIR$/app/views/users/token_expired.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/user_company_exist.html.erb" afterPath="$PROJECT_DIR$/app/views/users/user_company_exist.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/validation_complete.erb" afterPath="$PROJECT_DIR$/app/views/users/validation_complete.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/welcome_page.html.erb" afterPath="$PROJECT_DIR$/app/views/users/welcome_page.html.erb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -491,12 +29,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="forgot_password.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="forgot_password.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/forgot_password.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
               <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/users/register.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="107">
+              <caret line="122" column="131" selection-start-line="122" selection-start-column="131" selection-end-line="122" selection-end-column="131" />
+              <folding>
+                <marker date="1486125343000" expanded="true" signature="5674:5705" ph="..." />
+                <marker date="1486125343000" expanded="true" signature="5885:5898" ph="..." />
+                <marker date="1486125343000" expanded="true" signature="6458:6471" ph="..." />
+                <marker date="1486125343000" expanded="true" signature="6621:6651" ph="..." />
+                <marker date="1486125343000" expanded="true" signature="6871:6884" ph="..." />
+                <marker date="1486125343000" expanded="true" signature="7044:7074" ph="..." />
+                <marker date="1486125343000" expanded="true" signature="7318:7331" ph="..." />
+                <marker date="1486125343000" expanded="true" signature="7499:7529" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -547,7 +104,6 @@
         <option value="$PROJECT_DIR$/app/controllers/invites_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/users/register.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/in_apps_layout.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/welcome_page.html.erb" />
@@ -560,6 +116,7 @@
         <option value="$PROJECT_DIR$/app/views/users/password_changed.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/forgot_password.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/account_taken.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/register.html.erb" />
       </list>
     </option>
   </component>
@@ -1165,12 +722,12 @@
       <workItem from="1485906823610" duration="15013000" />
       <workItem from="1485952339080" duration="3635000" />
       <workItem from="1486001287469" duration="15862000" />
-      <workItem from="1486091595417" duration="9313000" />
+      <workItem from="1486091595417" duration="9431000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="466675000" />
+    <option name="totallyTimeSpent" value="466793000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="725" extended-state="6" />
@@ -1523,23 +1080,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/register.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
-          <folding>
-            <marker date="1486124581000" expanded="true" signature="5674:5705" ph="..." />
-            <marker date="1486124581000" expanded="true" signature="5885:5898" ph="..." />
-            <marker date="1486124581000" expanded="true" signature="6498:6511" ph="..." />
-            <marker date="1486124581000" expanded="true" signature="6661:6691" ph="..." />
-            <marker date="1486124581000" expanded="true" signature="6911:6924" ph="..." />
-            <marker date="1486124581000" expanded="true" signature="7084:7114" ph="..." />
-            <marker date="1486124581000" expanded="true" signature="7358:7371" ph="..." />
-            <marker date="1486124581000" expanded="true" signature="7539:7569" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/in_apps_layout.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -1657,7 +1197,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1667,6 +1207,23 @@
         <state relative-caret-position="75">
           <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/register.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="122" column="131" selection-start-line="122" selection-start-column="131" selection-end-line="122" selection-end-column="131" />
+          <folding>
+            <marker date="1486125343000" expanded="true" signature="5674:5705" ph="..." />
+            <marker date="1486125343000" expanded="true" signature="5885:5898" ph="..." />
+            <marker date="1486125343000" expanded="true" signature="6458:6471" ph="..." />
+            <marker date="1486125343000" expanded="true" signature="6621:6651" ph="..." />
+            <marker date="1486125343000" expanded="true" signature="6871:6884" ph="..." />
+            <marker date="1486125343000" expanded="true" signature="7044:7074" ph="..." />
+            <marker date="1486125343000" expanded="true" signature="7318:7331" ph="..." />
+            <marker date="1486125343000" expanded="true" signature="7499:7529" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
