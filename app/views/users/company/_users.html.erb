@@ -48,7 +48,9 @@
                 <th class="text-center">Name</th>
                 <th class="text-center">Email</th>
                 <th class="">Position</th>
-                <th class="text-center">Plan</th>
+                <% if session[:role] == 'Sub Contractor' %>
+                  <th class="text-center">Plan</th>
+                <% end %>
                 <% if session[:role_type] == 'Admin' %>
                     <th></th>
                 <% end %>
@@ -67,20 +69,22 @@
                 <td class="text-center"><%= "#{user.first_name} #{user.last_name}" %></td>
                 <td class="text-center"><%= user.email %></td>
                 <td class="text-center"><%= get_postion user.position %></td>
-                <td class="text-center"><%= get_user_plan user.id %></td>
+                <% if session[:role] == 'Sub Contractor' %>
+                  <td class="text-center"><%= get_user_plan user.id %></td>
+                <% end %>
                 <% if session[:role_type] == 'Admin' %>
                   <td class="text-center">
                     <% if (check_if_have_pending_request user.id) %>
-                        <a href="#!" class="requesting">
-                          <button class="btn btn-success requesting" id="<%= user.id %>" onclick="upgrade_plan(<%= user.id %>)">Upgrade Requested</button>
-                        </a>
+                        <!--<a href="#!" class="requesting">
+                          <button class="btn btn-success requesting" id="<%#= user.id %>" onclick="upgrade_plan(<%#= user.id %>)">Upgrade Requested</button>
+                        </a>-->
                     <% else %>
                         <select id="active_user" class="form-control active_user" onchange="location = this.value;">
                           <option>None</option>
 
-                          <% if (get_user_plan_value user.id).to_i < 2 %>
-                              <option value="/invites?upgrade=true&id=<%= user.id %>">Upgrade</option>
-                          <% end %>
+                          <%# if (get_user_plan_value user.id).to_i < 2 %>
+                              <!--<option value="/invites?upgrade=true&id=<%#= user.id %>">Upgrade</option>-->
+                          <%# end %>
                           <option value="/users/profile?id=<%= user.id %>">View</option>
                           <option value="/invites/delete_team_members?id=<%= user.id %>">Delete</option>
                         </select>
@@ -113,7 +117,9 @@
           <th>Invited</th>
           <th>Name</th>
           <th>Email</th>
-          <th>Plan</th>
+          <% if session[:role] == 'Sub Contractor' %>
+            <th>Plan</th>
+          <% end %>
           <% if session[:role_type] == 'Admin' %>
               <th></th>
           <% end %>
@@ -127,7 +133,9 @@
             <td><%= user.created_at.strftime('%d.%m.%Y') %></td>
             <td><%= "#{user.first_name} #{user.last_name}" %></td>
             <td><%= user.email %></td>
-            <td><%= get_user_plan user.id %></td>
+            <% if session[:role] == 'Sub Contractor' %>
+              <td><%= get_user_plan user.id %></td>
+            <% end %>
             <% if session[:role_type] == 'Admin' %>
               <td>
                 <select id="invited_user" class="form-control" onchange="location = this.value;">
@@ -135,8 +143,8 @@
                   <% if check_user_created_status user.id %>
                       <option class="" value="/invites/re_invite_user?id=<%= user.id %>">Re-Invite</option>
                   <% end %>
-                  <option value="/users/profile?id=<%= user.id %>">View</option>
-                  <option value="/invites/delete_team_members?id=<%= user.id %>">Cancel Invites</option>
+                  <!--<option value="/users/profile?id=<%#= user.id %>">View</option>-->
+                  <!--<option value="/invites/delete_team_members?id=<%#= user.id %>">Cancel Invites</option>-->
                   <option value="/invites/delete_team_members?id=<%= user.id %>">Delete</option>
                 </select>
               </td>
@@ -1256,13 +1264,11 @@
       data: {email: email,f_name:f_name,l_name:l_name,plan:plan},
       url: "/invites/sent_invite"
     }).done(function (data) {
-      if(data.state == 'valid'){
-        $('.first_name').val('');
-        $('.email').val('');
-        $('.last_name').val('');
-        $('#invite_Modal').hide();
-        //window.location = "/invites/success";
-      }
+      $('.first_name').val('');
+      $('.email').val('');
+      $('.last_name').val('');
+      $('#invite_Modal').hide();
+      $('.users').html(data);
     });
   }
 

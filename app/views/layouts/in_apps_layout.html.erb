@@ -107,7 +107,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <% else %>
     <%= puts params[:action] %>
-  <% if params[:action] == 'register' || params[:action] == 'create_user' || params[:action] == 'user_company_exist' ||  params[:action] == 'steps_completed' || params[:action] == 'account_taken' || params[:action] == 'forgot_password' || params[:action] == 'validation_complete' || params[:action] == 'reset_password' || params[:action] == 'password_changed' || params[:action] == 'token_expired' %>
+  <% if params[:action] == 'register' || params[:action] == 'registration' || params[:action] == 'create_user' || params[:action] == 'user_company_exist' ||  params[:action] == 'steps_completed' || params[:action] == 'account_taken' || params[:action] == 'forgot_password' || params[:action] == 'validation_complete' || params[:action] == 'reset_password' || params[:action] == 'password_changed' || params[:action] == 'token_expired' %>
 
     <div class="content">
       <%= yield %>

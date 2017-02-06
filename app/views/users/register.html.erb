@@ -57,38 +57,35 @@
 
             <div class="form-group">
               <input type="hidden" name="tender_id" value="<%= params[:tender] %>">
-              <label>YOUR FIRST NAME</label>
+
               <div class="form-group required">
-                <%= f.text_field :first_name,:class=>'form-control', :value => "#{params[:name].present? ? params[:name] : ''}" %>
+                <%= f.text_field :first_name,:class=>'form-control', :value => "#{params[:name].present? ? params[:name] : ''}", :placeholder => 'Your First Name' %>
               </div>
 
-              <label>YOUR EMAIL</label>
+
               <div class="form-group required">
-                <%= f.text_field :email,:class=>'form-control', :value => "#{params[:email].present? ? params[:email] : ''}" %>
+                <%= f.text_field :email,:class=>'form-control', :value => "#{params[:email].present? ? params[:email] : ''}", :placeholder => 'Your Email' %>
                 <div class="email_error_message"></div>
               </div>
 
-              <label>YOUR COMPANY</label>
+
               <div class="form-group required">
                 <%#= f.text_field :company,:class=>'form-control'%>
                 <%= f.fields_for :company do |company| %>
-                    <%= company.text_field :name,:class=>'form-control'%>
+                    <%= company.text_field :name,:class=>'form-control',  :placeholder => 'Your Company' %>
                 <% end %>
               </div>
 
-              <label>YOUR PASSWORD</label>
               <div class="form-group required">
-                <%= f.password_field :password,:class=>'form-control input-md'%>
+                <%= f.password_field :password,:class=>'form-control input-md',   :placeholder => 'Your Password' %>
                 <div class="password_error" style="display: none;">
                   <div class="password_length"><p style="font-style: italic;color: grey"><i class="fa fa-times-circle-o" aria-hidden="true"></i>Minimum of 6 characters</p></div>
                   <div class="password_number"><p style="font-style: italic;color: grey"><i class="fa fa-times-circle-o" aria-hidden="true"></i> Should include at least 1 number.</p></div>
                   <div class="password_letter"><p style="font-style: italic;color: grey"><i class="fa fa-times-circle-o" aria-hidden="true"></i>Should include at least 1 Capital letter.</p></div>
                 </div>
-
               </div>
-              <label>CONFIRM PASSWORD</label>
               <div class="form-group required">
-                <%= f.password_field :confirmed_password,:class=>'form-control input-md' %>
+                <%= f.password_field :confirmed_password,:class=>'form-control input-md',   :placeholder => 'Confirm Password'  %>
                 <div class="con_password_error" style="display: none;">
                   <div class="password_match"><p style="font-style: italic;color: grey"><i class="fa fa-times-circle-o" aria-hidden="true"></i>Does not match to password.</p></div>
                 </div>

@@ -16,8 +16,8 @@
             <li><a href="#users" data-toggle="tab" id="">Users</a></li>
         <% end %>
 
-        <li><a href="#portfolio" data-toggle="tab" id="">Portfolio</a></li>
-        <li><a href="#billing" data-toggle="tab" id="">Billing</a></li>
+        <!--<li><a href="#portfolio" data-toggle="tab" id="">Portfolio</a></li>
+        <li><a href="#billing" data-toggle="tab" id="">Billing</a></li>-->
       </ul>
     </div>
   </div>
@@ -34,10 +34,10 @@
             <% if File.exist?(@user.company_avatar.image.path(:original)) %>
               <img src="<%= @user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
             <% else %>
-              <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
+              <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
             <% end %>
           <% else %>
-              <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
+              <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
           <% end %>
         </div>
 

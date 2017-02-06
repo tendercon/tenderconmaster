@@ -5,7 +5,9 @@
       <ul class="nav nav-tabs ">
         <li class="active"><a href="#overview" data-toggle="tab" id="">Overview</a></li>
         <li><a href="#edit_profile" data-toggle="tab" id="">Edit Profile</a></li>
-        <li><a href="#subscription" data-toggle="tab" id="">Subscription</a></li>
+        <% if session[:role] == 'Sub Contractor' %>
+          <li><a href="#subscription" data-toggle="tab" id="">Subscription</a></li>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -22,10 +24,10 @@
             <% if File.exist?(@user.avatar.image.path(:original)) %>
               <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
             <% else %>
-              <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
+              <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
             <% end %>
           <% else %>
-            <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
+            <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
           <% end %>
         </div>
 

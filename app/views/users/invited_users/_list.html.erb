@@ -1,0 +1,48 @@
+<table  class="table table-striped table-bordered">
+  <thead>
+  <% if @invited_users.present? %>
+      <tr>
+        <th>Invited</th>
+        <th>Name</th>
+        <th>Email</th>
+        <% if session[:role] == 'Sub Contractor' %>
+            <th>Plan</th>
+        <% end %>
+        <% if session[:role_type] == 'Admin' %>
+            <th></th>
+        <% end %>
+      </tr>
+  <% end %>
+  </thead>
+  <tbody>
+  <% if @invited_users.present? %>
+      <% @invited_users.each do |user| %>
+          <tr>
+            <td><%= user.created_at.strftime('%d.%m.%Y') %></td>
+            <td><%= "#{user.first_name} #{user.last_name}" %></td>
+            <td><%= user.email %></td>
+            <% if session[:role] == 'Sub Contractor' %>
+                <td><%= get_user_plan user.id %></td>
+            <% end %>
+            <% if session[:role_type] == 'Admin' %>
+                <td>
+                  <select id="invited_user" class="form-control" onchange="location = this.value;">
+                    <option>None</option>
+                    <% if check_user_created_status user.id %>
+                        <option class="" value="/invites/re_invite_user?id=<%= user.id %>">Re-Invite</option>
+                    <% end %>
+                    <!--<option value="/users/profile?id=<%#= user.id %>">View</option>-->
+                    <!--<option value="/invites/delete_team_members?id=<%#= user.id %>">Cancel Invites</option>-->
+                    <option value="/invites/delete_team_members?id=<%= user.id %>">Delete</option>
+                  </select>
+                </td>
+            <% end %>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr>
+        <td style="color: grey;">No Members invited</td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

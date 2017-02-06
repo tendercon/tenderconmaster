@@ -2,7 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/landing_page.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/landing_page.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/invites_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/invites_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/invites/registration.html.erb" afterPath="$PROJECT_DIR$/app/views/invites/registration.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/in_apps_layout.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/in_apps_layout.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/company/_users.html.erb" afterPath="$PROJECT_DIR$/app/views/users/company/_users.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/company_profile.html.erb" afterPath="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/profile.html.erb" afterPath="$PROJECT_DIR$/app/views/users/profile.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/register.html.erb" afterPath="$PROJECT_DIR$/app/views/users/register.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/registration_completed.html.erb" afterPath="$PROJECT_DIR$/app/views/users/registration_completed.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/welcome_page.html.erb" afterPath="$PROJECT_DIR$/app/views/users/welcome_page.html.erb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,63 +42,128 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="forgot_password.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/users/forgot_password.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="register.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/register.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="122" column="131" selection-start-line="122" selection-start-column="131" selection-end-line="122" selection-end-column="131" />
+            <state relative-caret-position="316">
+              <caret line="95" column="69" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="69" />
               <folding>
-                <marker date="1486125343000" expanded="true" signature="5674:5705" ph="..." />
-                <marker date="1486125343000" expanded="true" signature="5885:5898" ph="..." />
-                <marker date="1486125343000" expanded="true" signature="6458:6471" ph="..." />
-                <marker date="1486125343000" expanded="true" signature="6621:6651" ph="..." />
-                <marker date="1486125343000" expanded="true" signature="6871:6884" ph="..." />
-                <marker date="1486125343000" expanded="true" signature="7044:7074" ph="..." />
-                <marker date="1486125343000" expanded="true" signature="7318:7331" ph="..." />
-                <marker date="1486125343000" expanded="true" signature="7499:7529" ph="..." />
+                <marker date="1486347575000" expanded="true" signature="5634:5665" ph="..." />
+                <marker date="1486347575000" expanded="true" signature="5845:5858" ph="..." />
+                <marker date="1486347575000" expanded="true" signature="6418:6431" ph="..." />
+                <marker date="1486347575000" expanded="true" signature="6581:6611" ph="..." />
+                <marker date="1486347575000" expanded="true" signature="6831:6844" ph="..." />
+                <marker date="1486347575000" expanded="true" signature="7004:7034" ph="..." />
+                <marker date="1486347575000" expanded="true" signature="7278:7291" ph="..." />
+                <marker date="1486347575000" expanded="true" signature="7459:7489" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="landing_page.html.erb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/landing_page.html.erb">
+      <file leaf-file-name="tendercon_steps.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="14" column="79" selection-start-line="14" selection-start-column="79" selection-end-line="14" selection-end-column="79" />
+            <state relative-caret-position="460">
+              <caret line="60" column="112" selection-start-line="60" selection-start-column="63" selection-end-line="60" selection-end-column="112" />
+              <folding>
+                <marker date="1486348055000" expanded="true" signature="21249:21262" ph="..." />
+                <marker date="1486348055000" expanded="true" signature="21740:21752" ph="..." />
+                <marker date="1486348055000" expanded="true" signature="22232:22244" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_company_overview.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-332">
+              <caret line="13" column="83" selection-start-line="13" selection-start-column="83" selection-end-line="13" selection-end-column="83" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="coming_soon_layout.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
+      <file leaf-file-name="company_profile.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/company_profile.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="15" column="81" selection-start-line="14" selection-start-column="2" selection-end-line="15" selection-end-column="79" />
+            <state relative-caret-position="267">
+              <caret line="39" column="89" selection-start-line="39" selection-start-column="89" selection-end-line="39" selection-end-column="89" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registration.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/invites/registration.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="259">
+              <caret line="74" column="29" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
               <folding>
-                <marker date="1485507029000" expanded="true" signature="17829:17882" ph="..." />
-                <marker date="1485507029000" expanded="true" signature="18609:18662" ph="..." />
-                <marker date="1485507029000" expanded="true" signature="19542:19609" ph="..." />
-                <marker date="1485507029000" expanded="true" signature="20027:20080" ph="..." />
-                <marker date="1485507029000" expanded="true" signature="20301:20354" ph="..." />
-                <marker date="1485507029000" expanded="true" signature="20567:20620" ph="..." />
-                <marker date="1485507029000" expanded="true" signature="20830:20883" ph="..." />
-                <marker date="1485507029000" expanded="true" signature="21100:21153" ph="..." />
-                <marker date="1485507029000" expanded="true" signature="21262:21315" ph="..." />
-                <marker date="1485507029000" expanded="true" signature="21416:21469" ph="..." />
-                <marker date="1485507029000" expanded="true" signature="21567:21620" ph="..." />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <marker date="1486368231000" expanded="true" signature="4106:4119" ph="..." />
+                <marker date="1486368231000" expanded="true" signature="4267:4297" ph="..." />
+                <marker date="1486368231000" expanded="true" signature="4513:4526" ph="..." />
+                <marker date="1486368231000" expanded="true" signature="4684:4714" ph="..." />
+                <marker date="1486368231000" expanded="true" signature="4954:4967" ph="..." />
+                <marker date="1486368231000" expanded="true" signature="5133:5163" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/login.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29">
+              <caret line="55" column="47" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="in_apps_layout.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/in_apps_layout.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="109" column="73" selection-start-line="109" selection-start-column="73" selection-end-line="109" selection-end-column="73" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/profile.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="67" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="67" />
+              <folding>
+                <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_topmenu.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="193" column="65" selection-start-line="193" selection-start-column="65" selection-end-line="193" selection-end-column="65" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#a#0;n#li#2;n#ul#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_overview.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" column="62" selection-start-line="17" selection-start-column="62" selection-end-line="17" selection-end-column="62" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -98,8 +176,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Gemfile" />
-        <option value="$PROJECT_DIR$/public/vendors/coming_soon/js/main.js" />
         <option value="$PROJECT_DIR$/config/environments/development.rb" />
         <option value="$PROJECT_DIR$/public/img/logos/tendercon.svg" />
         <option value="$PROJECT_DIR$/app/views/tendercon_mailer/home_notifcation.html.erb" />
@@ -115,11 +191,7 @@
         <option value="$PROJECT_DIR$/config/routes.rb" />
         <option value="$PROJECT_DIR$/db/seeds.rb" />
         <option value="$PROJECT_DIR$/app/views/users/tabs/_account_settings.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/users/profile.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/change_password.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/home_controller.rb" />
@@ -131,24 +203,30 @@
         <option value="$PROJECT_DIR$/app/controllers/rfis_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/login.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/users/company/_users.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/invites_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/in_apps_layout.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/users/welcome_page.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/validation_complete.erb" />
         <option value="$PROJECT_DIR$/app/views/users/user_company_exist.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/token_expired.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/steps_completed.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/reset_password.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/users/registration_completed.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/password_changed.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/forgot_password.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/account_taken.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/users/register.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/landing_page.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/registration_completed.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/welcome_page.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/register.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/invited_users/_list.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/company/_users.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/invites_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/in_apps_layout.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/invites/registration.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/profile.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" />
       </list>
     </option>
   </component>
@@ -161,7 +239,7 @@
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="725" />
+    <option name="height" value="726" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -188,7 +266,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="RailsProjectView" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -199,6 +276,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="RailsProjectView" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -393,7 +472,81 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="users" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tabs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layouts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nav" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_v2" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="invites" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -449,7 +602,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -754,18 +906,20 @@
       <workItem from="1485906823610" duration="15013000" />
       <workItem from="1485952339080" duration="3635000" />
       <workItem from="1486001287469" duration="15862000" />
-      <workItem from="1486091595417" duration="9544000" />
+      <workItem from="1486091595417" duration="9689000" />
+      <workItem from="1486338677314" duration="723000" />
+      <workItem from="1486341464359" duration="5684000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="466906000" />
+    <option name="totallyTimeSpent" value="473458000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="725" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="726" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31987077" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -825,20 +979,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/users/_suspended.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/_completed.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/_deleted.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -874,27 +1014,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="188" column="110" selection-start-line="188" selection-start-column="110" selection-end-line="188" selection-end-column="110" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="154" selection-start-line="13" selection-start-column="154" selection-end-line="13" selection-end-column="154" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="18" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
@@ -920,7 +1039,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="86" selection-start-line="5" selection-start-column="86" selection-end-line="5" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -928,7 +1046,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="538">
           <caret line="470" column="24" selection-start-line="470" selection-start-column="24" selection-end-line="470" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -936,7 +1053,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -944,7 +1060,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -952,7 +1067,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="577">
           <caret line="76" column="60" selection-start-line="76" selection-start-column="16" selection-end-line="76" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -960,7 +1074,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
           <caret line="152" column="17" selection-start-line="152" selection-start-column="13" selection-end-line="152" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -968,7 +1081,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="1372" column="57" selection-start-line="1372" selection-start-column="52" selection-end-line="1372" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -976,7 +1088,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -984,15 +1095,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="128" column="102" selection-start-line="128" selection-start-column="102" selection-end-line="128" selection-end-column="102" />
-          <folding>
-            <marker date="1486118963000" expanded="false" signature="33248:33294" ph="..." />
-            <marker date="1486118963000" expanded="false" signature="33365:33411" ph="..." />
-            <marker date="1486118963000" expanded="false" signature="33978:33992" ph="..." />
-            <marker date="1486118963000" expanded="false" signature="34188:34225" ph="..." />
-            <marker date="1486118963000" expanded="false" signature="34418:34432" ph="..." />
-            <marker date="1486118963000" expanded="false" signature="34741:34758" ph="..." />
-            <marker date="1486118963000" expanded="false" signature="35044:35058" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1000,7 +1102,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
           <caret line="66" column="21" selection-start-line="58" selection-start-column="10" selection-end-line="66" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1008,7 +1109,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="22" selection-start-line="7" selection-start-column="12" selection-end-line="9" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1016,7 +1116,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="250" column="20" selection-start-line="250" selection-start-column="20" selection-end-line="250" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1024,7 +1123,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
           <caret line="97" column="12" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1032,17 +1130,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="92" column="22" selection-start-line="92" selection-start-column="22" selection-end-line="100" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/profile.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="70" column="85" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="85" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1050,78 +1137,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
           <caret line="325" column="28" selection-start-line="325" selection-start-column="5" selection-end-line="325" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/invites_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="456" column="9" selection-start-line="456" selection-start-column="0" selection-end-line="456" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="1875" column="16" selection-start-line="1875" selection-start-column="9" selection-end-line="1875" selection-end-column="9" />
-          <folding>
-            <marker date="1486124116000" expanded="true" signature="24496:24784" ph="if ... end" />
-            <marker date="1486124116000" expanded="true" signature="24556:24774" ph="do ... end" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/company_profile.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="191" column="19" selection-start-line="191" selection-start-column="19" selection-end-line="191" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/company/_users.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#2;n#div#0;n#div#1;n#!!top" expanded="true" />
-            <marker date="1486123903000" expanded="true" signature="44284:44315" ph="..." />
-            <marker date="1486123903000" expanded="true" signature="44485:44498" ph="..." />
-            <marker date="1486123903000" expanded="true" signature="47639:47655" ph="..." />
-            <marker date="1486123903000" expanded="true" signature="47924:47940" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/in_apps_layout.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="79" column="53" selection-start-line="79" selection-start-column="20" selection-end-line="79" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="450" column="53" selection-start-line="450" selection-start-column="42" selection-end-line="450" selection-end-column="42" />
-          <folding>
-            <marker date="1486124769000" expanded="true" signature="21249:21262" ph="..." />
-            <marker date="1486124769000" expanded="true" signature="21740:21752" ph="..." />
-            <marker date="1486124769000" expanded="true" signature="22232:22244" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/welcome_page.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1129,7 +1144,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="47" selection-start-line="3" selection-start-column="47" selection-end-line="3" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1137,9 +1151,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="51" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="51" />
-          <folding>
-            <marker date="1486124789000" expanded="true" signature="3031:3047" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1147,6 +1158,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/subscription.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/reset_password.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/password_changed.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/account_taken.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/billing.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/registration_completed.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="58" selection-start-line="4" selection-start-column="58" selection-end-line="4" selection-end-column="58" />
           <folding />
         </state>
       </provider>
@@ -1159,94 +1212,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/subscription.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/landing_page.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="208">
+          <caret line="14" column="79" selection-start-line="14" selection-start-column="79" selection-end-line="14" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/welcome_page.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="73" selection-start-line="12" selection-start-column="73" selection-end-line="12" selection-end-column="73" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/reset_password.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/registration_completed.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/password_changed.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/login.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="55" column="47" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/account_taken.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="51" selection-start-line="4" selection-start-column="51" selection-end-line="4" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/billing.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/forgot_password.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/register.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="107">
-          <caret line="122" column="131" selection-start-line="122" selection-start-column="131" selection-end-line="122" selection-end-column="131" />
-          <folding>
-            <marker date="1486125343000" expanded="true" signature="5674:5705" ph="..." />
-            <marker date="1486125343000" expanded="true" signature="5885:5898" ph="..." />
-            <marker date="1486125343000" expanded="true" signature="6458:6471" ph="..." />
-            <marker date="1486125343000" expanded="true" signature="6621:6651" ph="..." />
-            <marker date="1486125343000" expanded="true" signature="6871:6884" ph="..." />
-            <marker date="1486125343000" expanded="true" signature="7044:7074" ph="..." />
-            <marker date="1486125343000" expanded="true" signature="7318:7331" ph="..." />
-            <marker date="1486125343000" expanded="true" signature="7499:7529" ph="..." />
+            <element signature="n#style#0;n#button#0;n#a#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
+        <state relative-caret-position="225">
           <caret line="15" column="81" selection-start-line="14" selection-start-column="2" selection-end-line="15" selection-end-column="79" />
           <folding>
             <marker date="1485507029000" expanded="true" signature="17829:17882" ph="..." />
@@ -1264,11 +1250,157 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/landing_page.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/users/forgot_password.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="14" column="79" selection-start-line="14" selection-start-column="79" selection-end-line="14" selection-end-column="79" />
+        <state relative-caret-position="0">
+          <caret line="5" column="49" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/company/_users.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="339">
+          <caret line="1270" column="29" selection-start-line="1270" selection-start-column="29" selection-end-line="1270" selection-end-column="29" />
+          <folding>
+            <marker date="1486365810000" expanded="true" signature="44651:44682" ph="..." />
+            <marker date="1486365810000" expanded="true" signature="44852:44865" ph="..." />
+            <marker date="1486365810000" expanded="true" signature="48006:48022" ph="..." />
+            <marker date="1486365810000" expanded="true" signature="48291:48307" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/invited_users/_list.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="24" />
+          <folding>
+            <marker date="1486124116000" expanded="true" signature="24496:24784" ph="if ... end" />
+            <marker date="1486124116000" expanded="true" signature="24556:24774" ph="do ... end" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/invites_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="306" column="37" selection-start-line="306" selection-start-column="37" selection-end-line="306" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/in_apps_layout.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="109" column="73" selection-start-line="109" selection-start-column="73" selection-end-line="109" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/login.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="55" column="47" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/invites/registration.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="74" column="29" selection-start-line="74" selection-start-column="29" selection-end-line="74" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <marker date="1486368231000" expanded="true" signature="4106:4119" ph="..." />
+            <marker date="1486368231000" expanded="true" signature="4267:4297" ph="..." />
+            <marker date="1486368231000" expanded="true" signature="4513:4526" ph="..." />
+            <marker date="1486368231000" expanded="true" signature="4684:4714" ph="..." />
+            <marker date="1486368231000" expanded="true" signature="4954:4967" ph="..." />
+            <marker date="1486368231000" expanded="true" signature="5133:5163" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/register.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="95" column="69" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="69" />
+          <folding>
+            <marker date="1486347575000" expanded="true" signature="5634:5665" ph="..." />
+            <marker date="1486347575000" expanded="true" signature="5845:5858" ph="..." />
+            <marker date="1486347575000" expanded="true" signature="6418:6431" ph="..." />
+            <marker date="1486347575000" expanded="true" signature="6581:6611" ph="..." />
+            <marker date="1486347575000" expanded="true" signature="6831:6844" ph="..." />
+            <marker date="1486347575000" expanded="true" signature="7004:7034" ph="..." />
+            <marker date="1486347575000" expanded="true" signature="7278:7291" ph="..." />
+            <marker date="1486347575000" expanded="true" signature="7459:7489" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="62" selection-start-line="17" selection-start-column="62" selection-end-line="17" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="60" column="112" selection-start-line="60" selection-start-column="63" selection-end-line="60" selection-end-column="112" />
+          <folding>
+            <marker date="1486348055000" expanded="true" signature="21249:21262" ph="..." />
+            <marker date="1486348055000" expanded="true" signature="21740:21752" ph="..." />
+            <marker date="1486348055000" expanded="true" signature="22232:22244" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-332">
+          <caret line="13" column="83" selection-start-line="13" selection-start-column="83" selection-end-line="13" selection-end-column="83" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/company_profile.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="39" column="89" selection-start-line="39" selection-start-column="89" selection-end-line="39" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/profile.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="67" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="67" />
+          <folding>
+            <element signature="n#style#0;n#img#1;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="193" column="65" selection-start-line="193" selection-start-column="65" selection-end-line="193" selection-end-column="65" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#li#2;n#ul#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

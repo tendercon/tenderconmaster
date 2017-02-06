@@ -144,7 +144,9 @@ class InvitesController < ApplicationController
       notification.save
 
       TenderconMailer.delay.sent_invitation_email(@user.email,admin_name,invited_name,request.host_with_port,admin.company,@user.id)
-      render :json => { :state => 'valid'}
+      @invited_users = User.where("parent_id = #{@user.parent_id} AND position is null")
+      #render :json => { :state => 'valid'}
+      @data = render :partial => 'users/invited_users/list'
     end
   end
 
@@ -302,6 +304,7 @@ class InvitesController < ApplicationController
     @user = User.find(params[:id])
     User.where(:id => @user.id).update_all(:email_acceptance => true)
     @parent = User.find(@user.parent_id)
+    render :layout => 'in_apps_layout'
   end
 
   def update_invited_user

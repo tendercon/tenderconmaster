@@ -188,10 +188,10 @@
             <% if File.exist?(@user.avatar.image.path(:original)) %>
                 <img src="<%= @user.avatar.image.url(:original) %>" class="img-circle" alt="" style="width: 35px !important; height: 30px !important;">
             <% else %>
-                <img src="../assets/pages/media/profile/profile_user.jpg" class="img-circle" alt="">
+                <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle" alt="">
             <% end %>
         <% else %>
-            <img src="../assets/pages/media/profile/profile_user.jpg" class="img-circle" alt="">
+            <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle" alt="">
         <% end %>
         <span class="username username-hide-on-mobile"> <%= @user.first_name %> </span>
         <i class="fa fa-angle-down"></i>
