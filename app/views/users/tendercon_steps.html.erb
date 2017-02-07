@@ -5,10 +5,9 @@
       <div class="step_div">
         <!--<img src="/assets/img-4.jpg" width="30px" class="img-responsive center-block">-->
         <div class="text-center">
-          <img src="/img/logos/TENDERCONABOVELOGO.png" width="300px" height="100px">
+          <img src="/img/logos/TENDERCONABOVELOGO.png" width="300px">
         </div>
-        <br>
-        <br>
+
         <p class="text-center login-title">Your Personal Information</p>
         <br/>
         <div class="form-group">
@@ -43,7 +42,7 @@
               </a>
           <% else %>
               <a href="#!">
-                <button class="btn  btn-primary btn-login step2_btn" type="button" style="background-color: #56A99F !important;">Next</button>
+                <button class="btn green uppercase step2_btn" type="button">Next</button>
               </a>
           <% end %>
         </div>
@@ -85,7 +84,7 @@
       <div class="step_div">
         <!--<img src="/assets/img-4.jpg" width="30px" class="img-responsive center-block">-->
         <div class="text-center">
-          <img src="/img/logos/TENDERCONABOVELOGO.png" width="300px" height="100px">
+          <img src="/img/logos/TENDERCONABOVELOGO.png" width="300px">
         </div>
         <p class="text-center login-title">Your Company Information</p>
 
@@ -130,7 +129,7 @@
         <div class="text-center">
           <a href="#!">
             <button class="btn  btn-default btn-login back2_btn" type="button">Back</button>
-            <button class="btn  btn-primary btn-login step3_btn" type="button" style="background-color: #56A99F !important;">Next</button>
+            <button class="btn green uppercase step3_btn" type="button">Next</button>
           </a>
         </div>
       </div>
@@ -175,11 +174,9 @@
             <h4 class="modal-title" id="myModalLabel">Modal title</h4>
           </div>
           <div class="modal-body">
-            ...
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
@@ -191,7 +188,7 @@
     <div class="col-md-6 step3_div_lf" style="background-color: #ffffff;height: 900px">
       <div class="step_div">
         <div class="text-center">
-          <img src="/img/logos/TENDERCONABOVELOGO.png" width="300px" height="100px">
+          <img src="/img/logos/TENDERCONABOVELOGO.png" width="300px">
         </div>
 
         <p class="text-center login-title">Your Company Information</p>
@@ -204,16 +201,14 @@
           </div>
         </div>
         <div class="form-group">
-          <label> SUBURB</label>
-          <input type="text" class="form-control"  id="suburb" name="suburb" value="" required autofocus readonly>
+          <input type="hidden" class="form-control"  id="suburb" name="suburb" value="" required autofocus readonly>
         </div>
         <div class="form-group">
-          <label> STATE</label>
-          <input type="text" class="form-control"  id="state" name="state" value="" required autofocus readonly>
+
+          <input type="hidden" class="form-control"  id="state" name="state" value="" required autofocus readonly>
         </div>
         <div class="form-group">
-          <label> POSTCODE</label>
-          <input type="text" class="form-control"  id="postcode" name="postcode" value="" required autofocus readonly>
+          <input type="hidden" class="form-control"  id="postcode" name="postcode" value="" required autofocus readonly>
         </div>
 
         <div class="form-group">
@@ -227,10 +222,10 @@
 
             <button class="btn  btn-default btn-login back3_btn" type="button">Back</button>
             <% if session[:role] == 'Head Contractor' %>
-                <button class="btn  btn-primary btn-login step4_btn" type="button" title="finish_hc">Next</button>
+                <button class="btn green uppercase step4_btn" type="button" title="finish_hc">Next</button>
                 <!--<button class="btn  btn-primary btn-login step4_btn" type="submit">Next</button>-->
             <% else %>
-                <button class="btn  btn-primary btn-login step4_btn" type="button">Next</button>
+                <button class="btn  green uppercase step4_btn" type="button">Next</button>
             <% end %>
           </a>
         </div>
@@ -345,7 +340,7 @@
           <a href="#!">
             <button class="btn  btn-default btn-login back4_btn" type="button">Back</button>
 
-            <button class="btn  btn-primary btn-login step5_btn" type="button">Next</button>
+            <button class="btn green uppercase step5_btn" type="button">Next</button>
 
           </a>
         </div>

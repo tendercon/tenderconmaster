@@ -83,6 +83,7 @@ License: You must have a valid license purchased only from themeforest(the above
           <button class="close" data-close="alert"></button>
           <span> Enter any username and password. </span>
         </div>
+        <input type="hidden" name="tender" value="<%= params[:tender].present? ? params[:tender] : nil %>">
         <div class="form-group">
           <label class="control-label visible-ie8 visible-ie9">Username</label>
           <input class="form-control form-control-solid placeholder-no-fix" type="text" autocomplete="off" placeholder="Email" name="email"  /> </div>
@@ -107,7 +108,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 <% else %>
     <%= puts params[:action] %>
-  <% if params[:action] == 'register' || params[:action] == 'registration' || params[:action] == 'create_user' || params[:action] == 'user_company_exist' ||  params[:action] == 'steps_completed' || params[:action] == 'account_taken' || params[:action] == 'forgot_password' || params[:action] == 'validation_complete' || params[:action] == 'reset_password' || params[:action] == 'password_changed' || params[:action] == 'token_expired' %>
+  <% if params[:action] == 'register' || params[:action] == 'registration' || params[:action] == 'create_user' || params[:action] == 'user_company_exist' ||  params[:action] == 'steps_completed' || params[:action] == 'account_taken' || params[:action] == 'forgot_password' || params[:action] == 'validation_complete' || params[:action] == 'reset_password' || params[:action] == 'password_changed' || params[:action] == 'token_expired' || params[:action] == 'update_password' %>
 
     <div class="content">
       <%= yield %>

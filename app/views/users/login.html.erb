@@ -51,6 +51,7 @@
     <div class="animate form login_form">
       <section class="login_content">
         <%= form_tag(authenticate_users_path, {  :name=> "login",:class=>'form-signin' } )  do %>
+
           <h1>Login Form</h1>
           <div class="form-group has-feedback">
             <% if flash[:error] %>

@@ -459,7 +459,8 @@ class TendersController < ApplicationController
           sc_invite_notif.tender_id = tender_id
           sc_invite_notif.message = "Invitation for tender #{tender.title} (#{t.name})"
           sc_invite_notif.save
-          TenderconMailer.delay.sent_sc_invites(a.email,a.name,t.name,path,decline_path)
+          #TenderconMailer.delay.sent_sc_invites(a.email,a.name,t.name,path,decline_path)
+          TenderconMailer.sent_sc_invites(a.email,a.name,t.name,path,decline_path).deliver_now
         end
       end
     end
@@ -541,7 +542,7 @@ class TendersController < ApplicationController
         @tender_id = params[:params]
         ScInviteNotification.where(:tender_id => @tender_id).update_all(:seen => 1)
       end
-      tender_invites = TenderInvite.where("email = '#{session[:email]}' and (status is null OR status = 'opened')")
+      tender_invites = TenderInvite.where("email = '#{session[:email]}' and (status is null OR status = 'opened' OR status = 'accepted')")
       tender_array = []
       if tender_invites.present?
         tender_invites.each do |a|

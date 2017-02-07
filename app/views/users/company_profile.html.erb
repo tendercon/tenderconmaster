@@ -16,6 +16,9 @@
             <li><a href="#users" data-toggle="tab" id="">Users</a></li>
         <% end %>
 
+        <% if session[:role] == 'Sub Contractor' %>
+            <li><a href="#billing" data-toggle="tab" id="">Billing</a></li>
+        <% end %>
         <!--<li><a href="#portfolio" data-toggle="tab" id="">Portfolio</a></li>
         <li><a href="#billing" data-toggle="tab" id="">Billing</a></li>-->
       </ul>
@@ -106,6 +109,26 @@
               <td class="col-md-3">About</td>
               <td><%= @added_company_profile.present? ? @added_company_profile.about_me : nil %></td>
             </tr>
+            <tr>
+              <td class="col-md-3">Tendercon ID</td>
+              <td><%= "#{@user.tendercon_id}" %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">No. of Employees</td>
+              <td><%=  @added_company_profile.present? ? @added_company_profile.number_of_employees : nil %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Commenced Operation</td>
+              <td><%=  @added_company_profile.present? ? @added_company_profile.commenced_operation : nil %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Tendercon member since</td>
+              <td><%= @added_company_profile.present? ? @added_company_profile.since : nil %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Project range</td>
+              <td><%= @added_company_profile.present? ? @added_company_profile.project_range : nil %></td>
+            </tr>
 
             <% if session[:role] == 'Sub Contractor' %>
                 <tr>
@@ -128,26 +151,6 @@
                     <% end %>
                 <% end %>
             <% end %>
-            <tr>
-              <td class="col-md-3">Tendercon id</td>
-              <td><%= "#{@user.tendercon_id}" %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">No. of Employees</td>
-              <td><%=  @added_company_profile.present? ? @added_company_profile.number_of_employees : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">Commenced Operation</td>
-              <td><%=  @added_company_profile.present? ? @added_company_profile.commenced_operation : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">Tendercon member since</td>
-              <td><%= @added_company_profile.present? ? @added_company_profile.since : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">Project range</td>
-              <td><%= @added_company_profile.present? ? @added_company_profile.project_range : nil %></td>
-            </tr>
             <tr>
               <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Contact</strong></td>
             </tr>

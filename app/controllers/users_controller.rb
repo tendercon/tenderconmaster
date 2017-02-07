@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   #layout 'users_layout', :only => [:login]
   layout 'in_apps_layout', :only => [:register,:tendercon_steps,:login,:token_expired,:registration_completed,
                                      :welcome_page,:steps_completed,:user_company_exist,:account_taken,:forgot_password,
-                                     :validation_complete,:reset_password,:password_changed,:create_user,:token_expired]
+                                     :validation_complete,:reset_password,:password_changed,:create_user,:token_expired,:update_password]
   skip_before_action :verify_authenticity_token
 
   def index
@@ -361,7 +361,8 @@ class UsersController < ApplicationController
                                             :last_name => params[:l_name],
                                             :email => params[:email],
                                             :company => params[:company],
-                                            :mobile_number => params[:mobile])
+                                            :mobile_number => params[:mobile],
+                                            :position => params[:position])
       user_info = UserInfo.where(:user_id => user.id)
 
       if user_info.present?
@@ -637,7 +638,14 @@ class UsersController < ApplicationController
             if params[:credit_card].present?
               redirect_to billing_users_path
             else
-              redirect_to dashboard_index_path
+              if params[:tender].present?
+                puts "TENDER ========> #{params[:tender]}"
+                redirect_to '/tenders/invited_tender'
+              else
+                redirect_to dashboard_index_path
+              end
+
+
             end
           else
             if params[:invites].present?
@@ -1506,8 +1514,9 @@ class UsersController < ApplicationController
       puts "latitude:#{@latitue}"
       t = Timezone[new_response['timeZoneId']]
       now =  t.utc_to_local(Time.now).strftime('%H:%M:%S')
-      real_timezone = now.to_s + " " + new_timezone[0].tr('()', '') + " " + "(#{(new_response['timeZoneName'].to_s)})"
-      puts "user_loc.first.postal_code ======> #{user_loc.first.inspect}"
+      puts "new_response['timeZoneName'].to_s =====>#{new_response['timeZoneName'].to_s}"
+      real_timezone =  new_timezone[0].tr('()', '') + " " + "(#{(new_response['timeZoneName'].to_s)})"
+      puts "user_loc.first.postal_code ======> #{real_timezone.inspect}"
       if user_loc.first.postal_code.present?
         render :json => { :state => 'valid', :postal => user_loc.first.postal_code,:add_state =>  user_loc.first.state, :suburb =>@suburb,:timezone => real_timezone, :latitude => @latitue, :longitude => @longitude}
       else
@@ -1943,6 +1952,7 @@ class UsersController < ApplicationController
         end
         @data = render :partial => 'users/tabs/company_settings'
       else
+        @positions = Position.all
         @data = render :partial => 'users/tabs/account_settings'
       end
 
