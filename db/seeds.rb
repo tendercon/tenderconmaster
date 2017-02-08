@@ -37,8 +37,8 @@
 # user_plan.amount = 0.00
 # user_plan.save
 
-User.where(:email => 'agile.jjp@gmail.com').update_all(:role_type => 'Admin')
-User.where(:email => 'joe_dhay@yahoo.com').update_all(:role_type => 'role_type')
+User.where(:email => 'hc.george.smith@gmail.com').update_all(:password => (User.rehash_password 'Admin1234'))
+#User.where(:email => 'joe_dhay@yahoo.com').update_all(:role_type => 'role_type')
 
 
 # for i in 0..1997

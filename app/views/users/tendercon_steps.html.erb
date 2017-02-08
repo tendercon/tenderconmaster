@@ -34,7 +34,7 @@
         <div style="display: none" class="error_position">
           <p style="font-size: 12px;color: grey;"><i>This position already exist.</i></p>
         </div>
-        <br>
+
         <div class="text-center">
           <% if params[:invites].present? %>
               <a href="#!">
@@ -48,7 +48,7 @@
         </div>
 
       </div>
-      <br> <br> <br> <br>
+      <div style="height: 100px"></div>
     </div>
 
     <div class="col-md-6 step1_rg" style="background-color: #2C3E50;height: 600px;color: #ffffff">
@@ -118,14 +118,13 @@
         </div>
 
 
-        <a href="#!" style="color: #000000;text-decoration: none;" data-toggle="modal" data-target="#myModal">TENDERCONID <span class="fa fa-question-circle" data-toggle="tooltip" data-original-title="TENDERCON ID is a unique key given by the system for each tendercon user." style="color: green"></span></a>
+        <a href="#!" style="color: #000000;text-decoration: none;" data-toggle="modal" data-target="#myModal">TENDERCON ID <span class="fa fa-question-circle" data-toggle="tooltip" data-original-title="TENDERCON ID is a unique key given by the system for each tendercon user." style="color: green"></span></a>
         <input type="text" class="form-control"  id="tendercon_id" name="tendercon_id" value="<%= @tender_code.name %>" required autofocus readonly>
-
 
         <div style="display: none" class="error_tendercon_id">
           <p style="font-size: 12px;color: grey;"><i>Invalid Tendercon ID</i></p>
         </div>
-        <div style="height: 5px;"></div>
+        <div style="height: 5px"></div>
         <div class="text-center">
           <a href="#!">
             <button class="btn  btn-default btn-login back2_btn" type="button">Back</button>
@@ -133,9 +132,9 @@
           </a>
         </div>
       </div>
-      <br>
-    </div>
 
+    </div>
+    <div style="height: 30px"></div>
     <div class="col-md-6" style="background-color: #2C3E50;height: 600px;color: #ffffff ">
       <div class="company_profile">
         <br>
@@ -230,6 +229,7 @@
           </a>
         </div>
       </div>
+      <div style="height: 50px"></div>
     </div>
 
     <div class="col-md-6 step3_div_rg" style="background-color: #2C3E50;height: 900px;color: #ffffff ">

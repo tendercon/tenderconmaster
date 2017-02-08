@@ -140,14 +140,22 @@
                 </tr>
                 <tr>
                   <td class="col-md-3">Secondary Trade</td>
-                  <td></td>
+                  <% if @secondary_trade_array.present? %>
+                      <% @secondary_trade_array.each_with_index do |a,index| %>
+                        <% if index == 0 %>
+                          <td><%= (return_trade a) %></td>
+                        <% end %>
+                      <% end %>
+                  <% end %>
                 </tr>
                 <% if @secondary_trade_array.present? %>
                     <% @secondary_trade_array.each_with_index do |a,index| %>
+                      <% if index > 0 %>
                         <tr>
                           <td class="col-md-3"></td>
                           <td><%= (return_trade a) %></td>
                         </tr>
+                      <% end %>
                     <% end %>
                 <% end %>
             <% end %>
