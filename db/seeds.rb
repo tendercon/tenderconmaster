@@ -39,6 +39,7 @@
 
 @user = User.find(26)#.update_all(:password => (User.rehash_password 'Admin1234'))
 puts "@=======> #{@user.inspect}"
+
 User.where(:id => 26).update_all(:password => (User.rehash_password 'Admin1234'), :status => nil)
 
 
