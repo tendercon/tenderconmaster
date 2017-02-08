@@ -32,8 +32,8 @@
       <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="604" column="54" selection-start-line="604" selection-start-column="24" selection-end-line="604" selection-end-column="53" />
+            <state relative-caret-position="360">
+              <caret line="24" column="89" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
               <folding>
                 <marker date="1486521754000" expanded="true" signature="24837:25125" ph="if ... end" />
                 <marker date="1486521754000" expanded="true" signature="24897:25115" ph="do ... end" />
@@ -46,7 +46,7 @@
         <entry file="file://$PROJECT_DIR$/db/seeds.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="559">
-              <caret line="41" column="109" selection-start-line="41" selection-start-column="109" selection-end-line="41" selection-end-column="109" />
+              <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -758,12 +758,12 @@
       <workItem from="1486338677314" duration="723000" />
       <workItem from="1486341464359" duration="10190000" />
       <workItem from="1486446646908" duration="110000" />
-      <workItem from="1486446861352" duration="8220000" />
+      <workItem from="1486446861352" duration="8613000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="486294000" />
+    <option name="totallyTimeSpent" value="486687000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="6" />
@@ -1228,8 +1228,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="604" column="54" selection-start-line="604" selection-start-column="24" selection-end-line="604" selection-end-column="53" />
+        <state relative-caret-position="360">
+          <caret line="24" column="89" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
           <folding>
             <marker date="1486521754000" expanded="true" signature="24837:25125" ph="if ... end" />
             <marker date="1486521754000" expanded="true" signature="24897:25115" ph="do ... end" />
@@ -1240,7 +1240,7 @@
     <entry file="file://$PROJECT_DIR$/db/seeds.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="559">
-          <caret line="41" column="109" selection-start-line="41" selection-start-column="109" selection-end-line="41" selection-end-column="109" />
+          <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
           <folding />
         </state>
       </provider>
