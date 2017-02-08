@@ -4,7 +4,7 @@
   <div class="form-group"></div>
 
   <div class="col-md-12">
-    <h1>Your Plan</h1>
+    <h1>YOUR PLAN</h1>
   </div>
 </div>
 
@@ -38,17 +38,17 @@
                   <tbody>
                   <% if @user_plan.present? %>
                       <tr>
-                        <td><%= @user_plan.created_at.strftime("%m/%d/%Y") %></td>
-                        <td><%=  user_plan @user_plan.user_id %>
+                        <td class="text-center"><%= @user_plan.created_at.strftime("%m/%d/%Y") %></td>
+                        <td class="text-center"><%=  user_plan @user_plan.user_id %>
                           <div style="height: 10px"></div>
                           <label style="color: red">Quote on 3 Tenders a Month</label>
                         </td>
-                        <td >$<%= @user_plan.amount %></td>
-                        <td ><%= (@user_plan.created_at + 1.month).strftime("%m/%d/%Y") %></td>
+                        <td class="text-center">$<%= @user_plan.amount %></td>
+                        <td class="text-center"><%= (@user_plan.created_at + 1.month).strftime("%m/%d/%Y") %></td>
                         <% if !@request_upgrade.present? %>
-                            <td>
+                            <td class="text-center">
                               <a href="#!">
-                                <button class="btn btn-primary upgrade">Upgrade To Professional</button>
+                                <button class="btn btn-success upgrade">Upgrade To Professional</button>
                               </a>
                             </td>
                         <% end %>
@@ -111,54 +111,68 @@
         </div>
         <div class="row">
           <div class="col-md-12">
-            <div class="form-group"></div>
+            <div class="form-group">
+              <div class="col-md-12">
+                <h1>UPGRADE PLAN</h1>
+              </div>
+            </div>
             <table class="table table-bordered">
               <thead>
               <tr>
                 <td colspan="3">New Tenders were added to Tendercon in last 30 days,upgrade to the Professional Plan to access them all</td>
               </tr>
               <tr style="background-color: #2C3E50;color: white;">
-                <th></th>
+                <th>Features</th>
                 <th class="col-md-3">Starter</th>
                 <th class="col-md-3">Professional</th>
               </tr>
               </thead>
               <tbody>
               <tr>
-                <td style="background-color: gray;color: white">Tenders/Month</td>
+                <td style="background-color: #fafafa;color: black">Tenders/Month</td>
                 <td class="text-center">3</td>
                 <td class="text-center" style="color: green">Unlimited</td>
               </tr>
               <tr>
-                <td style="background-color: gray;color: white">Archived Tenders</td>
+                <td style="background-color: #fafafa;color: black">Archived Tenders</td>
                 <td class="text-center">3</td>
                 <td class="text-center" style="color: green">Unlimited</td>
               </tr>
               <tr>
-                <td style="background-color: gray;color: white">Feature</td>
+                <td style="background-color: #fafafa;color: black">Feature</td>
                 <td class="text-center">
-                  <i class="fa fa-times-circle fa-3x" aria-hidden="true" style="color: red"></i>
+                  <i class="fa fa-times-circle fa-2x" aria-hidden="true" style="color: red"></i>
                 </td>
                 <td class="text-center" style="color: green">
-                  <i class="fa fa-check-circle fa-3x" aria-hidden="true" style="color: green"></i>
+                  <i class="fa fa-check-circle fa-2x" aria-hidden="true" style="color: green"></i>
                 </td>
               </tr>
               <tr>
-                <td style="background-color: gray;color: white">Feature</td>
+                <td style="background-color: #fafafa;color: black">Feature</td>
                 <td class="text-center">
-                  <i class="fa fa-times-circle fa-3x" aria-hidden="true" style="color: red"></i>
+                  <i class="fa fa-times-circle fa-2x" aria-hidden="true" style="color: red"></i>
                 </td>
                 <td class="text-center" style="color: green">
-                  <i class="fa fa-check-circle fa-3x" aria-hidden="true" style="color: green"></i>
+                  <i class="fa fa-check-circle fa-2x" aria-hidden="true" style="color: green"></i>
                 </td>
               </tr>
               <tr>
-                <td style="background-color: gray;color: white">Feature</td>
+                <td style="background-color: #fafafa;color: black">Feature</td>
                 <td class="text-center">
-                  <i class="fa fa-times-circle fa-3x" aria-hidden="true" style="color: red"></i>
+                  <i class="fa fa-times-circle fa-2x" aria-hidden="true" style="color: red"></i>
                 </td>
                 <td class="text-center" style="color: green">
-                  <i class="fa fa-check-circle fa-3x" aria-hidden="true" style="color: green"></i>
+                  <i class="fa fa-check-circle fa-2x" aria-hidden="true" style="color: green"></i>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                </td>
+                <td class="text-center">
+                  <a href="#!">
+                    <button class="btn btn-success upgrade pull-right"> Upgrade Plan</button>
+                  </a>
                 </td>
               </tr>
               </tbody>
@@ -166,9 +180,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <a href="#!">
-                    <button class="btn btn-success upgrade pull-right"> Upgrade Plan</button>
-                  </a>
+
                 </div>
               </div>
             </div>

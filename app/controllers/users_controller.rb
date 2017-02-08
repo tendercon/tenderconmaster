@@ -753,7 +753,12 @@ class UsersController < ApplicationController
     puts "@resp:#{@resp}"
 
     if @resp
-      render :json => { :state => 'valid',:company_name => @name}
+      if (@name == 'Name unknown') || (@name.include? 'unknown')
+        render :json => { :state => 'invalid',:error => @error}
+      else
+        render :json => { :state => 'valid',:company_name => @name}
+      end
+
     else
       render :json => { :state => 'invalid',:error => @error}
     end
@@ -1040,6 +1045,8 @@ class UsersController < ApplicationController
     to = params[:to]
     from = params[:from]
     project_range = "#{from}-#{to}"
+
+    User.where(:id => session[:user_logged_id]).update_all(:company => params[:company])
 
     if @company_profile.present?
 

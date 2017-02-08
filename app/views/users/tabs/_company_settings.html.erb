@@ -33,6 +33,10 @@
       <input type="text" class="form-control" name="acn" value="<%= @added_company_profile.present? ? @added_company_profile.acn : '' %>">
     </div>
     <div class="form-group">
+      <label class="control-label"><label style="font-size: 12px;font-weight: bold">Company:</label></label>
+      <input type="text" class="form-control" name="company" value="<%= @user.present? ? @user.company : '' %>">
+    </div>
+    <div class="form-group">
       <label  style="font-size: 12px;font-weight: bold">Address:</label>
       <input type="text" class="form-control" name="address" value="<%=  @user.address.present? ? @user.address.location : nil %>" id="address">
       <input type="hidden" name="suburb" class="suburb">
@@ -42,7 +46,7 @@
     </div>
     <div class="form-group">
       <label class="control-label">Time zone</label>
-      <input type="text" value="<%= @user.address.present? ? "#{@user.address.timezone}" : nil %>" class="form-control" name="tiemzone" />
+      <input type="text" value="<%= @user.address.present? ? "#{@user.address.timezone}" : nil %>" class="form-control" name="tiemzone" readonly/>
     </div>
 
     <div class="form-group">
