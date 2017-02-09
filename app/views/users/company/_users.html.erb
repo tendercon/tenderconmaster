@@ -114,7 +114,7 @@
   <div class="col-md-12">
     <p>INVITED TEAM MEMBERS</p>
   </div>
-  <div class="col-md-12 users">
+  <div class="col-md-12 invited_users">
     <table  class="table table-striped table-bordered">
       <thead>
       <% if @invited_users.present? %>
@@ -209,7 +209,7 @@
                   <div class="row">
                     <input type="hidden" class="user_plan" name="user_plan">
                     <% if session[:role] == 'Sub Contractor' %>
-                      <label>TENDERCON SUBSCRIPTION</label>
+                      <!--<label>TENDERCON SUBSCRIPTION</label>
                       <div class="col-md-12">
 
                         <div class="text-center">
@@ -224,7 +224,7 @@
                             <button class="btn-default plan" type="button" id="2">PROFESSIONAL PLAN</button>
                           </a>
                         </div>
-                      </div>
+                      </div>-->
                     <% end %>
                   </div>
                   <br>
@@ -1147,12 +1147,15 @@
         if(data.state == 'invalid'){
           $('.email_error_message').html('<p style="color: grey;font-style: italic;">Email address already exist. Please try other email.</p>');
           $('.email_validation').val(0);
+          $('.invite_submit').prop('disabled', true);
         }else{
-          $('.email_error_message').html('<p style="color: green;"><i class="fa fa-check-circle-o" aria-hidden="true"> Email address already exist. Please try other email.</i></p>');
+          $('.email_error_message').html('<p style="color: green;"><i class="fa fa-check-circle-o" aria-hidden="true"> Valid Email.</i></p>');
           $('.email_validation').val(1);
+          $('.invite_submit').prop('disabled', false);
         }
       });
     }else{
+      $('.invite_submit').prop('disabled', false);
       $('.email_error_message').html('');
     }
   });
@@ -1193,7 +1196,7 @@
       $('.nl_name').val(l_name);
       $('.n_plan').val(plan);
     }else{
-      $('.invite_submit').prop('disabled', true);
+      //$('.invite_submit').prop('disabled', true);
     }
   }
 
@@ -1292,7 +1295,7 @@
       $('.email').val('');
       $('.last_name').val('');
       $('#invite_Modal').hide();
-      $('.users').html(data);
+      $('.invited_users').html(data);
     });
   }
 

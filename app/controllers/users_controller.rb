@@ -360,7 +360,7 @@ class UsersController < ApplicationController
       User.where(:id => user.id).update_all(:first_name => params[:f_name],
                                             :last_name => params[:l_name],
                                             :email => params[:email],
-                                            :company => params[:company],
+                                            :trade_name => params[:trade_name],
                                             :mobile_number => params[:mobile],
                                             :position => params[:position])
       user_info = UserInfo.where(:user_id => user.id)
@@ -744,10 +744,8 @@ class UsersController < ApplicationController
         end
       else
         @resp = false
-        @error = 'ABN ID should contains numbers only.'
+        @error = 'ABN ID should contain numbers only.'
       end
-
-
     end
 
     puts "@resp:#{@resp}"
@@ -1046,7 +1044,7 @@ class UsersController < ApplicationController
     from = params[:from]
     project_range = "#{from}-#{to}"
 
-    User.where(:id => session[:user_logged_id]).update_all(:company => params[:company])
+    User.where(:id => session[:user_logged_id]).update_all(:trade_name => params[:trade_name])
 
     if @company_profile.present?
 
@@ -1077,39 +1075,39 @@ class UsersController < ApplicationController
       primary.user_id = session[:user_logged_id]
       primary.save
 
-      #SecondaryTrade.where(:user_id => session[:user_logged_id]).destroy_all
+      SecondaryTrade.where(:user_id => session[:user_logged_id]).destroy_all
 
-      # s_array = []
-      #
-      # if params[:secondary_trade1].present? && params[:secondary_trade1].to_i > 0
-      #   s_array << params[:secondary_trade1]
-      # end
-      #
-      # if params[:secondary_trade2].present? && params[:secondary_trade2].to_i > 0
-      #   s_array << params[:secondary_trade2]
-      # end
-      #
-      # if params[:secondary_trade3].present? && params[:secondary_trade3].to_i > 0
-      #   s_array << params[:secondary_trade3]
-      # end
-      #
-      # if params[:secondary_trade4].present? && params[:secondary_trade4].to_i > 0
-      #   s_array << params[:secondary_trade4]
-      # end
-      #
-      # if params[:secondary_trade5].present? && params[:secondary_trade5].to_i > 0
-      #   s_array << params[:secondary_trade5]
-      # end
+      s_array = []
+
+      if params[:secondary_trade1].present? && params[:secondary_trade1].to_i > 0
+        s_array << params[:secondary_trade1]
+      end
+
+      if params[:secondary_trade2].present? && params[:secondary_trade2].to_i > 0
+        s_array << params[:secondary_trade2]
+      end
+
+      if params[:secondary_trade3].present? && params[:secondary_trade3].to_i > 0
+        s_array << params[:secondary_trade3]
+      end
+
+      if params[:secondary_trade4].present? && params[:secondary_trade4].to_i > 0
+        s_array << params[:secondary_trade4]
+      end
+
+      if params[:secondary_trade5].present? && params[:secondary_trade5].to_i > 0
+        s_array << params[:secondary_trade5]
+      end
 
 
-      # if s_array.present?
-      #   s_array.each do |s|
-      #     secondary = SecondaryTrade.new
-      #     secondary.trade_id = s
-      #     secondary.user_id = session[:user_logged_id]
-      #     secondary.save
-      #   end
-      # end
+      if s_array.present?
+        s_array.each do |s|
+          secondary = SecondaryTrade.new
+          secondary.trade_id = s
+          secondary.user_id = session[:user_logged_id]
+          secondary.save
+        end
+      end
     else
       @company_profile = CompanyProfile.new
       @company_profile.user_id = session[:user_logged_id]
@@ -1140,38 +1138,38 @@ class UsersController < ApplicationController
       primary.user_id = session[:user_logged_id]
       primary.save
 
-      # SecondaryTrade.where(:user_id => session[:user_logged_id]).destroy_all
-      #
-      # s_array = []
-      #
-      # if params[:secondary_trade1].present? && params[:secondary_trade1].to_i > 0
-      #   s_array << params[:secondary_trade1]
-      # end
-      #
-      # if params[:secondary_trade2].present? && params[:secondary_trade2].to_i > 0
-      #   s_array << params[:secondary_trade2]
-      # end
-      #
-      # if params[:secondary_trade3].present? && params[:secondary_trade3].to_i > 0
-      #   s_array << params[:secondary_trade3]
-      # end
-      #
-      # if params[:secondary_trade4].present? && params[:secondary_trade4].to_i > 0
-      #   s_array << params[:secondary_trade4]
-      # end
-      #
-      # if params[:secondary_trade5].present? && params[:secondary_trade5].to_i > 0
-      #   s_array << params[:secondary_trade5]
-      # end
-      #
-      # if s_array.present?
-      #   s_array.each do |s|
-      #     secondary = SecondaryTrade.new
-      #     secondary.trade_id = s
-      #     secondary.user_id = session[:user_logged_id]
-      #     secondary.save
-      #   end
-      # end
+      SecondaryTrade.where(:user_id => session[:user_logged_id]).destroy_all
+
+      s_array = []
+
+      if params[:secondary_trade1].present? && params[:secondary_trade1].to_i > 0
+        s_array << params[:secondary_trade1]
+      end
+
+      if params[:secondary_trade2].present? && params[:secondary_trade2].to_i > 0
+        s_array << params[:secondary_trade2]
+      end
+
+      if params[:secondary_trade3].present? && params[:secondary_trade3].to_i > 0
+        s_array << params[:secondary_trade3]
+      end
+
+      if params[:secondary_trade4].present? && params[:secondary_trade4].to_i > 0
+        s_array << params[:secondary_trade4]
+      end
+
+      if params[:secondary_trade5].present? && params[:secondary_trade5].to_i > 0
+        s_array << params[:secondary_trade5]
+      end
+
+      if s_array.present?
+        s_array.each do |s|
+          secondary = SecondaryTrade.new
+          secondary.trade_id = s
+          secondary.user_id = session[:user_logged_id]
+          secondary.save
+        end
+      end
 
     end
     render :json => { :state => 'valid'}
@@ -1744,6 +1742,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def get_billing
+    @user = User.find(session[:user_logged_id])
+    @subscriber = UserSubscription.where(:user_id => @user.id).first
+
+    if @subscriber.present?
+      customer = Stripe::Customer.retrieve(@subscriber.stripe_id)
+      if customer.present?
+        customer.sources.each do |a|
+          puts "a.id:#{a.last4}"
+          @last_four = a.last4
+          @brand = a.brand
+        end
+      end
+    end
+    @data = render :partial => 'users/company/get_billing'
+  end
+
   def credit_card_details
 
     @user = User.find(session[:user_logged_id])
@@ -1821,17 +1836,12 @@ class UsersController < ApplicationController
 
   def get_company_users
     if session[:role_type] == 'Admin'
-      Rails.logger.info "session[:user_logged_id]:#{session[:user_logged_id]}"
-      puts "session[:user_logged_id]:#{session[:user_logged_id]}"
       @user = User.find(session[:user_logged_id])
-      puts "@user1 ===> #{@user.inspect}"
       @users = User.where("id = #{@user.id} OR parent_id = #{@user.id} AND abn is not null ")
       @invited_users = User.where("parent_id = #{@user.id} AND position is null")
       #@new_invited_users = User.where("parent_id = #{@user.id} AND email_acceptance = 0 AND invited = false")
       @newly_signup_members = User.where("parent_id = #{@user.id} and registered = true")
     else
-      Rails.logger.info "session[:user_logged_id]:#{session[:user_logged_id]}"
-      puts "session[:user_logged_id]:#{session[:user_logged_id]}"
       user = User.find(session[:user_logged_id])
       puts "@user2 ===> #{user.inspect}"
       if user.parent_id.present?

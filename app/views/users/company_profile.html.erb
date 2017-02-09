@@ -87,7 +87,7 @@
             <tbody>
             <tr>
               <td class="col-md-3">Company</td>
-              <td><%= "#{@user.company}" %></td>
+              <td><%= "#{@user.trade_name}" %></td>
             </tr>
             <tr>
               <td class="col-md-3">ABN</td>
@@ -277,7 +277,14 @@
           $('.profile_div').html(data);
         });
       }else if(target == '#billing'){
-
+        $('.profile_div').html('');
+        $.ajax({
+          method: "POST",
+          data: {tab:'edit_profile'},
+          url: "/users/get_billing"
+        }).done(function (data) {
+          $('.profile_div').html(data);
+        });
       }
 
     });

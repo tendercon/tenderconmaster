@@ -46,3 +46,1146 @@
   <% end %>
   </tbody>
 </table>
+
+
+<div class="new_member">
+  <div id="invite_Modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <br>
+        </div>
+        <br>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="text-center">
+                <h1 class="text-center login-title">Invited Company Members</h1>
+                <div class="form-group">
+                  <label>FIRST NAME</label>
+                  <div class="form-group required">
+                    <input class="form-control first_name" value="<%= session[:nf_name].present? ? session[:nf_name] : nil %>">
+                    <%#= f.text_field :first_name,:class=>'form-control first_name' %>
+                  </div>
+
+                  <label>SURNAME</label>
+                  <div class="form-group required">
+                    <input class="form-control last_name" value="<%= session[:nl_name].present? ? session[:nl_name] : nil %>">
+                    <%#= f.text_field :last_name,:class=>'form-control last_name' %>
+                  </div>
+
+                  <label>EMAIL</label>
+                  <div class="form-group required">
+                    <input class="form-control email" value="<%= session[:n_email].present? ? session[:n_email] : nil %>">
+                    <%#= f.text_field :email,:class=>'form-control email' %>
+                    <div class="email_error_message"></div>
+                    <input type="hidden" class="email_validation">
+                  </div>
+
+                  <div class="row">
+                    <input type="hidden" class="user_plan" name="user_plan">
+                    <% if session[:role] == 'Sub Contractor' %>
+                        <!--<label>TENDERCON SUBSCRIPTION</label>
+                        <div class="col-md-12">
+
+                          <div class="text-center">
+                            <a href="#!">
+                              <button class="btn-primary plan" type="button" id="1">STARTER PLAN $0</button>
+                            </a>
+                          </div>
+                          <div style="height: 10px"></div>
+
+                          <div class="text-center">
+                            <a href="#!">
+                              <button class="btn-default plan" type="button" id="2">PROFESSIONAL PLAN</button>
+                            </a>
+                          </div>
+                        </div>-->
+                    <% end %>
+                  </div>
+                  <br>
+                  <div class="row">
+                    <div class="text-center">
+                      <div class="actions">
+                        <input type="hidden" class="user_plan" name="plan" value="<%= session[:n_plan].present? ? session[:n_plan] : nil %>">
+                        <a href="#!">
+                          <button class="btn green uppercase invite_submit">SEND INVITE</button>
+                        </a>
+                        <%#= f.submit 'SENT INVITE', :class => 'btn btn-success invite_submit', :style => 'border-radius: 10px'%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br><br>
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="new_cc">
+  <div id="cc_Modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h1>Credit Card Details</h1>
+        </div>
+        <br>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="text-center">
+                <p class="text-center">You dont have any credit card details on your Tendercon Account. </p>
+                <p class="text-center">Please Register valid credit card number. </p>
+                <%= form_tag subscriber_path(1),method: :put do %>
+                    <br>
+                    <article>
+                      <% if flash[:error].present? %>
+                          <div id="error_explanation">
+                            <p><%= flash[:error] %></p>
+                          </div>
+                      <% end %>
+                      <label class="amount">
+                        <span>Click Button below to add Credit Card</span>
+                      </label>
+                    </article>
+                    <input type="hidden" class="new_credit_card" name="new_credit_card" value="1">
+                    <input type="hidden" class="nf_name" name="f_name">
+                    <input type="hidden" class="nl_name" name="l_name">
+                    <input type="hidden" class="n_email" name="n_email">
+                    <input type="hidden" class="n_plan" name="n_plan">
+                    <input type="hidden" class="admin_upgrade" name="admin_upgrade">
+                    <input type="hidden" class="request_user" name="request_user">
+                    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                            data-description="A month's subscription"
+                            data-amount=""
+                            data-panelLabel="Submit"
+                            data-locale="auto">
+                    </script>
+                <% end %>
+                <br><br>
+              </div>
+            </div>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="paid_plan">
+  <div id="paid_Modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h1>Professional Plan</h1>
+        </div>
+        <br>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-24">
+              <div class="col-md-4"><i class="fa fa-sticky-note-o fa-4x" aria-hidden="true" style="color: green"></i></div>
+              <div class="form-group"></div>
+              <div class="col-md-20">
+                <p class="user_profile_2header">Access to quote on any tenders in the open tender</p>
+                <p class="user_profile_2header">section in the Tendercon platform</p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+
+            </div>
+            <div class="col-md-24">
+              <div class="col-md-4"><i class="fa fa-server fa-4x" aria-hidden="true" style="color: green"></i></div>
+              <div class="form-group"></div>
+              <div class="col-md-20">
+
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+
+            </div>
+            <div class="col-md-24">
+
+              <div class="col-md-12">
+                <div class="radio">
+                  <label><input type="radio" name="optradio" value="2" class="sub" checked>Pay Annually(SAVE 25%)</label>
+                </div>
+                <div class="radio">
+                  <label><input type="radio" name="optradio" value="1" class="sub">Pay Monthly</label>
+                </div>
+                <p>All plan are GST inclusive</p>
+              </div>
+
+              <div class="col-md-12" style="height: 150px;background-color: #d4d4d4;border-radius: 10px;">
+                <div class="annual" style="margin-top: 70px;">
+                  <p class="user_profile_2header"><h1 class="text-center">$49.50</h1></p>
+                  <p class="user_profile_2header text-center">12 months</p>
+                </div>
+                <div class="monthly" style="margin-top: 70px;display: none;">
+                  <p class="user_profile_2header"><h1 class="text-center">$66.00</h1></p>
+                  <p class="user_profile_2header text-center">per month</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+
+            </div>
+            <div class="col-md-24">
+              <div class="checkbox">
+                <label><input type="checkbox" value="" class="terms">I agree to the terms and conditions of Tendercon</label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+
+            </div>
+            <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+              <a href="#!">
+                <button class=" btn btn-success submit_pay_invite" type="button">PAY & SENT INVITE</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="upgrade_request">
+  <% if @users.present? %>
+      <%  @users.each do |u| %>
+          <% if u.parent_id.to_i > 0 %>
+              <div id="request_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <div class="col-sm-24 col-md-14 col-md-offset-8">
+                        <h1>UPGRADE REQUEST</h1>
+                      </div>
+                      <br>
+                    </div>
+                    <br>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-12">
+                            <p style="font-size: 14px;">Request Date</p>
+                            <p></p>
+                            <p style="font-size: 14px;">Team Member</p>
+                            <p></p>
+                            <p style="font-size: 14px;">Company Position</p>
+                            <p></p>
+                            <p style="font-size: 14px;">Plan</p>
+                            <p></p>
+                            <p style="font-size: 14px;">Total Cost</p>
+                          </div>
+                          <div class="col-md-12">
+                            <p style="font-size: 14px;" ><%= u.created_at.strftime("%m/%d/%Y") %></p>
+                            <p></p>
+                            <p style="font-size: 14px;"><%= "#{u.first_name} #{u.last_name}" %></p>
+                            <p></p>
+                            <p style="font-size: 14px;"><%= get_postion u.position %></p>
+                            <p></p>
+                            <p style="font-size: 14px;"><%= get_user_plan u.id %></p>
+                            <p></p>
+                            <p style="font-size: 14px;">$<%= compute_cost u.id %>(inc GST)</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
+
+                        </div>
+                        <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+                          <a href="#!">
+                            <button class=" btn btn-success approved" type="button" id="<%= u.id %>">APPROVE</button>
+                          </a>
+                          <a href="#!">
+                            <button class=" btn btn-danger reject" type="button" id="<%= u.id %>" title="<%= u.request_upgrade.present? ? u.request_upgrade.plan : nil %>">REJECT</button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+      <% end %>
+  <% end %>
+</div>
+
+<div class="reject_plan">
+  <div id="reject_Modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close rejected_close" data-dismiss="modal">&times;</button>
+          <div class="col-sm-24 col-md-14 col-md-offset-8">
+            <h1>UPGRADE REQUEST</h1>
+          </div>
+          <br>
+        </div>
+        <br>
+        <div class="modal-body">
+
+          <div class="row">
+
+          </div>
+          <div class="row">
+
+            <div class="col-md-24">
+              <div class="col-sm-24 col-md-14 col-md-offset-5">
+                <h2>Subscribe to our PROFESSIONAL monthly plan instead.</h2>
+                <div class="row">
+                  <div class="form-group">
+
+                  </div>
+
+                </div>
+                <p class="text-center" style="font-size: 18px;">$66/month(inc GST)</p>
+                <div class="row">
+                  <div class="form-group"></div>
+                </div>
+                <p class="text-center" style="font-size: 16px;"><i>Same access without 12 months commitment</i></p>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+
+            </div>
+            <div class="col-sm-24 col-md-14 col-md-offset-5">
+              <div class="checkbox">
+                <label><input type="checkbox" value="" class="terms">I agree to the terms and conditions of Tendercon</label>
+                <input type="hidden" class="new_plan" value="1">
+                <input type="hidden" class="requested_user">
+                <input type="hidden" class="rejected_user">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+
+            </div>
+            <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+              <a href="#!">
+                <button class=" btn btn-success reject_accept" type="button">UPGRADE TO MONTHLY</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="reject_plan1">
+  <div id="reject_Modal1" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close rejected_close" data-dismiss="modal">&times;</button>
+          <div class="col-sm-24 col-md-14 col-md-offset-8">
+            <h1>UPGRADE REQUEST</h1>
+          </div>
+          <br>
+        </div>
+        <br>
+        <div class="modal-body">
+
+          <div class="row">
+
+          </div>
+          <div class="row">
+
+            <div class="col-md-24">
+              <div class="col-sm-24 col-md-14 col-md-offset-5">
+                <h2>Subscribe to our PROFESSIONAL 12 months plan instead.</h2>
+                <div class="row">
+                  <div class="form-group">
+
+                  </div>
+
+                </div>
+                <p class="text-center" style="font-size: 18px;">$594/annually(inc GST)</p>
+                <div class="row">
+                  <div class="form-group"></div>
+                </div>
+                <!--<p class="text-center" style="font-size: 16px;"><i>Unlimited tenders</i></p>-->
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+
+            </div>
+            <div class="col-sm-24 col-md-14 col-md-offset-5">
+              <div class="checkbox">
+                <label><input type="checkbox" value="" class="terms">I agree to the terms and conditions of Tendercon</label>
+                <input type="hidden" class="new_plan" value="2">
+                <input type="hidden" class="requested_user">
+                <input type="hidden" class="rejected_user">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+
+            </div>
+            <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+              <a href="#!">
+                <button class=" btn btn-success reject_accept" type="button">UPGRADE TO ANNUALLY</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="submit_request">
+  <% if @users.present? %>
+      <%  @users.each do |u| %>
+          <% if u.parent_id.to_i > 0 %>
+              <div id="submit_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <div class="col-sm-24 col-md-14 col-md-offset-8">
+                        <h1>PAYMENT PROCESSED</h1>
+                      </div>
+                      <br>
+                    </div>
+                    <br>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-sm-24 col-md-14 col-md-offset-5 ">
+                          <p class="text-center" style="font-size: 15px;"> Congratulations on the subscription upgrade</p>
+                        </div>
+                        <div class="col-md-24">
+                          <p class="text-center" style="font-size: 15px;">
+                            The Professional Plan allows your team member to unlock all the tendering oppurtunities
+                            available on the Tendercon network.
+                          </p>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
+
+                        </div>
+
+                        <div class="col-md-12">
+                          <h1>WHAT HAPPENS</h1>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group"></div>
+                        <div class="form-group"></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-check-circle fa-3x" aria-hidden="true" style="color: green"></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p class="success_invites">$<%= u.user_plan.amount %> has been charged to the company's credit card</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
+
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-power-off fa-3x" aria-hidden="true" style="color: blue"></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p class="success_invites"><%= Time.now.strftime('%m/%d/%Y') %> is the start date of <%= get_user_plan u.id %> <%= u.user_plan.created_at.strftime('%m/%d/%Y') %></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
+
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-users fa-3x" aria-hidden="true" style="color: blue"></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p class="success_invites"><%= "#{u.first_name} #{u.last_name} has been alerted of the plan upgrade"  %></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group"></div>
+
+                        <div class="col-md-12">
+                          <h1>WHAT HAPPENS NEXT?</h1>
+                        </div>
+
+
+                      </div>
+                      <div class="row">
+                        <div class="form-group"></div>
+                        <div class="form-group"></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-users fa-3x" aria-hidden="true" style="color: blue"></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p class="success_invites"><%= "#{u.first_name} #{u.last_name} will receive #{get_user_plan u.id} access within 5 minutes"  %></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group"></div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-clipboard fa-3x" aria-hidden="true" ></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p class="success_invites">This transaction will appear to next invoice </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
+
+                        </div>
+                        <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+                          <p  style="font-size: 14px"> Don't keep the rest of your team in dark</p>
+                          <a href="<%= invites_path %>">
+                            <button class=" btn btn-success approve" type="button">UPGRADE MORE TEAM</button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+      <% end %>
+  <% end %>
+</div>
+
+<div class="approved_request">
+  <% if @users.present? %>
+      <%  @users.each do |u| %>
+          <% if u.parent_id.to_i > 0 %>
+              <div id="approved_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <div class="col-sm-24 col-md-14 col-md-offset-8">
+                        <h1>CONFIRM UPGRADE</h1>
+                      </div>
+                      <br>
+                    </div>
+                    <br>
+                    <div class="modal-body">
+
+                      <div class="row">
+                        <div class="form-group">
+
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-credit-card fa-3x" aria-hidden="true" style="color: green"></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p></p>
+                            <p class="success_invites">Confirming $<%= compute_cost u.id %> will be charged to the company's credit card</p>
+                          </div>
+                        </div>
+                      </div>
+                      <input class="approved_user" value="<%= u.id %>" type="hidden">
+                      <input class="approved_plan" value="<%= u.request_upgrade.present? ? u.request_upgrade.plan : nil %>" type="hidden">
+                      <div class="row">
+                        <div class="form-group">
+
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-3">
+                            <i class="fa fa-power-off fa-3x" aria-hidden="true" style="color: blue"></i>
+                          </div>
+                          <div class="col-md-21">
+                            <p></p>
+                            <p class="success_invites">The Plan will begin from date of credit card transaction</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
+
+                        </div>
+                      </div>
+                      <div class="col-sm-24">
+                        <div class="checkbox">
+                          <label><input type="checkbox" value="" class="terms">I agree to the terms and conditions of Tendercon</label>
+
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="form-group"></div>
+                        <div class="form-group"></div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
+
+                        </div>
+                        <div class="col-sm-24 col-md-14 col-md-offset-8 ">
+                          <a href="#!">
+                            <button class=" btn btn-success confirmed" type="button">Confirm</button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+      <% end %>
+  <% end %>
+</div>
+
+<div class="admin_upgrade_request">
+  <% if @users.present? %>
+      <%  @users.each do |u| %>
+          <% if u.parent_id.to_i > 0 %>
+              <div id="admin_request_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;" >
+                <div class="modal-dialog">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <div class="col-sm-24 col-md-14 col-md-offset-5">
+                        <h1>TEAM MEMBER SUBSCRIPTION UPGRADE</h1>
+                      </div>
+                      <br>
+                    </div>
+                    <br>
+                    <div class="modal-body">
+                      <div class="row">
+                        <div class="col-md-24">
+                          <div class="col-md-12">
+                            <p style="font-size: 14px;">Team Member</p>
+                            <p></p>
+                            <p style="font-size: 14px;">Company Position</p>
+                            <p></p>
+                            <p style="font-size: 14px;">Current Plan</p>
+
+                          </div>
+                          <div class="col-md-12">
+                            <p style="font-size: 14px;"><%= "#{u.first_name} #{u.last_name}" %></p>
+                            <p></p>
+                            <p style="font-size: 14px;"><%= get_postion u.position %></p>
+                            <p></p>
+                            <p style="font-size: 14px;"><%= get_user_plan u.id %></p>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="form-group">
+
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-24">
+                            <p style="font-size: 16px;">UPGRADE TO PROFESSIONAL PLAN</p>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group">
+
+                          </div>
+                          <div class="col-md-24">
+
+                            <div class="col-md-12">
+                              <% if u.user_plan.plan.to_i == 0 %>
+                                  <div class="radio">
+                                    <label><input type="radio" name="optradio" value="2" class="sub" checked>Pay Annually(SAVE 25%)</label>
+                                  </div>
+                                  <div class="radio">
+                                    <label><input type="radio" name="optradio" value="1" class="sub">Pay Monthly</label>
+                                  </div>
+                              <% elsif u.user_plan.plan.to_i == 1 %>
+                                  <div class="radio">
+                                    <label><input type="radio" name="optradio" value="2" class="sub" checked>Pay Annually(SAVE 25%)</label>
+                                  </div>
+                              <% end %>
+                              <p>All plan are GST inclusive</p>
+                              <input type="hidden" class="admin_upgraded_user" value="<%= u.id %>">
+                              <input type="hidden" class="admin_upgraded_plan" value="2">
+                            </div>
+
+                            <div class="col-md-12" style="height: 150px;background-color: #d4d4d4;border-radius: 10px;">
+                              <div class="annual" style="margin-top: 70px;">
+                                <p class="user_profile_2header"><h1 class="text-center">$49.50</h1></p>
+                                <p class="user_profile_2header text-center">12 months</p>
+                              </div>
+                              <div class="monthly" style="margin-top: 70px;display: none;">
+                                <p class="user_profile_2header"><h1 class="text-center">$66.00</h1></p>
+                                <p class="user_profile_2header text-center">per month</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group"></div>
+                          <div class="form-group"></div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-24 charged_rate">
+                            <p style="font-size: 14px;">
+                              The company credit card on file will be charged $594.00 for this transaction
+                            </p>
+                          </div>
+
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-24 ">
+                            <p style="font-size: 14px;">
+                              New Subscription Plan will start on date admin upgrade this plan
+                            </p>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-24">
+                            <p style="font-size: 14px;">
+                              Subscription Plan will end depend on the plan selected.
+                            </p>
+                            <p style="font-size: 14px;"> 365 days for Pay Annually Plan</p>
+                            <p style="font-size: 14px;"> 30 days for Pay monthly plan</p>
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group">
+
+                          </div>
+                        </div>
+                        <div class="col-sm-24">
+                          <div class="checkbox">
+                            <label><input type="checkbox" value="" class="terms">I agree to the terms and conditions of Tendercon</label>
+
+                          </div>
+                        </div>
+
+                        <div class="row">
+                          <div class="form-group"></div>
+                          <div class="form-group"></div>
+                        </div>
+
+                        <div class="col-sm-24 col-md-14 col-md-offset-10 ">
+                          <a href="#!">
+                            <button class=" btn btn-success upgrade_confirmed" type="button" id="<%= u.id %>">UPGRADE</button>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          <% end %>
+      <% end %>
+  <% end %>
+</div>
+
+
+<script>
+  var process = $('.process').val();
+  var admin_upgrade = $('.admin_upgrade01').val();
+  var request_user = $('.r_user').val();
+
+  $('.upgrade_confirmed').click(function(){
+    var id = $('.admin_upgraded_user').val();
+    var plan = $('.admin_upgraded_plan').val();
+
+    $.ajax({
+      method: "POST",
+      data: {plan: plan,user_id: id},
+      url: "/invites/admin_update_plan"
+    }).done(function (data) {
+      if(data.state == 'valid'){
+        $('#admin_request_Modal_'+parseInt(id)).modal('hide');
+        window.location = "/invites?processed=true&id="+id;
+      }
+    });
+  });
+
+
+
+  if(parseInt(admin_upgrade) > 0){
+    var sub = $('.subscription').val();
+
+    if(parseInt(sub) > 0){
+      $('#admin_request_Modal_'+parseInt(admin_upgrade)).modal('show');
+    }else{
+      $('.new_credit_card').val('');
+      $('.admin_upgrade').val(parseInt(admin_upgrade));
+      $('#cc_Modal').modal('show');
+    }
+
+  }
+
+  if(parseInt(process) > 0){
+    $('#submit_Modal_'+parseInt(process)).modal('show');
+  }
+
+  $('.approved').click(function(){
+    var id = $(this).attr('id');
+    $('#request_Modal_'+id).modal('hide');
+    $('#approved_Modal_'+id).modal('show');
+  });
+
+  $('.rejected_close').click(function(){
+    var id = $('.rejected_user').val();
+    var plan = $('.new_plan').val();
+
+
+    $.ajax({
+      method: "POST",
+      data: {plan: plan,user_id: id},
+      url: "/invites/rejected_request"
+    }).done(function (data) {
+      if(data.state == 'valid'){
+        $('#reject_Modal').modal('hide');
+        window.location = "/invites?rejected=true&id="+id;
+
+      }
+    });
+
+  });
+
+
+  $('.reject_accept').click(function(){
+    var plan = $('.upgrade_rejected_plan').val();//$('.new_plan').val();
+    var id = $('.requested_user').val()
+    $.ajax({
+      method: "POST",
+      data: {plan: plan,user_id: id},
+      url: "/invites/update_plan"
+    }).done(function (data) {
+      if(data.state == 'valid'){
+        $('#reject_Modal').modal('hide');
+        window.location = "/invites?processed=true&id="+id;
+
+      }
+    });
+  });
+
+  $('.confirmed').click(function(){
+    var id = $('.approved_user').val();
+    var plan = $('.approved_plan').val();
+    $.ajax({
+      method: "POST",
+      data: {plan: plan,user_id: id},
+      url: "/invites/update_plan"
+    }).done(function (data) {
+      if(data.state == 'valid'){
+        $('#reject_Modal').modal('hide');
+        window.location = "/invites?processed=true&id="+id;
+
+      }
+    });
+  });
+
+  if(parseInt(request_user) > 0){
+    $('#request_Modal_'+parseInt(request_user)).modal('show');
+  }
+
+  function upgrade_plan(id){
+    $('.rejected_user').val(id);
+
+    alert();
+    var sub = $('.subscription').val();
+
+    if(parseInt(sub) > 0){
+      $('#request_Modal_'+id).modal('show');
+    }else{
+      $('.new_credit_card').val('');
+      $('.request_user').val(id);
+      $('#cc_Modal').modal('show');
+    }
+  }
+
+  $('.invite_new_member').click(function(){
+    alert();
+    $('#invite_Modal').modal('show');
+  });
+
+  $('.reject').click(function(){
+    var id = $(this).attr('id');
+
+    var plan = $(this).attr('title');
+
+
+    $('.requested_user').val(id);
+    $('.rejected_user').val(id);
+
+
+
+    $('#request_Modal_'+id).modal('hide');
+    if(parseInt(plan) == 2){
+      $('#reject_Modal').modal('show');
+      $('.upgrade_rejected_plan').val(1)
+    }else{
+      $('#reject_Modal1').modal('show');
+      $('.upgrade_rejected_plan').val(2)
+    }
+
+
+  });
+
+  //$('.invite_submit').prop('disabled', true);
+  $('.reject_accept').prop('disabled', true);
+  $('.confirmed').prop('disabled',true);
+  $('.upgrade_confirmed').prop('disabled',true);
+  $('.email').focusout(function(){
+    var email = $(this).val();
+    if(validateEmail(email)){
+      $.ajax({
+        method: "POST",
+        data: {email: email},
+        url: "/users/validate_user_email"
+      }).done(function (data) {
+        if(data.state == 'invalid'){
+          $('.email_error_message').html('<p style="color: grey;font-style: italic;">Email address already exist. Please try other email.</p>');
+          $('.email_validation').val(0);
+        }else{
+          $('.email_error_message').html('<p style="color: green;"><i class="fa fa-check-circle-o" aria-hidden="true"> Email address already exist. Please try other email.</i></p>');
+          $('.email_validation').val(1);
+        }
+      });
+    }else{
+      $('.email_error_message').html('');
+    }
+  });
+
+  $('.plan').click(function(){
+    var text = $(this).text();
+    console.log(text);
+    $('.user_plan').val(text);
+    $('.plan').each(function(){
+      $(this).css("background-color","");
+    });
+    $(this).css("background-color","green");
+    invite_form();
+  });
+
+  $('.first_name').keyup(function(){
+    invite_form();
+  });
+
+  $('.last_name').keyup(function(){
+    invite_form();
+  });
+
+  function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+  function invite_form(){
+    var f_name = $('.first_name').val();
+    var l_name = $('.last_name').val();
+    var email = $('.email_validation').val();
+    var plan = $('.user_plan').val();
+    if(f_name.length > 2 && l_name.length > 2 && email == 1 && plan.length > 0){
+      $('.invite_submit').prop('disabled', false);
+      $('.n_email').val($(".email").val());
+      $('.nf_name').val(f_name);
+      $('.nl_name').val(l_name);
+      $('.n_plan').val(plan);
+    }else{
+      //$('.invite_submit').prop('disabled', true);
+    }
+  }
+
+  $('.invite_submit').click(function(){
+    var user_role = $('.user_role').val();
+    var sub = $('.subscription').val();
+    var f_name = $('.first_name').val();
+    var l_name = $('.last_name').val();
+    var email = $('.email').val();
+    var plan = $('.user_plan').val();
+    var sub_plan = $('.sub').val();
+
+    if(user_role == 'Sub Contractor'){
+      if(plan == 'PROFESSIONAL PLAN'){
+        if(parseInt(sub) > 0){
+          $('#invite_Modal').hide();
+          $('#paid_Modal').modal('show');
+        }else{
+          $('#invite_Modal').hide();
+          $('#cc_Modal').modal('show');
+
+        }
+      }else{
+        submit_invites(email,f_name,l_name,plan);
+      }
+    }else{
+      submit_invites(email,f_name,l_name,plan);
+    }
+  });
+
+  var key = $('.key').val();
+
+  if(parseInt(key) > 0){
+    $('#paid_Modal').modal('show');
+  }
+
+  $('.stripe-button-el').text('Add Credit Card');
+
+  // subscription paying plan
+  $('.submit_pay_invite').prop('disabled',true);
+
+  $('.terms').click(function(){
+
+    if($('.terms').is(":checked")){
+      $('.submit_pay_invite').prop('disabled',false);
+      $('.reject_accept').prop('disabled', false);
+      $('.confirmed').prop('disabled', false);
+      $('.upgrade_confirmed').prop('disabled',false);
+    }else{
+      $('.submit_pay_invite').prop('disabled',true);
+      $('.reject_accept').prop('disabled', true);
+      $('.confirmed').prop('disabled', true);
+      $('.upgrade_confirmed').prop('disabled',true);
+
+    }
+  });
+
+  $('.sub').change(function(){
+
+    var val = $(this).val();
+    $('.paying_plan').val(val);
+    if(parseInt(val) == 1){
+      $('.admin_upgraded_plan').val(1);
+      $('.annual').show();
+      $('.monthly').hide();
+      $('.charged_rate').html('<p style="font-size: 14px;">' +
+          'The company credit card on file will be charged 66.00 for this transaction</p>');
+    }else if(parseInt(val) == 2){
+      $('.admin_upgraded_plan').val(2);
+      $('.annual').hide();
+      $('.monthly').show();
+      $('.charged_rate').html('<p style="font-size: 14px;">' +
+          'The company credit card on file will be charged $594.00 for this transaction</p>');
+    }
+  });
+
+  $('.submit_pay_invite').click(function(){
+    var user_role = $('.user_role').val();
+    var sub = $('.subscription').val();
+    var f_name = $('.first_name').val();
+    var l_name = $('.last_name').val();
+    var email = $('.email').val();
+    var plan = $('.user_plan').val();
+    var sub_plan = $('input[name="optradio"]:checked').val();
+
+    submit_paying_invites(email,f_name,l_name,plan,sub_plan);
+  });
+
+  function submit_invites(email,f_name,l_name,plan){
+    $.ajax({
+      method: "POST",
+      data: {email: email,f_name:f_name,l_name:l_name,plan:plan},
+      url: "/invites/sent_invite"
+    }).done(function (data) {
+      $('.first_name').val('');
+      $('.email').val('');
+      $('.last_name').val('');
+      $('#invite_Modal').hide();
+      $('.invited_users').html(data);
+    });
+  }
+
+  function submit_paying_invites(email,f_name,l_name,plan,plan_package){
+    $.ajax({
+      method: "POST",
+      data: {email: email,f_name:f_name,l_name:l_name,plan:plan,plan_package:plan_package},
+      url: "/invites/sent_invite"
+    }).done(function (data) {
+      if(data.state == 'valid'){
+        $('.first_name').val('');
+        $('.email').val('');
+        $('.last_name').val();
+        window.location = "/invites/success?customer=true";
+      }
+    });
+  }
+</script>
+
+
+
+

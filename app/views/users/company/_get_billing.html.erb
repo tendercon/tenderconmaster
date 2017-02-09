@@ -1,0 +1,156 @@
+<div class="row">
+  <% if @user.div_status == false %>
+    <div class="form-group has-feedback">
+      <% if flash[:error] %>
+        <div class="alert alert-danger open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= @error_alert %>
+          <div class="notice" style="font-size: 14px;"><%= flash[:error].html_safe %></div>
+          <% flash[:error]=nil %>
+        </div>
+      <% end %>
+      <%- if !flash[:notice].nil? %>
+        <div class="alert alert-success open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= @error_alert %>
+          <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
+          <% flash[:notice]=nil %>
+        </div>
+      <%- end %>
+    </div>
+
+  <% end %>
+
+  <div class="credit_card_data">
+    <div class="text-center">
+      <input type="hidden" class="user_id" value="<%= @user.id %>">
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <td colspan="1" style="background-color: #2C3E50;color: white;"><strong>YOUR PLAN</strong></td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="col-md-3">
+              <div style="height: 30px"></div>
+              FREE - Standard Subscription
+              <div style="height: 30px"></div>
+              <a href="/users/profile?id=<%= @user.id  %>&subscription=true">
+                <button type="button" class="btn green uppercase update_plan">UPGRADE PLAN</button>
+              </a>
+              <div style="height: 30px"></div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div style="height: 30px"></div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <td colspan="1" style="background-color: #2C3E50;color: white;"><strong>PAYMENT INFORMATION</strong></td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="col-md-3">
+              <div style="height: 30px"></div>
+              <label class="uppercase">Please update your credit card details if you wish to upgrade your plan.</label>
+              <div style="height: 20px"></div>
+              <% if @subscriber.present? %>
+                  <label>Expiration Date: <%= @subscriber.expiry_date %> </label>
+                  <% if @brand == 'Visa' %>
+                      <img src="/assets/credit_card/visa.jpg" class="visa" height="40px" width="60px"> <label>
+                  <% elsif @brand == 'MasterCard' %>
+                      <img src="/assets/credit_card/mastercard.jpg" class="mastercard" height="40px" width="60px">
+                  <% elsif @brand == 'American Express' %>
+                      <img src="/assets/credit_card/amex.jpg" class="amex" height="40px" width="60px">
+                  <% end %>
+                  <%= "  .... .... .... #{@last_four}" %> </label>
+              <% end %>
+
+              <%= form_tag subscriber_path(1),method: :put do %>
+                  <br>
+                  <article>
+                    <% if flash[:error].present? %>
+                        <div id="error_explanation">
+                          <p><%= flash[:error] %></p>
+                        </div>
+                    <% end %>
+                    <label class="amount">
+                      <span>Amount: $5.00</span>
+                    </label>
+                  </article>
+
+                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                          data-description="A month's subscription"
+                          data-amount=""
+                          data-panelLabel="Submit"
+                          data-locale="auto"></script>
+              <% end %>
+              <div style="height: 30px"></div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <div style="height: 30px"></div>
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <td colspan="1" style="background-color: #2C3E50;color: white;"><strong>INVOICE HISTORY</strong></td>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td class="col-md-3">
+              <div style="height: 30px"></div>
+              <label class="uppercase">All Invoices will be issued via email to the admin user</label>
+              <div style="height: 30px"></div>
+              If an invoice has not been issued to your company please contact billing@tendercon.com and request for a new copy.
+              <div style="height: 30px"></div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <input type="hidden" class="sub" value="<%= @subscriber.present? ? @subscriber.stripe_id : nil %>">
+</div>
+
+<script>
+  $('.amount').hide();
+  var sub = $('.sub').val();
+  console.log("sub.length"+sub.length);
+  if(sub.length > 0){
+    $('.stripe-button-el').text('Change Card');
+
+    $('.stripe-button-el').click(function(){
+      $('.iconTick').attr('text', 'Submit')
+      $('.iconTick').attr('value', 'Submit')
+      if(!$('#submitButton').is(':hidden')){
+        if(!$('.iconTick').is(':hidden')){
+          $('.iconTick').text('Update');
+          $('#submitButton').text('Update');
+        }else{
+          $('.iconTick').text('Update');
+          $('#submitButton').text('Update');
+        }
+        $('.iconTick').text('Update');
+
+      }
+
+    });
+
+    $('.iconTick').load(function(){
+      alert("test");
+    });
+
+  }else{
+    $('.stripe-button-el').text('Update Details');
+  }
+
+
+</script>

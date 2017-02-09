@@ -147,6 +147,7 @@ Rails.application.routes.draw do
       post 'update_company_avatar'
       post 'get_subscription'
       post 'get_company_users'
+      post 'get_billing'
     end
   end
 

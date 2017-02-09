@@ -3,10 +3,19 @@
   <div class="col-md-12 ">
     <div class="tabbable-line">
       <ul class="nav nav-tabs ">
-        <li class="active"><a href="#overview" data-toggle="tab" id="">Overview</a></li>
+        <% if params[:subscription].present?  %>
+          <li><a href="#overview" data-toggle="tab" id="">Overview</a></li>
+        <% else %>
+          <li class="active"><a href="#overview" data-toggle="tab" id="">Overview</a></li>
+        <% end %>
+
         <li><a href="#edit_profile" data-toggle="tab" id="">Edit Profile</a></li>
         <% if session[:role] == 'Sub Contractor' %>
-          <li><a href="#subscription" data-toggle="tab" id="">Subscription</a></li>
+          <% if params[:subscription].present?  %>
+            <li class="active"><a href="#subscription" data-toggle="tab" id="">Subscription</a></li>
+          <% else %>
+            <li><a href="#subscription" data-toggle="tab" id="">Subscription</a></li>
+          <% end %>
         <% end %>
       </ul>
     </div>
@@ -189,5 +198,17 @@
       }
 
     });
+
+    <% if params[:subscription].present?  %>
+      $('.profile_div').html('');
+      $.ajax({
+        method: "POST",
+        data: {tab:'edit_profile'},
+        url: "/users/get_subscription"
+      }).done(function (data) {
+        $('.profile_div').html(data);
+      });
+    <% end %>
+
   })
 </script>
