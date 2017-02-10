@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/invites_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/invites_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/request_upgrades_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/request_upgrades_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/billing.html.erb" afterPath="$PROJECT_DIR$/app/views/users/billing.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/company/_users.html.erb" afterPath="$PROJECT_DIR$/app/views/users/company/_users.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/company_profile.html.erb" afterPath="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/invited_users/_list.html.erb" afterPath="$PROJECT_DIR$/app/views/users/invited_users/_list.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/profile.html.erb" afterPath="$PROJECT_DIR$/app/views/users/profile.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/subscription/_plan.html.erb" afterPath="$PROJECT_DIR$/app/views/users/subscription/_plan.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_account_settings.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_account_settings.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tabs/_company_settings.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tabs/_company_settings.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" afterPath="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/development.rb" afterPath="$PROJECT_DIR$/config/environments/development.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/production.rb" afterPath="$PROJECT_DIR$/config/environments/production.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -59,16 +43,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registration_completed.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/users/registration_completed.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="15" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="request_upgrades_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/request_upgrades_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
@@ -89,7 +63,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_users.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tendercon_steps.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="564">
+              <caret line="450" column="43" selection-start-line="450" selection-start-column="33" selection-end-line="450" selection-end-column="33" />
+              <folding>
+                <element signature="n#style#0;n#div#7;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+                <marker date="1486689260000" expanded="true" signature="21205:21218" ph="..." />
+                <marker date="1486689260000" expanded="true" signature="21696:21708" ph="..." />
+                <marker date="1486689260000" expanded="true" signature="22188:22200" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="_users.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/users/company/_users.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="360">
@@ -109,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/app/views/users/invited_users/_list.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="346">
-              <caret line="1031" column="10" selection-start-line="1012" selection-start-column="2" selection-end-line="1031" selection-end-column="5" />
+              <caret line="1031" column="5" selection-start-line="1012" selection-start-column="2" selection-end-line="1031" selection-end-column="5" />
               <folding>
                 <marker date="1486631917000" expanded="true" signature="40418:40449" ph="..." />
                 <marker date="1486631917000" expanded="true" signature="40619:40632" ph="..." />
@@ -154,7 +143,7 @@
         <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="486">
-              <caret line="462" column="98" selection-start-line="462" selection-start-column="82" selection-end-line="462" selection-end-column="94" />
+              <caret line="462" column="94" selection-start-line="462" selection-start-column="82" selection-end-line="462" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -213,12 +202,12 @@
         <option value="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/tabs/_company_settings.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/request_upgrades_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/users/subscription/_plan.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/invited_users/_list.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/invites_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/users/company/_users.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb" />
       </list>
     </option>
   </component>
@@ -919,12 +908,12 @@
       <workItem from="1486446861352" duration="9551000" />
       <workItem from="1486537632260" duration="6799000" />
       <workItem from="1486612741737" duration="7065000" />
-      <workItem from="1486629388990" duration="2956000" />
+      <workItem from="1486629388990" duration="4282000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="504445000" />
+    <option name="totallyTimeSpent" value="505771000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="725" extended-state="6" />
@@ -1229,18 +1218,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5175">
-          <caret line="345" column="22" selection-start-line="345" selection-start-column="14" selection-end-line="345" selection-end-column="14" />
-          <folding>
-            <marker date="1486619765000" expanded="true" signature="20985:20998" ph="..." />
-            <marker date="1486619765000" expanded="true" signature="21476:21488" ph="..." />
-            <marker date="1486619765000" expanded="true" signature="21968:21980" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/users/company_profile.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -1301,7 +1278,7 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
-          <caret line="462" column="98" selection-start-line="462" selection-start-column="82" selection-end-line="462" selection-end-column="94" />
+          <caret line="462" column="94" selection-start-line="462" selection-start-column="82" selection-end-line="462" selection-end-column="94" />
           <folding />
         </state>
       </provider>
@@ -1353,7 +1330,7 @@
     <entry file="file://$PROJECT_DIR$/app/views/users/invited_users/_list.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
-          <caret line="1031" column="10" selection-start-line="1012" selection-start-column="2" selection-end-line="1031" selection-end-column="5" />
+          <caret line="1031" column="5" selection-start-line="1012" selection-start-column="2" selection-end-line="1031" selection-end-column="5" />
           <folding>
             <marker date="1486631917000" expanded="true" signature="40418:40449" ph="..." />
             <marker date="1486631917000" expanded="true" signature="40619:40632" ph="..." />
@@ -1381,6 +1358,19 @@
             <marker date="1486632441000" expanded="true" signature="45614:45627" ph="..." />
             <marker date="1486632441000" expanded="true" signature="48836:48852" ph="..." />
             <marker date="1486632441000" expanded="true" signature="49121:49137" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/users/tendercon_steps.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="564">
+          <caret line="450" column="43" selection-start-line="450" selection-start-column="33" selection-end-line="450" selection-end-column="33" />
+          <folding>
+            <element signature="n#style#0;n#div#7;n#div#0;n#div#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <marker date="1486689260000" expanded="true" signature="21205:21218" ph="..." />
+            <marker date="1486689260000" expanded="true" signature="21696:21708" ph="..." />
+            <marker date="1486689260000" expanded="true" signature="22188:22200" ph="..." />
           </folding>
         </state>
       </provider>

@@ -126,8 +126,13 @@
         </div>
         <div style="height: 10px"></div>
         <div class="text-center">
+
+        </div>
+        <div class="text-center">
+          <a href="#!" class="btn btn-default uppercase  back2_btn">
+            Back
+          </a>
           <a href="#!">
-            <button class="btn  btn-default btn-login back2_btn" type="button">Back</button>
             <button class="btn green uppercase step3_btn" type="button">Next</button>
           </a>
         </div>
@@ -217,15 +222,16 @@
 
         <br>
         <div class="text-center">
-          <a href="#!">
-
+          <!--<a href="#!">
             <button class="btn  btn-default btn-login back3_btn" type="button">Back</button>
-            <% if session[:role] == 'Head Contractor' %>
-                <button class="btn green uppercase step4_btn" type="button" title="finish_hc">Next</button>
-                <!--<button class="btn  btn-primary btn-login step4_btn" type="submit">Next</button>-->
-            <% else %>
-                <button class="btn  green uppercase step4_btn" type="button">Next</button>
-            <% end %>
+          </a>-->
+          <a href="#!" class="btn btn-default btn-login back3_btn">Back </a>
+          <% if session[:role] == 'Head Contractor' %>
+            <button class="btn green uppercase step4_btn" type="button" title="finish_hc">Next</button>
+            <!--<button class="btn  btn-primary btn-login step4_btn" type="submit">Next</button>-->
+          <% else %>
+            <button class="btn  green uppercase step4_btn" type="button">Next</button>
+          <% end %>
           </a>
         </div>
       </div>
@@ -337,11 +343,10 @@
             </div>
             <br>
           </div>
+          <a href="#!" class="btn btn-default btn-login back4_btn">Back </a>
           <a href="#!">
-            <button class="btn  btn-default btn-login back4_btn" type="button">Back</button>
-
+            <!--<button class="btn  btn-default btn-login back4_btn" type="button">Back</button>-->
             <button class="btn green uppercase step5_btn" type="button">Next</button>
-
           </a>
         </div>
       </div>
