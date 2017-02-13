@@ -16,3 +16,8 @@
 !/log/.keep
 /tmp
 config/database.yml
+hooks/
+description
+HEAD
+info
+.idea/workspace.xml
