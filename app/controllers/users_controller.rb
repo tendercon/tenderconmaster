@@ -595,7 +595,7 @@ class UsersController < ApplicationController
     password = params[:password]
     if activated.present? && user_id.present?
       new_user = User.find(user_id)
-      @user = User.where(:email => new_user.email, :password => new_user.password,:verified => 1,:status => nil).first
+      @user = User.where(:email => new_user.email, :password => new_user.password,:verified => true,:status => nil).first
     else
       if params[:credit_card].present? || params[:invites].present?
         @user = User.where(:email => @email).first

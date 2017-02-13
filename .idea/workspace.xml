@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/users_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/users_controller.rb" />
     </list>
     <ignored path="tendercon_v2.iws" />
@@ -67,11 +66,11 @@
       <file leaf-file-name="users_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="611" column="11" selection-start-line="611" selection-start-column="11" selection-end-line="611" selection-end-column="11" />
+            <state relative-caret-position="200">
+              <caret line="597" column="99" selection-start-line="597" selection-start-column="99" selection-end-line="597" selection-end-column="99" />
               <folding>
-                <marker date="1486946028000" expanded="true" signature="24986:25274" ph="if ... end" />
-                <marker date="1486946028000" expanded="true" signature="25046:25264" ph="do ... end" />
+                <marker date="1486946588000" expanded="true" signature="24989:25277" ph="if ... end" />
+                <marker date="1486946588000" expanded="true" signature="25049:25267" ph="do ... end" />
               </folding>
             </state>
           </provider>
@@ -908,12 +907,12 @@
       <workItem from="1486537632260" duration="6799000" />
       <workItem from="1486612741737" duration="7065000" />
       <workItem from="1486629388990" duration="4282000" />
-      <workItem from="1486778187305" duration="969000" />
+      <workItem from="1486778187305" duration="1350000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="506740000" />
+    <option name="totallyTimeSpent" value="507121000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
@@ -1350,11 +1349,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="611" column="11" selection-start-line="611" selection-start-column="11" selection-end-line="611" selection-end-column="11" />
+        <state relative-caret-position="200">
+          <caret line="597" column="99" selection-start-line="597" selection-start-column="99" selection-end-line="597" selection-end-column="99" />
           <folding>
-            <marker date="1486946028000" expanded="true" signature="24986:25274" ph="if ... end" />
-            <marker date="1486946028000" expanded="true" signature="25046:25264" ph="do ... end" />
+            <marker date="1486946588000" expanded="true" signature="24989:25277" ph="if ... end" />
+            <marker date="1486946588000" expanded="true" signature="25049:25267" ph="do ... end" />
           </folding>
         </state>
       </provider>
