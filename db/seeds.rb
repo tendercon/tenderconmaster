@@ -36,11 +36,13 @@
 # user_plan.plan = 'STARTER PLAN $0'
 # user_plan.amount = 0.00
 # user_plan.save
+@emails = ['sc.sven.simpson@gmail.com','hc.george.smith@gmail.com','sc.alen.perry@gmail.com','sc.john.slow@gmail.com', 'botic.me@gmail.com']
+@users = User.where(:email => @emails)
 
-@user = User.find(26)#.update_all(:password => (User.rehash_password 'Admin1234'))
-puts "@=======> #{@user.inspect}"
+#@user = User.find(26)#.update_all(:password => (User.rehash_password 'Admin1234'))
+puts "@=======> #{@users.inspect}"
 
-User.where(:id => 26).update_all(:password => (User.rehash_password 'Admin1234'), :status => nil)
+#User.where(:id => 26).update_all(:password => (User.rehash_password 'Admin1234'), :status => nil)
 
 
 #User.where(:email => 'joe_dhay@yahoo.com').update_all(:role_type => 'role_type')
