@@ -124,6 +124,9 @@ group :development, :test do
   gem 'byebug'
 end
 
+gem 'figaro'
+gem 'puma'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
@@ -134,6 +137,19 @@ group :development do
   gem 'capybara'
   gem 'factory_girl_rails'
   #gem 'guard-rspec'
+
+  #gem 'capistrano'
+  #gem 'capistrano3-puma'
+  #gem 'capistrano-rails', require: false
+  #gem 'capistrano-bundler', require: false
+  #gem 'capistrano-rvm'
+
+  #gem 'capistrano-sidekiq', require: false
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
 end
 
 group :production, :staging do
