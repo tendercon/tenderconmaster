@@ -21,3 +21,7 @@ description
 HEAD
 info
 .idea/workspace.xml
+
+.DS_Store
+/log/*
+/tmp/*
