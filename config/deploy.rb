@@ -28,7 +28,7 @@ set :puma_init_active_record, true
 set :puma_preload_app, false
 set :assets_roles, [:web, :app]
 
-after 'deploy:update_code', 'deploy:symlink_db'
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
