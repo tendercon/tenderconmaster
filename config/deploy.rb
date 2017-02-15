@@ -59,6 +59,6 @@ after 'deploy:publishing', 'deploy:restart'
 namespace :deploy do
   task :restart do
     puts "TEST"
-    invoke 'delayed_job:restart'
+    execute :bundle, :exec, :'bin/delayed_job', args, :start
   end
 end
