@@ -65,6 +65,11 @@ namespace :deploy do
     fetch(:delayed_job_args, "")
   end
 
+  desc "Start workers"
+  task :start_workers do
+    run "cd #{release_path} && RAILS_ENV=production script/delayed_job -n 2 start"
+  end
+
   task :seed do
     puts "\n=== Seeding Database ===\n"
     on primary :db do
