@@ -12,12 +12,6 @@ set :keep_releases, 5
 set :rvm_type, :user
 set :rvm_ruby_version, 'ruby-2.2.3' # Edit this if you are using MRI Ruby
 
-set :deploy_via, :remote_cache
-set :copy_compression, :bz2
-set :git_shallow_clone, 1
-set :scm_verbose, true
-
-
 set :puma_rackup, -> { File.join(current_path, 'config.ru') }
 set :puma_state, "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
@@ -32,11 +26,6 @@ set :puma_workers, 0
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, false
-set :assets_roles, [:web, :app]
-
-
-
-
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -66,51 +55,17 @@ set :assets_roles, [:web, :app]
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-
-
-
-
 namespace :deploy do
-  # task :start, :roles => :app, :except => { :no_release => true } do
-  #   # not need to restart nginx every time
-  #   # run "service nginx start"
-  #   run "cd #{release_path} && touch tmp/restart.txt"
-  # end
+  # http://stackoverflow.com/questions/9016002/speed-up-assetsprecompile-with-rails-3-1-3-2-capistrano-deployment
+  namespace :assets do
+    task :precompile, :roles => :web, :except => { :no_release => true } do
+      from = source.next_revision(current_revision) rescue nil
 
-  # after "deploy:start", "deploy:cleanup"
-  # after 'deploy:cleanup', 'deploy:symlink_config'
-
-  # You do not need reload nginx every time, eventhought if you use passenger or unicorn
-  # task :stop, :roles => :app, :except => { :no_release => true } do
-  #   run "service nginx stop"
-  # end
-
-  # task :graceful_stop, :roles => :app, :except => { :no_release => true } do
-  #   run "service nginx stop"
-  # end
-
-  # task :reload, :roles => :app, :except => { :no_release => true } do
-  #   run "cd #{release_path} && touch tmp/restart.txt"
-  #   run "service nginx restart"
-  # end
-
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "cd #{release_path} && touch tmp/restart.txt"
+      if from.nil? || capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
+        run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
+      else
+        logger.info "Skipping asset pre-compilation because there were no asset changes"
+      end
+    end
   end
-
-  desc "Symlinks the database.yml"
-  task :symlink_db, :roles => :app do
-    run "ln -nfs #{deploy_to}/shared/config/database.yml #{release_path}/config/database.yml"
-  end
-
-  # If you enable assets/deploy in Capfile, you do not need this
-  # task :pipeline_precompile do
-  #   # run "cd #{release_path}; RAILS_ENV=#{rails_env} bundle exec rake assets:precompile"
-  #   # precompile assets before deploy and upload them to server
-  #   # run_locally("RAILS_ENV=#{rails_env} rake assets:clean && RAILS_ENV=#{rails_env} rake assets:precompile")
-  #   # top.upload "public/assets", "#{release_path}/public/assets", :via =>:scp, :recursive => true
-  # end
 end
-
-# you do not need to this, because you already add require 'bundler/capistrano'
-# before "deploy:assets:precompile", "bundle:install"
