@@ -2029,7 +2029,7 @@ class UsersController < ApplicationController
       avatar.save
     end
 
-    render :json => { :state => 'valid',:url => @user.avatar.image.url(:original)}
+    render :json => { :state => 'valid',:url => @user.avatar.present? ? @user.avatar.image.url(:original) : nil}
   end
 
   def get_user_avatar_path
