@@ -55,22 +55,33 @@ set :puma_preload_app, false
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-after 'deploy:publishing',  'deploy:seed', 'deploy:restart'
+after 'deploy:publishing',  'deploy:seed', 'deploy:start'
 namespace :deploy do
   def delayed_job_roles
     fetch(:delayed_job_server_role, :app)
   end
 
-  task :seed do
-    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=production"
+  def args
+    fetch(:delayed_job_args, "")
   end
 
-  task :restart do
-    puts "TEST"
+  task :seed do
+    puts "\n=== Seeding Database ===\n"
+    on primary :db do
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'db:seed'
+        end
+      end
+    end
+  end
+
+  desc 'Start the delayed_job process'
+  task :start do
     on roles(delayed_job_roles) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :bundle, :exec, :'bin/delayed_job', :start
+          execute :bundle, :exec, :'bin/delayed_job', args, :start
         end
       end
     end
