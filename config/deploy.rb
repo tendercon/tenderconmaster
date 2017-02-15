@@ -68,7 +68,7 @@ set :assets_roles, [:web, :app]
 
 
 
-after 'deploy:update_code', 'deploy:symlink_db'
+
 
 namespace :deploy do
   # task :start, :roles => :app, :except => { :no_release => true } do
