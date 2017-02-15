@@ -34,9 +34,7 @@ set :puma_init_active_record, true
 set :puma_preload_app, false
 set :assets_roles, [:web, :app]
 
-role :web, domain
-role :app, domain
-role :db,  domain, :primary => true
+
 
 
 
