@@ -19,7 +19,7 @@ require 'capistrano/bundler'
 require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/puma'
-require 'capistrano/delayed_job'
+#require 'capistrano/delayed_job'
 require 'sshkit/sudo'
 
 # Include tasks from other gems included in your Gemfile

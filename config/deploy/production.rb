@@ -60,5 +60,5 @@
 #     # password: "please use keys"
 #   }
 set :rails_env, :production
-set :delayed_job_workers, 10
+#set :delayed_job_workers, 10
 server '13.55.171.82', user: 'deploy', roles: %w{web app db}
