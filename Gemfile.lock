@@ -393,6 +393,8 @@ GEM
     sshkit (1.12.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    sshkit-sudo (0.1.0)
+      sshkit (~> 1.8)
     stripe (1.57.1)
       rest-client (>= 1.4, < 4.0)
     stripe-rails (0.3.1)
@@ -499,6 +501,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   select2-rails
   spring
+  sshkit-sudo
   stripe-rails
   therubyracer
   thin
