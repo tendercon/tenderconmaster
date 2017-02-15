@@ -55,10 +55,15 @@ set :puma_preload_app, false
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-after 'deploy:publishing', 'deploy:restart'
+after 'deploy:publishing', 'deploy:restart', 'deploy:seed'
 namespace :deploy do
+
+  task :seed do
+    run "cd #{current_path}; bundle exec rake db:seed RAILS_ENV=#{rails_env}"
+  end
+
   task :restart do
     puts "TEST"
-    execute :bundle, :exec, :'bin/delayed_job', args, :start
+    execute :bundle, :exec, :'bin/delayed_job', :start
   end
 end
