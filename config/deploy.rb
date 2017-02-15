@@ -55,7 +55,7 @@ set :puma_preload_app, false
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-after 'deploy:publishing',  'deploy:seed', 'deploy:start'
+after 'deploy:publishing', 'deploy:start'
 namespace :deploy do
   def delayed_job_roles
     fetch(:delayed_job_server_role, :app)
@@ -81,6 +81,7 @@ namespace :deploy do
     on roles(delayed_job_roles) do
       within release_path do
         with rails_env: fetch(:rails_env) do
+          puts "TEST"
           execute :bundle, :exec, :'bin/delayed_job', args, :start
         end
       end
