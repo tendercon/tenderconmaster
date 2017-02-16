@@ -54,7 +54,7 @@ set :puma_preload_app, false
 
 # Default value for keep_releases is 5
 # set :keep_releases, 5
-
+after 'deploy:publishing', 'deploy:install'
 after 'deploy:publishing', 'deploy:start'
 namespace :deploy do
   def delayed_job_roles
@@ -76,6 +76,20 @@ namespace :deploy do
       within current_path do
         with rails_env: fetch(:rails_env) do
           execute :rake, 'db:seed'
+        end
+      end
+    end
+  end
+
+  desc "Install Deployed Job executable if needed"
+  task :install do
+    on roles(delayed_job_roles) do |host|
+      within release_path do
+        # Only install if not already present
+        unless test("[ -f #{release_path}/#{delayed_job_bin} ]")
+          with rails_env: fetch(:rails_env) do
+            execute :bundle, :exec, :rails, :generate, :delayed_job
+          end
         end
       end
     end
