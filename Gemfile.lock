@@ -450,6 +450,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   credit_card_validations
+  daemons
   delayed_job
   delayed_job_active_record
   dotenv-rails
