@@ -67,7 +67,7 @@ namespace :deploy do
 
   desc "Start workers"
   task :start_workers do
-    run "cd #{release_path} && RAILS_ENV=production current/bin/delayed_job start"
+    run "cd #{release_path} && RAILS_ENV=production script/delayed_job -n 2 start"
   end
 
   task :seed do
