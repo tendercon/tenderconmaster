@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/tendercon_v2.iml" afterPath="$PROJECT_DIR$/.idea/tendercon_v2.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/avatar.rb" afterPath="$PROJECT_DIR$/app/models/avatar.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/application.rb" afterPath="$PROJECT_DIR$/config/application.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/development.rb" afterPath="$PROJECT_DIR$/config/environments/development.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/environments/production.rb" afterPath="$PROJECT_DIR$/config/environments/production.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -109,12 +101,34 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".env" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".env" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.env">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="45">
               <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="coming_soon_layout.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="415">
+              <caret line="356" column="36" selection-start-line="356" selection-start-column="27" selection-end-line="356" selection-end-column="27" />
+              <folding>
+                <marker date="1487309942000" expanded="true" signature="17833:17886" ph="..." />
+                <marker date="1487309942000" expanded="true" signature="18613:18666" ph="..." />
+                <marker date="1487309942000" expanded="true" signature="19546:19613" ph="..." />
+                <marker date="1487309942000" expanded="true" signature="20031:20084" ph="..." />
+                <marker date="1487309942000" expanded="true" signature="20305:20358" ph="..." />
+                <marker date="1487309942000" expanded="true" signature="20571:20624" ph="..." />
+                <marker date="1487309942000" expanded="true" signature="20834:20887" ph="..." />
+                <marker date="1487309942000" expanded="true" signature="21104:21157" ph="..." />
+                <marker date="1487309942000" expanded="true" signature="21266:21319" ph="..." />
+                <marker date="1487309942000" expanded="true" signature="21420:21473" ph="..." />
+                <marker date="1487309942000" expanded="true" signature="21571:21624" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -137,7 +151,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/quotes/view.html.erb" />
         <option value="$PROJECT_DIR$/app/views/quotes/_latest_quotes.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/rfis_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" />
@@ -188,6 +201,7 @@
         <option value="$PROJECT_DIR$/config/environments/development.rb" />
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb" />
       </list>
     </option>
   </component>
@@ -835,12 +849,12 @@
       <workItem from="1486612741737" duration="7065000" />
       <workItem from="1486629388990" duration="4282000" />
       <workItem from="1486778187305" duration="4132000" />
-      <workItem from="1486983076756" duration="19509000" />
+      <workItem from="1486983076756" duration="20053000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="529412000" />
+    <option name="totallyTimeSpent" value="529956000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="25" width="1280" height="725" extended-state="6" />
@@ -924,13 +938,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="67" selection-start-line="3" selection-start-column="66" selection-end-line="3" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="15" selection-end-column="79" />
         </state>
       </provider>
     </entry>
@@ -1280,6 +1287,26 @@
         <state relative-caret-position="45">
           <caret line="3" column="32" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="356" column="36" selection-start-line="356" selection-start-column="27" selection-end-line="356" selection-end-column="27" />
+          <folding>
+            <marker date="1487309942000" expanded="true" signature="17833:17886" ph="..." />
+            <marker date="1487309942000" expanded="true" signature="18613:18666" ph="..." />
+            <marker date="1487309942000" expanded="true" signature="19546:19613" ph="..." />
+            <marker date="1487309942000" expanded="true" signature="20031:20084" ph="..." />
+            <marker date="1487309942000" expanded="true" signature="20305:20358" ph="..." />
+            <marker date="1487309942000" expanded="true" signature="20571:20624" ph="..." />
+            <marker date="1487309942000" expanded="true" signature="20834:20887" ph="..." />
+            <marker date="1487309942000" expanded="true" signature="21104:21157" ph="..." />
+            <marker date="1487309942000" expanded="true" signature="21266:21319" ph="..." />
+            <marker date="1487309942000" expanded="true" signature="21420:21473" ph="..." />
+            <marker date="1487309942000" expanded="true" signature="21571:21624" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
