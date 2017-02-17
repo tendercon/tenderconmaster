@@ -26,6 +26,7 @@ class ApplicationController < ActionController::Base
   end
 
   def notify
+
     if session[:user_logged_id].present?
       UserSubscription.delay.notify(session[:user_logged_id],request.host_with_port)
 

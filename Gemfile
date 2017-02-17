@@ -40,10 +40,10 @@ gem 'intercom-rails'
 
 # linkedin
 #gem "linkedin-oauth2", "~> 1.0"
-gem 'omniauth'
-gem 'omniauth-linkedin'
-gem 'omniauth-facebook'
-gem 'linkedin-scraper'
+#gem 'omniauth'
+#gem 'omniauth-linkedin'
+#gem 'omniauth-facebook'
+#gem 'linkedin-scraper'
 
 #gem 'bootstrap-wysihtml5-rails'
 
@@ -61,10 +61,12 @@ gem 'pdfkit'
 #gem 'wkhtmltopdf-binary'
 #gem 'wkhtmltopdf-installer'
 gem 'prawn-rails'
-
 # for uploading
 gem 'paperclip'#, git: 'git://github.com/thoughtbot/paperclip.git'
 
+#gem 'aws-sdk-v1'
+gem 'aws-sdk'
+gem 's3'
 # jquery file upload
 gem 'jquery-fileupload-rails'
 
@@ -128,6 +130,7 @@ gem 'figaro'
 gem 'puma'
 gem 'sshkit-sudo'
 gem 'daemons'
+
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
