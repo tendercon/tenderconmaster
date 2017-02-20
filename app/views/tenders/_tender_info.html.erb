@@ -1,4 +1,4 @@
-<div style="height:40px"></div>
+<div style="height:20px"></div>
 <div class="row">
   <div class="col-md-12">
     <% if session[:role] == 'Head Contractor' %>
@@ -14,28 +14,34 @@
 
 <div class="row">
   <div class="col-md-12">
-    <div class="portlet light bordered">
+    <!--<div class="portlet light bordered">-->
       <div class="portlet-body form">
         <div class="form-body">
           <div class="row">
             <div class="col-md-12">
-              <div class="portlet box green">
-                <div class="portlet-title">
+              <!--<div class="portlet box green">-->
+                <!--<div class="portlet-title">
                   <div class="caption">
                     <label><i class="fa fa-question-circle"></i> Trades</label>
                   </div>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"> </a>
                   </div>
-                </div>
+                </div>-->
                 <div class="portlet-body">
                   <div class="table-scrollable">
 
                     <% if session[:role] == 'Sub Contractor' %>
-                        <p>Status of the trades you have applied to tender for</p>
+                        <!--<p>Status of the trades you have applied to tender for</p>-->
                     <% end %>
                     <div class="trade_div">
                       <table  class="table table-bordered">
+                        <tr style="background-color: #2C3E50;color: white;">
+
+                          <th>Trade</th>
+                          <th>Status</th>
+
+                        </tr>
                         <tbody>
                         <% if session[:role] == 'Sub Contractor' %>
                             <% if (get_tender_request @tender.id,session[:user_logged_id]).present? %>
@@ -121,39 +127,40 @@
                     <% end %>
                   </div>
                 </div>
-              </div>
+              <!--</div>-->
             </div>
           </div>
         </div>
       </div>
-    </div>
+    <!--</div>-->
   </div>
 </div>
 
 
 <div class="row">
   <div class="col-md-12">
-    <div class="portlet light bordered">
+    <!--<div class="portlet light bordered">-->
       <div class="portlet-body form">
         <div class="form-body">
           <div class="row">
             <div class="col-md-12">
-              <div class="portlet box green">
-                <div class="portlet-title">
+              <!--<div class="portlet box green">-->
+                <!--<div class="portlet-title">
                   <div class="caption">
                     <i class="fa fa-info-circle"></i>Details</div>
                   <div class="tools">
                     <a href="javascript:;" class="collapse"> </a>
                   </div>
-                </div>
+                </div>-->
                 <div class="portlet-body">
                   <div class="table-scrollable">
                     <table class="table table-bordered table-hover">
-                      <thead>
-                      <tr>
+                      <tr style="background-color: #2C3E50;color: white;">
+
+                        <th>Name</th>
+                        <th>Value</th>
 
                       </tr>
-                      </thead>
                       <tbody>
                       <tr>
                         <td> Tender ID </td>
@@ -222,12 +229,12 @@
                     </table>
                   </div>
                 </div>
-              </div>
+              <!--</div>-->
             </div>
           </div>
         </div>
       </div>
-    </div>
+    <!--</div>-->
 
 
     <%#= render 'tender_trades' %>
@@ -240,28 +247,16 @@
 
 <div class="col-md-12">
   <div class="col-md-12">
-    <div class="portlet light bordered">
-      <div class="portlet-body form">
-        <div class="form-body">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="portlet box green">
-                <div class="portlet-title">
-                  <div class="caption">
-                    <i class="fa fa-map-marker"></i>Map</div>
-                  <div class="tools">
-                    <a href="javascript:;" class="collapse"> </a>
-                  </div>
-                </div>
-                <div class="portlet-body">
-                  <div class="table-scrollable">
-                    <div id="map_<%= @tender.id %>" style="height:300px;width:100%;"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="portlet-body">
+      <div class="table-scrollable">
+        <table class="table table-bordered table-hover">
+          <tr style="background-color: #2C3E50;color: white;">
+            <th><div class="caption">
+              <i class="fa fa-map-marker"></i> Map</div></th>
+          </tr>
+        </table>
+        <div id="map_<%= @tender.id %>" style="height:300px;width:100%;"></div>
+
       </div>
     </div>
   </div>

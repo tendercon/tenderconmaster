@@ -296,8 +296,12 @@
     });
 
     $('.quote_list').click(function(){
+
       $('.quote_list').each(function(index) {
         if($(this).prop('checked')){
+          //console.log("TEST"+$(this).prop('checked'));
+          //$('.quote_download').removeAttr("disabled");
+          //$('.remove_quote').removeAttr("disabled");
           $('.quote_download').prop('disabled', false);
           $('.remove_quote').prop('disabled', false);
         }else{

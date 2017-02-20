@@ -1,4 +1,47 @@
-
+<div class="row widget-row">
+  <div class="col-md-4">
+    <!-- BEGIN WIDGET THUMB -->
+    <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+      <h4 class="widget-thumb-heading">AUSTRALIA WIDE</h4>
+      <div class="widget-thumb-wrap">
+        <i class="widget-thumb-icon bg-green icon-bulb"></i>
+        <div class="widget-thumb-body">
+          <span class="widget-thumb-subtitle">TENDERS</span>
+          <span class="widget-thumb-body-stat" data-counter="counterup" data-value="7,644">0</span>
+        </div>
+      </div>
+    </div>
+    <!-- END WIDGET THUMB -->
+  </div>
+  <div class="col-md-4">
+    <!-- BEGIN WIDGET THUMB -->
+    <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+      <h4 class="widget-thumb-heading">IN YOUR STATE</h4>
+      <div class="widget-thumb-wrap">
+        <i class="widget-thumb-icon bg-red icon-layers"></i>
+        <div class="widget-thumb-body">
+          <span class="widget-thumb-subtitle">TENDERS</span>
+          <span class="widget-thumb-body-stat" data-counter="counterup" data-value="1,293">0</span>
+        </div>
+      </div>
+    </div>
+    <!-- END WIDGET THUMB -->
+  </div>
+  <div class="col-md-4">
+    <!-- BEGIN WIDGET THUMB -->
+    <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+      <h4 class="widget-thumb-heading">WITHIN YOUR TRADE</h4>
+      <div class="widget-thumb-wrap">
+        <i class="widget-thumb-icon bg-purple icon-screen-desktop"></i>
+        <div class="widget-thumb-body">
+          <span class="widget-thumb-subtitle">TENDERS</span>
+          <span class="widget-thumb-body-stat" data-counter="counterup" data-value="815">0</span>
+        </div>
+      </div>
+    </div>
+    <!-- END WIDGET THUMB -->
+  </div>
+</div>
 <div class="row"> 
   <div class="text-center">
     <h1 class="text-center">OPEN TENDERS</h1>
@@ -9,15 +52,16 @@
   <div class="col-md-12   tender_list_filter">
     <table  class="table table-bordered responsive" id="open_tender_table"  cellspacing="0" width="100%">
       <thead>
-        <tr>
+        <tr style="background-color: #2C3E50;color: white;">
           <th>Tender ID</th>
           <th>Project Name</th>
           <th>Value</th>
-          <th>Sector</th>
+          <!--<th>Sector</th>-->
           <th>Location</th>
           <th>Distance from me</th>
           <th>Head Contractor</th>
           <th>Quote Due</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody class="searchable">
@@ -26,21 +70,24 @@
             <tr>
               <% if session[:role] == 'Head Contractor' %>
                 <td class="text-center">
-                  <a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
-                    <%= t.tendercon_id %>
-                  </a>
+                  <%= t.tendercon_id %>
+                  <!--<a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
+                    <%#= t.tendercon_id %>
+                  </a>-->
                 </td>
               <% else %>
                 <td class="text-center">
-                  <a href="#!" class="tender" id="<%= t.id %>">
-                    <%= t.tendercon_id %>
-                  </a>
+                  <%= t.tendercon_id %>
+                  <!--<a href="#!" class="tender" id="<%= t.id %>">
+                    <%#= t.tendercon_id %>
+                  </a>-->
                 </td>
+
               <% end %>
 
               <td class="text-center"><%= t.title %></td>
               <td class="text-center"><%= get_value_name t.tender_value_id %></td>
-              <td class="text-center"><%= get_trade_category_name  t.category_id %></td>
+              <!--<td class="text-center"><%#= get_trade_category_name  t.category_id %></td>-->
               <% if t.address_terms.present? %>
                 <td class="text-center">
                   Hidden Address <i class="fa fa-question-circle" aria-hidden="true" title="Address will appear once your Head Contractor approved your request"></i>
@@ -51,6 +98,23 @@
               <td class="text-center"><%= get_distance t.id,session[:user_logged_id] %></td>
               <td class="text-center"><%= get_user_company_name t.user_id %></td>
               <td class="text-center"><%= get_tender_due t.id %></td>
+              <% if session[:role] == 'Head Contractor' %>
+                  <td class="text-center">
+                    <a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
+                      <button class="btn green">
+                        View
+                      </button>
+                    </a>
+                  </td>
+              <% else %>
+                  <td class="text-center">
+                    <a href="#!" class="tender" id="<%= t.id %>">
+                      <button class="btn green">
+                        View
+                      </button>
+                    </a>
+                  </td>
+              <% end %>
             </tr>
           <% end %>
         <% end %>
@@ -64,29 +128,26 @@
 <div class="row ">
   <% if @tenders.present? %>
     <%  @tenders.each do |u| %>
-      <div id="tender_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 30px;" >
+      <div id="tender_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 30px;height: 600px;" >
         <div class="modal-dialog">
           <!-- Modal content-->
           <div class="modal-content">
-            <div class="modal-header" style="background-color: #184a5f">
+            <div class="modal-header" style="background-color: #184a5f;height: 60px">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <div class="text-center">
-                <p class="text-center" style="font-size: 20px;color: white"><%= u.title %></p>
-              </div>
-              <div class="row">
-                <div class="form-group"></div>
+                <label class="text-center" style="font-size: 20px;color: white"><%= u.title %></label>
               </div>
             </div>
             <div class="modal-body open_tender_body">
               <input type="hidden" class="tender_id" value="<%= u.id %>">
               <div class="row">
-                <div class="row">
+                <!--<div class="row">
                   <div class="col-md-11">
                     <button class="btn btn-default pull-right why_quote">
                       Why Should i quote to this Tender?
                     </button>
                   </div>
-                </div>
+                </div>-->
                 <div class="row">
                   <div class="container">
                     <div class="row">
@@ -104,34 +165,28 @@
                     </div>
                   </div>
                   <div class="col-md-12">
+                    <div style="height: 30px"></div>
                     <div id="my-tab-content" class="tab-content">
-                      <div class="row">
-                        <div class="form-group"></div>
-                      </div>
 
                       <div class="tab-pane active" id="red<%= u.id%>">
                         <div class="row">
-                          <div class="form-group"></div>
-                          <div class="col-md-6"></div>
-                          <div class="col-md-6 pull-right">
-                            <img src="<%= get_user_company_avatar u.user_id %>" width="100px" height="100">
-                          </div>
+
                         </div>
                         <div class="row">
                           <div class="col-md-12">
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                               <label>Tender ID</label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                               <label><%= u.tendercon_id %></label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                               <label>Status</label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                               <% if u.status == '1' %>
                                   <label>Tendering-The Head Contractor still tendering for this project.</label>
                               <% else %>
@@ -139,89 +194,90 @@
                               <% end %>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                               <label>Head Contractor</label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                               <label><%= return_hc_name u.user_id %></label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                               <label>Client</label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                               <label><%= u.client.present? ? u.client : '-------' %></label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                               <label>Architect</label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                               <label><%= u.architect.present? ? u.architect : '-------' %></label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                               <label>Sector</label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                               <label><%= get_categoty_name u.category_id %></label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                               <label>Value</label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                               <label><%= get_value_name u.tender_value_id %></label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                               <label>Description</label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                               <label><%=  u.description.present? ? u.description.html_safe : '-------' %></label>
                             </div>
                             <% if u.address_terms != "on"  %>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                   <label>Address</label>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-9">
                                   <label><%=  u.address %></label>
                                 </div>
                             <% end %>
 
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                               <label>Distance from me </label>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                               <label><%= get_distance u.id,session[:user_logged_id] %></label>
                             </div>
 
                             <% if (get_tender_sites_per_user u.id).present? %>
-                                <div class="col-md-6">
+                                <div class="col-md-3">
                                   <label>Site Inspection</label>
                                 </div>
-                                <div class="col-md-6"></div>
+                                <div class="col-md-9"></div>
                                 <% (get_tender_sites_per_user u.id).each do |a| %>
                                     <div class="col-md-6"></div>
                                     <div class="col-md-6"><label><%= a.site_date %></label></div>
                                 <% end %>
                             <% end %>
-                            <div class="col-md-6">
+                            <div class="col-md-3">
                               <label>Quote</label>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-9">
                               <label><%= u.tender_quote.quote_date %></label>
                             </div>
                           </div>
                         </div>
+                        <div style="height: 100px"></div>
                       </div>
                       <div class="tab-pane" id="orange<%= u.id%>">
                         <div class="col-md-12">
@@ -245,11 +301,10 @@
                         </div>
                       </div>
                       <div class="tab-pane" id="yellow<%= u.id%>">
+                        <div style="height: 135px"></div>
                         <div class="col-md-12">
                           <div class="text-center">
-                            <p class="text-center">
                               <i class="fa fa-file fa-4x" aria-hidden="true"></i>
-                            </p>
                           </div>
                           <br>
                           <% if !u.hide_document.present? || u.hide_document == '0'  %>
@@ -266,6 +321,7 @@
                                     <option value="<%= d.url %>"><%= File.basename(d.url) %></option>
                                   <% end %>
                                 </select>
+                                  <div style="height: 40px"></div>
                               <% else %>
                                 <p class="text-center" style="font-size: 18px">
                                   <b>Head Contractor has not uploaded any documents yet</b>
@@ -276,8 +332,10 @@
                                 <p class="text-center" style="font-size: 12px">
                                   Press the [I AM INTERESTED] below to notify Head Contractor.
                                 </p>
+                                  <div style="height: 40px"></div>
                               <% end %>
                             </div>
+                            <div style="height: 100px"></div>
                           <% else %>
                             <div class="col-md-12">
                               <p class="text-center" style="font-size: 18px">
@@ -286,8 +344,11 @@
                               <p class="text-center" style="font-size: 16px">
                                 Documents will be available after your request approved
                               </p>
+                              <div style="height: 40px"></div>
                             </div>
+                            <div style="height: 100px"></div>
                           <% end %>
+
                         </div>
 
                       </div>
@@ -337,13 +398,20 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
+              <!--<div class="row">
                 <div class="form-group"></div>
-                <div class="text-center">
+                <div class="text-center" style="background-color: #184a5f;height: 100px">
                   <a href="#!">
                     <button class=" btn btn-info interested_btn" type="button" id="<%= u.id %>" >I AM INTERESTED</button>
                   </a>
                 </div>
+              </div>-->
+            </div>
+            <div class="modal-footer" style="background-color: #184a5f;height: 60px">
+              <div class="text-center footer_btn">
+                <a href="#!">
+                  <button class=" btn btn-info interested_btn" type="button" id="<%= u.id %>" >I AM INTERESTED</button>
+                </a>
               </div>
             </div>
           </div>
@@ -554,6 +622,16 @@
       }).done(function (data){
         $('.open_tender_body').html(data);
       });
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id:id},
+        url: "/open_tenders/get_request_footer"
+      }).done(function (data){
+        $('.footer_btn').html(data);
+      });
+
+
       //$('#tender_Modal_'+id).modal('hide');
       //$('#tender_trade_Modal_'+id).modal('show');
     });

@@ -245,6 +245,7 @@ Rails.application.routes.draw do
       # post
 
       post 'get_request_body'
+      post 'get_request_footer'
 
     end
   end

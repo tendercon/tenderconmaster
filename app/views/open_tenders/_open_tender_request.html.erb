@@ -61,21 +61,7 @@
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="form-group"></div>
-  <div class="text-center">
-    <% if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
-        <a href="#!">
-          <button class=" btn btn-info quotes" type="button">I AM INTERESTED</button>
-        </a>
-    <% else %>
-        <a href="#!">
-          <button class=" btn btn-info quotes" type="button" disabled>I AM INTERESTED</button>
-        </a>
-    <% end %>
 
-  </div>
-</div>
 
 <input type="hidden" class="tender_id" value="<%= @tender.id %>">
 <input type="hidden" class="sc_id" value="<%= session[:user_logged_id] %>">
