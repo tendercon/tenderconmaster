@@ -315,7 +315,7 @@ class QuotesController < ApplicationController
 
     #Dir.mkdir(dir) unless File.exists?(dir)
     if @tender.present?
-      @user = User.find(@tender.user_id)
+      @tender_user = User.find(@tender.user_id)
     end
 
     if params[:notif].present?
@@ -387,6 +387,10 @@ class QuotesController < ApplicationController
     #FileUtils.cp_r old_folder, new_destination
 
     @pdf_link = "http://#{request.host_with_port}/assets/quotes/#{project_name}/#{@quote.ref_no}.pdf"
+
+  end
+
+  def show
 
   end
 
