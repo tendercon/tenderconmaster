@@ -1,32 +1,41 @@
 <% if rfis.present? %>
-    <i class="fa fa-download rfi_download" aria-hidden="true"></i>
+  <div class="admin-form">
+    <button class="button btn-default rfi_download">
+      <i class="fa fa-download rfi_download" aria-hidden="true"> </i>  Download
+      <!--<i class="fa fa-download " aria-hidden="true"></i> -->
+    </button>
+    <% if session[:role] == 'Head Contractor' %>
+      <% if rfis.present? %>
+        <button class="button btn-default rfi_shared" >
+          <i class="fa fa-share-square " aria-hidden="true"></i> Share
+        </button>
+      <% end %>
+    <% end %>
+  </div>
+
 <% end %>
 
-<% if session[:role] == 'Head Contractor' %>
-  <% if rfis.present? %>
-    <i class="fa fa-share-square rfi_shared" aria-hidden="true"></i>
-  <% end %>
-<% end %>
 
+<div style="height: 30px;"></div>
 <table  class="table table-bordered document_table">
   <thead>
     <% if rfis.present? %>
-      <tr>
-        <th><input type="checkbox" class="rfi_list_master" name="document_list_master"></th>
-        <th>RFI#</th>
-        <th>Heading</th>
+      <tr style="background-color: #2C3E50;color: white;">
+        <th class="text-center"><input type="checkbox" class="rfi_list_master" name="document_list_master"></th>
+        <th class="text-center">RFI#</th>
+        <th class="text-center">Heading</th>
         <% if session[:role] == 'Sub Contractor' %>
-          <th>Sent</th>
+          <th class="text-center">Sent</th>
         <% elsif session[:role] == 'Head Contractor' %>
-          <th>Received</th>
+          <th class="text-center">Received</th>
         <% end %>
         <% if session[:role] == 'Sub Contractor' %>
-          <th>Seen</th>
+          <th class="text-center">Seen</th>
         <% end %>
-        <th>Due by</th>
-        <th>Trade</th>
-        <th>Status</th>
-        <th>Action</th>
+        <th class="text-center">Due by</th>
+        <th class="text-center">Trade</th>
+        <th class="text-center">Status</th>
+        <th class="text-center">Action</th>
 
       </tr>
     <% end %>
@@ -35,20 +44,20 @@
     <% if rfis.present? %>
       <% rfis.each do |d| %>
         <tr>
-          <td><input type="checkbox" class="rfi_list" name="documents[]" value="<%= d.id %>"></td>
-          <td><%= d.ref_no %></td>
-          <td><%= d.heading %></td>
-          <td><%= d.rfi_date.present? ? d.rfi_date.strftime("%Y.%m.%d") : Time.now.strftime("%Y.%m.%d") %></td>
+          <td class="text-center"><input type="checkbox" class="rfi_list" name="documents[]" value="<%= d.id %>"></td>
+          <td class="text-center"><%= d.ref_no %></td>
+          <td class="text-center"><%= d.heading %></td>
+          <td class="text-center"><%= d.rfi_date.present? ? d.rfi_date.strftime("%Y.%m.%d") : Time.now.strftime("%Y.%m.%d") %></td>
           <% if session[:role] == 'Sub Contractor' %>
             <% if d.seen == 'true' %>
-              <td><i class="fa fa-eye" aria-hidden="true" style="color: green"></i></td>
+              <td class="text-center"><i class="fa fa-eye" aria-hidden="true" style="color: green"></i></td>
             <% else %>
-              <td><i class="fa fa-eye" aria-hidden="true"></i></td>
+              <td class="text-center"><i class="fa fa-eye" aria-hidden="true"></i></td>
             <% end %>
           <% end %>
-          <td><%= d.response_date.present? ? d.response_date.strftime("%Y.%m.%d") : Time.now.strftime("%Y.%m.%d") %></td>
-          <td><%= get_trade_name d.trade_id %></td>
-          <td>
+          <td class="text-center"><%= d.response_date.present? ? d.response_date.strftime("%Y.%m.%d") : Time.now.strftime("%Y.%m.%d") %></td>
+          <td class="text-center"><%= get_trade_name d.trade_id %></td>
+          <td class="text-center">
             <% if d.status.present? %>
                 <button class="btn btn-success">
                   <%= d.status.present? ? d.status : "Outstanding" %>
@@ -65,7 +74,7 @@
             <% end %>
 
           </td>
-          <td>
+          <td class="text-center">
             <div class="dropdown">
               <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Action
                 <span class="caret"></span></button>

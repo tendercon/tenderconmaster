@@ -1,5 +1,5 @@
 <div class="quote_all_lists">
-  <div style="height: 30px;"></div>
+  <div style="height: 10px;"></div>
   <div class="row">
     <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
         <div class="col-md-12">
@@ -13,7 +13,7 @@
               </a>
             </div>
           </div>
-          <div style="height: 30px;"></div>
+          <div style="height: 20px;"></div>
           <!--<div class="admin-form  pull-right">
             <a href="#!" class="btn new_quote">
               <span class="fa fa-plus-circle  fa-3x" style="color:  #000099"><h4 class="btn_send" style="display: none">Send New Quote</h4></span>
@@ -24,7 +24,7 @@
 
     <% end %>
 
-    <div style="height: 50px;"></div>
+    <div style="height: 30px;"></div>
     <div class="col-md-12 quote_lists">
       <%= render :partial => 'quotes/quotes', :locals => {:quotes => @refs,:tender_id =>@tender.id} %>
     </div>

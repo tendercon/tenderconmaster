@@ -1,9 +1,14 @@
+<div style="height: 30px;"></div>
+<% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
+    <div class="admin-form">
+
+      <a href="#!" class="new_rfi">
+        <button class="button btn-info">Create New RFI</button>
+      </a>
+
+    </div>
+<% end %>
 <div class="row">
-  <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
-    <a href="#!" class="new_rfi">
-      <button class="btn btn-info">Create New RFI</button>
-    </a>
-  <% end %>
   <% if session[:role] == 'Head Contractor' %>
     <% if @rfis.present? %>
       <div class="col-md-12">
@@ -26,10 +31,13 @@
 
             <%#= select_tag "trade",content_tag(:option,'Sort By',:value=>'')+content_tag(:option,'All',:value=>'all')+options_from_collection_for_select(@trades, 'id','name'),{:class=> 'form-control sort_trade'} %>
       </div>
+          <div style="height: 20px;"></div>
     <% end %>
+
   <% end %>
-  <br><br>
+
   <div class="col-md-12 rfi_lists">
+    <div style="height: 20px;"></div>
     <%= render :partial => 'rfis/rfis', :locals => {:rfis => @rfis} %>
   </div>
 </div>

@@ -16,25 +16,25 @@
             <% end %>
         <% end %>
       </div>
-      <div class="col-md-3">
-        <% if quotes.present? %>
-          <div class="section">
+      <!--<div class="col-md-3">-->
+        <%# if quotes.present? %>
+          <!--<div class="section">
             <label class="field select">
               <select class="trades">
-                <% if @trades.present? %>
+                <%# if @trades.present? %>
                     <option value="0">Default</option>
-                    <% @trades.each do |t| %>
-                        <option value="<%= t.id %>"><%= get_trade_name t %></option>
-                    <% end %>
-                <% end %>
+                    <%# @trades.each do |t| %>
+                        <option value="<%#= t.id %>"><%#= get_trade_name t %></option>
+                    <%# end %>
+                <%# end %>
               </select>
               <i class="arrow"></i>
             </label>
-          </div>
-        <% end %>
-      </div>
+          </div>-->
+        <%# end %>
+      <!--</div>-->
       <div class="col-md-3"></div>
-      <div class="col-md-3">
+      <div class="col-md-3 pull right">
         <div class="section">
           <div class="smart-widget sm-left sml-50">
             <label class="field">
@@ -52,29 +52,29 @@
   <table class="table table-bordered" id="new_quote_table">
 
     <thead>
-      <tr>
+      <tr style="background-color: #2C3E50;color: white;">
         <th class="text-center"><input type="checkbox" class="quote_list_master"></th>
 
-        <th class="text-center" style="color: #484D61">Quote#</th>
-        <th class="text-center" style="color: #484D61">Title</th>
+        <th class="text-center">Quote#</th>
+        <th class="text-center">Title</th>
         <% if session[:role] == 'Head Contractor' %>
-            <th class="text-center" style="color: #484D61">Received</th>
+            <th class="text-center">Received</th>
         <% end %>
         <% if session[:role] == 'Sub Contractor' %>
-            <th class="text-center" style="color: #484D61">Sent</th>
+            <th class="text-center">Sent</th>
         <% end %>
-        <th class="text-center" style="color: #484D61">Trades</th>
+        <th class="text-center">Trades</th>
 
-        <th class="text-center" style="color: #484D61">Price</th>
+        <th class="text-center">Price</th>
         <%# if session[:role] == 'Sub Contractor' %>
             <!--<th class="text-center" style="color: #484D61">Viewed By HC</th>-->
         <%# end %>
-        <th class="text-center" style="color: #484D61">Status</th>
-        <th class="text-center" style="color: #484D61">Action</th>
+        <th class="text-center">Status</th>
+        <th class="text-center">Action</th>
         <% if session[:role] == 'Head Contractor' %>
-            <th class="text-center" style="color: #484D61">Company</th>
+            <th class="text-center">Company</th>
             <th class="text-center"></th>
-            <th class="text-center" style="display: none">Company Row</th>
+            <th class="text-center">Company Row</th>
         <% end %>
       </tr>
     </thead>
