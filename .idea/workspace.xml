@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/quotes_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/quotes_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/rfis_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/rfis_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quotes/_latest_quotes.html.erb" afterPath="$PROJECT_DIR$/app/views/quotes/_latest_quotes.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quotes/_quotes.html.erb" afterPath="$PROJECT_DIR$/app/views/quotes/_quotes.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" afterPath="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/rfis/_rfis.html.erb" afterPath="$PROJECT_DIR$/app/views/rfis/_rfis.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/hc_tender.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/hc_tender.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/sc_tender.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/sc_tender.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/tenders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/tenders_controller.rb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,7 +78,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quotes_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="quotes_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/quotes_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="347">
@@ -118,6 +111,16 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="tenders_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="588">
+              <caret line="1773" column="40" selection-start-line="1773" selection-start-column="18" selection-end-line="1773" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="sc_tender.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/tenders/sc_tender.html.erb">
           <provider selected="true" editor-type-id="text-editor">
@@ -144,7 +147,6 @@
         <option value="$PROJECT_DIR$/app/views/users/steps_completed.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/tabs/_overview.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/tenders_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/tenders/invited_tender.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/login.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/registration_completed.html.erb" />
@@ -187,6 +189,7 @@
         <option value="$PROJECT_DIR$/app/views/rfis/_latest_rfis.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/rfis_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/quotes_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/tenders_controller.rb" />
       </list>
     </option>
   </component>
@@ -804,12 +807,12 @@
       <workItem from="1486612741737" duration="7065000" />
       <workItem from="1486629388990" duration="4282000" />
       <workItem from="1486778187305" duration="4132000" />
-      <workItem from="1486983076756" duration="22913000" />
+      <workItem from="1486983076756" duration="23413000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="532816000" />
+    <option name="totallyTimeSpent" value="533316000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="25" width="1280" height="725" extended-state="6" />
@@ -1006,14 +1009,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1635">
           <caret line="109" column="62" selection-start-line="109" selection-start-column="45" selection-end-line="109" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6930">
-          <caret line="462" column="94" selection-start-line="462" selection-start-column="82" selection-end-line="462" selection-end-column="94" />
           <folding />
         </state>
       </provider>
@@ -1281,6 +1276,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
           <caret line="171" column="5" selection-start-line="171" selection-start-column="5" selection-end-line="171" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/tenders_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="1773" column="40" selection-start-line="1773" selection-start-column="18" selection-end-line="1773" selection-end-column="18" />
           <folding />
         </state>
       </provider>

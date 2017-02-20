@@ -1702,9 +1702,9 @@ class TendersController < ApplicationController
         trade = Trade.find(a)
         if trade.present?
           if trade.name.include? "/"
-            dir = "#{Rails.root}/public/assets/tender/document/#{trade.name.gsub!('/','-')}"
+            dir = "#{Rails.root}/public/system/tender/document/#{trade.name.gsub!('/','-')}"
           else
-            dir = "#{Rails.root}/public/assets/tender/document/#{trade.name}"
+            dir = "#{Rails.root}/public/ststem/tender/document/#{trade.name}"
           end
 
           Dir.mkdir(dir) unless File.exists?(dir)
@@ -1727,7 +1727,7 @@ class TendersController < ApplicationController
                         FileUtils.cp(doc.document_path, dir_1)
                       end
                     else
-                      file_path = "#{Rails.root}/public/assets/tender/document/#{doc.id}/original/#{document_file_name}"
+                      file_path = "#{Rails.root}/public/system/tender/document/#{doc.id}/original/#{document_file_name}"
                       FileUtils.cp(file_path, dir_1)
                     end
                   else
