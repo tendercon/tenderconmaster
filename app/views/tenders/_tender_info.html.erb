@@ -1,4 +1,4 @@
-<div style="height:20px"></div>
+<div style="height:5px"></div>
 <div class="row">
   <div class="col-md-12">
     <% if session[:role] == 'Head Contractor' %>
@@ -7,7 +7,7 @@
         </a>
     <% end %>
   </div>
-  <div style="height: 50px"></div>
+  <div style="height: 20px"></div>
 </div>
 
 
@@ -28,19 +28,18 @@
                     <a href="javascript:;" class="collapse"> </a>
                   </div>
                 </div>-->
+              <% if session[:role] == 'Sub Contractor' %>
                 <div class="portlet-body">
                   <div class="table-scrollable">
 
-                    <% if session[:role] == 'Sub Contractor' %>
+
                         <!--<p>Status of the trades you have applied to tender for</p>-->
-                    <% end %>
+
                     <div class="trade_div">
                       <table  class="table table-bordered">
                         <tr style="background-color: #2C3E50;color: white;">
-
-                          <th>Trade</th>
-                          <th>Status</th>
-
+                          <th class="col-md-6">Trades</th>
+                          <th class="col-md-6">Status</th>
                         </tr>
                         <tbody>
                         <% if session[:role] == 'Sub Contractor' %>
@@ -116,17 +115,27 @@
                                 <% end %>
                             <% end %>
                         <% end %>
+
+                            <% if session[:role] == 'Sub Contractor' %>
+                            <tr>
+                              <td colspan="2">
+                                <div class="text-center">
+                                  <button class="btn btn-default apply_more_trade">
+                                    Apply For more Trades
+                                  </button>
+                                </div>
+                              </td>
+                            </tr>
+                            <% end %>
+
                         </tbody>
                       </table>
                     </div>
 
-                    <% if session[:role] == 'Sub Contractor' %>
-                        <button class="btn btn-default apply_more_trade">
-                          Apply For more Trades
-                        </button>
-                    <% end %>
+
                   </div>
                 </div>
+              <% end %>
               <!--</div>-->
             </div>
           </div>
@@ -156,14 +165,11 @@
                   <div class="table-scrollable">
                     <table class="table table-bordered table-hover">
                       <tr style="background-color: #2C3E50;color: white;">
-
-                        <th>Name</th>
-                        <th>Value</th>
-
+                        <th colspan="2">Details</th>
                       </tr>
                       <tbody>
                       <tr>
-                        <td> Tender ID </td>
+                        <td class="col-md-2"> Tender ID </td>
                         <td> <%= @tender.tendercon_id %> </td>
                       </tr>
                       <tr>
@@ -225,6 +231,22 @@
                           </tr>
                         <% end %>
                       <% end %>
+                      <% if session[:role] == 'Head Contractor' %>
+                        <tr>
+                          <td>Trades</td>
+                          <td>
+                            <% if (get_tender_trades @tender.id).present? %>
+                              <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
+                                <% if index == ((get_tender_trades @tender.id).size - 1) %>
+                                      <%= "#{get_trade_name a.trade_id}" %>
+                                <% else %>
+                                      <%= "#{get_trade_name a.trade_id}," %>
+                                <% end %>
+                              <% end %>
+                          <% end %>
+                          </td>
+                        </tr>
+                      <% end %>
                       </tbody>
                     </table>
                   </div>
@@ -245,23 +267,40 @@
 </div>
 
 
-<div class="col-md-12">
+<div class="row">
   <div class="col-md-12">
-    <div class="portlet-body">
-      <div class="table-scrollable">
-        <table class="table table-bordered table-hover">
-          <tr style="background-color: #2C3E50;color: white;">
-            <th><div class="caption">
-              <i class="fa fa-map-marker"></i> Map</div></th>
-          </tr>
-        </table>
-        <div id="map_<%= @tender.id %>" style="height:300px;width:100%;"></div>
-
+    <!--<div class="portlet light bordered">-->
+    <div class="portlet-body form">
+      <div class="form-body">
+        <div class="row">
+          <div class="col-md-12">
+            <!--<div class="portlet box green">-->
+            <!--<div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-info-circle"></i>Details</div>
+              <div class="tools">
+                <a href="javascript:;" class="collapse"> </a>
+              </div>
+            </div>-->
+            <div class="portlet-body">
+              <div class="table-scrollable">
+                <table class="table table-bordered table-hover">
+                  <tr style="background-color: #2C3E50;color: white;">
+                    <th><div class="caption">
+                      <i class="fa fa-map-marker"></i> Map</div></th>
+                  </tr>
+                </table>
+                <div id="map_<%= @tender.id %>" style="height:300px;width:100%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-
 </div>
+
+
 <input type="hidden"  class="tenders" value="<%= @tender.id %>">
 <input type="hidden"  class="add<%= @tender.id %>" value="<%= @tender.address %>">
 <input type="hidden"  class="tender_id" value="<%= @tender.id %>">

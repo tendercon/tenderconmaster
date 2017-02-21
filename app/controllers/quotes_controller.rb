@@ -448,12 +448,12 @@ class QuotesController < ApplicationController
 
     @sc_user = User.find(session[:user_logged_id])
 
-    @sc_user.company_avatars.each do |a|
-      @avatar_filename = a.image_file_name
+    #@sc_user.company_avatars.each do |a|
+      #@avatar_filename = a.image_file_name
 
-      @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{a.id}/original/#{@avatar_filename}"
+      #@link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{a.id}/original/#{@avatar_filename}"
 
-    end
+    #end
 
     quote = Quote.where(:user_id => session[:user_logged_id]).last()
     result = @sc_user.company.split.map(&:first).join

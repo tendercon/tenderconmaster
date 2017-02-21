@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :is_logged?,  :except => [:login,:authenticate,:register,:create_user,
+  before_filter :is_logged?, :add_to_open_tender,  :except => [:login,:authenticate,:register,:create_user,
                                                                   :forgot_password,:reset_password,:user_company_exist,
                                                                   :account_taken,:registration_completed,:resent_email_notification,
                                                                   :validate_user_email,:email_authentication,:validation_complete,:update_password,
@@ -22,6 +22,20 @@ class ApplicationController < ActionController::Base
     else
       flash[:error] = "Please login first"
       redirect_to login_users_path
+    end
+  end
+
+  def add_to_open_tender
+    sub_contractors = User.where(:role => 'Sub Contractor')
+    user_ids = []
+    if sub_contractors.present?
+      sub_contractors.each do |u|
+        user_ids << u.id
+      end
+    end
+
+    if user_ids.present?
+      OpenTender.add_new_subcontractors(user_ids)
     end
   end
 

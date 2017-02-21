@@ -1,5 +1,6 @@
 class OpenTendersController < ApplicationController
   skip_before_action :verify_authenticity_token
+
   def get_request_body
     @tender = Tender.where(:id => params[:tender_id]).first
     @trade_categories = TradeCategory.all

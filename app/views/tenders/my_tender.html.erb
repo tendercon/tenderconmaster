@@ -39,10 +39,8 @@
             <th>Project Name</th>
             <th>Location</th>
             <th>Quote Due</th>
-            <% if session[:role] == 'Head Contractor' %>
-                <th>Notifications</th>
-            <% end %>
             <th>Action</th>
+            <th>Notifications</th>
           </tr>
         </thead>
         <tbody class="searchable">
@@ -51,17 +49,23 @@
               <tr>
                 <% if session[:role] == 'Sub Contractor' %>
                   <td class="text-center">
-                    <a href="#!" >
+
                       <% if get_tender_approved t.id,session[:user_logged_id] %>
-                        <button class="btn btn-success" type="button" title="You have been approved by Head Contractor to Tender on this project">
-                          Quoting
-                        </button>
+                        <!--<button class="btn btn-success" type="button" title="You have been approved by Head Contractor to Tender on this project" style="background-color: #26c281">-->
+                          <a href="#!" class="btn btn-success" style="background-color: #26c281" title="You have been approved by Head Contractor to Tender on this project">
+                            Quoting
+                          </a>
+
+                        <!--</button>-->
                       <% else %>
-                        <button class="btn btn-warning" type="button" title="You are waiting for the Head Contractor to approve your request to tender">
+                        <!--<button class="btn btn-warning" type="button" title="You are waiting for the Head Contractor to approve your request to tender" style="background-color: #F1C40F">
+
+                        </button>-->
+                        <a href="#!" class="btn btn-warning" title="You are waiting for the Head Contractor to approve your request to tender" style="background-color: #F1C40F">
                           Pending
-                        </button>
+                        </a>
                       <% end %>
-                    </a>
+
                   </td>
                 <% end %>
                 <td class="text-center">
@@ -81,13 +85,6 @@
                 <td class="text-center"><%= t.title %></td>
                 <td class="text-center"><%= t.address %></td>
                 <td class="text-center"><%= get_tender_due t.id %></td>
-                <% if session[:role] == 'Head Contractor' %>
-                  <td class="text-center">
-                    <% if (get_count_tender_request session[:user_logged_id],t.id ) > 0 %>
-                        <span class="badge" style="background-color: red"><%= get_count_tender_request session[:user_logged_id],t.id %></span>
-                    <% end %>
-                  </td>
-                <% end %>
 
 
                 <td class="text-center">
@@ -100,11 +97,11 @@
                 <% else %>
                     <a href="<%= sc_tender_tenders_path(:id => t.id) %>" >
                       <% if get_tender_approved t.id,session[:user_logged_id] %>
-                        <button class="btn btn-success" type="button">
+                        <button class="btn btn-default" type="button">
                           View
                         </button>
                       <% else %>
-                        <button class="btn btn-success" type="button">
+                        <button class="btn btn-default" type="button">
                           View
                         </button>
                       <% end %>
@@ -112,7 +109,11 @@
                   <% end %>
 
                 </td>
-
+                <td class="text-center">
+                  <% if (get_count_tender_request session[:user_logged_id],t.id ) > 0 %>
+                      <span class="badge" style="background-color: red"><%= get_count_tender_request session[:user_logged_id],t.id %></span>
+                  <% end %>
+                </td>
 
               </tr>
             <% end %>

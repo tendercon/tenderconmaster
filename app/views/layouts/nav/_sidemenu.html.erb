@@ -37,6 +37,9 @@
         </form>
         <!-- END RESPONSIVE QUICK SEARCH FORM -->
       </li>
+      <li class="heading">
+        <h3 class="uppercase">HOME</h3>
+      </li>
       <% if params[:controller] == 'dashboard' %>
           <li class="nav-item start active open">
       <% else %>
@@ -49,23 +52,23 @@
           <span class="selected"></span>
         </a>
       </li>
-      <li class="heading">
+      <!--<li class="heading">
         <h3 class="uppercase">Features</h3>
       </li>
 
-      <% if params[:controller] == 'calendars' %>
+      <%# if params[:controller] == 'calendars' %>
           <li class="nav-item start active open">
-      <% else %>
+      <%# else %>
           <li class="nav-item  start">
-      <% end %>
-        <a href="<%= calendars_path %>" class="nav-link ">
+      <%# end %>
+        <a href="<%#= calendars_path %>" class="nav-link ">
           <i class="fa fa-calendar-check-o"></i>
           <span class="title">Calendar</span>
           <span class="selected"></span>
         </a>
-      </li>
+      </li>-->
       <li class="heading">
-        <h3 class="uppercase">Tenders</h3>
+        <h3 class="uppercase">Tender Management</h3>
       </li>
 
       <% if session[:role] == 'Head Contractor' %>
@@ -94,7 +97,7 @@
           <% end %>
           <a href="<%= '/tenders/invited_tender' %>" class="nav-link ">
             <i class="fa fa-envelope"></i>
-            <span class="title">Invited Tender</span>
+            <span class="title">Invited Tenders</span>
             <% if params[:action] == 'invited_tender' %>
                 <span class="selected"></span>
             <% end %>
@@ -110,7 +113,7 @@
           <% end %>
           <a href="<%= '/tenders/open_tender' %>" class="nav-link ">
             <i class="fa fa-opencart" aria-hidden="true"></i>
-            <span class="title">Open Tender</span>
+            <span class="title">Open Tenders</span>
             <% if params[:action] == 'open_tender' %>
                 <span class="selected"></span>
             <% end %>
@@ -133,7 +136,7 @@
 
       <a href="<%= '/tenders/my_tender' %>" class="nav-link ">
         <i class="fa fa-university"></i>
-        <span class="title">My Tender</span>
+        <span class="title">My Tenders</span>
         <% if params[:action] == 'my_tender' || params[:action] == 'hc_tender' || params[:action] == 'sc_tender' || params[:controller] == 'quotes'  || params[:controller] == 'rfis' %>
             <span class="selected"></span>
         <% end %>

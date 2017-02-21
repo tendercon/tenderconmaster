@@ -1168,6 +1168,11 @@ module TendersHelper
     end
   end
 
+  def split_address address
+    adds = address.split(',')
+    return "#{adds[0]}, #{adds[2]}"
+  end
+
 
   def return_document_lists tender_id,directory
 

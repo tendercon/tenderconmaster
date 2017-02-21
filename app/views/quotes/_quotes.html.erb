@@ -16,24 +16,24 @@
             <% end %>
         <% end %>
       </div>
-      <!--<div class="col-md-3">-->
-        <%# if quotes.present? %>
-          <!--<div class="section">
+      <div class="col-md-3">
+        <% if quotes.present? %>
+          <div class="section">
             <label class="field select">
               <select class="trades">
-                <%# if @trades.present? %>
+                <% if @trades.present? %>
                     <option value="0">Default</option>
-                    <%# @trades.each do |t| %>
-                        <option value="<%#= t.id %>"><%#= get_trade_name t %></option>
-                    <%# end %>
-                <%# end %>
+                    <% @trades.each do |t| %>
+                        <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                    <% end %>
+                <% end %>
               </select>
               <i class="arrow"></i>
             </label>
-          </div>-->
-        <%# end %>
-      <!--</div>-->
-      <div class="col-md-3"></div>
+          </div>
+        <% end %>
+      </div>
+
       <div class="col-md-3 pull right">
         <div class="section">
           <div class="smart-widget sm-left sml-50">
@@ -72,8 +72,8 @@
         <th class="text-center">Status</th>
         <th class="text-center">Action</th>
         <% if session[:role] == 'Head Contractor' %>
-            <th class="text-center">Company</th>
-            <th class="text-center"></th>
+            <th class="text-center" style="display: none">Company</th>
+            <th class="text-center">Notification</th>
             <th class="text-center">Company Row</th>
         <% end %>
       </tr>
@@ -145,7 +145,7 @@
                 <%# end %>
               </td>
               <% if session[:role] == 'Head Contractor' %>
-                  <td class="text-center"><%= get_quote_user_company d %></td>
+                  <td class="text-center" style="display: none"><%= get_quote_user_company d %></td>
                   <td class="text-center"></td>
                   <td class="text-center" style="display: none"><%= get_quote_user_company d %></td>
               <% end %>
@@ -187,9 +187,9 @@
         "bFilter": 'false',
         searching: false,
         "columnDefs": [
-          { "visible": false, "targets": 8 }
+          { "visible": false, "targets": 10 }
         ],
-        "order": [[ 8, 'asc' ]],
+        "order": [[ 10, 'asc' ]],
         "displayLength": 25,
         "drawCallback": function ( settings ) {
           var api = this.api();

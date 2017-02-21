@@ -1,22 +1,49 @@
 <% if rfis.present? %>
+
+
   <div class="admin-form">
-    <button class="button btn-default rfi_download">
-      <i class="fa fa-download rfi_download" aria-hidden="true"> </i>  Download
-      <!--<i class="fa fa-download " aria-hidden="true"></i> -->
-    </button>
-    <% if session[:role] == 'Head Contractor' %>
-      <% if rfis.present? %>
-        <button class="button btn-default rfi_shared" >
-          <i class="fa fa-share-square " aria-hidden="true"></i> Share
+
+    <div class="row">
+      <div class="col-md-6">
+        <% if session[:role] == 'Sub Contractor' || session[:role] == 'Team Member' %>
+            <a href="#!" class="new_rfi">
+              <button class="button btn-info">Create New RFI</button>
+            </a>
+        <% end %>
+        <button class="button btn-default rfi_download">
+          <i class="fa fa-download rfi_download" aria-hidden="true"> </i>  Download
+          <!--<i class="fa fa-download " aria-hidden="true"></i> -->
         </button>
-      <% end %>
-    <% end %>
+        <% if session[:role] == 'Head Contractor' %>
+            <% if rfis.present? %>
+                <button class="button btn-default rfi_shared" >
+                  <i class="fa fa-share-square " aria-hidden="true"></i> Share
+                </button>
+            <% end %>
+        <% end %>
+      </div>
+
+      <div class="col-md-3"></div>
+      <div class="col-md-3 pull right">
+        <div class="section">
+          <div class="smart-widget sm-left sml-50">
+            <label class="field">
+              <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Here">
+            </label>
+            <label for="sm3" class="button">
+              <i class="fa fa-search"></i>
+            </label>
+          </div>
+          <!-- end .smart-widget section -->
+        </div>
+      </div>
+    </div>
   </div>
 
 <% end %>
 
 
-<div style="height: 30px;"></div>
+<div style="height: 10px;"></div>
 <table  class="table table-bordered document_table">
   <thead>
     <% if rfis.present? %>
@@ -40,7 +67,7 @@
       </tr>
     <% end %>
   </thead>
-  <tbody>
+  <tbody class="searchable">
     <% if rfis.present? %>
       <% rfis.each do |d| %>
         <tr>
@@ -505,5 +532,15 @@
       });
 
     });
+
+    $('#filter').keyup(function () {
+
+      var rex = new RegExp($(this).val(), 'i');
+      $('.searchable tr').hide();
+      $('.searchable tr').filter(function () {
+        return rex.test($(this).text());
+      }).show();
+
+    })
   });
 </script>

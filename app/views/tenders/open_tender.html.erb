@@ -53,15 +53,15 @@
     <table  class="table table-bordered responsive" id="open_tender_table"  cellspacing="0" width="100%">
       <thead>
         <tr style="background-color: #2C3E50;color: white;">
-          <th>Tender ID</th>
-          <th>Project Name</th>
-          <th>Value</th>
+          <th class="no-sort">Tender ID</th>
+          <th class="no-sort">Project Name</th>
+          <th class="no-sort">Value</th>
           <!--<th>Sector</th>-->
-          <th>Location</th>
-          <th>Distance from me</th>
-          <th>Head Contractor</th>
+          <th class="no-sort">Location</th>
+          <th>Distance</th>
+          <th class="no-sort">Head Contractor</th>
           <th>Quote Due</th>
-          <th>Action</th>
+          <th class="no-sort">Action</th>
         </tr>
       </thead>
       <tbody class="searchable">
@@ -78,7 +78,7 @@
               <% else %>
                 <td class="text-center">
                   <%= t.tendercon_id %>
-                  <!--<a href="#!" class="tender" id="<%= t.id %>">
+                  <!--<a href="#!" class="tender" id="<%#= t.id %>">
                     <%#= t.tendercon_id %>
                   </a>-->
                 </td>
@@ -93,7 +93,7 @@
                   Hidden Address <i class="fa fa-question-circle" aria-hidden="true" title="Address will appear once your Head Contractor approved your request"></i>
                 </td>
               <% else %>
-                  <td class="text-center"><%= t.address %></td>
+                  <td class="text-center"><%= split_address t.address %></td>
               <% end %>
               <td class="text-center"><%= get_distance t.id,session[:user_logged_id] %></td>
               <td class="text-center"><%= get_user_company_name t.user_id %></td>
@@ -128,7 +128,7 @@
 <div class="row ">
   <% if @tenders.present? %>
     <%  @tenders.each do |u| %>
-      <div id="tender_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 30px;height: 600px;" >
+      <div id="tender_Modal_<%= u.id %>" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 30px;height: 100%;" >
         <div class="modal-dialog">
           <!-- Modal content-->
           <div class="modal-content">
@@ -358,19 +358,19 @@
                           <input type="hidden"  class="add<%= u.id %>" value="<%= u.address %>">
 
                           <div class="col-md-12 ">
+                            <div style="height: 35px"></div>
                              <div id="map_<%= u.id %>" style="height:250px;width:570px;"></div>
                             <p class="text-center" style="font-size: 14px">
                               <b>Address: <%= u.address %></b>
                             </p>
-                            <p class="text-center" style="font-size: 12px">
-                             Post code: <%= u.postcode %>
-                            </p>
+
                           </div>
                         <% else %>
                           <div class="text-center">
                             <p class="text-center" style="font-size: 18px">Map is hide by the Head Contractor.</p>
                           </div>
                         <% end %>
+
                       </div>
                     </div>
                     <div class="quote_info" style="display: none;">
@@ -588,7 +588,16 @@
     <% end %>
     <% end %>
 
-    $('#open_tender_table').DataTable({} );
+    $('#open_tender_table').DataTable({
+      "bPaginate": false,
+      "bInfo" : false,
+      "bFilter" : false,
+      "order": [],
+      "columnDefs": [ {
+        "targets"  : 'no-sort',
+        "orderable": false,
+      }]
+    });
 
 
     $('#inputSuccess2').keyup(function (){
