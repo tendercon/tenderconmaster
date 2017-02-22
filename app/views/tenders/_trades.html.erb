@@ -5,7 +5,7 @@
         <div class="form-body">
           <%= form_tag(create_tender_trades_tenders_path, :html => { :multipart => true }) do |f| %>
               <input type="hidden" name="save_trade" value="<%= @tender_trades.present? ? true : nil %>">   
-              <div class="col-md-22"> 
+              <div class="col-md-12"> 
                 <input type="hidden" name="tender_id" value="<%= params[:info_id] %>">
                 <% @trade_categories.each do |tc|  %> 
                     <% if !@trade_category_array.include? "#{tc.title}" %>
@@ -16,7 +16,7 @@
                     <% end %>
                     <% @all_trades.each do |a| %> 
                         <% if tc.id.to_i == a.trade_category_id.to_i %> 
-                            <div class="col-md-6"> 
+                            <div class="col-md-3"> 
                               <% if @trade_array.present? %>
                                   <% if @trade_array.include? a.id %>
                                       <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class" checked> <%= a.name %></label> 

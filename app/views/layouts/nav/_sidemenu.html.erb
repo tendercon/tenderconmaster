@@ -146,6 +146,28 @@
       </a>
       </li>
 
+
+
+      <% if session[:role] == 'Head Contractor' %>
+          <li class="heading">
+            <h3 class="uppercase">MY NETWORK</h3>
+          </li>
+          <% if params[:action] == 'new_tender' %>
+              <li class="nav-item start active open">
+                <span class="selected"></span>
+          <% else %>
+              <li class="nav-item">
+          <% end %>
+          <a href="<%= '#!' %>" class="nav-link ">
+            <i class="fa fa-plus-square"></i>
+            <span class="title">Subscontractors</span>
+            <%# if params[:action] == 'new_tender' %>
+                <!--<span class="selected"></span>-->
+            <%# end %>
+          </a>
+          </li>
+      <% end %>
+
     </ul>
     <!-- END SIDEBAR MENU -->
     <!-- END SIDEBAR MENU -->

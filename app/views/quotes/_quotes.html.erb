@@ -297,9 +297,9 @@
 
     $('.quote_list').click(function(){
 
-      $('.quote_list').each(function(index) {
+      //$('.quote_list').each(function() {
         if($(this).prop('checked')){
-          //console.log("TEST"+$(this).prop('checked'));
+          console.log("TEST"+$(this).prop('checked'));
           //$('.quote_download').removeAttr("disabled");
           //$('.remove_quote').removeAttr("disabled");
           $('.quote_download').prop('disabled', false);
@@ -308,7 +308,7 @@
           $('.quote_download').prop('disabled', true);
           $('.remove_quote').prop('disabled', true);
         }
-      })
+      //})
     });
 
     $('.quote_list_master').click(function(){

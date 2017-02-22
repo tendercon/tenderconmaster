@@ -2693,25 +2693,26 @@ class TendersController < ApplicationController
 
   def filter_by_trades
     tender_id = params[:tender_id]
-    trades = params[:trades]
+    @trades = params[:trades]
     tab = params[:tab]
     @tender = Tender.find(tender_id)
+    @tender_trades = TenderTrade.where(:tender_id => @tender.id)
     @trades_ids = []
 
-    if trades.present?
-      trades.each do |t|
-        @trades_ids << t.to_i
+    if @tender_trades.present?
+      @tender_trades.each do |t|
+        @trades_ids << t.trade_id
       end
     end
 
     if tab == 'invites'
-      @tender_invites = TenderInvite.where(:tender_id => tender_id,:trade_id => @trades_ids)
+      @tender_invites = TenderInvite.where(:tender_id => tender_id,:trade_id => params[:trades])
       @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
     elsif tab == 'request'
-      @tender_request_quotes = TenderRequestQuote.where(:tender_id => tender_id, :trade_id => @trades_ids)
+      @tender_request_quotes = TenderRequestQuote.where(:tender_id => tender_id, :trade_id => params[:trades])
       @data = render :partial => 'tenders/sub_contractors_tab/requesting_tender'
     elsif tab == 'tendering'
-      @tendering = TenderRequestQuote.where(:tender_id => tender_id,:trade_id => @trades_ids).where("request_date is not null")
+      @tendering = TenderRequestQuote.where(:tender_id => tender_id,:trade_id => params[:trades]).where("request_date is not null")
       @data = render :partial => 'tenders/sub_contractors_tab/tendering'
     end
   end
