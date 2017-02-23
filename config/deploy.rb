@@ -55,7 +55,7 @@ set :puma_preload_app, false
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-#after 'deploy:publishing', 'deploy:start'
+after 'deploy:publishing', 'deploy:migrate'
 namespace :deploy do
   def delayed_job_roles
     fetch(:delayed_job_server_role, :app)
@@ -76,6 +76,17 @@ namespace :deploy do
       within current_path do
         with rails_env: fetch(:rails_env) do
           execute :rake, 'db:seed'
+        end
+      end
+    end
+  end
+
+  task :migrate do
+    puts "\n=== MIGRATE Database ===\n"
+    on primary :db do
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, 'db:migrate'
         end
       end
     end

@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :notifications
   has_many :project_portfolios
   has_many :package_downloads
+  has_many :hc_invites
   accepts_nested_attributes_for :companies
   belongs_to :user_tender
 
@@ -75,6 +76,59 @@ class User < ActiveRecord::Base
     else
       false
     end
+  end
+
+  def self.company_completeness id
+    progress = [0]
+    user = find(id)
+
+    if user.trade_name.present?
+      progress <<  5
+    end
+    if user.abn.present?
+      progress <<  5
+    end
+    if user.company_profile.present?
+      if user.company_profile.acn
+        progress <<  10
+      end
+      if user.company_profile.about_me.present?
+        progress <<  15
+      end
+      if user.company_profile.number_of_employees.present?
+        progress <<  5
+      end
+      if user.company_profile.commenced_operation.present?
+        progress <<  5
+      end
+      if user.company_profile.project_range.present?
+        progress <<  5
+      end
+      if user.company_profile.contact_number.present?
+        progress <<  5
+      end
+      if user.company_profile.website.present?
+        progress <<  5
+      end
+      if user.company_profile.linkedin.present?
+        progress <<  2
+      end
+    end
+    if user.address.present?
+      progress <<  5
+    end
+    if user.primary_trades.present?
+      progress <<  5
+    end
+    if user.secondary_trades.present?
+      progress <<  10
+    end
+
+    if user.company_avatar.present?
+      progress <<  18
+    end
+
+    progress.sum
   end
 
   def self.check_capital_from_string str

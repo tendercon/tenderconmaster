@@ -52,11 +52,11 @@
         <i class="fa fa-globe"></i>
       </div>
       <div class="details">
-        <div class="number"> +
-          <span data-counter="counterup" data-value="89"></span>% </div>
-        <div class="desc"> Brand Popularity </div>
+        <div class="number">
+          <span data-counter="counterup" data-value="<%= User.company_completeness(@user.id) %>"></span>%  </div>
+        <div class="desc"> Profile Completeness </div>
       </div>
-      <a class="more" href="javascript:;"> View more
+      <a class="more" href="<%= company_profile_users_path(:id => session[:user_logged_id]) %>"> Complete My Profile
         <i class="m-icon-swapright m-icon-white"></i>
       </a>
     </div>

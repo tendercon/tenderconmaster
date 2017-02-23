@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="text-center">
+      <h2>ADD NEW SUBCONTRACTORS TO YOUR NETWORK</h2>
+    </div>
+    <div style="height: 30px"></div>
+    <form class="savvy_form" id="savvy_form">
+      <div class="col-md-1"></div>
+      <div class="col-md-2">
+        <input type="hidden" name="hc_id" value="<%= session[:user_logged_id] %>">
+        <div class="form-group">
+          <label for="email">Name</label>
+          <input type="text" class="form-control name" id="name" name="name" required>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="email">Company</label>
+          <input type="text" class="form-control company" id="company" name="company" required>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control email" id="email" name="email" required>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <label for="email">Trade(Optional)</label>
+           <%= select_tag 'trade_id',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name'),{:class=> 'form-control trade'} %>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group">
+          <div style="height: 22px;"></div>
+          <a href="#!" class="add_savvy">
+            <button class="btn btn-success" type="button">
+              Add Subcontractor
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-1"></div>
+    </form>
+  </div>
+
+  <div class="col-md-12">
+    <div style="height: 80px"></div>
+    <div class="savvy_div">
+      <% if @hc_invites.present? %>
+        <%= render :partial =>  "hc_invites/savvy" %>
+      <% else %>
+        <div class="text-center">
+          <h2>No Subcontractors found.</h2>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<script>
+ $(document).ready(function(){
+   $('.add_savvy').click(function(){
+
+     $.ajax({
+       method: "POST",
+       data: $('#savvy_form').serialize(),
+       url: "/hc_invites/add_savvy"
+     }).done(function (data) {
+       $('.name').val('');
+       $('.company').val('');
+       $('.email').val('');
+       $('.trade').val('');
+       console.log(data);
+       $('.savvy_div').html(data);
+     });
+   })
+ })
+</script>

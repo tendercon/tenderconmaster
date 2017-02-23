@@ -1,0 +1,220 @@
+<div class="admin-form">
+  <div class="row">
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-3">
+      <div class="section">
+        <input type="hidden" class="tender_id" value="<%= @tender.present? ? @tender.id : nil%>">
+        <label class="field select">
+          <select class="trades">
+            <% if @tender.present? %>
+              <% if @all_trades.present? %>
+                <option value="0">Default</option>
+                <% @all_trades.each do |t| %>
+                  <% if @trade_id.present? %>
+                    <% if @trade_id.to_i == t.id.to_i %>
+                        <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+                    <% else %>
+                        <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                    <% end %>
+                  <% else %>
+                      <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                  <% end %>
+                <% end %>
+              <% end %>
+          <% else %>
+              <% if @trades.present? %>
+                <option value="0">Default</option>
+                <% @trades.each do |t| %>
+                  <% if @trade_id.present? %>
+                    <% if @trade_id.to_i == t.id.to_i %>
+                        <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+                    <% else %>
+                        <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                    <% end %>
+                  <% else %>
+                      <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                  <% end %>
+
+                <% end %>
+              <% end %>
+            <% end %>
+
+          </select>
+          <i class="arrow"></i>
+        </label>
+      </div>
+    </div>
+
+    <div class="col-md-3 pull right">
+      <div class="section">
+        <div class="smart-widget sm-left sml-50">
+          <label class="field">
+            <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Here">
+          </label>
+          <label for="sm3" class="button">
+            <i class="fa fa-search"></i>
+          </label>
+        </div>
+        <!-- end .smart-widget section -->
+      </div>
+    </div>
+  </div>
+</div>
+<div class="notif" style="display: none">
+  <div class="alert alert-success open-sans-regular">
+    <button type="button" class="close" data-dismiss="alert"></button>
+    <div class="notice" style="font-size: 14px;">Email successfully re-sent.</div>
+  </div>
+</div>
+<table class="table table-bordered" id="new_quote_table">
+  <thead>
+  <tr style="background-color: #2C3E50;color: white;">
+    <th class="text-center">Name</th>
+    <th class="text-center">Company</th>
+    <th class="text-center">Email</th>
+    <th class="text-center">Trade</th>
+    <% unless @tender.present? %>
+      <th class="text-center">Status</th>
+      <th class="text-center">Action</th>
+    <% end %>
+    <% if @tender.present? %>
+        <th class="text-center"><input type="checkbox" class="hc_invites_list_master" checked> Invite</th>
+        <th class="text-center">To Quote for</th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody class="searchable">
+  <% if @hc_invites.present? %>
+    <% @hc_invites.each do |savvy| %>
+      <% if savvy.email.present? %>
+        <tr>
+          <td class="text-center"><%= savvy.name %></td>
+          <td class="text-center"><%= savvy.company %></td>
+          <td class="text-center"><%= savvy.email %></td>
+          <td class="text-center"><%= get_trade_name savvy.trade_id %></td>
+          <% unless @tender.present? %>
+            <td class="text-center">
+              <% if savvy.user_id.present? %>
+                 <%= get_user_created savvy.user_id %>
+              <% else %>
+                 ---
+              <% end %>
+            </td>
+            <td>
+              <div class="form-group">
+                <select class="form-control hc_action">
+                  <option>Select Here</option>
+                  <option class="remove" value="<%= savvy.id %>" id="0">Remove</option>
+                  <% unless savvy.user_id.present? %>
+                    <option class="resent" value="<%= savvy.id %>" id="1">Re-sent</option>
+                  <% end %>
+                </select>
+              </div>
+            </td>
+          <% end %>
+          <% if @tender.present? %>
+              <td class="text-center">
+                <input type="checkbox" class="hc_invites_list" name="hcs[]" value="<%= savvy.id %>" checked>
+              </td>
+              <td>
+                <label class="field select">
+                  <select class="hc_trades" name="trades[]">
+                    <option value="0">Select Here</option>
+                    <% if @trades.present? %>
+                        <option value="0">Default</option>
+                        <% @trades.each do |t| %>
+                            <% if @trade_id.present? %>
+                                <% if @trade_id.to_i == t.id.to_i %>
+                                    <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+                                <% else %>
+                                    <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                                <% end %>
+                            <% else %>
+                                <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                            <% end %>
+
+                        <% end %>
+                    <% end %>
+                  </select>
+                  <i class="arrow"></i>
+                </label>
+              </td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% end %>
+  <% else %>
+      <tr>
+        <td colspan="6" class="text-center">
+          No Subcontractors found.
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    $('.hc_action').change(function(){
+      var savvy_id = $(this).find(":selected").val();
+      var hc_action = $(this).find(":selected").attr('id');
+      if(hc_action == 0){
+        $.ajax({
+          method: "POST",
+          data: {id: savvy_id},
+          url: "/hc_invites/remove_savvy"
+        }).done(function (data) {
+          $('.savvy_div').html(data);
+        });
+      }else{
+        $.ajax({
+          method: "POST",
+          data: {id: savvy_id},
+          url: "/hc_invites/resent_invite"
+        }).done(function (data) {
+          $('.savvy_div').html(data);
+          $('.notif').show();
+        });
+      }
+
+    });
+
+    $('#filter').keyup(function () {
+
+      var rex = new RegExp($(this).val(), 'i');
+      $('.searchable tr').hide();
+      $('.searchable tr').filter(function () {
+        return rex.test($(this).text());
+      }).show();
+
+    });
+
+    $('.trades').change(function(){
+      var trade_id = $(this).val();
+      var tender_id = $('.tender_id').val();
+      $.ajax({
+        method: "POST",
+        data: {trade_id:trade_id,tender_id:tender_id},
+        url: "/hc_invites/search_by_trade"
+      }).done(function (data) {
+        $('.savvy_div').html(data);
+      });
+    });
+
+    $('.hc_invites_list_master').click(function(){
+
+      if($('.hc_invites_list').prop('checked')){
+        $('.hc_invites_list').each(function(){
+          $(this).click();
+        })
+      }else{
+        $('.hc_invites_list').each(function(){
+          $(this).click();
+        })
+      }
+    });
+
+  })
+</script>

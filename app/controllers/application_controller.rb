@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
                                                                   :validate_user_email,:email_authentication,:validation_complete,:update_password,
                                                                   :password_changed,:validate_account,:token_expired,:generate_new_token,:gettoken]
   before_filter :notify, :except => [:logout,:login,:register,:create_user]
-
+  before_filter :add_to_open_tender, :only => [:open_tender]
 
 
   def is_logged?

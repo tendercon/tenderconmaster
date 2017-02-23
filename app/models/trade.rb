@@ -6,6 +6,12 @@ class Trade < ActiveRecord::Base
   has_many :tender_request_trades
   has_many :package_downloads
   has_many :tender_approved_trades
+  has_many :hc_invites
 
   validates :name, presence: true
+
+  def self.trade_name(id)
+     trade = find(id)
+     trade.name
+  end
 end

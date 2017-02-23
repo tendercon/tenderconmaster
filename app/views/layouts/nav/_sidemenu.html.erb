@@ -152,18 +152,18 @@
           <li class="heading">
             <h3 class="uppercase">MY NETWORK</h3>
           </li>
-          <% if params[:action] == 'new_tender' %>
+          <% if params[:controller] == 'hc_invites' %>
               <li class="nav-item start active open">
                 <span class="selected"></span>
           <% else %>
               <li class="nav-item">
           <% end %>
-          <a href="<%= '#!' %>" class="nav-link ">
+          <a href="<%= hc_invites_path %>" class="nav-link ">
             <i class="fa fa-plus-square"></i>
             <span class="title">Subscontractors</span>
-            <%# if params[:action] == 'new_tender' %>
-                <!--<span class="selected"></span>-->
-            <%# end %>
+            <% if params[:action] == 'index' %>
+                <span class="selected"></span>
+            <% end %>
           </a>
           </li>
       <% end %>

@@ -30,7 +30,7 @@ class TendersController < ApplicationController
       @tender_sites = TenderSite.where(:tender_id => @tender.id,:user_id => session[:user_logged_id])
       @tender_trades = TenderTrade.where(:tender_id => @tender.id)
       @trade_categories = TradeCategory.all
-      #@trades = TenderTrade.where(:tender_id => params[:info_id])
+      @hc_invites = HcInvite.where(:hc_id => session[:user_logged_id],:status => nil)
       @all_trades = Trade.all
       @document_packages = DocumentPackage.where(:tender_id => params[:info_id])
 
@@ -1893,29 +1893,24 @@ class TendersController < ApplicationController
 
   def invite_sub_contractor
     tender_id  = params[:tender_id]
-    names = params[:names]
-    emails = params[:emails]
+
     trades = params[:trades]
-    invite = params[:invite]
 
-    if invite.present?
-      TenderInvite.where(:tender_id => tender_id).destroy_all
-    end
-
-    if emails.present?
-      emails.each_with_index do |n,index|
-        if n.present? && trades[index].present?
-          user = User.where(:email => emails[index]).first
+    TenderInvite.where(:tender_id => tender_id).destroy_all
+    if params[:hcs].present?
+      params[:hcs].each_with_index do |n,index|
+        if n.present? && trades[index].to_i > 0
+          hc_invite = HcInvite.find(n)
+          user = User.where(:email => hc_invite.email).first
           invite = TenderInvite.new
           invite.tender_id = tender_id
-          invite.email = emails[index]
+          invite.email = hc_invite.email
           invite.trade_id = trades[index]
           if user.present?
             invite.user_id = user.id
           end
           invite.save
         end
-
       end
     end
 

@@ -250,6 +250,20 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :hc_invites do
+
+    collection do
+
+      # get
+
+      # post
+      post 'add_savvy'
+      post 'remove_savvy'
+      post 'resent_invite'
+      post 'search_by_trade'
+    end
+  end
+
   resources :tender_sites do
 
     collection do
