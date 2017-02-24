@@ -30,7 +30,9 @@
         <!-- SIDEBAR USERPIC -->
         <div class="profile-userpic">
           <% if @user.avatar.present? %>
-            <% if File.exist?(@user.avatar.image.path(:original)) %>
+            <%= "@user.avatar.image.path =========> #{@user.avatar.image.path.inspect}" %>
+              <%= "@user.avatar.image.url =========> #{@user.avatar.image.url.inspect}" %>
+              <% if File.exist?(@user.avatar.image.path(:original)) %>
               <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
             <% else %>
               <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
