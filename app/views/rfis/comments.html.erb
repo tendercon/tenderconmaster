@@ -27,24 +27,37 @@
 
     </ul>
     <div class="page-toolbar">
-      <div class="btn-group pull-right">
-        <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
-          <i class="fa fa-angle-down"></i>
-        </button>
-        <ul class="dropdown-menu pull-right" role="menu">
-          <li>
-            <a href="<%= @download_link %>" class="download" download><i class="fa fa-cloud-download"></i> Download</a>
+      <div class="top-menu">
+        <ul class="nav navbar-nav pull-right">
+          <!-- BEGIN NOTIFICATION DROPDOWN -->
+          <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 
-          </li>
-          <li>
-            <a href="<%= @download_link %>" class="download" target="_blank"><i class="fa fa-file-pdf-o"></i> View as PDF</a>
-          </li>
-          <li>
-            <a class="" onclick="javascript:window.print();"><i class="fa fa-print"></i> Print</a>
+
+          <li class="dropdown dropdown-user">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+
+              <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
+                <i class="fa fa-angle-down"></i>
+              </button>
+            </a>
+            <ul class="dropdown-menu pull-right" role="menu">
+              <li>
+                <a href="<%= @download_link %>" class="download" download><i class="fa fa-cloud-download"></i> Download</a>
+
+              </li>
+              <li>
+                <a href="<%= @download_link %>" class="download" target="_blank"><i class="fa fa-file-pdf-o"></i> View as PDF</a>
+              </li>
+              <li>
+                <a class="" onclick="javascript:window.print();"><i class="fa fa-print"></i> Print</a>
+              </li>
+
+            </ul>
           </li>
 
         </ul>
       </div>
+
     </div>
   </div>
   <!-- END PAGE BAR -->
@@ -57,8 +70,18 @@
   <div class="invoice-content-2 bordered">
     <div class="row invoice-head">
       <div class="col-md-7 col-xs-6">
+
         <div class="invoice-logo">
-          <img src="<%= @link %>" class="img-responsive" width="200px" height="100px" />
+          <% if @sc_user.company_avatar.present? %>
+            <% if File.exist?(@sc_user.company_avatar.image.path(:original)) %>
+              <img src="<%= @sc_user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" width="200px" height="100px">
+            <% else %>
+              <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-responsive" alt="" width="200px" height="100px">
+            <% end %>
+          <% else %>
+            <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-responsive" alt="" width="200px" height="100px">
+          <% end %>
+          <!--<img src="<%#= @link %>" class="img-responsive" width="200px" height="100px" />-->
         </div>
       </div>
       <div class="col-md-5 col-xs-6">
@@ -650,4 +673,5 @@
 
     }
   });
+
 </script>

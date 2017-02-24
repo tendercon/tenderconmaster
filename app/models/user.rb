@@ -79,53 +79,81 @@ class User < ActiveRecord::Base
   end
 
   def self.company_completeness id
-    progress = [0]
+    progress = []
     user = find(id)
 
     if user.trade_name.present?
       progress <<  5
+    else
+      progress <<  0
     end
     if user.abn.present?
       progress <<  5
+    else
+      progress <<  0
     end
     if user.company_profile.present?
       if user.company_profile.acn
         progress <<  10
+      else
+        progress <<  0
       end
       if user.company_profile.about_me.present?
         progress <<  15
+      else
+        progress <<  0
       end
       if user.company_profile.number_of_employees.present?
         progress <<  5
+      else
+        progress <<  0
       end
       if user.company_profile.commenced_operation.present?
         progress <<  5
+      else
+        progress <<  0
       end
       if user.company_profile.project_range.present?
         progress <<  5
+      else
+        progress <<  0
       end
       if user.company_profile.contact_number.present?
         progress <<  5
+      else
+        progress <<  0
       end
       if user.company_profile.website.present?
         progress <<  5
+      else
+        progress <<  0
       end
       if user.company_profile.linkedin.present?
         progress <<  2
+      else
+        progress <<  0
       end
     end
     if user.address.present?
       progress <<  5
+    else
+      progress <<  0
     end
     if user.primary_trades.present?
       progress <<  5
+    else
+      progress <<  0
     end
     if user.secondary_trades.present?
       progress <<  10
+    else
+      progress <<  0
     end
 
     if user.company_avatar.present?
       progress <<  18
+    else
+      progress <<  0
     end
 
     progress.sum

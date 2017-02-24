@@ -480,12 +480,12 @@ class RfisController < ApplicationController
       @sc_user = User.find(session[:user_logged_id])
     end
 
-    @sc_user.company_avatars.each do |a|
-      @avatar_filename = a.image_file_name
-      @avatar_path = a.image.path
-      puts "@avatar_filename:#{a.image.url}"
-      @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{a.id}/original/#{@avatar_filename}"
-    end
+    #@sc_user.company_avatars.each do |a|
+    #  @avatar_filename = a.image_file_name
+    #  @avatar_path = a.image.path
+    #  puts "@avatar_filename:#{a.image.url}"
+    #  @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{a.id}/original/#{@avatar_filename}"
+    #end
 
     @primary_trades = PrimaryTrade.all
     @trades = []

@@ -19,30 +19,41 @@
 
 
     </ul>
-    <div class="page-toolbar">
-      <div class="btn-group pull-right">
-        <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
-          <i class="fa fa-angle-down"></i>
-        </button>
-        <ul class="dropdown-menu pull-right" role="menu">
-          <li>
-            <a href="<%= @pdf_link %>" class="download" download><i class="fa fa-cloud-download"></i> Download</a>
 
-          </li>
-          <li>
-            <a href="<%= @pdf_link %>" class="download" target="_blank"><i class="fa fa-file-pdf-o"></i> View as PDF</a>
-          </li>
-          <% if session[:role] == 'Sub Contractor' %>
-              <li>
-                <a href="<%= update_quote_quotes_path(:quote_id => @quote.id) %>"><i class="fa fa-trash-o"></i> Delete</a>
-              </li>
-          <% end %>
-          <li>
-            <a class="" onclick="javascript:window.print();"><i class="fa fa-print"></i> Print</a>
-          </li>
+    <div class="top-menu">
+      <ul class="nav navbar-nav pull-right">
+        <!-- BEGIN NOTIFICATION DROPDOWN -->
+        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
 
-        </ul>
-      </div>
+
+        <li class="dropdown dropdown-user">
+          <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+
+            <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
+              <i class="fa fa-angle-down"></i>
+            </button>
+          </a>
+          <ul class="dropdown-menu pull-right" role="menu">
+            <li>
+              <a href="<%= @pdf_link %>" class="download" download><i class="fa fa-cloud-download"></i> Download</a>
+
+            </li>
+            <li>
+              <a href="<%= @pdf_link %>" class="download" target="_blank"><i class="fa fa-file-pdf-o"></i> View as PDF</a>
+            </li>
+            <% if session[:role] == 'Sub Contractor' %>
+                <li>
+                  <a href="<%= update_quote_quotes_path(:quote_id => @quote.id) %>"><i class="fa fa-trash-o"></i> Delete</a>
+                </li>
+            <% end %>
+            <li>
+              <a class="" onclick="javascript:window.print();"><i class="fa fa-print"></i> Print</a>
+            </li>
+
+          </ul>
+        </li>
+
+      </ul>
     </div>
   </div>
   <!-- END PAGE BAR -->
@@ -60,10 +71,10 @@
             <% if File.exist?(@sc_user.company_avatar.image.path(:original)) %>
                 <img src="<%= @sc_user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" class="img-responsive" width="200px" height="100px">
             <% else %>
-                <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""  width="200px" height="100px">
+                  <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-responsive" alt="" width="200px" height="100px">
             <% end %>
           <% else %>
-            <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""  width="200px" height="100px">
+              <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-responsive" alt="" width="200px" height="100px">
           <% end %>
         </div>
       </div>

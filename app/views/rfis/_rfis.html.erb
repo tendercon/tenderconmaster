@@ -102,14 +102,14 @@
 
           </td>
           <td class="text-center">
-            <div class="dropdown">
-              <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown">Action
-                <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li><a href="<%= comments_rfis_path(:id => d.id,:tender_id => d.tender_id) %>">View</a></li>
-                <li><a href="<%= resolved_rfi_rfis_path(:id => d.id) %>">Resolved</a></li>
-              </ul>
-            </div>
+            <label class="field select">
+              <select class="hc_trades" onchange="location = this.value;">
+                <option value="0">Select Here</option>
+                <option value="<%= comments_rfis_path(:id => d.id,:tender_id => d.tender_id) %>">View</option>
+                <option value="<%= resolved_rfi_rfis_path(:id => d.id) %>">Resolved</option>
+              </select>
+              <i class="arrow"></i>
+            </label>
 
 
           </td>
