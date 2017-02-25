@@ -3,10 +3,10 @@
     <div class="row">
       <div class="col-md-3">
         <a href="#!" class="invite_more_sub" id="<%= @tender.present? ? @tender.id : tender.id %>">
-          <button class="btn btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i>Invite more Subconstractors</button>
+          <button class="button  btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> Invite more Subconstractors</button>
         </a>
       </div>
-
+      <div class="col-md-3"></div>
       <div class="col-md-3">
         <div class="section">
           <label class="field select">
@@ -102,7 +102,12 @@
 
 <script>
   $(document).ready(function(){
-    $('.invite_cnt').text("<%= @tender_invites.present? ? @tender_invites.size : 0 %>");
+
+
+
+    $('.invite_count').text("<%= @tender_invite_counts.present? ? @tender_invite_counts : 0 %>");
+    $('.invite_opened').text("<%= @tender_opened_counts.present? ? @tender_opened_counts : 0 %>");
+    $('.invite_accepted').text("<%= @tender_accpeted_counts.present? ? @tender_accpeted_counts : 0 %>");
     $('#invited_table').DataTable({
       "bSort" : false,
       "bPaginate": false,

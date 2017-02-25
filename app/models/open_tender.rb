@@ -4,13 +4,12 @@ class OpenTender < ActiveRecord::Base
 
   def self.add_new_subcontractors(users)
 
-    tenders = self.all
+    tenders = Tender.all
     tender_ids = []
     user_ids = []
     if tenders.present?
       tenders.each do |tender|
-        tender_ids << tender.tender_id
-        user_ids << tender.user_id
+        tender_ids << tender.id
       end
     end
 

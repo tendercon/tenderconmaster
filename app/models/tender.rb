@@ -98,4 +98,6 @@ class Tender < ActiveRecord::Base
 
   end
 
+
+
 end

@@ -1,5 +1,5 @@
 class TenderconMailer < ActionMailer::Base
-  default from: 'agile.jjp@gmail.com'
+  default from: 'constructionclubau@gmail.com'
 
   def reset_password(email,root_path,user_id)
     puts "email:#{email}"

@@ -1,5 +1,7 @@
 class DashboardController < ApplicationController
 
+  before_filter :add_to_open_tender, :only => [:index]
+
   def index
     a = Time.now.end_of_day - Time.now
     puts "a =========> #{a}"
@@ -10,12 +12,12 @@ class DashboardController < ApplicationController
       @users_deleted = User.where(:status => 'deleted').count();
       @completed_percentage = (@users_completed.to_f / @users_count.to_f).to_f * 100
     elsif session[:role] == 'Head Contractor'
-      @tenders = Tender.where(:user_id => session[:user_logged_id])
+      @dashboard_tenders = Tender.where(:user_id => session[:user_logged_id])
       @month_hash = {}
       @tender_array = []
 
-      if @tenders.present?
-        @tenders.each_with_index do |t,index|
+      if @dashboard_tenders.present?
+        @dashboard_tenders.each_with_index do |t,index|
           num_1 =[]
           num_2 =[]
           num_3 =[]

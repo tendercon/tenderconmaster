@@ -445,7 +445,7 @@ module TendersHelper
   end
 
   def get_invitation_count tender_id
-    TenderInvite.where("tender_id = #{tender_id} and email_sent is not null").count()
+    TenderInvite.where("tender_id = #{tender_id}").count()
   end
 
   def get_invitation_open_count tender_id

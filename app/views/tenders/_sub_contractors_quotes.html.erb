@@ -36,7 +36,7 @@
                     <i class="widget-thumb-icon bg-green icon-bulb"></i>
                     <div class="widget-thumb-body">
                       <span class="widget-thumb-subtitle">TOTAL</span>
-                      <span class="widget-thumb-body-stat" data-counter="counterup" data-value="7,644"><%= get_invitation_count @tender.id %></span>
+                      <span class="widget-thumb-body-stat invite_count" data-counter="counterup" data-value="<%= TenderInvite.tender_invites(@tender.id) %>"><%= TenderInvite.tender_invites(@tender.id) %></span>
                     </div>
                   </div>
                 </div>
@@ -50,7 +50,7 @@
                     <i class="widget-thumb-icon bg-red icon-layers"></i>
                     <div class="widget-thumb-body">
                       <span class="widget-thumb-subtitle">TOTAL</span>
-                      <span class="widget-thumb-body-stat" data-counter="counterup" data-value="1,293"><%= get_invitation_accepted_count @tender.id %></span>
+                      <span class="widget-thumb-body-stat invite_opened" data-counter="counterup" data-value="1,293"><%= TenderInvite.tender_opened(@tender.id) %></span>
                     </div>
                   </div>
                 </div>
@@ -64,7 +64,7 @@
                     <i class="widget-thumb-icon bg-purple icon-screen-desktop"></i>
                     <div class="widget-thumb-body">
                       <span class="widget-thumb-subtitle">TOTAL</span>
-                      <span class="widget-thumb-body-stat" data-counter="counterup" data-value="815"><%= get_quote_submitted_count @tender.id %></span>
+                      <span class="widget-thumb-body-stat invite_accepted" data-counter="counterup" data-value="815"><%= TenderInvite.tender_accepted(@tender.id) %></span>
                     </div>
                   </div>
                 </div>

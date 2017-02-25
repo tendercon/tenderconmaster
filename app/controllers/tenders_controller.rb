@@ -2475,6 +2475,9 @@ class TendersController < ApplicationController
     # end
     # @invite_array = []
     # @invite_trade_array = []
+    @tender_invite_counts = TenderInvite.tender_invites(@tender.id)
+    @tender_opened_counts = TenderInvite.tender_opened(@tender.id)
+    @tender_accpeted_counts = TenderInvite.tender_accepted(@tender.id)
     @data = render :partial => 'tenders/sub_contractors_quotes'
   end
 
@@ -2889,6 +2892,16 @@ class TendersController < ApplicationController
           end
           invite.save
 
+          @trades_ids = []
+
+          @tender_trades = TenderTrade.where(:tender_id => @tender.id)
+
+          if @tender_trades.present?
+            @tender_trades.each do |t|
+              @trades_ids << t.trade_id
+            end
+          end
+
           t = Trade.find(trades[index])
           if user.present?
             decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{@tender.id}&email=#{e}&trade=#{t.id}"
@@ -2897,11 +2910,15 @@ class TendersController < ApplicationController
             decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{@tender.id}&email=#{e}&trade=#{t.id}"
             path = "http://"+request.host_with_port+"/users/register?name=#{names[index]}&email=#{e}&tender=#{@tender.id}&trade=#{t.id}"
           end
-          TenderconMailer.delay.sent_sc_invites(e,names[index],t.name,path,decline_path)
+          TenderconMailer.sent_sc_invites(e,names[index],t.name,path,decline_path).deliver_now
         end
 
       end
-
+      @tender_invite_counts = TenderInvite.tender_invites(@tender.id)
+      @tender_opened_counts = TenderInvite.tender_opened(@tender.id)
+      @tender_accpeted_counts = TenderInvite.tender_accepted(@tender.id)
+      puts "@tender_invite_counts ======> #{@tender_invite_counts}"
+      puts "@tender_opened_counts#{@tender_opened_counts}"
       @tender_invites = TenderInvite.where(:tender_id => @tender.id)
       @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
     end
