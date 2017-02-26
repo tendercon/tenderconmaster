@@ -93,7 +93,8 @@ class User < ActiveRecord::Base
       progress <<  0
     end
     if user.company_profile.present?
-      if user.company_profile.acn
+      puts "user.company_profile.acn ==========> #{user.company_profile.acn.present?}"
+      if user.company_profile.acn.present?
         progress <<  10
       else
         progress <<  0
@@ -151,11 +152,17 @@ class User < ActiveRecord::Base
     end
 
     if user.company_avatar.present?
-      progress <<  18
+      if user.role == 'Head Contractor'
+        progress <<  28
+      else
+        progress <<  18
+      end
+
+
     else
       progress <<  0
     end
-
+    puts "progress ========> #{progress}"
     progress.sum
   end
 
@@ -199,6 +206,34 @@ class User < ActiveRecord::Base
     users = self.where("parent_id = #{id} and position is null")
 
 
+  end
+
+  def self.hc_role(id)
+    user = self.find(id)
+
+    if user.present?
+      if user.role == 'Head Contractor'
+        true
+      else
+        false
+      end
+    else
+      false
+    end
+  end
+
+  def self.sc_role(id)
+    user = self.find(id)
+
+    if user.present?
+      if user.role == 'Sub Contractor'
+        true
+      else
+        false
+      end
+    else
+      false
+    end
   end
 
 

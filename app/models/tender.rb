@@ -49,15 +49,19 @@ class Tender < ActiveRecord::Base
   def self.compressed_document_matrix path,tender_id,user_id,ip
     require 'zip'
     @destination = path
-
+    #puts "@destination ======> #{@destination}"
+    #puts "ip ====> #{ip}"
 
     @destination.sub!(%r[/$],'')
 
     archive = File.join(File.dirname(@destination),File.basename(@destination))+'.zip'
+    #puts "archive ========> #{archive.inspect}"
     FileUtils.rm archive, :force=>true
 
     Zip::File.open(archive, 'w') do |zipfile|
       Dir["#{@destination}/**/**"].reject{|f|f==archive}.each do |file|
+        #puts "file =====> #{file.inspect}"
+        #puts "file.sub(@destination+'/' ===> #{file.sub(@destination+'/','')}"
         zipfile.add(file.sub(@destination+'/',''),file)
       end
     end
@@ -77,6 +81,7 @@ class Tender < ActiveRecord::Base
 
     tender = Tender.where(:id => tender_id).first
     if tender.present?
+      #puts "TEST========> #{tender.inspect}"
       dir = "#{Rails.root}/public/assets/tender/document/Fullset-#{tender.tendercon_id}"
 
       Dir.mkdir(dir) unless File.exists?(dir)
@@ -85,16 +90,45 @@ class Tender < ActiveRecord::Base
 
       archive1 = File.join(File.dirname(dir),File.basename(dir))+'.zip'
       FileUtils.rm archive1, :force=>true
-
+      #puts "archive1============> #{archive1}"
       Zip::File.open(archive1, 'w') do |zipfile|
         Dir["#{dir}/**/**"].reject{|f|f==archive1}.each do |file|
+          #puts "FILE1=======> #{file}"
           zipfile.add(file.sub(dir+'/',''),file)
         end
       end
 
     end
+  end
 
+  def self.compressed_document_download tender,ids
+    require 'zip'
+    tenders = Tender.where(:id => ids)
 
+    dir = "#{Rails.root}/public/assets/tender/document/Fullset-#{tender.tendercon_id}_#{tender.id}"
+
+    Dir.mkdir(dir) unless File.exists?(dir)
+
+    @destination =  "#{Rails.root}/public/assets/tender/#{tender.tendercon_id}"
+
+    tenders = TenderDocument.where(:tender_id => id)
+
+    if tenders.present?
+      tenders.each do |r|
+        FileUtils.cp_r(r.document.path, dir)
+      end
+    end
+
+    @destination.sub!(%r[/$],'')
+
+    archive = File.join(@destination,File.basename(@destination))+'.zip'
+    FileUtils.rm archive, :force=>true
+
+    Zip::File.open(archive, 'w') do |zipfile|
+      Dir["#{@destination}/**/**"].reject{|f|f==archive}.each do |file|
+        zipfile.add(file.sub(@destination+'/',''),file)
+      end
+    end
 
   end
 

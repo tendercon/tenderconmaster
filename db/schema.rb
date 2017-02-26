@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223063922) do
+ActiveRecord::Schema.define(version: 20170226030711) do
 
   create_table "addendas", force: :cascade do |t|
     t.integer  "tender_id",    limit: 4
@@ -470,6 +470,7 @@ ActiveRecord::Schema.define(version: 20170223063922) do
     t.string   "status",                limit: 255
     t.string   "action_type",           limit: 255
     t.integer  "addenda_id",            limit: 4
+    t.string   "package_type",          limit: 255
   end
 
   create_table "tender_invites", force: :cascade do |t|

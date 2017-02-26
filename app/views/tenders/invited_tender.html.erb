@@ -1,17 +1,39 @@
 <div class="text-center">
   <h1 class="text-center">INVITED TENDERS</h1>
 </div>
+
+<div class="admin-form">
+  <div class="row">
+    <div class="col-md-6">
+
+    </div>
+    <div class="col-md-3">
+
+    </div>
+
+    <div class="col-md-3 pull-right">
+      <div class="section">
+        <div class="smart-widget sm-left sml-50">
+          <label class="field">
+            <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Here">
+          </label>
+          <label for="sm3" class="button">
+            <i class="fa fa-search"></i>
+          </label>
+        </div>
+        <!-- end .smart-widget section -->
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="row">
-  <div class="col-md-12" type="file" id="dir-select" webkitdirectory name="document"> 
-    <% if @tenders.present? %>
-      <!--<div class="col-md-10  col-md-offset-8">
-        <input type="text" class="form-control" id="inputSuccess2" style="border-radius: 5px"/>
-        <span class="glyphicon glyphicon-search form-control-feedback"></span>
-      </div>-->
-    <% end %>
+
+  <div class="col-md-12"> 
+
     <table class="table table-bordered responsive" id="invited_table"  cellspacing="0" width="100%">
       <thead>
-        <tr>
+        <tr style="background-color: #2C3E50;color: white;">
           <th>Tender ID</th>
           <th>Project Name</th>
           <th>Location</th>
@@ -46,8 +68,8 @@
       </tbody>
     </table>
 
-    <% if !@tenders.present? %>
-      <div  style="height: 100px;"></div>
+    <%# if !@tenders.present? %>
+      <!--<div  style="height: 100px;"></div>
       <div>
         <a href="/tenders/open_tender">
           <div class="text-center">
@@ -56,8 +78,8 @@
             </button>
           </div>
         </a>
-      </div>
-    <% end %>
+      </div>-->
+    <%# end %>
     <div id="map_18" style="height:180px;width:450px;"></div> 
   </div>
 </div>
@@ -558,7 +580,14 @@
     var tab_id;
     var myLatLng;
 
-    $('#invited_table').DataTable({});
+    $('#invited_table').DataTable({
+      "bSort" : false,
+      "bPaginate": false,
+      "bInfo" : false,
+      "dom":'fltip',
+      "bFilter": 'false',
+      searching: false,
+    });
 
     $('#inputSuccess2').keyup(function () {
 
@@ -705,6 +734,16 @@
       $('.tab-content').show();
       $('.quote_info').hide();
     });
+
+    $('#filter').keyup(function () {
+
+      var rex = new RegExp($(this).val(), 'i');
+      $('.searchable tr').hide();
+      $('.searchable tr').filter(function () {
+        return rex.test($(this).text());
+      }).show();
+
+    })
 
     function check_trade_status() {
       var tender_id = $('.tender_id').val();

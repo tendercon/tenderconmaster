@@ -1700,40 +1700,47 @@ class TendersController < ApplicationController
     if document_array.present?
       document_array.uniq.each do |a|
         trade = Trade.find(a)
+        #Dir.mkdir("#{Rails.root}/public/assets/tender/document/") unless File.exists?("#{Rails.root}/public/assets/tender/document/")
         if trade.present?
           if trade.name.include? "/"
             dir = "#{Rails.root}/public/assets/tender/document/#{trade.name.gsub!('/','-')}"
           else
             dir = "#{Rails.root}/public/assets/tender/document/#{trade.name}"
           end
-
-          Dir.mkdir(dir) unless File.exists?(dir)
+          #FileUtils.mkdir_p(dir) unless File.directory?(dir)
+          FileUtils.mkdir_p(dir) unless File.exists?(dir)
 
           if packages.any? { |s| s.include?("#{a}") }
             new_array =  packages.each_index.select{|i| packages[i] =~ /#{a}/}
             if new_array.present?
               new_array.each do |f|
                 b =  packages[f].split('_')[0]
-                puts "ddhfjdshfjdhsfjhdsj-----------> #{b}"
                 c =  packages[f].split('_')[1]
                 begin
                   doc = TenderDocument.where(:id => b).first
-                  puts "doc-------------------------> #{doc.document_path}"
                   if doc.present?
                     if doc.document_path.present?
                       dir_1 = "#{dir}/#{doc.directory}"
+
                       FileUtils.mkdir_p "#{dir_1}"
-                      if File.file?(doc.document_path)
-                        FileUtils.cp(doc.document_path, dir_1)
-                      end
+                      #if File.file?(doc.document_path)
+                        #original
+                      puts "IF doc.document.path ===> #{doc.document.path(:original)}"
+                        FileUtils.cp(doc.document.path, dir_1)
+
+                        #FileUtils.cp(doc.document.path, dir_1)
+                      #end
                     else
-                      file_path = "#{Rails.root}/public/assets/tender/document/#{doc.id}/original/#{document_file_name}"
+                      # original
+                      #file_path = "#{Rails.root}/public/assets/tender/document/#{doc.id}/original/#{document_file_name}"
+                      file_path = doc.document.path(:original)
+                      puts "ELSe doc.document.path ===> #{doc.document.path(:original)}"
                       FileUtils.cp(file_path, dir_1)
                     end
                   else
-
+                    puts " doc.present?"
                   end
-
+                  puts "dir_1 =========> #{dir_1}"
                 rescue
                   # doc = TenderDocument.where(:id => b).first
                   #
@@ -1759,7 +1766,7 @@ class TendersController < ApplicationController
             end
           end
           DocumentPackage.where(:tender_id =>  tender_id).destroy_all
-          Tender.delay.compressed_document_matrix(dir,tender_id,session[:user_logged_id],request.host_with_port)
+          Tender.compressed_document_matrix(dir,tender_id,session[:user_logged_id],request.host_with_port)
         end
       end
     end

@@ -118,8 +118,8 @@ Rails.application.configure do
           :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
       },
       :s3_protocol => "http",
-      :s3_endpoint => ENV['AWS_SERVER'],
-      :s3_host_name => ENV['AWS_SERVER'],
+      :s3_endpoint => ENV['SERVER'],
+      :s3_host_name => ENV['SERVER'],
       :server => ENV['SERVER'],
       :s3_region => ENV['AWS_REGION'],
       :s3_host_alias => ENV['AWS_BUCKET']
