@@ -120,7 +120,7 @@
             <% if params[:action] == 'invited_tender' %>
                 <span class="selected"></span>
             <% end %>
-            <span class="badge badge-danger"><%= @open_tenders.present? ? @open_tenders.size : 0 %></span>
+            <span class="badge badge-danger"><%= @open_tender_size %></span>
           </a>
           </li>
 

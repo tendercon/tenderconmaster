@@ -491,8 +491,12 @@ class TendersController < ApplicationController
         end
         open_tender.tender_id = tender_id
         if open_tender.user_id != nil
-          open_tender.save
+          tender_invites_checked =  TenderInvite.where(:tender_id => tender.id, :user_id =>  u.id).first
+          if !tender_invites_checked.present?
+            open_tender.save
+          end
         end
+
 
       end
     end
@@ -568,106 +572,29 @@ class TendersController < ApplicationController
     else
       @trade_categories = TradeCategory.all
       @ip = request.host_with_port
-      # tender_array = []
-      # all_quote_array = []
-      # @trade_categories = TradeCategory.all
-      # user_tenders = TenderRequestQuote.where("sc_id != #{session[:user_logged_id]}")
-      # all_quote_tenders = TenderRequestQuote.all
-      # @user_quote = TenderRequestQuote.where(:sc_id => session[:user_logged_id]).last
-      # @tender_count = Tender.all.count()
-      # @sectors = Category.all
-      # @values = TenderValue.all
-      # @primary_trade_array = []
-      # @secondary_trade_array = []
-      # @primary_trade = PrimaryTrade.where(:user_id => session[:user_logged_id])
-      # @secondary_trade = SecondaryTrade.where(:user_id => session[:user_logged_id])
-      # @ip = request.host_with_port
-      #
-      # if @primary_trade.present?
-      #   @primary_trade.each do |p|
-      #     @primary_trade_array << p.trade_id
-      #   end
-      # end
-      #
-      # if @secondary_trade.present?
-      #   @secondary_trade.each do |s|
-      #     @secondary_trade_array << s.trade_id
-      #   end
-      # end
 
-      # @tender_array = @primary_trade_array + @secondary_trade_array
-      # @tender_trades_count = TenderTrade.where(:trade_id => @tender_array).count()
-      #
-      # if @user_quote.present?
-      #   #date_time = DateTime.parse("'#{@user_quote.created_at}'")
-      #   # date_time.class # => DateTime
-      #   @range_month = (@user_quote.created_at + 1.month) >= Time.now + 1.month#((Date.today + 1.month) - ('2016-09-12'.to_date)).to_i
-      # else
-      #   @range_month = nil
-      # end
-      #
-      # tenders = Tender.all
-      # tender_array1 = []
-      # if tenders.present?
-      #   tenders.each do |t|
-      #     tender_array1 << t.id
-      #   end
-      # end
-      #
-      # if all_quote_tenders.present?
-      #   all_quote_tenders.each do |a|
-      #     if a.sc_id == session[:user_logged_id]
-      #       all_quote_array << a.tender_id
-      #     end
-      #   end
-      # end
-      #
-      # tender_invites = TenderInvite.all
-      # tender_invite_array = []
-      # if tender_invites.present?
-      #   tender_invites.each do |t|
-      #     tender_invite_array << t.tender_id
-      #   end
-      # end
-      #
-      # if tender_array1.present?
-      #   tender_array1.each do |u|
-      #     if !all_quote_array.include? u
-      #       tender_array << u
-      #     end
-      #   end
-      # end
-      #
-      # if tender_invite_array.present?
-      #   tender_invite_array.uniq.each do |del|
-      #     if tender_array.include? del
-      #       tender_array.delete_at(tender_array.index(del))
-      #     end
-      #   end
-      # end
-      #
+
       open_tenders = OpenTender.where(:user_id => session[:user_logged_id])
       tender_arr = []
       if open_tenders.present?
         open_tenders.each do |a|
-          tender_arr << a.tender_id
+          invite = TenderInvite.where(:tender_id => a.tender_id, :user_id => session[:user_logged_id]).first
+          if invite.present?
+            OpenTender.where(:tender_id => a.tender_id,:user_id => session[:user_logged_id]).delete_all()
+          else
+            tender_arr << a.tender_id
+          end
+
         end
       end
 
       puts "open tender tender_arr-------------> #{tender_arr.inspect}"
 
       if tender_arr.present?
-        @tenders = Tender.where(:id => tender_arr.uniq)
+        @tenders = Tender.where(:id => tender_arr.uniq,:publish => true)
       else
         @tenders = nil
       end
-
-      # if tender_array.present?
-      #   @tenders = Tender.where(:id => tender_array.uniq)
-      #   @t_array = tender_array
-      # else
-      #   @tenders = nil
-      # end
     end
   end
 
@@ -978,6 +905,9 @@ class TendersController < ApplicationController
               approved.status = 'approved'
               approved.tender_request_quote_id = tender_request_quote.id
               approved.save
+
+              TenderInvite.where(:tender_id => tender_id,:user_id => session[:user_logged_id]).delete_all()
+
             end
           end
         end
@@ -986,6 +916,8 @@ class TendersController < ApplicationController
     else
       puts "boolean_array1 ---------------> "
       if !params[:tender_detail].present?
+        puts "boolean_array1 ---------------> NOT PRESENT"
+        TenderInvite.where(:tender_id => tender_id,:user_id => session[:user_logged_id]).delete_all()
         open_tender = OpenTender.new
         open_tender.user_id = sc_id
         open_tender.tender_id = tender_id
