@@ -14,11 +14,11 @@
 
     <div class="col-md-12 ">
       <!-- BEGIN SAMPLE FORM PORTLET-->
-      <div class="portlet light bordered">
+      <!--<div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
-              <label class="control-label">Tendercon ID</label> 
+              <label class="control-label">Tender ID</label> 
               <input maxlength="200" type="text" required="required" class="form-control tendercon_id" readonly="readonly" name="tendercon_id"  value="<%= @tender.present? ? @tender.tendercon_id : "#{(@user.tendercon_id)}-#{rand(1000...10000)}" %>"/> 
             </div> 
             <div class="form-group">
@@ -30,10 +30,10 @@
             </div>
           </div>
         </div>
-      </div>
+      <!--</div>-->
     </div>
     <div class="col-md-6">
-      <div class="portlet light bordered">
+     <!-- <div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
@@ -46,11 +46,11 @@
             </div>
           </div>
         </div>
-      </div>
+      <!--</div>-->
     </div>
 
     <div class="col-md-6">
-      <div class="portlet light bordered">
+      <!--<div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
@@ -69,23 +69,23 @@
             </div>
           </div>
         </div>
-      </div>
+      <!--</div>-->
     </div>
 
     <div class="col-md-12">
-      <div class="portlet light bordered">
+      <!--<div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
             <label class="control-label">Description</label> 
             <%= text_area_tag('about_me',@tender.present? ? @tender.description.html_safe : nil,:cols => '109',:rows => '8',:class => 'form-control wysihtml5') %> 
-            <i>note: if left blank the system will generate a Tendercon Default Description</i> 
+            <!--<i>note: if left blank the system will generate a Tendercon Default Description</i> -->
           </div>
         </div>
-      </div>
+      <!--</div>-->
     </div>
 
     <div class="col-md-6">
-      <div class="portlet light bordered">
+      <!--<div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
@@ -125,21 +125,21 @@
             </div>
           </div>
         </div>
-      </div>
+      <!--</div>-->
     </div>
 
     <div class="col-md-6">
-      <div class="portlet light bordered">
+      <!--<div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
             <div id="map" style="height:392px;width:450px;"></div> 
           </div>
         </div>
-      </div>
+      <!--</div>-->
     </div>
 
     <div class="col-md-12">
-      <div class="portlet light bordered">
+      <!--<div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
@@ -164,10 +164,10 @@
             </div>
           </div>
         </div>
-      </div>
+      <!--</div>-->
     </div>
 
-    <div class="col-md-12">
+    <!--<div class="col-md-12">
       <div class="portlet light bordered">
         <div class="portlet-body form">
           <div class="form-body">
@@ -177,7 +177,7 @@
             </div>
 
 
-            <% if @tender.present? && params[:info_id].present? %>
+            <%# if @tender.present? && params[:info_id].present? %>
                 <div class="input-group date col-md-10 site_meridian_datetime" data-date="2012-12-21T15:25:00Z">
                   <input type="text" class="form-control site" name="site[]"/>
                     <span class="input-group-btn">
@@ -199,7 +199,7 @@
                 </div>
                 <div style="height: 5px"></div>
                 <div class="previous_site">  
-                  <% if @tender.tender_sites.present?  %>
+                  <%# if @tender.tender_sites.present?  %>
                     <table  class="table table-bordered responsive new_directory_document_table"   cellspacing="0" width="100%">
                       <thead>
                       <tr>
@@ -208,25 +208,25 @@
                       </tr>
                       </thead>
                       <tbody class="searchable">
-                      <% @tender.tender_sites.each_with_index do |a,index| %>
+                      <%# @tender.tender_sites.each_with_index do |a,index| %>
                           <tr>
-                            <td><%= a.site_date %></td>
+                            <td><%#= a.site_date %></td>
                             <td>
                               <a href="#!">
-                                <button type="button" class="btn btn-danger remove" id="<%= a.id %>">
+                                <button type="button" class="btn btn-danger remove" id="<%#= a.id %>">
                                   Remove
                                 </button>
                               </a>
                             </td>
                           </tr>
-                      <% end %>
+                      <%# end %>
                       </tbody>
                     </table>
-                  <% end %>
+                  <%# end %>
                 </div>
 
 
-            <% else %>
+            <%# else %>
 
                 <div class="new_site1" id="1"> 
                   <div class="input-group date col-md-10 site_meridian_datetime" data-date="2012-12-21T15:25:00Z">
@@ -246,32 +246,32 @@
                         </a>
                     </span>
                   </div>
-                    <!--<div class="input-group date" id="picker1"> 
+                    &lt;!&ndash;<div class="input-group date" id="picker1"> 
                       <input type="text" class="form-control site" name="site[]"/>
                       <span class="input-group-addon"><span class="glyphicon-calendar glyphicon site_calendar" id="1"></span></span> 
-                    </div> -->
+                    </div> &ndash;&gt;
 
 
                   <div style="height: 5px"></div>
                   <div class="form-group">
 
-                    <!--<i class="fa fa-plus-circle fa-2x add" aria-hidden="true" style="color: green" id="1"></i> 
-                    <i class="fa fa-minus-circle fa-2x remove" aria-hidden="true" style="color: red;display: none" id="1"></i> -->
+                    &lt;!&ndash;<i class="fa fa-plus-circle fa-2x add" aria-hidden="true" style="color: green" id="1"></i> 
+                    <i class="fa fa-minus-circle fa-2x remove" aria-hidden="true" style="color: red;display: none" id="1"></i> &ndash;&gt;
                   </div>
 
                 </div> 
 
 
-            <% end %>
+            <%# end %>
             <div class="new_site">  
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
 
     <div class="col-md-12">
-      <div class="portlet light bordered">
+      <!--<div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
@@ -307,7 +307,7 @@
             </div>
           </div>
         </div>
-      </div>
+      <!--</div>-->
       <div class="form-actions">
         <button type="submit" class="btn blue">Next</button>
       </div>

@@ -6,11 +6,7 @@
     <div class="profile-userpic">
       <% if @user.avatar.present? %>
         <% if @user.avatar.present? %>
-          <% if File.exist?(@user.avatar.image.path(:original)) %>
-            <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-          <% else %>
-            <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-          <% end %>
+              <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
         <% else %>
           <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
           <% end %>

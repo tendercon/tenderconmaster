@@ -5,11 +5,7 @@
     <!-- SIDEBAR USERPIC -->
     <div class="profile-userpic">
       <% if @user.company_avatar.present? %>
-        <% if File.exist?(@user.company_avatar.image.path(:original)) %>
           <img src="<%= @user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-        <% else %>
-          <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-        <% end %>
       <% else %>
         <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
       <% end %>

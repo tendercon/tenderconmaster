@@ -111,8 +111,14 @@
 
 
   $('#new_document_table').DataTable({
+    /*"bSort" : false,
+    "bPaginate": false,*/
     "bSort" : false,
     "bPaginate": false,
+    "bInfo" : false,
+    "dom":'fltip',
+    "bFilter": 'false',
+    searching: false,
     "columnDefs": [
       { "visible": false, "targets": 3 }
     ],
@@ -179,6 +185,8 @@
         url: "/tenders/rename_file"
       }).done(function (data) {
         //$('.uploaded_docs').html(data);
+        $('.add_folder').hide();
+        $('.folder').show();
         $('.document_div_table').html('');
         $('.document_div_table').html(data);
       });
@@ -299,14 +307,18 @@
       console.log("CHECK")
       $('.selected').hide();
       $('.remove').hide();
+      $('.folder').hide();
       $('.selected_btn').show();
       $('.remove_btn').show();
+      $('.add_folder').show();
     }else{
       console.log("UNCHECKED")
       $('.selected').show();
       $('.remove').show();
       $('.selected_btn').hide();
       $('.remove_btn').hide();
+      $('.add_folder').hide();
+      $('.folder').show();
     }
 
 
@@ -372,6 +384,8 @@
       data: {ids:ids,tender_id:tender_id},
       url: "/tenders/delete_documents"
     }).done(function (data) {
+      $('.add_folder').hide();
+      $('.folder').show();
       $('.document_div_table').html(data);
       //$('.uploaded_docs').html(data);
     });
@@ -432,6 +446,16 @@
       });
     }
   }
+
+  $('#filter').keyup(function () {
+
+    var rex = new RegExp($(this).val(), 'i');
+    $('.searchable tr').hide();
+    $('.searchable tr').filter(function () {
+      return rex.test($(this).text());
+    }).show();
+
+  })
 
   /*$('.directory').focusout(function(){
    var id = $(this).attr('id');
