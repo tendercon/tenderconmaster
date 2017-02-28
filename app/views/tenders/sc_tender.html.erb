@@ -21,14 +21,14 @@
             <li><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
             <!--<li><a href="#chat" data-toggle="tab" id="<%#= @tender.id %>">Chat</a></li>-->
             <% if params[:rfi].present? || params[:reload].present? %>
-                <li class="active"><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs</a></li>
+                <li class="active"><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs <span class="badge badge-default" style="background-color: red"> <%= Rfi.rfi_count(@tender.id, session[:user_logged_id]) %> </span></a></li>
             <% else %>
-                <li ><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs</a></li>
+                <li ><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs <span class="badge badge-default" style="background-color: red"> <%= Rfi.rfi_count(@tender.id, session[:user_logged_id]) %> </span></a></li>
             <% end %>
             <% if params[:quote].present? %>
-                <li class="active"><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
+                <li class="active"><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes <span class="badge badge-default" style="background-color: red"> <%= Quote.quote_count(@tender.id, session[:user_logged_id]) %> </span></a></li>
             <% else %>
-                <li><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
+                <li><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes <span class="badge badge-default" style="background-color: red"> <%= Quote.quote_count(@tender.id, session[:user_logged_id]) %> </span></a></li>
             <% end %>
             <!--<li class="pull-right">
               <a href="#" class="wiki btn-default">

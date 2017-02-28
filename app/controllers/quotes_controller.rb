@@ -281,10 +281,18 @@ class QuotesController < ApplicationController
 
   def delete_quotes
     ids = params[:ids]
-
     if ids.present?
       ids.each do |id|
         if id != 'on'
+          quote = Quote.find(id)
+          quote_notif = QuoteNotification.new
+          quote_notif.sc_id = session[:user_logged_id]
+          quote_notif.hc_id = quote.tender.user_id
+          quote_notif.quote_id = quote.id
+          quote_notif.message = "#{quote.user.company} deleted a quote"
+          quote_notif.tender_id = quote.tender_id
+          quote_notif.seen = 0
+          quote_notif.save
           Quote.where(:id => id).update_all(:status => 'Deleted')
         end
       end
@@ -321,6 +329,10 @@ class QuotesController < ApplicationController
 
     if params[:notif].present?
      QuoteNotification.where(:tender_id => @tender.id,:quote_id => @quote).update_all(:updated_at => Time.now.strftime("%Y-%m-%d %H:%M:%S"),:seen => 1)
+    end
+
+    if params[:notification].present?
+      QuoteNotification.where(:id => params[:notification]).delete_all()
     end
 
     @sc_user = User.find(session[:user_logged_id])
@@ -521,12 +533,12 @@ class QuotesController < ApplicationController
 
     @sc_user = User.find(session[:user_logged_id])
 
-    @sc_user.company_avatars.each do |a|
-      @avatar_filename = a.image_file_name
+    #@sc_user.company_avatars.each do |a|
+    #  @avatar_filename = a.image_file_name
 
-      @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{a.id}/original/#{@avatar_filename}"
+    #  @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{a.id}/original/#{@avatar_filename}"
 
-    end
+    #end
 
     quote = Quote.where(:user_id => session[:user_logged_id]).last()
     result = @sc_user.company.split.map(&:first).join

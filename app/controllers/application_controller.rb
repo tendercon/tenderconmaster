@@ -57,7 +57,12 @@ class ApplicationController < ActionController::Base
         @notifs = Notification.where(:user_id => @user.id)
         @notif_count = Notification.where(:user_id => @user.id).count()
         @rfis = Rfi.where(:hc_id => session[:user_logged_id])
-        @rfi_count = Rfi.where(:hc_id => session[:user_logged_id]).count()
+        if session[:role] == 'Head Contractor'
+          @rfi_notifs = RfiNotification.where("hc_id = #{session[:user_logged_id]} and added_by='SC'")
+        else
+          @rfi_notifs = RfiNotification.where("sc_id = #{session[:user_logged_id]} and added_by='HC'")
+        end
+
         @sc_rfis = Rfi.where(:user_id => session[:user_logged_id])
         @sc_rfi_count = Rfi.where(:user_id => session[:user_logged_id]).count()
         @sc_rfi_shareds = SharedRfi.where(:user_id => session[:user_logged_id])
@@ -95,9 +100,9 @@ class ApplicationController < ActionController::Base
         end
 
         if session[:role] == 'Head Contractor'
-          @notification_count = @notif_count + @rfi_count + @quote_notif_count
+          #@notification_count = @notif_count + @rfi_count + @quote_notif_count
         elsif session[:role] == 'Sub Contractor' || session[:role] == 'Team Member'
-          @notification_count = @notif_count + @sc_rfi_count + @sc_rfi_shared_count + @sc_invite_notif_count
+          #@notification_count = @notif_count + @sc_rfi_count + @sc_rfi_shared_count + @sc_invite_notif_count
         end
 
         shared = []

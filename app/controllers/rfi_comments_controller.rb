@@ -23,8 +23,10 @@ class RfiCommentsController  < ApplicationController
 
     if rfi_comment.save
       if session[:role] == 'Sub Contractor'
+        RfiNotification.create_rfi_notification(@rfi.user_id, @rfi.tender_id,tender.user_id,@rfi.id,"#{@rfi.user.company} left a comment on the RFI","SC")
         CommentDocument.where("rfi_comment_id is null and tender_id = #{tender.id} and sc_id = #{session[:user_logged_id]}").update_all(:rfi_comment_id => rfi_comment.id)
       elsif session[:role] == 'Head Contractor'
+        RfiNotification.create_rfi_notification(@rfi.user_id, @rfi.tender_id,tender.user_id,@rfi.id,"#{tender.user.company} left a comment on the RFI","HC")
         CommentDocument.where("rfi_comment_id is null and tender_id = #{tender.id}  and hc_id = #{session[:user_logged_id]}").update_all(:rfi_comment_id => rfi_comment.id)
       end
 

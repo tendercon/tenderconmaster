@@ -3,6 +3,16 @@ class Quote < ActiveRecord::Base
   belongs_to :tender
   has_many   :quote_documents
   has_many   :quote_document_optionals
+  has_many   :quote_notifications
+
+
+  def self.quote_count(tender_id, user_id=nil)
+    if user_id.present?
+      self.where(:tender_id => tender_id,:user_id => user_id).count()
+    else
+      self.where(:tender_id => tender_id).count()
+    end
+  end
 
 
   def self.quote_link quote,hc_user,trade,project_name,avatar_path

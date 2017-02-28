@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226030711) do
+ActiveRecord::Schema.define(version: 20170228125940) do
 
   create_table "addendas", force: :cascade do |t|
     t.integer  "tender_id",    limit: 4
@@ -378,6 +378,18 @@ ActiveRecord::Schema.define(version: 20170226030711) do
     t.datetime "document_updated_at"
     t.integer  "tender_id",             limit: 4
     t.string   "rfi_ref_no",            limit: 255
+  end
+
+  create_table "rfi_notifications", force: :cascade do |t|
+    t.integer  "sc_id",      limit: 4
+    t.integer  "hc_id",      limit: 4
+    t.integer  "rfi_id",     limit: 4
+    t.integer  "tender_id",  limit: 4
+    t.string   "message",    limit: 255
+    t.string   "status",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "added_by",   limit: 255
   end
 
   create_table "rfis", force: :cascade do |t|

@@ -2513,6 +2513,10 @@ class TendersController < ApplicationController
       end
     end
 
+    if params[:notification].present?
+      RfiNotification.where(:id => params[:notification]).delete_all
+    end
+
     @messages = Message.where(:tender_id => @tender.id)
     @tender_trade_requests = TenderRequestTrade.where(:tender_request_quote_id => @quote_array.uniq)
 
@@ -2529,6 +2533,10 @@ class TendersController < ApplicationController
       @tender_trades.each do |t|
         @trades << t.trade_id
       end
+    end
+
+    if params[:notification].present?
+      QuoteNotification.where(:id => params[:notification]).delete_all()
     end
   end
 

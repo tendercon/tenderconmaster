@@ -14,8 +14,10 @@ class User < ActiveRecord::Base
   has_many :project_portfolios
   has_many :package_downloads
   has_many :hc_invites
+  has_many :rfis
   accepts_nested_attributes_for :companies
   belongs_to :user_tender
+
 
 
   validates :first_name, presence: true
