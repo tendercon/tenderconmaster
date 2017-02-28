@@ -128,11 +128,12 @@ class QuotesController < ApplicationController
              QuoteDocument.where(:tender_id => tender_id, :user_id => session[:user_logged_id],:quote_id => nil).update_all(:quote_id => quote_data.id)
              QuoteDocumentOptional.where(:tender_id => tender_id, :user_id => session[:user_logged_id],:quote_id => nil).update_all(:quote_id => quote_data.id)
              @tender = Tender.find(tender_id)
+             user = User.find(quote_data.user_id)
              quote_notif = QuoteNotification.new
              quote_notif.sc_id = session[:user_logged_id]
              quote_notif.hc_id = @tender.user_id
              quote_notif.quote_id = quote_data.id
-             quote_notif.message = "New Quote"
+             quote_notif.message = "#{user.company} submitted a new quote"
              quote_notif.tender_id = tender_id
              quote_notif.seen = 0
              quote_notif.save
