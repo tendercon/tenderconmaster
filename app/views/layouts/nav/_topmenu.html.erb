@@ -5,12 +5,12 @@
     <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
       <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
         <i class="icon-bell"></i>
-        <span class="badge badge-default" style="background-color: red"> <%= @quote_notifs.size %> </span>
+        <span class="badge badge-default" style="background-color: red"> <%= @quote_notifs.present? ? @quote_notifs.size : 0 %> </span>
       </a>
       <ul class="dropdown-menu">
         <li class="external">
           <h3>
-            <span class="bold"><%= @quote_notifs.size %> pending</span> notifications</h3>
+            <span class="bold"><%= @quote_notifs.present? ? @quote_notifs.size : 0 %> pending</span> notifications</h3>
           <a href="page_user_profile_1.html">view all</a>
         </li>
         <li>

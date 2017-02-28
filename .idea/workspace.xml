@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/dashboard_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/dashboard_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -79,17 +79,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_topmenu.html.erb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_topmenu.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
-              <caret line="18" column="43" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="43" />
+              <caret line="7" column="127" selection-start-line="7" selection-start-column="127" selection-end-line="7" selection-end-column="127" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dashboard_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/dashboard_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
@@ -176,8 +176,8 @@
         <option value="$PROJECT_DIR$/app/views/users/company_profile.html.erb" />
         <option value="$PROJECT_DIR$/app/views/users/tabs/_company_overview.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/quotes_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/dashboard_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" />
       </list>
     </option>
   </component>
@@ -965,12 +965,12 @@
       <workItem from="1487822103963" duration="19504000" />
       <workItem from="1487899515668" duration="3705000" />
       <workItem from="1487921322546" duration="32213000" />
-      <workItem from="1488180642939" duration="10148000" />
+      <workItem from="1488180642939" duration="10291000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="633468000" />
+    <option name="totallyTimeSpent" value="633611000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="724" extended-state="6" />
@@ -1438,14 +1438,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="18" column="43" selection-start-line="18" selection-start-column="42" selection-end-line="18" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/dashboard/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-21">
@@ -1458,6 +1450,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="127" selection-start-line="7" selection-start-column="127" selection-end-line="7" selection-end-column="127" />
           <folding />
         </state>
       </provider>
