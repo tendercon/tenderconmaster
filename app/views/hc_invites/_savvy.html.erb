@@ -121,7 +121,6 @@
               <td>
                 <label class="field select">
                   <select class="hc_trades" name="trades[]">
-                    <option value="0">Select Here</option>
                     <% if @trades.present? %>
                         <option value="0">Default</option>
                         <% @trades.each do |t| %>
@@ -213,6 +212,12 @@
         $('.hc_invites_list').each(function(){
           $(this).click();
         })
+      }
+    });
+
+    $('.hc_invites_list').click(function(){
+      if($('.hc_invites_list').prop('checked') == false){
+         $(this).val(0);
       }
     });
 

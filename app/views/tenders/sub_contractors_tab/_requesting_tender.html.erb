@@ -1,14 +1,68 @@
 <div class="table-responsive requested_div">
+  <div class="admin-form">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <div class="section">
+          <label class="field select">
+            <select id="trade2"  class="trade_filter" title="request">
+              <% if @trades_array.present?  %>
+
+                  <option value="0">All Trades</option>
+                  <% @trades_array.uniq.each do |t| %>
+                      <% if @trades.present? %>
+                          <% if @trades.to_i == t.to_i %>
+                              <option value="<%= t %>" selected><%= get_trade_name t %></option>
+                          <% else %>
+                              <option value="<%= t %>"><%= get_trade_name t %></option>
+                          <% end %>
+                      <% else %>
+                          <option value="<%= t %>"><%= get_trade_name t %></option>
+                      <% end %>
+
+                  <% end %>
+              <% else  %>
+                  <option value="0">All Trades</option>
+                  <% @trades_array.uniq.each do |t| %>
+                      <option value="<%= t %>"><%= get_trade_name t %></option>
+                  <% end %>
+              <% end %>
+            </select>
+            <i class="arrow"></i>
+          </label>
+        </div>
+
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3 pull-right">
+        <div class="section">
+          <div class="smart-widget sm-left sml-50">
+            <label class="field">
+              <input type="text" name="sm3" id="request_filter" class="gui-input" placeholder="Search Here">
+            </label>
+            <label for="sm3" class="button">
+              <i class="fa fa-search"></i>
+            </label>
+          </div>
+          <!-- end .smart-widget section -->
+        </div>
+      </div>
+    </div>
+  </div>
   <table class="table table-bordered responsive" id="requesting_table"  cellspacing="0" width="100%">
     <thead>
-    <th class="text-center">Company Name</th>
-    <th class="text-center">Contact Name</th>
-    <th class="text-center">Trade</th>
-    <th class="text-center">Request Received</th>
-    <th class="text-center">Status</th>
-    <th class="text-center">Action</th>
+    <tr style="background-color: #2C3E50;color: white;">
+      <th class="text-center">Company Name</th>
+      <th class="text-center">Contact Name</th>
+      <th class="text-center">Trade</th>
+      <th class="text-center">Request Received</th>
+      <th class="text-center">Status</th>
+      <th class="text-center">Action</th>
+    </tr>
     </thead>
-    <tbody>
+    <tbody class="request_searchable">
     <% if @tender_requesting.present? %>
       <% @tender_requesting.each do |t| %>
         <tr class="trade" id="<%=  t %>" data-title="<%= get_trade_name t.trade_id %>">
@@ -52,18 +106,20 @@
   <div class="col-md-20" style="height: 70px"></div>
   <table class="table table-bordered responsive" id="requested_table"  cellspacing="0" width="100%">
     <thead>
-      <th class="text-center">Company Name</th>
-      <th class="text-center">Contact Name</th>
-      <th class="text-center">Trade</th>
-      <th class="text-center">Requested</th>
-      <th class="text-center">Status</th>
+      <tr style="background-color: #2C3E50;color: white;">
+        <th class="text-center">Company Name</th>
+        <th class="text-center">Contact Name</th>
+        <th class="text-center">Trade</th>
+        <th class="text-center">Requested</th>
+        <th class="text-center">Status</th>
+      </tr>
     </thead>
-    <tbody>
+    <tbody class="searchable">
     <% if @tender_request_quotes.present? %>
       <% @tender_request_quotes.each do |t| %>
         <%  if t.approved_date.present? ||  t.declined_date.present? %>
           <tr class="trade" id="<%=  t %>" data-title="<%= get_trade_name t.trade_id %>">
-            <td class="text-center"><%= get_user_company_name t.sc_id %></td>
+            <td class="text-center"><%= get_user_trade_name t.sc_id %></td>
             <td class="text-center"><%= get_user_name t.sc_id %></td>
             <td class="text-center"><%= get_trade_name t.trade_id  %></td>
             <td class="text-center"><p><%= (t.request_date).strftime("%d.%m.%Y %H:%M %p")  %></p></td>
@@ -90,10 +146,14 @@
 
 <script>
   $(document).ready(function(){
+    $('.request_count').text("<%= get_request_count @tender.id %>");
+    $('.request_approved').text("<%= get_request_approved @tender.id %>");
+    $('.request_declined').text("<%= get_request_declined @tender.id %>");
     $('#requested_table').DataTable({
       "bSort" : false,
       "bPaginate": false,
       "bInfo" : false,
+      "bFilter" : false,
       "columnDefs": [
         { "visible": false, "targets": 2 }
       ],
@@ -117,10 +177,35 @@
       }
     });
 
+    $('.trade_filter').change(function(){
+      var tender_id = $('.tender_id').val();
+      var trades = $(this).val();
+      var tab  = $(this).attr('title');
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id,trades:trades,tab:tab},
+        url: "/tenders/filter_by_trades"
+      }).done(function (data) {
+
+        if(tab == 'invites'){
+          $('.invited_div').html('');
+          $('.invited_div').html(data);
+        }else if(tab == 'request'){
+          $('.requested_div').html('');
+          $('.requested_div').html(data);
+        }else if(tab == 'tendering'){
+          $('.tendering_div').html('');
+          $('.tendering_div').html(data);
+        }
+      });
+    });
+
     $('#requesting_table').DataTable({
       "bSort" : false,
       "bPaginate": false,
       "bInfo" : false,
+      "bFilter" : false,
       /*"columnDefs": [
         { "visible": false, "targets": 2 }
       ],
@@ -162,6 +247,15 @@
         $('.requested_div').html(data);
       });
     });
+
+    $('#request_filter').keyup(function () {
+      var rex = new RegExp($(this).val(), 'i');
+      $('.request_searchable tr').hide();
+      $('.request_searchable tr').filter(function () {
+        return rex.test($(this).text());
+      }).show();
+
+    })
 
   });
 </script>

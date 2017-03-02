@@ -113,6 +113,16 @@ module UsersHelper
     user.company
   end
 
+  def get_user_trade_name id
+
+    user  = User.find(id)
+    if user.trade_name.present?
+      user.trade_name
+    else
+      user.email
+    end
+  end
+
   def get_user_created id
 
     user  = User.find(id)

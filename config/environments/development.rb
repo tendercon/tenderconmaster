@@ -53,7 +53,7 @@ Rails.application.configure do
   ENV["INTERCOM_APP_ID"] = "ywfyj3d0"
 
 
-  config.action_mailer.default_url_options = { :host => 'www.tendercon.com' }
+  config.action_mailer.default_url_options = { :host => 'localhost' }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true

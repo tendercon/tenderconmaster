@@ -72,12 +72,13 @@ class ApplicationController < ActionController::Base
         tender_arr = []
         if @open_tenders.present?
           @open_tenders.each do |a|
-            invite = TenderInvite.where(:tender_id => a.tender_id, :user_id => session[:user_logged_id]).first
-            if invite.present?
-              OpenTender.where(:tender_id => a.tender_id,:user_id => session[:user_logged_id]).delete_all()
-            else
-              tender_arr << a.tender_id
-            end
+            tender_arr << a.tender_id
+            # invite = TenderInvite.where(:tender_id => a.tender_id, :user_id => session[:user_logged_id]).first
+            # if invite.present?
+            #   OpenTender.where(:tender_id => a.tender_id,:user_id => session[:user_logged_id]).delete_all()
+            # else
+            #   tender_arr << a.tender_id
+            # end
           end
         end
 
@@ -89,7 +90,7 @@ class ApplicationController < ActionController::Base
 
 
 
-        @tender_invites = TenderInvite.where(:user_id => session[:user_logged_id])
+        @tender_invites = TenderInvite.where("email = '#{session[:email]}' and (status is null OR status = 'opened')")
         @rfis_array = []
         @sc_invite_notifs =  ScInviteNotification.where(:user_id => session[:user_logged_id],:seen => 0)
         @sc_invite_notif_count =  ScInviteNotification.where(:user_id => session[:user_logged_id],:seen => 0).count()

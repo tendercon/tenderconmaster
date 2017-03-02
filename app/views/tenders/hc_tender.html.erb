@@ -31,11 +31,11 @@
             <% end %>
             <!--<li><a href="#chat" data-toggle="tab" id="<%#= @tender.id %>">Chat</a></li>-->
 
-            <% if params[:rfi].present? %>
-                <li class="active"><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs <span class="badge badge-default" style="background-color: red"> <%= Rfi.rfi_count(@tender.id) %> </span></a></li>
-            <% else %>
-                <li ><a href="#rfi" data-toggle="tab" id="<%= @tender.id %>">RFIs <%= Rfi.rfi_count(@tender.id) %></a></li>
-            <% end %>
+            <%# if params[:rfi].present? %>
+                <!--<li class="active"><a href="#rfi" data-toggle="tab" id="<%#= @tender.id %>">RFIs <span class="badge badge-default" style="background-color: red"> <%#= Rfi.rfi_count(@tender.id) %> </span></a></li>-->
+            <%# else %>
+                  <!--<li ><a href="#rfi" data-toggle="tab" id="<%#= @tender.id %>">RFIs <%#= Rfi.rfi_count(@tender.id) %></a></li>-->
+            <%# end %>
             <% if params[:quote].present? %>
                 <li class="active"><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes <span class="badge badge-default" style="background-color: red"> <%= Quote.quote_count(@tender.id) %> </span></a></li>
             <% else %>
@@ -240,7 +240,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <div class="text-center">
             <p class="text-center" style="font-size: 20px">
-              Invite More Sub contractors
+              Invite Subcontractor
             </p>
           </div>
           <div class="row">
@@ -257,9 +257,9 @@
           </div>
           <br><br>
           <div class="col-md-12">
-            <button class="btn btn-success add_more" type="button">
+            <!--<button class="btn btn-success add_more" type="button">
               <i class="fa fa-plus-circle" aria-hidden="true"></i>Invite More
-            </button>
+            </button>-->
             <div style="height: 30px"></div>
             <div class="new_invite">
               <div class="form-group">
@@ -298,6 +298,11 @@
                     <% end %>
                   <% end %>
                 </select> 
+              </div>
+              <div class="form-group">
+                <div class="checkbox">
+                  <label><input type="checkbox" class="save_to_sub" id="save_to_sub">Save this Subcontractor to My Network</label>
+                </div>
               </div>
             </div>
           </div>
@@ -413,12 +418,18 @@
       $('.new_invite_div').append("<%= escape_javascript(render :partial => 'tenders/invites_for_modal') %>");
     });
 
+    $('.save_to_sub').click(function(){
+       $(this).val(1);
+    });
+
     $('.send_invite').click(function(){
       var emails = [];
       var names = [];
       var trades = [];
       var companies = [];
       var tender_id = $('.tender_id').val();
+      var save_to_sub = $('.save_to_sub').val();
+
 
       $('.company').each(function(){
         companies.push($(this).val());
@@ -440,7 +451,7 @@
       });
       $.ajax({
         method: "POST",
-        data: {tender_id:tender_id,emails:emails,names:names,trades:trades,companies:companies},
+        data: {tender_id:tender_id,emails:emails,names:names,trades:trades,companies:companies,save_to_sub:save_to_sub},
         url: "/tenders/invite_more_sub"
       }).done(function (data) {
         //$('.contractors').html(data);
@@ -465,6 +476,7 @@
         });
 
         $('.invited_div').html(data);
+        $('.company').val('');
       });
 
 

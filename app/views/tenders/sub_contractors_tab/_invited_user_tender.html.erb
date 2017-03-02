@@ -11,10 +11,10 @@
         <div class="section">
           <label class="field select">
             <select  class="trade_filter" title="invites">
-              <% if @trades_ids.present?  %>
+              <% if @trades_array.present?  %>
 
                   <option value="0">All Trades</option>
-                  <% @trades_ids.uniq.each do |t| %>
+                  <% @trades_array.uniq.each do |t| %>
                       <% if @trades.present? %>
                         <% if @trades.to_i == t.to_i %>
                             <option value="<%= t %>" selected><%= get_trade_name t %></option>
@@ -28,7 +28,7 @@
                   <% end %>
               <% else  %>
                   <option value="0">All Trades</option>
-                  <% trades_ids.uniq.each do |t| %>
+                  <% @trades_array.uniq.each do |t| %>
                       <option value="<%= t %>"><%= get_trade_name t %></option>
                   <% end %>
               <% end %>
@@ -74,7 +74,7 @@
               <td class="text-center"><%= get_invite_company_name t.email %></td>
               <td class="text-center"><%= get_user_tender_per_email t.email %></td>
               <td class="text-center"><p><%=  t.email %></p></td>
-              <td class="text-center"><p><%=  t.email_sent.present? ? t.email_sent.strftime("%d.%m.%Y %H:%M %p") : nil  %></p></td>
+              <td class="text-center"><p><%=  t.created_at.present? ? t.created_at.strftime("%d.%m.%Y %H:%M %p") : nil  %></p></td>
               <td class="text-center"><p><%=  t.tender_open_date.present? ? t.tender_open_date.strftime("%d.%m.%Y %H:%M %p") : 'Not yet' %></p></td>
               <% if t.status == nil %>
                   <td class="text-center"><p>Pending Acceptance</p></td>
@@ -85,11 +85,17 @@
                   </td>
               <% elsif t.tender_acceptance_date.present? %>
                   <td class="text-center">
-                    <p style="color: green">Invitation Accepted</p>
+                    <button class="btn btn-warning" type="button">
+                      Accepted
+                    </button>
                     <p><%=  t.tender_acceptance_date.present? ? t.tender_acceptance_date.strftime("%d.%m.%Y %H:%M %p") : nil %></p>
                   </td>
               <% else %>
-                  <td class="text-center"><p>Pending Acceptance</p></td>
+                  <td class="text-center">
+                    <button class="btn btn-warning" type="button">
+                      Pending
+                    </button>
+                  </td>
               <% end %>
               <td class="text-center"><%=  get_trade_name t.trade_id %></td>
             </tr>
@@ -105,9 +111,9 @@
 
 
 
-    $('.invite_count').text("<%= @tender_invite_counts.present? ? @tender_invite_counts : 0 %>");
-    $('.invite_opened').text("<%= @tender_opened_counts.present? ? @tender_opened_counts : 0 %>");
-    $('.invite_accepted').text("<%= @tender_accpeted_counts.present? ? @tender_accpeted_counts : 0 %>");
+    $('.invite_count').text("<%= TenderInvite.tender_invites(@tender.id) %>");
+    $('.invite_opened').text("<%= TenderInvite.tender_opened(@tender.id) %>");
+    $('.invite_accepted').text("<%= TenderInvite.tender_accepted(@tender.id) %>");
     $('#invited_table').DataTable({
       "bSort" : false,
       "bPaginate": false,
@@ -169,6 +175,10 @@
       }).show();
 
     })
+
+    $('.invite_more_sub').click(function(){
+      $('#invite_more_modal').modal('show');
+    });
 
   });
 </script>

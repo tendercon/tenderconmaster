@@ -263,7 +263,11 @@ module TendersHelper
     t = User.where(:email => email).first
 
     if t.present?
-      t.company
+      if t.trade_name.present?
+        t.trade_name
+      else
+
+      end
     else
       email
     end
@@ -742,7 +746,7 @@ module TendersHelper
 
   def get_invited_trade tender_id,email
 
-    invites = TenderInvite.where(:tender_id => tender_id,:email => email)
+    invites = TenderInvite.where("tender_id = #{tender_id} and email = '#{email}' and  tender_acceptance_date is null and tender_declined_date is null")
     trades = []
     if invites.present?
       invites.each do |a|
