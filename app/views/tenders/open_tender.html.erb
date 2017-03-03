@@ -96,7 +96,7 @@
                   <td class="text-center"><%= split_address t.address %></td>
               <% end %>
               <td class="text-center"><%= get_distance t.id,session[:user_logged_id] %></td>
-              <td class="text-center"><%= get_user_company_name t.user_id %></td>
+              <td class="text-center"><%= get_user_trade_name t.user_id %></td>
               <td class="text-center"><%= get_tender_due t.id %></td>
               <% if session[:role] == 'Head Contractor' %>
                   <td class="text-center">

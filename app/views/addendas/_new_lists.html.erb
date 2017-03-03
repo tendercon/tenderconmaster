@@ -19,26 +19,53 @@
       </div>
   <%- end %>
 </div>
-<div class="row">
-  <div class="col-md-7">
-    <a href="<%= addendas_path(:id => tender.id ) %>"  id="<%= tender.id %>">
-      <button class="btn btn-success">Issue Addenda</button>
-    </a>
-  </div>
-</div>
+
 <div class="row">
   <div style="height: 40px;"></div>
 </div>
 
+<div class="admin-form">
+  <div class="row">
+    <div class="col-md-6">
+      <% if session[:role] == 'Head Contractor' %>
+        <div class="admin-form">
+          <a href="<%= addendas_path(:id => tender.id ) %>"  id="<%= tender.id %>">
+            <button class="button btn-info">Issue Addenda</button>
+          </a>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-3">
+    </div>
+
+    <div class="col-md-3 pull-right">
+      <div class="section">
+        <div class="smart-widget sm-left sml-50">
+          <label class="field">
+            <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Here">
+          </label>
+          <label for="sm3" class="button">
+            <i class="fa fa-search"></i>
+          </label>
+        </div>
+        <!-- end .smart-widget section -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="table-responsive" >
   <table class="table table-bordered responsive" id="addenda_table"  cellspacing="0" width="100%">
     <thead>
-    <th>Addendum #</th>
-    <th>Subject</th>
-    <th>Sent</th>
-    <th>Action</th>
+      <tr style="background-color: #2C3E50;color: white;">
+        <th>Addendum #</th>
+        <th>Subject</th>
+        <th>Sent</th>
+        <th>Action</th>
+      </tr>
     </thead>
-    <tbody>
+    <tbody class="searchable">
     <% if addendas.present? %>
         <% addendas.each_with_index do |t,index| %>
             <tr>
@@ -181,8 +208,12 @@
   $(document).ready(function(){
 
     $('#addenda_table').DataTable({
-          "bPaginate": false,
-          "bInfo": false
+      "bSort" : false,
+      "bPaginate": false,
+      "bInfo" : false,
+      "dom":'fltip',
+      "bFilter": 'false',
+      searching: false,
     });
 
     $('.view_addenda').click(function(){
@@ -190,6 +221,16 @@
 
       $('#view_Addenda_modal_'+id).modal('show');
     });
+
+    $('#filter').keyup(function () {
+
+      var rex = new RegExp($(this).val(), 'i');
+      $('.searchable tr').hide();
+      $('.searchable tr').filter(function () {
+        return rex.test($(this).text());
+      }).show();
+
+    })
 
   });
 </script>

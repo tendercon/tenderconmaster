@@ -40,7 +40,7 @@
             <th>Location</th>
             <th>Quote Due</th>
             <th>Action</th>
-            <th><i class="fa fa-bell" aria-hidden="true"></i></th>
+            <!--<th><i class="fa fa-bell" aria-hidden="true"></i></th>-->
           </tr>
         </thead>
         <tbody class="searchable">
@@ -109,11 +109,11 @@
                   <% end %>
 
                 </td>
-                <td class="text-center">
-                  <% if (get_count_tender_request session[:user_logged_id],t.id ) > 0 %>
-                      <span class="badge" style="background-color: red"><%= get_count_tender_request session[:user_logged_id],t.id %></span>
-                  <% end %>
-                </td>
+                <!--<td class="text-center">
+                  <%# if (get_count_tender_request session[:user_logged_id],t.id ) > 0 %>
+                      <span class="badge" style="background-color: red"><%#= get_count_tender_request session[:user_logged_id],t.id %></span>
+                  <%# end %>
+                </td>-->
 
               </tr>
             <% end %>
