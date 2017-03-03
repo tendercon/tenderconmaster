@@ -17,7 +17,6 @@
             <% else %>
                 <li class="active"><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
             <% end %>
-            <%= get_tender_request_approved(@tender.id,session[:user_logged_id]) %>
             <% if get_tender_request_approved(@tender.id,session[:user_logged_id]) > 0 %>
               <li><a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">Documents</a></li>
               <li><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
@@ -114,18 +113,17 @@
         </div>
         <div class="tab-pane col-md-12" id="addenda_disabled">
           <div class="text-center">
-            <h1>Addenda</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis odio in nulla sodales placerat. Aliquam sem libero, tincidunt eu convallis a, dignissim id ante. Praesent in tincidunt purus. Duis consequat arcu sed nulla sagittis consectetur. Curabitur ac finibus arcu. Nam tincidunt id dui in pulvinar. Morbi efficitur sollicitudin massa et fringilla. Mauris laoreet lacus et molestie suscipit. Morbi eu dui luctus, cursus erat vel, consequat sapien. Pellentesque ultrices finibus justo, eu pharetra ante ullamcorper eget. Nulla nulla leo, vestibulum in ligula eget, tristique dapibus mauris. Nulla vel erat et nibh tristique faucibus sed vitae nibh.
-
-              Vestibulum laoreet interdum consequat. Etiam ullamcorper diam risus, pretium pellentesque turpis blandit vel. Quisque ultrices, ante non dignissim maximus, nulla tellus tincidunt nulla, eget molestie magna dolor non dui. Fusce sed porta sapien, in viverra dui. Pellentesque non elit fringilla tellus maximus euismod. Mauris dignissim nulla nec porttitor commodo. Ut eget ultricies est. Nunc placerat lacus ac leo pulvinar mattis. Nam volutpat dapibus lacus sit amet consequat. Vivamus vestibulum tincidunt ante, in ultrices odio aliquet eu. Etiam malesuada ligula sodales nisi vehicula, ut posuere sem consectetur. Nunc maximus cursus erat placerat posuere. Duis non turpis gravida, venenatis massa vitae, commodo elit. Morbi scelerisque ultricies augue id malesuada. Praesent tincidunt erat eu faucibus fringilla. Nam ornare interdum tortor, non mattis metus.
-
-              Ut a elit blandit nisl tristique pharetra. Pellentesque nunc lectus, dignissim vel dolor commodo, aliquet semper elit. Curabitur ut neque ac massa porta dignissim quis non mi. Curabitur leo lacus, mollis vitae libero eget, lobortis cursus lacus. Aliquam aliquam massa ut lobortis imperdiet. Nunc facilisis dapibus nunc, vitae pharetra diam scelerisque et. Suspendisse et augue ac lacus interdum placerat vel et est. Praesent bibendum consequat leo consequat placerat. Vivamus cursus tempus lorem et bibendum. Nam ultricies augue at ornare pharetra.
-
-              Quisque porta mattis mauris et laoreet. Etiam et mi quis urna lobortis bibendum ut a justo. Vivamus dui nibh, dignissim non consectetur consectetur, tempus sit amet lacus. Aliquam porttitor nunc lacus, nec rutrum arcu scelerisque sed. Nulla sit amet erat congue, laoreet massa in, lobortis mi. Quisque tristique ante a metus dictum, eu vulputate justo commodo. Praesent blandit, elit quis hendrerit feugiat, felis est posuere enim, quis ultricies risus justo ultricies ipsum. Pellentesque mollis mi eros, elementum aliquet metus efficitur vitae. Pellentesque commodo, enim vel scelerisque fringilla, diam arcu condimentum risus, eu placerat nisl dui sit amet nisl. Donec malesuada ex et eros scelerisque tempor. Nam at metus sodales, interdum tellus id, consectetur augue. Sed at pharetra mi, et gravida velit. In egestas, metus eget tristique posuere, mauris dolor feugiat ipsum, vel sagittis nunc sapien sit amet sapien. Proin in venenatis sapien. Phasellus sapien tellus, dapibus vitae felis vel, malesuada ornare dolor. Quisque a quam fermentum, aliquam ipsum eu, pharetra nulla.
-
-              Praesent dictum velit neque, pellentesque placerat nisl euismod vel. Curabitur lectus metus, molestie eu mollis tincidunt, aliquet eu nulla. Proin sit amet nisi at risus porttitor dictum sed id ante. Quisque nunc risus, varius vel lacinia vel, suscipit non nulla. Aliquam ut quam cursus, mollis lorem at, maximus eros. Vivamus turpis nisi, scelerisque volutpat consequat ut, consectetur non enim. Proin ac odio velit. Aliquam ac erat pharetra tellus placerat sollicitudin eget vitae mauris. Nullam rhoncus augue a tortor scelerisque iaculis. Vestibulum ut justo tincidunt, blandit dui ut, tincidunt nulla. Aenean sed risus ex. Quisque sit amet fringilla enim, sed imperdiet elit.
+            <strong style="color: #525e64">INVITES SUBCONTRACTORS</strong>
+            <p style="color: #95a5a6">Inviting Subcontractors to your Network will help you
+              receive more quotes and make Tender Management much easier
             </p>
+            <div style="height: 30px"></div>
+            <div class="profile-userpic">
+              <img src="/img/logos/Screen-Shot.png" class="img-responsive" alt="" style="width: 400px !important; height: 400px !important;">
+            </div>
+            <div style="height: 30px"></div>
+
+            <div style="height: 30px"></div>
           </div>
         </div>
         <% if params[:rfi].present? || params[:reload].present? %>
@@ -143,18 +141,17 @@
         </div>
         <div class="tab-pane  col-md-12" id="document_control_disabled">
           <div class="text-center">
-            <h1>Document Control</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis odio in nulla sodales placerat. Aliquam sem libero, tincidunt eu convallis a, dignissim id ante. Praesent in tincidunt purus. Duis consequat arcu sed nulla sagittis consectetur. Curabitur ac finibus arcu. Nam tincidunt id dui in pulvinar. Morbi efficitur sollicitudin massa et fringilla. Mauris laoreet lacus et molestie suscipit. Morbi eu dui luctus, cursus erat vel, consequat sapien. Pellentesque ultrices finibus justo, eu pharetra ante ullamcorper eget. Nulla nulla leo, vestibulum in ligula eget, tristique dapibus mauris. Nulla vel erat et nibh tristique faucibus sed vitae nibh.
-
-              Vestibulum laoreet interdum consequat. Etiam ullamcorper diam risus, pretium pellentesque turpis blandit vel. Quisque ultrices, ante non dignissim maximus, nulla tellus tincidunt nulla, eget molestie magna dolor non dui. Fusce sed porta sapien, in viverra dui. Pellentesque non elit fringilla tellus maximus euismod. Mauris dignissim nulla nec porttitor commodo. Ut eget ultricies est. Nunc placerat lacus ac leo pulvinar mattis. Nam volutpat dapibus lacus sit amet consequat. Vivamus vestibulum tincidunt ante, in ultrices odio aliquet eu. Etiam malesuada ligula sodales nisi vehicula, ut posuere sem consectetur. Nunc maximus cursus erat placerat posuere. Duis non turpis gravida, venenatis massa vitae, commodo elit. Morbi scelerisque ultricies augue id malesuada. Praesent tincidunt erat eu faucibus fringilla. Nam ornare interdum tortor, non mattis metus.
-
-              Ut a elit blandit nisl tristique pharetra. Pellentesque nunc lectus, dignissim vel dolor commodo, aliquet semper elit. Curabitur ut neque ac massa porta dignissim quis non mi. Curabitur leo lacus, mollis vitae libero eget, lobortis cursus lacus. Aliquam aliquam massa ut lobortis imperdiet. Nunc facilisis dapibus nunc, vitae pharetra diam scelerisque et. Suspendisse et augue ac lacus interdum placerat vel et est. Praesent bibendum consequat leo consequat placerat. Vivamus cursus tempus lorem et bibendum. Nam ultricies augue at ornare pharetra.
-
-              Quisque porta mattis mauris et laoreet. Etiam et mi quis urna lobortis bibendum ut a justo. Vivamus dui nibh, dignissim non consectetur consectetur, tempus sit amet lacus. Aliquam porttitor nunc lacus, nec rutrum arcu scelerisque sed. Nulla sit amet erat congue, laoreet massa in, lobortis mi. Quisque tristique ante a metus dictum, eu vulputate justo commodo. Praesent blandit, elit quis hendrerit feugiat, felis est posuere enim, quis ultricies risus justo ultricies ipsum. Pellentesque mollis mi eros, elementum aliquet metus efficitur vitae. Pellentesque commodo, enim vel scelerisque fringilla, diam arcu condimentum risus, eu placerat nisl dui sit amet nisl. Donec malesuada ex et eros scelerisque tempor. Nam at metus sodales, interdum tellus id, consectetur augue. Sed at pharetra mi, et gravida velit. In egestas, metus eget tristique posuere, mauris dolor feugiat ipsum, vel sagittis nunc sapien sit amet sapien. Proin in venenatis sapien. Phasellus sapien tellus, dapibus vitae felis vel, malesuada ornare dolor. Quisque a quam fermentum, aliquam ipsum eu, pharetra nulla.
-
-              Praesent dictum velit neque, pellentesque placerat nisl euismod vel. Curabitur lectus metus, molestie eu mollis tincidunt, aliquet eu nulla. Proin sit amet nisi at risus porttitor dictum sed id ante. Quisque nunc risus, varius vel lacinia vel, suscipit non nulla. Aliquam ut quam cursus, mollis lorem at, maximus eros. Vivamus turpis nisi, scelerisque volutpat consequat ut, consectetur non enim. Proin ac odio velit. Aliquam ac erat pharetra tellus placerat sollicitudin eget vitae mauris. Nullam rhoncus augue a tortor scelerisque iaculis. Vestibulum ut justo tincidunt, blandit dui ut, tincidunt nulla. Aenean sed risus ex. Quisque sit amet fringilla enim, sed imperdiet elit.
+            <strong style="color: #525e64">INVITES SUBCONTRACTORS</strong>
+            <p style="color: #95a5a6">Inviting Subcontractors to your Network will help you
+              receive more quotes and make Tender Management much easier
             </p>
+            <div style="height: 30px"></div>
+            <div class="profile-userpic">
+              <img src="/img/logos/Screen-Shot.png" class="img-responsive" alt="" style="width: 400px !important; height: 400px !important;">
+            </div>
+            <div style="height: 30px"></div>
+
+            <div style="height: 30px"></div>
           </div>
         </div>
         <div class="tab-pane col-md-12" id="chat">
@@ -171,18 +168,17 @@
             </div>
             <div class="tab-pane col-md-12" id="quote_disabled">
               <div class="text-center">
-                <h1>Quotes</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quis odio in nulla sodales placerat. Aliquam sem libero, tincidunt eu convallis a, dignissim id ante. Praesent in tincidunt purus. Duis consequat arcu sed nulla sagittis consectetur. Curabitur ac finibus arcu. Nam tincidunt id dui in pulvinar. Morbi efficitur sollicitudin massa et fringilla. Mauris laoreet lacus et molestie suscipit. Morbi eu dui luctus, cursus erat vel, consequat sapien. Pellentesque ultrices finibus justo, eu pharetra ante ullamcorper eget. Nulla nulla leo, vestibulum in ligula eget, tristique dapibus mauris. Nulla vel erat et nibh tristique faucibus sed vitae nibh.
-
-                  Vestibulum laoreet interdum consequat. Etiam ullamcorper diam risus, pretium pellentesque turpis blandit vel. Quisque ultrices, ante non dignissim maximus, nulla tellus tincidunt nulla, eget molestie magna dolor non dui. Fusce sed porta sapien, in viverra dui. Pellentesque non elit fringilla tellus maximus euismod. Mauris dignissim nulla nec porttitor commodo. Ut eget ultricies est. Nunc placerat lacus ac leo pulvinar mattis. Nam volutpat dapibus lacus sit amet consequat. Vivamus vestibulum tincidunt ante, in ultrices odio aliquet eu. Etiam malesuada ligula sodales nisi vehicula, ut posuere sem consectetur. Nunc maximus cursus erat placerat posuere. Duis non turpis gravida, venenatis massa vitae, commodo elit. Morbi scelerisque ultricies augue id malesuada. Praesent tincidunt erat eu faucibus fringilla. Nam ornare interdum tortor, non mattis metus.
-
-                  Ut a elit blandit nisl tristique pharetra. Pellentesque nunc lectus, dignissim vel dolor commodo, aliquet semper elit. Curabitur ut neque ac massa porta dignissim quis non mi. Curabitur leo lacus, mollis vitae libero eget, lobortis cursus lacus. Aliquam aliquam massa ut lobortis imperdiet. Nunc facilisis dapibus nunc, vitae pharetra diam scelerisque et. Suspendisse et augue ac lacus interdum placerat vel et est. Praesent bibendum consequat leo consequat placerat. Vivamus cursus tempus lorem et bibendum. Nam ultricies augue at ornare pharetra.
-
-                  Quisque porta mattis mauris et laoreet. Etiam et mi quis urna lobortis bibendum ut a justo. Vivamus dui nibh, dignissim non consectetur consectetur, tempus sit amet lacus. Aliquam porttitor nunc lacus, nec rutrum arcu scelerisque sed. Nulla sit amet erat congue, laoreet massa in, lobortis mi. Quisque tristique ante a metus dictum, eu vulputate justo commodo. Praesent blandit, elit quis hendrerit feugiat, felis est posuere enim, quis ultricies risus justo ultricies ipsum. Pellentesque mollis mi eros, elementum aliquet metus efficitur vitae. Pellentesque commodo, enim vel scelerisque fringilla, diam arcu condimentum risus, eu placerat nisl dui sit amet nisl. Donec malesuada ex et eros scelerisque tempor. Nam at metus sodales, interdum tellus id, consectetur augue. Sed at pharetra mi, et gravida velit. In egestas, metus eget tristique posuere, mauris dolor feugiat ipsum, vel sagittis nunc sapien sit amet sapien. Proin in venenatis sapien. Phasellus sapien tellus, dapibus vitae felis vel, malesuada ornare dolor. Quisque a quam fermentum, aliquam ipsum eu, pharetra nulla.
-
-                  Praesent dictum velit neque, pellentesque placerat nisl euismod vel. Curabitur lectus metus, molestie eu mollis tincidunt, aliquet eu nulla. Proin sit amet nisi at risus porttitor dictum sed id ante. Quisque nunc risus, varius vel lacinia vel, suscipit non nulla. Aliquam ut quam cursus, mollis lorem at, maximus eros. Vivamus turpis nisi, scelerisque volutpat consequat ut, consectetur non enim. Proin ac odio velit. Aliquam ac erat pharetra tellus placerat sollicitudin eget vitae mauris. Nullam rhoncus augue a tortor scelerisque iaculis. Vestibulum ut justo tincidunt, blandit dui ut, tincidunt nulla. Aenean sed risus ex. Quisque sit amet fringilla enim, sed imperdiet elit.
+                <strong style="color: #525e64">INVITES SUBCONTRACTORS</strong>
+                <p style="color: #95a5a6">Inviting Subcontractors to your Network will help you
+                  receive more quotes and make Tender Management much easier
                 </p>
+                <div style="height: 30px"></div>
+                <div class="profile-userpic">
+                  <img src="/img/logos/Screen-Shot.png" class="img-responsive" alt="" style="width: 400px !important; height: 400px !important;">
+                </div>
+                <div style="height: 30px"></div>
+
+                <div style="height: 30px"></div>
               </div>
             </div>
         <% end %>

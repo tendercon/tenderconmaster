@@ -470,7 +470,7 @@ module TendersHelper
   end
 
   def get_request_approved tender_id
-    TenderRequestQuote.where("tender_id = #{tender_id} and approved_date is not null and status = 'approved'").count()
+    TenderRequestQuote.where("tender_id = #{tender_id} and approved_date is not null and status = 'approved' and tender_type != 'invites'").count()
   end
 
   def get_request_declined tender_id

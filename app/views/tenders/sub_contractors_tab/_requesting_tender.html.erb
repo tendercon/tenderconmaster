@@ -69,7 +69,7 @@
           <td class="text-center"><%= get_user_company_name t.sc_id %></td>
           <td class="text-center"><%= get_user_name t.sc_id %></td>
           <td class="text-center"><%= get_trade_name t.trade_id  %></td>
-          <td class="text-center"><p><%= (t.request_date).strftime("%d.%m.%Y %H:%M %p")  %></p></td>
+          <td class="text-center"><%= t.request_date.present? ? t.request_date.strftime("%d.%m.%Y %H:%M %p"): nil  %></td>
           <td>
             <p class="text-center"><%= (t.status).present? ? (get_request_status t.id) : 'Pending'  %></p>
             <% if t.approved_date.present? %>

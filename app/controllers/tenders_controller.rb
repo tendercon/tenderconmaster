@@ -871,6 +871,11 @@ class TendersController < ApplicationController
               tender_request_quote.trade_id = i
               tender_request_quote.request_date = Time.now
               tender_request_quote.hc_id = tender.user_id
+              if params[:invite].present? && params[:invite].to_i > 0
+                tender_request_quote.tender_type = 'invites'
+              else
+                tender_request_quote.tender_type = 'open_tender'
+              end
               tender_request_quote.save
             end
           end
@@ -902,6 +907,9 @@ class TendersController < ApplicationController
               tender_request_quote.request_date = Time.now
               tender_request_quote.approved_date = Time.now
               tender_request_quote.hc_id = tender.user_id
+              if params[:invite].present? && params[:invite].to_i > 0
+                tender_request_quote.tender_type = 'invites'
+              end
               tender_request_quote.status =  'approved'
               tender_request_quote.save
 
@@ -2592,7 +2600,7 @@ class TendersController < ApplicationController
     @tender_trades = TenderTrade.where(:tender_id => @tender.id)
     @tender_request_quotes = TenderRequestQuote.where(:tender_id => @tender.id)
     @approved_quotes = TenderApprovedTrade.where(:tender_id => @tender.id,:sc_id => session[:user_logged_id])
-
+    @applied_trades = []
     @trades = []
 
 
@@ -2704,8 +2712,8 @@ class TendersController < ApplicationController
       @tender_invites = TenderInvite.where(:tender_id => tender_id)
       @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
     elsif tab == 'request'
-      @tender_request_quotes = TenderRequestQuote.where("tender_id = #{tender_id} and (status is not null)")
-      @tender_requesting = TenderRequestQuote.where("tender_id = #{tender_id} and status is null")
+      @tender_request_quotes = TenderRequestQuote.where("tender_id = #{tender_id} and (status is not null) and tender_type !='invites'")
+      @tender_requesting = TenderRequestQuote.where("tender_id = #{tender_id} and status is null and tender_type !='invites'")
       @data = render :partial => 'tenders/sub_contractors_tab/requesting_tender'
     elsif tab == 'tendering'
       @tender_invites = TenderInvite.where("tender_id = #{tender_id} and tender_acceptance_date is not null")

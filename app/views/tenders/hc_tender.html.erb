@@ -37,9 +37,9 @@
                   <!--<li ><a href="#rfi" data-toggle="tab" id="<%#= @tender.id %>">RFIs <%#= Rfi.rfi_count(@tender.id) %></a></li>-->
             <%# end %>
             <% if params[:quote].present? %>
-                <li class="active"><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes <span class="badge badge-default" style="background-color: red"> <%= Quote.quote_count(@tender.id) %> </span></a></li>
+                <li class="active"><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
             <% else %>
-                <li><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes <span class="badge badge-default" style="background-color: red"> <%= Quote.quote_count(@tender.id) %> </span></a></li>
+                <li><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
             <% end %>
 
             <!--<li class="pull-right">

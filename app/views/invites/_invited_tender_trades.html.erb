@@ -135,7 +135,7 @@
     console.log("sc_id:"+sc_id);
     $.ajax({
       method: "POST",
-      data: {tender_id:tender_id,sc_id:sc_id,ids:ids},
+      data: {tender_id:tender_id,sc_id:sc_id,ids:ids,invite:1},
       url: "/tenders/request_to_quote"
     }).done(function (data) {
       $('#tender_Modal_'+tender_id).modal('hide');

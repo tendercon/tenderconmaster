@@ -1614,6 +1614,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def dashboard_user_div
+
+    User.where(:id => session[:user_logged_id]).update_all(:div_status => 1)
+    render :json => { :state => 'valid'}
+
+  end
+
   def validate_linkedin
     linkedin_url = params[:link]
 
