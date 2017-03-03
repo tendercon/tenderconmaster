@@ -520,6 +520,23 @@ module TendersHelper
     end
   end
 
+  def get_tender_request_approved tender_id,sc_id
+    tender_request = TenderRequestQuote.where(:tender_id => tender_id,:sc_id => sc_id)
+    approves = [0]
+    if tender_request.present?
+      tender_request.each do |tr|
+       if tr.status == 'approved'
+         approves << 1
+       end
+      end
+    else
+      nil
+    end
+
+    approves.sum
+
+  end
+
   def get_tender_invite_status tender_id,sc_id
     invites = TenderInvite.where(:tender_id => tender_id,:user_id => sc_id).where("status != 'accepted'")
 
