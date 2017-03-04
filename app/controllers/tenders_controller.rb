@@ -851,6 +851,7 @@ class TendersController < ApplicationController
             tender_request_quote.trade_id = i
             tender_request_quote.request_date = Time.now
             tender_request_quote.hc_id = tender.user_id
+            tender_request_quote.tender_type = 'open_tender'
             tender_request_quote.save
           end
         end
@@ -952,15 +953,17 @@ class TendersController < ApplicationController
             open_tender_trade.trade_id = i
             open_tender_trade.save
           end
+          if i != 'on'
+            t_quote = TenderRequestQuote.where("trade_id = #{i} and sc_id = #{sc_id} and tender_id = #{tender_id} and declined_date is not null")
 
-          t_quote = TenderRequestQuote.where("trade_id = #{i} and sc_id = #{sc_id} and tender_id = #{tender_id} and declined_date is not null")
-
-          if t_quote.present?
-            open_tender = OpenTender.new
-            open_tender.user_id = sc_id
-            open_tender.tender_id = tender_id
-            open_tender.save
+            if t_quote.present?
+              open_tender = OpenTender.new
+              open_tender.user_id = sc_id
+              open_tender.tender_id = tender_id
+              open_tender.save
+            end
           end
+
         end
       end
 
@@ -1869,17 +1872,24 @@ class TendersController < ApplicationController
       end
     end
 
+    hc_invites = HcInvite.where(:hc_id => session[:user_logged_id])
+    hcs = []
+    if hc_invites.present?
+      hc_invites.each do |hc|
+        hcs << hc.id
+      end
+    end
 
     TenderInvite.where(:tender_id => tender_id).destroy_all
-    if params[:hcs].present?
-      params[:hcs].each_with_index do |n,index|
-        if n.present? && new_trades[index].to_i > 0
-          hc_invite = HcInvite.find(n)
+    if new_trades.present?
+      new_trades.each_with_index do |n,index|
+        if n.present? && n.to_i > 0
+          hc_invite = HcInvite.find(hcs[index])
           user = User.where(:email => hc_invite.email).first
           invite = TenderInvite.new
           invite.tender_id = tender_id
           invite.email = hc_invite.email
-          invite.trade_id = new_trades[index]
+          invite.trade_id = n
           if user.present?
             invite.user_id = user.id
           end
@@ -2712,8 +2722,9 @@ class TendersController < ApplicationController
       @tender_invites = TenderInvite.where(:tender_id => tender_id)
       @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
     elsif tab == 'request'
-      @tender_request_quotes = TenderRequestQuote.where("tender_id = #{tender_id} and (status is not null) and tender_type !='invites'")
-      @tender_requesting = TenderRequestQuote.where("tender_id = #{tender_id} and status is null and tender_type !='invites'")
+      @tender_request_quotes = TenderRequestQuote.where("tender_id = #{tender_id}  and tender_type !='invites'")
+      @tender_requesting = TenderRequestQuote.where("tender_id = #{tender_id} and  tender_type !='invites' and approved_date is  null and declined_date is  null")
+      puts "@tender_requesting ========> #{@tender_requesting.inspect}"
       @data = render :partial => 'tenders/sub_contractors_tab/requesting_tender'
     elsif tab == 'tendering'
       @tender_invites = TenderInvite.where("tender_id = #{tender_id} and tender_acceptance_date is not null")
@@ -2855,8 +2866,8 @@ class TendersController < ApplicationController
         end
       end
 
-      @tender_requesting = TenderRequestQuote.where("tender_id = #{tender_id} and (status is null)")
-      @tender_request_quotes = TenderRequestQuote.where("tender_id = #{tender_id} and (status is not null)")
+      @tender_requesting = TenderRequestQuote.where("tender_id = #{tender_id} and (status is null) and tender_type !='invites'")
+      @tender_request_quotes = TenderRequestQuote.where("tender_id = #{tender_id} and (status is not null) and tender_type !='invites'")
       @data = render :partial => 'tenders/sub_contractors_tab/requesting_tender'
     end
   end

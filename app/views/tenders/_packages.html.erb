@@ -16,7 +16,7 @@
     position: relative;
     vertical-align: bottom;
     padding: 0;
-    font-size: 12px;
+    font-size: 10px;
     line-height: 0.8;
   }
 
@@ -25,11 +25,11 @@
     top: 0px;
     left: 40px; /* 80 * tan(45) / 2 = 40 where 80 is the height on the cell and 45 is the transform angle*/
     height: 100%;
-    -ms-transform:skew(-45deg,0deg);
-    -moz-transform:skew(-45deg,0deg);
-    -webkit-transform:skew(-45deg,0deg);
-    -o-transform:skew(-45deg,0deg);
-    transform:skew(-45deg,0deg);
+    -ms-transform:skew(-0deg,0deg);
+    -moz-transform:skew(-0deg,0deg);
+    -webkit-transform:skew(-0deg,0deg);
+    -o-transform:skew(-0deg,0deg);
+    transform:skew(-0deg,0deg);
     overflow: hidden;
     border-left: 1px solid #dddddd;
     border-right: 1px solid #dddddd;
@@ -60,15 +60,15 @@
     background-color: lightgrey;
   }
 </style>
-<% if !params[:control].present? %>
-    <button class="btn btn-warning undo" type="button">
+<%# if !params[:control].present? %>
+    <!--<button class="btn btn-warning undo" type="button">
       Undo
     </button>
 
     <button class="btn btn-success update_package" type="button">
       Update
-    </button>
-<% end %>
+    </button>-->
+<%# end %>
 
 
 
@@ -90,7 +90,7 @@
                   <!-- First column header is not rotated -->
                   <th></th>
                   <!-- Following headers are rotated -->
-                  <th class="rotate-45"><div><span>Filter By</span></div></th>
+                  <th class="rotate-45"><!--<div><span>Filter By</span></div>--></th>
                   <th class="rotate-45"><div><span>FullSet</span></div></th>
                   <% if @package_array.present? %>
                       <% @tender_packages.each do |p| %>
@@ -115,7 +115,7 @@
                       <% end %>
                   <% end %>
                 </tr>
-                <tr style="background-color: lightgrey">
+               <!-- <tr style="background-color: lightgrey">
                   <th></th>
                   <th>
                     <div class="dropdown">
@@ -132,40 +132,40 @@
                     </div>
                   </th>
                   <th><div><span></span></div></th>
-                  <% if @tender_packages.present? %>
-                      <% @tender_packages.each do |p| %>
-                          <% if !@tender_package_header.include? p.category_id %>
-                              <% @tender_package_header << p.category_id %>
+                  <%# if @tender_packages.present? %>
+                      <%# @tender_packages.each do |p| %>
+                          <%# if !@tender_package_header.include? p.category_id %>
+                              <%# @tender_package_header << p.category_id %>
                               <th><div><span></span></div></th>
-                              <% if (get_trade_list_from_package p.category_id,params[:info_id]).present? %>
-                                  <% (get_trade_list_from_package p.category_id,params[:info_id]).each do |t| %>
+                              <%# if (get_trade_list_from_package p.category_id,params[:info_id]).present? %>
+                                  <%# (get_trade_list_from_package p.category_id,params[:info_id]).each do |t| %>
                                       <th><div><span>
                             <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
                             <span class="caret"></span></button>
                             <ul class="dropdown-menu">
-                              <li><a href="#!" id="<%= t.trade_id %>" class="copy">Copy</a></li>
-                              <li><a href="#!" id="<%= t.trade_id %>" class="paste">Paste</a></li>
+                              <li><a href="#!" id="<%#= t.trade_id %>" class="copy">Copy</a></li>
+                              <li><a href="#!" id="<%#= t.trade_id %>" class="paste">Paste</a></li>
                             </ul>
                              </div>
                            </span></div></th>
-                                  <% end %>
-                              <% end %>
-                          <% end %>
-                      <% end %>
-                  <% end %>
-                </tr>
+                                  <%# end %>
+                              <%# end %>
+                          <%# end %>
+                      <%# end %>
+                  <%# end %>
+                </tr>-->
                 <tr class="document_matrix_search">
                   <% if !params[:control].present? %>
                     <th>
-                      <div class="input-group">
+                      <!--<div class="input-group">
                         <input type="Search" placeholder="Search..." class="form-control search" />
                         <div class="input-group-btn">
                           <button class="btn btn-default search_btn" type="button">
                             <i class="fa fa-search" aria-hidden="true"></i>
                           </button>
                         </div>
-                      </div>
+                      </div>-->
                       </th>
                   <% else %>
                       <th></th>

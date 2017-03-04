@@ -383,9 +383,9 @@ module TendersHelper
   end
 
   def get_trade_category_name trade_category_id
-    t = Category.find(trade_category_id)
+    t = TradeCategory.find(trade_category_id)
     if t.present?
-      t.name
+      t.title
     else
       nil
     end
@@ -403,18 +403,26 @@ module TendersHelper
     if user.address.present?
       if user.address.location.present?
         user_address = Geocoder.coordinates(user.address.location)
-        current_location =  Geokit::LatLng.new(user_address[0],user_address[1])
-        tender = Tender.find(tender_id)
 
-        if tender.address.present?
-          tender_location = Geocoder.coordinates(tender.address)
 
-          destination = "#{tender_location[0]},#{tender_location[1]}"
-          distance = current_location.distance_to(destination)/1.61
-          return "#{distance.to_i} KM"
-        else
+        begin
+          current_location =  Geokit::LatLng.new(user_address[0],user_address[1])
+          tender = Tender.find(tender_id)
+
+          if tender.address.present?
+            tender_location = Geocoder.coordinates(tender.address)
+
+            destination = "#{tender_location[0]},#{tender_location[1]}"
+            distance = current_location.distance_to(destination)/1.61
+            return "#{distance.to_i} KM"
+          else
+            nil
+          end
+        rescue
           nil
         end
+
+
       else
         nil
       end

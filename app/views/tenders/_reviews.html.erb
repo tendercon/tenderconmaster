@@ -2,19 +2,20 @@
     <input type="hidden" name="tender_id" value="<%= params[:info_id] %>">
     <div class="row">
       <div class="col-md-12">
-        <div class="portlet light bordered">
+        <!--<div class="portlet light bordered">-->
           <div class="portlet-body form">
             <div class="form-body">
               <div class="row">
                 <div class="col-md-12">
-                  <div class="portlet box green">
+                  <div class="portlet box">
                     <div class="portlet-title">
-                      <div class="caption">
-                        <i class="fa fa-info-circle"></i>Details</div>
+                      <div class="caption" >
+                        Details
+                      </div>
                       <div class="tools">
-                        <a href="/tenders/new_tender?info=true&info_id=<%= @tender.id %>">
+                        <!--<a href="/tenders/new_tender?info=true&info_id=<%#= @tender.id %>">
                           <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </a>
+                        </a>-->
                         <a href="javascript:;" class="collapse"> </a>
                       </div>
                     </div>
@@ -23,7 +24,7 @@
                         <table class="table table-bordered table-hover">
                           <thead>
                           <tr>
-
+                            <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Details</strong></td>
                           </tr>
                           </thead>
                           <tbody>
@@ -95,34 +96,24 @@
               </div>
             </div>
           </div>
-        </div>
+        <!--</div>-->
       </div>
     </div>
 
     <div class="row"> 
       <div class="col-md-12">
-        <div class="portlet light bordered">
+        <!--<div class="portlet light bordered">-->
           <div class="portlet-body form">
 
             <div class="row">
               <div class="col-md-12">
-                <div class="portlet box green">
-                  <div class="portlet-title">
-                    <div class="caption">
-                      <i class="fa fa-comments"></i>Trades</div>
-                    <div class="tools">
-                      <a href="/tenders/new_tender?trades=true&info_id=<%= @tender.id %>">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      </a>
-                      <a href="javascript:;" class="collapse"> </a>
-                    </div>
-                  </div>
+                <div class="portlet box ">
+
                   <div class="portlet-body">
                     <table class="table table-bordered table-hover" id="tender_trade_table">
                       <thead>
                       <tr>
-                        <th></th>
-                        <th>Category</th>
+                        <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Trades</strong></td>
                       </tr>
                       </thead>
                       <tbody>
@@ -142,18 +133,18 @@
             </div>
 
           </div>
-        </div>
+        <!--</div>-->
       </div>
     </div>  
 
     <div class="row"> 
       <div class="col-md-12">
-        <div class="portlet light bordered">
+        <!--<div class="portlet light bordered">-->
           <div class="portlet-body form">
             <div class="row">
               <div class="col-md-12">
-                <div class="portlet box green">
-                  <div class="portlet-title">
+                <div class="portlet box ">
+                  <!--<div class="portlet-title">
                     <div class="caption">
                       <i class="fa fa-file"></i>Documents</div>
                     <div class="tools">
@@ -161,33 +152,49 @@
                       </div>
                       <a href="javascript:;" class="collapse"> </a>
                     </div>
-                  </div>
+                  </div>-->
                   <div class="portlet-body">
-                    <% if @document_packages.present? %>
-                        <select onchange="location = this.options[this.selectedIndex].value;" class="form-control">
-                          <option value="#!">None</option>
-                          <% @document_packages.each do |d| %>
-                              <option value="<%= d.url %>"><%= File.basename(d.url) %></option>
-                          <% end %>
-                        </select>
-                    <% end %>
+                    <table class="table table-bordered table-hover" id="tender_trade_table">
+                      <thead>
+                      <tr>
+                        <td  style="background-color: #2C3E50;color: white;"><strong>Documents</strong></td>
+                      </tr>
+                      </thead>
+                      <tbody>
+
+                              <tr>
+                                <td class="text-center">
+                                  <% if @document_packages.present? %>
+                                      <select onchange="location = this.options[this.selectedIndex].value;" class="form-control">
+                                        <option value="#!">None</option>
+                                        <% @document_packages.each do |d| %>
+                                            <option value="<%= d.url %>"><%= File.basename(d.url) %></option>
+                                        <% end %>
+                                      </select>
+                                  <% end %>
+                                </td>
+                              </tr>
+
+                      </tbody>
+                    </table>
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        <!--</div>-->
       </div>
     </div>  
 
     <div class="row"> 
       <div class="col-md-12">
-        <div class="portlet light bordered">
+        <!--<div class="portlet light bordered">-->
           <div class="portlet-body form">
             <div class="row">
               <div class="col-md-12">
-                <div class="portlet box green">
-                  <div class="portlet-title">
+                <div class="portlet box ">
+                  <!--<div class="portlet-title">
                     <div class="caption">
                       <i class="fa fa-envelope-o"></i>Invites</div>
                     <div class="tools">
@@ -196,10 +203,13 @@
                       </a>
                       <a href="javascript:;" class="collapse"> </a>
                     </div>
-                  </div>
+                  </div>-->
                   <div class="portlet-body">
                     <table class="table table-bordered table-hover">
                       <thead>
+                      <tr>
+                        <th  colspan="2" style="background-color: #2C3E50;color: white;">Invites</th>
+                      </tr>
                       <tr>
                         <th class="text-center">Email</th>
                         <th class="text-center">Trades</th>
@@ -221,7 +231,7 @@
               </div>
             </div>
           </div>
-        </div>
+        <!--</div>-->
       </div>
     </div>  
 

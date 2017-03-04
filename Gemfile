@@ -65,8 +65,8 @@ gem 'prawn-rails'
 gem 'paperclip'#, git: 'git://github.com/thoughtbot/paperclip.git'
 
 #gem 'aws-sdk-v1'
-gem 'aws-sdk'
-gem 's3'
+#gem 'aws-sdk'
+#gem 's3'
 # jquery file upload
 gem 'jquery-fileupload-rails'
 

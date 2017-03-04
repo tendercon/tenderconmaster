@@ -14,4 +14,10 @@ class Trade < ActiveRecord::Base
      trade = find(id)
      trade.name
   end
+
+
+  def self.trade_per_category(category_id)
+    self.where(:trade_category_id => category_id).order('id asc')
+  end
+
 end
