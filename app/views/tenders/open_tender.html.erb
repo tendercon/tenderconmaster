@@ -108,11 +108,19 @@
                   </td>
               <% else %>
                   <td class="text-center">
-                    <a href="#!" class="tender" id="<%= t.id %>">
-                      <button class="btn green">
+
+                    <% if @user.free_plan?  %>
+                      <button class="btn green"  data-toggle="modal" data-target="#basic" type="button">
                         View
                       </button>
-                    </a>
+                    <% else %>
+                        <a href="#!" class="tender" id="<%= t.id %>">
+                          <button class="btn green">
+                            View
+                          </button>
+                        </a>
+                    <% end %>
+
                   </td>
               <% end %>
             </tr>
@@ -122,6 +130,10 @@
       </table>
   </div>
 </div>
+
+
+
+<%= render 'tenders/open_tender/dialog' %>
 
 
 

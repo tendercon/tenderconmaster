@@ -1,7 +1,10 @@
 <div class="top-menu">
+  <% if @user.free_plan?  %>
+    <a href="/users/profile?id=97&subscription=true" class="btn green btn-outline sbold" style="margin-top: 5px">
+      UPGRADE NOW
+    </a>
+  <% end %>
   <ul class="nav navbar-nav pull-right">
-    <!-- BEGIN NOTIFICATION DROPDOWN -->
-    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
     <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
       <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
         <i class="icon-bell"></i>
@@ -106,4 +109,5 @@
     </li>-->
     <!-- END QUICK SIDEBAR TOGGLER -->
   </ul>
+
 </div>
