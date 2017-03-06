@@ -91,6 +91,13 @@ class ApplicationController < ActionController::Base
 
 
         @tender_invites = TenderInvite.where("email = '#{session[:email]}' and (status is null OR status = 'opened')")
+        @tender_invites_cnt = []
+        if @tender_invites.present?
+          @tender_invites.each do |ti|
+            @tender_invites_cnt << ti.tender_id
+          end
+        end
+
         @rfis_array = []
         @sc_invite_notifs =  ScInviteNotification.where(:user_id => session[:user_logged_id],:seen => 0)
         @sc_invite_notif_count =  ScInviteNotification.where(:user_id => session[:user_logged_id],:seen => 0).count()

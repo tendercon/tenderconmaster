@@ -437,71 +437,75 @@ class TendersController < ApplicationController
     Tender.where(:id => tender_id).update_all(:publish => true)
     invites = TenderInvite.where(:tender_id => tender_id)
 
-    if invites.present?
-      invites.each do |a|
-        if a.trade_id.present?
-          t = Trade.find(a.trade_id)
+    begin
+      if invites.present?
+        invites.each do |a|
+          if a.trade_id.present?
+            t = Trade.find(a.trade_id)
 
-          user = User.where(:email => a.email).first
-          sc_invite_notif = ScInviteNotification.new
+            user = User.where(:email => a.email).first
+            sc_invite_notif = ScInviteNotification.new
+
+            if user.present?
+              sc_invite_notif.user_status =  'user'
+              sc_invite_notif.user_id = user.id
+              path = "http://"+request.host_with_port+"/users/login?email=#{user.email}&tender=#{tender_id}&trade=#{t.id}"
+            else
+              sc_invite_notif.user_status =  'not_user'
+              decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{tender_id}&email=#{a.email}&trade=#{t.id}"
+              path = "http://"+request.host_with_port+"/users/register?name=#{a.name}&email=#{a.email}&tender=#{tender_id}&trade=#{t.id}"
+            end
+
+            sc_invite_notif.seen = 0
+            sc_invite_notif.tender_id = tender_id
+            sc_invite_notif.message = "Invitation for tender #{tender.title} (#{t.name})"
+            sc_invite_notif.save
+            #TenderconMailer.delay.sent_sc_invites(a.email,a.name,t.name,path,decline_path)
+            TenderconMailer.sent_sc_invites(a.email,a.name,t.name,path,decline_path).deliver_now
+          end
+        end
+      end
+
+      tender_invites = TenderInvite.where(:tender_id => tender.id)
+      user_array = []
+      if tender_invites.present?
+        tender_invites.each do |u|
+          user = User.where(:email => u.email).first
 
           if user.present?
-            sc_invite_notif.user_status =  'user'
-            sc_invite_notif.user_id = user.id
-            path = "http://"+request.host_with_port+"/users/login?email=#{user.email}&tender=#{tender_id}&trade=#{t.id}"
-          else
-            sc_invite_notif.user_status =  'not_user'
-            decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{tender_id}&email=#{a.email}&trade=#{t.id}"
-            path = "http://"+request.host_with_port+"/users/register?name=#{a.name}&email=#{a.email}&tender=#{tender_id}&trade=#{t.id}"
-          end
-
-          sc_invite_notif.seen = 0
-          sc_invite_notif.tender_id = tender_id
-          sc_invite_notif.message = "Invitation for tender #{tender.title} (#{t.name})"
-          sc_invite_notif.save
-          #TenderconMailer.delay.sent_sc_invites(a.email,a.name,t.name,path,decline_path)
-          TenderconMailer.sent_sc_invites(a.email,a.name,t.name,path,decline_path).deliver_now
-        end
-      end
-    end
-
-    tender_invites = TenderInvite.where(:tender_id => tender.id)
-    user_array = []
-    if tender_invites.present?
-      tender_invites.each do |u|
-        user = User.where(:email => u.email).first
-
-        if user.present?
-          user_array << "#{user.id}"
-        end
-      end
-    end
-
-    sub_contractors = User.where(:role => 'Sub Contractor')
-    puts "sub_contractors -----------------------> publish #{sub_contractors.inspect}"
-    puts "user_array ------------------> #{user_array.inspect}"
-    if sub_contractors.present?
-      sub_contractors.each do |u|
-        open_tender = OpenTender.new
-        open_tender.tender_id = tender_id
-        puts " !user_array.include? '#{u.id}' #{!user_array.include? "#{u.id}"}"
-        if !user_array.include? "#{u.id}"
-          puts "------------------> u.id #{u.id}"
-          open_tender.user_id = u.id
-        end
-        open_tender.tender_id = tender_id
-        if open_tender.user_id != nil
-          tender_invites_checked =  TenderInvite.where(:tender_id => tender.id, :user_id =>  u.id).first
-          if !tender_invites_checked.present?
-            open_tender.save
+            user_array << "#{user.id}"
           end
         end
-
-
       end
-    end
 
-    Tender.delay.compressed_document(tender_id)
+      sub_contractors = User.where(:role => 'Sub Contractor')
+      puts "sub_contractors -----------------------> publish #{sub_contractors.inspect}"
+      puts "user_array ------------------> #{user_array.inspect}"
+      if sub_contractors.present?
+        sub_contractors.each do |u|
+          open_tender = OpenTender.new
+          open_tender.tender_id = tender_id
+          puts " !user_array.include? '#{u.id}' #{!user_array.include? "#{u.id}"}"
+          if !user_array.include? "#{u.id}"
+            puts "------------------> u.id #{u.id}"
+            open_tender.user_id = u.id
+          end
+          open_tender.tender_id = tender_id
+          if open_tender.user_id != nil
+            tender_invites_checked =  TenderInvite.where(:tender_id => tender.id, :user_id =>  u.id).first
+            if !tender_invites_checked.present?
+              open_tender.save
+            end
+          end
+
+
+        end
+      end
+
+      Tender.delay.compressed_document(tender_id)
+    rescue
+
+    end
 
     redirect_to "/tenders/completed?id=#{tender_id}"
   end
@@ -1861,7 +1865,7 @@ class TendersController < ApplicationController
     tender_id  = params[:tender_id]
 
     trades = params[:trades]
-
+    hs = params[:hcs]
     new_trades = []
 
     if trades.present?
@@ -1884,8 +1888,8 @@ class TendersController < ApplicationController
     if new_trades.present?
       new_trades.each_with_index do |n,index|
         if n.present? && n.to_i > 0
-          hc_invite = HcInvite.find(hcs[index])
-          user = User.where(:email => hc_invite.email).first
+          hc_invite = HcInvite.find(hs[index])
+          user = User.where(:id => hs[index]).first
           invite = TenderInvite.new
           invite.tender_id = tender_id
           invite.email = hc_invite.email
@@ -2922,7 +2926,7 @@ class TendersController < ApplicationController
               @trades_array << t.trade_id
             end
           end
-
+          puts "@trades_array =========> #{@trades_array.inspect}"
           t = Trade.find(trades[index])
           if user.present?
             decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{@tender.id}&email=#{e}&trade=#{t.id}"

@@ -101,7 +101,7 @@
             <% if params[:action] == 'invited_tender' %>
                 <span class="selected"></span>
             <% end %>
-            <span class="badge badge-danger"><%= @tender_invites.present? ? @tender_invites.size : 0 %></span>
+            <span class="badge badge-danger"><%= @tender_invites_cnt.present? ? @tender_invites_cnt.uniq.size : nil %></span>
           </a>
           </li>
 

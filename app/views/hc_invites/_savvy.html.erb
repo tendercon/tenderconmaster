@@ -80,14 +80,14 @@
       <th class="text-center">Action</th>
     <% end %>
     <% if @tender.present? %>
-       <!-- <th class="text-center"><input type="checkbox" class="hc_invites_list_master" checked> Invite</th>-->
+        <th class="text-center" style="display: none"><input type="checkbox" class="hc_invites_list_master" checked> Invite</th>
         <th class="text-center">To tender for</th>
     <% end %>
   </tr>
   </thead>
   <tbody class="searchable">
   <% if @hc_invites.present? %>
-    <% @hc_invites.each do |savvy| %>
+    <% @hc_invites.each_with_index do |savvy,index| %>
       <% if savvy.email.present? %>
         <tr>
           <td class="text-center"><%= savvy.name %></td>
@@ -115,9 +115,9 @@
             </td>
           <% end %>
           <% if @tender.present? %>
-              <!--<td class="text-center">
-                <input type="checkbox" class="hc_invites_list" name="hcs[]" value="<%#= savvy.id %>" checked>
-              </td>-->
+              <td class="text-center" style="display: none">
+                <input type="checkbox" class="hc_invite_<%= index %>" name="hcs[]" value="<%= savvy.id %>">
+              </td>
               <td>
                 <label class="field select">
                   <select class="hc_trades" name="trades[]">
@@ -126,12 +126,12 @@
                         <% @trades.each do |t| %>
                             <% if @trade_id.present? %>
                                 <% if @trade_id.to_i == t.id.to_i %>
-                                    <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+                                    <option value="<%= t.id %>" class="<%= index %>" selected ><%= get_trade_name t %></option>
                                 <% else %>
-                                    <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                                    <option value="<%= t.id %>" class="<%= index %>"><%= get_trade_name t %></option>
                                 <% end %>
                             <% else %>
-                                <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                                <option value="<%= t.id %>" class="<%= index %>"><%= get_trade_name t %></option>
                             <% end %>
 
                         <% end %>
@@ -219,6 +219,13 @@
       if($('.hc_invites_list').prop('checked') == false){
          $(this).val(0);
       }
+    });
+
+    $('.hc_trades').change(function(){
+      var i = $(this).find('option:selected').attr("class");
+
+      $('.hc_invite_'+i).prop('checked',true);
+
     });
 
   })
