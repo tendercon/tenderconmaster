@@ -45,55 +45,62 @@
                         <% if session[:role] == 'Sub Contractor' %>
 
                             <% if (get_tender_request @tender.id,session[:user_logged_id]).present? %>
-                                <% (get_tender_request @tender.id,session[:user_logged_id]).uniq.each do |a| %>
-                                    <% if !@applied_trades.include? a.trade_id %>
-                                      <tr>
-                                        <td>
-                                          <label><%= get_trade_name a.trade_id %></label>
-                                        </td>
-                                        <% if a.status == 'approved' %>
-                                            <td><button class="btn btn-success">Tendering</button></td>
-                                        <% elsif a.status == 'declined' %>
-                                            <td><button class="btn btn-danger">Declined</button></td>
-                                        <% else %>
-                                            <td><button class="btn btn-warning">Pending</button></td>
-                                        <% end %>
-                                      </tr>
+                              <% (get_tender_request @tender.id,session[:user_logged_id]).uniq.each do |a| %>
+                                <% if !@applied_trades.include? a.trade_id %>
+                                  <tr>
+                                    <td>
+                                      <label><%= get_trade_name a.trade_id %></label>
+                                    </td>
+                                    <% if a.status == 'approved' %>
+                                        <td><button class="btn btn-success">Tendering</button></td>
+                                    <% elsif a.status == 'declined' %>
+                                        <td><button class="btn btn-danger">Declined</button></td>
+                                    <% else %>
+                                        <td><button class="btn btn-warning">Pending</button></td>
                                     <% end %>
-                                    <% @applied_trades << a.trade_id %>
+                                  </tr>
                                 <% end %>
+                                <% @applied_trades << a.trade_id %>
+                              <% end %>
                             <% end %>
 
                             <% if (get_sc_trade_approved @tender.id,session[:user_logged_id]).present? %>
-                                <% (get_sc_trade_approved @tender.id,session[:user_logged_id]).uniq.each do |a| %>
-                                    <tr>
-                                      <td>
-                                        <label><%= get_trade_name a.trade_id %></label>
-                                      </td>
-                                      <% if a.status == 'approved' %>
-                                          <td><button class="btn btn-success">Tendering</button></td>
-                                      <% elsif a.status == 'declined' %>
-                                          <td><button class="btn btn-danger">Declined</button></td>
-                                      <% else %>
-                                          <td><button class="btn btn-warning">Pending</button></td>
-                                      <% end %>
-                                    </tr>
+                              <% (get_sc_trade_approved @tender.id,session[:user_logged_id]).uniq.each do |a| %>
+                                <% if !@applied_trades.include? a.trade_id %>
+                                  <tr>
+                                    <td>
+                                      <label><%= get_trade_name a.trade_id %></label>
+                                    </td>
+                                    <% if a.status == 'approved' %>
+                                        <td><button class="btn btn-success">Tendering</button></td>
+                                    <% elsif a.status == 'declined' %>
+                                        <td><button class="btn btn-danger">Declined</button></td>
+                                    <% else %>
+                                        <td><button class="btn btn-warning">Pending</button></td>
+                                    <% end %>
+                                  </tr>
                                 <% end %>
+                                <% @applied_trades << a.trade_id %>
+                              <% end %>
                             <% end %>
 
                             <% if (get_sc_trade_declined @tender_id,session[:user_logged_id]).present? %>
                                 <% (get_sc_trade_declined @tender_id,session[:user_logged_id]).each do |a| %>
+                                  <% if !@applied_trades.include? a.trade_id %>
                                     <tr>
                                       <td>
                                         <label><%= get_trade_name ((a).trade_id) %></label>
                                       </td>
                                       <td><button class="btn btn-danger">Decline</button></td>
                                     </tr>
+                                  <% end %>
+                                  <% @applied_trades << a.trade_id %>
                                 <% end %>
                             <% end %>
 
                             <% if (get_tender_invite_status @tender.id,session[:user_logged_id]).present? %>
                                 <% (get_tender_invite_status @tender.id,session[:user_logged_id]).each do |a| %>
+                                  <% if !@applied_trades.include? a.trade_id %>
                                     <tr>
                                       <td>
                                         <label><%= get_trade_name a.trade_id %></label>
@@ -104,6 +111,8 @@
                                           <td><button class="btn btn-warning">Invite Pending</button></td>
                                       <% end %>
                                     </tr>
+                                  <% end %>
+                                  <% @applied_trades << a.trade_id %>
                                 <% end %>
                             <% end %>
                         <% end %>

@@ -88,11 +88,11 @@
           </div>
           <div class="details">
             <div class="number">
-              <span data-counter="counterup" data-value="1349">0</span>
+              <span data-counter="counterup" data-value="<%= @tenders.present? ? @tenders.size : 0  %>"><%= @tenders.present? ? @tenders.size : 0  %></span>
             </div>
-            <div class="desc"> New Feedbacks </div>
+            <div class="desc"> Total Posted Tenders </div>
           </div>
-          <a class="more" href="javascript:;"> View more
+          <a class="more" href="/tenders/new_tender?info=true"> POST MORE TENDER
             <i class="m-icon-swapright m-icon-white"></i>
           </a>
         </div>
@@ -104,10 +104,10 @@
           </div>
           <div class="details">
             <div class="number">
-              <span data-counter="counterup" data-value="12,5">0</span>M$ </div>
-            <div class="desc"> Total Profit </div>
+              <span data-counter="counterup" data-value="<%= @tenders.present? ? @tenders.size : 0  %>"><%= @tenders.present? ? @tenders.size : 0  %></span></div>
+            <div class="desc"> Total Live Tenders </div>
           </div>
-          <a class="more" href="javascript:;"> View more
+          <a class="more" href="/tenders/my_tender"> VIEW MY TENDER
             <i class="m-icon-swapright m-icon-white"></i>
           </a>
         </div>
@@ -119,11 +119,11 @@
           </div>
           <div class="details">
             <div class="number">
-              <span data-counter="counterup" data-value="549">0</span>
+              <span data-counter="counterup" data-value="<%= @hc_invites.present? ? @hc_invites.size : 0  %>"><%= @hc_invites.present? ? @hc_invites.size : 0  %></span>
             </div>
-            <div class="desc"> New Orders </div>
+            <div class="desc">  My Network </div>
           </div>
-          <a class="more" href="javascript:;"> View more
+          <a class="more" href="<%= hc_invites_path %>"> VIEW MY NETWORK
             <i class="m-icon-swapright m-icon-white"></i>
           </a>
         </div>

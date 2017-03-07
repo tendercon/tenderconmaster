@@ -237,7 +237,7 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close close_invite_more_modal" data-dismiss="modal">&times;</button>
           <div class="text-center">
             <p class="text-center" style="font-size: 20px">
               Invite Subcontractor
@@ -260,6 +260,16 @@
             <!--<button class="btn btn-success add_more" type="button">
               <i class="fa fa-plus-circle" aria-hidden="true"></i>Invite More
             </button>-->
+            <div class="error text-center" style="display: none">
+              <div class="alert alert-danger open-sans-regular" id="users_error">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+                <div class="notice" style="font-size: 14px;">
+                  <label>Company, Full Name, Email and Trades are required.</label>
+                </div>
+
+              </div>
+            </div>
             <div style="height: 30px"></div>
             <div class="new_invite">
               <div class="form-group">
@@ -315,7 +325,7 @@
         </div>
         <div class="modal-footer">
           <div class="text-center">
-            <button type="button" class="btn btn-info send_invite" data-dismiss="modal">Invite</button>
+            <button type="button" class="btn btn-info send_invite">Invite</button>
           </div>
         </div>
       </div>
@@ -449,35 +459,42 @@
         }
 
       });
-      $.ajax({
-        method: "POST",
-        data: {tender_id:tender_id,emails:emails,names:names,trades:trades,companies:companies,save_to_sub:save_to_sub},
-        url: "/tenders/invite_more_sub"
-      }).done(function (data) {
-        //$('.contractors').html(data);
-        $('.f_name').each(function(){
-          $(this).val('');
-        });
-        console.log('names:'+names);
-        $('.email').each(function(){
-         $(this).val('');
+      if(emails.length > 0 && names.length > 0 && companies.length > 0 && trades.length > 0){
+        $.ajax({
+          method: "POST",
+          data: {tender_id:tender_id,emails:emails,names:names,trades:trades,companies:companies,save_to_sub:save_to_sub},
+          url: "/tenders/invite_more_sub"
+        }).done(function (data) {
+          $('.close_invite_more_modal').click();
+          $('#invite_more_modal').modal('hide');
+          //$('.contractors').html(data);
+          $('.f_name').each(function(){
+            $(this).val('');
+          });
+          console.log('names:'+names);
+          $('.email').each(function(){
+            $(this).val('');
+
+          });
+          $('.trades').each(function(){
+            if(parseInt($(this).val()) > 0){
+              $(this).val('')
+            }
+          });
+
+          $('.company').each(function(){
+            if(parseInt($(this).val()) > 0){
+              $(this).val('')
+            }
+          });
+
+          $('.invited_div').html(data);
+          $('.company').val('');
 
         });
-        $('.trades').each(function(){
-          if(parseInt($(this).val()) > 0){
-            $(this).val('')
-          }
-        });
-
-        $('.company').each(function(){
-          if(parseInt($(this).val()) > 0){
-            $(this).val('')
-          }
-        });
-
-        $('.invited_div').html(data);
-        $('.company').val('');
-      });
+      }else{
+        $('.error').show();
+      }
 
 
     });

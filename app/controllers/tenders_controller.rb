@@ -2889,9 +2889,9 @@ class TendersController < ApplicationController
       emails.each_with_index do |e,index|
         user = User.where(:email => e).first
 
-        tender_invite = TenderInvite.where(:email => e,:trade_id => trades[index]).first
+        #tender_invite = TenderInvite.where(:email => e,:trade_id => trades[index]).first
 
-        if !tender_invite.present?
+        #if !tender_invite.present?
           invite = TenderInvite.new
           invite.tender_id = @tender.id
           invite.email = e
@@ -2917,16 +2917,7 @@ class TendersController < ApplicationController
             end
           end
 
-          @trades_array = []
 
-          @tender_trades = TenderTrade.where(:tender_id => @tender.id)
-
-          if @tender_trades.present?
-            @tender_trades.each do |t|
-              @trades_array << t.trade_id
-            end
-          end
-          puts "@trades_array =========> #{@trades_array.inspect}"
           t = Trade.find(trades[index])
           if user.present?
             decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{@tender.id}&email=#{e}&trade=#{t.id}"
@@ -2936,9 +2927,19 @@ class TendersController < ApplicationController
             path = "http://"+request.host_with_port+"/users/register?name=#{names[index]}&email=#{e}&tender=#{@tender.id}&trade=#{t.id}"
           end
           TenderconMailer.sent_sc_invites(e,names[index],t.name,path,decline_path).deliver_now
-        end
+        #end
 
       end
+      @trades_array = []
+
+      @tender_trades = TenderTrade.where(:tender_id => @tender.id)
+
+      if @tender_trades.present?
+        @tender_trades.each do |t|
+          @trades_array << t.trade_id
+        end
+      end
+      puts "@trades_array =========> #{@trades_array.inspect}"
       @tender_invite_counts = TenderInvite.tender_invites(@tender.id)
       @tender_opened_counts = TenderInvite.tender_opened(@tender.id)
       @tender_accpeted_counts = TenderInvite.tender_accepted(@tender.id)
