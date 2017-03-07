@@ -45,12 +45,35 @@
                         </td>
                         <td class="text-center">$<%= @user_plan.amount > 0 ? @user_plan.amount : @user_plan.amount.round.to_i %></td>
                         <td class="text-center"><%= (@user_plan.created_at + 30.days).strftime("%m/%d/%Y") %></td>
-                        <% if !@request_upgrade.present? || @user_plan.amount.to_i > 0 %>
+                        <% if (!@request_upgrade.present? || @user_plan.amount.to_i > 0) && @user.user_subscription.present? %>
                             <td class="text-center">
                               <a href="#!">
                                 <button class="btn btn-success upgrade">Upgrade To Professional</button>
                               </a>
                             </td>
+                        <% else %>
+                          <td class="text-center">
+                            <%= form_tag subscriber_path(1),method: :put do %>
+                                <input type="hidden" name="no_credit_card" value="true">
+                                <input type="hidden" name="action_type" value="profile_subscription">
+                                <article>
+                                  <% if flash[:error].present? %>
+                                      <div id="error_explanation">
+                                        <p><%= flash[:error] %></p>
+                                      </div>
+                                  <% end %>
+                                </article>
+                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                        data-description="A month's subscription"
+                                        data-amount=""
+                                        data-panelLabel="Submit"
+                                        data-locale="auto"
+                                        data-label="Upgrade To Professional"
+                                >
+                                </script>
+                            <% end %>
+                          </td>
                         <% end %>
                       </tr>
                   <% else %>
@@ -510,6 +533,15 @@
 </div>
 
 <script>
+
+  <% if @user.user_subscription.present? %>
+
+    <% if @user.user_subscription.action_type.present? %>
+      $('#new_paid_Modal').modal('show');
+      <% UserSubscription.update_action_type(@user.id) %>
+    <% end %>
+  <% end %>
+
   $('.upgrade_to_annual').click(function(){
     $('#paid_Modal').modal('show');
   });

@@ -555,6 +555,18 @@ module TendersHelper
     end
   end
 
+  def get_tender_invite_open_date tender_id,sc_id
+    invite = TenderInvite.where(:tender_id => tender_id,:user_id => sc_id).first
+
+    if invite.present?
+      if invite.tender_open_date.present?
+        invite.tender_open_date.strftime("%d.%m.%Y %H:%M %p")
+      else
+        nil
+      end
+    end
+  end
+
   def replace_char_to_string str
     replacement_rules = {
         '/' => '_',

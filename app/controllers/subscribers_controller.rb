@@ -47,6 +47,8 @@ class SubscribersController < ApplicationController
 
       @subscriber = UserSubscription.new
       @subscriber.user_id = @user.id
+      @subscriber.action_type = params[:action_type].present? ? params[:action_type]: nil
+      @subscriber.card_number = nil
       @subscriber.subscribed = true
       @subscriber.stripe_id = customer.id
       @subscriber.expiry_date = Date.new(@year.to_i,@month.to_i)
@@ -60,6 +62,7 @@ class SubscribersController < ApplicationController
     session[:n_plan] = params[:n_plan]
 
     if params[:new_credit_card].present?
+
       redirect_to invites_path(:fname => params[:f_name],:lname => params[:lname],:email => params[:n_email],:plan => params[:n_plan],:member => 1)
 
     elsif params[:request_user].present?
@@ -67,7 +70,8 @@ class SubscribersController < ApplicationController
 
     elsif params[:admin_upgrade].present?
       redirect_to invites_path(:upgrade => true, :id =>params[:admin_upgrade])
-
+    elsif params[:no_credit_card].present?
+      redirect_to '/users/profile?id=97&subscription=true&added_card=true'
     else
       redirect_to billing_users_path
     end

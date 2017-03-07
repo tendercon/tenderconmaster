@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   has_many :package_downloads
   has_many :hc_invites
   has_many :rfis
+  has_one  :user_subscription
   accepts_nested_attributes_for :companies
   belongs_to :user_tender
 
@@ -239,12 +240,16 @@ class User < ActiveRecord::Base
   end
 
   def free_plan?
-    puts "self.user_plan.plan ========> #{self.user_plan.plan}"
-    if self.user_plan.plan == 'STARTER PLAN $0' || self.user_plan.plan == 0
-      true
+    if self.user_plan.present?
+      if self.user_plan.plan == 'STARTER PLAN $0' || self.user_plan.plan == 0
+        true
+      else
+        false
+      end
     else
       false
     end
+
 
   end
 

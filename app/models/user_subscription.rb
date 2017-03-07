@@ -1,5 +1,8 @@
 class UserSubscription < ActiveRecord::Base
 
+  belongs_to :user
+
+
   def self.notify user_id,url_path
     @user = User.find(user_id)
     subscriber = self.where(:user_id => user_id).first
@@ -30,8 +33,10 @@ class UserSubscription < ActiveRecord::Base
       end
 
     end
+  end
 
-
+  def self.update_action_type user_id
+    UserSubscription.where(:user_id => user_id).update_all(:action_type => nil)
   end
 
 end

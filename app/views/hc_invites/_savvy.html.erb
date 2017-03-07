@@ -118,11 +118,11 @@
               <td class="text-center" style="display: none">
                 <input type="checkbox" class="hc_invite_<%= index %>" name="hcs[]" value="<%= savvy.id %>">
               </td>
-              <td>
+              <td class="text-center">
                 <label class="field select">
                   <select class="hc_trades" name="trades[]">
                     <% if @trades.present? %>
-                        <option value="0">Default</option>
+                        <option value="0">Select Trade</option>
                         <% @trades.each do |t| %>
                             <% if @trade_id.present? %>
                                 <% if @trade_id.to_i == t.id.to_i %>

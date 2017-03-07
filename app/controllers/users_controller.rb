@@ -1822,13 +1822,16 @@ class UsersController < ApplicationController
   end
 
   def get_subscription
+
     @user = User.find(session[:user_logged_id])
     @user_plan = UserPlan.where(:user_id => @user.id).first
-    puts "@user_plan =======> #{@user_plan.inspect}"
+    puts "@user_plan =======> #{params[:id].inspect}"
     @request_upgrade = RequestUpgrade.where(:user_id => @user.id,:status => 'pending').first
     @upgraded = RequestUpgrade.where(:user_id => @user.id,:status => 'upgraded').first
 
     @rejected = RequestUpgrade.where(:user_id => @user.id,:status => 'rejected').first
+
+    puts "@user =======> #{@user.user_subscription.present?}"
 
     if @rejected.present?
       RequestUpgrade.find(@rejected.id).destroy!

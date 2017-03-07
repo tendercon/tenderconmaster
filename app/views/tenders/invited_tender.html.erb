@@ -34,17 +34,20 @@
     <table class="table table-bordered responsive" id="invited_table"  cellspacing="0" width="100%">
       <thead>
         <tr style="background-color: #2C3E50;color: white;">
+          <th>Received Date</th>
           <th>Tender ID</th>
           <th>Project Name</th>
           <th>Location</th>
           <th>Head Contractor</th>
           <th>Quotes Due</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody class="searchable">
         <% if @tenders.present? %>
           <% @tenders.each do |t| %>
             <tr>
+              <td class="text-center"><%= get_tender_invite_open_date t.id,session[:user_logged_id] %></td>
               <% if session[:role] == 'Head Contractor' %>
                   <td class="text-center">
                     <a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
@@ -53,15 +56,22 @@
                   </td>
               <% else %>
                   <td class="text-center">
-                    <a href="#!" class="tender" id="<%= t.id %>">
+                    <!--<a href="#!" class="tender" id="<%#= t.id %>">-->
                       <%= t.tendercon_id %>
-                    </a>
+                    <!--</a>-->
                   </td>
               <% end %>
               <td class="text-center"><%= t.title %></td>
               <td class="text-center"><%= t.address %></td>
-              <td class="text-center"><%= get_user_company_name t.user_id %></td>
+              <td class="text-center"><%= get_user_trade_name t.user_id %></td>
               <td class="text-center"><%= (get_tender_due t.id) %></td>
+              <td class="text-center">
+                <a href="#!" class="tender" id="<%= t.id %>">
+                  <button class="btn green">
+                    View
+                  </button>
+                </a>
+              </td>
             </tr>
           <% end %>
         <% end %>
@@ -96,7 +106,6 @@
               <button type="button" class="close" data-dismiss="modal">&times;</button>
               <div class="text-center">
                 <p class="text-center" style="font-size: 20px"><%= u.title %></p>
-
               </div>
               <div class="row">
                 <div class="form-group"></div>

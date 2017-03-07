@@ -584,6 +584,11 @@
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8&libraries=places&sensor=false"></script> 
 <script>
   $(document).ready(function(){
+
+    <% if @user.free_plan?  %>
+       $('#basic').modal('show');
+    <% end %>
+
     var tender_id;
     var map;
     var tab_id;

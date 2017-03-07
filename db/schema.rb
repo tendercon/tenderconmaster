@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303064553) do
+ActiveRecord::Schema.define(version: 20170307043755) do
 
   create_table "addendas", force: :cascade do |t|
     t.integer  "tender_id",    limit: 4
@@ -685,6 +685,8 @@ ActiveRecord::Schema.define(version: 20170303064553) do
     t.boolean  "lightbox3",               default: false
     t.boolean  "lightbox4",               default: false
     t.boolean  "lightbox5",               default: false
+    t.string   "action_type", limit: 255
+    t.string   "card_number", limit: 255
   end
 
   create_table "user_tenders", force: :cascade do |t|

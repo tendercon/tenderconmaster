@@ -35,11 +35,19 @@
           <tr>
             <td class="col-md-3">
               <div style="height: 30px"></div>
-              FREE - Standard Subscription
+              <% if @user.user_plan.plan.to_i == 0 || @user.user_plan.plan == "STARTER PLAN $0" %>
+                FREE - Standard Subscription
+              <% elsif @user.user_plan.plan.to_i == 1 %>
+                Professional Plan - monthly
+              <% elsif @user.user_plan.plan.to_i == 2 %>
+                  Professional - 12 months
+              <% end %>
               <div style="height: 30px"></div>
-              <a href="/users/profile?id=<%= @user.id  %>&subscription=true">
-                <button type="button" class="btn green uppercase update_plan">UPGRADE PLAN</button>
-              </a>
+              <% if @user.user_plan.plan.to_i != 2 %>
+                <a href="/users/profile?id=<%= @user.id  %>&subscription=true">
+                  <button type="button" class="btn green uppercase update_plan">UPGRADE PLAN</button>
+                </a>
+              <% end %>
               <div style="height: 30px"></div>
             </td>
           </tr>
@@ -83,12 +91,15 @@
                     </label>
                   </article>
 
-                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button btn-success"
                           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                           data-description="A month's subscription"
                           data-amount=""
                           data-panelLabel="Submit"
-                          data-locale="auto"></script>
+                          data-locale="auto"
+                          data-label="ADD CARD" >
+
+                  </script>
               <% end %>
               <div style="height: 30px"></div>
             </td>
