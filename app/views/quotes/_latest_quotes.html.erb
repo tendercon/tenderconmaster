@@ -6,7 +6,7 @@
 
           <div class="admin-form">
             <div class="row">
-              <a href="#!" class="btn new_quote">
+              <a href="#!" class="btn " data-toggle="modal" data-target="#new_quote">
                 <button class="button btn-info" > Send New Quote
 
                 </button>
@@ -30,7 +30,7 @@
     </div>
   </div>
 
-
+  <%= render 'quotes/dialog' %>
 
   <div style="display: none;"> 
     <input id="file_input" type="file" style="background-color: transparent;" name="documents"> 
@@ -42,156 +42,7 @@
     <a href="" class="download_link" target="_blank"></a>
   </div>
 
-  <div id="new_quote" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px;overflow-y:scroll;" >
-    <div class="row">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content col-md-12">
-          <div class="modal-header">
-            <button type="button" class="close new_rfi_close" data-dismiss="modal">&times;</button>
-            <div class="text-center">
-              <p class="text-center" style="font-size: 20px">
-                Send Quote
-              </p>
-            </div>
-            <div class="text-center" id="error"></div>
-            <div class="row">
-              <div class="form-group"></div>
-            </div>
-          </div>
-          <br>
-          <div class="modal-body">
-            <div class="row">
-              <div class="col-md-12">
-                <div id="content">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label>Ref#</label>
-                      <input type="text" class="form-control ref_no" value="<%= @ref_no %>" id="ref_no" name="ref_no" disabled>
-                    </div>
-                    <div class="form-group">
-                      <label>To</label>
-                      <input type="text" class="form-control to" value="<%= @user.company %>" id="to"  disabled>
-                    </div>
-                    <div class="form-group">
-                      <label>Attention</label>
-                      <input type="text" class="form-control attention" value="<%= "#{@user.first_name} #{@user.last_name} " %>" id="attention" >
-                    </div>
-                    <div class="form-group">
-                      <label>Date</label>
-                      <input type="text" class="form-control quote_date" value="<%= Time.now.strftime("%Y-%m-%d")  %>" id="quote_date" >
-                    </div>
-                    <div class="form-group">
-                      <label>Title</label>
-                      <input type="text" class="form-control title"  id="title">
-                    </div>
-                  </div>
 
-
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <% if @sc_user.company_avatar.present? %>
-                        <% if File.exist?(@sc_user.company_avatar.image.path(:original)) %>
-                          <img src="<%= @sc_user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" class="img-responsive" width="200px" height="100px">
-                        <% else %>
-                          <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""  width="200px" height="100px">
-                        <% end %>
-                      <% else %>
-                        <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""  width="200px" height="100px">
-                      <% end %>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Company</label>
-                      <input type="text" class="form-control company" value="<%= @sc_user.company %>" id="company">
-                    </div>
-
-                    <div class="form-group">
-                      <label>From</label>
-                      <input type="text" class="form-control from" value="<%= "#{@sc_user.first_name} #{@sc_user.last_name}" %>" id="form">
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Trades</label>
-                </div>
-                <div class="form-group">
-                  <% if @trades.present? %>
-                      <% @trades.each do |t| %>
-                          <label class="checkbox-inline"><input type="checkbox" class="trade_array" value="<%= t.id %>" id="<%= t.name %>"><%= t.name %></label>
-                      <% end %>
-                  <% end %>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Description</label>
-                  <textarea class="form-control quote_desc" rows="5" id="quote_desc"></textarea>
-                </div>
-              </div>
-
-              <div class="col-md-12">
-                <div class="form-group">
-                  <label>Price</label>
-                  <input type="text" class="form-control price"  id="price">
-                </div>
-              </div>
-
-              <div class="col-md-12">
-                <div class="quote_files">
-                  <div class="form-group">
-                    <label>Attach Quote</label>
-                    <%= form_for @quote_document, :url => create_document_quote_documents_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
-                        <input type="hidden" value="<%= @tender.id%>" name="tender_id" class="tender_id">
-                        <input type="file" id="file_comment" class="btn btn-success" name="document"  /> 
-                        <div style="display: none">
-                          <button type="submit" class="doc_submit_document"></button>
-                        </div>
-                    <% end %>
-                  </div>
-
-                  <div class="quote_documents"></div>
-
-                  <div class="form-group">
-                    <label>Attach Supporting files(Optional)</label>
-                    <%= form_for @quote_document_optional, :url => create_document_quote_document_optionals_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
-                        <input type="hidden" value="<%= @tender.id%>" name="tender_id" class="tender_id">
-                        <input type="file" id="file_comment" class="btn btn-success" name="document" /> 
-                        <div style="display: none">
-                          <button type="submit" class="submit_document"></button>
-                        </div>
-                    <% end %>
-                  </div>
-
-                  <div class="quote_document_optional"></div>
-                </div>
-
-                <div class="rfi_document_lists">
-
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-
-              <div class="text-center">
-                <a href="#!">
-                  <button class=" btn btn-info button_preview" type="button" >Preview</button>
-                </a>
-                <a href="#!" onclick="sent_rfi_btn();">
-                  <button class=" btn btn-success button_done" type="button">Send</button>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
   <div id="preview_quote" class="modal fade col-md-28" role="dialog" data-backdrop="static" data-keyboard="false" style="margin-top: 100px; overflow-y:scroll;" >
@@ -509,8 +360,8 @@
     var title = $('#title').val();
     var quote_desc = $('.quote_desc').val();
     var price = $('.price').val();
-    var company = $('.company_preview').text();
-    var from = $('.from_preview').text();
+    var company = $('.company').val();
+    var from = $('.from').val();
 
     var trades = [];
 

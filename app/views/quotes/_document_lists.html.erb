@@ -1,7 +1,7 @@
 <label>Attach Quote</label>
 <%= form_for @quote_document, :url => create_document_quote_documents_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
     <input type="hidden" value="<%= @tender_id%>" name="tender_id" class="tender_id">
-    <input type="file" id="file_comment" class="btn btn-success" name="document" webkitdirectory directory multiple /> 
+    <input type="file" id="file_comment" class="btn btn-success form-control" name="document" webkitdirectory directory multiple /> 
     <div style="display: none">
       <button type="submit" class="submit_document"></button>
     </div>
@@ -42,7 +42,7 @@
 <label>Attach Supporting files(Optional)</label>
 <%= form_for @quote_document_optional, :url => create_document_quote_document_optionals_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
     <input type="hidden" value="<%= @tender_id%>" name="tender_id" class="tender_id">
-    <input type="file" id="file_comment" class="btn btn-success" name="document" webkitdirectory directory multiple /> 
+    <input type="file" id="file_comment" class="btn btn-success form-control" name="document" webkitdirectory directory multiple /> 
     <div style="display: none">
       <button type="submit" class="submit_document"></button>
     </div>

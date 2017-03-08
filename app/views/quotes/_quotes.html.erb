@@ -62,6 +62,7 @@
         <% end %>
         <% if session[:role] == 'Sub Contractor' %>
             <th class="text-center">Sent</th>
+            <th class="text-center">Seen</th>
         <% end %>
         <th class="text-center">Trades</th>
 
@@ -73,7 +74,7 @@
         <th class="text-center">Action</th>
         <% if session[:role] == 'Head Contractor' %>
             <th class="text-center" style="display: none">Company</th>
-            <th class="text-center">Notification</th>
+            <!--<th class="text-center" style="display: none">Notification</th>-->
             <th class="text-center">Company Row</th>
         <% end %>
       </tr>
@@ -99,6 +100,9 @@
               <% if session[:role] == 'Sub Contractor' %>
                   <td class="text-center">
                     <%= get_created d %>
+                  </td>
+                  <td class="text-center">
+
                     <% if (get_seen_status d) == 1 %>
                         <i class="fa fa-eye" aria-hidden="true" style="color: green"></i>
                     <% else %>
@@ -119,19 +123,19 @@
               <%# end %>
               <% if (get_status d) == "Active" %>
                   <td class="text-center">
-                    <button class="btn btn-success">
+                    <button class="btn btn-success" disabled>
                       <%= get_status d %>
                     </button>
                   </td>
               <% else %>
                   <td class="text-center">
-                    <button class="btn btn-danger">
+                    <button class="btn btn-danger" disabled>
                       <%= get_status d %>
                     </button>
                   </td>
               <% end %>
               <td class="text-center">
-                <a href="<%= view_quotes_path(:ref_no => d,:tender_id => tender_id) %>">
+                <a href="#!<%#= view_quotes_path(:ref_no => d,:tender_id => tender_id) %>" data-toggle="modal" data-target="#quote<%= get_id d %>">
                   <button class="btn btn-default view">
                     View
                   </button>
@@ -146,7 +150,7 @@
               </td>
               <% if session[:role] == 'Head Contractor' %>
                   <td class="text-center" style="display: none"><%= get_quote_user_company d %></td>
-                  <td class="text-center"></td>
+                  <!--<td class="text-center" style="display: none"></td>-->
                   <td class="text-center" style="display: none"><%= get_quote_user_company d %></td>
               <% end %>
             </tr>
@@ -156,7 +160,7 @@
   </table>
 </div>
 
-
+<%= render 'quotes/view_dialog' %>
 
 <div style="display: none;">
   <a href="" class="zip_link" target="_blank"></a>
@@ -187,9 +191,9 @@
         "bFilter": 'false',
         searching: false,
         "columnDefs": [
-          { "visible": false, "targets": 10 }
+          { "visible": false, "targets": 9 }
         ],
-        "order": [[ 10, 'asc' ]],
+        "order": [[ 9, 'asc' ]],
         "displayLength": 25,
         "drawCallback": function ( settings ) {
           var api = this.api();
@@ -200,8 +204,8 @@
 
             if ( last !== group ) {
               $(rows).eq( i ).before(
-                  '<tr class="group"><td colspan="8" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
-                  '<td class="text-center"> <span class="badge progress-bar-danger">'+ <%= get_quote_count @tender.id %> +'</span>'+
+                  '<tr class="group"><td colspan="7" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
+
                   '</td></tr>'
               );
 
