@@ -20,6 +20,25 @@ module QuotesHelper
     end
   end
 
+  def assigned_ref user_id,tender_id
+
+    @sc_user = User.find(user_id)
+    quote = Quote.where(:user_id => user_id,:tender_id => tender_id).last()
+
+    result = @sc_user.company.split.map(&:first).join
+    if quote.present?
+      str = quote.ref_no
+      last_str = str.split('-')[-1]
+      puts "quote ========> #{quote.inspect}"
+      puts "last_str ========> #{last_str}"
+      puts "Q-#{result.upcase}-#{(last_str.to_i) + 1}"
+      return "Q-#{result.upcase}-#{(last_str.to_i) + 1}"
+    else
+      return "Q-#{result.upcase}-1"
+    end
+     #puts "result =======> #{result.inspect}"
+  end
+
   def get_tender_id ref_no
     quote = Quote.where(:ref_no => ref_no).first
     if quote.present?
@@ -147,7 +166,12 @@ module QuotesHelper
       user = User.where(:id => quote.user_id).first
 
       if user.present?
-        user.company
+        if user.trade_name.present?
+          user.trade_name
+        else
+          'No Company/Trade name yet.'
+        end
+
       end
     end
   end
