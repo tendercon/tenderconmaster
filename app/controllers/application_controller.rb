@@ -61,7 +61,10 @@ class ApplicationController < ActionController::Base
           @rfi_notifs = RfiNotification.where("hc_id = #{session[:user_logged_id]} and added_by='SC'")
         else
           @rfi_notifs = RfiNotification.where("sc_id = #{session[:user_logged_id]} and added_by='HC'")
+          @addenda_notifs = AddendaNotification.where("sc_id = #{session[:user_logged_id]} and added_by='HC'")
         end
+
+
 
         @sc_rfis = Rfi.where(:user_id => session[:user_logged_id])
         @sc_rfi_count = Rfi.where(:user_id => session[:user_logged_id]).count()

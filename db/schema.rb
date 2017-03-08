@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170307043755) do
+ActiveRecord::Schema.define(version: 20170308124908) do
+
+  create_table "addenda_notifications", force: :cascade do |t|
+    t.integer  "sc_id",      limit: 4
+    t.integer  "hc_id",      limit: 4
+    t.integer  "addenda_id", limit: 4
+    t.integer  "tender_id",  limit: 4
+    t.string   "message",    limit: 255
+    t.string   "status",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "added_by",   limit: 255
+  end
 
   create_table "addendas", force: :cascade do |t|
     t.integer  "tender_id",    limit: 4

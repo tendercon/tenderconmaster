@@ -282,12 +282,20 @@ class AddendasController < ApplicationController
           end
           notification.save
           user = User.find(tender_approved.sc_id)
-          TenderconMailer.delay.tender_changed(params[:subject],params[:details],user.email,user.first_name,@tender.title,@addenda.addenda_type)
+          TenderconMailer.tender_changed(params[:subject],params[:details],user.email,user.first_name,@tender.title,@addenda.addenda_type).deliver_now
         end
       end
     end
     Addenda.where(:tender_id => @tender.id).update_all(:status => 'completed')
     TenderDocument.where(:user_id => session[:user_logged_id],:tender_id => @tender,:action_type => 'addenda',:addenda_id => nil).update_all(:addenda_id => @addenda)
+
+    if(User.subscontractor_list).present?
+      User.subscontractor_list.each do |user|
+        message = "#{user.trade_name} has issued a new Addendum on project #{@tender.title}"
+        AddendaNotification.notification(user.id,@tender.id,session[:user_logged_id],@addenda.id,message,"HC")
+      end
+    end
+
 
 
     flash[:notice] = 'New Addenda added.'
@@ -412,6 +420,9 @@ class AddendasController < ApplicationController
     @addenda_document = Addenda.new
     @ip = request.host_with_port
     @data = render :partial => 'addendas/lists'
+
+    AddendaNotification.where(:sc_id => session[:user_logged_id]).delete_all
+
   end
 
   def create_addenda_document

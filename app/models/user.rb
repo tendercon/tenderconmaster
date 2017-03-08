@@ -239,6 +239,16 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.subscontractor_list
+    users = self.where(:role => 'Sub Contractor')
+
+    if users.present?
+      users
+    else
+      nil
+    end
+  end
+
   def free_plan?
     if self.user_plan.present?
       if self.user_plan.plan == 'STARTER PLAN $0' || self.user_plan.plan == 0

@@ -21,9 +21,9 @@ class QuotesController < ApplicationController
         end
         puts "HC @quote_array ============> #{@quote_array.inspect}"
       end
-
+      QuoteNotification.where(:hc_id => session[:user_logged_id]).delete_all()
       @quotes = Quote.where(:tender_id => @tender.id,:id => @quote_array)
-      puts "HC @quotes ==========> #{@quotes.inspect}"
+
     elsif session[:role] == 'Sub Contractor'
       quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id)
 
@@ -150,7 +150,7 @@ class QuotesController < ApplicationController
              quote_notif.sc_id = session[:user_logged_id]
              quote_notif.hc_id = @tender.user_id
              quote_notif.quote_id = quote_data.id
-             quote_notif.message = "#{user.company} submitted a new quote"
+             quote_notif.message = "#{user.trade_name} submitted a new quote"
              quote_notif.tender_id = tender_id
              quote_notif.seen = 0
              quote_notif.save
@@ -306,7 +306,7 @@ class QuotesController < ApplicationController
           quote_notif.sc_id = session[:user_logged_id]
           quote_notif.hc_id = quote.tender.user_id
           quote_notif.quote_id = quote.id
-          quote_notif.message = "#{quote.user.company} deleted a quote"
+          quote_notif.message = "#{quote.user.trade_name} deleted a quote"
           quote_notif.tender_id = quote.tender_id
           quote_notif.seen = 0
           quote_notif.save

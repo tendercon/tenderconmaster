@@ -229,7 +229,7 @@ class RfisController < ApplicationController
     if rfi.save
       RfiDocument.where("tender_id = #{tender_id} and rfi_id is null").update_all(:rfi_id => rfi.id)
     end
-    RfiNotification.create_rfi_notification(session[:user_logged_id], rfi.tender_id,@tender.user_id,rfi.id,"#{rfi.user.company} sent a new RFI","SC")
+    RfiNotification.create_rfi_notification(session[:user_logged_id], rfi.tender_id,@tender.user_id,rfi.id,"#{rfi.user.trade_name} sent a new RFI","SC")
     @rfis = Rfi.where(:tender_id => tender_id,:user_id => session[:user_logged_id])
     @data = render :partial => 'rfis/rfi_lists'
   end
@@ -623,9 +623,9 @@ class RfisController < ApplicationController
     @tender = Tender.find(rfi.tender_id)
     Rfi.where(:id => params[:id]).update_all(:status  => 'Resolved')
     if session[:role] == 'Head Contractor'
-      RfiNotification.create_rfi_notification(rfi.user_id, rfi.tender_id,@tender.user_id,rfi.id,"#{rfi.user.company} changed the status of the RFI to RESOLVED","HC")
+      RfiNotification.create_rfi_notification(rfi.user_id, rfi.tender_id,@tender.user_id,rfi.id,"#{rfi.user.trade_name} changed the status of the RFI to RESOLVED","HC")
     else
-      RfiNotification.create_rfi_notification(rfi.user_id, rfi.tender_id,@tender.user_id,rfi.id,"#{@tender.user.company} changed the status of the RFI to RESOLVED","SC")
+      RfiNotification.create_rfi_notification(rfi.user_id, rfi.tender_id,@tender.user_id,rfi.id,"#{@tender.user.trade_name} changed the status of the RFI to RESOLVED","SC")
     end
 
     redirect_to :back

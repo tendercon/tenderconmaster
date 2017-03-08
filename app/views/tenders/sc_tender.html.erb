@@ -12,14 +12,19 @@
         </div>
         <div class="tabbable-line">
           <ul class="nav nav-tabs ">
-            <% if params[:rfi].present? || params[:quote].present? || params[:reload].present? %>
+            <% if params[:rfi].present? || params[:quote].present? || params[:reload].present? || params[:addenda].present? %>
                 <li><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
             <% else %>
                 <li class="active"><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
             <% end %>
             <% if get_tender_request_approved(@tender.id,session[:user_logged_id]) > 0 %>
               <li><a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">Documents</a></li>
-              <li><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
+              <% if params[:addenda].present? %>
+                <li class="active"><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
+              <% else %>
+                <li><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
+              <% end %>
+
               <!--<li><a href="#chat" data-toggle="tab" id="<%#= @tender.id %>">Chat</a></li>-->
               <%# if params[:rfi].present? || params[:reload].present? %>
                   <!--<li class="active"><a href="#rfi" data-toggle="tab" id="<%#= @tender.id %>">RFIs <span class="badge badge-default" style="background-color: red"> <%#= Rfi.rfi_count(@tender.id, session[:user_logged_id]) %> </span></a></li>-->
@@ -99,7 +104,7 @@
         <div class="row">
           <div class="form-group"></div>
         </div>
-        <% if params[:rfi].present? || params[:quote].present? || params[:reload].present? %>
+        <% if params[:rfi].present? || params[:quote].present? || params[:reload].present? || params[:addenda].present? %>
             <div class="tab-pane  col-md-12" id="info">
               <%= render 'tender_info' %>
             </div>
@@ -108,9 +113,12 @@
               <%= render 'tender_info' %>
             </div>
         <% end %>
-        <div class="tab-pane col-md-12" id="addenda">
+        <% if params[:addenda].present? %>
+            <div class="tab-pane active col-md-12" id="addenda"></div>
+        <% else %>
+            <div class="tab-pane col-md-12" id="addenda"></div>
+        <% end %>
 
-        </div>
         <div class="tab-pane col-md-12" id="addenda_disabled">
           <div class="text-center">
             <strong style="color: #525e64">INVITES SUBCONTRACTORS</strong>
@@ -289,6 +297,17 @@
         $('#rfi').html(data);
       });
 
+    <% end %>
+
+    <% if params[:addenda].present?  %>
+      var tender_id = $('.tender_id').val();
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id},
+        url: "/addendas/get_addendas"
+      }).done(function (data) {
+        $('#addenda').html(data);
+      });
     <% end %>
 
     var rfi = $('.rfi').val();
