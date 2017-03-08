@@ -127,7 +127,7 @@ class QuotesController < ApplicationController
        quote_document = QuoteDocument.where(:tender_id => tender_id, :user_id => session[:user_logged_id],:quote_id => nil).first
 
        if quote_document.present?
-         trades.each do |a|
+         trades.each_with_index do |a,index|
            quote_data = Quote.new
            quote_data.ref_no = ref_no
            quote_data.user_id = session[:user_logged_id]
@@ -144,16 +144,20 @@ class QuotesController < ApplicationController
            if quote_data.save
              QuoteDocument.where(:tender_id => tender_id, :user_id => session[:user_logged_id],:quote_id => nil).update_all(:quote_id => quote_data.id)
              QuoteDocumentOptional.where(:tender_id => tender_id, :user_id => session[:user_logged_id],:quote_id => nil).update_all(:quote_id => quote_data.id)
+
              @tender = Tender.find(tender_id)
+
              user = User.find(quote_data.user_id)
-             quote_notif = QuoteNotification.new
-             quote_notif.sc_id = session[:user_logged_id]
-             quote_notif.hc_id = @tender.user_id
-             quote_notif.quote_id = quote_data.id
-             quote_notif.message = "#{user.trade_name} submitted a new quote"
-             quote_notif.tender_id = tender_id
-             quote_notif.seen = 0
-             quote_notif.save
+             if((trades.size - 1) == index)
+               quote_notif = QuoteNotification.new
+               quote_notif.sc_id = session[:user_logged_id]
+               quote_notif.hc_id = @tender.user_id
+               quote_notif.quote_id = quote_data.id
+               quote_notif.message = "#{user.trade_name} submitted a new quote"
+               quote_notif.tender_id = tender_id
+               quote_notif.seen = 0
+               quote_notif.save
+             end
            end
          end
          render :json => {:state => 'valid'}
