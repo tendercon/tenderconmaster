@@ -70,8 +70,8 @@ module QuotesHelper
     end
   end
 
-  def get_trade_counts ref_no
-    quote = Quote.where(:ref_no => ref_no).count()
+  def get_trade_counts ref_no,tender_id
+    quote = Quote.where(:ref_no => ref_no,:tender_id => tender_id).count()
 
     if quote.present?
       quote
@@ -80,8 +80,8 @@ module QuotesHelper
     end
   end
 
-  def get_quote_trades ref_no
-    quotes = Quote.where(:ref_no => ref_no)
+  def get_quote_trades ref_no,tender_id
+    quotes = Quote.where(:ref_no => ref_no,:tender_id => tender_id)
     trades = []
     if quotes.present?
       quotes.each do |t|

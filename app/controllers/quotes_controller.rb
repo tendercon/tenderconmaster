@@ -6,27 +6,44 @@ class QuotesController < ApplicationController
     @quote_document = QuoteDocument.new
     @quote_document_optional = QuoteDocumentOptional.new
     if session[:role] == 'Head Contractor'
-      @quotes = Quote.where(:tender_id => @tender.id)
-      puts "QUOTES:#{@quotes.inspect}"
-      if @quotes.present?
+      quotes = Quote.where(:tender_id => @tender.id)
+
+      if quotes.present?
         @refs = []
-        @quotes.each do |a|
+        @quote_array = []
+        @ref_array = []
+        quotes.each do |a|
           @refs << a.ref_no
+          if !@ref_array.include?(a.ref_no)
+            @ref_array << a.ref_no
+            @quote_array << a.id
+          end
         end
-        puts "------------> #{@refs.inspect}"
+        puts "HC @quote_array ============> #{@quote_array.inspect}"
       end
+
+      @quotes = Quote.where(:tender_id => @tender.id,:id => @quote_array)
+      puts "HC @quotes ==========> #{@quotes.inspect}"
     elsif session[:role] == 'Sub Contractor'
-      @quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id)
+      quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id)
 
-      if @quotes.present?
+      if quotes.present?
         @refs = []
-        @quotes.each do |a|
-
+        @quote_array = []
+        @ref_array = []
+        quotes.each do |a|
           @refs << a.ref_no
+          if !@ref_array.include?(a.ref_no)
+            @ref_array << a.ref_no
+            @quote_array << a.id
+          end
         end
-        puts "------------> #{@refs.inspect}"
+        puts "@quote_array ============> #{@quote_array.inspect}"
       end
+      @quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id,:id => @quote_array)
+      puts "@quotes =======> #{@quotes.inspect}"
     end
+
 
     if @tender.present?
       @user = User.find(@tender.user_id)
@@ -424,35 +441,54 @@ class QuotesController < ApplicationController
     @quote_document_optional = QuoteDocumentOptional.new
     if session[:role] == 'Head Contractor'
       if params[:trade_id].to_i > 0
-        @quotes = Quote.where(:tender_id => @tender.id,:trade_id => params[:trade_id])
+        quotes = Quote.where(:tender_id => @tender.id,:trade_id => params[:trade_id])
       else
-        @quotes = Quote.where(:tender_id => @tender.id)
+        quotes = Quote.where(:tender_id => @tender.id)
       end
 
-      puts "QUOTES:#{@quotes.inspect}"
-      if @quotes.present?
+      if quotes.present?
         @refs = []
-        @quotes.each do |a|
+        @quote_array = []
+        @ref_array = []
+        quotes.each do |a|
           @refs << a.ref_no
+          if !@ref_array.include?(a.ref_no)
+            @ref_array << a.ref_no
+            @quote_array << a.id
+          end
         end
-        puts "------------> #{@refs.inspect}"
+        puts "HC @quote_array ============> #{@quote_array.inspect}"
       end
+
+      @quotes = Quote.where(:tender_id => @tender.id,:id => @quote_array)
+      puts "HC @quotes ==========> #{@quotes.inspect}"
+
+
     elsif session[:role] == 'Sub Contractor'
       if params[:trade_id].to_i > 0
-        @quotes = Quote.where(:tender_id => @tender.id,:trade_id => params[:trade_id])
+        quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id,:trade_id => params[:trade_id])
       else
-        @quotes = Quote.where(:tender_id => @tender.id)
+        quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id)
       end
 
 
-      if @quotes.present?
+      #quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id)
+
+      if quotes.present?
         @refs = []
-        @quotes.each do |a|
-
+        @quote_array = []
+        @ref_array = []
+        quotes.each do |a|
           @refs << a.ref_no
+          if !@ref_array.include?(a.ref_no)
+            @ref_array << a.ref_no
+            @quote_array << a.id
+          end
         end
-        puts "------------> #{@refs.inspect}"
+        puts "@quote_array ============> #{@quote_array.inspect}"
       end
+      @quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id,:id => @quote_array)
+      puts "@quotes =======> #{@quotes.inspect}"
     end
 
     if @tender.present?

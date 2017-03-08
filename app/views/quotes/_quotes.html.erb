@@ -85,7 +85,7 @@
             <tr>
               <td class="text-center"><input type="checkbox" class="quote_list" name="documents[]" value="<%=  d.id %>"></td>
               <td class="text-center"><%= d.ref_no %></td>
-              <% if (d.status) == "Active" %>
+              <% if ( d.status) == "Active" %>
                   <td class="text-center">
                     <%=  d.title %>
                   </td>
@@ -99,11 +99,11 @@
               <% end %>
               <% if session[:role] == 'Sub Contractor' %>
                   <td class="text-center">
-                    <%= get_created d.ref_no  %>
+                    <%= get_created d.ref_no %>
                   </td>
                   <td class="text-center">
 
-                    <% if (get_seen_status d.ref_no ) == 1 %>
+                    <% if (get_seen_status d.ref_no) == 1 %>
                         <i class="fa fa-eye" aria-hidden="true" style="color: green"></i>
                     <% else %>
                         <i class="fa fa-eye" aria-hidden="true"></i>
@@ -112,25 +112,25 @@
               <% end %>
 
               <td class="text-center">
-                <a href="#!" title="Trades" class="popoverData" data-toggle="popover" data-trigger="focus" data-content="<%= get_quote_trades d.ref_no  %>">
-                  <span class="badge progress-bar-success"><%= get_trade_counts d.ref_no  %></span>
+                <a href="#!" title="Trades" class="popoverData" data-toggle="popover" data-trigger="focus" data-content="<%= get_quote_trades d.ref_no,d.tender_id %>">
+                  <span class="badge progress-bar-success"><%= get_trade_counts d.ref_no,d.tender_id  %></span>
                 </a>
               </td>
 
-              <td class="text-center"><%= "$ #{(get_price d.ref_no )}" %></td>
+              <td class="text-center"><%= "$ #{( d.price)}" %></td>
               <%# if session[:role] == 'Sub Contractor' %>
                 <!--<td class="text-center"><%#= Time.now.strftime("%d.%m.%Y") %></td>-->
               <%# end %>
-              <% if (d.status ) == "Active" %>
+              <% if (d.status) == "Active" %>
                   <td class="text-center">
                     <button class="btn btn-success" disabled>
-                      <%= d.status  %>
+                      <%= d.status %>
                     </button>
                   </td>
               <% else %>
                   <td class="text-center">
                     <button class="btn btn-danger" disabled>
-                      <%=  d.status  %>
+                      <%=  d.status %>
                     </button>
                   </td>
               <% end %>
@@ -149,9 +149,9 @@
                 <%# end %>
               </td>
               <% if session[:role] == 'Head Contractor' %>
-                  <td class="text-center" style="display: none"><%= get_quote_user_company d.ref_no  %></td>
+                  <td class="text-center" style="display: none"><%= get_quote_user_company d.ref_no %></td>
                   <!--<td class="text-center" style="display: none"></td>-->
-                  <td class="text-center" style="display: none"><%= get_quote_user_company d.ref_no  %></td>
+                  <td class="text-center" style="display: none"><%= get_quote_user_company d.ref_no %></td>
               <% end %>
             </tr>
         <% end %>
@@ -205,7 +205,6 @@
             if ( last !== group ) {
               $(rows).eq( i ).before(
                   '<tr class="group"><td colspan="7" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
-
                   '</td></tr>'
               );
 
