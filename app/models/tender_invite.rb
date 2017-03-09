@@ -1,5 +1,6 @@
 class TenderInvite < ActiveRecord::Base
   belongs_to :tender
+  has_many :invited_tender_notifications
 
 
   def self.tender_invites(id)

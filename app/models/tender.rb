@@ -15,6 +15,11 @@ class Tender < ActiveRecord::Base
   has_many :package_downloads
   has_many :quotes
   has_many :rfi_notifications
+  has_many :addenda_notifications
+  has_many :tender_request_notifications
+  has_many :quote_notifications
+  has_many :invited_tender_notifications
+  has_many :requested_tender_notifications
 
 
   validates :title, presence: { message: "title is required" }

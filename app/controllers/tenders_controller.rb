@@ -550,6 +550,7 @@ class TendersController < ApplicationController
         @tender_id = params[:params]
         ScInviteNotification.where(:tender_id => @tender_id).update_all(:seen => 1)
       end
+      InvitedTenderNotification.where(:sc_id => session[:user_logged_id]).delete_all
       tender_invites = TenderInvite.where("email = '#{session[:email]}' and (tender_acceptance_date is null AND tender_declined_date is null)")
       tender_array = []
       if tender_invites.present?
@@ -863,9 +864,9 @@ class TendersController < ApplicationController
     end
 
     if params[:open].present?
-      puts "open ---------------> "
+      puts "open ---------------> #{ids.size - 1}"
       if ids.present?
-        ids.each do |i|
+        ids.each_with_index do |i,index|
           if !TenderRequestQuote.check_sc_tender_trade_exists? tender_id,i,sc_id,tender.user_id
             if i.to_i > 0
               puts "==================> OPEN TENDER SAVE"
@@ -882,6 +883,11 @@ class TendersController < ApplicationController
                 tender_request_quote.tender_type = 'open_tender'
               end
               tender_request_quote.save
+              puts "INDEX =======> #{index}"
+              if((ids.size - 1) == index)
+                sc = User.find(sc_id)
+                RequestedTenderNotification.notification(sc_id,tender_id,tender.user_id,"#{sc.trade_name} has requested to tender on #{tender.title}","SC")
+              end
             end
           end
           if TenderRequestQuote.check_sc_tender_trade_exists? tender_id,i,sc_id,tender.user_id
@@ -889,6 +895,7 @@ class TendersController < ApplicationController
             OpenTender.where(:tender_id => tender_id,:user_id => sc_id).destroy_all
           end
         end
+
       end
 
 
@@ -896,6 +903,21 @@ class TendersController < ApplicationController
 
     elsif boolean_array.include? true
       puts "boolean_array ---------------> "
+
+
+      invited_user = TenderInvite.where(:tender_id => tender_id, :user_id => params[:sc_id])
+
+      if invited_user.present?
+        invited_user.each do |iu|
+          sc = User.find(params[:sc_id])
+          if iu.status == 'accepted'
+            InvitedTenderNotification.notification(params[:sc_id],tender_id,tender.user_id,iu.id,"#{sc.trade_name} has accepted your invitation to tender on project #{tender.title}","SC")
+          else
+            InvitedTenderNotification.notification(params[:sc_id],tender_id,tender.user_id,iu.id,"#{sc.trade_name} has declined your invitation to tender on project #{tender.title}","SC")
+          end
+        end
+      end
+
 
       if trade_ids.present?
         trade_ids.each_with_index do |t,index|
@@ -944,6 +966,19 @@ class TendersController < ApplicationController
         open_tender.tender_id = tender_id
         open_tender.save
 
+      end
+
+      invited_user = TenderInvite.where(:tender_id => tender_id, :user_id => params[:sc_id])
+
+      if invited_user.present?
+        invited_user.each do |iu|
+          sc = User.find(params[:sc_id])
+          if iu.status == 'accepted'
+            InvitedTenderNotification.notification(params[:sc_id],tender_id,tender.user_id,iu.id,"#{sc.trade_name} has accepted your invitation to tender on project #{tender.title}","SC")
+          else
+            InvitedTenderNotification.notification(params[:sc_id],tender_id,tender.user_id,iu.id,"#{sc.trade_name} has declined your invitation to tender on project #{tender.title}","SC")
+          end
+        end
       end
 
       if ids.present?
@@ -2439,6 +2474,10 @@ class TendersController < ApplicationController
     @tendering = TenderRequestQuote.where("tender_id = #{@tender.id} and request_date is not null")
     @quote_array = []
     @trades_array = []
+
+    InvitedTenderNotification.where(:tender_id => @tender,:hc_id => session[:user_logged_id]).delete_all
+    RequestedTenderNotification.where(:tender_id => @tender,:hc_id => session[:user_logged_id]).delete_all
+
     # if @tender_request_quotes.present?
     #   @tender_request_quotes.each do |a|
     #     @quote_array << a.id
@@ -2609,6 +2648,8 @@ class TendersController < ApplicationController
     @trade_categories = TradeCategory.all
     @unzip_dirs = []
     @docs1 = []
+
+    TenderRequestNotification.where(:sc_id => session[:user_logged_id],:tender_id => @tender.id).delete_all
 
     @documents = TenderDocument.where(:user_id => session[:user_logged_id],:tender_id => @tender.id)
     @tender_trades = TenderTrade.where(:tender_id => @tender.id)
@@ -2856,8 +2897,12 @@ class TendersController < ApplicationController
       approved.save
 
       if approved.status == 'approved'
+        message = "#{@tender.user.trade_name} has approved your request to tender for project #{@tender.title}"
+        TenderRequestNotification.notification(tender_request_quote.sc_id,@tender.id,session[:user_logged_id],tender_request_quote.id,message,"HC")
         TenderRequestQuote.where(:id => tender_request_quote.id).update_all(:status => approved.status,:approved_date => Time.now,:declined_date => nil)
       elsif approved.status == 'declined'
+        message = "#{@tender.user.trade_name} has declined your request to tender for project #{@tender.title}"
+        TenderRequestNotification.notification(tender_request_quote.sc_id,@tender.id,session[:user_logged_id],tender_request_quote.id,message,"HC")
         TenderRequestQuote.where(:id => tender_request_quote.id).update_all(:status => approved.status,:declined_date => Time.now,:approved_date => nil)
       end
       @trades_array = []
@@ -2903,6 +2948,13 @@ class TendersController < ApplicationController
           if user.present?
             invite.user_id = user.id
           end
+
+        if user.present?
+          InvitedTenderNotification.notification(user.id,@tender.id,@tender.user_id,invite.id,"#{@tender.user.trade_name} has invited you to tender on their project #{@tender.title}","HC")
+        else
+          InvitedTenderNotification.notification(0,@tender.id,@tender.user_id,invite.id,"#{@tender.user.trade_name} has invited you to tender on their project #{@tender.title}","HC",e)
+        end
+
           invite.save
 
           if save_sub.present?
@@ -2916,6 +2968,7 @@ class TendersController < ApplicationController
               hc_invite.save
             end
           end
+
 
 
           t = Trade.find(trades[index])

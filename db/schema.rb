@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308124908) do
+ActiveRecord::Schema.define(version: 20170309092629) do
 
   create_table "addenda_notifications", force: :cascade do |t|
     t.integer  "sc_id",      limit: 4
@@ -181,6 +181,18 @@ ActiveRecord::Schema.define(version: 20170308124908) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "status",     limit: 255
+  end
+
+  create_table "invited_tender_notifications", force: :cascade do |t|
+    t.integer  "sc_id",            limit: 4
+    t.integer  "hc_id",            limit: 4
+    t.integer  "tender_invite_id", limit: 4
+    t.integer  "tender_id",        limit: 4
+    t.string   "message",          limit: 255
+    t.string   "status",           limit: 255
+    t.string   "added_by",         limit: 255
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "message_chats", force: :cascade do |t|
@@ -368,6 +380,18 @@ ActiveRecord::Schema.define(version: 20170308124908) do
     t.string   "status",     limit: 255, default: "pending"
   end
 
+  create_table "requested_tender_notifications", force: :cascade do |t|
+    t.integer  "sc_id",                   limit: 4
+    t.integer  "hc_id",                   limit: 4
+    t.integer  "tender_request_quote_id", limit: 4
+    t.integer  "tender_id",               limit: 4
+    t.string   "message",                 limit: 255
+    t.string   "status",                  limit: 255
+    t.string   "added_by",                limit: 255
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
   create_table "rfi_comments", force: :cascade do |t|
     t.integer  "rfi_id",        limit: 4
     t.string   "comment",       limit: 255
@@ -531,6 +555,18 @@ ActiveRecord::Schema.define(version: 20170308124908) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.string   "previous_date",     limit: 255
+  end
+
+  create_table "tender_request_notifications", force: :cascade do |t|
+    t.integer  "sc_id",                   limit: 4
+    t.integer  "hc_id",                   limit: 4
+    t.integer  "tender_request_quote_id", limit: 4
+    t.integer  "tender_id",               limit: 4
+    t.string   "message",                 limit: 255
+    t.string   "status",                  limit: 255
+    t.string   "added_by",                limit: 255
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "tender_request_quotes", force: :cascade do |t|

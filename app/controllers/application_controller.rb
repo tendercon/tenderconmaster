@@ -46,6 +46,9 @@ class ApplicationController < ActionController::Base
 
       @user = User.find(session[:user_logged_id])
       if @user.present?
+
+        InvitedTenderNotification.where(:status => @user.email).update_all(:sc_id => @user.id)
+
         @user_name = "#{@user.first_name} #{@user.last_name}"
         @subs = UserSubscription.where(:user_id => @user.id).first
         @plan = UserPlan.where(:user_id => @user.id).first
@@ -59,9 +62,13 @@ class ApplicationController < ActionController::Base
         @rfis = Rfi.where(:hc_id => session[:user_logged_id])
         if session[:role] == 'Head Contractor'
           @rfi_notifs = RfiNotification.where("hc_id = #{session[:user_logged_id]} and added_by='SC'")
+          @invited_notifications = InvitedTenderNotification.where("hc_id = #{session[:user_logged_id]} and added_by='SC'")
+          @requested_tender_notifications = RequestedTenderNotification.where(:hc_id => session[:user_logged_id], :added_by => "SC")
         else
+          @invited_notifications = InvitedTenderNotification.where("sc_id = #{session[:user_logged_id]} and added_by='HC'")
           @rfi_notifs = RfiNotification.where("sc_id = #{session[:user_logged_id]} and added_by='HC'")
           @addenda_notifs = AddendaNotification.where("sc_id = #{session[:user_logged_id]} and added_by='HC'")
+          @tender_request_quote_notifs = TenderRequestNotification.where("sc_id = #{session[:user_logged_id]} and added_by='HC'")
         end
 
 

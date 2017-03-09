@@ -1,6 +1,8 @@
 class TenderRequestQuote < ActiveRecord::Base
   belongs_to :tender
   has_many :tender_request_trades
+  has_many :tender_request_notifications
+
 
 
   def self.check_sc_tender_trade_exists? tender_id,trade_id,sc_id,hc_id

@@ -11,13 +11,18 @@
         <div class="tabbable-line">
 
           <ul class="nav nav-tabs ">
-            <% if params[:addenda].present? || params[:control].present? || params[:rfi].present? || params[:quote].present? %>
+            <% if params[:addenda].present? || params[:control].present? || params[:rfi].present? || params[:quote].present? || params[:subcontractors].present? %>
                 <li ><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
             <% else %>
                 <li class="active"><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
             <% end %>
 
-            <li><a href="#sub" data-toggle="tab" id="<%= @tender.id %>">Subcontractors</a></li>
+            <% if params[:subcontractors].present? %>
+                <li class="active"><a href="#sub" data-toggle="tab" id="<%= @tender.id %>">Subcontractors</a></li>
+            <% else %>
+                <li><a href="#sub" data-toggle="tab" id="<%= @tender.id %>">Subcontractors</a></li>
+            <% end %>
+
             <% if params[:control].present? %>
                 <li class="active"><a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">Document Control</a></li>
             <% else %>
@@ -95,7 +100,7 @@
         <div class="row">
           <div class="form-group"></div>
         </div>
-        <% if params[:addenda].present? || params[:control].present? || params[:rfi].present? || params[:quote].present? %>
+        <% if params[:addenda].present? || params[:control].present? || params[:rfi].present? || params[:quote].present? || params[:subcontractors].present? %>
             <div class="tab-pane  col-md-12" id="info">
               <%= render 'tender_info' %>
             </div>
@@ -106,10 +111,13 @@
         <% end %>
 
 
+        <% if params[:subcontractors].present? %>
+            <div class="tab-pane active col-md-12" id="sub"></div>
+        <% else %>
+            <div class="tab-pane col-md-12" id="sub"></div>
+        <% end %>
 
-        <div class="tab-pane col-md-12" id="sub">
 
-        </div>
         <% if params[:addenda].present? %>
             <div class="tab-pane active col-md-12" id="addenda">
               <%= render :partial => 'addendas/new_lists', :locals => { :addendas => @addendas,:tender => @tender} %>
@@ -513,6 +521,16 @@
         url: "/tenders/get_document_control"
       }).done(function (data) {
         $('#document_control').html(data);
+      });
+    <% end %>
+
+    <% if params[:subcontractors].present? %>
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id},
+        url: "/tenders/get_latest_sub"
+      }).done(function (data) {
+        $('#sub').html(data);
       });
     <% end %>
 

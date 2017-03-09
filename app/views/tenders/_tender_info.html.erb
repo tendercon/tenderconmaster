@@ -46,7 +46,7 @@
 
                             <% if (get_tender_request @tender.id,session[:user_logged_id]).present? %>
                               <% (get_tender_request @tender.id,session[:user_logged_id]).uniq.each do |a| %>
-                                <% if !@applied_trades.include? a.trade_id %>
+                                <% if !@applied_trades.include?(a.trade_id) %>
                                   <tr>
                                     <td>
                                       <label><%= get_trade_name a.trade_id %></label>

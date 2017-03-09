@@ -9,14 +9,14 @@
     <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
       <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
         <i class="icon-bell"></i>
-        <% if (@quote_notifs.present? ? @quote_notifs.size : 0) + (@rfi_notifs.present? ? @rfi_notifs.size : 0) + (@addenda_notifs.present? ? @addenda_notifs.size : 0) > 0 %>
-          <span class="badge badge-default" style="background-color: red"> <%= (@quote_notifs.present? ? @quote_notifs.size : 0) + (@rfi_notifs.present? ? @rfi_notifs.size : 0) + (@addenda_notifs.present? ? @addenda_notifs.size : 0) %> </span>
+        <% if Notification.notification_count(session[:user_logged_id]) > 0 %>
+          <span class="badge badge-default" style="background-color: red"> <%= Notification.notification_count(session[:user_logged_id]) %> </span>
         <% end %>
       </a>
       <ul class="dropdown-menu">
         <li class="external">
           <h3>
-            <span class="bold"><%= (@quote_notifs.present? ? @quote_notifs.size : 0) + (@rfi_notifs.present? ? @rfi_notifs.size : 0) + (@addenda_notifs.present? ? @addenda_notifs.size : 0) %> pending</span> notifications</h3>
+            <span class="bold"><%= Notification.notification_count(session[:user_logged_id]) %> pending</span> notifications</h3>
           <a href="#!"></a>
         </li>
         <li>
@@ -48,16 +48,16 @@
                   <a href="<%= r.message.include?("left") ? "/rfis/comments?id=#{r.rfi_id}&tender_id=#{r.tender_id}&notification=#{r.id}"  : session[:role].include?("Head") ?  "/tenders/hc_tender?id=#{r.tender_id}&rfi=true&notification=#{r.id}" : "/tenders/sc_tender?id=#{r.tender_id}&rfi=true&notification=#{r.id}"  %>">
                     <span class="time"><%= (time_ago_in_words(r.created_at)).gsub("about", "") + " ago" %></span>
                       <span class="details">
-                        <% if r.message.include?("deleted") %>
-                          <span class="label label-sm label-icon label-danger" style="background-color: #FF0000 ">
+                      <% if r.message.include?("deleted") %>
+                              <span class="label label-sm label-icon label-danger" style="background-color: #FF0000 ">
+                                <i class="fa fa-file"></i>
+                          </span> <%= r.message %>
+                        </span>
+                      <% else %>
+                          <span class="label label-sm label-icon label-success" style="background-color: #32C5D2">
                             <i class="fa fa-file"></i>
-                      </span> <%= r.message %>
-                    </span>
-                  <% else %>
-                      <span class="label label-sm label-icon label-success" style="background-color: #32C5D2">
-                        <i class="fa fa-file"></i>
-                    </span> <%= r.message %> </span>
-                  <% end %>
+                        </span> <%= r.message %> </span>
+                      <% end %>
 
                   </a>
                 </li>
@@ -66,17 +66,82 @@
 
 
             <% if @addenda_notifs.present? %>
-                <% @addenda_notifs.each do |r| %>
-                    <li>
-                      <a href="<%= "/tenders/sc_tender?id=#{r.tender_id}&addenda=true"   %>">
-                        <span class="time"><%= (time_ago_in_words(r.created_at)).gsub("about", "") + " ago" %></span>
-                          <span class="details">
-                            <span class="label label-sm label-icon label-danger" style="background-color: #32C5D2 ">
-                              <i class="icon-eye"></i>
-                            </span> <%= r.message %>
-                          </span>
+              <% @addenda_notifs.each do |r| %>
+                <li>
+                  <a href="<%= "/tenders/sc_tender?id=#{r.tender_id}&addenda=true"   %>">
+                    <span class="time"><%= (time_ago_in_words(r.created_at)).gsub("about", "") + " ago" %></span>
+                      <span class="details">
+                        <span class="label label-sm label-icon label-danger" style="background-color: #796799 ">
+                          <i class="icon-doc"></i>
+                        </span> <%= r.message %>
+                      </span>
 
-                        </a>
+                    </a>
+                </li>
+              <% end %>
+            <% end %>
+            <% if @tender_request_quote_notifs.present? %>
+                <% @tender_request_quote_notifs.each do |r| %>
+                    <li>
+                      <a href="<%= "/tenders/sc_tender?id=#{r.tender_id}"   %>">
+                        <span class="time"><%= (time_ago_in_words(r.created_at)).gsub("about", "") + " ago" %></span>
+                      <span class="details">
+                        <% if r.message.include?("declined") %>
+                             <span class="label label-sm label-icon label-danger" style="background-color: red ">
+                          <i class="icon-close"></i>
+                        </span> <%= r.message %>
+                        <% else %>
+                           <span class="label label-sm label-icon label-danger" style="background-color: #26C281 ">
+                          <i class="icon-check"></i>
+                        </span> <%= r.message %>
+                        <% end %>
+                      </span>
+
+                      </a>
+                    </li>
+                <% end %>
+            <% end %>
+
+            <% if @invited_notifications.present? %>
+                <% @invited_notifications.each do |r| %>
+                    <li>
+
+                      <a href="<%= r.message.include?("invited") ? "/tenders/invited_tender": "/tenders/hc_tender?id=#{r.tender_id}&subcontractors=true"   %>">
+                        <span class="time"><%= (time_ago_in_words(r.created_at)).gsub("about", "") + " ago" %></span>
+                      <span class="details">
+                        <% if r.message.include?("declined") %>
+                             <span class="label label-sm label-icon label-danger" style="background-color: red ">
+                          <i class="icon-user-unfollow"></i>
+                        </span> <%= r.message %>
+                        <% elsif r.message.include?("invited") %>
+                           <span class="label label-sm label-icon label-danger" style="background-color: #F4D03F ">
+                            <i class="icon-envelope"></i>
+                          </span> <%= r.message %>
+                        <% else %>
+                           <span class="label label-sm label-icon label-danger" style="background-color: #26C281 ">
+                          <i class="icon-user-following"></i>
+                        </span> <%= r.message %>
+                        <% end %>
+                      </span>
+
+                      </a>
+                    </li>
+                <% end %>
+            <% end %>
+
+            <% if @requested_tender_notifications.present? %>
+                <% @requested_tender_notifications.each do |r| %>
+                    <li>
+                      <a href="<%= "/tenders/hc_tender?id=#{r.tender_id}&subcontractors=true"   %>">
+                        <span class="time"><%= (time_ago_in_words(r.created_at)).gsub("about", "") + " ago" %></span>
+                      <span class="details">
+                         <span class="label label-sm label-icon label-danger" style="background-color: #F4D03F ">
+                          <i class="icon-user"></i>
+                        </span> <%= r.message %>
+
+                      </span>
+
+                      </a>
                     </li>
                 <% end %>
             <% end %>
