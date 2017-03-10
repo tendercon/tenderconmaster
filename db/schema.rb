@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309092629) do
+ActiveRecord::Schema.define(version: 20170310140302) do
 
   create_table "addenda_notifications", force: :cascade do |t|
     t.integer  "sc_id",      limit: 4
@@ -365,10 +365,11 @@ ActiveRecord::Schema.define(version: 20170309092629) do
     t.integer  "tender_id",   limit: 4
     t.float    "price",       limit: 24
     t.string   "status",      limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "title",       limit: 255
     t.string   "version",     limit: 255
+    t.boolean  "seen",                    default: false
   end
 
   create_table "request_upgrades", force: :cascade do |t|

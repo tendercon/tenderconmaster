@@ -7,6 +7,7 @@ class QuotesController < ApplicationController
     @quote_document_optional = QuoteDocumentOptional.new
     if params[:quote_id].present? &&  params[:quote_id].to_i > 0
       @quote_id = params[:quote_id]
+      Quote.where(:id => @quote_id).update_all(:seen => true)
     end
     if session[:role] == 'Head Contractor'
       quotes = Quote.where(:tender_id => @tender.id)
@@ -549,6 +550,14 @@ class QuotesController < ApplicationController
     @data = render :partial => 'quotes/search_by_trade'
   end
 
+  def update_seen_column
+    if session[:role] == 'Head Contractor'
+      Quote.where(:id => params[:quote_id]).update_all(:seen => true)
+    end
+
+    render :json => { :state => 'valid'}
+  end
+
 
   private
 
@@ -620,7 +629,5 @@ class QuotesController < ApplicationController
 
     @data = render :partial => 'quotes/latest_quotes'
   end
-
-
 
 end

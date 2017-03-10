@@ -103,7 +103,7 @@
                   </td>
                   <td class="text-center">
 
-                    <% if (get_seen_status d.ref_no) == 1 %>
+                    <% if d.seen == true %>
                         <i class="fa fa-eye" aria-hidden="true" style="color: green"></i>
                     <% else %>
                         <i class="fa fa-eye" aria-hidden="true"></i>
@@ -136,7 +136,7 @@
               <% end %>
               <td class="text-center">
                 <a href="#!<%#= view_quotes_path(:ref_no => d,:tender_id => tender_id) %>" data-toggle="modal" data-target="#quote<%=  d.id %>">
-                  <button class="btn btn-default view">
+                  <button class="btn btn-default view" id="<%= d.id %>">
                     View
                   </button>
                 </a>
@@ -172,6 +172,20 @@
 
 <script>
   $(document).ready(function(){
+
+    $('.view').click(function(){
+      var quote_id = $(this).attr('id');
+
+      $.ajax({
+        method: "POST",
+        data: {quote_id:quote_id},
+        url: "/quotes/update_seen_column"
+      }).done(function (data) {
+
+      });
+
+
+    })
 
     <% if @quote_id.present? %>
        var quote_id = '<%= @quote_id %>';

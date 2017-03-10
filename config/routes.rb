@@ -464,6 +464,7 @@ Rails.application.routes.draw do
       post 'download_quotes'
       post 'delete_quotes'
       post 'search_by_trade'
+      post 'update_seen_column'
     end
   end
 
