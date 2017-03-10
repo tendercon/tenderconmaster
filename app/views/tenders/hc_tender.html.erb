@@ -507,6 +507,8 @@
 
     });
 
+
+
     $('.tenders').each(function(){
       var id =  $(this).val();
       var add = $('.add'+id).val();
@@ -545,9 +547,12 @@
     <% end %>
 
     <% if params[:quote].present? %>
+      <% if params[:notification].present? %>
+        var quote_id = <%= params[:notification] %>
+      <% end %>
       $.ajax({
         method: "POST",
-        data: {tender_id:tender_id},
+        data: {tender_id:tender_id,quote_id:quote_id},
         url: "/quotes/get_latest_quotes"
       }).done(function (data) {
         $('#quote').html(data);

@@ -5,6 +5,9 @@ class QuotesController < ApplicationController
     @tender = Tender.find(params[:tender_id])
     @quote_document = QuoteDocument.new
     @quote_document_optional = QuoteDocumentOptional.new
+    if params[:quote_id].present? &&  params[:quote_id].to_i > 0
+      @quote_id = params[:quote_id]
+    end
     if session[:role] == 'Head Contractor'
       quotes = Quote.where(:tender_id => @tender.id)
 

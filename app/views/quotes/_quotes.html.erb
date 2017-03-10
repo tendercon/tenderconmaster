@@ -173,6 +173,11 @@
 <script>
   $(document).ready(function(){
 
+    <% if @quote_id.present? %>
+       var quote_id = '<%= @quote_id %>';
+       $('#quote'+quote_id).modal('show');
+    <% end %>
+
     <% if session[:role] == 'Sub Contractor' %>
       $('#new_quote_table').DataTable({
         "bSort" : false,

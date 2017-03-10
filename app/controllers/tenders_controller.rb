@@ -874,6 +874,17 @@ class TendersController < ApplicationController
             tender_request_quote.hc_id = tender.user_id
             tender_request_quote.tender_type = 'open_tender'
             tender_request_quote.save
+
+
+            sc = User.find(sc_id)
+            trade = Trade.find(i)
+            request = RequestedTenderNotification.where(:sc_id => sc_id, :tender_id => tender_id, :tender_request_quote_id => tender_request_quote.id)
+
+            unless request.present?
+              RequestedTenderNotification.notification(sc_id,tender_id,tender.user_id,"#{sc.trade_name} has requested to tender on #{tender.title} - trade #{trade.name}","SC")
+            end
+
+
           end
         end
       end
@@ -1948,13 +1959,13 @@ class TendersController < ApplicationController
         hcs << hc.id
       end
     end
-
+    puts "hcs ==========> #{hcs.inspect}"
     TenderInvite.where(:tender_id => tender_id).destroy_all
     if new_trades.present?
       new_trades.each_with_index do |n,index|
         if n.present? && n.to_i > 0
           hc_invite = HcInvite.find(hs[index])
-          user = User.where(:id => hs[index]).first
+          user = User.where(:id => hc_invite.user_id).first
           invite = TenderInvite.new
           invite.tender_id = tender_id
           invite.email = hc_invite.email
@@ -2802,6 +2813,7 @@ class TendersController < ApplicationController
       puts "@tender_requesting ========> #{@tender_requesting.inspect}"
       @data = render :partial => 'tenders/sub_contractors_tab/requesting_tender'
     elsif tab == 'tendering'
+      @tendering_ids = []
       @tender_invites = TenderInvite.where("tender_id = #{tender_id} and tender_acceptance_date is not null")
       @tendering = TenderRequestQuote.where(:tender_id => tender_id).where("declined_date is null and request_date is not null and status='approved'")
       @data = render :partial => 'tenders/sub_contractors_tab/tendering'
