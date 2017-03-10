@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tender/document/CCTV.zip" afterPath="$PROJECT_DIR$/public/assets/tender/document/CCTV.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tender/document/Cranes.zip" afterPath="$PROJECT_DIR$/public/assets/tender/document/Cranes.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tender/document/Floor Heating.zip" afterPath="$PROJECT_DIR$/public/assets/tender/document/Floor Heating.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/tender/document/Shoring.zip" afterPath="$PROJECT_DIR$/public/assets/tender/document/Shoring.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/quotes_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/quotes_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/tenders_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/tenders_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/nav/_sidemenu.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/nav/_sidemenu.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quotes/_latest_quotes.html.erb" afterPath="$PROJECT_DIR$/app/views/quotes/_latest_quotes.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quotes/_quotes.html.erb" afterPath="$PROJECT_DIR$/app/views/quotes/_quotes.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/quotes/_view_dialog.html.erb" afterPath="$PROJECT_DIR$/app/views/quotes/_view_dialog.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/hc_tender.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/hc_tender.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tenders/sub_contractors_tab/_tendering.html.erb" afterPath="$PROJECT_DIR$/app/views/tenders/sub_contractors_tab/_tendering.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/addendas_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/addendas_controller.rb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,29 +29,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="_topmenu.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="26" column="142" selection-start-line="26" selection-start-column="142" selection-end-line="26" selection-end-column="142" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#span#1;n#a#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#2;n#a#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#span#1;n#a#0;n#li#1;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#2;n#a#0;n#li#1;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#span#1;n#a#0;n#li#2;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#span#1;n#a#0;n#li#3;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#span#1;n#a#0;n#li#3;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#span#1;n#a#0;n#li#4;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#1;n#span#1;n#a#0;n#li#4;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#2;n#span#1;n#a#0;n#li#4;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#span#1;n#a#0;n#li#5;n#ul#0;n#li#1;n#ul#0;n#li#0;n#ul#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="_quotes.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/quotes/_quotes.html.erb">
           <provider selected="true" editor-type-id="text-editor">
@@ -153,11 +116,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_sidemenu.html.erb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_sidemenu.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_sidemenu.html.erb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="540">
               <caret line="36" column="20" selection-start-line="24" selection-start-column="8" selection-end-line="36" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="addendas_controller.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/addendas_controller.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="474">
+              <caret line="300" column="115" selection-start-line="300" selection-start-column="115" selection-end-line="300" selection-end-column="115" />
               <folding />
             </state>
           </provider>
@@ -211,7 +184,6 @@
         <option value="$PROJECT_DIR$/app/views/tenders/_tender_info.html.erb" />
         <option value="$PROJECT_DIR$/app/mailers/tendercon_mailer.rb" />
         <option value="$PROJECT_DIR$/app/views/tendercon_mailer/tender_changed.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/addendas_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb" />
         <option value="$PROJECT_DIR$/app/views/quotes/_view_dialog.html.erb" />
         <option value="$PROJECT_DIR$/app/views/quotes/_latest_quotes.html.erb" />
@@ -222,6 +194,7 @@
         <option value="$PROJECT_DIR$/app/views/tenders/sub_contractors_tab/_tendering.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/nav/_sidemenu.html.erb" />
+        <option value="$PROJECT_DIR$/app/controllers/addendas_controller.rb" />
       </list>
     </option>
   </component>
@@ -1072,12 +1045,12 @@
       <workItem from="1488636470627" duration="2366000" />
       <workItem from="1488758995959" duration="8990000" />
       <workItem from="1488809696768" duration="30153000" />
-      <workItem from="1488974065369" duration="28054000" />
+      <workItem from="1488974065369" duration="28474000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="764928000" />
+    <option name="totallyTimeSpent" value="765348000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="728" extended-state="6" />
@@ -1463,14 +1436,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/addendas_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="277" column="45" selection-start-line="277" selection-start-column="45" selection-end-line="277" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/nav/_topmenu.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -1583,6 +1548,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="36" column="20" selection-start-line="24" selection-start-column="8" selection-end-line="36" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/addendas_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="474">
+          <caret line="300" column="115" selection-start-line="300" selection-start-column="115" selection-end-line="300" selection-end-column="115" />
           <folding />
         </state>
       </provider>

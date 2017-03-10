@@ -298,7 +298,7 @@ class AddendasController < ApplicationController
 
     if(User.subscontractor_list).present?
       User.subscontractor_list.each do |user|
-        addenda = AddendaNotification.where(:addenda_id => @addenda.id, :tender_id => @tender.id)
+        addenda = AddendaNotification.where(:addenda_id => @addenda.id, :tender_id => @tender.id,:sc_id => user.id)
         message = "#{user.trade_name} has issued a new Addendum on project #{@tender.title}"
         unless addenda.present?
           AddendaNotification.notification(user.id,@tender.id,session[:user_logged_id],@addenda.id,message,"HC")
