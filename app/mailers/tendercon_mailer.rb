@@ -176,4 +176,13 @@ class TenderconMailer < ActionMailer::Base
     @messages = msg
     mail(to: email, subject: "#{subject}")
   end
+
+  def tender_changed subject,details,email,first_name,tender_title,addenda_type
+    subject = "#{subject} Addenda added."
+    @first_name = first_name
+    @messages = "Addenda added from project #{tender_title}"
+    @details =  details
+    @type = addenda_type
+    mail(to: email, subject: subject )
+  end
 end

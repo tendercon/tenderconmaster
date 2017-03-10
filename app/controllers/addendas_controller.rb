@@ -168,6 +168,8 @@ class AddendasController < ApplicationController
         redirect_to new_addenda_path(:id => params[:tender_id],:addenda => addenda_id,:addenda_type => 'documents',:documents => true)
       end
     else
+
+
       @addenda = Addenda.new
       @addenda.subject = subject
       @addenda.details = details
@@ -176,17 +178,22 @@ class AddendasController < ApplicationController
       @addenda.addenda_type = params[:addenda_type]
       @addenda.ref_no = params[:addenda][:ref_no]
       @addenda.status = 'incomplete'
+      addendas = Addenda.where(:ref_no => params[:addenda][:ref_no], :tender_id => params[:tender_id],:user_id => session[:user_logged_id])
 
-      if @addenda.save
-        if params[:addenda_type] == 'details'
-          redirect_to new_addenda_path(:id => params[:tender_id],:addenda => @addenda.id,:type => 'details',:updates => true)
+      unless addendas.present?
+        if @addenda.save
+          if params[:addenda_type] == 'details'
+            redirect_to new_addenda_path(:id => params[:tender_id],:addenda => @addenda.id,:type => 'details',:updates => true)
+          else
+            redirect_to new_addenda_path(:id => params[:tender_id],:addenda => @addenda.id,:addenda_type => 'documents',:documents => true)
+          end
         else
-          redirect_to new_addenda_path(:id => params[:tender_id],:addenda => @addenda.id,:addenda_type => 'documents',:documents => true)
+          flash[:error] = 'Subject required.'
+          redirect_to :back
         end
-      else
-        flash[:error] = 'Subject required.'
-        redirect_to :back
       end
+
+
     end
   end
 
@@ -291,8 +298,11 @@ class AddendasController < ApplicationController
 
     if(User.subscontractor_list).present?
       User.subscontractor_list.each do |user|
+        addenda = AddendaNotification.where(:addenda_id => @addenda.id, :tender_id => @tender.id)
         message = "#{user.trade_name} has issued a new Addendum on project #{@tender.title}"
-        AddendaNotification.notification(user.id,@tender.id,session[:user_logged_id],@addenda.id,message,"HC")
+        unless addenda.present?
+          AddendaNotification.notification(user.id,@tender.id,session[:user_logged_id],@addenda.id,message,"HC")
+        end
       end
     end
 
@@ -412,9 +422,35 @@ class AddendasController < ApplicationController
   def get_addendas
     @tender = Tender.find(params[:tender_id])
     if session[:role] == 'Head Contractor'
-      @addendas = Addenda.where(:tender_id => @tender.id,:user_id => session[:user_logged_id],:status => 'completed')
+      addendas = Addenda.where(:tender_id => @tender.id,:user_id => session[:user_logged_id],:status => 'completed')
+      addenda_array = []
+      addenda_ids = []
+      if addendas.present?
+        addendas.each do |a|
+          if !addenda_array.include?(a.ref_no)
+            addenda_array << a.ref_no
+            addenda_ids << a.id
+          end
+
+        end
+      end
+
+      @addendas = Addenda.where(:id => addenda_ids)
+
     else
-      @addendas = Addenda.where(:tender_id => @tender.id)
+      addendas = Addenda.where(:tender_id => @tender.id, :status => 'completed')
+      addenda_array = []
+      addenda_ids = []
+      if addendas.present?
+        addendas.each do |a|
+          if !addenda_array.include?(a.ref_no)
+            addenda_array << a.ref_no
+            addenda_ids << a.id
+          end
+
+        end
+      end
+      @addendas = Addenda.where(:id => addenda_ids)
     end
 
     @addenda_document = Addenda.new
