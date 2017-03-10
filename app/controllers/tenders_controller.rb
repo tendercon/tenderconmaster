@@ -2801,7 +2801,7 @@ class TendersController < ApplicationController
     @tender_trades.each do |a|
       @trades_array << a.trade_id
     end
-
+    puts "@trades_array#{@trades_array.inspect}"
     @tender = Tender.find(tender_id)
     tab = params[:tab]
     if tab == 'invites'
@@ -2809,13 +2809,79 @@ class TendersController < ApplicationController
       @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
     elsif tab == 'request'
       @tender_request_quotes = TenderRequestQuote.where("tender_id = #{tender_id}  and tender_type !='invites'")
-      @tender_requesting = TenderRequestQuote.where("tender_id = #{tender_id} and  tender_type !='invites' and approved_date is  null and declined_date is  null")
+      @tender_requesting_quotes = TenderRequestQuote.where("tender_id = #{tender_id} and  tender_type !='invites' and approved_date is  null and declined_date is  null")
       puts "@tender_requesting ========> #{@tender_requesting.inspect}"
+      @tendering_sc_ids = []
+
+      if @tender_requesting_quotes.present?
+        @tender_requesting_quotes.each do |t|
+          @tendering_sc_ids << t.sc_id
+        end
+      end
+
+      if @trades_array.present?
+        @trades_array.each do |t|
+          if @tendering_sc_ids.present?
+            @tendering_sc_ids.uniq.each do |tsc|
+              quotes = TenderRequestQuote.where(:tender_id => tender_id,:trade_id => t,:sc_id => tsc).where("tender_type !='invites' and approved_date is null and declined_date is null")
+
+              if quotes.present?
+                if quotes.size > 1
+
+                  quotes.each_with_index do |q,index|
+                    if index > 0
+                      TenderRequestQuote.where(:id => q.id).delete_all
+                      puts "REQUESTING TEST1 ====> #{q.id}"
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+
+
+      @tender_requesting = TenderRequestQuote.where("tender_id = #{tender_id} and  tender_type !='invites' and approved_date is  null and declined_date is  null")
+
       @data = render :partial => 'tenders/sub_contractors_tab/requesting_tender'
     elsif tab == 'tendering'
-      @tendering_ids = []
+      @tendering_sc_ids = []
       @tender_invites = TenderInvite.where("tender_id = #{tender_id} and tender_acceptance_date is not null")
-      @tendering = TenderRequestQuote.where(:tender_id => tender_id).where("declined_date is null and request_date is not null and status='approved'")
+      @tendering_quotes = TenderRequestQuote.where(:tender_id => tender_id,:trade_id => @trades_array.uniq).where("declined_date is null and request_date is not null and status='approved'")
+
+      if @tendering_quotes.present?
+        @tendering_quotes.each do |t|
+          @tendering_sc_ids << t.sc_id
+        end
+      end
+
+      if @trades_array.present?
+        @trades_array.each do |t|
+          if @tendering_sc_ids.present?
+            @tendering_sc_ids.uniq.each do |tsc|
+              quotes = TenderRequestQuote.where(:tender_id => tender_id,:trade_id => t,:sc_id => tsc).where("declined_date is null and request_date is not null and status='approved'")
+
+              if quotes.present?
+                if quotes.size > 1
+
+                  quotes.each_with_index do |q,index|
+                    if index > 0
+                      TenderRequestQuote.where(:id => q.id).delete_all
+                      puts "TEST1 ====> #{q.id}"
+                    end
+                  end
+                end
+              end
+            end
+          end
+        end
+      end
+
+      @tendering = TenderRequestQuote.where(:tender_id => tender_id,:trade_id => @trades_array.uniq).where("declined_date is null and request_date is not null and status='approved'")
+
+
+
       @data = render :partial => 'tenders/sub_contractors_tab/tendering'
     end
   end
