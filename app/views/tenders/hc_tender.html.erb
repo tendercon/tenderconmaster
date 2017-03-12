@@ -527,9 +527,14 @@
     <% end %>
 
     <% if params[:subcontractors].present? %>
+      var request_target = 0;
+      <% if params[:open].present? %>
+        request_target = 1;
+      <% end %>
+
       $.ajax({
         method: "POST",
-        data: {tender_id:tender_id},
+        data: {tender_id:tender_id,request_target:request_target},
         url: "/tenders/get_latest_sub"
       }).done(function (data) {
         $('#sub').html(data);

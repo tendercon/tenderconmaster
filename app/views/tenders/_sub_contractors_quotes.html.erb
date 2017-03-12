@@ -3,6 +3,7 @@
     <div class="portlet-body">
       <div class="tabbable-line">
         <ul class="nav nav-tabs ">
+
           <li role="presentation" class="active">
             <a href="#invited_tender" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
               <span class="text">Invites</span>
@@ -93,9 +94,9 @@
 
 
             <div style="height: 10px"></div>
-            <div class="invited_div">
-              <%= render :partial => 'tenders/sub_contractors_tab/invited_user_tender',:locals => {:tender => @tender, :trades_ids => @trades_ids } %>
-            </div>
+              <div class="invited_div">
+                <%= render :partial => 'tenders/sub_contractors_tab/invited_user_tender',:locals => {:tender => @tender, :trades_ids => @trades_ids } %>
+              </div>
           </div>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="request_tender" aria-labelledby="request-tab">
@@ -289,6 +290,10 @@
     $('#trade3').multiselect();
     $('.tender_status').multiselect();
 
+    <% if @request.present? %>
+      $('#request-tab').click();
+    <% end %>
+
 
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -323,6 +328,8 @@
          });
        }
     });
+
+
 
   });
 </script>

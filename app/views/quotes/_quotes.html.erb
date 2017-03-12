@@ -172,7 +172,6 @@
 
 <script>
   $(document).ready(function(){
-
     $('.view').click(function(){
       var quote_id = $(this).attr('id');
 
@@ -283,7 +282,8 @@
           url: "/quotes/delete_quotes"
         }).done(function (data) {
           ids = [];
-          $('.quote_all_lists').html(data);
+          //$('.quote_all_lists').html(data);
+          location.reload();
         });
       }else{
         alert("Please select quote first.")

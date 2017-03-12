@@ -36,6 +36,9 @@
                <th>Status</th>
             <% end %>
             <th>Tender ID</th>
+            <% if session[:role] == 'Sub Contractor' %>
+              <th>Head Contractor</th>
+            <% end %>
             <th>Project Name</th>
             <th>Location</th>
             <th>Quote Due</th>
@@ -82,6 +85,9 @@
                     </a>
                   </td>-->
                 <%# end %>
+                <% if session[:role] == 'Sub Contractor' %>
+                    <td class="text-center"><%= t.user.trade_name %></td>
+                <% end %>
                 <td class="text-center"><%= t.title %></td>
                 <td class="text-center"><%= t.address %></td>
                 <td class="text-center"><%= get_tender_due t.id %></td>

@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-md-12">
-    <div class="portlet light bordered">
-      <div class="portlet-body form">
+    <!--<div class="portlet light bordered">-->
+      <!--<div class="portlet-body form">-->
         <div class="form-body">
           <div class="row">
             <div class="col-md-12">
-              <div class="portlet box green">
-                <div class="portlet-title">
+              <div class="portlet box ">
+                <!--<div class="portlet-title">
                   <div class="caption">
                     <label><i class="fa fa-pencil-square-o"></i> Edit Tender Details</label>
                   </div>
@@ -25,7 +25,7 @@
                     </div>
 
                   </div>
-                </div>
+                </div>-->
                 <div class="portlet-body">
                   <div class="portlet light bordered">
                     <div class="portlet-body form">
@@ -64,8 +64,8 @@
 
                                 <div class="form-group">
                                   <label class="control-label">Quotes Due</label> 
-                                  <div class="input-group date col-md-10 form_meridian_datetime" data-date="2012-12-21T15:25:00Z">
-                                    <input type="text" class="form-control quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>"/>
+                                  <div class="input-group date col-md-10 form_meridian_datetime" data-date="2012-12-21T15:25:00Z" readonly="">
+                                    <input type="text" class="form-control quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>" readonly/>
                                 <span class="input-group-btn">
                                   <button class="btn default date-reset" type="button">
                                     <i class="fa fa-times"></i>
@@ -81,7 +81,7 @@
                                   <% end %>
                                 </div>
 
-                                <div class="input-group date col-md-10 site_meridian_datetime" data-date="2012-12-21T15:25:00Z">
+                                <!--<div class="input-group date col-md-10 site_meridian_datetime" data-date="2012-12-21T15:25:00Z">
                                   <input type="text" class="form-control site" name="site[]"/>
                               <span class="input-group-btn">
                                   <button class="btn default date-reset" type="button">
@@ -99,10 +99,10 @@
                                       Add Inspection Date
                                     </button>
                                   </a>
-                                </div>
-                                <div style="height: 5px"></div>
+                                </div>-->
+                                <!--<div style="height: 5px"></div>
                                 <div class="previous_site">  
-                                  <% if @tender.tender_sites.present?  %>
+                                  <%# if @tender.tender_sites.present?  %>
                                       <table  class="table table-bordered responsive new_directory_document_table"   cellspacing="0" width="100%">
                                         <thead>
                                         <tr>
@@ -111,22 +111,22 @@
                                         </tr>
                                         </thead>
                                         <tbody class="searchable">
-                                        <% @tender.tender_sites.each_with_index do |a,index| %>
+                                        <%# @tender.tender_sites.each_with_index do |a,index| %>
                                             <tr>
-                                              <td><%= a.site_date %></td>
+                                              <td><%#= a.site_date %></td>
                                               <td>
                                                 <a href="#!">
-                                                  <button type="button" class="btn btn-danger remove" id="<%= a.id %>">
+                                                  <button type="button" class="btn btn-danger remove" id="<%#= a.id %>">
                                                     Remove
                                                   </button>
                                                 </a>
                                               </td>
                                             </tr>
-                                        <% end %>
+                                        <%# end %>
                                         </tbody>
                                       </table>
-                                  <% end %>
-                                </div>
+                                  <%# end %>
+                                </div>-->
                                 <div class="form-actions">
                                   <button type="submit" class="btn blue">Update</button>
                                 </div>
@@ -141,20 +141,22 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      <!--</div>-->
+    <!--</div>-->
   </div>
 </div>
 
 
 <script>
   $(document).ready(function(){
-    var date = new Date();
-    date.setDate(date.getDate());
+    var nowDate = new Date();
+    var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
     $('.form_meridian_datetime').datetimepicker(
         {
-          startDate: date,
+          startDate: today,
           format:"yyyy-mm-dd  HH:ii P",
+          minDate: moment(12, 'h'),
+          minView : 1,
           showMeridian:true,
           autoclose:true,
           todayBtn:true

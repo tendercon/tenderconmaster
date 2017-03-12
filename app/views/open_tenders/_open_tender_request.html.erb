@@ -1,66 +1,71 @@
-<div class="row">
-  <div class="container">
-    <div id="content">
-      <div class="tab-pane" id="orange">
-        <% if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
-         <div class="col-md-12">
-           <p class="text-center" style="font-size: 16px">
-             Note: All selected checkbox are being requested on Invited Tender
-           </p>
-         </div>
-        <% end %>
-        <div class="col-md-12">
-          <% @trade_cats = [] %>
-          <% @trades = [] %>
-          <% @trade_categories.each do |tc|  %> 
-              <% if (get_tender_trades @tender.id).present? %>
-                  <% (get_tender_trades @tender.id).each_with_index do |t,index| %>
-                      <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
-                          <div class="col-md-12"> 
-                            <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
-                                <% if !@trade_cats.include? tc.title %>
-                                    <% @trade_cats << tc.title %>
-                                    <h1> <%= tc.title %></h1> 
-                                <% end %>
-                            <% end %>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="col-md-6">
-
-                              <%# if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
-                                  <%# (get_open_tender_trades @tender.id,session[:user_logged_id]).each do |a| %>
-
-                                    <%# if !@trades.include? t.trade_id %>
-                                      <%# @trades << t.trade_id %>
-                                    <% if  ((get_open_tender_trades @tender.id,session[:user_logged_id])).present? %>
-                                      <% if ((get_open_tender_trades @tender.id,session[:user_logged_id])).include? t.trade_id %>
-                                          <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class" checked disabled> <%= get_trade_name t.trade_id %></label> 
-                                      <% else %>
-                                          <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
-                                      <% end %>
-                                    <% else %>
-                                  <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
-                                    <% end %>
-
-                                  <%# end %>
-                              <%# else %>
-                                  <%# if !@trades.include? t.trade_id %>
-
-                                  <%# end %>
-
-                              <%# end %>
-
-                            </div>
-                          </div>
-                      <% end %>
-                  <% end %>
-              <% end %> 
+<div class="scroller" style="height:400px;overflow-y:auto;" data-always-visible="1" data-rail-visible1="1">
+  <div class="row">
+    <div class="col-md-12">
+      <div id="content">
+        <div class="tab-pane" id="orange">
+          <% if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
+            <div class="col-md-12">
+              <div class="text-center">
+                <p class="text-center" style="font-size: 16px">
+                  Note: All selected checkbox are being requested on Invited Tender
+                </p>
+              </div>
+            </div>
           <% end %>
+          <div class="col-md-12">
+            <% @trade_cats = [] %>
+            <% @trades = [] %>
+            <% @trade_categories.each do |tc|  %> 
+              <% if (get_tender_trades @tender.id).present? %>
+                <% (get_tender_trades @tender.id).each_with_index do |t,index| %>
+                  <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                    <div class="col-md-12"> 
+                      <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                        <% if !@trade_cats.include? tc.title %>
+                          <% @trade_cats << tc.title %>
+                          <h1> <%= tc.title %></h1> 
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="col-md-6">
+
+                        <%# if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
+                        <%# (get_open_tender_trades @tender.id,session[:user_logged_id]).each do |a| %>
+
+                        <%# if !@trades.include? t.trade_id %>
+                        <%# @trades << t.trade_id %>
+                        <% if  ((get_open_tender_trades @tender.id,session[:user_logged_id])).present? %>
+                          <% if ((get_open_tender_trades @tender.id,session[:user_logged_id])).include? t.trade_id %>
+                            <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class" checked disabled> <%= get_trade_name t.trade_id %></label> 
+                          <% else %>
+                            <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
+                          <% end %>
+                        <% else %>
+                          <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
+                        <% end %>
+
+                        <%# end %>
+                        <%# else %>
+                        <%# if !@trades.include? t.trade_id %>
+
+                        <%# end %>
+
+                        <%# end %>
+
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %> 
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 
 <input type="hidden" class="tender_id" value="<%= @tender.id %>">

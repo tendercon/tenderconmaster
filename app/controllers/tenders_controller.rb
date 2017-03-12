@@ -23,6 +23,9 @@ class TendersController < ApplicationController
         @trade_names << t.name
       end
     end
+    @quote_due_default = (Time.now).end_of_day
+    @due_default = ((@quote_due_default - 7.hours) + 1.minute) + 14.days
+    puts "TEST ==============> #{@due_default.strftime("%Y-%m-%d %I:%M %p")}"
 
     if params[:info_id].present?
       @tender = Tender.find(params[:info_id])
@@ -464,9 +467,9 @@ class TendersController < ApplicationController
 
             unless invt.present?
               if user.present?
-                InvitedTenderNotification.notification(user.id,tender_id,tender.user_id,a.id,"#{tender.user.trade_name} has invited you to tender on their project #{tender.title} - trade #{t.name}","HC")
+                InvitedTenderNotification.notification(user.id,tender_id,tender.user_id,a.id,"#{tender.user.trade_name} has invited you to tender on their project #{tender.title} - trade #{t.name}","HC",t.id)
               else
-                InvitedTenderNotification.notification(0,tender_id,tender.user_id,a.id,"#{tender.user.trade_name} has invited you to tender on their project #{tender.title} - trade #{t.name}","HC",a.email)
+                InvitedTenderNotification.notification(0,tender_id,tender.user_id,a.id,"#{tender.user.trade_name} has invited you to tender on their project #{tender.title} - trade #{t.name}","HC",t.id,a.email)
               end
 
             end
@@ -593,20 +596,13 @@ class TendersController < ApplicationController
     else
       @trade_categories = TradeCategory.all
       @ip = request.host_with_port
-
+      @all_tenders = Tender.where(:publish => true).count()
 
       open_tenders = OpenTender.where(:user_id => session[:user_logged_id])
       tender_arr = []
       if open_tenders.present?
         open_tenders.each do |a|
           tender_arr << a.tender_id
-          # invite = TenderInvite.where(:tender_id => a.tender_id, :user_id => session[:user_logged_id]).first
-          # if invite.present?
-          #   OpenTender.where(:tender_id => a.tender_id,:user_id => session[:user_logged_id]).delete_all()
-          # else
-          #   tender_arr << a.tender_id
-          # end
-
         end
       end
 
@@ -939,14 +935,14 @@ class TendersController < ApplicationController
           sc = User.find(params[:sc_id])
           trade = Trade.find(iu.trade_id)
           if iu.status == 'accepted'
-            invites = InvitedTenderNotification.where(:sc_id => params[:sc_id], :tender_id => tender_id,:tender_invite_id => iu.id)
+            invites = InvitedTenderNotification.where(:sc_id => params[:sc_id], :tender_id => tender_id,:trade_id => iu.trade_id)
             unless invites.present?
-              InvitedTenderNotification.notification(params[:sc_id],tender_id,tender.user_id,iu.id,"#{sc.trade_name} has accepted your invitation to tender on project #{tender.title} - trade #{trade.name}","SC")
+              InvitedTenderNotification.notification(params[:sc_id],tender_id,tender.user_id,iu.id,"#{sc.trade_name} has accepted your invitation to tender on project #{tender.title} - trade #{trade.name}","SC",iu.trade_id)
             end
           else
-            invites = InvitedTenderNotification.where(:sc_id => params[:sc_id], :tender_id => tender_id,:tender_invite_id => iu.id)
+            invites = InvitedTenderNotification.where(:sc_id => params[:sc_id], :tender_id => tender_id,:trade_id => iu.trade_id)
             unless invites.present?
-              InvitedTenderNotification.notification(params[:sc_id],tender_id,tender.user_id,iu.id,"#{sc.trade_name} has declined your invitation to tender on project #{tender.title} - trade #{trade.name}","SC")
+              InvitedTenderNotification.notification(params[:sc_id],tender_id,tender.user_id,iu.id,"#{sc.trade_name} has declined your invitation to tender on project #{tender.title} - trade #{trade.name}","SC",iu.trade_id)
             end
           end
         end
@@ -1009,14 +1005,14 @@ class TendersController < ApplicationController
           sc = User.find(params[:sc_id])
           trade = Trade.find(iu.trade_id)
           if iu.status == 'accepted'
-            invites = InvitedTenderNotification.where(:sc_id => params[:sc_id], :tender_id => tender_id,:tender_invite_id => iu.id)
+            invites = InvitedTenderNotification.where(:sc_id => params[:sc_id], :tender_id => tender_id,:trade_id => iu.trade_id)
             unless invites.present?
-              InvitedTenderNotification.notification(params[:sc_id],tender_id,tender.user_id,iu.id,"#{sc.trade_name} has accepted your invitation to tender on project #{tender.title} - trade #{trade.name}","SC")
+              InvitedTenderNotification.notification(params[:sc_id],tender_id,tender.user_id,iu.id,"#{sc.trade_name} has accepted your invitation to tender on project #{tender.title} - trade #{trade.name}","SC",iu.trade_id)
             end
           else
-            invites = InvitedTenderNotification.where(:sc_id => params[:sc_id], :tender_id => tender_id,:tender_invite_id => iu.id)
+            invites = InvitedTenderNotification.where(:sc_id => params[:sc_id], :tender_id => tender_id,:trade_id => iu.trade_id)
             unless invites.present?
-              InvitedTenderNotification.notification(params[:sc_id],tender_id,tender.user_id,iu.id,"#{sc.trade_name} has declined your invitation to tender on project #{tender.title} - trade #{trade.name}","SC")
+              InvitedTenderNotification.notification(params[:sc_id],tender_id,tender.user_id,iu.id,"#{sc.trade_name} has declined your invitation to tender on project #{tender.title} - trade #{trade.name}","SC",iu.trade_id)
             end
           end
         end
@@ -2381,6 +2377,21 @@ class TendersController < ApplicationController
 
   def update
     @tender = Tender.find(params[:id])
+
+
+    Tender.where(:id => @tender.id).update_all(
+      :client => params[:client],
+      :architect => params[:architect],
+      :tender_value_id => params[:values],
+      :description => params[:about_me]
+    )
+
+    if params[:quote].present?
+      TenderQuote.where(:tender_id => @tender.id).update_all(:quote_date => params[:quote])
+    end
+
+    redirect_to "/tenders/hc_tender?id=#{@tender.id}"
+
   end
 
   def destroy
@@ -2545,6 +2556,17 @@ class TendersController < ApplicationController
     @tender_invite_counts = TenderInvite.tender_invites(@tender.id)
     @tender_opened_counts = TenderInvite.tender_opened(@tender.id)
     @tender_accpeted_counts = TenderInvite.tender_accepted(@tender.id)
+
+    if params[:request_target].present?
+      if params[:request_target].to_i == 1
+        @request = 1
+      else
+        @request = nil
+      end
+    else
+      @request = nil
+    end
+
     @data = render :partial => 'tenders/sub_contractors_quotes'
   end
 
@@ -3058,9 +3080,9 @@ class TendersController < ApplicationController
           end
         trade = Trade.find(trades[index])
         if user.present?
-          InvitedTenderNotification.notification(user.id,@tender.id,@tender.user_id,invite.id,"#{@tender.user.trade_name} has invited you to tender on their project #{@tender.title} - trade #{trade.name} ","HC")
+          InvitedTenderNotification.notification(user.id,@tender.id,@tender.user_id,invite.id,"#{@tender.user.trade_name} has invited you to tender on their project #{@tender.title} - trade #{trade.name} ","HC",trade.id)
         else
-          InvitedTenderNotification.notification(0,@tender.id,@tender.user_id,invite.id,"#{@tender.user.trade_name} has invited you to tender on their project #{@tender.title} - trade #{trade.name} ","HC",e)
+          InvitedTenderNotification.notification(0,@tender.id,@tender.user_id,invite.id,"#{@tender.user.trade_name} has invited you to tender on their project #{@tender.title} - trade #{trade.name} ","HC",trade.id,e)
         end
 
           invite.save

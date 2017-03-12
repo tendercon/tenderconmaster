@@ -132,7 +132,7 @@
       <!--<div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
-            <div id="map" style="height:322px;width:450px;"></div> 
+            <div id="map" style="height:322px;width:532px;"></div> 
           </div>
         </div>
       <!--</div>-->
@@ -144,8 +144,8 @@
           <div class="form-body">
             <div class="form-group">
               <label class="control-label">Quotes Due</label> 
-              <div class="input-group date col-md-10 form_meridian_datetime" data-date="2012-12-21T15:25:00Z" id="form_meridian_datetime">
-                <input type="text" class="form-control quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>"/>
+              <div class="input-group date col-md-11 form_meridian_datetime" data-date="2012-12-21T15:25:00Z" id="form_meridian_datetime">
+                <input type="text" class="form-control quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : @due_default.strftime("%Y-%m-%d %I:%M %p") : @due_default.strftime("%Y-%m-%d %I:%M %p") %>" readonly/>
                   <span class="input-group-btn">
                       <button class="btn default date-reset" type="button">
                           <i class="fa fa-times"></i>
@@ -164,6 +164,28 @@
             </div>
           </div>
         </div>
+      <!--<div class="form-group">
+        <div class="col-md-3">
+          <div class="input-group">
+            <input type="text" class="form-control timepicker timepicker-no-seconds">
+              <span class="input-group-btn">
+                <button class="btn default timepicker-no-seconds" type="button">
+                    <i class="fa fa-clock-o"></i>
+                </button>
+              </span>
+          </div>
+        </div>
+      </div>
+      <div class='col-sm-6'>
+        <div class="form-group">
+          <div class='input-group date' id='datetimepicker1'>
+            <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+          </div>
+        </div>
+      </div>-->
       <!--</div>-->
     </div>
 
@@ -321,6 +343,10 @@
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8&libraries=places&sensor=false"></script> 
 <script>
   $(document).ready(function(){
+    /*$('.timepicker-no-seconds').timepicker({
+      autoclose: true,
+      minuteStep: 5
+    });*/
 
     $('#categories').change(function(){
       var val = $(this).val();
@@ -337,14 +363,14 @@
       }
     });
 
-    $('.quote_description').keyup(function(){
+    /*$('.quote_description').keyup(function(){
       var val = $(this).val();
 
       if(val.length > 0){
         //activate_info_btn();
       }
 
-    });
+    });*/
 
 
 
@@ -491,7 +517,7 @@
       }
     });
 
-    $('.quote_calender').click(function(){
+    /*$('.quote_calender').click(function(){
       $('#datetimepicker1').datetimepicker({ minDate:new Date()});
 
       if(($('.quote').val()).length > 0){
@@ -500,7 +526,7 @@
         $(".quote_description").prop('disabled', true);
       }
 
-    })
+    })*/
 
     var nowDate = new Date();
     var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
@@ -508,11 +534,12 @@
       startDate: today,
       format:"yyyy-mm-dd  HH:ii P",
       minDate: moment(12, 'h'),
+      minView : 1,
       showMeridian:true,
       autoclose:true,
       todayBtn:true
     });
-    $('.site_meridian_datetime').datetimepicker({
+    /*$('.site_meridian_datetime').datetimepicker({
       startDate: today,
       format:"yyyy-mm-dd  HH:ii P",
       minDate: moment(12, 'h'),
@@ -523,7 +550,7 @@
 
     $('.site_calendar').click(function(){
       $('#picker1').datetimepicker({ minDate:new Date()});
-    })
+    })*/
 
     $('.add').click(function () {
       if($('.site').val().length <= 0){

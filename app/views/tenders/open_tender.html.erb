@@ -7,7 +7,7 @@
         <i class="widget-thumb-icon bg-green icon-bulb"></i>
         <div class="widget-thumb-body">
           <span class="widget-thumb-subtitle">TENDERS</span>
-          <span class="widget-thumb-body-stat" data-counter="counterup" data-value="7,644">0</span>
+          <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<%= @all_tenders %>"><%= @all_tenders %></span>
         </div>
       </div>
     </div>
@@ -21,7 +21,7 @@
         <i class="widget-thumb-icon bg-red icon-layers"></i>
         <div class="widget-thumb-body">
           <span class="widget-thumb-subtitle">TENDERS</span>
-          <span class="widget-thumb-body-stat" data-counter="counterup" data-value="1,293">0</span>
+          <span class="widget-thumb-body-stat" data-counter="counterup" data-value="<%= @tenders.present? ? @tenders.size : 0 %>"><%= @tenders.present? ? @tenders.size : 0 %></span>
         </div>
       </div>
     </div>
@@ -46,19 +46,27 @@
   <div class="text-center">
     <div class="col-md-12">
       <!-- BEGIN WIDGET THUMB -->
-      <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
-        <h3 class="text-center">OPEN TENDERS</h3>
-      </div>
-      <!-- END WIDGET THUMB -->
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <td colspan="2">
+            <h3 class="text-center">OPEN TENDERS</h3>
+          </td>
+        </tr>
+        </thead>
+      </table>
+
     </div>
     <div class="col-md-12">
-      <!-- BEGIN WIDGET THUMB -->
-      <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
-        </p>
-      </div>
-      <!-- END WIDGET THUMB -->
+      <table class="table table-bordered">
+        <thead>
+           <tr>
+             <td colspan="2">
+               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s
+             </td>
+           </tr>
+        </thead>
+      </table>
     </div>
 
   </div>
@@ -167,265 +175,268 @@
               </div>
             </div>
             <div class="modal-body open_tender_body">
-              <input type="hidden" class="tender_id" value="<%= u.id %>">
-              <div class="row">
-                <!--<div class="row">
-                  <div class="col-md-11">
-                    <button class="btn btn-default pull-right why_quote">
-                      Why Should i quote to this Tender?
-                    </button>
-                  </div>
-                </div>-->
+              <div class="scroller" style="height:400px" data-always-visible="1" data-rail-visible1="1">
+                <input type="hidden" class="tender_id" value="<%= u.id %>">
                 <div class="row">
-                  <div class="container">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="tabbable-line">
-                          <ul class="nav nav-tabs ">
-                            <li class="active"><a href="#red<%= u.id%>" data-toggle="tab" id="<%= u.id %>">Details</a></li>
-                            <li><a href="#orange<%= u.id%>" data-toggle="tab" id="<%= u.id %>">Trades</a></li>
-                            <li><a href="#yellow<%= u.id%>" data-toggle="tab" id="<%= u.id %>">Documents</a></li>
-                            <li><a href="#green<%= u.id%>" data-toggle="tab" id="<%= u.id %>">Map</a></li>
-                            <li><a href="#blue<%= u.id%>" data-toggle="tab" id="<%= u.id %>"></a></li>
-                          </ul>
+                  <!--<div class="row">
+                    <div class="col-md-11">
+                      <button class="btn btn-default pull-right why_quote">
+                        Why Should i quote to this Tender?
+                      </button>
+                    </div>
+                  </div>-->
+                  <div class="row">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="tabbable-line">
+                            <ul class="nav nav-tabs ">
+                              <li class="active"><a href="#red<%= u.id%>" data-toggle="tab" id="<%= u.id %>">Details</a></li>
+                              <li><a href="#orange<%= u.id%>" data-toggle="tab" id="<%= u.id %>">Trades</a></li>
+                              <li><a href="#yellow<%= u.id%>" data-toggle="tab" id="<%= u.id %>">Documents</a></li>
+                              <li><a href="#green<%= u.id%>" data-toggle="tab" id="<%= u.id %>">Map</a></li>
+                              <li><a href="#blue<%= u.id%>" data-toggle="tab" id="<%= u.id %>"></a></li>
+                            </ul>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-md-12">
-                    <div style="height: 30px"></div>
-                    <div id="my-tab-content" class="tab-content">
+                    <div class="col-md-12">
+                      <div style="height: 30px"></div>
+                      <div id="my-tab-content" class="tab-content">
 
-                      <div class="tab-pane active" id="red<%= u.id%>">
-                        <div class="row">
+                        <div class="tab-pane active" id="red<%= u.id%>">
+                          <div class="row">
 
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <div class="col-md-3">
+                                <label>Tender ID</label>
+                              </div>
+
+                              <div class="col-md-9">
+                                <label><%= u.tendercon_id %></label>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Status</label>
+                              </div>
+
+                              <div class="col-md-9">
+                                <% if u.status == '1' %>
+                                    <label>Tendering-The Head Contractor still tendering for this project.</label>
+                                <% else %>
+                                    <label>Awarded-This tender has been awarded to the Head Contractor </label>
+                                <% end %>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Head Contractor</label>
+                              </div>
+
+                              <div class="col-md-9">
+                                <label><%= return_hc_name u.user_id %></label>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Client</label>
+                              </div>
+
+                              <div class="col-md-9">
+                                <label><%= u.client.present? ? u.client : '-------' %></label>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Architect</label>
+                              </div>
+
+                              <div class="col-md-9">
+                                <label><%= u.architect.present? ? u.architect : '-------' %></label>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Sector</label>
+                              </div>
+
+                              <div class="col-md-9">
+                                <label><%= get_categoty_name u.category_id %></label>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Value</label>
+                              </div>
+
+                              <div class="col-md-9">
+                                <label><%= get_value_name u.tender_value_id %></label>
+                              </div>
+
+                              <div class="col-md-3">
+                                <label>Description</label>
+                              </div>
+
+                              <div class="col-md-9">
+                                <label><%=  u.description.present? ? u.description.html_safe : '-------' %></label>
+                              </div>
+                              <% if u.address_terms != "on"  %>
+                                  <div class="col-md-3">
+                                    <label>Address</label>
+                                  </div>
+
+                                  <div class="col-md-9">
+                                    <label><%=  u.address %></label>
+                                  </div>
+                              <% end %>
+
+                              <div class="col-md-3">
+                                <label>Distance from me </label>
+                              </div>
+
+                              <div class="col-md-9">
+                                <label><%= get_distance u.id,session[:user_logged_id] %></label>
+                              </div>
+
+                              <% if (get_tender_sites_per_user u.id).present? %>
+                                  <div class="col-md-3">
+                                    <label>Site Inspection</label>
+                                  </div>
+                                  <div class="col-md-9"></div>
+                                  <% (get_tender_sites_per_user u.id).each do |a| %>
+                                      <div class="col-md-6"></div>
+                                      <div class="col-md-6"><label><%= a.site_date %></label></div>
+                                  <% end %>
+                              <% end %>
+                              <div class="col-md-3">
+                                <label>Quote</label>
+                              </div>
+                              <div class="col-md-9">
+                                <label><%= u.tender_quote.quote_date %></label>
+                              </div>
+                            </div>
+                          </div>
+                          <div style="height: 100px"></div>
                         </div>
-                        <div class="row">
+                        <div class="tab-pane" id="orange<%= u.id%>">
                           <div class="col-md-12">
-                            <div class="col-md-3">
-                              <label>Tender ID</label>
-                            </div>
-
-                            <div class="col-md-9">
-                              <label><%= u.tendercon_id %></label>
-                            </div>
-
-                            <div class="col-md-3">
-                              <label>Status</label>
-                            </div>
-
-                            <div class="col-md-9">
-                              <% if u.status == '1' %>
-                                  <label>Tendering-The Head Contractor still tendering for this project.</label>
-                              <% else %>
-                                  <label>Awarded-This tender has been awarded to the Head Contractor </label>
-                              <% end %>
-                            </div>
-
-                            <div class="col-md-3">
-                              <label>Head Contractor</label>
-                            </div>
-
-                            <div class="col-md-9">
-                              <label><%= return_hc_name u.user_id %></label>
-                            </div>
-
-                            <div class="col-md-3">
-                              <label>Client</label>
-                            </div>
-
-                            <div class="col-md-9">
-                              <label><%= u.client.present? ? u.client : '-------' %></label>
-                            </div>
-
-                            <div class="col-md-3">
-                              <label>Architect</label>
-                            </div>
-
-                            <div class="col-md-9">
-                              <label><%= u.architect.present? ? u.architect : '-------' %></label>
-                            </div>
-
-                            <div class="col-md-3">
-                              <label>Sector</label>
-                            </div>
-
-                            <div class="col-md-9">
-                              <label><%= get_categoty_name u.category_id %></label>
-                            </div>
-
-                            <div class="col-md-3">
-                              <label>Value</label>
-                            </div>
-
-                            <div class="col-md-9">
-                              <label><%= get_value_name u.tender_value_id %></label>
-                            </div>
-
-                            <div class="col-md-3">
-                              <label>Description</label>
-                            </div>
-
-                            <div class="col-md-9">
-                              <label><%=  u.description.present? ? u.description.html_safe : '-------' %></label>
-                            </div>
-                            <% if u.address_terms != "on"  %>
-                                <div class="col-md-3">
-                                  <label>Address</label>
-                                </div>
-
-                                <div class="col-md-9">
-                                  <label><%=  u.address %></label>
-                                </div>
-                            <% end %>
-
-                            <div class="col-md-3">
-                              <label>Distance from me </label>
-                            </div>
-
-                            <div class="col-md-9">
-                              <label><%= get_distance u.id,session[:user_logged_id] %></label>
-                            </div>
-
-                            <% if (get_tender_sites_per_user u.id).present? %>
-                                <div class="col-md-3">
-                                  <label>Site Inspection</label>
-                                </div>
-                                <div class="col-md-9"></div>
-                                <% (get_tender_sites_per_user u.id).each do |a| %>
-                                    <div class="col-md-6"></div>
-                                    <div class="col-md-6"><label><%= a.site_date %></label></div>
-                                <% end %>
-                            <% end %>
-                            <div class="col-md-3">
-                              <label>Quote</label>
-                            </div>
-                            <div class="col-md-9">
-                              <label><%= u.tender_quote.quote_date %></label>
-                            </div>
+                            <% @trade_categories.each do |tc|  %> 
+                                <div class="<%= tc.title %>" id="<%= tc.title %>"> 
+                                  <% if(check_if_categories_has_trade u.id,tc.id) %>
+                                      <h1> <%= tc.title %></h1> 
+                                  <% end %>
+                                  <% if (get_tender_trades u.id).present? %>
+                                      <% (get_tender_trades u.id).each_with_index do |t,index| %>
+                                          <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                                              <div class="text-center">
+                                                <label><%= get_trade_name t.trade_id %></label>
+                                              </div>
+                                              <div style="height: 10px"></div>
+                                          <% end %>
+                                      <% end %>
+                                  <% end %>
+                                </div> 
+                            <% end %> 
                           </div>
                         </div>
-                        <div style="height: 100px"></div>
-                      </div>
-                      <div class="tab-pane" id="orange<%= u.id%>">
-                        <div class="col-md-12">
-                          <% @trade_categories.each do |tc|  %> 
-                            <div class="<%= tc.title %>" id="<%= tc.title %>"> 
-                              <% if(check_if_categories_has_trade u.id,tc.id) %>
-                                <h1> <%= tc.title %></h1> 
-                              <% end %>
-                              <% if (get_tender_trades u.id).present? %>
-                                <% (get_tender_trades u.id).each_with_index do |t,index| %>
-                                  <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
-                                      <div class="text-center">
-                                        <label><%= get_trade_name t.trade_id %></label>
-                                      </div>
-                                      <div style="height: 10px"></div>
-                                  <% end %>
-                                <% end %>
-                              <% end %>
-                            </div> 
-                          <% end %> 
-                        </div>
-                      </div>
-                      <div class="tab-pane" id="yellow<%= u.id%>">
-                        <div style="height: 135px"></div>
-                        <div class="col-md-12">
-                          <div class="text-center">
+                        <div class="tab-pane" id="yellow<%= u.id%>">
+                          <div style="height: 135px"></div>
+                          <div class="col-md-12">
+                            <div class="text-center">
                               <i class="fa fa-file fa-4x" aria-hidden="true"></i>
-                          </div>
-                          <br>
-                          <% if !u.hide_document.present? || u.hide_document == '0'  %>
-                            <div class="col-md-12">
+                            </div>
+                            <br>
+                            <% if !u.hide_document.present? || u.hide_document == '0'  %>
+                                <div class="col-md-12">
 
-                              <% if (get_tender_document_package u.id).present? %>
-                                <p class="text-center" style="font-size: 18px">
-                                  <b>Head Contractor has uploaded documents</b>
-                                </p>
-                                <select onchange="location = this.options[this.selectedIndex].value;" class="form-control download">
-                                  <option value="#!">None</option>
-                                  <option value="<%= "http://"+@ip+"/assets/tender/document/Fullset-#{u.tendercon_id}.zip" %>">Full set</option>
-                                  <% (get_tender_document_package u.id).each do |d| %>
-                                    <option value="<%= d.url %>"><%= File.basename(d.url) %></option>
+                                  <% if (get_tender_document_package u.id).present? %>
+                                      <p class="text-center" style="font-size: 18px">
+                                        <b>Head Contractor has uploaded documents</b>
+                                      </p>
+                                      <select onchange="location = this.options[this.selectedIndex].value;" class="form-control download">
+                                        <option value="#!">None</option>
+                                        <option value="<%= "http://"+@ip+"/assets/tender/document/Fullset-#{u.tendercon_id}.zip" %>">Full set</option>
+                                        <% (get_tender_document_package u.id).each do |d| %>
+                                            <option value="<%= d.url %>"><%= File.basename(d.url) %></option>
+                                        <% end %>
+                                      </select>
+                                      <div style="height: 40px"></div>
+                                  <% else %>
+                                      <p class="text-center" style="font-size: 18px">
+                                        <b>Head Contractor has not uploaded any documents yet</b>
+                                      </p>
+                                      <p class="text-center" style="font-size: 12px">
+                                        Document will be available after your request has been approved
+                                      </p>
+                                      <p class="text-center" style="font-size: 12px">
+                                        Press the [I AM INTERESTED] below to notify Head Contractor.
+                                      </p>
+                                      <div style="height: 40px"></div>
                                   <% end %>
-                                </select>
+                                </div>
+                                <div style="height: 100px"></div>
+                            <% else %>
+                                <div class="col-md-12">
+                                  <p class="text-center" style="font-size: 18px">
+                                    <b>Head Contractor has hidden the documents</b>
+                                  </p>
+                                  <p class="text-center" style="font-size: 16px">
+                                    Documents will be available after your request approved
+                                  </p>
                                   <div style="height: 40px"></div>
-                              <% else %>
-                                <p class="text-center" style="font-size: 18px">
-                                  <b>Head Contractor has not uploaded any documents yet</b>
+                                </div>
+                                <div style="height: 100px"></div>
+                            <% end %>
+
+                          </div>
+
+                        </div>
+                        <div class="tab-pane" id="green<%= u.id%>">
+                          <% if u.address_terms != 'on'  %>
+                              <input type="hidden"  class="tenders" value="<%= u.id %>">
+                              <input type="hidden"  class="add<%= u.id %>" value="<%= u.address %>">
+
+                              <div class="col-md-12 ">
+                                <div style="height: 35px"></div>
+                                 <div id="map_<%= u.id %>" style="height:250px;width:570px;"></div>
+                                <p class="text-center" style="font-size: 14px">
+                                  <b>Address: <%= u.address %></b>
                                 </p>
-                                <p class="text-center" style="font-size: 12px">
-                                  Document will be available after your request has been approved
-                                </p>
-                                <p class="text-center" style="font-size: 12px">
-                                  Press the [I AM INTERESTED] below to notify Head Contractor.
-                                </p>
-                                  <div style="height: 40px"></div>
-                              <% end %>
-                            </div>
-                            <div style="height: 100px"></div>
+
+                              </div>
                           <% else %>
-                            <div class="col-md-12">
-                              <p class="text-center" style="font-size: 18px">
-                                <b>Head Contractor has hidden the documents</b>
-                              </p>
-                              <p class="text-center" style="font-size: 16px">
-                                Documents will be available after your request approved
-                              </p>
-                              <div style="height: 40px"></div>
-                            </div>
-                            <div style="height: 100px"></div>
+                              <div class="text-center">
+                                <p class="text-center" style="font-size: 18px">Map is hide by the Head Contractor.</p>
+                              </div>
                           <% end %>
 
                         </div>
-
                       </div>
-                      <div class="tab-pane" id="green<%= u.id%>">
-                        <% if u.address_terms != 'on'  %>
-                          <input type="hidden"  class="tenders" value="<%= u.id %>">
-                          <input type="hidden"  class="add<%= u.id %>" value="<%= u.address %>">
-
-                          <div class="col-md-12 ">
-                            <div style="height: 35px"></div>
-                             <div id="map_<%= u.id %>" style="height:250px;width:570px;"></div>
-                            <p class="text-center" style="font-size: 14px">
-                              <b>Address: <%= u.address %></b>
+                      <div class="quote_info" style="display: none;">
+                        <div class="row">
+                          <div style="height: 30px;"></div>
+                          <div class="col-md-12">
+                            <p class="text-center" style="font-size: 20px">
+                              Why Should i quote to this Tender?
                             </p>
-
+                            <br/><br/>
+                            <p class="text-center" style="font-size: 14px">
+                              Document will be available after your request has been approced
+                            </p>
+                            <p class="text-center" style="font-size: 14px">
+                              Press the[I AM INTERESTED] below to notify Head Contractor
+                            </p>
+                            <br/><br/>
+                            <p class="text-center" style="font-size: 14px">
+                              to find out more <a href="/invites">UPGRADE</a> to Professional now.
+                            </p>
                           </div>
-                        <% else %>
-                          <div class="text-center">
-                            <p class="text-center" style="font-size: 18px">Map is hide by the Head Contractor.</p>
-                          </div>
-                        <% end %>
-
-                      </div>
-                    </div>
-                    <div class="quote_info" style="display: none;">
-                      <div class="row">
-                        <div style="height: 30px;"></div>
-                        <div class="col-md-12">
-                          <p class="text-center" style="font-size: 20px">
-                            Why Should i quote to this Tender?
-                          </p>
-                          <br/><br/>
-                          <p class="text-center" style="font-size: 14px">
-                            Document will be available after your request has been approced
-                          </p>
-                          <p class="text-center" style="font-size: 14px">
-                            Press the[I AM INTERESTED] below to notify Head Contractor
-                          </p>
-                          <br/><br/>
-                          <p class="text-center" style="font-size: 14px">
-                            to find out more <a href="/invites">UPGRADE</a> to Professional now.
-                          </p>
                         </div>
                       </div>
-                    </div>
 
+                    </div>
                   </div>
                 </div>
               </div>
+
               <!--<div class="row">
                 <div class="form-group"></div>
                 <div class="text-center" style="background-color: #184a5f;height: 100px">
@@ -531,64 +542,67 @@
                 <input type="hidden" class="sc_id" value="<%= session[:user_logged_id] %>">
                 <input type="hidden" class="tender_id" value="<%= u.id %>">
                 <div class="modal-body" style="overflow-y: auto;height: 250px;">
-                  <div class="row">
-                    <div class="container">
-                      <div id="content">
-                        <div class="tab-pane" id="orange">
-                          <div class="row">
-                            <% @trade_cats = [] %>
-                            <% @trade_categories.each do |tc|  %> 
-                                <% if (get_tender_trades u.id).present? %>
-                                    <% (get_tender_trades u.id).each_with_index do |t,index| %>
-                                        <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
-                                            <div class="col-md-12"> 
-                                              <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
-                                                  <% if !@trade_cats.include? tc.title %>
-                                                      <% @trade_cats << tc.title %>
-                                                      <h1> <%= tc.title %></h1> 
-                                                  <% end %>
-                                              <% end %>
-                                            </div>
-                                            <div class="col-md-12">
-                                              <div class="col-md-4">
-                                                <% if (get_open_tender_trades u.id,session[:user_logged_id]).present? %>
-                                                    <% (get_open_tender_trades u.id,session[:user_logged_id]).each do |a| %>
-                                                        <% if a == t.trade_id %>
-                                                            <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class" checked disabled> <%= get_trade_name t.trade_id %></label> 
-                                                        <% else %>
-                                                            <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
-                                                        <% end %>
+                  <div class="scroller" style="height:400px" data-always-visible="1" data-rail-visible1="1">
+                    <div class="row">
+                      <div class="container">
+                        <div id="content">
+                          <div class="tab-pane" id="orange">
+                            <div class="row">
+                              <% @trade_cats = [] %>
+                              <% @trade_categories.each do |tc|  %> 
+                                  <% if (get_tender_trades u.id).present? %>
+                                      <% (get_tender_trades u.id).each_with_index do |t,index| %>
+                                          <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                                              <div class="col-md-12"> 
+                                                <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                                                    <% if !@trade_cats.include? tc.title %>
+                                                        <% @trade_cats << tc.title %>
+                                                        <h1> <%= tc.title %></h1> 
                                                     <% end %>
-                                                <% else %>
-                                                    <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
                                                 <% end %>
-
                                               </div>
-                                            </div>
-                                        <% end %>
-                                    <% end %>
-                                <% end %> 
-                            <% end %>
+                                              <div class="col-md-12">
+                                                <div class="col-md-4">
+                                                  <% if (get_open_tender_trades u.id,session[:user_logged_id]).present? %>
+                                                      <% (get_open_tender_trades u.id,session[:user_logged_id]).each do |a| %>
+                                                          <% if a == t.trade_id %>
+                                                              <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class" checked disabled> <%= get_trade_name t.trade_id %></label> 
+                                                          <% else %>
+                                                              <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
+                                                          <% end %>
+                                                      <% end %>
+                                                  <% else %>
+                                                      <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
+                                                  <% end %>
+
+                                                </div>
+                                              </div>
+                                          <% end %>
+                                      <% end %>
+                                  <% end %> 
+                              <% end %>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="form-group"></div>
-                    <div class="text-center">
-                      <% if (get_open_tender_trades u.id,session[:user_logged_id]).present? %>
-                          <a href="#!">
-                            <button class=" btn btn-info quotes" type="button">I AM INTERESTED</button>
-                          </a>
-                      <% else %>
-                          <a href="#!">
-                            <button class=" btn btn-info quotes" type="button" disabled>I AM INTERESTED</button>
-                          </a>
-                      <% end %>
+                    <div class="row">
+                      <div class="form-group"></div>
+                      <div class="text-center">
+                        <% if (get_open_tender_trades u.id,session[:user_logged_id]).present? %>
+                            <a href="#!">
+                              <button class=" btn btn-info quotes" type="button">I AM INTERESTED</button>
+                            </a>
+                        <% else %>
+                            <a href="#!">
+                              <button class=" btn btn-info quotes" type="button" disabled>I AM INTERESTED</button>
+                            </a>
+                        <% end %>
 
+                      </div>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>

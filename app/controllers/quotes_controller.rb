@@ -568,7 +568,27 @@ class QuotesController < ApplicationController
     if session[:role] == 'Head Contractor'
       @quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id)
     elsif session[:role] == 'Sub Contractor'
-      @quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id)
+
+      quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id)
+
+      if quotes.present?
+        @refs = []
+        @quote_array = []
+        @ref_array = []
+        quotes.each do |a|
+          @refs << a.ref_no
+          if !@ref_array.include?(a.ref_no)
+            @ref_array << a.ref_no
+            @quote_array << a.id
+          end
+        end
+        puts "@quote_array ============> #{@quote_array.inspect}"
+      end
+      @quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id,:id => @quote_array)
+      puts "@quotes =======> #{@quotes.inspect}"
+
+
+      #@quotes = Quote.where(:user_id => session[:user_logged_id],:tender_id => @tender.id)
 
       if @quotes.present?
         @refs = []

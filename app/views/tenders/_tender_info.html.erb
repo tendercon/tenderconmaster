@@ -189,6 +189,12 @@
                         <td> Title </td>
                         <td> <%= @tender.title %> </td>
                       </tr>
+                      <% if session[:role] == 'Sub Contractor' %>
+                        <tr>
+                          <td> Head Contractor </td>
+                          <td> <%= @tender.user.trade_name %> </td>
+                        </tr>
+                      <% end %>
                       <tr>
                         <td> Status </td>
                         <td>

@@ -132,7 +132,7 @@
             <% if @requested_tender_notifications.present? %>
                 <% @requested_tender_notifications.each do |r| %>
                     <li>
-                      <a href="<%= "/tenders/hc_tender?id=#{r.tender_id}&subcontractors=true"   %>">
+                      <a href="<%= "/tenders/hc_tender?id=#{r.tender_id}&subcontractors=true&open=1"   %>">
                         <span class="time"><%= (time_ago_in_words(r.created_at)).gsub("about", "") + " ago" %></span>
                       <span class="details">
                          <span class="label label-sm label-icon label-danger" style="background-color: #F4D03F ">
