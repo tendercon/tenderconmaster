@@ -80,6 +80,7 @@
 
               <%= form_tag subscriber_path(1),method: :put do %>
                   <br>
+                  <input type="hidden" name="user_plan" value="0">
                   <article>
                     <% if flash[:error].present? %>
                         <div id="error_explanation">
@@ -93,7 +94,7 @@
 
                   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button btn-success"
                           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                          data-description="A month's subscription"
+                          data-description="Card Details"
                           data-amount=""
                           data-panelLabel="Submit"
                           data-locale="auto"

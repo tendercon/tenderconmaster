@@ -7,7 +7,7 @@ class SubscribersController < ApplicationController
   def update
     @user = User.find(session[:user_logged_id])
     user_subscription = UserSubscription.where(:user_id => @user.id).first
-
+    user_plan = params[:user_plan]
     if user_subscription.present?
       customer = Stripe::Customer.retrieve(user_subscription.stripe_id)
       puts customer.inspect
@@ -34,22 +34,36 @@ class SubscribersController < ApplicationController
       session[:email2] = nil
     else
       token = params[:stripeToken]
+      if user_plan.to_i == 1
+        stripe_plan = 1002
+      elsif  user_plan.to_i == 2
+        stripe_plan = 1001
+      else
+        stripe_plan = 1003
+      end
+
       customer = Stripe::Customer.create(
          card: token,
-         plan: 1001,
+         plan: stripe_plan,
          email: @user.email
       )
+
+
 
       customer.sources.each do |c|
         @month = c.exp_month.inspect
         @year =  c.exp_year.inspect
       end
 
+
+      subscription_id = customer.subscriptions.first.id
+      puts "subscription_id ===========> #{subscription_id}"
       @subscriber = UserSubscription.new
       @subscriber.user_id = @user.id
       @subscriber.action_type = params[:action_type].present? ? params[:action_type]: nil
       @subscriber.card_number = nil
       @subscriber.subscribed = true
+      @subscriber.customer_subscription_id = subscription_id
       @subscriber.stripe_id = customer.id
       @subscriber.expiry_date = Date.new(@year.to_i,@month.to_i)
       @subscriber.save
@@ -71,7 +85,9 @@ class SubscribersController < ApplicationController
     elsif params[:admin_upgrade].present?
       redirect_to invites_path(:upgrade => true, :id =>params[:admin_upgrade])
     elsif params[:no_credit_card].present?
-      redirect_to '/users/profile?id=97&subscription=true&added_card=true'
+      redirect_to "/users/profile?id=#{@user.id}&subscription=true"
+    elsif user_plan.present?
+      redirect_to "/users/profile?id=#{@user.id}&subscription=true"
     else
       redirect_to billing_users_path
     end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170311123436) do
+ActiveRecord::Schema.define(version: 20170313113215) do
 
   create_table "addenda_notifications", force: :cascade do |t|
     t.integer  "sc_id",      limit: 4
@@ -720,23 +720,24 @@ ActiveRecord::Schema.define(version: 20170311123436) do
   end
 
   create_table "user_subscriptions", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
+    t.integer  "user_id",                  limit: 4
     t.boolean  "subscribed"
-    t.string   "stripe_id",   limit: 255
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.string   "stripe_id",                limit: 255
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
     t.date     "expiry_date"
-    t.boolean  "notify1",                 default: false
-    t.boolean  "notify2",                 default: false
-    t.boolean  "notify3",                 default: false
-    t.boolean  "notify4",                 default: false
-    t.boolean  "lightbox1",               default: false
-    t.boolean  "lightbox2",               default: false
-    t.boolean  "lightbox3",               default: false
-    t.boolean  "lightbox4",               default: false
-    t.boolean  "lightbox5",               default: false
-    t.string   "action_type", limit: 255
-    t.string   "card_number", limit: 255
+    t.boolean  "notify1",                              default: false
+    t.boolean  "notify2",                              default: false
+    t.boolean  "notify3",                              default: false
+    t.boolean  "notify4",                              default: false
+    t.boolean  "lightbox1",                            default: false
+    t.boolean  "lightbox2",                            default: false
+    t.boolean  "lightbox3",                            default: false
+    t.boolean  "lightbox4",                            default: false
+    t.boolean  "lightbox5",                            default: false
+    t.string   "action_type",              limit: 255
+    t.string   "card_number",              limit: 255
+    t.string   "customer_subscription_id", limit: 255
   end
 
   create_table "user_tenders", force: :cascade do |t|

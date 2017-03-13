@@ -3,7 +3,7 @@ class RequestUpgradesController < ApplicationController
   def save_request_upgrade
     user_id = params[:user_id]
     plan = params[:plan]
-
+    @user_plan = plan
     request_upgrade = RequestUpgrade.new
     request_upgrade.plan = plan
     request_upgrade.user_id = user_id
@@ -40,7 +40,7 @@ class RequestUpgradesController < ApplicationController
           TenderconMailer.delay.sent_request_upgrade(admin.email,name,@plan,admin_name)
         end
 
-        render :json => { :state => 'valid'}
+        render :json => { :state => 'valid',:plan => @user_plan}
       end
     else
       puts  "sadjh ========> #{user_id}"
@@ -58,12 +58,59 @@ class RequestUpgradesController < ApplicationController
         @amount = 49.50
       end
 
+      user_subscription = UserSubscription.where(:user_id => @user.id).first
+
+      if user_subscription.present?
+
+
+        if @user_plan.to_i == 1
+          stripe_plan = 1002
+        elsif  @user_plan.to_i == 2
+          stripe_plan = 1001
+        end
+
+        customer = Stripe::Customer.retrieve(user_subscription.stripe_id)
+        puts "customer.inspect =======> #{ customer.subscriptions.first.inspect}"
+
+        customer.sources.each do |a|
+          puts "a.id:#{a.id}"
+
+          @id =  a.id
+        end
+        @user_plan = 0
+        subscription = Stripe::Subscription.retrieve(user_subscription.customer_subscription_id)
+        subscription.plan = stripe_plan
+        subscription.save
+
+
+
+        # puts customer.inspect
+        # customer.sources.each do |a|
+        #   puts "a.id:#{a.id}"
+        #
+        #   @id =  a.id
+        # end
+        # puts "ID:#{@id}"
+        # card = customer.sources.retrieve(@id)
+        # card.delete
+        #
+        # cu = Stripe::Customer.retrieve(user_subscription.stripe_id)
+        # cu.card = params[:stripeToken]
+        # cu.save
+        # cu.sources.each do |c|
+        #   @month = c.exp_month.inspect
+        #   @year =  c.exp_year.inspect
+        # end
+
+      end
+
+
       UserPlan.where(:user_id => user_id).update_all(:plan => params[:plan].to_i, :amount => @amount)
       #request_upgrade = RequestUpgrade.new
       #request_upgrade.plan = plan
       #request_upgrade.user_id = user_id
       #request_upgrade.save
-      render :json => { :state => 'valid'}
+      render :json => { :state => 'valid',:plan => @user_plan}
     end
 
   end

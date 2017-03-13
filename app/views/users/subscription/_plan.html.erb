@@ -43,38 +43,19 @@
                           <!--<div style="height: 10px"></div>
                           <label style="color: red">Quote on 3 Tenders a Month</label>-->
                         </td>
-                        <td class="text-center">$<%= @user_plan.amount > 0 ? @user_plan.amount : @user_plan.amount.round.to_i %></td>
+                        <td class="text-center">$<%= @user_plan.plan.to_i > 0 ? @user_plan.amount : "0.0" %></td>
                         <td class="text-center"><%= (@user_plan.created_at + 30.days).strftime("%m/%d/%Y") %></td>
-                        <% if (!@request_upgrade.present? || @user_plan.amount.to_i > 0) && @user.user_subscription.present? %>
+                        <%# if (!@request_upgrade.present? || @user_plan.amount.to_i > 0) && @user.user_subscription.present? %>
                             <td class="text-center">
                               <a href="#!">
                                 <button class="btn btn-success upgrade">Upgrade To Professional</button>
                               </a>
                             </td>
-                        <% else %>
-                          <td class="text-center">
-                            <%= form_tag subscriber_path(1),method: :put do %>
-                                <input type="hidden" name="no_credit_card" value="true">
-                                <input type="hidden" name="action_type" value="profile_subscription">
-                                <article>
-                                  <% if flash[:error].present? %>
-                                      <div id="error_explanation">
-                                        <p><%= flash[:error] %></p>
-                                      </div>
-                                  <% end %>
-                                </article>
-                                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                                        data-description="A month's subscription"
-                                        data-amount=""
-                                        data-panelLabel="Submit"
-                                        data-locale="auto"
-                                        data-label="Upgrade To Professional"
-                                >
-                                </script>
-                            <% end %>
-                          </td>
-                        <% end %>
+                        <%# else %>
+                          <!--<td class="text-center">
+
+                          </td>-->
+                        <%# end %>
                       </tr>
                   <% else %>
                       <tr>
@@ -213,6 +194,7 @@
 
         </div>
     <% end %>
+
 
 
     <% if @user_plan.present? && @user_plan.plan.to_i == 1  %>
@@ -406,7 +388,54 @@
         </div>
         <br>
         <div class="modal-body">
-          <div class="row">
+          <div class="scroller" style="height:500px;" data-always-visible="1" data-rail-visible1="1">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-6">
+                  <div  style="height: 450px;width: 270px;background-color: darkgrey;border-radius: 5px">
+                    <div style="height: 180px"></div>
+
+                    <div class="document_spinner" style="display: none">
+                      <p class="text-center">
+                        <img src="assets/ring.gif" width="50px" height=50px">
+                      </p>
+                    </div>
+
+                  </div>
+                  <div style="height: 5px"></div>
+                  <div class="text-center">
+                    <button class="btn btn-info new_submit" id="2">
+                      12 MONTHS
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div  style="height: 450px;width: 270px;background-color: darkgrey;border-radius: 5px">
+                    <div style="height: 180px"></div>
+
+                    <div class="document_spinner" style="display: none">
+                      <p class="text-center">
+                        <img src="assets/ring.gif" width="50px" height=50px">
+                      </p>
+                    </div>
+
+                  </div>
+                  <div style="height: 5px"></div>
+                  <div class="text-center">
+                    <button class="btn btn-default new_submit" id="1">
+                      1 MONTH
+                    </button>
+                  </div>
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+
+          <!--<div class="row">
             <div class="form-group">
 
             </div>
@@ -458,7 +487,7 @@
                 <% end %>
               </a>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
     </div>
@@ -532,15 +561,65 @@
   </div>
 </div>
 
+<div class="plan_1" style="display: none">
+  <%= form_tag subscriber_path(1),method: :put do %>
+      <input type="hidden" name="no_credit_card" value="true">
+      <input type="hidden" name="action_type" value="profile_subscription">
+      <input type="hidden" name="user_plan" class="user_plan">
+      <article>
+        <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+        <% end %>
+      </article>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Tendercon Subscription"
+              data-amount=""
+              data-panelLabel="Submit"
+              data-locale="auto"
+              data-label="Upgrade To Professional">
+      </script>
+  <% end %>
+</div>
+
+<div class="plan_2" style="display: none">
+  <%= form_tag subscriber_path(1),method: :put do %>
+      <input type="hidden" name="no_credit_card" value="true">
+      <input type="hidden" name="action_type" value="profile_subscription">
+      <input type="hidden" name="user_plan" class="user_plan">
+      <article>
+        <% if flash[:error].present? %>
+            <div id="error_explanation">
+              <p><%= flash[:error] %></p>
+            </div>
+        <% end %>
+      </article>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+              data-description="Tendercon Subscription"
+              data-amount=""
+              data-panelLabel="Submit"
+              data-locale="auto"
+              data-label="Upgrade To Professional">
+      </script>
+  <% end %>
+</div>
+
+
+
 <script>
 
   <% if @user.user_subscription.present? %>
 
     <% if @user.user_subscription.action_type.present? %>
-      $('#new_paid_Modal').modal('show');
+      //$('#new_paid_Modal').modal('show');
       <% UserSubscription.update_action_type(@user.id) %>
     <% end %>
   <% end %>
+
+  $('.stripe-button-el').click()
 
   $('.upgrade_to_annual').click(function(){
     $('#paid_Modal').modal('show');
@@ -557,7 +636,7 @@
     }).done(function (data) {
       if(data.state == 'valid'){
         var current_user = <%= session[:user_logged_id] %>;
-        window.location = "users/profile?id="+current_user+"&subscription=true";
+        window.location = "/users/profile?id="+current_user+"&subscription=true";
       }
     });
   });
@@ -581,9 +660,7 @@
 
   $('.new_submit').click(function(){
     var user_id = <%= @user_plan.user_id %>;
-    var plan = $('input[name="optradio"]:checked').val();
-    alert(user_id);
-    alert(plan);
+    var plan = $(this).attr('id')//$('input[name="optradio"]:checked').val();
 
     $.ajax({
       method: "POST",
@@ -595,7 +672,26 @@
 
         <% if session[:role_type] == 'Admin' %>
             var current_user = <%= session[:user_logged_id] %>;
-            window.location = "/users/profile?id="+current_user+"&subscription=true";
+
+            if(parseInt(data.plan) == 1){
+
+              $('.plan_1').show();
+              $('.plan_2').hide();
+              $('.user_plan').val(1);
+            }else if(parseInt(data.plan) == 2){
+
+              $('.plan_2').show();
+              $('.plan_1').hide();
+              $('.user_plan').val(2);
+            }
+
+            if(parseInt(data.plan) > 0){
+              $('.stripe-button-el').click()
+            }else{
+              window.location = "/users/profile?id="+current_user+"&subscription=true";
+            }
+
+            //window.location = "/users/profile?id="+current_user+"&subscription=true";
         <% else %>
           $('#sent_Modal').modal('show');
         <% end %>
