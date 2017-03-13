@@ -46,11 +46,12 @@ class OpenTender < ActiveRecord::Base
                       if statuses[0] == 'rejected'
 
                         if user.address.present?
-                          puts "user.address.state =======> #{user.address.state}"
-                          puts "publish_tender.state =======> #{publish_tender.state}"
+
                           if user.address.state.present?
                             publish_tender = Tender.find(tender)
                             if user.address.state == publish_tender.state
+                              puts "user.address.state =======> #{user.address.state}"
+                              puts "publish_tender.state =======> #{publish_tender.state}"
                               open_tender.save
                             end
                           end
