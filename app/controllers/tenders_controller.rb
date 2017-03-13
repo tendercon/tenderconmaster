@@ -1091,7 +1091,9 @@ class TendersController < ApplicationController
 
   def create_tender_info
     tender_id = params[:tender_id]
-
+    @quote_due_default = (Time.now).end_of_day
+    @due_default = ((@quote_due_default - 7.hours) + 1.minute) + 14.days
+    puts "TEST ========>#{@due_default.inspect}"
     if tender_id.present?
       Tender.where(:id => tender_id).update_all(
         :title => params[:title],
@@ -1130,6 +1132,7 @@ class TendersController < ApplicationController
         TenderSite.where(:site_date => '').destroy_all()
         TenderSite.where(:user_id => session[:user_logged_id]).update_all(:tender_id => tender_id)
       end
+
       #redirect_to "/tenders/new_tender?reviews=true&info_id=#{tender_id}"
       redirect_to "/tenders/new_tender?trades=true&info_id=#{tender_id}"
     else
@@ -1216,6 +1219,7 @@ class TendersController < ApplicationController
         end
 
         puts "sdsdjhsdjshjdhsjshjshd----> #{@tender.errors.full_messages}"
+
         render 'new_tender'
       end
 
