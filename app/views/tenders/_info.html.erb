@@ -55,16 +55,17 @@
             <div class="form-body">
               <div class="form-group">
                 <label class="control-label">Quotes Due</label> 
+                <input type="text" class="form-control quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : @due_default.strftime("%Y-%m-%d %I:%M") : @due_default.strftime("%Y-%m-%d %I:%M") %>" />
                 <div class="input-group date  form_meridian_datetime" data-date="2012-12-21T15:25:00Z" id="form_meridian_datetime">
-                  <input type="text" class="form-control quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : @due_default.strftime("%Y-%m-%d %I:%M %p") : @due_default.strftime("%Y-%m-%d %I:%M %p") %>" readonly/>
-                  <span class="input-group-btn">
+
+                  <!--<span class="input-group-btn">
                       <button class="btn default date-reset" type="button">
                           <i class="fa fa-times"></i>
                       </button>
                       <button class="btn default date-set" type="button">
                           <i class="fa fa-calendar"></i>
                       </button>
-                  </span>
+                  </span>-->
                 </div>
 
                 <% if @quote_due_error.present? %>
@@ -380,6 +381,8 @@
       </div>
     </div>
 
+
+
     <input type="hidden" name="tender_id" value="<%= params[:info_id] %>">
 
 <% end %>
@@ -392,6 +395,8 @@
       autoclose: true,
       minuteStep: 5
     });*/
+
+
 
     $('#categories').change(function(){
       var val = $(this).val();
@@ -583,6 +588,14 @@
       showMeridian:true,
       autoclose:true,
       todayBtn:true
+    });
+
+    $('.quote').datetimepicker({
+      format: 'Y-m-d g:i A',
+      formatTime: 'g:i A',
+      ampm: true,
+      minDate: nowDate,
+
     });
     /*$('.site_meridian_datetime').datetimepicker({
       startDate: today,

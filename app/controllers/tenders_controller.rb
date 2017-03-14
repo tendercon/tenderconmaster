@@ -1117,7 +1117,7 @@ class TendersController < ApplicationController
       TenderSite.where(:tender_id => tender_id).destroy_all
       quotes = TenderQuote.new
       quotes.tender_id = tender_id
-      quotes.quote_date = params[:quote]
+      quotes.quote_date = params[:quote].to_datetime.strftime("%Y-%m-%d %H:%M %p")
       quotes.quote_description = params[:quote_description]
       quotes.save
 
@@ -1157,7 +1157,7 @@ class TendersController < ApplicationController
         if @tender.save
           quotes = TenderQuote.new
           quotes.tender_id = @tender.id
-          quotes.quote_date = params[:quote]
+          quotes.quote_date = params[:quote].to_datetime.strftime("%Y-%m-%d %H:%M %p")
           quotes.quote_description = params[:quote_description]
           quotes.save
 

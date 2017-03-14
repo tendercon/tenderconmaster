@@ -8,6 +8,19 @@ class HomeController < ApplicationController
     render :layout => 'landing_page'
   end
 
+  def features
+    render :layout => 'landing_page'
+  end
+
+  def pricing
+    render :layout => 'landing_page'
+  end
+
+  def company
+    render :layout => 'landing_page'
+  end
+
+
   def coming_soon
     user_loc = Geocoder.search("205/414 Garderners Rd, Rosebery, NSW 2018")
     puts "user_loc ====> #{user_loc.inspect}"

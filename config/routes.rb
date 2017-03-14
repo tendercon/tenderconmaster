@@ -156,6 +156,9 @@ Rails.application.routes.draw do
     collection do
       # get
        get 'coming_soon'
+       get 'features'
+       get 'pricing'
+       get 'company'
 
       # post
       post 'notify_tendercon'
