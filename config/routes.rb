@@ -159,6 +159,10 @@ Rails.application.routes.draw do
        get 'features'
        get 'pricing'
        get 'company'
+       get 'blog'
+       get 'contact'
+       get 'terms'
+       get 'policies'
 
       # post
       post 'notify_tendercon'

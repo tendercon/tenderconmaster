@@ -31,7 +31,7 @@
 <header id="header" class="header">
   <div class="container">
     <h1 class="logo">
-      <a href="index.html"><img src="/img/logos/tendercon_log_transparent.png" alt="" width="100px" height="40px"><span class="text"></span></a>
+      <a href="/home"><img src="/img/logos/tendercon_log_transparent.png" alt="" width="100px" height="40px"><span class="text"></span></a>
     </h1><!--//logo-->
     <nav class="main-nav navbar-right" role="navigation">
       <div class="navbar-header">
@@ -48,19 +48,15 @@
           <li class="<%= params[:action] == 'features' ? 'active' : nil %> nav-item"><a href="<%= features_home_index_path %>">Features</a></li>
           <li class="<%= params[:action] == 'pricing' ? 'active' : nil %> nav-item"><a href="<%= pricing_home_index_path %>">Pricing</a></li>
           <li class="<%= params[:action] == 'company' ? 'active' : nil %> nav-item"><a href="<%= company_home_index_path %>">Company</a></li>
-          <!--<li class="nav-item dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">More <i class="fa fa-angle-down"></i></a>
+          <li class="<%= params[:action] == 'blog' || params[:action] == 'contact' || params[:action] == 'policies' || params[:action] == 'terms' ? 'active' : nil %> nav-item dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Browse More <i class="fa fa-angle-down"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="about.html">About Us</a></li>
-              <li><a href="story-single.html">Customer Story Single</a></li>
-              <li><a href="blog.html">Blog</a></li>
-              <li><a href="blog-single.html">Blog Single</a></li>
-              <li><a href="support.html">Support Center</a></li>
-              <li><a href="career.html">Career</a></li>
-              <li><a href="job-single.html">Job Single</a></li>
-              <li><a href="contact.html">Contact</a></li>
+              <li><a href="<%= blog_home_index_path %>">Blog</a></li>
+              <li><a href="<%= contact_home_index_path %>">Contact</a></li>
+              <li><a href="<%= policies_home_index_path %>">Privacy Policy</a></li>
+              <li><a href="<%= terms_home_index_path %>">Terms of Use</a></li>
             </ul>
-          </li>--><!--//dropdown-->
+          </li><!--//dropdown-->
           <li class="nav-item"><a href="/users/login" class="login-trigger">Log in</a></li>
           <li class="nav-item nav-item-cta last"><a class="btn-signup" href="/users/register">Sign Up</a></li>
         </ul><!--//nav-->

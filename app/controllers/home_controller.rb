@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-  before_filter :is_logged?, except: [:index,:coming_soon,:get_in_touch,:notify_tendercon,:features,:pricing,:company]
+  before_filter :is_logged?, except: [:index,:coming_soon,:get_in_touch,:notify_tendercon,:features,:pricing,:company,
+                                      :blog,:contact,:terms,:policies]
   layout 'landing_page', :on => [:index]
   layout 'coming_soon_layout', :on => [:coming_soon]
   skip_before_action :verify_authenticity_token
@@ -17,6 +18,22 @@ class HomeController < ApplicationController
   end
 
   def company
+    render :layout => 'landing_page'
+  end
+
+  def blog
+    render :layout => 'landing_page'
+  end
+
+  def contact
+    render :layout => 'landing_page'
+  end
+
+  def terms
+    render :layout => 'landing_page'
+  end
+
+  def policies
     render :layout => 'landing_page'
   end
 
