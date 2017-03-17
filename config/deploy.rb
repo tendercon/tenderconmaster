@@ -27,6 +27,8 @@ set :puma_workers, 0
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, false
+# for staging
+set :bundle_flags, "--deployment"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
@@ -56,7 +58,7 @@ set :puma_preload_app, false
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-after 'deploy:publishing', 'deploy:migrate'
+after 'deploy:publishing', 'deploy:migrate', 'deploy:seed'
 namespace :deploy do
   def delayed_job_roles
     fetch(:delayed_job_server_role, :app)
