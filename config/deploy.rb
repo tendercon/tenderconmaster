@@ -8,7 +8,7 @@ set :branch, :staging
 
 # master
 #set :branch, :master
-# production
+
 #set :deploy_to, '/home/deploy/tendercon_v1'
 set :deploy_to, '/home/deploy/stagingV1_tendercon'
 set :pty, true
@@ -33,7 +33,6 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, false
 # for staging
-set :npm_flags, '--production' # default
 
 
 # Default branch is :master
@@ -64,8 +63,7 @@ set :npm_flags, '--production' # default
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-after 'deploy:publishing', 'deploy:migrate', 'deploy:seed'
-namespace :deploy do
+after 'deploy:publishing'
   def delayed_job_roles
     fetch(:delayed_job_server_role, :app)
   end
