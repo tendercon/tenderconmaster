@@ -3,7 +3,12 @@ lock "3.7.2"
 
 set :application, 'stagingV1_tendercon'
 set :repo_url, 'git@github.com:tendercon/tenderconmaster.git' # Edit this to match your repository
-set :branch, :master
+# master
+set :branch, :staging
+
+# master
+#set :branch, :master
+# production
 #set :deploy_to, '/home/deploy/tendercon_v1'
 set :deploy_to, '/home/deploy/stagingV1_tendercon'
 set :pty, true
@@ -28,6 +33,7 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, false
 # for staging
+set :npm_flags, '--production' # default
 
 
 # Default branch is :master
