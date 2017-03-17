@@ -63,7 +63,8 @@ set :puma_preload_app, false
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-after 'deploy:publishing'
+
+namespace :deploy do
   def delayed_job_roles
     fetch(:delayed_job_server_role, :app)
   end
