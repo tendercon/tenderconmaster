@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313113215) do
+ActiveRecord::Schema.define(version: 20170316054707) do
 
   create_table "addenda_notifications", force: :cascade do |t|
     t.integer  "sc_id",      limit: 4
@@ -492,6 +492,13 @@ ActiveRecord::Schema.define(version: 20170313113215) do
     t.datetime "updated_at",             null: false
     t.string   "shared",     limit: 255
     t.string   "status",     limit: 255
+  end
+
+  create_table "sites", force: :cascade do |t|
+    t.string   "page",       limit: 255
+    t.string   "title",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "tender_approved_trades", force: :cascade do |t|
