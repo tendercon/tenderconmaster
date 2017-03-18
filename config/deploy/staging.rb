@@ -59,6 +59,6 @@
 #     auth_methods: %w(publickey password)
 #     # password: "please use keys"
 #   }
-set :rails_env, :production
+set :rails_env, :staging
 #set :delayed_job_workers, 10
 server '13.54.38.164', user: 'deploy', roles: %w{web app db}
