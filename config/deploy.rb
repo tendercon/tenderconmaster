@@ -2,10 +2,13 @@
 lock "3.7.2"
 
 set :application, 'stagingV1_tendercon'
-set :repo_url, 'https://github.com/tendercon/tenderconmaster.git' # Edit this to match your repository
-# master
-set :branch, :staging
+# production
+#set :repo_url, 'git@github.com:tendercon/tenderconmaster.git' # Edit this to match your repository
 
+set :branch, :staging
+set :repo_url, 'https://github.com/tendercon/tenderconmaster.git'
+# production
+#set :branch, :master
 # master
 #set :branch, :master
 #set :deploy_to, '/home/deploy/tendercon_v1'
@@ -62,7 +65,7 @@ set :puma_preload_app, false
 # Default value for keep_releases is 5
 # set :keep_releases, 5
 
-after 'deploy:publishing', 'deploy:migrate', 'deploy:seed'
+#after 'deploy:publishing', 'deploy:migrate', 'deploy:seed'
 namespace :deploy do
   def delayed_job_roles
     fetch(:delayed_job_server_role, :app)
