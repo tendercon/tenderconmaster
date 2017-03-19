@@ -277,7 +277,12 @@ module TendersHelper
 
     t = TenderQuote.where(:tender_id => id).first
     if t.present?
-      t.quote_date.to_datetime.strftime("%d.%m.%Y %H:%M %p")
+      if t.quote_date.present?
+        t.quote_date.to_datetime.strftime("%d.%m.%Y %H:%M %p")
+      else
+        nil
+      end
+
     end
     # if t.present?
     #   if t.quote_date.present?
