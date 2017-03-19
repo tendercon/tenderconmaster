@@ -6,7 +6,9 @@ class HomeController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
+    @site = Site.first
     render :layout => 'landing_page'
+    puts "@site ========> #{@site.inspect}"
   end
 
   def features

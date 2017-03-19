@@ -182,6 +182,20 @@ Rails.application.routes.draw do
     end
   end
 
+
+
+  resources :sites do
+    collection do
+      # get
+      get 'get_site'
+
+      # post
+
+
+    end
+  end
+
+
   resources :tenders do
     collection do
       # get

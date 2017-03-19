@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316054707) do
+ActiveRecord::Schema.define(version: 20170319084337) do
 
   create_table "addenda_notifications", force: :cascade do |t|
     t.integer  "sc_id",      limit: 4
@@ -495,10 +495,49 @@ ActiveRecord::Schema.define(version: 20170316054707) do
   end
 
   create_table "sites", force: :cascade do |t|
-    t.string   "page",       limit: 255
-    t.string   "title",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "page",                            limit: 255
+    t.string   "title",                           limit: 255
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "page_type",                       limit: 255
+    t.text     "header_headline",                 limit: 65535
+    t.text     "header_tagline",                  limit: 65535
+    t.text     "section_title",                   limit: 65535
+    t.text     "section_intro",                   limit: 65535
+    t.text     "item_title",                      limit: 65535
+    t.text     "item_desc",                       limit: 65535
+    t.text     "item_title1",                     limit: 65535
+    t.text     "item_desc1",                      limit: 65535
+    t.text     "item_title2",                     limit: 65535
+    t.text     "item_desc2",                      limit: 65535
+    t.string   "section_image1_file_name",        limit: 255
+    t.string   "section_image1_content_type",     limit: 255
+    t.integer  "section_image1_file_size",        limit: 4
+    t.datetime "section_image1_updated_at"
+    t.string   "section_image2_file_name",        limit: 255
+    t.string   "section_image2_content_type",     limit: 255
+    t.integer  "section_image2_file_size",        limit: 4
+    t.datetime "section_image2_updated_at"
+    t.string   "section_image3_file_name",        limit: 255
+    t.string   "section_image3_content_type",     limit: 255
+    t.integer  "section_image3_file_size",        limit: 4
+    t.datetime "section_image3_updated_at"
+    t.string   "item_image1_file_name",           limit: 255
+    t.string   "item_image1_content_type",        limit: 255
+    t.integer  "item_image1_file_size",           limit: 4
+    t.datetime "item_image1_updated_at"
+    t.string   "item_image2_file_name",           limit: 255
+    t.string   "item_image2_content_type",        limit: 255
+    t.integer  "item_image2_file_size",           limit: 4
+    t.datetime "item_image2_updated_at"
+    t.string   "item_image3_file_name",           limit: 255
+    t.string   "item_image3_content_type",        limit: 255
+    t.integer  "item_image3_file_size",           limit: 4
+    t.datetime "item_image3_updated_at"
+    t.string   "key_feature_image1_file_name",    limit: 255
+    t.string   "key_feature_image1_content_type", limit: 255
+    t.integer  "key_feature_image1_file_size",    limit: 4
+    t.datetime "key_feature_image1_updated_at"
   end
 
   create_table "tender_approved_trades", force: :cascade do |t|

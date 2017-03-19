@@ -9,20 +9,23 @@
         <li class="slide slide-3"></li>
       </ul>
     </div>
-    <div class="hero-slider-mask"></div>
+    <div class="hero-slider-mask">
+      <!--<img class="play-icon" src="../vendors/landing_page/images/imac-screen.png" alt="">-->
+    </div>
   </div><!--//hero-slider-wrapper-->
   <div class="container promo-content">
-    <h2 class="headline">The Perfect Design Framework <br>for Startup Businesses</h2>
-    <p class="tagline">Good design is good business, try our demo today!</p>
+    <%= @site.header_headline %>
+    <h2 class="headline"><%= @site.present? ? @site.header_headline  : "The Perfect Design Framework <br>for Startup Businesses".html_safe %></h2>
+    <p class="tagline"><%= @site.present? ?  @site.header_tagline : "Good design is good business, try our demo today!".html_safe %></p>
     <div class="actions">
-      <a class="btn btn-cta btn-primary" href="#" data-toggle="modal" data-target="#signup-modal">Start Free Trial</a>
+      <!--<a class="btn btn-cta btn-primary" href="#" data-toggle="modal" data-target="#signup-modal">Start Free Trial</a>-->
       <br class="visible-xs-block">
-      <a href="#" class="play-trigger" data-toggle="modal" data-target="#modal-video" ><img class="play-icon" src="../vendors/landing_page/images/play-icon.svg" alt="">See how it works</a>
+      <!--<a href="#" class="play-trigger" data-toggle="modal" data-target="#modal-video" ><img class="play-icon" src="../vendors/landing_page/images/play-icon.svg" alt="">See how it works</a>-->
     </div>
   </div><!--//container-->
 </section><!--//promo-section-->
 
-<div class="page-nav-space-holder hidden-xs">
+<!--<div class="page-nav-space-holder hidden-xs">
   <div id="page-nav-wrapper" class="page-nav-wrapper text-center">
     <div class="container">
       <ul id="page-nav" class="nav page-nav list-inline">
@@ -31,24 +34,25 @@
         <li><a class="scrollto"  href="#customers-section">Customers</a></li>
         <li><a class="scrollto"  href="#signup-section">Get Started</a></li>
         <li><a class="scrollto"  href="#support-section">Support</a></li>
-      </ul><!--//page-nav-->
+      </ul>&lt;!&ndash;//page-nav&ndash;&gt;
     </div>
-  </div><!--//page-nav-wrapper-->
-</div><!--//page-nav-space-holder-->
+  </div>&lt;!&ndash;//page-nav-wrapper&ndash;&gt;
+</div>--><!--//page-nav-space-holder-->
 
 <section id="overview-section" class="overview-section section">
   <h2 class="section-title">
-    A great way to empower your team
+    <%= @site.present? ? @site.section_title : "A great way to empower your team".html_safe %>
   </h2>
   <div class="section-intro">
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.
+    <%= @site.present? ? @site.section_intro : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec.".html_safe %>
+
   </div><!--//section-intro-->
   <div class="figures-wrapper">
     <div class="container text-center">
-      <figure class="macbook-screen"><img class="img-responsive" src="../vendors/landing_page/images/macbook-screen.png" alt=""></figure>
-      <figure class="ipad-screen"><img class="img-responsive" src="../vendors/landing_page/images/ipad-screen.png" alt=""></figure>
-      <figure class="iphone-screen"><img class="img-responsive" src="../vendors/landing_page/images/iphone-screen.png" alt=""></figure>
-      <a href="#" type="button" class="play-icon" data-toggle="modal" data-target="#modal-video"><img src="../vendors/landing_page/images/play-icon-md.svg" alt=""></a>
+      <figure class="macbook-screen"><img class="img-responsive" src="<%= @site.present? ? @site.section_image1.present? ? @site.section_image1.url(:original) : "../vendors/landing_page/images/macbook-screen.png" : "../vendors/landing_page/images/macbook-screen.png" %>" alt=""></figure>
+      <figure class="ipad-screen"><img class="img-responsive" src="<%= @site.present? ? @site.section_image2.present? ? @site.section_image2.url(:original) : "../vendors/landing_page/images/ipad-screen.png" : "../vendors/landing_page/images/ipad-screen.png" %>" alt=""></figure>
+      <figure class="iphone-screen"><img class="img-responsive" src="<%= @site.present? ? @site.section_image3.present? ? @site.section_image3.url(:original) : "../vendors/landing_page/images/iphone-screen.png" : "../vendors/landing_page/images/iphone-screen.png" %>" alt=""></figure>
+      <!--<a href="#" type="button" class="play-icon" data-toggle="modal" data-target="#modal-video"><img src="../vendors/landing_page/images/play-icon-md.svg" alt=""></a>-->
     </div><!--//container-->
   </div><!--//figures-wrapper-->
   <div class="benefits-wrapper">
@@ -56,35 +60,35 @@
       <div class="row">
         <div class="item col-xs-12 col-sm-4">
           <div class="item-inner">
-            <img class="item-icon" src="../vendors/landing_page/images/icons/clock-white.svg" alt="">
-            <h3 class="item-title">10X Faster Development</h3>
+            <img class="item-icon" src="<%= @site.present? ? @site.item_image1.present? ? @site.item_image1.url(:original) : "../vendors/landing_page/images/icons/clock-white.svg" : "../vendors/landing_page/images/icons/clock-white.svg" %>" alt="">
+            <h3 class="item-title"><%= @site.present? ? @site.item_title : "10X Faster Development" %></h3>
             <div class="item-desc">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+              <%= @site.present? ? @site.item_desc : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." %>
             </div>
           </div><!--//item-inner-->
         </div><!--//item-->
         <div class="item col-xs-12 col-sm-4">
           <div class="item-inner">
-            <img class="item-icon" src="../vendors/landing_page/images/icons/presenter-white.svg" alt="">
-            <h3 class="item-title">Increase Productivity</h3>
+            <img class="item-icon" src="<%= @site.present? ? @site.item_image2.present? ? @site.item_image2.url(:original) : "../vendors/landing_page/images/icons/presenter-white.svg" : "../vendors/landing_page/images/icons/presenter-white.svg" %>" alt="">
+            <h3 class="item-title"><%= @site.present? ? @site.item_title1 : "Increase Productivity" %></h3>
             <div class="item-desc">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+              <%= @site.present? ? @site.item_desc1 : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." %>
             </div>
           </div><!--//item-inner-->
         </div><!--//item-->
         <div class="item col-xs-12 col-sm-4">
           <div class="item-inner">
-            <img class="item-icon" src="../vendors/landing_page/images/icons/chat-white.svg" alt="">
-            <h3 class="item-title">Better Collabration</h3>
+            <img class="item-icon" src="<%= @site.present? ? @site.item_image3.present? ? @site.item_image3.url(:original) : "../vendors/landing_page/images/icons/chat-white.svg" : "../vendors/landing_page/images/icons/chat-white.svg" %>" alt="">
+            <h3 class="item-title"><%= @site.present? ? @site.item_title2 : "Better Collabration" %></h3>
             <div class="item-desc">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+              <%= @site.present? ? @site.item_title2 : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." %>
             </div>
           </div><!--//item-inner-->
         </div><!--//item-->
       </div><!--//row-->
     </div><!--//container-->
   </div><!--//benefits-->
-  <div class="press-wrapper">
+  <!--<div class="press-wrapper">
     <div class="container">
       <div class="logos row">
         <div class="logo col-xs-6 col-sm-3"><img class="img-responsive" src="../vendors/landing_page/images/logos/logo-1.svg" alt=""></div>
@@ -92,8 +96,8 @@
         <div class="logo col-xs-6 col-sm-3"><img class="img-responsive" src="../vendors/landing_page/images/logos/logo-3.svg" alt=""></div>
         <div class="logo col-xs-6 col-sm-3"><img class="img-responsive" src="../vendors/landing_page/images/logos/logo-4.svg" alt=""></div>
       </div>
-    </div><!--//container-->
-  </div><!--//press-wrapper-->
+    </div>&lt;!&ndash;//container&ndash;&gt;
+  </div>--><!--//press-wrapper-->
 </section><!--//overview-section-->
 
 <section id="features-section" class="features-section section">
@@ -101,11 +105,11 @@
     Key Features
   </h2>
   <div class="container">
-    <div class="row">
+    <div class="row" style="display: none">
       <div class="features-content-wrapper col-xs-12 col-sm-7 com-md-7">
-        <div class="intro">
+        <!--<div class="intro">
           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec
-        </div><!--//intro-->
+        </div>&lt;!&ndash;//intro&ndash;&gt;
         <ul class="feature-list list-unstyled">
           <li><img class="tick-icon" src="../vendors/landing_page/images/tick.svg" alt=""> Feature one lorem ipsum dolor sit amet.</li>
           <li><img class="tick-icon" src="../vendors/landing_page/images/tick.svg" alt=""> Feature two lorem ipsum dolor sit amet.</li>
@@ -113,7 +117,7 @@
           <li><img class="tick-icon" src="../vendors/landing_page/images/tick.svg" alt=""> Feature four lorem ipsum dolor sit amet.</li>
           <li><img class="tick-icon" src="../vendors/landing_page/images/tick.svg" alt=""> Feature five lorem ipsum dolor sit amet.</li>
           <li><img class="tick-icon" src="../vendors/landing_page/images/tick.svg" alt=""> Feature six lorem ipsum dolor sit amet.</li>
-        </ul><!--//feature-list-->
+        </ul>--><!--//feature-list-->
 
         <div id="reviews-carousel" class="reviews-carousel carousel slide" data-ride="carousel">
           <!--//wrapper for slides -->
@@ -187,16 +191,16 @@
   </div><!--//container-->
 
   <div class="features-figure-wrapper">
-    <img class="img-responsive" src="../vendors/landing_page/images/imac-screen.png" alt="">
+    <img class="img-responsive" src="<%= @site.present? ? @site.key_feature_image1.present? ? @site.key_feature_image1.url(:original)  : "../vendors/landing_page/images/imac-screen.png" : "../vendors/landing_page/images/imac-screen.png" %>" alt="" width="400px" height="500px">
   </div><!--//features-figure-wrapper-->
 
-  <div class="action-wrapper text-center">
+  <!--<div class="action-wrapper text-center">
     <a href="features.html" class="btn btn-secondary">View all features</a>
-  </div>
+  </div>-->
 
 </section><!--//features-section-->
-
-<section id="customers-section" class="customers-section section">
+<div style="height: 200px"></div>
+<!--<section id="customers-section" class="customers-section section" >
   <h2 class="section-title">Trusted by smart businesses</h2>
   <div class="section-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus elementum felis at lacus blandit egestas. Donec consectetur mollis leo, et pharetra massa eleifend mollis.</div>
   <div class="container">
@@ -211,9 +215,9 @@
               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit aenean commodo ligula eget dolor aenean massa. Cum sociis natoque penatibus.</p>
             </div>
             <a class="item-link" href="#"></a>
-          </div><!--//item-content-->
-        </div><!--//item-inner-->
-      </div><!--//item-->
+          </div>&lt;!&ndash;//item-content&ndash;&gt;
+        </div>&lt;!&ndash;//item-inner&ndash;&gt;
+      </div>&lt;!&ndash;//item&ndash;&gt;
       <div class="item item-2 col-xs-12 col-md-6">
         <div class="item-inner text-center">
           <div class="item-mask"></div>
@@ -224,9 +228,9 @@
               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit aenean commodo ligula eget dolor aenean massa. Cum sociis natoque penatibus.</p>
             </div>
             <a class="item-link" href="#"></a>
-          </div><!--//item-content-->
-        </div><!--//item-inner-->
-      </div><!--//item-->
+          </div>&lt;!&ndash;//item-content&ndash;&gt;
+        </div>&lt;!&ndash;//item-inner&ndash;&gt;
+      </div>&lt;!&ndash;//item&ndash;&gt;
       <div class="item item-3 col-xs-12 col-md-6">
         <div class="item-inner text-center">
           <div class="item-mask"></div>
@@ -237,9 +241,9 @@
               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit aenean commodo ligula eget dolor aenean massa. Cum sociis natoque penatibus.</p>
             </div>
             <a class="item-link" href="#"></a>
-          </div><!--//item-content-->
-        </div><!--//item-inner-->
-      </div><!--//item-->
+          </div>&lt;!&ndash;//item-content&ndash;&gt;
+        </div>&lt;!&ndash;//item-inner&ndash;&gt;
+      </div>&lt;!&ndash;//item&ndash;&gt;
       <div class="item item-4 col-xs-12 col-md-6">
         <div class="item-inner text-center">
           <div class="item-mask"></div>
@@ -250,21 +254,21 @@
               <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit aenean commodo ligula eget dolor aenean massa. Cum sociis natoque penatibus.</p>
             </div>
             <a class="item-link" href="#"></a>
-          </div><!--//item-content-->
-        </div><!--//item-inner-->
-      </div><!--//item-->
-    </div><!--//row-->
+          </div>&lt;!&ndash;//item-content&ndash;&gt;
+        </div>&lt;!&ndash;//item-inner&ndash;&gt;
+      </div>&lt;!&ndash;//item&ndash;&gt;
+    </div>&lt;!&ndash;//row&ndash;&gt;
     <div class="action-wrapper text-center">
       <a class="btn btn-secondary" href="stories.html">All Customer Stories</a>
     </div>
-  </div><!--//container-->
-</section><!--//customers-section-->
+  </div>&lt;!&ndash;//container&ndash;&gt;
+</section>--><!--//customers-section-->
 
-<section id="signup-section" class="signup-section section">
+<!--<section id="signup-section" class="signup-section section" >
   <div class="section-inner">
     <div class="container text-center">
       <div class="counter-container">
-      </div><!--//counter-container-->
+      </div>&lt;!&ndash;//counter-container&ndash;&gt;
 
       <h2 class="counter-desc">Customers Worldwide</h2>
 
@@ -276,52 +280,52 @@
           <ul class="social-buttons list-unstyled">
             <li><a href="#" class="btn btn-social btn-google"><i class="fa fa-google" aria-hidden="true"></i><span class="btn-text">Sign up with Google</span></a></li>
             <li><a href="#" class="btn btn-social btn-facebook"><i class="fa fa-facebook" aria-hidden="true"></i><span class="btn-text">Sign up with Facebook</span></a></li>
-          </ul><!--//social-buttons-->
+          </ul>&lt;!&ndash;//social-buttons&ndash;&gt;
           <div class="divider">
             <span class="or-text">OR</span>
-          </div><!--//divider-->
+          </div>&lt;!&ndash;//divider&ndash;&gt;
           <form class="signup-form">
             <div class="row">
               <div class="form-group col-xs-12 col-sm-6">
                 <label for="firstname" class="sr-only">First Name</label>
                 <input type="text" class="form-control" id="firstname" name="firstname" placeholder="First Name">
-              </div><!--//form-group-->
+              </div>&lt;!&ndash;//form-group&ndash;&gt;
               <div class="form-group col-xs-12 col-sm-6">
                 <label for="lastname" class="sr-only">Last Name</label>
                 <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Last Name">
-              </div><!--//form-group-->
+              </div>&lt;!&ndash;//form-group&ndash;&gt;
               <div class="form-group col-xs-12 col-sm-6">
                 <label for="firstname" class="sr-only">Email Address</label>
                 <input type="email" class="form-control" id="emailaddress" name="emailaddress" placeholder="Email Address">
-              </div><!--//form-group-->
+              </div>&lt;!&ndash;//form-group&ndash;&gt;
               <div class="form-group col-xs-12 col-sm-6">
                 <label for="password" class="sr-only">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Create a Password">
-              </div><!--//form-group-->
+              </div>&lt;!&ndash;//form-group&ndash;&gt;
 
-            </div><!--//row-->
+            </div>&lt;!&ndash;//row&ndash;&gt;
             <div class="legal-note">By signing up, you agree to our terms of services and privacy policy.</div>
 
             <button type="submit" class="btn btn-primary btn-cta">Start Your Free Trial</button>
             <div class="alter-login">
               Already have an account? <a class="login-link" href="#" data-toggle="modal" data-target="#login-modal">Log in</a>
             </div>
-          </form><!--//form-->
-        </div><!--//form-box-->
-      </div><!--//form-wrapper-->
+          </form>&lt;!&ndash;//form&ndash;&gt;
+        </div>&lt;!&ndash;//form-box&ndash;&gt;
+      </div>&lt;!&ndash;//form-wrapper&ndash;&gt;
 
-    </div><!--//container-->
-  </div><!--//section-inner-->
-</section><!--//signup-section-->
+    </div>&lt;!&ndash;//container&ndash;&gt;
+  </div>&lt;!&ndash;//section-inner&ndash;&gt;
+</section>--><!--//signup-section-->
 
-<section id="support-section" class="support-section section text-center">
+<!--<section id="support-section" class="support-section section text-center">
   <h2 class="section-title">24/7 Customer Support</h2>
   <div class="section-intro">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes</div>
   <a class="btn btn-secondary" href="support.html">Our Support Center</a>
   <div class="team-figure">
     <img class="img-responsive support-team" src="../vendors/landing_page/images/team.png" alt="">
-  </div><!--//team-figure-->
-</section><!--//support-section-->
+  </div>&lt;!&ndash;//team-figure&ndash;&gt;
+</section>&lt;!&ndash;//support-section&ndash;&gt;
 
 <section class="apps-section section text-center">
   <h2 class="section-title">Download Our Apps</h2>
@@ -330,9 +334,9 @@
       <li><a class="btn btn-download-app btn-apple-download" href="#"><i class="fa fa-apple" aria-hidden="true"></i> <span class="btn-text"><span class="intro-text">Download on the</span><span class="main-text">App Store</span></span></a></li>
       <li><a class="btn btn-download-app btn-andriod-download" href="#"><i class="fa fa-android" aria-hidden="true"></i> <span class="btn-text"><span class="intro-text">Get it on</span><span class="main-text">Google Play</span></span></a></li>
       <li><a class="btn btn-download-app btn-windows-download" href="#"><i class="fa fa-windows" aria-hidden="true"></i> <span class="btn-text"><span class="intro-text">Download from</span><span class="main-text">Windows Phone Store</span></span></a></li>
-    </ul><!--//apps-list-->
-  </div><!--//container-->
-</section><!--//apps-section-->
+    </ul>&lt;!&ndash;//apps-list&ndash;&gt;
+  </div>&lt;!&ndash;//container&ndash;&gt;
+</section>--><!--//apps-section-->
 
 <!-- ******FOOTER****** -->
 <footer class="footer">
@@ -418,7 +422,7 @@
 </div><!--//modal-->
 
 <!-- Login Modal -->
-<div class="modal modal-auth modal-login" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+<!--<div class="modal modal-auth modal-login" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -441,7 +445,7 @@
               <i class="material-icons icon">&#xE0BE;</i>
               <label class="sr-only" for="login-email">Email</label>
               <input id="login-email" name="login-email" type="email" class="form-control login-email" placeholder="Email">
-            </div><!--//form-group-->
+            </div>&lt;!&ndash;//form-group&ndash;&gt;
             <div class="form-group password">
               <i class="material-icons icon">&#xE897;</i>
               <label class="sr-only" for="login-password">Password</label>
@@ -451,28 +455,28 @@
                   <label>
                     <input type="checkbox"> Remember me
                   </label>
-                </div><!--//check-box-->
+                </div>&lt;!&ndash;//check-box&ndash;&gt;
                 <div class="forgotten-password">
                   <a href="#" id="resetpass-link" data-toggle="modal" data-target="#resetpass-modal">Forgotten password?</a>
                 </div>
-              </div><!--//extra-->
-            </div><!--//form-group-->
+              </div>&lt;!&ndash;//extra&ndash;&gt;
+            </div>&lt;!&ndash;//form-group&ndash;&gt;
             <button type="submit" class="btn btn-cta btn-block btn-primary">Log in</button>
           </form>
-        </div><!--//login-form-container-->
+        </div>&lt;!&ndash;//login-form-container&ndash;&gt;
 
         <div class="option-container">
           <div class="lead-text">Don't have an account?</div>
           <a class="signup-link btn btn-ghost-alt" id="signup-link" href="#">Sign Up</a>
-        </div><!--//option-container-->
-      </div><!--//modal-body-->
+        </div>&lt;!&ndash;//option-container&ndash;&gt;
+      </div>&lt;!&ndash;//modal-body&ndash;&gt;
 
-    </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
+    </div>&lt;!&ndash;//modal-content&ndash;&gt;
+  </div>&lt;!&ndash;//modal-dialog&ndash;&gt;
+</div>--><!--//modal-->
 
 <!-- Signup Modal -->
-<div class="modal modal-auth modal-signup" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+<!--<div class="modal modal-auth modal-signup" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -495,32 +499,32 @@
               <i class="material-icons icon">&#xE7FD;</i>
               <label class="sr-only" for="signup-fullname">Your Full Name</label>
               <input id="signup-fullname" name="signup-fullname" type="text" class="form-control signup-email" placeholder="Your Full Name">
-            </div><!--//form-group-->
+            </div>&lt;!&ndash;//form-group&ndash;&gt;
             <div class="form-group email">
               <i class="material-icons icon">&#xE0BE;</i>
               <label class="sr-only" for="signup-email">Your Email</label>
               <input id="signup-email" name="signup-email" type="email" class="form-control signup-email" placeholder="Your Email">
-            </div><!--//form-group-->
+            </div>&lt;!&ndash;//form-group&ndash;&gt;
             <div class="form-group password">
               <i class="material-icons icon">&#xE897;</i>
               <label class="sr-only" for="signup-password">Create a Password</label>
               <input id="signup-password" name="signup-password" type="password" class="form-control signup-password" placeholder="Create a Password">
-            </div><!--//form-group-->
+            </div>&lt;!&ndash;//form-group&ndash;&gt;
             <div class="legal-note">By signing up, you agree to our terms of services and privacy policy.</div>
             <button type="submit" class="btn btn-block btn-primary btn-cta">Sign up</button>
 
           </form>
-        </div><!--//login-form-container-->
+        </div>&lt;!&ndash;//login-form-container&ndash;&gt;
         <div class="option-container">
           <div class="lead-text">Already have an account?</div>
           <a class="login-link btn btn-ghost-alt" id="login-link" href="#">Log in</a>
-        </div><!--//option-container-->
-      </div><!--//modal-body-->
-    </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
+        </div>&lt;!&ndash;//option-container&ndash;&gt;
+      </div>&lt;!&ndash;//modal-body&ndash;&gt;
+    </div>&lt;!&ndash;//modal-content&ndash;&gt;
+  </div>&lt;!&ndash;//modal-dialog&ndash;&gt;
+</div>&lt;!&ndash;//modal&ndash;&gt;
 
-<!-- Reset Password Modal -->
+&lt;!&ndash; Reset Password Modal &ndash;&gt;
 <div class="modal modal-auth modal-resetpass" id="resetpass-modal" tabindex="-1" role="dialog" aria-labelledby="resetpassModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -535,17 +539,17 @@
             <div class="form-group email">
               <label class="sr-only" for="reg-email">Your Email</label>
               <input id="reg-email" name="reg-email" type="email" class="form-control login-email" placeholder="Your Email">
-            </div><!--//form-group-->
+            </div>&lt;!&ndash;//form-group&ndash;&gt;
             <button type="submit" class="btn btn-block btn-secondary btn-cta">Reset Password</button>
           </form>
-        </div><!--//login-form-container-->
+        </div>&lt;!&ndash;//login-form-container&ndash;&gt;
         <div class="option-container">
           <div class="lead-text">I want to <a class="back-to-login-link" id="back-to-login-link" href="#">return to login</a></div>
-        </div><!--//option-container-->
-      </div><!--//modal-body-->
-    </div><!--//modal-content-->
-  </div><!--//modal-dialog-->
-</div><!--//modal-->
+        </div>&lt;!&ndash;//option-container&ndash;&gt;
+      </div>&lt;!&ndash;//modal-body&ndash;&gt;
+    </div>&lt;!&ndash;//modal-content&ndash;&gt;
+  </div>&lt;!&ndash;//modal-dialog&ndash;&gt;
+</div>--><!--//modal-->
 
 <!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
 <div id="config-panel" class="config-panel hidden-xs hidden-sm">

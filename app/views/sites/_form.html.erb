@@ -1,0 +1,147 @@
+<%= form_for(@site,:html => { :multipart => true }) do |f| %>
+
+    <% if @site.errors.any? %>
+        <div class="alert alert-danger open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert"></button>
+          <h2>Errors</h2>
+          <ul>
+            <% @site.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+
+    <% end %>
+    <% unless params[:action] == 'get_site' %>
+      <p>
+        <%= f.label :page_type %><br>
+        <% if @save_site.present? %>
+
+          <% if @save_site.page_type == "builder" %>
+            <%= f.select :page_type, [["Subcontractor", "subcontractor"]], {}, {class: "form-control"} %>
+          <% elsif @save_site.page_type == "subcontractor" %>
+            <%= f.select :page_type, [["Builder", "builder"]], {}, {class: "form-control"} %>
+          <% end %>
+        <% else %>
+            <%= f.select :page_type, [["Builder", "builder"], ["Subcontractor", "subcontractor"]], {}, {class: "form-control"} %>
+        <% end %>
+
+      </p>
+    <% end %>
+
+    <p>
+      <%= f.label :header_headline %><br>
+      <%= f.text_area :header_headline, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :header_tagline %><br>
+      <%= f.text_area :header_tagline, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :section_title %><br>
+      <%= f.text_area :section_title, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :section_intro %><br>
+      <%= f.text_area :section_intro, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :item_title %><br>
+      <%= f.text_area :item_title, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :item_desc %><br>
+      <%= f.text_area :item_desc, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :item_title1 %><br>
+      <%= f.text_area :item_title1, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :item_desc1 %><br>
+      <%= f.text_area :item_desc1, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :item_title2 %><br>
+      <%= f.text_area :item_title2, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :item_desc2 %><br>
+      <%= f.text_area :item_desc2, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :section_image1 %><br>
+      <%= f.file_field :section_image1, class: "form-control" %>
+      <% if @site.section_image1.present? %>
+        <img class="profile" src="<%= @site.section_image1.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :section_image2 %><br>
+      <%= f.file_field :section_image2, class: "form-control" %>
+      <% if @site.section_image2.present? %>
+        <img class="profile" src="<%= @site.section_image2.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+
+    <p>
+      <%= f.label :section_image3 %><br>
+      <%= f.file_field :section_image3, class: "form-control" %>
+      <% if @site.section_image3.present? %>
+        <img class="profile" src="<%= @site.section_image3.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :item_image1 %><br>
+      <%= f.file_field :item_image1, class: "form-control" %>
+      <% if @site.item_image1.present? %>
+        <img class="profile" src="<%= @site.item_image1.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+
+    <p>
+      <%= f.label :item_image2 %><br>
+      <%= f.file_field :item_image2, class: "form-control" %>
+      <% if @site.item_image2.present? %>
+        <img class="profile" src="<%= @site.item_image2.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :item_image3 %><br>
+      <%= f.file_field :item_image3, class: "form-control" %>
+      <% if @site.item_image3.present? %>
+        <img class="profile" src="<%= @site.item_image3.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :key_feature_image1 %><br>
+      <%= f.file_field :key_feature_image1, class: "form-control" %>
+      <% if @site.key_feature_image1.present? %>
+        <img class="profile" src="<%= @site.key_feature_image1.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+
+    <p>
+      <%= f.submit %>
+    </p>
+
+<% end %>
+
+<%= link_to 'Back', sites_path %>

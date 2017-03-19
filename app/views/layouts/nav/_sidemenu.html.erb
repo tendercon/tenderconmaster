@@ -38,8 +38,26 @@
         <!-- END RESPONSIVE QUICK SEARCH FORM -->
       </li>
       <li class="heading">
+        <h3 class="uppercase">CMS</h3>
+      </li>
+      <% if session[:role] == 'Admin' %>
+          <% if params[:controller] == 'sites' %>
+              <li class="nav-item start active open">
+                <span class="selected"></span>
+          <% else %>
+              <li class="nav-item">
+          <% end %>
+          <a href="<%= sites_path %>"  class="nav-link" id="post_tender_link">
+            <i class="fa fa-plus-square"></i>
+            <span class="title">Sites</span>
+            <span class="selected"></span>
+          </a>
+          </li>
+      <% end %>
+      <li class="heading">
         <h3 class="uppercase">HOME</h3>
       </li>
+
       <% if params[:controller] == 'dashboard' %>
           <li class="nav-item start active open">
       <% else %>
@@ -67,6 +85,7 @@
           <span class="selected"></span>
         </a>
       </li>-->
+
       <li class="heading">
         <h3 class="uppercase">Tender Management</h3>
       </li>
