@@ -75,7 +75,10 @@ Rails.application.routes.draw do
     collection do
       # get
       get 'login'
+      get 'login1'
       get 'register'
+      get 'register1'
+      get 'interest_completed'
       get 'logout'
       get 'update_password'
       get 'forgot_password'

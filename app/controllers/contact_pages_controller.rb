@@ -59,14 +59,25 @@ class ContactPagesController < ApplicationController
   end
 
   def sent_contact
-    email = params[:email];
-    company = "unknown"
+    email = params[:email]
+    company = params[:company].present? ? params[:company]:"unknown"
     name = params[:name]
     position = "unknown"
-    message = params[:message]
-    TenderconMailer.home_notifcation('New Notification','info@tendercon.com',email,company,name,position,message).deliver_now
+    if params[:interest].present?
+      message = "show user first name, email address and company "
+    else
+      message = params[:message]
+    end
+
+    subject =  params[:interest].present? ? "website signup": "New Notification"
+    TenderconMailer.home_notifcation(subject,'info@tendercon.com',email,company,name,position,message).deliver_now
     flash[:notice] = "Request Submit"
-    redirect_to :back
+    if params[:interest].present?
+      redirect_to '/users/interest_completed'
+    else
+      redirect_to :back
+    end
+
   end
 
   private

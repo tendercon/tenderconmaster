@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   #layout 'users_layout', :on => [:login],:except => [:profile,:company_profile,:index,:edit_profile,:billing,:change_password,:edit_company_profile,:subscription,:register,:welcome_page,
   #                                                  :tendercon_steps,:steps_completed,:registration_completed]
   #layout 'users_layout', :only => [:login]
-  layout 'in_apps_layout', :only => [:register,:tendercon_steps,:login,:token_expired,:registration_completed,
+  layout 'in_apps_layout', :only => [:register,:register1,:interest_completed,:tendercon_steps,:login,:login1,:token_expired,:registration_completed,
                                      :welcome_page,:steps_completed,:user_company_exist,:account_taken,:forgot_password,
                                      :validation_complete,:reset_password,:password_changed,:create_user,:token_expired,:update_password]
   skip_before_action :verify_authenticity_token
@@ -108,6 +108,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def login1
+    url = request.original_url
+    if url.include?("builder")
+      @url = "http://builder.tendercon.com/home"
+    else
+      @url = "http://subcontractor.tendercon.com/home"
+    end
+
+  end
+
+
+
   def logout
     if @diff.present?
       if @diff <= 0
@@ -153,6 +165,24 @@ class UsersController < ApplicationController
     @roles = [ 'Head Contractor','Sub Contractor' ]
     if params[:tender].present?
       TenderInvite.where(:tender_id => params[:tender],:trade_id => params[:trade],:email => params[:email]).update_all(:status => 'accepted')
+    end
+  end
+
+  def register1
+    url = request.original_url
+    if url.include?("builder")
+      @url = "http://builder.tendercon.com/home"
+    else
+      @url = "http://subcontractor.tendercon.com/home"
+    end
+  end
+
+  def interest_completed
+    url = request.original_url
+    if url.include?("builder")
+      @url = "http://builder.tendercon.com/home"
+    else
+      @url = "http://subcontractor.tendercon.com/home"
     end
   end
 
