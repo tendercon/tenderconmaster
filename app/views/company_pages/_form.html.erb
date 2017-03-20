@@ -1,0 +1,202 @@
+<%= form_for(@company_page) do |f| %>
+    <% if @company_page.errors.any? %>
+        <div class="alert alert-danger open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert"></button>
+          <h2>Errors</h2>
+          <ul>
+            <% @company_page.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+
+    <% end %>
+
+
+    <p>
+      <%= f.label :headline %><br>
+      <%= f.text_area :headline, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :intro %><br>
+      <%= f.text_area :intro, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_block %><br>
+      <%= f.text_area :team_block, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :block_heading %><br>
+      <%= f.text_area :block_heading, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :block_intro %><br>
+      <%= f.text_area :block_intro, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :ceo_name %><br>
+      <%= f.text_field :ceo_name, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :ceo_title %><br>
+      <%= f.text_field :ceo_title, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :ceo_linkedin %><br>
+      <%= f.text_field :ceo_linkedin, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :ceo_instagram %><br>
+      <%= f.text_field :ceo_instagram, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :co_founder_name %><br>
+      <%= f.text_field :co_founder_name, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :co_founder_title %><br>
+      <%= f.text_field :co_founder_title, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :co_founder_linkedin %><br>
+      <%= f.text_field :co_founder_linkedin, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_name3 %><br>
+      <%= f.text_field :team_name3, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_title3 %><br>
+      <%= f.text_field :team_title3, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_name4 %><br>
+      <%= f.text_field :team_name4, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_title4 %><br>
+      <%= f.text_field :team_title4, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_name5 %><br>
+      <%= f.text_field :team_name5, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_title5 %><br>
+      <%= f.text_field :team_title5, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_name6 %><br>
+      <%= f.text_field :team_name6, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_title6 %><br>
+      <%= f.text_field :team_title6, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_name7 %><br>
+      <%= f.text_field :team_name7, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_title7 %><br>
+      <%= f.text_field :team_title7, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_name8 %><br>
+      <%= f.text_field :team_name8, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :team_title8 %><br>
+      <%= f.text_field :team_title8, class: "form-control" %>
+    </p>
+
+
+
+    <p>
+      <%= f.label :ceo_avatar %><br>
+      <%= f.file_field :ceo_avatar, class: "form-control" %>
+      <% if @company_page.ceo_avatar.present? %>
+          <img class="profile" src="<%= @company_page.ceo_avatar.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :co_founder_avatar %><br>
+      <%= f.file_field :co_founder_avatar, class: "form-control" %>
+      <% if @company_page.co_founder_avatar.present? %>
+          <img class="profile" src="<%= @company_page.co_founder_avatar.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :team3_avatar %><br>
+      <%= f.file_field :team3_avatar, class: "form-control" %>
+      <% if @company_page.team3_avatar.present? %>
+          <img class="profile" src="<%= @company_page.team3_avatar.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :team4_avatar %><br>
+      <%= f.file_field :team4_avatar, class: "form-control" %>
+      <% if @company_page.team4_avatar.present? %>
+          <img class="profile" src="<%= @company_page.team4_avatar.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :team5_avatar %><br>
+      <%= f.file_field :team5_avatar, class: "form-control" %>
+      <% if @company_page.team5_avatar.present? %>
+          <img class="profile" src="<%= @company_page.team5_avatar.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :team6_avatar %><br>
+      <%= f.file_field :team6_avatar, class: "form-control" %>
+      <% if @company_page.team6_avatar.present? %>
+          <img class="profile" src="<%= @company_page.team6_avatar.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :team7_avatar %><br>
+      <%= f.file_field :team7_avatar, class: "form-control" %>
+      <% if @company_page.team7_avatar.present? %>
+          <img class="profile" src="<%= @company_page.team7_avatar.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :team8_avatar %><br>
+      <%= f.file_field :team8_avatar, class: "form-control" %>
+      <% if @company_page.team8_avatar.present? %>
+          <img class="profile" src="<%= @company_page.team8_avatar.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>

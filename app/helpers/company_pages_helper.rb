@@ -1,0 +1,2 @@
+module CompanyPagesHelper
+end

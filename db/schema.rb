@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320030737) do
+ActiveRecord::Schema.define(version: 20170320070726) do
 
   create_table "addenda_notifications", force: :cascade do |t|
     t.integer  "sc_id",      limit: 4
@@ -108,6 +108,65 @@ ActiveRecord::Schema.define(version: 20170320030737) do
     t.string   "image_content_type", limit: 255
     t.integer  "image_file_size",    limit: 4
     t.datetime "image_updated_at"
+  end
+
+  create_table "company_pages", force: :cascade do |t|
+    t.text     "headline",                       limit: 65535
+    t.text     "intro",                          limit: 65535
+    t.string   "team_block",                     limit: 255
+    t.string   "block_heading",                  limit: 255
+    t.text     "block_intro",                    limit: 65535
+    t.string   "ceo_name",                       limit: 255
+    t.text     "ceo_title",                      limit: 65535
+    t.text     "ceo_linkedin",                   limit: 65535
+    t.text     "ceo_instagram",                  limit: 65535
+    t.string   "co_founder_name",                limit: 255
+    t.text     "co_founder_title",               limit: 65535
+    t.text     "co_founder_linkedin",            limit: 65535
+    t.string   "team_name3",                     limit: 255
+    t.string   "team_title3",                    limit: 255
+    t.string   "team_name4",                     limit: 255
+    t.string   "team_title4",                    limit: 255
+    t.string   "team_name5",                     limit: 255
+    t.string   "team_title5",                    limit: 255
+    t.string   "team_name6",                     limit: 255
+    t.string   "team_title6",                    limit: 255
+    t.string   "team_name7",                     limit: 255
+    t.string   "team_title7",                    limit: 255
+    t.string   "team_name8",                     limit: 255
+    t.string   "team_title8",                    limit: 255
+    t.string   "ceo_avatar_file_name",           limit: 255
+    t.string   "ceo_avatar_content_type",        limit: 255
+    t.integer  "ceo_avatar_file_size",           limit: 4
+    t.datetime "ceo_avatar_updated_at"
+    t.string   "co_founder_avatar_file_name",    limit: 255
+    t.string   "co_founder_avatar_content_type", limit: 255
+    t.integer  "co_founder_avatar_file_size",    limit: 4
+    t.datetime "co_founder_avatar_updated_at"
+    t.string   "team3_avatar_file_name",         limit: 255
+    t.string   "team3_avatar_content_type",      limit: 255
+    t.integer  "team3_avatar_file_size",         limit: 4
+    t.datetime "team3_avatar_updated_at"
+    t.string   "team4_avatar_file_name",         limit: 255
+    t.string   "team4_avatar_content_type",      limit: 255
+    t.integer  "team4_avatar_file_size",         limit: 4
+    t.datetime "team4_avatar_updated_at"
+    t.string   "team5_avatar_file_name",         limit: 255
+    t.string   "team5_avatar_content_type",      limit: 255
+    t.integer  "team5_avatar_file_size",         limit: 4
+    t.datetime "team5_avatar_updated_at"
+    t.string   "team6_avatar_file_name",         limit: 255
+    t.string   "team6_avatar_content_type",      limit: 255
+    t.integer  "team6_avatar_file_size",         limit: 4
+    t.datetime "team6_avatar_updated_at"
+    t.string   "team7_avatar_file_name",         limit: 255
+    t.string   "team7_avatar_content_type",      limit: 255
+    t.integer  "team7_avatar_file_size",         limit: 4
+    t.datetime "team7_avatar_updated_at"
+    t.string   "team8_avatar_file_name",         limit: 255
+    t.string   "team8_avatar_content_type",      limit: 255
+    t.integer  "team8_avatar_file_size",         limit: 4
+    t.datetime "team8_avatar_updated_at"
   end
 
   create_table "company_profiles", force: :cascade do |t|

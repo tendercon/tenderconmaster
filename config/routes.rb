@@ -206,6 +206,17 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :company_pages do
+    collection do
+      # get
+      get 'get_company'
+
+      # post
+
+
+    end
+  end
+
 
   resources :tenders do
     collection do

@@ -6,12 +6,7 @@ class HomeController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    puts "@site ========> #{@site.inspect}"
-    puts "request.request_uri#{request.fullpath}"
-    Rails.logger.info "request.request_uri ======> #{request.fullpath}"
-    Rails.logger.info "request.original_url ======> #{request.original_url}"
     url = request.original_url
-
     if url.include?("builder")
       @site = Site.where(:page_type => "builder").first
     elsif url.include?("subcontractor")
@@ -40,6 +35,7 @@ class HomeController < ApplicationController
   end
 
   def company
+    @company_page = CompanyPage.last
     render :layout => 'landing_page'
   end
 

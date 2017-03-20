@@ -46,7 +46,10 @@
 
           <li class="<%= params[:action] == 'index' ? 'active' : nil %> nav-item"><a href="/home">Home</a></li>
           <li class="<%= params[:action] == 'features' ? 'active' : nil %> nav-item"><a href="<%= features_home_index_path %>">Features</a></li>
-          <li class="<%= params[:action] == 'pricing' ? 'active' : nil %> nav-item"><a href="<%= pricing_home_index_path %>">Pricing</a></li>
+          <% if @tendercon_url.include?("subcontractor") %>
+            <li class="<%= params[:action] == 'pricing' ? 'active' : nil %> nav-item"><a href="<%= pricing_home_index_path %>">Pricing</a></li>
+          <% end %>
+
           <li class="<%= params[:action] == 'company' ? 'active' : nil %> nav-item"><a href="<%= company_home_index_path %>">Company</a></li>
           <li class="<%= params[:action] == 'blog' || params[:action] == 'contact' || params[:action] == 'policies' || params[:action] == 'terms' ? 'active' : nil %> nav-item dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Browse More <i class="fa fa-angle-down"></i></a>

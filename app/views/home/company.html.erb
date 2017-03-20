@@ -4,10 +4,10 @@
     <div class="hero-mask-solid"></div>
   </div><!--//hero-wrapper-->
   <div class="container heading-content">
-    <h2 class="headline">About Our Company</h2>
-    <div class="intro">Startup Kit is founded in 2016 with a distributed team lorem ipsum dolor sit amet <br>Aenean commodo ligula eget dolor. </div>
+    <h2 class="headline"><%= @company_page.present? ? @company_page.headline : "About Our Company".html_safe %></h2>
+    <div class="intro"><%= @company_page.present? ? @company_page.intro : "Startup Kit is founded in 2016 with a distributed team lorem ipsum dolor sit amet <br>Aenean commodo ligula eget dolor.".html_safe %> </div>
     <div class="actions">
-      <a class="scrollto-no-offset" href="#team-block">Meet the team</a>
+      <a class="scrollto-no-offset" href="#team-block"><%= @company_page.present? ? @company_page.team_block : "Meet the team".html_safe %></a>
       <a class="scrollto-no-offset" href="#team-block"><img src="../vendors/landing_page/images/arrow-icon.svg" alt=""></a>
     </div><!--//actions-->
   </div><!--//container-->
@@ -15,43 +15,109 @@
 
 <div id="team-block" class="team-block">
   <div class="container">
-    <h2 class="block-heading text-center">Our Team</h2>
-    <div class="block-intro text-center">Intro goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.</div>
+    <h2 class="block-heading text-center"><%= @company_page.present? ? @company_page.block_heading : "Our Team".html_safe %></h2>
+    <div class="block-intro text-center"><%= @company_page.present? ? @company_page.block_intro : "Intro goes here ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes.".html_safe %></div>
     <!--<div class="block-cta text-center">
       <a class="btn btn-secondary" href="career.html">Want to Join Us?</a>
     </div>-->
     <div class="row">
-      <div class="item col-xs-12 col-md-6">
+      <div class="item col-xs-6 col-md-3">
         <div class="item-inner">
-          <img class="img-responsive" src="/img/avatars/Sandro-Botic_clipped_rev_1.png" alt="">
+          <img class="img-responsive" src="<%= @company_page.present? ? @company_page.ceo_avatar.url(:original) : "/img/avatars/Sandro-Botic_clipped_rev_1.png" %>" alt="">
           <div class="mask">
           </div><!--//mask-->
           <div class="info text-center">
-            <div class="name">Sandro Botic</div>
-            <div class="title">Co-Founder, CEO</div>
+            <div class="name"><%= @company_page.present? ? @company_page.ceo_name : "Sandro Botic".html_safe %></div>
+            <div class="title"><%= @company_page.present? ? @company_page.ceo_title : "Co-Founder, CEO".html_safe %></div>
             <ul class="social list-inline">
-              <li><a href="https://www.linkedin.com/in/sandrobotic/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
-              <li><a href="https://www.instagram.com/sandrobotic/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+              <li><a href="<%= @company_page.present? ? @company_page.ceo_linkedin : "https://www.linkedin.com/in/sandrobotic/" %>" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+              <li><a href="<%= @company_page.present? ? @company_page.ceo_instagram : "https://www.instagram.com/sandrobotic/" %>" target="_blank"><i class="fa fa-instagram"></i></a></li>
             </ul><!--//social-->
           </div><!--//info-->
         </div><!--//item-inner-->
       </div><!--//item-->
-      <div class="item col-xs-6 col-md-6">
+      <div class="item col-xs-6 col-md-3  ">
         <div class="item-inner">
-          <img class="img-responsive" src="/img/avatars/Ryan-He_clipped_rev_1.png" alt="">
+          <img class="img-responsive" src="<%= @company_page.present? ? @company_page.co_founder_avatar.url(:original) : "/img/avatars/Ryan-He_clipped_rev_1.png" %>" alt="">
           <div class="mask">
           </div><!--//mask-->
           <div class="info text-center">
-            <div class="name">Ryan He</div>
-            <div class="title">Co-Founder</div>
+            <div class="name"><%= @company_page.present? ? @company_page.co_founder_name : "Ryan He".html_safe %></div>
+            <div class="title"><%= @company_page.present? ? @company_page.co_founder_title : "Co-Founder".html_safe %></div>
             <ul class="social list-inline">
-              <li><a href="https://www.linkedin.com/in/ryanhe/" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
+              <li><a href="<%= @company_page.present? ? @company_page.co_founder_linkedin : "https://www.linkedin.com/in/ryanhe/" %>" target="_blank"><i class="fa fa-linkedin-square"></i></a></li>
 
             </ul><!--//social-->
           </div><!--//info-->
         </div><!--//item-inner-->
-      </div><!--//item-->
-    </div><!--//row-->
+      </div>
+      <div class="item col-xs-6 col-md-3">
+        <div class="item-inner">
+          <img class="img-responsive" src="<%= @company_page.present? ? @company_page.team3_avatar.url(:original) : "/img/avatars/placeholder.png" %>" alt="">
+          <div class="mask">
+          </div><!--//mask-->
+          <div class="info text-center">
+            <div class="name"><%= @company_page.present? ? @company_page.team_name3 : "Unknown".html_safe %></div>
+            <div class="title"><%= @company_page.present? ? @company_page.team_title3 : "Unknown".html_safe %></div>
+          </div>
+        </div>
+      </div>
+      <div class="item col-xs-6 col-md-3">
+        <div class="item-inner">
+          <img class="img-responsive" src="<%= @company_page.present? ? @company_page.team4_avatar.url(:original) : "/img/avatars/placeholder.png" %>" alt="">
+          <div class="mask">
+          </div><!--//mask-->
+          <div class="info text-center">
+            <div class="name"><%= @company_page.present? ? @company_page.team_name4 : "Unknown".html_safe %></div>
+            <div class="title"><%= @company_page.present? ? @company_page.team_title4 : "Unknown".html_safe %></div>
+          </div>
+        </div>
+      </div>
+      <div class="item col-xs-6 col-md-3">
+        <div class="item-inner">
+          <img class="img-responsive" src="<%= @company_page.present? ? @company_page.team5_avatar.url(:original) : "/img/avatars/placeholder.png" %>" alt="">
+          <div class="mask">
+          </div><!--//mask-->
+          <div class="info text-center">
+            <div class="name"><%= @company_page.present? ? @company_page.team_name5 : "Unknown".html_safe %></div>
+            <div class="title"><%= @company_page.present? ? @company_page.team_title5 : "Unknown".html_safe %></div>
+          </div>
+        </div>
+      </div>
+      <div class="item col-xs-6 col-md-3">
+        <div class="item-inner">
+          <img class="img-responsive" src="<%= @company_page.present? ? @company_page.team6_avatar.url(:original) : "/img/avatars/placeholder.png" %>" alt="">
+          <div class="mask">
+          </div><!--//mask-->
+          <div class="info text-center">
+            <div class="name"><%= @company_page.present? ? @company_page.team_name6 : "Unknown".html_safe %></div>
+            <div class="title"><%= @company_page.present? ? @company_page.team_title6 : "Unknown".html_safe %></div>
+          </div>
+        </div>
+      </div>
+      <div class="item col-xs-6 col-md-3">
+        <div class="item-inner">
+          <img class="img-responsive" src="<%= @company_page.present? ? @company_page.team7_avatar.url(:original) : "/img/avatars/placeholder.png" %>" alt="">
+          <div class="mask">
+          </div><!--//mask-->
+          <div class="info text-center">
+            <div class="name"><%= @company_page.present? ? @company_page.team_name7 : "Unknown".html_safe %></div>
+            <div class="title"><%= @company_page.present? ? @company_page.team_title7 : "Unknown".html_safe %></div>
+          </div>
+        </div>
+      </div>
+      <div class="item col-xs-6 col-md-3">
+        <div class="item-inner">
+          <img class="img-responsive" src="<%= @company_page.present? ? @company_page.team8_avatar.url(:original) : "/img/avatars/placeholder.png" %>" alt="">
+          <div class="mask">
+          </div><!--//mask-->
+          <div class="info text-center">
+            <div class="name"><%= @company_page.present? ? @company_page.team_name8 : "Unknown".html_safe %></div>
+            <div class="title"><%= @company_page.present? ? @company_page.team_title8 : "Unknown".html_safe %></div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div><!--//container-->
 </div><!--//team-block-->
 
