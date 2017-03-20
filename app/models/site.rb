@@ -17,7 +17,17 @@ class Site < ActiveRecord::Base
   validates_presence_of :item_image1
   validates_presence_of :item_image2
   validates_presence_of :item_image3
-  validates_presence_of :key_feature_image1
+
+  validates_presence_of :section_title_trusted_by_smart
+  validates_presence_of :section_intro_trusted_by_smart
+  validates_presence_of :quote_intro
+  validates_presence_of :quote_name
+  validates_presence_of :quote_title
+  validates_presence_of :quote_intro2
+  validates_presence_of :quote_name2
+  validates_presence_of :quote_title2
+  validates_presence_of :quote_profile
+  validates_presence_of :quote_profile2
 
   has_attached_file :section_image1
   validates_attachment_content_type :section_image1, content_type: /\Aimage\/.*\Z/
@@ -33,5 +43,9 @@ class Site < ActiveRecord::Base
   validates_attachment_content_type :item_image3, content_type: /\Aimage\/.*\Z/
   has_attached_file :key_feature_image1
   validates_attachment_content_type :key_feature_image1, content_type: /\Aimage\/.*\Z/
+  has_attached_file :quote_profile
+  validates_attachment_content_type :quote_profile, content_type: /\Aimage\/.*\Z/
+  has_attached_file :quote_profile2
+  validates_attachment_content_type :quote_profile2, content_type: /\Aimage\/.*\Z/
 
 end

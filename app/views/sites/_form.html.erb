@@ -129,11 +129,69 @@
       <% end %>
     </p>
 
+    <!--<p>
+      <%#= f.label :key_feature_image1 %><br>
+      <%#= f.file_field :key_feature_image1, class: "form-control" %>
+      <%# if @site.key_feature_image1.present? %>
+        <img class="profile" src="<%#= @site.key_feature_image1.url(:original) %>" width="250px" height="200px" />
+      <%# end %>
+    </p>-->
+
     <p>
-      <%= f.label :key_feature_image1 %><br>
-      <%= f.file_field :key_feature_image1, class: "form-control" %>
-      <% if @site.key_feature_image1.present? %>
-        <img class="profile" src="<%= @site.key_feature_image1.url(:original) %>" width="250px" height="200px" />
+      <%= f.label :section_title_trusted_by_smart %><br>
+      <%= f.text_area :section_title_trusted_by_smart, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :section_intro_trusted_by_smart %><br>
+      <%= f.text_area :section_intro_trusted_by_smart, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :quote_intro %><br>
+      <%= f.text_area :quote_intro, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :quote_name %><br>
+      <%= f.text_field :quote_name, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :quote_title %><br>
+      <%= f.text_field :quote_title, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :quote_intro2 %><br>
+      <%= f.text_area :quote_intro2, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :quote_name2 %><br>
+      <%= f.text_field :quote_name2, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :quote_title2 %><br>
+      <%= f.text_field :quote_title2, class: "form-control" %>
+    </p>
+
+
+    <p>
+      <%= f.label :quote_profile %><br>
+      <%= f.file_field :quote_profile, class: "form-control" %>
+      <% if @site.quote_profile.present? %>
+          <img class="profile" src="<%= @site.quote_profile.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+
+    <p>
+      <%= f.label :quote_profile2 %><br>
+      <%= f.file_field :quote_profile2, class: "form-control" %>
+      <% if @site.quote_profile2.present? %>
+          <img class="profile" src="<%= @site.quote_profile2.url(:original) %>" width="250px" height="200px" />
       <% end %>
     </p>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320100618) do
+ActiveRecord::Schema.define(version: 20170320163039) do
 
   create_table "addenda_notifications", force: :cascade do |t|
     t.integer  "sc_id",      limit: 4
@@ -692,6 +692,22 @@ ActiveRecord::Schema.define(version: 20170320100618) do
     t.string   "key_feature_image1_content_type", limit: 255
     t.integer  "key_feature_image1_file_size",    limit: 4
     t.datetime "key_feature_image1_updated_at"
+    t.string   "section_title_trusted_by_smart",  limit: 255
+    t.text     "section_intro_trusted_by_smart",  limit: 65535
+    t.text     "quote_intro",                     limit: 65535
+    t.string   "quote_name",                      limit: 255
+    t.string   "quote_title",                     limit: 255
+    t.text     "quote_intro2",                    limit: 65535
+    t.string   "quote_name2",                     limit: 255
+    t.string   "quote_title2",                    limit: 255
+    t.string   "quote_profile_file_name",         limit: 255
+    t.string   "quote_profile_content_type",      limit: 255
+    t.integer  "quote_profile_file_size",         limit: 4
+    t.datetime "quote_profile_updated_at"
+    t.string   "quote_profile2_file_name",        limit: 255
+    t.string   "quote_profile2_content_type",     limit: 255
+    t.integer  "quote_profile2_file_size",        limit: 4
+    t.datetime "quote_profile2_updated_at"
   end
 
   create_table "tender_approved_trades", force: :cascade do |t|
