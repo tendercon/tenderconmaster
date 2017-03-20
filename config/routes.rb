@@ -164,9 +164,18 @@ Rails.application.routes.draw do
        get 'terms'
        get 'policies'
 
+
       # post
       post 'notify_tendercon'
       post 'get_in_touch'
+
+    end
+  end
+
+  resources :landing_page do
+    collection do
+      # get
+
 
     end
   end

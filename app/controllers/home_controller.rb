@@ -18,6 +18,11 @@ class HomeController < ApplicationController
     render :layout => 'landing_page'
   end
 
+  def landing_page
+
+  end
+
+
   def features
     url = request.original_url
     if url.include?("builder")

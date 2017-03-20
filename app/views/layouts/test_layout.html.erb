@@ -31,43 +31,12 @@
 <header id="header" class="header">
   <div class="container">
     <h1 class="logo">
-      <a href="/landing_page"><img src="/img/logos/tendercon_log_transparent.png" alt="" width="100px" height="40px"><span class="text"></span></a>
+      <a href="/home"><img src="/img/logos/tendercon_log_transparent.png" alt="" width="100px" height="40px"><span class="text"></span></a>
     </h1><!--//logo-->
-    <nav class="main-nav navbar-right" role="navigation">
-      <div class="navbar-header">
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button><!--//nav-toggle-->
-      </div><!--//navbar-header-->
-      <div id="navbar-collapse" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
 
-          <li class="<%= params[:action] == 'index' ? 'active' : nil %> nav-item"><a href="/home">Home</a></li>
-          <li class="<%= params[:action] == 'features' ? 'active' : nil %> nav-item"><a href="<%= features_home_index_path %>">Features</a></li>
-          <% if @tendercon_url.include?("subcontractor") %>
-            <li class="<%= params[:action] == 'pricing' ? 'active' : nil %> nav-item"><a href="<%= pricing_home_index_path %>">Pricing</a></li>
-          <% end %>
-
-          <li class="<%= params[:action] == 'company' ? 'active' : nil %> nav-item"><a href="<%= company_home_index_path %>">Company</a></li>
-          <li class="<%= params[:action] == 'blog' || params[:action] == 'contact' || params[:action] == 'policies' || params[:action] == 'terms' ? 'active' : nil %> nav-item dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Browse More <i class="fa fa-angle-down"></i></a>
-            <ul class="dropdown-menu">
-              <li><a href="<%= blog_home_index_path %>">Blog</a></li>
-              <li><a href="<%= contact_home_index_path %>">Contact</a></li>
-              <li><a href="<%= policies_home_index_path %>">Privacy Policy</a></li>
-              <li><a href="<%= terms_home_index_path %>">Terms of Use</a></li>
-            </ul>
-          </li><!--//dropdown-->
-          <li class="nav-item"><a href="/users/login" class="login-trigger">Log in</a></li>
-          <li class="nav-item nav-item-cta last"><a class="btn-signup" href="/users/register">Sign Up</a></li>
-        </ul><!--//nav-->
-      </div><!--//navabr-collapse-->
-    </nav><!--//main-nav-->
   </div><!--//container-->
 </header><!--//header-->
-   <%= yield %>
+<%= yield %>
 <!-- Javascript -->
 <script type="text/javascript" src="../vendors/landing_page/plugins/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="../vendors/landing_page/plugins/bootstrap/js/bootstrap.min.js"></script>
