@@ -48,9 +48,9 @@
   </div><!--//section-intro-->
   <div class="figures-wrapper">
     <div class="container text-center">
-      <figure class="macbook-screen"><img class="img-responsive" src="<%= @site.present? ? @site.section_image1.present? ? @site.section_image1.url(:original) : "../vendors/landing_page/images/macbook-screen.png" : "../vendors/landing_page/images/macbook-screen.png" %>" alt=""></figure>
-      <figure class="ipad-screen"><img class="img-responsive" src="<%= @site.present? ? @site.section_image2.present? ? @site.section_image2.url(:original) : "../vendors/landing_page/images/ipad-screen.png" : "../vendors/landing_page/images/ipad-screen.png" %>" alt=""></figure>
-      <figure class="iphone-screen"><img class="img-responsive" src="<%= @site.present? ? @site.section_image3.present? ? @site.section_image3.url(:original) : "../vendors/landing_page/images/iphone-screen.png" : "../vendors/landing_page/images/iphone-screen.png" %>" alt=""></figure>
+      <figure class="macbook-screen"><img class="img-responsive" src="<%= @site.present? ? @site.section_image1.present? ? @site.section_image1.url(:original) : "../vendors/landing_page/images/macbook-screen.png" : "../vendors/landing_page/images/macbook-screen.png" %>" alt="" style="height: 650px"></figure>
+      <!--<figure class="ipad-screen"><img class="img-responsive" src="<%#= @site.present? ? @site.section_image2.present? ? @site.section_image2.url(:original) : "../vendors/landing_page/images/ipad-screen.png" : "../vendors/landing_page/images/ipad-screen.png" %>" alt=""></figure>
+      <figure class="iphone-screen"><img class="img-responsive" src="<%#= @site.present? ? @site.section_image3.present? ? @site.section_image3.url(:original) : "../vendors/landing_page/images/iphone-screen.png" : "../vendors/landing_page/images/iphone-screen.png" %>" alt=""></figure>-->
       <!--<a href="#" type="button" class="play-icon" data-toggle="modal" data-target="#modal-video"><img src="../vendors/landing_page/images/play-icon-md.svg" alt=""></a>-->
     </div><!--//container-->
   </div><!--//figures-wrapper-->
@@ -80,7 +80,7 @@
             <img class="item-icon" src="<%= @site.present? ? @site.item_image3.present? ? @site.item_image3.url(:original) : "../vendors/landing_page/images/icons/chat-white.svg" : "../vendors/landing_page/images/icons/chat-white.svg" %>" alt="">
             <h3 class="item-title"><%= @site.present? ? @site.item_title2 : "Better Collabration" %></h3>
             <div class="item-desc">
-              <%= @site.present? ? @site.item_title2 : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." %>
+              <%= @site.present? ? @site.item_desc2 : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus." %>
             </div>
           </div><!--//item-inner-->
         </div><!--//item-->
@@ -99,105 +99,7 @@
   </div>--><!--//press-wrapper-->
 </section><!--//overview-section-->
 
-<!--<section id="features-section" class="features-section section">
-  <h2 class="section-title">
-    Key Features
-  </h2>
-  <div class="container">
-    <div class="row" style="display: none">
-      <div class="features-content-wrapper col-xs-12 col-sm-7 com-md-7">
-        &lt;!&ndash;<div class="intro">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec
-        </div>&lt;!&ndash;//intro&ndash;&gt;
-        <ul class="feature-list list-unstyled">
-          <li><img class="tick-icon" src="../vendors/landing_page/images/tick.svg" alt=""> Feature one lorem ipsum dolor sit amet.</li>
-          <li><img class="tick-icon" src="../vendors/landing_page/images/tick.svg" alt=""> Feature two lorem ipsum dolor sit amet.</li>
-          <li><img class="tick-icon" src="../vendors/landing_page/images/tick.svg" alt=""> Feature three lorem ipsum dolor sit amet.</li>
-          <li><img class="tick-icon" src="../vendors/landing_page/images/tick.svg" alt=""> Feature four lorem ipsum dolor sit amet.</li>
-          <li><img class="tick-icon" src="../vendors/landing_page/images/tick.svg" alt=""> Feature five lorem ipsum dolor sit amet.</li>
-          <li><img class="tick-icon" src="../vendors/landing_page/images/tick.svg" alt=""> Feature six lorem ipsum dolor sit amet.</li>
-        </ul>&ndash;&gt;&lt;!&ndash;//feature-list&ndash;&gt;
 
-        <div id="reviews-carousel" class="reviews-carousel carousel slide" data-ride="carousel">
-          &lt;!&ndash;//wrapper for slides &ndash;&gt;
-          <div class="carousel-inner" role="listbox">
-            <div class="item active">
-              <blockquote class="review center-block">
-                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                <p>A great way to Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-              </blockquote>&lt;!&ndash;//review&ndash;&gt;
-              <div class="source">
-                <div class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>&lt;!&ndash;//rating&ndash;&gt;
-                <img class="profile" src="../vendors/landing_page/images/users/user-1.png" alt="" />
-                <div class="name">Theresa Wood, Product Hunt</div>
-              </div>&lt;!&ndash;//source&ndash;&gt;
-            </div>&lt;!&ndash;//item&ndash;&gt;
-
-            <div class="item">
-              <blockquote class="review center-block">
-                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                <p>A great way to Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-              </blockquote>&lt;!&ndash;//review&ndash;&gt;
-              <div class="source">
-                <div class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>&lt;!&ndash;//rating&ndash;&gt;
-                <img class="profile" src="../vendors/landing_page/images/users/user-2.png" alt="" />
-                <div class="name">Rob Kim, Mashable</div>
-              </div>&lt;!&ndash;//source&ndash;&gt;
-            </div>&lt;!&ndash;//item&ndash;&gt;
-
-            <div class="item">
-              <blockquote class="review center-block">
-                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                <p>A great way to Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-              </blockquote>&lt;!&ndash;//review&ndash;&gt;
-              <div class="source">
-                <div class="rating">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>&lt;!&ndash;//rating&ndash;&gt;
-                <img class="profile" src="../vendors/landing_page/images/users/user-3.png" alt="" />
-                <div class="name">Kevin Howell, Wired</div>
-              </div>&lt;!&ndash;//source&ndash;&gt;
-            </div>&lt;!&ndash;//item&ndash;&gt;
-
-          </div>&lt;!&ndash;//carousel-inner&ndash;&gt;
-
-          &lt;!&ndash;//Indicators&ndash;&gt;
-          <ol class="carousel-indicators">
-            <li data-target="#reviews-carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#reviews-carousel" data-slide-to="1"></li>
-            <li data-target="#reviews-carousel" data-slide-to="2"></li>
-          </ol>
-
-        </div>&lt;!&ndash;//reviews-carousel&ndash;&gt;
-      </div>&lt;!&ndash;//features-content-wrapper&ndash;&gt;
-    </div>&lt;!&ndash;//row&ndash;&gt;
-  </div>&lt;!&ndash;//container&ndash;&gt;
-
-  <div class="features-figure-wrapper">
-    <img class="img-responsive" src="<%#= @site.present? ? @site.key_feature_image1.present? ? @site.key_feature_image1.url(:original)  : "../vendors/landing_page/images/imac-screen.png" : "../vendors/landing_page/images/imac-screen.png" %>" alt="" width="400px" height="500px">
-  </div>&lt;!&ndash;//features-figure-wrapper&ndash;&gt;
-
-  &lt;!&ndash;<div class="action-wrapper text-center">
-    <a href="features.html" class="btn btn-secondary">View all features</a>
-  </div>&ndash;&gt;
-
-</section>--><!--//features-section-->
 
 <section id="customers-section" class="customers-section section" >
   <h2 class="section-title"><%= @site.present? ? @site.section_title_trusted_by_smart : "Trusted by smart businesses" %></h2>

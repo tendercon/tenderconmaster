@@ -12,7 +12,8 @@ class HomeController < ApplicationController
     elsif url.include?("subcontractor")
       @site = Site.where(:page_type => "subcontractor").first
     else
-      @site = nil
+      #@site = nil
+      @site = Site.where(:page_type => "builder").first
     end
 
     render :layout => 'landing_page'

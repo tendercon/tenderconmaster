@@ -12,8 +12,8 @@ class Site < ActiveRecord::Base
   validates_presence_of :item_title2
   validates_presence_of :item_desc2
   validates_presence_of :section_image1
-  validates_presence_of :section_image2
-  validates_presence_of :section_image3
+  # validates_presence_of :section_image2
+  # validates_presence_of :section_image3
   validates_presence_of :item_image1
   validates_presence_of :item_image2
   validates_presence_of :item_image3
