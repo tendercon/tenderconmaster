@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320070726) do
+ActiveRecord::Schema.define(version: 20170320100618) do
 
   create_table "addenda_notifications", force: :cascade do |t|
     t.integer  "sc_id",      limit: 4
@@ -184,6 +184,18 @@ ActiveRecord::Schema.define(version: 20170320070726) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.string   "acn",                 limit: 255
+  end
+
+  create_table "contact_pages", force: :cascade do |t|
+    t.text     "headline",   limit: 65535
+    t.text     "meta",       limit: 65535
+    t.string   "form_title", limit: 255
+    t.string   "name",       limit: 255
+    t.text     "email",      limit: 65535
+    t.string   "message",    limit: 255
+    t.text     "sent_it",    limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -362,6 +374,53 @@ ActiveRecord::Schema.define(version: 20170320070726) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "status",     limit: 4
+  end
+
+  create_table "pricing_pages", force: :cascade do |t|
+    t.text   "headline",                 limit: 65535
+    t.text   "intro",                    limit: 65535
+    t.string "pricing_block",            limit: 255
+    t.string "scrollto_pricing_block",   limit: 255
+    t.text   "scrollto_faqs_block",      limit: 65535
+    t.string "block_heading",            limit: 255
+    t.text   "item_heading",             limit: 65535
+    t.text   "item_intro",               limit: 65535
+    t.text   "currency",                 limit: 65535
+    t.string "number",                   limit: 255
+    t.text   "unit",                     limit: 65535
+    t.text   "sign_up_now",              limit: 65535
+    t.text   "tender_limit",             limit: 65535
+    t.text   "item_heading2",            limit: 65535
+    t.text   "item_intro2",              limit: 65535
+    t.text   "currency2",                limit: 65535
+    t.string "number2",                  limit: 255
+    t.text   "unit2",                    limit: 65535
+    t.text   "sign_up_now2",             limit: 65535
+    t.text   "tender_limit2",            limit: 65535
+    t.text   "item_heading3",            limit: 65535
+    t.text   "item_intro3",              limit: 65535
+    t.text   "currency3",                limit: 65535
+    t.string "number3",                  limit: 255
+    t.text   "unit3",                    limit: 65535
+    t.text   "sign_up_now3",             limit: 65535
+    t.text   "tender_limit3",            limit: 65535
+    t.text   "frequently_block_heading", limit: 65535
+    t.text   "faq1",                     limit: 65535
+    t.text   "faq2",                     limit: 65535
+    t.text   "faq3",                     limit: 65535
+    t.text   "faq4",                     limit: 65535
+    t.text   "faq5",                     limit: 65535
+    t.text   "faq6",                     limit: 65535
+    t.text   "faq7",                     limit: 65535
+    t.text   "faq8",                     limit: 65535
+    t.text   "faq1_desc",                limit: 65535
+    t.text   "faq2_desc",                limit: 65535
+    t.text   "faq3_desc",                limit: 65535
+    t.text   "faq4_desc",                limit: 65535
+    t.text   "faq5_desc",                limit: 65535
+    t.text   "faq6_desc",                limit: 65535
+    t.text   "faq7_desc",                limit: 65535
+    t.text   "faq8_desc",                limit: 65535
   end
 
   create_table "primary_trades", force: :cascade do |t|

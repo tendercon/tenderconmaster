@@ -1,0 +1,249 @@
+<%= form_for(@pricing_page) do |f| %>
+    <% if @pricing_page.errors.any? %>
+        <div class="alert alert-danger open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert"></button>
+          <h2>Errors</h2>
+          <ul>
+            <% @pricing_page.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+
+    <% end %>
+
+
+    <p>
+      <%= f.label :headline %><br>
+      <%= f.text_area :headline, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :intro %><br>
+      <%= f.text_area :intro, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :pricing_block %><br>
+      <%= f.text_area :pricing_block, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :scrollto_pricing_block %><br>
+      <%= f.text_field :scrollto_pricing_block, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :scrollto_faqs_block %><br>
+      <%= f.text_field :scrollto_faqs_block, class: "form-control" %>
+    </p>
+
+
+    <p>
+      <%= f.label :block_heading %><br>
+      <%= f.text_area :block_heading, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :item_heading %><br>
+      <%= f.text_area :item_heading, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :item_intro %><br>
+      <%= f.text_area :item_intro, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :currency %><br>
+      <%= f.text_field :currency, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :number %><br>
+      <%= f.text_field :number, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :unit %><br>
+      <%= f.text_field :unit, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :sign_up_now %><br>
+      <%= f.text_field :sign_up_now, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :tender_limit %><br>
+      <%= f.text_field :tender_limit, class: "form-control" %>
+    </p>
+
+
+
+
+    <p>
+      <%= f.label :item_heading2 %><br>
+      <%= f.text_area :item_heading2, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :item_intro2 %><br>
+      <%= f.text_area :item_intro2, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :currency2 %><br>
+      <%= f.text_field :currency2, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :number2 %><br>
+      <%= f.text_field :number2, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :unit2 %><br>
+      <%= f.text_field :unit2, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :sign_up_now2 %><br>
+      <%= f.text_field :sign_up_now2, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :tender_limit2 %><br>
+      <%= f.text_field :tender_limit2, class: "form-control" %>
+    </p>
+
+
+    <p>
+      <%= f.label :item_heading3 %><br>
+      <%= f.text_area :item_heading3, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :item_intro3 %><br>
+      <%= f.text_area :item_intro3, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :currency3 %><br>
+      <%= f.text_field :currency3, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :number3 %><br>
+      <%= f.text_field :number3, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :unit3 %><br>
+      <%= f.text_field :unit3, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :sign_up_now3 %><br>
+      <%= f.text_field :sign_up_now3, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :tender_limit3 %><br>
+      <%= f.text_field :tender_limit3, class: "form-control" %>
+    </p>
+
+
+    <p>
+      <%= f.label :frequently_block_heading %><br>
+      <%= f.text_area :frequently_block_heading, class: "form-control" %>
+    </p>
+
+
+
+    <p>
+      <%= f.label :faq1 %><br>
+      <%= f.text_area :faq1, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq1_desc %><br>
+      <%= f.text_area :faq1_desc, class: "form-control" %>
+    </p>
+
+
+    <p>
+      <%= f.label :faq2 %><br>
+      <%= f.text_area :faq2, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq2_desc %><br>
+      <%= f.text_area :faq2_desc, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq3 %><br>
+      <%= f.text_area :faq3, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq3_desc %><br>
+      <%= f.text_area :faq3_desc, class: "form-control" %>
+    </p>
+
+
+    <p>
+      <%= f.label :faq4 %><br>
+      <%= f.text_area :faq4, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq4_desc %><br>
+      <%= f.text_area :faq4_desc, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq5 %><br>
+      <%= f.text_area :faq5, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq5_desc %><br>
+      <%= f.text_area :faq5_desc, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq6 %><br>
+      <%= f.text_area :faq6, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq6_desc %><br>
+      <%= f.text_area :faq6_desc, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq7 %><br>
+      <%= f.text_area :faq7, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq7_desc %><br>
+      <%= f.text_area :faq7_desc, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq8 %><br>
+      <%= f.text_area :faq8, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :faq8_desc %><br>
+      <%= f.text_area :faq8_desc, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>

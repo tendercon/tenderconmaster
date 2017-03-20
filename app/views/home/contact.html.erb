@@ -1,71 +1,80 @@
 <section class="heading-section section section-on-bg">
   <div class="hero-wrapper">
     <div class="hero-holder"></div>
-    <div class="hero-mask-solid"></div>
+    <div class="hero-mask-solid">
+      <img class="img-responsive" src="../vendors/landing_page/images/contact.png" height="500px">
+    </div>
   </div><!--//hero-wrapper-->
   <div class="container heading-content">
-    <h2 class="headline">Get in Touch</h2>
-    <div class="meta">We’d love to hear from you. Lorem ipsum dolor sit amet, <br class="hidden-xs">consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </div>
+    <h2 class="headline"><%=  @contact.present? ? @contact.headline : "Get in Touch" %></h2>
+    <div class="meta"> <%=  @contact.present? ? @contact.meta : "Unknown" %></div>
   </div><!--//container-->
 </section><!--//heading-section-->
 
-<div class="contact-methods">
+<!--<div class="contact-methods">
   <div class="container">
     <div class="row">
       <div class="item col-xs-12 col-sm-6">
         <div class="item-inner">
           <h3 class="item-title"><i class="fa fa-life-ring" aria-hidden="true"></i> Get Support</h3>
           <div class="item-content">If you have any questions or problems with our product please visit our <a href="support.html">Support Center</a>.</div>
-        </div><!--//item-inner-->
-      </div><!--//item-->
+        </div>&lt;!&ndash;//item-inner&ndash;&gt;
+      </div>&lt;!&ndash;//item&ndash;&gt;
 
       <div class="item col-xs-12 col-sm-6">
         <div class="item-inner">
           <h3 class="item-title"><i class="fa fa-volume-control-phone" aria-hidden="true"></i> Enterprise Sales</h3>
           <div class="item-content">Lorem ipsum dolor sit amet, consectetuer. Contact our sales team at <a href="tel:0800123456">0800 123 456</a>.</div>
-        </div><!--//item-inner-->
-      </div><!--//item-->
+        </div>&lt;!&ndash;//item-inner&ndash;&gt;
+      </div>&lt;!&ndash;//item&ndash;&gt;
 
       <div class="item col-xs-12 col-sm-6">
         <div class="item-inner">
           <h3 class="item-title"><i class="fa fa-file-archive-o" aria-hidden="true"></i> Press Inquiries</h3>
           <div class="item-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor <a href="support.html">Download our press kit</a>.</div>
-        </div><!--//item-inner-->
-      </div><!--//item-->
+        </div>&lt;!&ndash;//item-inner&ndash;&gt;
+      </div>&lt;!&ndash;//item&ndash;&gt;
 
       <div class="item col-xs-12 col-sm-6">
         <div class="item-inner">
           <h3 class="item-title"><i class="fa fa-users" aria-hidden="true"></i> Partnership Inquiries</h3>
           <div class="item-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor <a href="support.html">Use the contact form below</a>.</div>
-        </div><!--//item-inner-->
-      </div><!--//item-->
+        </div>&lt;!&ndash;//item-inner&ndash;&gt;
+      </div>&lt;!&ndash;//item&ndash;&gt;
 
-    </div><!--//row-->
-  </div><!--//container-->
-</div><!--//contact-methods-->
+    </div>&lt;!&ndash;//row&ndash;&gt;
+  </div>&lt;!&ndash;//container&ndash;&gt;
+</div>--><!--//contact-methods-->
 
 <div class="form-block">
-  <form id="contact-form" class="contact-form" method="post" action="">
-    <h3 class="form-title text-center">Quick Contact Form</h3>
+  <%- if flash[:notice].present? %>
+      <div class="alert alert-success open-sans-regular" id="users_error">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <div class="notice" style="font-size: 14px;"><%= flash[:notice] %></div>
+        <% flash[:notice]=nil %>
+      </div>
+  <%- end %>
+  <%= form_tag sent_contact_contact_pages_path,:id => 'contact-form', :class => 'contact-form' do %>
+    <h3 class="form-title text-center"><%=  @contact.present? ? @contact.form_title : "Quick Contact Form" %></h3>
     <div class="row">
       <div class="form-group col-xs-12 col-sm-6">
-        <label class="sr-only" for="cname">Name</label>
+        <label class="sr-only" for="cname"><%=  @contact.present? ? @contact.name : "Name" %></label>
         <input type="text" class="form-control" id="cname" name="name" placeholder="Name" minlength="2" required="" aria-required="true">
       </div>
       <div class="form-group col-xs-12 col-sm-6">
-        <label class="sr-only" for="cemail">Email</label>
+        <label class="sr-only" for="cemail"><%=  @contact.present? ? @contact.email : "Email" %></label>
         <input type="email" class="form-control" id="cemail" name="email" placeholder="Email" required="" aria-required="true">
       </div>
       <div class="form-group col-xs-12">
-        <label class="sr-only" for="cmessage">Your message</label>
+        <label class="sr-only" for="cmessage"><%=  @contact.present? ? @contact.message : "Your message" %></label>
         <textarea class="form-control" id="cmessage" name="message" placeholder="Enter your message" rows="12" required="" aria-required="true"></textarea>
       </div>
       <div class="form-group col-xs-12">
-        <button type="submit" class="btn btn-block btn-cta btn-primary">Send It</button>
+        <button type="submit" class="btn btn-block btn-cta btn-primary sent_it"><%=  @contact.present? ? @contact.sent_it : "Send It" %></button>
       </div>
     </div><!--//row-->
     <div id="form-messages"></div>
-  </form><!--//contact-form-->
+  <% end %>
 </div><!--//form-block-->
 
 
@@ -281,3 +290,13 @@
     <a id="config-close" class="close" href="#"><i class="fa fa-times-circle"></i></a>
   </div><!--//panel-inner-->
 </div>
+
+
+<script>
+  $(document).ready(function(){
+    $('.sent_it').click(function(){
+       alert("");
+    });
+  })
+
+</script>

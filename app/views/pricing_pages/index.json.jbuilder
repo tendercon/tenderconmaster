@@ -1,0 +1,1 @@
+json.array! @pricing_pages, partial: 'pricing_pages/pricing_page', as: :pricing_page

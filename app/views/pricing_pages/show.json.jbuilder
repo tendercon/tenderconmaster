@@ -1,0 +1,1 @@
+json.partial! "pricing_pages/pricing_page", pricing_page: @pricing_page

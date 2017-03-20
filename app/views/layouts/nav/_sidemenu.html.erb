@@ -80,8 +80,35 @@
           </a>
           </li>
 
+          <% if params[:controller] == 'contact_pages' %>
+              <li class="nav-item start active open">
+                <span class="selected"></span>
+          <% else %>
+              <li class="nav-item">
+          <% end %>
+          <a href="<%= contact_pages_path %>"  class="nav-link" >
+            <i class="fa fa-plus-square"></i>
+            <span class="title">Contact Us</span>
+            <span class="selected"></span>
+          </a>
+          </li>
 
-      <% end %>
+
+          <% if params[:controller] == 'pricing_pages' %>
+              <li class="nav-item start active open">
+                <span class="selected"></span>
+          <% else %>
+              <li class="nav-item">
+          <% end %>
+          <a href="<%= pricing_pages_path %>"  class="nav-link" >
+            <i class="fa fa-plus-square"></i>
+            <span class="title">Price</span>
+            <span class="selected"></span>
+          </a>
+          </li>
+
+
+    <% end %>
       <li class="heading">
         <h3 class="uppercase">HOME</h3>
       </li>

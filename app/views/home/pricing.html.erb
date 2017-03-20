@@ -1,13 +1,15 @@
 <section class="heading-section section section-on-bg">
   <div class="hero-wrapper">
     <div class="hero-holder"></div>
-    <div class="hero-mask-gradient"></div>
+    <div class="hero-mask-gradient">
+      <img class="img-responsive" src="../vendors/landing_page/images/pricing.png" height="500px">
+    </div>
   </div><!--//hero-wrapper-->
   <div class="container heading-content">
-    <h2 class="headline">Our Pricing is Simple and Flexible</h2>
-    <div class="intro">You can change your plan at any time.</div>
+    <h2 class="headline"><%= @pricing.present? ? @pricing.headline : "Unknown" %></h2>
+    <div class="intro"><%= @pricing.present? ? @pricing.intro : "Unknown" %></div>
     <div class="actions">
-      <a class="scrollto" href="#pricing-block">View Plans</a>
+      <a class="scrollto" href="#pricing-block"><%= @pricing.present? ? @pricing.pricing_block : "View Plans" %></a>
       <a class="scrollto" href="#pricing-block"><img src="../vendors/landing_page/images/arrow-icon.svg" alt=""></a>
     </div><!--//actions-->
   </div><!--//container-->
@@ -17,8 +19,8 @@
   <div id="page-nav-wrapper" class="page-nav-wrapper text-center">
     <div class="container">
       <ul id="page-nav" class="page-nav nav list-inline">
-        <li><a class="scrollto" href="#pricing-block">Pricing</a></li>
-        <li><a class="scrollto"  href="#faqs-block">FAQs</a></li>
+        <li><a class="scrollto" href="#pricing-block"><%= @pricing.present? ? @pricing.scrollto_pricing_block : "Pricing" %></a></li>
+        <li><a class="scrollto"  href="#faqs-block"><%= @pricing.present? ? @pricing.scrollto_faqs_block : "FAQs" %></a></li>
       </ul><!--//page-nav-->
     </div>
   </div><!--//page-nav-wrapper-->
@@ -26,26 +28,26 @@
 
 <div class="pricing-block" id="pricing-block">
   <div class="container">
-    <h2 class="block-heading text-center">30 day FREE trial with all plans! </h2>
+    <h2 class="block-heading text-center"><%= @pricing.present? ? @pricing.block_heading : "30 day FREE trial with all plans!" %> </h2>
     <div class="row">
       <div class="item item-1 col-xs-12 col-sm-6 col-md-4">
         <div class="item-inner">
           <div class="summary-box text-center">
-            <h3 class="item-heading">FREE - Starter Plan</h3>
-            <div class="item-intro">For basic use lorem ipsum dolor sit amet, consectetuer adipiscing elit.</div>
+            <h3 class="item-heading"><%= @pricing.present? ? @pricing.item_heading : "FREE - Starter Plan" %></h3>
+            <div class="item-intro"><%= @pricing.present? ? @pricing.item_intro : "Unknown" %></div>
             <div class="price">
-              <span class="currency">$</span>
-              <span class="number">0</span>
+              <span class="currency"><%= @pricing.present? ? @pricing.currency : "$" %></span>
+              <span class="number"><%= @pricing.present? ? @pricing.number : "0" %></span>
             </div><!--//price-->
-            <div class="unit">Per month</div>
+            <div class="unit"><%= @pricing.present? ? @pricing.unit : "Per month" %></div>
             <div class="action">
-              <div class="btn-container"><a href="/users/register" class="btn btn-secondary btn-ghost">Sign Up Now</a></div>
+              <div class="btn-container"><a href="/users/register" class="btn btn-secondary btn-ghost"><%= @pricing.present? ? @pricing.sign_up_now : "Sign Up Now" %></a></div>
               <div class="note"></div>
             </div>
           </div><!--//summary-box-->
           <div class="details-box">
             <ul class="details-list list-unstyled">
-              <li><i class="fa fa-check" aria-hidden="true"></i> 5 Tenders</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i><%= @pricing.present? ? @pricing.tender_limit : "5 Tenders" %> </li>
               <!--<li><i class="fa fa-check" aria-hidden="true"></i> 10 GB file storage</li>
               <li><i class="fa fa-check" aria-hidden="true"></i> Email support</li>
               <li><i class="fa fa-check" aria-hidden="true"></i> Free update</li>
@@ -58,21 +60,21 @@
       <div class="item item-2 col-xs-12 col-sm-6 col-md-4">
         <div class="item-inner">
           <div class="summary-box text-center">
-            <h3 class="item-heading">Professional Plan - monthly</h3>
-            <div class="item-intro">For pro use lorem ipsum dolor sit amet, consectetuer adipiscing elit.</div>
+            <h3 class="item-heading"><%= @pricing.present? ? @pricing.item_heading2 : "Professional Plan - monthly" %></h3>
+            <div class="item-intro"><%= @pricing.present? ? @pricing.item_intro2 : "Unknown" %></div>
             <div class="price">
-              <span class="currency">$</span>
-              <span class="number">66</span>
+              <span class="currency"><%= @pricing.present? ? @pricing.currency2 : "$" %></span>
+              <span class="number"><%= @pricing.present? ? @pricing.number2 : "66" %></span>
             </div><!--//price-->
-            <div class="unit">Per month</div>
+            <div class="unit"><%= @pricing.present? ? @pricing.unit2 : "Per month" %></div>
             <div class="action">
-              <div class="btn-container"><a href="/users/register" class="btn btn-secondary btn-ghost">Sign Up Now</a></div>
+              <div class="btn-container"><a href="/users/register" class="btn btn-secondary btn-ghost"><%= @pricing.present? ? @pricing.sign_up_now2 : "Sign Up Now" %></a></div>
               <div class="note"></div>
             </div>
           </div><!--//summary-box-->
           <div class="details-box">
             <ul class="details-list list-unstyled">
-              <li><i class="fa fa-check" aria-hidden="true"></i> Unlimited Tenders</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.present? ? @pricing.tender_limit2 : "Unlimited Tenders" %></li>
               <!--<li><i class="fa fa-check" aria-hidden="true"></i> 30 GB file storage</li>
               <li><i class="fa fa-check" aria-hidden="true"></i> Email priority support</li>
               <li><i class="fa fa-check" aria-hidden="true"></i> Free update</li>
@@ -89,21 +91,21 @@
       <div class="item item-4 col-xs-12 col-sm-6 col-md-4">
         <div class="item-inner">
           <div class="summary-box text-center">
-            <h3 class="item-heading">Professional Plan - 12 months</h3>
-            <div class="item-intro">For team use lorem ipsum dolor sit amet, consectetuer adipiscing elit.</div>
+            <h3 class="item-heading"><%= @pricing.present? ? @pricing.item_heading3 : "Professional Plan - 12 months" %></h3>
+            <div class="item-intro"><%= @pricing.present? ? @pricing.item_intro3 : "Unknown" %></div>
             <div class="price">
-              <span class="currency">$</span>
-              <span class="number">544</span>
+              <span class="currency"><%= @pricing.present? ? @pricing.currency3 : "$" %></span>
+              <span class="number"><%= @pricing.present? ? @pricing.number3 : "544" %></span>
             </div><!--//price-->
-            <div class="unit">Per year</div>
+            <div class="unit"><%= @pricing.present? ? @pricing.unit3 : "Per year" %></div>
             <div class="action">
-              <div class="btn-container"><a href="/users/register" class="btn btn-secondary btn-ghost">Sign Up Now</a></div>
+              <div class="btn-container"><a href="/users/register" class="btn btn-secondary btn-ghost"><%= @pricing.present? ? @pricing.sign_up_now3 : "Sign Up Now" %></a></div>
               <div class="note"></div>
             </div>
           </div><!--//summary-box-->
           <div class="details-box">
             <ul class="details-list list-unstyled">
-              <li><i class="fa fa-check" aria-hidden="true"></i> Unlimited Tenders</li>
+              <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.present? ? @pricing.tender_limit3 : "Unlimited Tenders" %></li>
               <!--<li><i class="fa fa-check" aria-hidden="true"></i> Unlimited file storage</li>
               <li><i class="fa fa-check" aria-hidden="true"></i> 24/7 support</li>
               <li><i class="fa fa-check" aria-hidden="true"></i> Free update</li>
@@ -129,52 +131,76 @@
 
 <div class="faqs-block" id="faqs-block">
   <div class="container">
-    <h2 class="block-heading text-center">Frequently Asked Questions</h2>
+    <h2 class="block-heading text-center"><%= @pricing.present? ? @pricing.frequently_block_heading : "Frequently Asked Questions" %></h2>
     <div class="row">
       <div class="col-xs-12 col-sm-6">
-        <div class="panel">
-          <div class="panel-heading">
-            <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle collapsed" href="#faq1" aria-expanded="false"><i class="fa fa-plus-square"></i>Can I viverra sit amet quam eget lacinia?</a></h4>
-          </div>
+        <% if @pricing.faq1.present? && @pricing.faq1_desc.present? %>
+          <div class="panel">
+            <div class="panel-heading">
+              <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle collapsed" href="#faq1" aria-expanded="false"><i class="fa fa-plus-square"></i><%= @pricing.faq1 %></a></h4>
+            </div>
 
-          <div class="panel-collapse collapse" id="faq1" aria-expanded="false" style="height: 0px;">
-            <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck
-              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee
-              nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt
-              sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-              Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them
-              accusamus labore sustainable VHS.
+            <div class="panel-collapse collapse" id="faq1" aria-expanded="false" style="height: 0px;">
+              <div class="panel-body">
+                <%= @pricing.faq1_desc %>
+              </div>
             </div>
           </div>
-        </div><!--//panel-->
+        <% end %>
 
-        <div class="panel">
+        <% if @pricing.faq2.present? && @pricing.faq2_desc.present? %>
+            <div class="panel">
+              <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle collapsed" href="#faq2" aria-expanded="false"><i class="fa fa-plus-square"></i><%= @pricing.faq2 %></a></h4>
+              </div>
+
+              <div class="panel-collapse collapse" id="faq2" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <%= @pricing.faq2_desc %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+
+        <% if @pricing.faq3.present? && @pricing.faq3_desc.present? %>
+            <div class="panel">
+              <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle collapsed" href="#faq3" aria-expanded="false"><i class="fa fa-plus-square"></i><%= @pricing.faq3 %></a></h4>
+              </div>
+
+              <div class="panel-collapse collapse" id="faq3" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <%= @pricing.faq3_desc %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+
+        <% if @pricing.faq4.present? && @pricing.faq4_desc.present? %>
+            <div class="panel">
+              <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle collapsed" href="#faq4" aria-expanded="false"><i class="fa fa-plus-square"></i><%= @pricing.faq4 %></a></h4>
+              </div>
+
+              <div class="panel-collapse collapse" id="faq4" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <%= @pricing.faq4_desc %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+
+        <!--<div class="panel">
           <div class="panel-heading">
             <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq2"><i class="fa fa-plus-square"></i>What is the ipsum dolor sit amet quam tortor?</a></h4>
           </div>
 
           <div class="panel-collapse collapse" id="faq2">
             <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck
-              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee
-              nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt
-              sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-              Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them
-              accusamus labore sustainable VHS.
+             test
             </div>
           </div>
-        </div><!--//panel-->
+        </div>&lt;!&ndash;//panel&ndash;&gt;
 
         <div class="panel">
           <div class="panel-heading">
@@ -183,20 +209,10 @@
 
           <div class="panel-collapse collapse" id="faq3">
             <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck
-              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee
-              nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt
-              sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-              Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them
-              accusamus labore sustainable VHS.
+              test
             </div>
           </div>
-        </div><!--//panel-->
+        </div>&lt;!&ndash;//panel&ndash;&gt;
 
         <div class="panel">
           <div class="panel-heading">
@@ -205,43 +221,79 @@
 
           <div class="panel-collapse collapse" id="faq4">
             <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck
-              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee
-              nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt
-              sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-              Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them
-              accusamus labore sustainable VHS.
+              test
             </div>
           </div>
-        </div><!--//panel-->
+        </div>-->
       </div>
       <div class="col-xs-12 col-sm-6">
-        <div class="panel">
+        <% if @pricing.faq5.present? && @pricing.faq5_desc.present? %>
+            <div class="panel">
+              <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle collapsed" href="#faq5" aria-expanded="false"><i class="fa fa-plus-square"></i><%= @pricing.faq5 %></a></h4>
+              </div>
+
+              <div class="panel-collapse collapse" id="faq5" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <%= @pricing.faq5_desc %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+
+        <% if @pricing.faq6.present? && @pricing.faq6_desc.present? %>
+            <div class="panel">
+              <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle collapsed" href="#faq6" aria-expanded="false"><i class="fa fa-plus-square"></i><%= @pricing.faq6 %></a></h4>
+              </div>
+
+              <div class="panel-collapse collapse" id="faq6" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <%= @pricing.faq6_desc %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+
+        <% if @pricing.faq7.present? && @pricing.faq7_desc.present? %>
+            <div class="panel">
+              <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle collapsed" href="#faq7" aria-expanded="false"><i class="fa fa-plus-square"></i><%= @pricing.faq7 %></a></h4>
+              </div>
+
+              <div class="panel-collapse collapse" id="faq7" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <%= @pricing.faq7_desc %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+
+        <% if @pricing.faq8.present? && @pricing.faq8_desc.present? %>
+            <div class="panel">
+              <div class="panel-heading">
+                <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle collapsed" href="#faq8" aria-expanded="false"><i class="fa fa-plus-square"></i><%= @pricing.faq8 %></a></h4>
+              </div>
+
+              <div class="panel-collapse collapse" id="faq8" aria-expanded="false" style="height: 0px;">
+                <div class="panel-body">
+                  <%= @pricing.faq8_desc %>
+                </div>
+              </div>
+            </div>
+        <% end %>
+
+        <!--<div class="panel">
           <div class="panel-heading">
             <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq5"><i class="fa fa-plus-square"></i>Is it possible to tellus eget auctor condimentum?</a></h4>
           </div>
 
           <div class="panel-collapse collapse" id="faq5">
             <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck
-              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee
-              nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt
-              sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-              Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them
-              accusamus labore sustainable VHS.
+              test
             </div>
           </div>
-        </div><!--//panel-->
+        </div>&lt;!&ndash;//panel&ndash;&gt;
 
         <div class="panel">
           <div class="panel-heading">
@@ -250,20 +302,10 @@
 
           <div class="panel-collapse collapse" id="faq6">
             <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck
-              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee
-              nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt
-              sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-              Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them
-              accusamus labore sustainable VHS.
+              test
             </div>
           </div>
-        </div><!--//panel-->
+        </div>&lt;!&ndash;//panel&ndash;&gt;
 
         <div class="panel">
           <div class="panel-heading">
@@ -272,20 +314,10 @@
 
           <div class="panel-collapse collapse" id="faq7">
             <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck
-              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee
-              nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt
-              sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-              Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them
-              accusamus labore sustainable VHS.
+              test
             </div>
           </div>
-        </div><!--//panel-->
+        </div>&lt;!&ndash;//panel&ndash;&gt;
 
         <div class="panel">
           <div class="panel-heading">
@@ -294,20 +326,10 @@
 
           <div class="panel-collapse collapse" id="faq8">
             <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck
-              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee
-              nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt
-              sapiente ea proident. Ad vegan excepteur butcher vice lomo.
-              Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them
-              accusamus labore sustainable VHS.
+              test
             </div>
           </div>
-        </div><!--//panel-->
+        </div>--><!--//panel-->
       </div>
     </div><!--//row-->
 

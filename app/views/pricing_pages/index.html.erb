@@ -1,0 +1,83 @@
+<div class="quote_list_table">
+
+  <div class="admin-form">
+    <div class="row">
+      <div class="col-md-6">
+        <% if @pricing_pages.present? && @pricing_pages.size == 1  %>
+
+
+        <% else %>
+            <a href="<%= new_pricing_page_path %>">
+              <button class="button btn-default">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Add
+              </button>
+            </a>
+        <% end %>
+
+      </div>
+      <div class="col-md-3">
+
+      </div>
+
+      <div class="col-md-3 pull-right">
+        <div class="section">
+          <div class="smart-widget sm-left sml-50">
+            <label class="field">
+              <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Here">
+            </label>
+            <label for="sm3" class="button">
+              <i class="fa fa-search"></i>
+            </label>
+          </div>
+          <!-- end .smart-widget section -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <table class="table table-bordered" id="new_quote_table">
+
+    <thead>
+    <tr style="background-color: #2C3E50;color: white;">
+      <th class="text-center">Headline</th>
+      <th class="text-center">Intro</th>
+      <th class="text-center">Action</th>
+    </tr>
+    </thead>
+    <tbody class="searchable">
+    <% if @pricing_pages.present? %>
+        <% @pricing_pages.uniq.each do |d| %>
+            <tr>
+              <td class="text-center"><%= d.headline %></td>
+              <td class="text-center"><%= d.intro %></td>
+              <td class="text-center">
+                <a href="<%= "pricing_pages/get_price?id=#{d.id}" %>">
+                  <button class="btn btn-success">
+                    Edit
+                  </button>
+                </a>
+              </td>
+            </tr>
+        <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<script>
+  $(document).ready(function(){
+    $('#filter').keyup(function () {
+
+      var rex = new RegExp($(this).val(), 'i');
+      $('.searchable tr').hide();
+      $('.searchable tr').filter(function () {
+        return rex.test($(this).text());
+      }).show();
+
+    })
+  })
+
+
+</script>

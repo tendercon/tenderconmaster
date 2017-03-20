@@ -195,6 +195,29 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :pricing_pages do
+    collection do
+      # get
+      get 'get_price'
+
+      # post
+
+
+    end
+  end
+
+  resources :contact_pages do
+    collection do
+      # get
+      get 'get_contact'
+
+      # post
+      post 'sent_contact'
+
+
+    end
+  end
+
   resources :feature_pages do
     collection do
       # get

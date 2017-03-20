@@ -31,6 +31,7 @@ class HomeController < ApplicationController
   end
 
   def pricing
+    @pricing = PricingPage.last
     render :layout => 'landing_page'
   end
 
@@ -44,6 +45,8 @@ class HomeController < ApplicationController
   end
 
   def contact
+    @new_contact = ContactPage.new
+    @contact = ContactPage.last
     render :layout => 'landing_page'
   end
 

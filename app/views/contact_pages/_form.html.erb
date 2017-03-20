@@ -1,0 +1,53 @@
+<%= form_for(@contact_page) do |f| %>
+    <% if @contact_page.errors.any? %>
+        <div class="alert alert-danger open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert"></button>
+          <h2>Errors</h2>
+          <ul>
+            <% @contact_page.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+
+    <% end %>
+
+    <p>
+      <%= f.label :headline %><br>
+      <%= f.text_area :headline, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :meta %><br>
+      <%= f.text_area :meta, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :form_title %><br>
+      <%= f.text_field :form_title, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :name %><br>
+      <%= f.text_field :name, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :email %><br>
+      <%= f.text_field :email, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :message %><br>
+      <%= f.text_field :message, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :sent_it %><br>
+      <%= f.text_field :sent_it, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>
