@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319084337) do
+ActiveRecord::Schema.define(version: 20170320030737) do
 
   create_table "addenda_notifications", force: :cascade do |t|
     t.integer  "sc_id",      limit: 4
@@ -158,6 +158,42 @@ ActiveRecord::Schema.define(version: 20170319084337) do
     t.string   "status",      limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "feature_pages", force: :cascade do |t|
+    t.string   "page_type",                   limit: 255
+    t.text     "headline",                    limit: 65535
+    t.text     "tagline",                     limit: 65535
+    t.string   "feature_block_1",             limit: 255
+    t.string   "feature_block_2",             limit: 255
+    t.string   "feature_block_3",             limit: 255
+    t.string   "feature_block_4",             limit: 255
+    t.text     "feature_title",               limit: 65535
+    t.text     "feature_desc",                limit: 65535
+    t.text     "feature_title2",              limit: 65535
+    t.text     "feature_desc2",               limit: 65535
+    t.text     "feature_title3",              limit: 65535
+    t.text     "feature_desc3",               limit: 65535
+    t.text     "feature_title4",              limit: 65535
+    t.text     "feature_desc4",               limit: 65535
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "figure_holder_file_name",     limit: 255
+    t.string   "figure_holder_content_type",  limit: 255
+    t.integer  "figure_holder_file_size",     limit: 4
+    t.datetime "figure_holder_updated_at"
+    t.string   "figure_holder2_file_name",    limit: 255
+    t.string   "figure_holder2_content_type", limit: 255
+    t.integer  "figure_holder2_file_size",    limit: 4
+    t.datetime "figure_holder2_updated_at"
+    t.string   "figure_holder3_file_name",    limit: 255
+    t.string   "figure_holder3_content_type", limit: 255
+    t.integer  "figure_holder3_file_size",    limit: 4
+    t.datetime "figure_holder3_updated_at"
+    t.string   "figure_holder4_file_name",    limit: 255
+    t.string   "figure_holder4_content_type", limit: 255
+    t.integer  "figure_holder4_file_size",    limit: 4
+    t.datetime "figure_holder4_updated_at"
   end
 
   create_table "google_calendar_events", force: :cascade do |t|

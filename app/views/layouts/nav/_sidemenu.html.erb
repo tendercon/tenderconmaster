@@ -49,7 +49,20 @@
           <% end %>
           <a href="<%= sites_path %>"  class="nav-link" id="post_tender_link">
             <i class="fa fa-plus-square"></i>
-            <span class="title">Sites</span>
+            <span class="title">Home</span>
+            <span class="selected"></span>
+          </a>
+          </li>
+
+          <% if params[:controller] == 'feature_pages' %>
+              <li class="nav-item start active open">
+                <span class="selected"></span>
+          <% else %>
+              <li class="nav-item">
+          <% end %>
+          <a href="<%= feature_pages_path %>"  class="nav-link" >
+            <i class="fa fa-plus-square"></i>
+            <span class="title">Features</span>
             <span class="selected"></span>
           </a>
           </li>

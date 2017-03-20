@@ -10,13 +10,28 @@ class HomeController < ApplicationController
     puts "request.request_uri#{request.fullpath}"
     Rails.logger.info "request.request_uri ======> #{request.fullpath}"
     Rails.logger.info "request.original_url ======> #{request.original_url}"
-    @site = Site.first
+    url = request.original_url
+
+    if url.include?("builder")
+      @site = Site.where(:page_type => "builder").first
+    elsif url.include?("subcontractor")
+      @site = Site.where(:page_type => "subcontractor").first
+    else
+      @site = nil
+    end
+
     render :layout => 'landing_page'
-
-
   end
 
   def features
+    url = request.original_url
+    if url.include?("builder")
+      @feature_page = FeaturePage.where(:page_type => "builder").first
+    elsif url.include?("subcontractor")
+      @feature_page = FeaturePage.where(:page_type => "subcontractor").first
+    else
+      @feature_page = nil
+    end
     render :layout => 'landing_page'
   end
 

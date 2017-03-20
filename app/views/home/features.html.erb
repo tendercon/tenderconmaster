@@ -1,15 +1,17 @@
 <section class="heading-section section section-on-bg">
-  <div class="hero-wrapper">
+  <div class="hero-wrapper" >
     <div class="hero-holder"></div>
-    <div class="hero-mask-gradient"></div>
+    <div class="hero-mask-gradient">
+      <img class="img-responsive" src="../vendors/landing_page/images/features.png">
+    </div>
   </div><!--//hero-wrapper-->
   <div class="container heading-content">
-    <h2 class="headline">Everything you need to kickstart your<br>SaaS Business</h2>
-    <p class="tagline">Startup Kit helps developers to build beautiful and<br class="hidden-xs">user-friendly web apps quick and easily!</p>
+    <h2 class="headline"><%= @feature_page.present? ? @feature_page.headline : "Everything you need to kickstart your<br>SaaS Business".html_safe %></h2>
+    <p class="tagline"><%= @feature_page.present? ? @feature_page.tagline : "Startup Kit helps developers to build beautiful and<br class='hidden-xs'>user-friendly web apps quick and easily!".html_safe %></p>
     <div class="actions">
       <!--<a href="#" class="play-trigger btn btn-cta btn-primary" data-toggle="modal" data-target="#modal-video" >Watch Our Demo</a>
       <br class="visible-xs-block">-->
-      <a href="<%= pricing_home_index_path %>" class="btn btn-cta btn-ghost">Plans &amp; Pricing</a>
+      <!--<a href="<%#= pricing_home_index_path %>" class="btn btn-cta btn-ghost">Plans &amp; Pricing</a>-->
     </div>
   </div><!--//container-->
 </section><!--//heading-section-->
@@ -18,10 +20,10 @@
   <div id="page-nav-wrapper" class="page-nav-wrapper text-center">
     <div class="container">
       <ul id="page-nav" class="page-nav nav list-inline">
-        <li><a class="scrollto" href="#feature-block-1">Feature One</a></li>
-        <li><a class="scrollto"  href="#feature-block-2">Feature Two</a></li>
-        <li><a class="scrollto"  href="#feature-block-3">Feature Three</a></li>
-        <li><a class="scrollto"  href="#feature-block-4">Feature Four</a></li>
+        <li><a class="scrollto" href="#feature-block-1"><%= @feature_page.present? ? @feature_page.feature_block_1 : "Feature One".html_safe %></a></li>
+        <li><a class="scrollto"  href="#feature-block-2"><%= @feature_page.present? ? @feature_page.feature_block_2 : "Feature Two".html_safe %></a></li>
+        <li><a class="scrollto"  href="#feature-block-3"><%= @feature_page.present? ? @feature_page.feature_block_3 : "Feature Three".html_safe %></a></li>
+        <li><a class="scrollto"  href="#feature-block-4"><%= @feature_page.present? ? @feature_page.feature_block_4 : "Feature Four".html_safe %></a></li>
       </ul><!--//page-nav-->
     </div>
   </div><!--//page-nav-wrapper-->
@@ -31,15 +33,16 @@
   <div id="feature-block-1" class="feature-block feature-block-1">
     <div class="row">
       <div class="feature-content col-md-4 col-sm-6 col-xs-12">
-        <h3 class="feature-title">Feature One Heading</h3>
+        <h3 class="feature-title"><%= @feature_page.present? ? @feature_page.feature_title : "Feature One Heading".html_safe %></h3>
         <div class="feature-desc">
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, <a href="https://wrapbootstrap.com/theme/admin-appkit-admin-theme-angularjs-WB051SCJ1" target="_blank">Screenshot: Admin AppKit Theme</a> consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+          <p>
+            <%= @feature_page.present? ? @feature_page.feature_desc : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.".html_safe %>
+          </p>
         </div><!--//feature-desc-->
       </div><!--//feature-content-->
       <div class="feature-figure col-md-8 col-sm-6 col-xs-12">
         <div class="figure-holder">
-          <img class="img-responsive" src="../vendors/landing_page/images/features/feature-1.png" alt="">
+          <img class="img-responsive" src="<%= @feature_page.present? ? @feature_page.figure_holder.present? ? @feature_page.figure_holder.url(:original) : "../vendors/landing_page/images/features/feature-1.png" : "../vendors/landing_page/images/features/feature-1.png" %>" alt="">
         </div><!--//figure-holder-->
       </div>
     </div><!--//row-->
@@ -47,15 +50,16 @@
   <div id="feature-block-2" class="feature-block feature-block-2">
     <div class="row">
       <div class="feature-content col-md-4 col-sm-6 col-xs-12 col-md-push-8 col-sm-push-6 col-xs-push-0">
-        <h3 class="feature-title">Feature Two Heading</h3>
+        <h3 class="feature-title"><%= @feature_page.present? ? @feature_page.feature_title2 : "Feature Two Heading".html_safe %></h3>
         <div class="feature-desc">
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, <a href="https://wrapbootstrap.com/theme/admin-appkit-admin-theme-angularjs-WB051SCJ1" target="_blank">Screenshot: Admin AppKit Theme</a> consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+          <p>
+            <%= @feature_page.present? ? @feature_page.feature_desc2 : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.".html_safe %>
+          </p>
         </div><!--//feature-desc-->
       </div><!--//feature-content-->
       <div class="feature-figure col-md-8 col-sm-6 col-xs-12 col-md-pull-4 col-sm-pull-6 col-xs-pull-0">
         <div class="figure-holder">
-          <img class="img-responsive" src="../vendors/landing_page/images/features/feature-2.png" alt="">
+          <img class="img-responsive" src="<%= @feature_page.present? ? @feature_page.figure_holder2.present? ? @feature_page.figure_holder2.url(:original) : "../vendors/landing_page/images/features/feature-2.png" : "../vendors/landing_page/images/features/feature-2.png" %>" alt="">
         </div><!--//figure-holder-->
       </div>
     </div><!--//row-->
@@ -63,15 +67,14 @@
   <div id="feature-block-3" class="feature-block feature-block-3">
     <div class="row">
       <div class="feature-content col-md-4 col-sm-6 col-xs-12">
-        <h3 class="feature-title">Feature Three Heading</h3>
+        <h3 class="feature-title"><%= @feature_page.present? ? @feature_page.feature_title3 : "Feature Three Heading".html_safe %></h3>
         <div class="feature-desc">
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, <a href="https://wrapbootstrap.com/theme/admin-appkit-admin-theme-angularjs-WB051SCJ1" target="_blank">Screenshot: Admin AppKit Theme</a> consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+          <%= @feature_page.present? ? @feature_page.feature_desc3 : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.".html_safe %>
         </div><!--//feature-desc-->
       </div><!--//feature-content-->
       <div class="feature-figure col-md-8 col-sm-6 col-xs-12">
         <div class="figure-holder">
-          <img class="img-responsive" src="../vendors/landing_page/images/features/feature-3.png" alt="">
+          <img class="img-responsive" src="<%= @feature_page.present? ? @feature_page.figure_holder3.present? ? @feature_page.figure_holder3.url(:original) : "../vendors/landing_page/images/features/feature-3.png" : "../vendors/landing_page/images/features/feature-3.png" %>" alt="">
         </div><!--//figure-holder-->
       </div>
     </div><!--//row-->
@@ -79,15 +82,16 @@
   <div id="feature-block-4" class="feature-block feature-block-4">
     <div class="row">
       <div class="feature-content col-md-4 col-sm-6 col-xs-12 col-md-push-8 col-sm-push-6 col-xs-push-0">
-        <h3 class="feature-title">Feature Four Heading</h3>
+        <h3 class="feature-title"><%= @feature_page.present? ? @feature_page.feature_title4 : "Feature Four Heading".html_safe %></h3>
         <div class="feature-desc">
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. </p>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, <a href="https://wrapbootstrap.com/theme/admin-appkit-admin-theme-angularjs-WB051SCJ1" target="_blank">Screenshot: Admin AppKit Theme</a> consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
+          <p>
+            <%= @feature_page.present? ? @feature_page.feature_desc4 : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.".html_safe %>
+          </p>
         </div><!--//feature-desc-->
       </div><!--//feature-content-->
       <div class="feature-figure col-md-8 col-sm-6 col-xs-12 col-md-pull-4 col-sm-pull-6 col-xs-pull-0">
         <div class="figure-holder">
-          <img class="img-responsive" src="../vendors/landing_page/images/features/feature-4.png" alt="">
+          <img class="img-responsive" src="<%= @feature_page.present? ? @feature_page.figure_holder4.present? ? @feature_page.figure_holder4.url(:original) : "../vendors/landing_page/images/features/feature-4.png" : "../vendors/landing_page/images/features/feature-4.png" %>" alt="">
         </div><!--//figure-holder-->
       </div>
     </div><!--//row-->

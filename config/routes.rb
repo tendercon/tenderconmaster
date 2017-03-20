@@ -195,6 +195,17 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :feature_pages do
+    collection do
+      # get
+      get 'get_feature'
+
+      # post
+
+
+    end
+  end
+
 
   resources :tenders do
     collection do

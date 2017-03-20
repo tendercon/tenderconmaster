@@ -1,0 +1,1 @@
+json.partial! "feature_pages/feature_page", feature_page: @feature_page

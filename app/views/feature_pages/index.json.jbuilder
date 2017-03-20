@@ -1,0 +1,1 @@
+json.array! @feature_pages, partial: 'feature_pages/feature_page', as: :feature_page

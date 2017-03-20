@@ -1,0 +1,139 @@
+<%= form_for(@feature_page,:html => { :multipart => true }) do |f| %>
+
+    <% if @feature_page.errors.any? %>
+        <div class="alert alert-danger open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert"></button>
+          <h2>Errors</h2>
+          <ul>
+            <% @feature_page.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+
+    <% end %>
+    <% unless params[:action] == 'get_feature' %>
+        <p>
+          <%= f.label :page_type %><br>
+          <% if @save_feature_page.present? %>
+
+              <% if @save_feature_page.page_type == "builder" %>
+                  <%= f.select :page_type, [["Subcontractor", "subcontractor"]], {}, {class: "form-control"} %>
+              <% elsif @save_feature_page.page_type == "subcontractor" %>
+                  <%= f.select :page_type, [["Builder", "builder"]], {}, {class: "form-control"} %>
+              <% end %>
+          <% else %>
+              <%= f.select :page_type, [["Builder", "builder"], ["Subcontractor", "subcontractor"]], {}, {class: "form-control"} %>
+          <% end %>
+
+        </p>
+    <% end %>
+
+    <p>
+      <%= f.label "Header headline" %><br>
+      <%= f.text_area :headline, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label "Header tagline" %><br>
+      <%= f.text_area :tagline, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :feature_block_1 %><br>
+      <%= f.text_area :feature_block_1, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :feature_block_2 %><br>
+      <%= f.text_area :feature_block_2, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :feature_block_3 %><br>
+      <%= f.text_area :feature_block_3, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :feature_block_4 %><br>
+      <%= f.text_area :feature_block_4, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :feature_title %><br>
+      <%= f.text_area :feature_title, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :feature_desc %><br>
+      <%= f.text_area :feature_desc, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :feature_title2 %><br>
+      <%= f.text_area :feature_title2, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :feature_desc2 %><br>
+      <%= f.text_area :feature_desc2, class: "form-control" %>
+    </p>
+
+
+
+    <p>
+      <%= f.label :feature_title3 %><br>
+      <%= f.text_area :feature_title3, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :feature_desc3 %><br>
+      <%= f.text_area :feature_desc3, class: "form-control" %>
+    </p>
+
+
+    <p>
+      <%= f.label :feature_title4 %><br>
+      <%= f.text_area :feature_title4, class: "form-control" %>
+    </p>
+    <p>
+      <%= f.label :feature_desc4 %><br>
+      <%= f.text_area :feature_desc4, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :figure_holder %><br>
+      <%= f.file_field :figure_holder, class: "form-control" %>
+      <% if @feature_page.figure_holder.present? %>
+          <img class="profile" src="<%= @feature_page.figure_holder.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :figure_holder2 %><br>
+      <%= f.file_field :figure_holder2, class: "form-control" %>
+      <% if @feature_page.figure_holder2.present? %>
+          <img class="profile" src="<%= @feature_page.figure_holder2.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :figure_holder3 %><br>
+      <%= f.file_field :figure_holder3, class: "form-control" %>
+      <% if @feature_page.figure_holder3.present? %>
+          <img class="profile" src="<%= @feature_page.figure_holder3.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :figure_holder4 %><br>
+      <%= f.file_field :figure_holder4, class: "form-control" %>
+      <% if @feature_page.figure_holder4.present? %>
+          <img class="profile" src="<%= @feature_page.figure_holder4.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+
+<% end %>
+
+<%= link_to 'Back', sites_path %>
