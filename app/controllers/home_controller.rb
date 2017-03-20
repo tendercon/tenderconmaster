@@ -8,7 +8,11 @@ class HomeController < ApplicationController
   def index
     @site = Site.first
     render :layout => 'landing_page'
+
     puts "@site ========> #{@site.inspect}"
+    puts "request.request_uri#{request.fullpath}"
+    Rails.logger.info "request.request_uri ======> #{request.fullpath}"
+    Rails.logger.info "request.original_url ======> #{request.original_url}"
   end
 
   def features
