@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/layouts/test_layout.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/landing_layout.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/landing_page_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/landing_page_controller.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/landing_page/index.html.erb" afterPath="$PROJECT_DIR$/app/views/landing_page/index.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/landing_page.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/landing_page.html.erb" />
     </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,8 +66,47 @@
       <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/landing_page/index.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="16" selection-start-line="33" selection-start-column="4" selection-end-line="35" selection-end-column="13" />
+            <state relative-caret-position="32">
+              <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#section#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#section#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#section#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#2;n#section#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#section#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="coming_soon_layout.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="53" column="52" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="52" />
+              <folding>
+                <marker date="1489485803000" expanded="true" signature="17834:17887" ph="..." />
+                <marker date="1489485803000" expanded="true" signature="18614:18667" ph="..." />
+                <marker date="1489485803000" expanded="true" signature="19547:19614" ph="..." />
+                <marker date="1489485803000" expanded="true" signature="20032:20085" ph="..." />
+                <marker date="1489485803000" expanded="true" signature="20306:20359" ph="..." />
+                <marker date="1489485803000" expanded="true" signature="20572:20625" ph="..." />
+                <marker date="1489485803000" expanded="true" signature="20835:20888" ph="..." />
+                <marker date="1489485803000" expanded="true" signature="21105:21158" ph="..." />
+                <marker date="1489485803000" expanded="true" signature="21267:21320" ph="..." />
+                <marker date="1489485803000" expanded="true" signature="21421:21474" ph="..." />
+                <marker date="1489485803000" expanded="true" signature="21572:21625" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="contact.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/home/contact.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="98" />
               <folding />
             </state>
           </provider>
@@ -72,28 +115,28 @@
       <file leaf-file-name="landing_page.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/landing_page.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="34" column="4" selection-start-line="32" selection-start-column="21" selection-end-line="34" selection-end-column="4" />
+            <state relative-caret-position="399">
+              <caret line="51" column="37" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="landing_page_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="landing_page_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/landing_page_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+            <state relative-caret-position="60">
+              <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_layout.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/test_layout.html.erb">
+      <file leaf-file-name="landing_layout.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/landing_layout.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="35" column="4" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+            <state relative-caret-position="88">
+              <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -107,7 +150,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/views/cms/sites/new.html.erb" />
         <option value="$PROJECT_DIR$/app/views/cms/sites/edit.html.erb" />
         <option value="$PROJECT_DIR$/app/views/cms/sites/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/cms/sites_controller.rb" />
@@ -154,10 +196,11 @@
         <option value="$PROJECT_DIR$/app/controllers/home_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/landing_pages_controller.rb" />
         <option value="$PROJECT_DIR$/config/routes.rb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/test_layout.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/landing_page.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/test_layout.html.erb" />
         <option value="$PROJECT_DIR$/app/views/landing_page/index.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/landing_page_controller.rb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/landing_layout.html.erb" />
       </list>
     </option>
   </component>
@@ -671,11 +714,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/vendors/landing_page/images/blog" />
+      <recent name="$PROJECT_DIR$/public/img/logos" />
       <recent name="$PROJECT_DIR$/public/vendors/landing_page/images" />
+      <recent name="$PROJECT_DIR$/public/vendors/landing_page/images/blog" />
       <recent name="$PROJECT_DIR$/app/views/sites" />
       <recent name="$PROJECT_DIR$/public/vendors/global/plugins" />
-      <recent name="$PROJECT_DIR$/public/vendors/global/css" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/vendors/landing_page/images" />
@@ -1029,12 +1072,12 @@
       <workItem from="1489239735796" duration="1559000" />
       <workItem from="1489241711077" duration="37670000" />
       <workItem from="1489485517364" duration="35803000" />
-      <workItem from="1489986556973" duration="18418000" />
+      <workItem from="1489986556973" duration="21772000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="874399000" />
+    <option name="totallyTimeSpent" value="877753000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="729" extended-state="6" />
@@ -1390,26 +1433,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="452" column="36" selection-start-line="452" selection-start-column="20" selection-end-line="452" selection-end-column="36" />
-          <folding>
-            <marker date="1489485803000" expanded="true" signature="17834:17887" ph="..." />
-            <marker date="1489485803000" expanded="true" signature="18614:18667" ph="..." />
-            <marker date="1489485803000" expanded="true" signature="19547:19614" ph="..." />
-            <marker date="1489485803000" expanded="true" signature="20032:20085" ph="..." />
-            <marker date="1489485803000" expanded="true" signature="20306:20359" ph="..." />
-            <marker date="1489485803000" expanded="true" signature="20572:20625" ph="..." />
-            <marker date="1489485803000" expanded="true" signature="20835:20888" ph="..." />
-            <marker date="1489485803000" expanded="true" signature="21105:21158" ph="..." />
-            <marker date="1489485803000" expanded="true" signature="21267:21320" ph="..." />
-            <marker date="1489485803000" expanded="true" signature="21421:21474" ph="..." />
-            <marker date="1489485803000" expanded="true" signature="21572:21625" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/pricing_pages_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="428">
@@ -1475,14 +1498,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/contact.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="101" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="98" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public/vendors/landing_page/images/company_new.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1520,30 +1535,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/test_layout.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="35" column="4" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/landing_page.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="34" column="4" selection-start-line="32" selection-start-column="21" selection-end-line="34" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/landing_page/index.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="16" selection-start-line="33" selection-start-column="4" selection-end-line="35" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/home_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -1552,10 +1543,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/home/contact.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="53" column="52" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="52" />
+          <folding>
+            <marker date="1489485803000" expanded="true" signature="17834:17887" ph="..." />
+            <marker date="1489485803000" expanded="true" signature="18614:18667" ph="..." />
+            <marker date="1489485803000" expanded="true" signature="19547:19614" ph="..." />
+            <marker date="1489485803000" expanded="true" signature="20032:20085" ph="..." />
+            <marker date="1489485803000" expanded="true" signature="20306:20359" ph="..." />
+            <marker date="1489485803000" expanded="true" signature="20572:20625" ph="..." />
+            <marker date="1489485803000" expanded="true" signature="20835:20888" ph="..." />
+            <marker date="1489485803000" expanded="true" signature="21105:21158" ph="..." />
+            <marker date="1489485803000" expanded="true" signature="21267:21320" ph="..." />
+            <marker date="1489485803000" expanded="true" signature="21421:21474" ph="..." />
+            <marker date="1489485803000" expanded="true" signature="21572:21625" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/landing_page.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="51" column="37" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/landing_page/index.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="32">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#2;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#2;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#2;n#section#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#section#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/landing_page_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="44" selection-start-line="1" selection-start-column="44" selection-end-line="1" selection-end-column="44" />
+        <state relative-caret-position="60">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/landing_layout.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
           <folding />
         </state>
       </provider>
