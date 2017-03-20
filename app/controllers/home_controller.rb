@@ -6,13 +6,14 @@ class HomeController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @site = Site.first
-    render :layout => 'landing_page'
-
     puts "@site ========> #{@site.inspect}"
     puts "request.request_uri#{request.fullpath}"
     Rails.logger.info "request.request_uri ======> #{request.fullpath}"
     Rails.logger.info "request.original_url ======> #{request.original_url}"
+    @site = Site.first
+    render :layout => 'landing_page'
+
+
   end
 
   def features
