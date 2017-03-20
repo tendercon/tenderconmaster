@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :is_logged?, :add_to_open_tender,  :except => [:login,:login1,:authenticate,:register,:register1,:interest_completed,:create_user,
+  before_filter :is_logged?, :add_to_open_tender,  :except => [:login,:login1,:authenticate,:register,:register1,:interest_completed,:sent_contact,:create_user,
                                                                   :forgot_password,:reset_password,:user_company_exist,
                                                                   :account_taken,:registration_completed,:resent_email_notification,
                                                                   :validate_user_email,:email_authentication,:validation_complete,:update_password,
