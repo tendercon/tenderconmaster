@@ -31,7 +31,7 @@
 <header id="header" class="header">
   <div class="container">
     <h1 class="logo">
-      <a href="/landing_page"><img src="<%= @header.present? ? @header.logo.url(:original) : "/img/logos/tendercon_log_transparent.png" %>" alt="" width="100px" height="40px"><span class="text"></span></a>
+      <a href="/landing_page"><img src="<%= @header.present? ? @header.logo.url(:original) : "/img/logos/bbbbb.png" %>" alt="" ><span class="text"></span></a>
     </h1><!--//logo-->
     <nav class="main-nav navbar-right" role="navigation">
       <div class="navbar-header">
@@ -58,6 +58,7 @@
 
 
           <li class="<%= params[:action] == 'company' ? 'active' : nil %> nav-item"><a href="<%= company_home_index_path %>"><%= @header.present? ? @header.company : "Company" %></a></li>
+          <li class="<%= params[:action] == 'contact' ? 'active' : nil %> nav-item"><a href="<%= contact_home_index_path %>">Contact Us</a></li>
           <!--<li class="<%#= params[:action] == 'blog' || params[:action] == 'contact' || params[:action] == 'policies' || params[:action] == 'terms' ? 'active' : nil %> nav-item dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false" href="#">Browse More <i class="fa fa-angle-down"></i></a>
             <ul class="dropdown-menu">
