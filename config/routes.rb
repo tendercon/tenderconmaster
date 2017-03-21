@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  root 'home#coming_soon'
+  root 'landing_page#index'
   #root 'users#login'
   resources :dashboard do
     collection do
@@ -75,9 +75,9 @@ Rails.application.routes.draw do
     collection do
       # get
       get 'login'
-      get 'login1'
+      get 'login1',:path => 'user-default-login12345'
       get 'register'
-      get 'register1'
+      get 'register1',:path => 'user-default-register2123'
       get 'interest_completed'
       get 'logout'
       get 'update_password'

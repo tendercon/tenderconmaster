@@ -37,7 +37,7 @@ class ContactPagesController < ApplicationController
   # PATCH/PUT /contact_pages/1.json
   def update
     @contact_page = ContactPage.find(params[:id])
-    if @contact_page.update(pricing_page_params)
+    if @contact_page.update(contact_page_params)
       redirect_to contact_pages_path
     else
       render :get_contact

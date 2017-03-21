@@ -68,8 +68,8 @@
               <li><a href="<%#= terms_home_index_path %>">Terms of Use</a></li>
             </ul>
           </li>--><!--//dropdown-->
-          <li class="nav-item"><a href="/users/login1" class="login-trigger"><%= @header.present? ? @header.login: "Log in" %></a></li>
-          <li class="nav-item nav-item-cta last"><a class="btn-signup" href="/users/register1"><%= @header.present? ? @header.register: "Sign Up" %></a></li>
+          <li class="nav-item"><a href="<%= login1_users_path %>" class="login-trigger"><%= @header.present? ? @header.login: "Log in" %></a></li>
+          <li class="nav-item nav-item-cta last"><a class="btn-signup" href="<%= register1_users_path %>"><%= @header.present? ? @header.register: "Sign Up" %></a></li>
         </ul><!--//nav-->
       </div><!--//navabr-collapse-->
     </nav><!--//main-nav-->
