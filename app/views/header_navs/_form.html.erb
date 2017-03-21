@@ -1,0 +1,91 @@
+<%= form_for(@header_nav) do |f| %>
+    <% if @header_nav.errors.any? %>
+        <div class="alert alert-danger open-sans-regular" id="users_error">
+          <button type="button" class="close" data-dismiss="alert"></button>
+          <h2>Errors</h2>
+          <ul>
+            <% @header_nav.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+
+    <% end %>
+    <%=  %>
+    <% unless params[:action] == 'get_nav' %>
+        <p>
+          <%= f.label :page_type %><br>
+          <% if @save_header.present? %>
+
+              <% if @save_header.page_type == "builder" %>
+                  <%= f.select :page_type, [["Subcontractor", "subcontractor"]], {}, {class: "form-control"} %>
+              <% elsif @save_header.page_type == "subcontractor" %>
+                  <%= f.select :page_type, [["Builder", "builder"]], {}, {class: "form-control"} %>
+              <% end %>
+          <% else %>
+              <%= f.select :page_type, [["Builder", "builder"], ["Subcontractor", "subcontractor"]], {}, {class: "form-control"} %>
+          <% end %>
+
+        </p>
+    <% end %>
+
+
+
+    <p>
+      <%= f.label :home %><br>
+      <%= f.text_field :home, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :feature %><br>
+      <%= f.text_field :feature, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :pricing %><br>
+      <%= f.text_field :pricing, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :company %><br>
+      <%= f.text_field :company, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :login %><br>
+      <%= f.text_field :login, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :register %><br>
+      <%= f.text_field :register, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :hide_pricing %><br>
+      <% if params[:action] == 'get_nav' %>
+          <% if @save_header.hide_pricing == true %>
+              <%= f.select :hide_pricing, [["True", true],["False", false]], {}, {class: "form-control"} %>
+          <% else %>
+              <%= f.select :hide_pricing, [["False", false],["True", true]], {}, {class: "form-control"} %>
+          <% end %>
+      <% else %>
+          <%= f.select :hide_pricing, [["True", true],["False", false]], {}, {class: "form-control"} %>
+      <% end %>
+
+    </p>
+
+    <p>
+      <%= f.label :logo %><br>
+      <%= f.file_field :logo, class: "form-control" %>
+      <% if @header_nav.logo.present? %>
+          <img class="profile" src="<%= @header_nav.logo.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+
+    <p>
+      <%= f.submit %>
+    </p>
+
+<% end %>

@@ -93,6 +93,19 @@
           </a>
           </li>
 
+          <% if params[:controller] == 'header_navs' %>
+              <li class="nav-item start active open">
+                <span class="selected"></span>
+          <% else %>
+              <li class="nav-item">
+          <% end %>
+          <a href="<%= header_navs_path %>"  class="nav-link" >
+            <i class="fa fa-plus-square"></i>
+            <span class="title">Header Nav</span>
+            <span class="selected"></span>
+          </a>
+          </li>
+
 
           <% if params[:controller] == 'pricing_pages' %>
               <li class="nav-item start active open">

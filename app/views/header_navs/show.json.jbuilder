@@ -1,0 +1,1 @@
+json.partial! "header_navs/header_nav", header_nav: @header_nav

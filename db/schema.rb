@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320163039) do
+ActiveRecord::Schema.define(version: 20170321021138) do
 
   create_table "addenda_notifications", force: :cascade do |t|
     t.integer  "sc_id",      limit: 4
@@ -288,6 +288,24 @@ ActiveRecord::Schema.define(version: 20170320163039) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "status",     limit: 255
+  end
+
+  create_table "header_navs", force: :cascade do |t|
+    t.string   "page_type",         limit: 255
+    t.string   "home",              limit: 255
+    t.string   "feature",           limit: 255
+    t.string   "pricing",           limit: 255
+    t.string   "company",           limit: 255
+    t.string   "login",             limit: 255
+    t.string   "register",          limit: 255
+    t.boolean  "hide_pricing",                  default: true
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.string   "logo_file_name",    limit: 255
+    t.string   "logo_content_type", limit: 255
+    t.integer  "logo_file_size",    limit: 4
+    t.datetime "logo_updated_at"
+    t.string   "user_type",         limit: 255
   end
 
   create_table "invited_tender_notifications", force: :cascade do |t|

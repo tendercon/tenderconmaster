@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
 
 
   def is_logged?
+
+
     if session[:time_logged].present?
       if session[:time_logged] <= Time.now
         session[:time_logged] = nil
@@ -42,6 +44,15 @@ class ApplicationController < ActionController::Base
   def notify
     @tendercon_url = request.original_url
     puts "@tendercon_url =====> #{@tendercon_url.inspect}"
+
+    if @tendercon_url.include?("builder")
+      @header = HeaderNav.where(:page_type => "builder").first
+    else
+      @header = HeaderNav.where(:page_type => "subcontractor").first
+    end
+
+    puts "@header  ========>#{@header.inspect }"
+
     if session[:user_logged_id].present?
       UserSubscription.delay.notify(session[:user_logged_id],request.host_with_port)
 

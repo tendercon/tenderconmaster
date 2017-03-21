@@ -252,6 +252,17 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :header_navs do
+    collection do
+      # get
+      get 'get_nav'
+
+      # post
+
+
+    end
+  end
+
 
   resources :tenders do
     collection do
