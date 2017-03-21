@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321021138) do
+ActiveRecord::Schema.define(version: 20170321025855) do
 
   create_table "addenda_notifications", force: :cascade do |t|
     t.integer  "sc_id",      limit: 4
@@ -439,6 +439,48 @@ ActiveRecord::Schema.define(version: 20170321021138) do
     t.text   "faq6_desc",                limit: 65535
     t.text   "faq7_desc",                limit: 65535
     t.text   "faq8_desc",                limit: 65535
+    t.text   "tender_limit1",            limit: 65535
+    t.text   "tender_limit1_1",          limit: 65535
+    t.text   "tender_limit1_2",          limit: 65535
+    t.text   "tender_limit1_3",          limit: 65535
+    t.text   "tender_limit1_4",          limit: 65535
+    t.text   "tender_limit1_5",          limit: 65535
+    t.text   "tender_limit1_6",          limit: 65535
+    t.text   "tender_limit1_7",          limit: 65535
+    t.text   "tender_limit1_8",          limit: 65535
+    t.text   "tender_limit1_9",          limit: 65535
+    t.text   "tender_limit1_0",          limit: 65535
+    t.text   "tender_limit1_11",         limit: 65535
+    t.text   "tender_limit1_12",         limit: 65535
+    t.text   "tender_limit1_13",         limit: 65535
+    t.text   "tender_limit2_1",          limit: 65535
+    t.text   "tender_limit2_2",          limit: 65535
+    t.text   "tender_limit2_3",          limit: 65535
+    t.text   "tender_limit2_4",          limit: 65535
+    t.text   "tender_limit2_5",          limit: 65535
+    t.text   "tender_limit2_6",          limit: 65535
+    t.text   "tender_limit2_7",          limit: 65535
+    t.text   "tender_limit2_8",          limit: 65535
+    t.text   "tender_limit2_9",          limit: 65535
+    t.text   "tender_limit2_0",          limit: 65535
+    t.text   "tender_limit2_11",         limit: 65535
+    t.text   "tender_limit2_12",         limit: 65535
+    t.text   "tender_limit2_13",         limit: 65535
+    t.text   "tender_limit2_14",         limit: 65535
+    t.text   "tender_limit3_1",          limit: 65535
+    t.text   "tender_limit3_2",          limit: 65535
+    t.text   "tender_limit3_3",          limit: 65535
+    t.text   "tender_limit3_4",          limit: 65535
+    t.text   "tender_limit3_5",          limit: 65535
+    t.text   "tender_limit3_6",          limit: 65535
+    t.text   "tender_limit3_7",          limit: 65535
+    t.text   "tender_limit3_8",          limit: 65535
+    t.text   "tender_limit3_9",          limit: 65535
+    t.text   "tender_limit3_0",          limit: 65535
+    t.text   "tender_limit3_11",         limit: 65535
+    t.text   "tender_limit3_12",         limit: 65535
+    t.text   "tender_limit3_13",         limit: 65535
+    t.text   "tender_limit3_14",         limit: 65535
   end
 
   create_table "primary_trades", force: :cascade do |t|

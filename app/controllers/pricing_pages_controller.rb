@@ -71,6 +71,11 @@ class PricingPagesController < ApplicationController
                                            :item_heading2,:item_intro2,:currency2,:number2,:unit2,:sign_up_now2,:tender_limit2,
                                            :item_heading3,:item_intro3,:currency3,:number3,:unit3,:sign_up_now3,:tender_limit3,
                                            :frequently_block_heading,:faq1,:faq2,:faq3,:faq4,:faq5,:faq6,:faq7,:faq8,
-                                           :faq1_desc,:faq2_desc,:faq3_desc,:faq4_desc,:faq5_desc,:faq6_desc,:faq7_desc,:faq8_desc)
+                                           :faq1_desc,:faq2_desc,:faq3_desc,:faq4_desc,:faq5_desc,:faq6_desc,:faq7_desc,:faq8_desc, :tender_limit1_1,:tender_limit1_2,:tender_limit1_3,:tender_limit1_4,:tender_limit1_5,:tender_limit1_6,:tender_limit1_7,:tender_limit1_8,
+                                           :tender_limit1_9,:tender_limit1_0,:tender_limit1_11,:tender_limit1_12,:tender_limit1_13,
+                                           :tender_limit2_1,:tender_limit2_2,:tender_limit2_3,:tender_limit2_4,:tender_limit2_5,:tender_limit2_6,:tender_limit2_7,:tender_limit2_8,
+                                           :tender_limit2_9,:tender_limit2_0,:tender_limit2_11,:tender_limit2_12,:tender_limit2_13,:tender_limit2_14,
+                                           :tender_limit3_1,:tender_limit3_2,:tender_limit3_3,:tender_limit3_4,:tender_limit3_5,:tender_limit3_6,:tender_limit3_7,:tender_limit3_8,
+                                           :tender_limit3_9,:tender_limit3_0,:tender_limit3_11,:tender_limit3_12,:tender_limit3_13,:tender_limit3_14)
     end
 end
