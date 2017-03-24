@@ -116,12 +116,12 @@ set :puma_preload_app, false
 #   end
 # end
 
-Rake::Task["puma:restart"].clear_actions
-
-namespace :puma do
-  task :restart do
-    on roles(:all) do
-      execute "RACK_ENV=#{fetch(:rails_env)} #{fetch(:rvm_binary)} #{fetch(:rvm_ruby_version)} do pumactl -S #{shared_path}/tmp/pids/puma.state restart"
-    end
-  end
-end
+# Rake::Task["puma:restart"].clear_actions
+#
+# namespace :puma do
+#   task :restart do
+#     on roles(:all) do
+#       execute "RACK_ENV=#{fetch(:rails_env)} #{fetch(:rvm_binary)} #{fetch(:rvm_ruby_version)} do pumactl -S #{shared_path}/tmp/pids/puma.state restart"
+#     end
+#   end
+# end
