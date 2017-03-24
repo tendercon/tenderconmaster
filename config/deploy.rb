@@ -66,52 +66,52 @@ set :puma_preload_app, false
 # set :keep_releases, 5
 
 #after 'deploy:publishing', 'deploy:seed'
-namespace :deploy do
-  def delayed_job_roles
-    fetch(:delayed_job_server_role, :app)
-  end
-
-  def args
-    fetch(:delayed_job_args, "")
-  end
-
-  desc "Start workers"
-  task :start_workers do
-    run "cd #{release_path} && RAILS_ENV=production script/delayed_job -n 2 start"
-  end
-
-  task :seed do
-    puts "\n=== Seeding Database ===\n"
-    on primary :db do
-      within current_path do
-        with rails_env: fetch(:rails_env) do
-          execute :bundle, :exec, :rake, 'db:seed'
-        end
-      end
-    end
-  end
-
-  task :migrate do
-    puts "\n=== MIGRATE Database ===\n"
-    on primary :db do
-      within current_path do
-        with rails_env: fetch(:rails_env) do
-          execute :bundle, :exec, :rake, 'db:migrate'
-        end
-      end
-    end
-  end
-
-
-  desc 'Start the delayed_job process'
-  task :start do
-    on roles(delayed_job_roles) do
-      within release_path do
-        with rails_env: fetch(:rails_env) do
-          puts "TEST"
-          execute :bundle, :exec, :'bin/delayed_job', args, :start
-        end
-      end
-    end
-  end
-end
+# namespace :deploy do
+#   def delayed_job_roles
+#     fetch(:delayed_job_server_role, :app)
+#   end
+#
+#   def args
+#     fetch(:delayed_job_args, "")
+#   end
+#
+#   desc "Start workers"
+#   task :start_workers do
+#     run "cd #{release_path} && RAILS_ENV=production script/delayed_job -n 2 start"
+#   end
+#
+#   task :seed do
+#     puts "\n=== Seeding Database ===\n"
+#     on primary :db do
+#       within current_path do
+#         with rails_env: fetch(:rails_env) do
+#           execute :bundle, :exec, :rake, 'db:seed'
+#         end
+#       end
+#     end
+#   end
+#
+#   task :migrate do
+#     puts "\n=== MIGRATE Database ===\n"
+#     on primary :db do
+#       within current_path do
+#         with rails_env: fetch(:rails_env) do
+#           execute :bundle, :exec, :rake, 'db:migrate'
+#         end
+#       end
+#     end
+#   end
+#
+#
+#   desc 'Start the delayed_job process'
+#   task :start do
+#     on roles(delayed_job_roles) do
+#       within release_path do
+#         with rails_env: fetch(:rails_env) do
+#           puts "TEST"
+#           execute :bundle, :exec, :'bin/delayed_job', args, :start
+#         end
+#       end
+#     end
+#   end
+# end
