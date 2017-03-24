@@ -30,7 +30,7 @@ set :puma_error_log, "#{shared_path}/log/puma_access.log"
 set :puma_role, :app
 set :puma_env, fetch(:rack_env, fetch(:rails_env, 'staging'))
 set :puma_threads, [0, 8]
-set :puma_workers, 0
+set :puma_workers, 1
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, false
@@ -115,3 +115,13 @@ set :puma_preload_app, false
 #     end
 #   end
 # end
+
+Rake::Task["puma:restart"].clear_actions
+
+namespace :puma do
+  task :restart do
+    on roles(:all) do
+      execute "RACK_ENV=#{fetch(:rails_env)} #{fetch(:rvm_binary)} #{fetch(:rvm_ruby_version)} do pumactl -S #{shared_path}/tmp/pids/puma.state restart"
+    end
+  end
+end
