@@ -20,7 +20,7 @@ set :keep_releases, 5
 set :rvm_type, :user
 set :rvm_ruby_version, 'ruby-2.2.3' # Edit this if you are using MRI Ruby
 set :rails_env, "staging"
-set :rack_env, "staging"
+
 
 
 set :puma_rackup, -> { File.join(current_path, 'config.ru') }
