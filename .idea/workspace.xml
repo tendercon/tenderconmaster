@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/deploy.rb" afterPath="$PROJECT_DIR$/config/deploy.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/deploy/staging.rb" afterPath="$PROJECT_DIR$/config/deploy/staging.rb" />
-    </list>
+    <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="" />
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -43,8 +40,8 @@
       <file leaf-file-name="deploy.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/deploy.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+            <state relative-caret-position="304">
+              <caret line="114" column="87" selection-start-line="114" selection-start-column="68" selection-end-line="114" selection-end-column="68" />
               <folding />
             </state>
           </provider>
@@ -1027,12 +1024,12 @@
       <workItem from="1489241711077" duration="37670000" />
       <workItem from="1489485517364" duration="35803000" />
       <workItem from="1489986556973" duration="40134000" />
-      <workItem from="1490067774057" duration="17108000" />
+      <workItem from="1490067774057" duration="17659000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="913223000" />
+    <option name="totallyTimeSpent" value="913774000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="0" />
@@ -1511,8 +1508,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/deploy.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+        <state relative-caret-position="304">
+          <caret line="114" column="87" selection-start-line="114" selection-start-column="68" selection-end-line="114" selection-end-column="68" />
           <folding />
         </state>
       </provider>
