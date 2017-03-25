@@ -1,7 +1,7 @@
 IntercomRails.config do |config|
   # == Intercom app_id
   #
-  config.app_id = ENV["INTERCOM_APP_ID"]
+  config.app_id = ENV["INTERCOM_APP_ID"] || "w5cmy61z"
 
   # == Intercom session_duration
   #
@@ -15,7 +15,7 @@ IntercomRails.config do |config|
   # == Enabled Environments
   # Which environments is auto inclusion of the Javascript enabled for
   #
-  config.enabled_environments = ["development", "production","staging"]
+  config.enabled_environments = ["development", "production"]
 
   config.include_for_logged_out_users = true
 
