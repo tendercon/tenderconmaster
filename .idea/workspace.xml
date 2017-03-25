@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="" />
+    <list default="true" id="bea45607-0c2d-4bf7-b468-9d80435a68a2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/home/pricing.html.erb" afterPath="$PROJECT_DIR$/app/views/home/pricing.html.erb" />
+    </list>
     <ignored path="tendercon_v2.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
@@ -30,7 +32,7 @@
       <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="562">
+            <state relative-caret-position="502">
               <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
               <folding />
             </state>
@@ -40,10 +42,30 @@
       <file leaf-file-name="deploy.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/deploy.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="36" column="73" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
+            <state relative-caret-position="870">
+              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="staging.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/deploy/staging.rb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="512">
+              <caret line="58" column="27" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pricing.html.erb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/home/pricing.html.erb">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="504">
+              <caret line="200" column="70" selection-start-line="200" selection-start-column="23" selection-end-line="200" selection-end-column="23" />
               <folding>
-                <marker date="1490359312000" expanded="true" signature="1215:2102" ph="##..." />
+                <marker date="1490438078000" expanded="true" signature="156:157" ph="..." />
               </folding>
             </state>
           </provider>
@@ -59,31 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/home/index.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="490">
-              <caret line="226" column="0" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="landing_page.html.erb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/layouts/landing_page.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-91">
+            <state relative-caret-position="-530">
               <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_landing_page_footer.html.erb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/_landing_page_footer.html.erb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -93,7 +95,7 @@
         <entry file="file://$PROJECT_DIR$/config/database.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="435">
-              <caret line="29" column="72" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -103,27 +105,17 @@
         <entry file="file://$PROJECT_DIR$/Capfile">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+              <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="intercom.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/initializers/intercom.rb">
+      <file leaf-file-name="production.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="development.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-13">
-              <caret line="52" column="36" selection-start-line="52" selection-start-column="36" selection-end-line="52" selection-end-column="36" />
+            <state relative-caret-position="150">
+              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -137,7 +129,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/models/contact_page.rb" />
         <option value="$PROJECT_DIR$/app/views/contact_pages/get_contact.html.erb" />
         <option value="$PROJECT_DIR$/app/views/contact_pages/_form.html.erb" />
         <option value="$PROJECT_DIR$/app/views/contact_pages/index.html.erb" />
@@ -169,15 +160,12 @@
         <option value="$PROJECT_DIR$/app/models/header_nav.rb" />
         <option value="$PROJECT_DIR$/app/controllers/header_navs_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/application_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/landing_page.html.erb" />
         <option value="$PROJECT_DIR$/app/views/home/features.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/coming_soon_layout.html.erb" />
         <option value="$PROJECT_DIR$/db/migrate/20170321025855_add_column_to_pricing_pages.rb" />
         <option value="$PROJECT_DIR$/app/controllers/pricing_pages_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/pricing_pages/_form.html.erb" />
-        <option value="$PROJECT_DIR$/app/views/home/pricing.html.erb" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/config/deploy.rb" />
         <option value="$PROJECT_DIR$/app/controllers/users_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/home/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/dashboard/index.html.erb" />
@@ -188,6 +176,10 @@
         <option value="$PROJECT_DIR$/app/views/layouts/in_apps_layout.html.erb" />
         <option value="$PROJECT_DIR$/config/initializers/intercom.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/_landing_page_footer.html.erb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/landing_page.html.erb" />
+        <option value="$PROJECT_DIR$/config/deploy/staging.rb" />
+        <option value="$PROJECT_DIR$/config/deploy.rb" />
+        <option value="$PROJECT_DIR$/app/views/home/pricing.html.erb" />
       </list>
     </option>
   </component>
@@ -438,6 +430,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_production" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tendercon_production" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="environments" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1008,12 +1018,12 @@
       <workItem from="1489241711077" duration="37670000" />
       <workItem from="1489485517364" duration="35803000" />
       <workItem from="1489986556973" duration="40134000" />
-      <workItem from="1490067774057" duration="14050000" />
+      <workItem from="1490067774057" duration="18235000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="910165000" />
+    <option name="totallyTimeSpent" value="914350000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="726" extended-state="0" />
@@ -1081,13 +1091,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/header_navs/edit.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="23" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/header_navs/get_nav.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1250,17 +1253,17 @@
         <state relative-caret-position="428">
           <caret line="349" column="29" selection-start-line="349" selection-start-column="15" selection-end-line="349" selection-end-column="15" />
           <folding>
-            <marker date="1490230831000" expanded="true" signature="17834:17887" ph="..." />
-            <marker date="1490230831000" expanded="true" signature="18614:18667" ph="..." />
-            <marker date="1490230831000" expanded="true" signature="19547:19614" ph="..." />
-            <marker date="1490230831000" expanded="true" signature="20032:20085" ph="..." />
-            <marker date="1490230831000" expanded="true" signature="20306:20359" ph="..." />
-            <marker date="1490230831000" expanded="true" signature="20572:20625" ph="..." />
-            <marker date="1490230831000" expanded="true" signature="20835:20888" ph="..." />
-            <marker date="1490230831000" expanded="true" signature="21105:21158" ph="..." />
-            <marker date="1490230831000" expanded="true" signature="21267:21320" ph="..." />
-            <marker date="1490230831000" expanded="true" signature="21421:21474" ph="..." />
-            <marker date="1490230831000" expanded="true" signature="21572:21625" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="17834:17887" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="18614:18667" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="19547:19614" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="20032:20085" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="20306:20359" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="20572:20625" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="20835:20888" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="21105:21158" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="21267:21320" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="21421:21474" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="21572:21625" ph="..." />
           </folding>
         </state>
       </provider>
@@ -1320,36 +1323,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/pricing.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-137">
-          <caret line="47" column="23" selection-start-line="47" selection-start-column="23" selection-end-line="47" selection-end-column="23" />
-          <folding>
-            <marker date="1490230831000" expanded="true" signature="156:157" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/environments/staging.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -1410,14 +1387,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/initializers/intercom.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/environments/development.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-13">
@@ -1426,29 +1395,74 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Capfile">
+    <entry file="file://$PROJECT_DIR$/app/views/home/index.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+        <state relative-caret-position="490">
+          <caret line="641" column="0" selection-start-line="641" selection-start-column="0" selection-end-line="641" selection-end-column="0" />
+          <folding>
+            <marker date="1490437884000" expanded="true" signature="54:336" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="90:336" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="131:300" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="157:289" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="335:336" ph="..." />
+            <marker date="1490437884000" expanded="true" signature="9507:12272" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/_landing_page_footer.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/initializers/intercom.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
+        <state relative-caret-position="502">
           <caret line="166" column="0" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/deploy.rb">
+    <entry file="file://$PROJECT_DIR$/config/environments/staging.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="36" column="73" selection-start-line="36" selection-start-column="42" selection-end-line="36" selection-end-column="42" />
-          <folding>
-            <marker date="1490359312000" expanded="true" signature="1215:2102" ph="##..." />
-          </folding>
+        <state relative-caret-position="150">
+          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Capfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/landing_page.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-530">
+          <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1460,34 +1474,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/home/index.html.erb">
+    <entry file="file://$PROJECT_DIR$/config/deploy/staging.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="226" column="0" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
+        <state relative-caret-position="512">
+          <caret line="58" column="27" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.yml">
+    <entry file="file://$PROJECT_DIR$/config/deploy.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="72" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="870">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/landing_page.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/views/home/pricing.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-91">
-          <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="504">
+          <caret line="200" column="70" selection-start-line="200" selection-start-column="23" selection-end-line="200" selection-end-column="23" />
+          <folding>
+            <marker date="1490438078000" expanded="true" signature="156:157" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/_landing_page_footer.html.erb">
+    <entry file="file://$PROJECT_DIR$/config/environments/production.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+        <state relative-caret-position="150">
+          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
           <folding />
         </state>
       </provider>
