@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321025855) do
+ActiveRecord::Schema.define(version: 20170327071747) do
 
   create_table "addenda_notifications", force: :cascade do |t|
     t.integer  "sc_id",      limit: 4
@@ -265,6 +265,23 @@ ActiveRecord::Schema.define(version: 20170321025855) do
     t.string   "figure_holder4_content_type", limit: 255
     t.integer  "figure_holder4_file_size",    limit: 4
     t.datetime "figure_holder4_updated_at"
+    t.text     "frequently_block_heading",    limit: 65535
+    t.text     "faq1",                        limit: 65535
+    t.text     "faq2",                        limit: 65535
+    t.text     "faq3",                        limit: 65535
+    t.text     "faq4",                        limit: 65535
+    t.text     "faq5",                        limit: 65535
+    t.text     "faq6",                        limit: 65535
+    t.text     "faq7",                        limit: 65535
+    t.text     "faq8",                        limit: 65535
+    t.text     "faq_ans1",                    limit: 65535
+    t.text     "faq_ans2",                    limit: 65535
+    t.text     "faq_ans3",                    limit: 65535
+    t.text     "faq_ans4",                    limit: 65535
+    t.text     "faq_ans5",                    limit: 65535
+    t.text     "faq_ans6",                    limit: 65535
+    t.text     "faq_ans7",                    limit: 65535
+    t.text     "faq_ans8",                    limit: 65535
   end
 
   create_table "google_calendar_events", force: :cascade do |t|
@@ -298,14 +315,16 @@ ActiveRecord::Schema.define(version: 20170321025855) do
     t.string   "company",           limit: 255
     t.string   "login",             limit: 255
     t.string   "register",          limit: 255
-    t.boolean  "hide_pricing",                  default: true
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.boolean  "hide_pricing",                    default: true
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.string   "logo_file_name",    limit: 255
     t.string   "logo_content_type", limit: 255
     t.integer  "logo_file_size",    limit: 4
     t.datetime "logo_updated_at"
     t.string   "user_type",         limit: 255
+    t.text     "login_path",        limit: 65535
+    t.text     "registration_path", limit: 65535
   end
 
   create_table "invited_tender_notifications", force: :cascade do |t|
@@ -768,6 +787,23 @@ ActiveRecord::Schema.define(version: 20170321025855) do
     t.string   "quote_profile2_content_type",     limit: 255
     t.integer  "quote_profile2_file_size",        limit: 4
     t.datetime "quote_profile2_updated_at"
+    t.string   "product_header",                  limit: 255
+    t.string   "product_image1_file_name",        limit: 255
+    t.string   "product_image1_content_type",     limit: 255
+    t.integer  "product_image1_file_size",        limit: 4
+    t.datetime "product_image1_updated_at"
+    t.string   "product_image2_file_name",        limit: 255
+    t.string   "product_image2_content_type",     limit: 255
+    t.integer  "product_image2_file_size",        limit: 4
+    t.datetime "product_image2_updated_at"
+    t.string   "product_image3_file_name",        limit: 255
+    t.string   "product_image3_content_type",     limit: 255
+    t.integer  "product_image3_file_size",        limit: 4
+    t.datetime "product_image3_updated_at"
+    t.string   "product_image4_file_name",        limit: 255
+    t.string   "product_image4_content_type",     limit: 255
+    t.integer  "product_image4_file_size",        limit: 4
+    t.datetime "product_image4_updated_at"
   end
 
   create_table "tender_approved_trades", force: :cascade do |t|

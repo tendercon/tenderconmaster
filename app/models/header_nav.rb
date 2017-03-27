@@ -7,7 +7,8 @@ class HeaderNav < ActiveRecord::Base
   validates_presence_of :login
   validates_presence_of :register
   validates_presence_of :logo
-
+  validates_presence_of :login_path
+  validates_presence_of :registration_path
 
 
   has_attached_file :logo

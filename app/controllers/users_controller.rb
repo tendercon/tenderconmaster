@@ -104,7 +104,7 @@ class UsersController < ApplicationController
 
   def login
 
-    TenderconMailer.reset_password('agile.jjp@gmail.com','www',1).deliver_now
+
     if params[:tender].present?
       TenderInvite.where(:tender_id => params[:tender],:trade_id => params[:trade],:email => params[:email]).update_all(:status => 'accepted')
     end

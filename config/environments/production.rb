@@ -92,7 +92,7 @@ Rails.application.configure do
   ENV['FACEBOOK_SECRET'] = "75d10afcc168acb00d6cc9b07418bb4f"
   ENV['OFFICE_ID'] = "38c34ecf-fef2-4c16-ae62-c690dcd5aa5f"
   ENV['OFFICE_SECRET'] = "QFWJy4UHDLbCubZnE1iWrmA"
-  ENV["INTERCOM_APP_ID"] = "ywfyj3d0"
+  ENV["INTERCOM_APP_ID"] = "ie9f10ja"
 
   config.active_record.dump_schema_after_migration = false
 
