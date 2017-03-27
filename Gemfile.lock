@@ -346,6 +346,8 @@ GEM
       rdoc (~> 4.0)
     select2-rails (4.0.3)
       thor (~> 0.14)
+    sendgrid (1.2.4)
+      json
     signet (0.7.3)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -466,6 +468,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   select2-rails
+  sendgrid
   spring
   sshkit-sudo
   stripe-rails

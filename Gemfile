@@ -38,6 +38,9 @@ gem 'jquery-datatables-rails', '~> 3.4.0'
 # intercom
 gem 'intercom-rails'
 
+#gem 'mailgun_rails'
+gem 'sendgrid'
+
 # linkedin
 #gem "linkedin-oauth2", "~> 1.0"
 #gem 'omniauth'
