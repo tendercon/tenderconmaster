@@ -1,6 +1,6 @@
 class TenderconMailer < ActionMailer::Base
-  #default from: 'constructionclubau@gmail.com'
-  include SendGrid
+  default from: 'constructionclubau@gmail.com'
+  #include SendGrid
   def reset_password(email,root_path,user_id)
 
      puts "email:#{email}"

@@ -25,7 +25,7 @@
               <% end %>
           <% else %>
               <% if @trades.present? %>
-                <option value="0">Default</option>
+                <option value="0">All Trades</option>
                 <% @trades.each do |t| %>
                   <% if @trade_id.present? %>
                     <% if @trade_id.to_i == t.id.to_i %>
@@ -76,7 +76,7 @@
     <th class="text-center">Email</th>
     <th class="text-center">Trade</th>
     <% unless @tender.present? %>
-      <th class="text-center">Status</th>
+      <!--<th class="text-center">Status</th>-->
       <th class="text-center">Action</th>
     <% end %>
     <% if @tender.present? %>
@@ -95,13 +95,13 @@
           <td class="text-center"><%= savvy.email %></td>
           <td class="text-center"><%= get_trade_name savvy.trade_id %></td>
           <% unless @tender.present? %>
-            <td class="text-center">
-              <% if savvy.user_id.present? %>
-                 <%= get_user_created savvy.user_id %>
-              <% else %>
-                 ---
-              <% end %>
-            </td>
+            <!--<td class="text-center">
+              <%# if savvy.user_id.present? %>
+                 <%#= get_user_created savvy.user_id %>
+              <%# else %>
+                 -&#45;&#45;
+              <%# end %>
+            </td>-->
             <td>
               <div class="form-group">
                 <select class="form-control hc_action">
