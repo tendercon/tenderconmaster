@@ -4,47 +4,49 @@
 
     </div>
     <div class="col-md-3">
-      <div class="section">
-        <input type="hidden" class="tender_id" value="<%= @tender.present? ? @tender.id : nil%>">
-        <label class="field select">
-          <select class="trades">
-            <% if @tender.present? %>
-              <% if @all_trades.present? %>
-                <option value="0">Default</option>
-                <% @all_trades.each do |t| %>
-                  <% if @trade_id.present? %>
-                    <% if @trade_id.to_i == t.id.to_i %>
-                        <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+      <% if params[:controller] == 'hc_invites' %>
+        <div class="section">
+          <input type="hidden" class="tender_id" value="<%= @tender.present? ? @tender.id : nil%>">
+          <label class="field select">
+            <select class="trades">
+              <% if @tender.present? %>
+                <% if @all_trades.present? %>
+                  <option value="0">Default</option>
+                  <% @all_trades.each do |t| %>
+                    <% if @trade_id.present? %>
+                      <% if @trade_id.to_i == t.id.to_i %>
+                          <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+                      <% else %>
+                          <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                      <% end %>
                     <% else %>
                         <option value="<%= t.id %>"><%= get_trade_name t %></option>
                     <% end %>
-                  <% else %>
-                      <option value="<%= t.id %>"><%= get_trade_name t %></option>
                   <% end %>
                 <% end %>
-              <% end %>
-          <% else %>
-              <% if @trades.present? %>
-                <option value="0">All Trades</option>
-                <% @trades.each do |t| %>
-                  <% if @trade_id.present? %>
-                    <% if @trade_id.to_i == t.id.to_i %>
-                        <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+            <% else %>
+                <% if @trades.present? %>
+                  <option value="0">All Trades</option>
+                  <% @trades.each do |t| %>
+                    <% if @trade_id.present? %>
+                      <% if @trade_id.to_i == t.id.to_i %>
+                          <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+                      <% else %>
+                          <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                      <% end %>
                     <% else %>
                         <option value="<%= t.id %>"><%= get_trade_name t %></option>
                     <% end %>
-                  <% else %>
-                      <option value="<%= t.id %>"><%= get_trade_name t %></option>
-                  <% end %>
 
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
 
-          </select>
-          <i class="arrow"></i>
-        </label>
-      </div>
+            </select>
+            <i class="arrow"></i>
+          </label>
+        </div>
+      <% end %>
     </div>
 
     <div class="col-md-3 pull right">

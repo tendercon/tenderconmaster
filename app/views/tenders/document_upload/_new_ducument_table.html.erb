@@ -9,7 +9,7 @@
 </button>-->
 <table  class="table table-bordered responsive" id="new_document_table"  cellspacing="0" width="100%">
   <thead>
-  <tr>
+  <tr style="background-color: #2C3E50;color: white;">
     <th><input type="checkbox" class="document_list_master" name="document_list_master"></th>
     <th>Document</th>
     <th>Size</th>
@@ -134,7 +134,7 @@
         console.log("I -------> :"+i);
         if ( last !== group ) {
           $(rows).eq( i ).before(
-              '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '"><input type="checkbox" class="document_list" name="documents[]" id="'+ group+ '"> '+ group+ '</td>' +
+              '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '">f '+ group+ '</td>' +
               '<td> <i class="fa fa-file-text add_files" aria-hidden="true"  id="'+ group+ '"></i>'+
               '</td></tr>'
           );
@@ -145,8 +145,8 @@
     }
   } );
 
-  $('.selected_btn').hide();
-  $('.remove_btn').hide();
+  /*$('.selected_btn').hide();
+  $('.remove_btn').hide();*/
   $('.selected').show();
   $('.remove').show();
 
@@ -302,23 +302,32 @@
 
   $('.document_list').click(function()
   {
-    console.log("TEST TABLE");
+    var checked_array = [];
     if($(this).is(':checked')){
-      console.log("CHECK")
       $('.selected').hide();
       $('.remove').hide();
       $('.folder').hide();
-      $('.selected_btn').show();
-      $('.remove_btn').show();
+      $('.selected_btn').prop('disabled', false);
+      $('.remove_btn').prop('disabled', false);
       $('.add_folder').show();
-    }else{
-      console.log("UNCHECKED")
+    }else {
       $('.selected').show();
       $('.remove').show();
-      $('.selected_btn').hide();
-      $('.remove_btn').hide();
-      $('.add_folder').hide();
-      $('.folder').show();
+
+
+      $('.document_list').each(function () {
+        if ($(this).is(':checked')) {
+          checked_array.push($(this).attr('id'));
+        }
+
+        if (checked_array.length > 0) {
+          $('.selected_btn').prop('disabled', false);
+          $('.remove_btn').prop('disabled', false);
+        } else {
+          $('.selected_btn').prop('disabled', true);
+          $('.remove_btn').prop('disabled', true);
+        }
+      });
     }
 
 

@@ -34,7 +34,7 @@
                 <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
                   <h4 class="widget-thumb-heading">INVITATIONS SENT</h4>
                   <div class="widget-thumb-wrap">
-                    <i class="widget-thumb-icon bg-green icon-bulb"></i>
+                    <i class="widget-thumb-icon icon-envelope" style="background-color: #32C5D2"></i>
                     <div class="widget-thumb-body">
                       <span class="widget-thumb-subtitle">TOTAL</span>
                       <span class="widget-thumb-body-stat invite_count" data-counter="counterup" data-value="<%= TenderInvite.tender_invites(@tender.id) %>"><%= TenderInvite.tender_invites(@tender.id) %></span>
@@ -48,7 +48,7 @@
                 <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
                   <h4 class="widget-thumb-heading">INVITATIONS OPENED</h4>
                   <div class="widget-thumb-wrap">
-                    <i class="widget-thumb-icon bg-red icon-layers"></i>
+                    <i class="widget-thumb-icon icon-envelope-open" style="background-color: #f4d03f"></i>
                     <div class="widget-thumb-body">
                       <span class="widget-thumb-subtitle">TOTAL</span>
                       <span class="widget-thumb-body-stat invite_opened" data-counter="counterup" data-value="1,293"><%= TenderInvite.tender_opened(@tender.id) %></span>
@@ -62,7 +62,7 @@
                 <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
                   <h4 class="widget-thumb-heading">INVITATIONS ACCEPTED</h4>
                   <div class="widget-thumb-wrap">
-                    <i class="widget-thumb-icon bg-purple icon-screen-desktop"></i>
+                    <i class="widget-thumb-icon icon-user-following" style="background-color: #26c281"></i>
                     <div class="widget-thumb-body">
                       <span class="widget-thumb-subtitle">TOTAL</span>
                       <span class="widget-thumb-body-stat invite_accepted" data-counter="counterup" data-value="815"><%= TenderInvite.tender_accepted(@tender.id) %></span>
