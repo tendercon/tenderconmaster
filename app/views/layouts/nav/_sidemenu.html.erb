@@ -37,10 +37,11 @@
         </form>-->
         <!-- END RESPONSIVE QUICK SEARCH FORM -->
       </li>
-      <li class="heading">
-        <h3 class="uppercase">CMS</h3>
-      </li>
+
       <% if session[:role] == 'Admin' %>
+          <li class="heading">
+            <h3 class="uppercase">CMS</h3>
+          </li>
           <% if params[:controller] == 'sites' %>
               <li class="nav-item start active open">
                 <span class="selected"></span>

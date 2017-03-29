@@ -90,7 +90,7 @@ class ApplicationController < ActionController::Base
         @sc_rfi_shareds = SharedRfi.where(:user_id => session[:user_logged_id])
         @sc_rfi_shared_count = SharedRfi.where(:user_id => session[:user_logged_id]).count
         @open_tenders = OpenTender.where(:user_id => session[:user_logged_id])
-        @hc_invites = HcInvite.where(:hc_id => session[:user_logged_id])
+        @hc_invites = HcInvite.where(:hc_id => session[:user_logged_id],:status => nil)
         tender_arr = []
         if @open_tenders.present?
           @open_tenders.each do |a|

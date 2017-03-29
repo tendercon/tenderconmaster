@@ -104,16 +104,19 @@
                  -&#45;&#45;
               <%# end %>
             </td>-->
-            <td>
-              <div class="form-group">
+            <td class="text-center">
+              <!--<div class="form-group">
                 <select class="form-control hc_action">
                   <option>Select Here</option>
-                  <option class="remove" value="<%= savvy.id %>" id="0">Remove</option>
-                  <% unless savvy.user_id.present? %>
+                  <option class="remove" value="<%#= savvy.id %>" id="0">Remove</option>
+                  <%# unless savvy.user_id.present? %>
                     <option class="resent" value="<%= savvy.id %>" id="1">Re-sent</option>
-                  <% end %>
+                  <%# end %>
                 </select>
-              </div>
+              </div>-->
+              <button class="btn btn-danger remove" id="<%= savvy.id  %>">
+                   Remove
+              </button>
             </td>
           <% end %>
           <% if @tender.present? %>
@@ -180,6 +183,17 @@
         });
       }
 
+    });
+
+    $('.remove').click(function(){
+      var savvy_id = $(this).attr('id');
+      $.ajax({
+        method: "POST",
+        data: {id: savvy_id},
+        url: "/hc_invites/remove_savvy"
+      }).done(function (data) {
+        $('.savvy_div').html(data);
+      });
     });
 
     $('#filter').keyup(function () {
