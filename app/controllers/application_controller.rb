@@ -43,7 +43,6 @@ class ApplicationController < ActionController::Base
 
   def notify
     @tendercon_url = request.original_url
-    puts "@tendercon_url =====> #{@tendercon_url.inspect}"
 
     if @tendercon_url.include?("builder")
       @header = HeaderNav.where(:page_type => "builder").first
@@ -51,11 +50,8 @@ class ApplicationController < ActionController::Base
       @header = HeaderNav.where(:page_type => "subcontractor").first
     end
 
-    puts "@header  ========>#{@header.inspect }"
-
     if session[:user_logged_id].present?
       UserSubscription.delay.notify(session[:user_logged_id],request.host_with_port)
-
       @user = User.find(session[:user_logged_id])
       if @user.present?
 
@@ -91,6 +87,7 @@ class ApplicationController < ActionController::Base
         @sc_rfi_shared_count = SharedRfi.where(:user_id => session[:user_logged_id]).count
         @open_tenders = OpenTender.where(:user_id => session[:user_logged_id])
         @hc_invites = HcInvite.where(:hc_id => session[:user_logged_id],:status => nil)
+        puts "@hc_invites ======> #{@hc_invites.inspect}"
         tender_arr = []
         if @open_tenders.present?
           @open_tenders.each do |a|

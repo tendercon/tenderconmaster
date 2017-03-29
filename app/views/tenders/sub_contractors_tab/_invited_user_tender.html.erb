@@ -73,27 +73,36 @@
             <tr class="trade" id="<%= index + 1 %>" data-title="<%= get_trade_name t.trade_id %>">
               <td class="text-center"><%= get_invite_company_name t.email %></td>
               <td class="text-center"><%= get_user_tender_per_email t.email %></td>
-              <td class="text-center"><p><%=  t.email %></p></td>
-              <td class="text-center"><p><%=  t.created_at.present? ? t.created_at.strftime("%d.%m.%Y %H:%M %p") : nil  %></p></td>
-              <td class="text-center"><p><%=  t.tender_open_date.present? ? t.tender_open_date.strftime("%d.%m.%Y %H:%M %p") : 'Not yet' %></p></td>
+              <td class="text-center"><%=  t.email %></td>
+              <td class="text-center"><%=  t.created_at.present? ? t.created_at.strftime("%d.%m.%Y %H:%M %p") : nil  %></td>
+              <td class="text-center"><%=  t.tender_open_date.present? ? t.tender_open_date.strftime("%d.%m.%Y %H:%M %p") : 'Not yet' %></td>
               <% if t.status == nil %>
-                  <td class="text-center"><p>Pending Acceptance</p></td>
+                  <td class="text-center">
+                    <button class="btn btn-primary" type="button" style="background-color: #32c5d2">
+                      Invited
+                    </button>
+                  </td>
               <% elsif t.tender_declined_date.present? %>
                   <td class="text-center">
-                    <p style="color: red">Invitation Declined</p>
-                    <p><%=  t.tender_declined_date.present? ? t.tender_declined_date.strftime("%d.%m.%Y %H:%M %p") : nil %></p>
+                    <button class="btn btn-warning" type="button" style="background-color: #e43a45">
+                      Declined
+                    </button>
+                    <!--<p><%#=  t.tender_declined_date.present? ? t.tender_declined_date.strftime("%d.%m.%Y %H:%M %p") : nil %></p>-->
                   </td>
               <% elsif t.tender_acceptance_date.present? %>
                   <td class="text-center">
-                    <button class="btn btn-warning" type="button">
+                    <button class="btn btn-warning" type="button" style="background-color: #26c281">
                       Accepted
                     </button>
-                    <p><%=  t.tender_acceptance_date.present? ? t.tender_acceptance_date.strftime("%d.%m.%Y %H:%M %p") : nil %></p>
+                    <!--<p><%#=  t.tender_acceptance_date.present? ? t.tender_acceptance_date.strftime("%d.%m.%Y %H:%M %p") : nil %></p>-->
                   </td>
               <% else %>
                   <td class="text-center">
-                    <button class="btn btn-warning" type="button">
+                    <!--<button class="btn btn-warning" type="button">
                       Pending
+                    </button>-->
+                    <button class="btn btn-primary" type="button" style="background-color: #32c5d2">
+                      Invited
                     </button>
                   </td>
               <% end %>

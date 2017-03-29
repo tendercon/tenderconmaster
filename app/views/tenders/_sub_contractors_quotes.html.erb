@@ -109,7 +109,7 @@
                     <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
                       <h4 class="widget-thumb-heading">REQUESTING TO TENDER</h4>
                       <div class="widget-thumb-wrap">
-                        <i class="widget-thumb-icon bg-green icon-bulb"></i>
+                        <i class="widget-thumb-icon icon-user-follow" style="background-color: #32c5d2"></i>
                         <div class="widget-thumb-body">
                           <span class="widget-thumb-subtitle">TOTAL</span>
                           <span class="widget-thumb-body-stat request_count" data-counter="counterup" data-value="<%= get_request_count @tender.id %>"><%= get_request_count @tender.id %></span>
@@ -123,7 +123,7 @@
                     <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
                       <h4 class="widget-thumb-heading">REQUESTS APPROVED</h4>
                       <div class="widget-thumb-wrap">
-                        <i class="widget-thumb-icon bg-red icon-layers"></i>
+                        <i class="widget-thumb-icon icon-user-following" style="background-color: #26c281"></i>
                         <div class="widget-thumb-body">
                           <span class="widget-thumb-subtitle">TOTAL</span>
                           <span class="widget-thumb-body-stat request_approved" data-counter="counterup" data-value="1,293"><%= get_request_approved @tender.id %></span>
@@ -137,7 +137,7 @@
                     <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
                       <h4 class="widget-thumb-heading">REQUESTS  DECLINED</h4>
                       <div class="widget-thumb-wrap">
-                        <i class="widget-thumb-icon bg-purple icon-screen-desktop"></i>
+                        <i class="widget-thumb-icon icon-user-unfollow" style="background-color: #e43a45"></i>
                         <div class="widget-thumb-body">
                           <span class="widget-thumb-subtitle">TOTAL</span>
                           <span class="widget-thumb-body-stat request_declined" data-counter="counterup" data-value="815"><%= get_request_declined @tender.id %></span>
