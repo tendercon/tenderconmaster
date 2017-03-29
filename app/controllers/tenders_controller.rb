@@ -1937,6 +1937,24 @@ class TendersController < ApplicationController
     @data = render :partial => 'tenders/new_invites'
   end
 
+
+  def download_documents
+    tender_id = params[:tender_id]
+    ids = params[:ids]
+    tender = Tender.find(tender_id)
+    Tender.document_control_download tender_id,ids
+    dir = "/assets/tender/#{tender.title}-#{tender.id}-files/#{tender.title}-#{tender.id}-files.zip"
+    render :json => { :state => 'valid',:path => dir}
+  end
+
+  def removed_download_documents
+    tender = Tender.find(params[:tender_id])
+    dir = "/assets/tender/#{tender.title}-#{tender.id}-files/"
+    puts " ==========> #{Rails.root}/public#{dir}"
+    FileUtils.rm_rf("#{Rails.root}/public#{dir}")
+    render :json => { :state => 'valid'}
+  end
+
   def invite_sub_contractor
     tender_id  = params[:tender_id]
 

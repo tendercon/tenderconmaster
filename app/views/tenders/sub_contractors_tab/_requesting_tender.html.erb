@@ -152,6 +152,7 @@
 
 <script>
   $(document).ready(function(){
+    $('.dataTables_empty').text('TEST')
     $('.request_count').text("<%= get_request_count @tender.id %>");
     $('.request_approved').text("<%= get_request_approved @tender.id %>");
     $('.request_declined').text("<%= get_request_declined @tender.id %>");
@@ -174,7 +175,7 @@
           console.log(group);
           if ( last !== group ) {
             $(rows).eq( i ).before(
-                '<tr class="group"><td colspan="7">'+group+'</td></tr>'
+                '<tr class="group" style="background-color: #fafafa"><td colspan="7">'+group+'</td></tr>'
             );
 
             last = group;
@@ -212,6 +213,9 @@
       "bPaginate": false,
       "bInfo" : false,
       "bFilter" : false,
+      "language": {
+        "emptyTable": "There are no Subcontractors requesting to tender"
+      }
       /*"columnDefs": [
         { "visible": false, "targets": 2 }
       ],

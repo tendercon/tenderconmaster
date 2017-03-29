@@ -323,6 +323,8 @@ Rails.application.routes.draw do
       post 'add_directory'
       post 'get_document_control'
       post 'get_document_control_per_sc'
+      post 'download_documents'
+      post 'removed_download_documents'
     end
   end
 
