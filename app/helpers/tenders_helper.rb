@@ -269,7 +269,9 @@ module TendersHelper
 
       end
     else
-      email
+      tender_invite = TenderInvite.where(:email => email).first
+
+      tender_invite.name
     end
   end
 

@@ -8,18 +8,18 @@
 <button type="button" class="btn btn-danger remove_btn" style="display: none" onclick="return confirm('Are you sure you want to delete this item?');">
   <i class="fa fa-trash" aria-hidden="true" ></i> DELETE SELECTED DOCUMENTS
 </button>-->
-<div class="admin-form">
+<!--<div class="admin-form">
   <div class="row">
     <div class="col-md-9">
-      <!--<i class="fa fa-folder folder" aria-hidden="true"></i>
-      <i class="fa fa-arrows selected" aria-hidden="true"></i>-->
+      &lt;!&ndash;<i class="fa fa-folder folder" aria-hidden="true"></i>
+      <i class="fa fa-arrows selected" aria-hidden="true"></i>&ndash;&gt;
       <button type="button" class="button btn-success add_folder" >
         <i class="fa fa-arrows" aria-hidden="true"></i> ADD FOLDER
       </button>
       <button type="button" class="button btn-warning selected_btn" disabled>
         <i class="fa fa-arrows" aria-hidden="true"></i> MOVE SELECTED DOCUMENTS
       </button>
-      <!--<i class="fa fa-trash remove" aria-hidden="true" onclick="return confirm('Are you sure you want to delete this item?');"></i>-->
+      &lt;!&ndash;<i class="fa fa-trash remove" aria-hidden="true" onclick="return confirm('Are you sure you want to delete this item?');"></i>&ndash;&gt;
       <button type="button" class="button btn-danger remove_btn" disabled  onclick="return confirm('Are you sure you want to delete this item?');">
         <i class="fa fa-trash" aria-hidden="true" ></i> DELETE SELECTED DOCUMENTS
       </button>
@@ -35,11 +35,11 @@
             <i class="fa fa-search"></i>
           </label>
         </div>
-        <!-- end .smart-widget section -->
+        &lt;!&ndash; end .smart-widget section &ndash;&gt;
       </div>
     </div>
   </div>
-</div>
+</div>-->
 <table  class="table table-bordered responsive" id="new_folder_table"  cellspacing="0" width="100%">
   <thead>
   <tr style="background-color: #2C3E50;color: white;">
@@ -150,7 +150,7 @@
       }).done(function (data) {
         //$('.uploaded_docs').html(data);
         //$('.document_div_table').html('');
-        $('.add_folder').hide();
+        //$('.add_folder').hide();
         $('.folder').show();
         $('.document_div_table').html(data);
       });
@@ -254,9 +254,9 @@
       //$('.uploaded_docs').html(data);
       $('.selected').show();
       $('.remove').show();
-      $('.selected_btn').hide();
-      $('.remove_btn').hide();
-      $('.add_folder').hide();
+      $('.selected_btn').prop('disabled', true);
+      $('.remove_btn').prop('disabled', true);
+
       $('.folder').show();
       $('.document_div_table').html(data);
     });
@@ -352,7 +352,7 @@
       data: {ids:ids,tender_id:tender_id},
       url: "/tenders/delete_documents"
     }).done(function (data) {
-      $('.add_folder').hide();
+
       $('.folder').show();
       $('.document_div_table').html(data);
       //$('.uploaded_docs').html(data);

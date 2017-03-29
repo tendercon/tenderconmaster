@@ -2807,7 +2807,12 @@ class TendersController < ApplicationController
     end
 
     if tab == 'invites'
-      @tender_invites = TenderInvite.where(:tender_id => tender_id,:trade_id => params[:trades])
+      if @trades.to_i > 0
+        @tender_invites = TenderInvite.where(:tender_id => tender_id,:trade_id => params[:trades])
+      else
+        @tender_invites = TenderInvite.where(:tender_id => tender_id).order('trade_id asc')
+      end
+
       @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
     elsif tab == 'request'
       @tender_request_quotes = TenderRequestQuote.where(:tender_id => tender_id, :trade_id => params[:trades])

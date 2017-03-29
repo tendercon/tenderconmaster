@@ -247,7 +247,7 @@
           url: "/tenders/rename_file"
         }).done(function (data) {
           //$('.uploaded_docs').html(data);
-          $('.add_folder').hide();
+          //$('.add_folder').hide();
           $('.folder').show();
           $('.document_div_table').html('');
           $('.document_div_table').html(data);
@@ -488,9 +488,11 @@
       }).done(function (data) {
         $('.selected').show();
         $('.remove').show();
-        $('.selected_btn').hide();
+        /*$('.selected_btn').hide();
         $('.remove_btn').hide();
-        $('.add_folder').hide();
+        $('.add_folder').hide();*/
+        $('.selected_btn').prop('disabled', true);
+        $('.remove_btn').prop('disabled', true);
         $('.folder').show();
         $('#remove_file_Modal').modal('hide');
         $('.document_div_table').html(data);
@@ -513,7 +515,7 @@
         data: {ids:ids,tender_id:tender_id},
         url: "/tenders/delete_documents"
       }).done(function (data) {
-        $('.add_folder').hide();
+        //$('.add_folder').hide();
         $('.folder').show();
         $('.document_div_table').html(data);
         //$('.uploaded_docs').html(data);
