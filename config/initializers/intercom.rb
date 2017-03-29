@@ -1,3 +1,4 @@
+=begin
 IntercomRails.config do |config|
   # == Intercom app_id
   #
@@ -113,3 +114,4 @@ IntercomRails.config do |config|
   # If you'd like to hide default launcher button uncomment this line
   # config.hide_default_launcher = true
 end
+=end

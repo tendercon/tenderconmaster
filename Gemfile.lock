@@ -184,8 +184,6 @@ GEM
       rack
       socksify
     i18n (0.8.0)
-    intercom-rails (0.3.4)
-      activesupport (> 3.0)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -441,7 +439,6 @@ DEPENDENCIES
   geokit-rails
   gmaps4rails
   google-api-client (= 0.8.2)
-  intercom-rails
   jbuilder (~> 2.0)
   jquery-cookie-rails
   jquery-datatables-rails (~> 3.4.0)
