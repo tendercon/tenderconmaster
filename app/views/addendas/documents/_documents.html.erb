@@ -74,7 +74,8 @@
           </a>
 
 
-        <a href="matrix?addenda=<%= addenda.id %>&tender_id=<%= tender.id %>&addenda_type=documents&matrix=true">
+        <a href="<%= new_addenda_path(:id => tender.id,:addenda => addenda.id,:addenda_type => "documents",:notify => true) %>">
+
           <button type="button" class="btn btn-default">Next</button>
         </a>
       </div>

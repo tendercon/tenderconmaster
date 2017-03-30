@@ -6,7 +6,7 @@
           <div class="form-group">
             <div class="text-center">
               <h3>Quotes are currently due to be submitted by the</h3>
-              <h4 class="quote_date_label"><%= (tender.tender_quote.quote_date.to_datetime).strftime("%m/%d/%Y %H:%M %p") %></h4>
+              <h4 class="quote_date_label"><%= tender.tender_quote.present? ? tender.tender_quote.quote_date.present? ? (tender.tender_quote.quote_date.to_datetime).strftime("%m/%d/%Y %H:%M %p") : nil : nil %></h4>
               <div style="height: 20px"></div>
               <button type="button" class="btn btn-success revise" id="<%= tender.tender_quote.id %>">Update</button>
               <div style="height: 20px"></div>
@@ -20,8 +20,10 @@
               <div class="col-md-3"></div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <div class="input-group date quote_meridian_datetime" data-date="2012-12-21T15:25:00Z">
-                    <input type="text" class="form-control quote" name="quote" value="<%= tender.present? ? tender.tender_quote.present? ? tender.tender_quote.quote_date : nil : nil %>"/>
+
+                  <input type="text" class="form-control quote" name="quote" value="<%= tender.present? ? tender.tender_quote.present? ? tender.tender_quote.quote_date : nil : nil %>" />
+                  <!--<div class="input-group date quote_meridian_datetime" data-date="2012-12-21T15:25:00Z">
+                    <input type="text" class="form-control quote" name="quote" value="<%#= tender.present? ? tender.tender_quote.present? ? tender.tender_quote.quote_date : nil : nil %>"/>
                     <span class="input-group-btn">
                       <button class="btn default date-reset" type="button">
                         <i class="fa fa-times"></i>
@@ -30,7 +32,7 @@
                         <i class="fa fa-calendar"></i>
                       </button>
                     </span>
-                  </div>
+                  </div>-->
                 </div>
                 <div class="form-group">
                   <div class="text-center">
@@ -118,7 +120,8 @@
   $(document).ready(function(){
     var date = new Date();
     date.setDate(date.getDate());
-    $('.quote_meridian_datetime').datetimepicker(
+    var nowDate = new Date();
+   /* $('.quote_meridian_datetime').datetimepicker(
         {
           startDate: date,
           format:"yyyy-mm-dd  HH:ii P",
@@ -126,7 +129,15 @@
           autoclose:true,
           todayBtn:true
         }
-    );
+    );*/
+
+    $('.quote').datetimepicker({
+      format: 'Y-m-d g:i A',
+      formatTime: 'g:i A',
+      ampm: true,
+      minDate: nowDate,
+
+    });
 
     $('.revise').click(function(){
       var id = $(this).attr('id');

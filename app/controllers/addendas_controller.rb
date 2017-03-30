@@ -15,16 +15,17 @@ class AddendasController < ApplicationController
     @edited_addenda = Addenda.where(:id => params[:addenda]).last
     if @edited_addenda.present?
       @ref_num  =  @edited_addenda.ref_no
-      puts "@ref_num======> #{@ref_num}"
     else
       last_addenda = Addenda.where(:tender_id => @tender.id,:user_id => session[:user_logged_id]).last
       if last_addenda.present?
-        @ref_num =  "Addendum ##{rand(last_addenda.id..1000)}"
+        a = last_addenda.ref_no.gsub(/[^0-9]/, '')
+        puts "last_addenda.ref_no.last(4)).to_i + 1 =======> #{a}"
+        @ref_num =  "Addendum ##{a.to_i + 1}"
       else
-        @ref_num =  "Addendum ##{rand(1..1000)}"
+        @ref_num =  "Addendum #1"
       end
-
     end
+
     if @documents.present?
       @documents.each do |u|
         if u.directory != 'unzip'
@@ -594,8 +595,9 @@ class AddendasController < ApplicationController
     id = params[:quote_id]
       if params[:type] == 'quote'
         quote = TenderQuote.find(id)
-        TenderQuote.where(:id => id).update_all(:quote_date => params[:quote_date],:previous_date => quote.quote_date)
+        TenderQuote.where(:id => id).update_all(:quote_date => params[:quote_date],:previous_date => quote.quote_date, :updated_at => Time.now)
         updated_quote =  TenderQuote.find(id)
+
         render :json => { :state => 'valid',:quote => (updated_quote.quote_date.to_datetime).strftime("%m/%d/%Y %H:%M %p")}
       end
 

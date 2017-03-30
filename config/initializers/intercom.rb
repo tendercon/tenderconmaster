@@ -1,3 +1,4 @@
+
 IntercomRails.config do |config|
   # == Intercom app_id
   #
@@ -15,9 +16,10 @@ IntercomRails.config do |config|
   # == Enabled Environments
   # Which environments is auto inclusion of the Javascript enabled for
   #
-  config.enabled_environments = ["production","development"]
 
+  config.enabled_environments = ["production","development"]
   config.include_for_logged_out_users = true
+
 
   # == Current user method/variable
   # The method/variable that contains the logged in user in your controllers.
@@ -114,3 +116,4 @@ IntercomRails.config do |config|
   # If you'd like to hide default launcher button uncomment this line
   # config.hide_default_launcher = true
 end
+

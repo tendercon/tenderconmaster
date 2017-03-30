@@ -122,7 +122,7 @@
                           </div>
                           <div class="col-md-6">
                             <a href="<%= "http://"+@ip+"/assets/tender/document/Fullset-#{@tender.tendercon_id}.zip" %>" >
-                              <button class="btn btn-default">Download Changes</button>
+                              <button class="btn btn-default">download all files in zip</button>
                             </a>
                             <div  style="height: 20px"></div>
                           </div>
@@ -134,7 +134,7 @@
                                 <thead>
                                 <th class="text-center">Filename</th>
                                 <th class="text-center">Change</th>
-                                <th class="text-center">Download</th>
+                                <!--<th class="text-center">Download</th>-->
                                 </thead>
                                 <tbody>
                                 <% if (get_addenda_documents a.id).present? %>
@@ -142,7 +142,7 @@
                                         <tr>
                                           <td class="text-center"><%= t.document_file_name  %></td>
                                           <td class="text-center">Added</td>
-                                          <td class="text-center"></td>
+                                          <!--<td class="text-center"></td>-->
                                         </tr>
                                     <% end %>
                                 <% end %>
