@@ -3,8 +3,13 @@ class TenderInvite < ActiveRecord::Base
   has_many :invited_tender_notifications
 
 
-  def self.tender_invites(id)
-    where("tender_id = #{id}").count()
+  def self.tender_invites(id,added_by = nil)
+    if added_by.present?
+      where("tender_id = #{id}").count()
+    else
+      where("tender_id = #{id} and added_by = 'admin'").count()
+    end
+
   end
 
   def self.tender_opened(id)

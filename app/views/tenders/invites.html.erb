@@ -1,0 +1,310 @@
+<div class="row">
+  <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+    <div class="portlet-body">
+      <div class="tabbable-line">
+        <ul class="nav nav-tabs ">
+          <li role="presentation" class="active">
+            <a href="#invited_tender" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+              <span class="text">Invites</span>
+            </a>
+          </li>
+          <li role="presentation" class="next">
+            <a href="#tendering" role="tab" id="tendering-tab" data-toggle="tab" aria-controls="tendering">
+              <span class="text">Tendering</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div style="height: 80px;"></div>
+
+    <div class="col-md-12">
+      <div id="myTabContent" class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="invited_tender" aria-labelledby="home-tab">
+          <div class="col-md-12">
+            <div class="row widget-row">
+              <div class="col-md-4">
+                <!-- BEGIN WIDGET THUMB -->
+                <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+                  <h4 class="widget-thumb-heading">INVITATIONS SENT</h4>
+                  <div class="widget-thumb-wrap">
+                    <i class="widget-thumb-icon icon-envelope" style="background-color: #32C5D2"></i>
+                    <div class="widget-thumb-body">
+                      <span class="widget-thumb-subtitle">TOTAL</span>
+                      <span class="widget-thumb-body-stat invite_count" data-counter="counterup" data-value="<%= TenderInvite.tender_invites(@tender.id) %>"><%= TenderInvite.tender_invites(@tender.id) %></span>
+                    </div>
+                  </div>
+                </div>
+                <!-- END WIDGET THUMB -->
+              </div>
+              <div class="col-md-4">
+                <!-- BEGIN WIDGET THUMB -->
+                <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+                  <h4 class="widget-thumb-heading">INVITATIONS OPENED</h4>
+                  <div class="widget-thumb-wrap">
+                    <i class="widget-thumb-icon icon-envelope-open" style="background-color: #f4d03f"></i>
+                    <div class="widget-thumb-body">
+                      <span class="widget-thumb-subtitle">TOTAL</span>
+                      <span class="widget-thumb-body-stat invite_opened" data-counter="counterup" data-value="1,293"><%= TenderInvite.tender_opened(@tender.id) %></span>
+                    </div>
+                  </div>
+                </div>
+                <!-- END WIDGET THUMB -->
+              </div>
+              <div class="col-md-4">
+                <!-- BEGIN WIDGET THUMB -->
+                <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+                  <h4 class="widget-thumb-heading">INVITATIONS ACCEPTED</h4>
+                  <div class="widget-thumb-wrap">
+                    <i class="widget-thumb-icon icon-user-following" style="background-color: #26c281"></i>
+                    <div class="widget-thumb-body">
+                      <span class="widget-thumb-subtitle">TOTAL</span>
+                      <span class="widget-thumb-body-stat invite_accepted" data-counter="counterup" data-value="815"><%= TenderInvite.tender_accepted(@tender.id) %></span>
+                    </div>
+                  </div>
+                </div>
+                <!-- END WIDGET THUMB -->
+              </div>
+            </div>
+
+          </div>
+
+
+          <div  style="height: 30px"></div>
+          <div class="col-md-12">
+
+            <div style="height: 10px"></div>
+            <div class="invited_div">
+              <%= render :partial => 'tenders/admin_role/invited_by_admin',:locals => {:tender => @tender, :trades_ids => @trades_ids } %>
+            </div>
+          </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade" id="tendering" aria-labelledby="tendering-tab">
+          <div class="col-md-12">
+            <div class="row widget-row">
+              <div class="col-md-2"></div>
+              <div class="col-md-4">
+                <!-- BEGIN WIDGET THUMB -->
+                <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+                  <h4 class="widget-thumb-heading">SUBCONTRACTORS TENDERING</h4>
+                  <div class="widget-thumb-wrap">
+                    <i class="widget-thumb-icon icon-users" style="background-color: #26c281"></i>
+                    <div class="widget-thumb-body">
+                      <span class="widget-thumb-subtitle">TOTAL</span>
+                      <span class="widget-thumb-body-stat tendering_count" data-counter="counterup" data-value="<%= get_subcontractors_count @tender.id %>"><%= get_subcontractors_count @tender.id %></span>
+                    </div>
+                  </div>
+                </div>
+                <!-- END WIDGET THUMB -->
+              </div>
+              <div class="col-md-4">
+                <!-- BEGIN WIDGET THUMB -->
+                <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
+                  <h4 class="widget-thumb-heading">TRADES</h4>
+                  <div class="widget-thumb-wrap">
+                    <i class="widget-thumb-icon icon-wrench" style="background-color: #3598dc"></i>
+                    <div class="widget-thumb-body">
+                      <span class="widget-thumb-subtitle">TOTAL</span>
+                      <span class="widget-thumb-body-stat tendering_trades" data-counter="counterup" data-value="1,293"><%= get_trade_count @tender.id %></span>
+                    </div>
+                  </div>
+                </div>
+                <!-- END WIDGET THUMB -->
+              </div>
+              <div class="col-md-2"></div>
+
+            </div>
+
+          </div>
+          <div class="col-md-12">
+            <div class="row">
+              <!--<div class="col-md-3" style="border: solid">
+                <div  style="height: 30px"></div>
+                <p class="text-center" style="font-size: 24px">
+                  <%#= get_quote_submitted_count @tender.id %>
+                </p>
+                <div  style="height: 10px"></div>
+                <p class="text-center">Quotes Submitted</p>
+              </div>-->
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="row">
+            </div>
+            <div style="height: 10px"></div>
+            <div class="tendering_div">
+              <%#= render 'tenders/sub_contractors_tab/tendering' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-24 pending">
+
+</div>
+<%= render 'tenders/admin_role/invite_form_modal' %>
+
+<input type="hidden" class="tender_id" name="<%= @tender.id %>">
+<input type="hidden" class="trade_list" value="<%= @trades_ids %>">
+<script>
+
+  $(document).ready(function(){
+    $('.download').hover(
+        function(){
+          var id = $(this).attr('id');
+          var trade_id = $(this).attr('alt');
+          $('#trade_'+id+"_"+trade_id).show();
+        },function(){
+          var id = $(this).attr('id');
+          var trade_id = $(this).attr('alt');
+          $('#trade_'+id+"_"+trade_id).hide();
+        }
+    );
+
+    var trades = "<%= @trades_ids %>";
+    var new_trade_array = trades.replace(/[\])}[{(]/g, '').split(',');
+
+    for(var a=0;a < new_trade_array.length;a++){
+      var cnt = $('.child_trade_'+new_trade_array[a].trim()).length;
+      $('.count_trade_'+new_trade_array[a].trim()).text('('+cnt+')');
+    }
+
+    $('.invite_more_sub').click(function(){
+      $('#invite_more_modal').modal('show');
+    });
+
+    //$('#trade1').multiselect();
+    $('#trade2').multiselect();
+    $('#trade3').multiselect();
+    $('.tender_status').multiselect();
+
+    <% if @request.present? %>
+    $('#request-tab').click();
+    <% end %>
+
+
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      var tender_id = "<%= @tender.id  %>";
+      var target = $(e.target).attr("href");
+      var tab;
+      if(target == '#invited_tender'){
+        tab = 'invites';
+      }else if(target == '#request_tender'){
+        tab = 'request';
+      }else if(target == '#tendering'){
+        tab = 'tendering';
+      }
+
+      if(target == '#invited_tender' || target == '#request_tender' || target == '#tendering'){
+        $.ajax({
+          method: "POST",
+          data: {tender_id:tender_id,tab:tab,added_by: true},
+          url: "/tenders/sub_contractor_tabs"
+        }).done(function (data) {
+          if(tab == 'invites'){
+            $('.invited_div').html('');
+            $('.invited_div').html(data);
+          }else if(tab == 'tendering'){
+            $('.tendering_div').html('');
+            $('.tendering_div').html(data);
+          }
+
+        });
+      }
+    });
+
+
+    $('.send_invite').click(function(){
+      var emails = [];
+      var names = [];
+      var trades = [];
+      var companies = [];
+      var tender_id = "<%= @tender.id %>";
+      var save_to_sub = $('.save_to_sub').val();
+
+      $('.company').each(function(){
+        companies.push($(this).val());
+      });
+
+      $('.f_name').each(function(){
+        names.push($(this).val());
+      });
+      console.log('names:'+names);
+      $('.email').each(function(){
+        emails.push($(this).val());
+      });
+
+      $('.trades').each(function(){
+        if(parseInt($(this).val()) > 0){
+          trades.push($(this).val())
+        }
+      });
+
+      for(var a=0; a < emails.length; a++){
+        console.log(validateEmail(emails[a]));
+      }
+
+
+      if(emails.length > 0 && names.length > 0 && companies.length > 0 && trades.length > 0){
+        if(validateEmail(emails[0])){
+          $.ajax({
+            method: "POST",
+            data: {tender_id:tender_id,emails:emails,names:names,trades:trades,companies:companies,save_to_sub:save_to_sub,added_by:true},
+            url: "/tenders/invite_more_sub"
+          }).done(function (data) {
+            $('.close_invite_more_modal').click();
+            $('#invite_more_modal').modal('hide');
+            //$('.contractors').html(data);
+            $('.f_name').each(function(){
+              $(this).val('');
+            });
+            console.log('names:'+names);
+            $('.email').each(function(){
+              $(this).val('');
+
+            });
+            $('.trades').each(function(){
+              if(parseInt($(this).val()) > 0){
+                $(this).val('')
+              }
+            });
+
+            $('.company').each(function(){
+              if(parseInt($(this).val()) > 0){
+                $(this).val('')
+              }
+            });
+
+            $('.invited_div').html(data);
+            $('.company').val('');
+
+          });
+        }else{
+          $('.email_error').show();
+          $('.error').hide();
+        }
+
+      }else{
+        $('.error').show();
+        $('.email_error').hide();
+      }
+
+
+    });
+
+
+    function validateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
+
+
+
+  });
+</script>

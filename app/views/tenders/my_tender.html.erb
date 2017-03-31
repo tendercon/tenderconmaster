@@ -100,7 +100,7 @@
                         View
                       </button>
                     </a>
-                <% else %>
+                  <% elsif session[:role] == 'Sub Contractor' %>
                     <a href="<%= sc_tender_tenders_path(:id => t.id) %>" >
                       <% if get_tender_approved t.id,session[:user_logged_id] %>
                         <button class="btn btn-default" type="button">
@@ -111,6 +111,12 @@
                           View
                         </button>
                       <% end %>
+                    </a>
+                  <% else %>
+                    <a href="<%= invites_tenders_path(:id => t.id) %>" >
+                      <button class="btn btn-default" type="button">
+                        View
+                      </button>
                     </a>
                   <% end %>
 

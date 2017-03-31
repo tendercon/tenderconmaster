@@ -1,0 +1,193 @@
+<div class="table-responsive" >
+  <div class="admin-form">
+    <div class="row">
+      <div class="col-md-3">
+        <a href="#!" class="invite_more_sub" id="<%= @tender.present? ? @tender.id : tender.id %>">
+          <button class="button  btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> Invite more Subconstractors</button>
+        </a>
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3">
+        <div class="section">
+          <label class="field select">
+            <select  class="trade_filter" title="invites">
+              <% if @trades_array.present?  %>
+
+                  <option value="0">All Trades</option>
+                  <% @trades_array.uniq.each do |t| %>
+                      <% if @trades.present? %>
+                          <% if @trades.to_i == t.to_i %>
+                              <option value="<%= t %>" selected><%= get_trade_name t %></option>
+                          <% else %>
+                              <option value="<%= t %>"><%= get_trade_name t %></option>
+                          <% end %>
+                      <% else %>
+                          <option value="<%= t %>"><%= get_trade_name t %></option>
+                      <% end %>
+
+                  <% end %>
+              <% else  %>
+                  <option value="0">All Trades</option>
+                  <% @trades_array.uniq.each do |t| %>
+                      <option value="<%= t %>"><%= get_trade_name t %></option>
+                  <% end %>
+              <% end %>
+            </select>
+            <i class="arrow"></i>
+          </label>
+        </div>
+
+      </div>
+      <div class="col-md-3"></div>
+      <div class="col-md-3 pull right">
+        <div class="section">
+          <div class="smart-widget sm-left sml-50">
+            <label class="field">
+              <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Here">
+            </label>
+            <label for="sm3" class="button">
+              <i class="fa fa-search"></i>
+            </label>
+          </div>
+          <!-- end .smart-widget section -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <table class="table table-bordered responsive" id="invited_table"  cellspacing="0" width="100%">
+    <thead>
+    <tr style="background-color: #2C3E50;color: white;">
+      <th class="text-center">Company Name</th>
+      <th class="text-center">Contact Name</th>
+      <th class="text-center">Email</th>
+      <th class="text-center">Invitation Sent</th>
+      <th class="text-center">Invitation Opened</th>
+      <th class="text-center">Status</th>
+      <th class="text-center">Trade</th>
+    </tr>
+
+    </thead>
+    <tbody class="searchable">
+    <% if @tender_invites.present? %>
+        <% @tender_invites.each_with_index do |t,index| %>
+            <tr class="trade" id="<%= index + 1 %>" data-title="<%= get_trade_name t.trade_id %>">
+              <td class="text-center"><%= get_invite_company_name t.email %></td>
+              <td class="text-center"><%= get_user_tender_per_email t.email %></td>
+              <td class="text-center"><%=  t.email %></td>
+              <td class="text-center"><%=  t.created_at.present? ? t.created_at.strftime("%d.%m.%Y %H:%M %p") : nil  %></td>
+              <td class="text-center"><%=  t.tender_open_date.present? ? t.tender_open_date.strftime("%d.%m.%Y %H:%M %p") : 'Not yet' %></td>
+              <% if t.status == nil %>
+                  <td class="text-center">
+                    <button class="btn btn-primary" type="button" style="background-color: #32c5d2">
+                      Invited
+                    </button>
+                  </td>
+              <% elsif t.tender_declined_date.present? %>
+                  <td class="text-center">
+                    <button class="btn btn-warning" type="button" style="background-color: #e43a45">
+                      Declined
+                    </button>
+                    <!--<p><%#=  t.tender_declined_date.present? ? t.tender_declined_date.strftime("%d.%m.%Y %H:%M %p") : nil %></p>-->
+                  </td>
+              <% elsif t.tender_acceptance_date.present? %>
+                  <td class="text-center">
+                    <button class="btn btn-warning" type="button" style="background-color: #26c281">
+                      Accepted
+                    </button>
+                    <!--<p><%#=  t.tender_acceptance_date.present? ? t.tender_acceptance_date.strftime("%d.%m.%Y %H:%M %p") : nil %></p>-->
+                  </td>
+              <% else %>
+                  <td class="text-center">
+                    <!--<button class="btn btn-warning" type="button">
+                      Pending
+                    </button>-->
+                    <button class="btn btn-primary" type="button" style="background-color: #32c5d2">
+                      Invited
+                    </button>
+                  </td>
+              <% end %>
+              <td class="text-center"><%=  get_trade_name t.trade_id %></td>
+            </tr>
+
+        <% end %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  $(document).ready(function(){
+
+
+
+    $('.invite_count').text("<%= TenderInvite.tender_invites(@tender.id) %>");
+    $('.invite_opened').text("<%= TenderInvite.tender_opened(@tender.id) %>");
+    $('.invite_accepted').text("<%= TenderInvite.tender_accepted(@tender.id) %>");
+    $('#invited_table').DataTable({
+      "bSort" : false,
+      "bPaginate": false,
+      "bInfo" : false,
+      "bFilter" : false,
+      "columnDefs": [
+        { "visible": false, "targets": 6 }
+      ],
+      "order": [[ 6, 'asc' ]],
+      "displayLength": 25,
+      "drawCallback": function ( settings ) {
+        var api = this.api();
+        var rows = api.rows( {page:'current'} ).nodes();
+        var last=null;
+
+        api.column(6, {page:'current'} ).data().each( function ( group, i ) {
+          console.log(group);
+          if ( last !== group ) {
+            $(rows).eq( i ).before(
+                '<tr class="group" style="background-color: #fafafa"><td colspan="7">'+group+'</td></tr>'
+            );
+
+            last = group;
+          }
+        } );
+      }
+    } );
+
+    $('.trade_filter').change(function(){
+      var tender_id = $('.tender_id').val();
+      var trades = $(this).val();
+      var tab  = $(this).attr('title');
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id:tender_id,trades:trades,tab:tab},
+        url: "/tenders/filter_by_trades"
+      }).done(function (data) {
+
+        if(tab == 'invites'){
+          $('.invited_div').html('');
+          $('.invited_div').html(data);
+        }else if(tab == 'request'){
+          $('.requested_div').html('');
+          $('.requested_div').html(data);
+        }else if(tab == 'tendering'){
+          $('.tendering_div').html('');
+          $('.tendering_div').html(data);
+        }
+      });
+    });
+
+    $('#filter').keyup(function () {
+
+      var rex = new RegExp($(this).val(), 'i');
+      $('.searchable tr').hide();
+      $('.searchable tr').filter(function () {
+        return rex.test($(this).text());
+      }).show();
+
+    })
+
+    $('.invite_more_sub').click(function(){
+      $('#invite_more_modal').modal('show');
+    });
+
+  });
+</script>

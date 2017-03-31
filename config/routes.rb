@@ -276,6 +276,8 @@ Rails.application.routes.draw do
       get 'hc_tender'
       get 'sc_tender'
       get 'edit_details'
+      get 'invites'
+
 
       # post
       post 'new_site'

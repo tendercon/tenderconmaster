@@ -114,6 +114,49 @@
       }
     });
 
+    $('.editable').click(function(e){
+      var i=0;
+      var id= $(this).attr('id');
+      var title= $(this).attr('title');
+      var tender_id= $('.tender_id').val();
+      e.stopPropagation();      //<-------stop the bubbling of the event here
+      var value = $('#'+id).html();
+
+      console.log(id+i);
+
+      updateVal('#'+id, value,title,tender_id);
+    });
+
+    function updateVal(currentEle, value,title,tender_id) {
+      console.log("Current Element is"+currentEle);
+      console.log("Current TITLE is"+title);
+      $(currentEle).html('<input type="checkbox" class="document_list" name="documents[]" id="'+ title+ '"><input class="thVal" maxlength="100" type="text" width="2" value="'+title+'" />');
+      $(".thVal").focus();
+      $(".thVal").keyup(function (event) {
+        if (event.keyCode == 13) {
+          $(currentEle).html($(".thVal").val().trim());
+        }
+      });
+
+      $(".thVal").focusout(function () { // you can use $('html')
+        $(currentEle).html('<input type="checkbox" class="document_list" name="documents[]" id="'+ title+ '">' +$(".thVal").val().trim());
+        console.log("tender_id"+tender_id);
+        console.log("NEW VALUE:"+$(this).val());
+        $.ajax({
+          method: "POST",
+          data: {tender_id:tender_id,new_value:$(this).val(),old_value:title},
+          url: "/tenders/rename_file"
+        }).done(function (data) {
+          //$('.uploaded_docs').html(data);
+          //$('.add_folder').hide();
+          $('.folder').show();
+          $('.document_div_table').html('');
+          $('.document_div_table').html(data);
+        });
+
+      });
+    }
+
     $('.document_list_master').change(function(){
       console.log("ddjhasj");
       $('.document_list').click();
