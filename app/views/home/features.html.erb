@@ -16,18 +16,18 @@
   </div><!--//container-->
 </section><!--//heading-section-->
 
-<div class="page-nav-space-holder hidden-xs">
+<!--<div class="page-nav-space-holder hidden-xs">
   <div id="page-nav-wrapper" class="page-nav-wrapper text-center">
     <div class="container">
       <ul id="page-nav" class="page-nav nav list-inline">
-        <li><a class="scrollto" href="#feature-block-1"><%= @feature_page.present? ? @feature_page.feature_block_1 : "Feature One".html_safe %></a></li>
-        <li><a class="scrollto"  href="#feature-block-2"><%= @feature_page.present? ? @feature_page.feature_block_2 : "Feature Two".html_safe %></a></li>
-        <li><a class="scrollto"  href="#feature-block-3"><%= @feature_page.present? ? @feature_page.feature_block_3 : "Feature Three".html_safe %></a></li>
-        <li><a class="scrollto"  href="#feature-block-4"><%= @feature_page.present? ? @feature_page.feature_block_4 : "Feature Four".html_safe %></a></li>
-      </ul><!--//page-nav-->
+        <li><a class="scrollto" href="#feature-block-1"><%#= @feature_page.present? ? @feature_page.feature_block_1 : "Feature One".html_safe %></a></li>
+        <li><a class="scrollto"  href="#feature-block-2"><%#= @feature_page.present? ? @feature_page.feature_block_2 : "Feature Two".html_safe %></a></li>
+        <li><a class="scrollto"  href="#feature-block-3"><%#= @feature_page.present? ? @feature_page.feature_block_3 : "Feature Three".html_safe %></a></li>
+        <li><a class="scrollto"  href="#feature-block-4"><%#= @feature_page.present? ? @feature_page.feature_block_4 : "Feature Four".html_safe %></a></li>
+      </ul>&lt;!&ndash;//page-nav&ndash;&gt;
     </div>
-  </div><!--//page-nav-wrapper-->
-</div><!--//page-nav-space-holder-->
+  </div>&lt;!&ndash;//page-nav-wrapper&ndash;&gt;
+</div>--><!--//page-nav-space-holder-->
 
 <div class="feature-blocks container">
   <div id="feature-block-1" class="feature-block feature-block-1">
@@ -99,5 +99,110 @@
 
 </div><!--//feature-blocks-->
 
+<div class="faqs-block" id="faqs-block">
+  <div class="container">
+    <h2 class="block-heading text-center"><%= @feature_page.present? ? @feature_page.frequently_block_heading : "Frequently Asked Questions".html_safe %></h2>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="panel">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle collapsed" href="#faq1" aria-expanded="false"><i class="fa fa-plus-square"></i><%= @feature_page.present? ? @feature_page.faq1.present? ?  @feature_page.faq1 : "Unknown" : "Unknown".html_safe %></a></h4>
+          </div>
 
+          <div class="panel-collapse collapse" id="faq1" aria-expanded="false" style="height: 0px;">
+            <div class="panel-body">
+              <%= @feature_page.present? ? @feature_page.faq_ans1.present? ?  @feature_page.faq_ans1 : "Unknown" : "Unknown".html_safe %>
+            </div>
+          </div>
+        </div><!--//panel-->
+
+        <div class="panel">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq2"><i class="fa fa-plus-square"></i><%= @feature_page.present? ? @feature_page.faq2.present? ?  @feature_page.faq2 : "Unknown" : "Unknown".html_safe %></a></h4>
+          </div>
+
+          <div class="panel-collapse collapse" id="faq2">
+            <div class="panel-body">
+              <%= @feature_page.present? ? @feature_page.faq_ans2.present? ?  @feature_page.faq_ans2 : "Unknown" : "Unknown".html_safe %>
+            </div>
+          </div>
+        </div><!--//panel-->
+
+        <div class="panel">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq3"><i class="fa fa-plus-square"></i><%= @feature_page.present? ? @feature_page.faq3.present? ?  @feature_page.faq3 : "Unknown" : "Unknown".html_safe %></a></h4>
+          </div>
+
+          <div class="panel-collapse collapse" id="faq3">
+            <div class="panel-body">
+              <%= @feature_page.present? ? @feature_page.faq_ans3.present? ?  @feature_page.faq_ans3 : "Unknown" : "Unknown".html_safe %>
+            </div>
+          </div>
+        </div><!--//panel-->
+
+        <div class="panel">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq4"><i class="fa fa-plus-square"></i><%= @feature_page.present? ? @feature_page.faq4.present? ?  @feature_page.faq4 : "Unknown" : "Unknown".html_safe %></a></h4>
+          </div>
+
+          <div class="panel-collapse collapse" id="faq4">
+            <div class="panel-body">
+              <%= @feature_page.present? ? @feature_page.faq_ans4.present? ?  @feature_page.faq_ans4 : "Unknown" : "Unknown".html_safe %>
+            </div>
+          </div>
+        </div><!--//panel-->
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div class="panel">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq5"><i class="fa fa-plus-square"></i><%= @feature_page.present? ? @feature_page.faq5.present? ?  @feature_page.faq5 : "Unknown" : "Unknown".html_safe %></a></h4>
+          </div>
+
+          <div class="panel-collapse collapse" id="faq5">
+            <div class="panel-body">
+              <%= @feature_page.present? ? @feature_page.faq_ans5.present? ?  @feature_page.faq_ans5 : "Unknown" : "Unknown".html_safe %>
+            </div>
+          </div>
+        </div><!--//panel-->
+
+        <div class="panel">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq6"><i class="fa fa-plus-square"></i><%= @feature_page.present? ? @feature_page.faq6.present? ?  @feature_page.faq6 : "Unknown" : "Unknown".html_safe %></a></h4>
+          </div>
+
+          <div class="panel-collapse collapse" id="faq6">
+            <div class="panel-body">
+              <%= @feature_page.present? ? @feature_page.faq_ans6.present? ?  @feature_page.faq_ans6 : "Unknown" : "Unknown".html_safe %>
+            </div>
+          </div>
+        </div><!--//panel-->
+
+        <div class="panel">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq7"><i class="fa fa-plus-square"></i><%= @feature_page.present? ? @feature_page.faq7.present? ?  @feature_page.faq7 : "Unknown" : "Unknown".html_safe %></a></h4>
+          </div>
+
+          <div class="panel-collapse collapse" id="faq7">
+            <div class="panel-body">
+              <%= @feature_page.present? ? @feature_page.faq_ans7.present? ?  @feature_page.faq_ans7 : "Unknown" : "Unknown".html_safe %>
+            </div>
+          </div>
+        </div><!--//panel-->
+
+        <div class="panel">
+          <div class="panel-heading">
+            <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq8"><i class="fa fa-plus-square"></i><%= @feature_page.present? ? @feature_page.faq8.present? ?  @feature_page.faq8 : "Unknown" : "Unknown".html_safe %></a></h4>
+          </div>
+
+          <div class="panel-collapse collapse" id="faq8">
+            <div class="panel-body">
+              <%= @feature_page.present? ? @feature_page.faq_ans8.present? ?  @feature_page.faq_ans8 : "Unknown" : "Unknown".html_safe %>
+            </div>
+          </div>
+        </div><!--//panel-->
+      </div>
+    </div><!--//row-->
+
+  </div>
+</div>
 

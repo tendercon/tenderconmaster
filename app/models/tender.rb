@@ -140,5 +140,42 @@ class Tender < ActiveRecord::Base
   end
 
 
+  def self.document_control_download tender_id,ids
+    require 'zip'
+    tender = Tender.find(tender_id)
+    @destination =  "#{Rails.root}/public/assets/tender/#{tender.title}-#{tender.id}-files"
+    FileUtils.mkdir_p(@destination) unless File.exists?(@destination)
+    t = TenderDocument.where(:id => ids)
+
+    if t.present?
+      t.each do |r|
+        puts "R========> #{r.document.path}"
+         if r.document.present?
+           if File.exist?(r.document.path) &&  r.document.path.size > 0
+             @destination1 =  "#{Rails.root}/public/assets/tender/#{r.directory}"
+             FileUtils.mkdir_p(@destination1) unless File.exists?(@destination1)
+             FileUtils.cp_r((r.document.path), @destination1)
+             FileUtils.cp_r(@destination1, @destination)
+             FileUtils.rm_rf(@destination1)
+           end
+         end
+      end
+    end
+
+    @destination.sub!(%r[/$],'')
+
+    archive = File.join(@destination,File.basename(@destination))+'.zip'
+    FileUtils.rm archive, :force=>true
+
+    Zip::File.open(archive, 'w') do |zipfile|
+      Dir["#{@destination}/**/**"].reject{|f|f==archive}.each do |file|
+        zipfile.add(file.sub(@destination+'/',''),file)
+      end
+    end
+
+
+  end
+
+
 
 end

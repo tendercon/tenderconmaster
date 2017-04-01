@@ -28,6 +28,7 @@ class Site < ActiveRecord::Base
   validates_presence_of :quote_title2
   validates_presence_of :quote_profile
   validates_presence_of :quote_profile2
+  validates_presence_of :product_header
 
   has_attached_file :section_image1
   validates_attachment_content_type :section_image1, content_type: /\Aimage\/.*\Z/
@@ -47,5 +48,13 @@ class Site < ActiveRecord::Base
   validates_attachment_content_type :quote_profile, content_type: /\Aimage\/.*\Z/
   has_attached_file :quote_profile2
   validates_attachment_content_type :quote_profile2, content_type: /\Aimage\/.*\Z/
+  has_attached_file :product_image1
+  validates_attachment_content_type :product_image1, content_type: /\Aimage\/.*\Z/
+  has_attached_file :product_image2
+  validates_attachment_content_type :product_image2, content_type: /\Aimage\/.*\Z/
+  has_attached_file :product_image3
+  validates_attachment_content_type :product_image3, content_type: /\Aimage\/.*\Z/
+  has_attached_file :product_image4
+  validates_attachment_content_type :product_image4, content_type: /\Aimage\/.*\Z/
 
 end

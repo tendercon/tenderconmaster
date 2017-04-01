@@ -278,6 +278,16 @@
 
               </div>
             </div>
+            <div class="email_error text-center" style="display: none">
+              <div class="alert alert-danger open-sans-regular" id="users_error">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+                <div class="notice" style="font-size: 14px;">
+                  <label>Email address field is not valid.</label>
+                </div>
+
+              </div>
+            </div>
             <div style="height: 30px"></div>
             <div class="new_invite">
               <div class="form-group">
@@ -448,7 +458,6 @@
       var tender_id = $('.tender_id').val();
       var save_to_sub = $('.save_to_sub').val();
 
-
       $('.company').each(function(){
         companies.push($(this).val());
       });
@@ -459,55 +468,71 @@
       console.log('names:'+names);
       $('.email').each(function(){
         emails.push($(this).val());
-
       });
+
       $('.trades').each(function(){
         if(parseInt($(this).val()) > 0){
           trades.push($(this).val())
         }
-
       });
+
+      for(var a=0; a < emails.length; a++){
+        console.log(validateEmail(emails[a]));
+      }
+
+
       if(emails.length > 0 && names.length > 0 && companies.length > 0 && trades.length > 0){
-        $.ajax({
-          method: "POST",
-          data: {tender_id:tender_id,emails:emails,names:names,trades:trades,companies:companies,save_to_sub:save_to_sub},
-          url: "/tenders/invite_more_sub"
-        }).done(function (data) {
-          $('.close_invite_more_modal').click();
-          $('#invite_more_modal').modal('hide');
-          //$('.contractors').html(data);
-          $('.f_name').each(function(){
-            $(this).val('');
-          });
-          console.log('names:'+names);
-          $('.email').each(function(){
-            $(this).val('');
+        if(validateEmail(emails[0])){
+          $.ajax({
+            method: "POST",
+            data: {tender_id:tender_id,emails:emails,names:names,trades:trades,companies:companies,save_to_sub:save_to_sub},
+            url: "/tenders/invite_more_sub"
+          }).done(function (data) {
+            $('.close_invite_more_modal').click();
+            $('#invite_more_modal').modal('hide');
+            //$('.contractors').html(data);
+            $('.f_name').each(function(){
+              $(this).val('');
+            });
+            console.log('names:'+names);
+            $('.email').each(function(){
+              $(this).val('');
+
+            });
+            $('.trades').each(function(){
+              if(parseInt($(this).val()) > 0){
+                $(this).val('')
+              }
+            });
+
+            $('.company').each(function(){
+              if(parseInt($(this).val()) > 0){
+                $(this).val('')
+              }
+            });
+
+            $('.invited_div').html(data);
+            $('.company').val('');
 
           });
-          $('.trades').each(function(){
-            if(parseInt($(this).val()) > 0){
-              $(this).val('')
-            }
-          });
+        }else{
+          $('.email_error').show();
+          $('.error').hide();
+        }
 
-          $('.company').each(function(){
-            if(parseInt($(this).val()) > 0){
-              $(this).val('')
-            }
-          });
-
-          $('.invited_div').html(data);
-          $('.company').val('');
-
-        });
       }else{
         $('.error').show();
+        $('.email_error').hide();
       }
 
 
     });
 
 
+    function validateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+    }
 
     $('.tenders').each(function(){
       var id =  $(this).val();

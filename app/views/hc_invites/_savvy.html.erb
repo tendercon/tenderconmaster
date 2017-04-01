@@ -4,47 +4,49 @@
 
     </div>
     <div class="col-md-3">
-      <div class="section">
-        <input type="hidden" class="tender_id" value="<%= @tender.present? ? @tender.id : nil%>">
-        <label class="field select">
-          <select class="trades">
-            <% if @tender.present? %>
-              <% if @all_trades.present? %>
-                <option value="0">Default</option>
-                <% @all_trades.each do |t| %>
-                  <% if @trade_id.present? %>
-                    <% if @trade_id.to_i == t.id.to_i %>
-                        <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+      <% if params[:controller] == 'hc_invites' %>
+        <div class="section">
+          <input type="hidden" class="tender_id" value="<%= @tender.present? ? @tender.id : nil%>">
+          <label class="field select">
+            <select class="trades">
+              <% if @tender.present? %>
+                <% if @all_trades.present? %>
+                  <option value="0">Default</option>
+                  <% @all_trades.each do |t| %>
+                    <% if @trade_id.present? %>
+                      <% if @trade_id.to_i == t.id.to_i %>
+                          <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+                      <% else %>
+                          <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                      <% end %>
                     <% else %>
                         <option value="<%= t.id %>"><%= get_trade_name t %></option>
                     <% end %>
-                  <% else %>
-                      <option value="<%= t.id %>"><%= get_trade_name t %></option>
                   <% end %>
                 <% end %>
-              <% end %>
-          <% else %>
-              <% if @trades.present? %>
-                <option value="0">Default</option>
-                <% @trades.each do |t| %>
-                  <% if @trade_id.present? %>
-                    <% if @trade_id.to_i == t.id.to_i %>
-                        <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+            <% else %>
+                <% if @trades.present? %>
+                  <option value="0">All Trades</option>
+                  <% @trades.each do |t| %>
+                    <% if @trade_id.present? %>
+                      <% if @trade_id.to_i == t.id.to_i %>
+                          <option value="<%= t.id %>" selected><%= get_trade_name t %></option>
+                      <% else %>
+                          <option value="<%= t.id %>"><%= get_trade_name t %></option>
+                      <% end %>
                     <% else %>
                         <option value="<%= t.id %>"><%= get_trade_name t %></option>
                     <% end %>
-                  <% else %>
-                      <option value="<%= t.id %>"><%= get_trade_name t %></option>
-                  <% end %>
 
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
 
-          </select>
-          <i class="arrow"></i>
-        </label>
-      </div>
+            </select>
+            <i class="arrow"></i>
+          </label>
+        </div>
+      <% end %>
     </div>
 
     <div class="col-md-3 pull right">
@@ -76,7 +78,7 @@
     <th class="text-center">Email</th>
     <th class="text-center">Trade</th>
     <% unless @tender.present? %>
-      <th class="text-center">Status</th>
+      <!--<th class="text-center">Status</th>-->
       <th class="text-center">Action</th>
     <% end %>
     <% if @tender.present? %>
@@ -95,23 +97,26 @@
           <td class="text-center"><%= savvy.email %></td>
           <td class="text-center"><%= get_trade_name savvy.trade_id %></td>
           <% unless @tender.present? %>
+            <!--<td class="text-center">
+              <%# if savvy.user_id.present? %>
+                 <%#= get_user_created savvy.user_id %>
+              <%# else %>
+                 -&#45;&#45;
+              <%# end %>
+            </td>-->
             <td class="text-center">
-              <% if savvy.user_id.present? %>
-                 <%= get_user_created savvy.user_id %>
-              <% else %>
-                 ---
-              <% end %>
-            </td>
-            <td>
-              <div class="form-group">
+              <!--<div class="form-group">
                 <select class="form-control hc_action">
                   <option>Select Here</option>
-                  <option class="remove" value="<%= savvy.id %>" id="0">Remove</option>
-                  <% unless savvy.user_id.present? %>
+                  <option class="remove" value="<%#= savvy.id %>" id="0">Remove</option>
+                  <%# unless savvy.user_id.present? %>
                     <option class="resent" value="<%= savvy.id %>" id="1">Re-sent</option>
-                  <% end %>
+                  <%# end %>
                 </select>
-              </div>
+              </div>-->
+              <button class="btn btn-danger remove" id="<%= savvy.id  %>">
+                   Remove
+              </button>
             </td>
           <% end %>
           <% if @tender.present? %>
@@ -178,6 +183,17 @@
         });
       }
 
+    });
+
+    $('.remove').click(function(){
+      var savvy_id = $(this).attr('id');
+      $.ajax({
+        method: "POST",
+        data: {id: savvy_id},
+        url: "/hc_invites/remove_savvy"
+      }).done(function (data) {
+        $('.savvy_div').html(data);
+      });
     });
 
     $('#filter').keyup(function () {

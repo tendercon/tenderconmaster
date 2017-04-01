@@ -1,85 +1,79 @@
 <% if session[:role] == 'Head Contractor' %>
-  <div class="row guidelines" style="height: 800px;background-color: #2C3E50">
-    <div class="col-md-12" style="background-color: #2C3E50;color: white; height: 400px">
-      <div class="text-center">
-        <h3>Hello <%= @user.first_name %>!</h3>
-        <label>Inviting Substractors to your Network will help you receive more quotes and</label>
-        <div style="height: 5px"></div>
-        <label>make Tender Management much easier</label>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="dashboard-stat blue">
+      <div class="visual">
+        <i class="fa fa-comments"></i>
       </div>
-      <div class="row" style="margin-top: 30px">
-        <div class="col-md-12">
-          <div class="col-md-4" style="background-color: #ffffff; height: 450px; z-index: 1000; border-style: groove;width: 300px;margin-left: 10px">
-            <div style="height: 30px"></div>
-            <div class="text-center">
-              <strong style="color: #525e64">NETWORK</strong>
-              <div style="height: 30px"></div>
-              <div class="profile-userpic">
-                <img src="/img/logos/IMAGE_1_256P.png" class="img-responsive" alt="" style="width: 150px !important; height: 140px !important;">
-              </div>
-              <div style="height: 30px"></div>
-              <strong style="color: #525e64">INVITES SUBCONTRACTORS</strong>
-              <p style="color: #95a5a6">Inviting Subcontractors to your Network will help you
-                receive more quotes and make Tender Management much easier
-              </p>
-              <div style="height: 30px"></div>
-              <button class="btn btn-info invited" type="button" style="width: 150px">
-                INVITE
-              </button>
-            </div>
-          </div>
-          <div class="col-md-4" style="background-color: #ffffff; height: 450px; z-index: 1000;border-style: groove;width: 300px;margin-left: 30px">
-            <div style="height: 30px"></div>
-            <div class="text-center">
-              <strong style="color: #525e64">POST</strong>
-              <div style="height: 30px"></div>
-              <div class="profile-userpic">
-                <img src="/img/logos/IMAGE_2_256P.png" class="img-responsive" alt="" style="width: 150px !important; height: 140px !important;">
-              </div>
-              <div style="height: 30px"></div>
-              <strong style="color: #525e64">POST YOUR TENDER</strong>
-              <p style="color: #95a5a6">Inviting Subcontractors to your Network will help you
-                receive more quotes and make Tender Management much easier
-              </p>
-              <div style="height: 30px"></div>
-              <button class="btn btn-info post_tender" type="button" style="width: 150px">
-                POST TENDER
-              </button>
-            </div>
-          </div>
-
-          <div class="col-md-4" style="background-color: #ffffff; height: 450px; z-index: 1000;border-style: groove;width: 300px;margin-left: 30px">
-            <div style="height: 30px"></div>
-            <div class="text-center">
-              <strong style="color: #525e64">MANAGE</strong>
-              <div style="height: 30px"></div>
-              <div class="profile-userpic">
-                <img src="/img/logos/IMAGE_3_256P.png" class="img-responsive" alt="" style="width: 150px !important; height: 140px !important;">
-              </div>
-              <div style="height: 30px"></div>
-              <strong style="color: #525e64">POST YOUR TENDER</strong>
-              <p style="color: #95a5a6">Inviting Subcontractors to your Network will help you
-                receive more quotes and make Tender Management much easier
-              </p>
-              <div style="height: 30px"></div>
-              <button class="btn btn-info manage_tender" type="button" style="width: 150px">
-                MANAGE
-              </button>
-            </div>
-          </div>
+      <div class="details">
+        <div class="number">
+          <span data-counter="counterup" data-value="<%= @tenders.present? ? @tenders.size : 0  %>"><%= @tenders.present? ? @tenders.size : 0  %></span>
         </div>
+        <div class="desc"> Total Posted Tenders </div>
       </div>
-      <div style="height: 30px"></div>
-      <div class="text-center">
-        <button type="button" class="btn btn-success remove" style="width: 450px;color: white;background-color: black">
-               OK, GOT IT. TAKE ME TO THE DASHBOARD
-        </button>
-
+      <a class="more" href="/tenders/new_tender?info=true"> POST MORE TENDER
+        <i class="m-icon-swapright m-icon-white"></i>
+      </a>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="dashboard-stat red">
+      <div class="visual">
+        <i class="fa fa-bar-chart-o"></i>
       </div>
+      <div class="details">
+        <div class="number">
+          <span data-counter="counterup" data-value="<%= @tenders.present? ? @tenders.size : 0  %>"><%= @tenders.present? ? @tenders.size : 0  %></span></div>
+        <div class="desc"> Total Live Tenders </div>
+      </div>
+      <a class="more" href="/tenders/my_tender"> VIEW MY TENDER
+        <i class="m-icon-swapright m-icon-white"></i>
+      </a>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="dashboard-stat green">
+      <div class="visual">
+        <i class="fa fa-shopping-cart"></i>
+      </div>
+      <div class="details">
+        <div class="number">
+          <span data-counter="counterup" data-value="<%= @hc_invite_subs.present? ? @hc_invite_subs.size : 0  %>"><%= @hc_invites.present? ? @hc_invite_subs.size : 0  %></span>
+        </div>
+        <div class="desc">  My Network </div>
+      </div>
+      <a class="more" href="<%= hc_invites_path %>"> VIEW MY NETWORK
+        <i class="m-icon-swapright m-icon-white"></i>
+      </a>
+    </div>
+  </div>
+  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="dashboard-stat purple">
+      <div class="visual">
+        <i class="fa fa-globe"></i>
+      </div>
+      <div class="details">
+        <div class="number">
+          <span data-counter="counterup" data-value="<%= User.company_completeness(@user.id) %>"></span>%  </div>
+        <div class="desc"> Profile Completeness </div>
+      </div>
+      <a class="more" href="<%= company_profile_users_path(:id => session[:user_logged_id]) %>"> Complete My Profile
+        <i class="m-icon-swapright m-icon-white"></i>
+      </a>
     </div>
   </div>
 
-  <div class="row four_divs">
+  <div class="col-md-12" style="background-color: #fafafa">
+    <div style="height: 150px"></div>
+    <div class="text-center">
+      <h3 style="color: #525e64">
+        New Tracking features coming soon..
+      </h3>
+    </div>
+    <div style="height: 150px"></div>
+  </div>
+
+<% else %>
+  <div class="row">
     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
       <div class="dashboard-stat blue">
         <div class="visual">
@@ -87,11 +81,11 @@
         </div>
         <div class="details">
           <div class="number">
-            <span data-counter="counterup" data-value="<%= @tenders.present? ? @tenders.size : 0  %>"><%= @tenders.present? ? @tenders.size : 0  %></span>
+            <span data-counter="counterup" data-value="1349">0</span>
           </div>
-          <div class="desc"> Total Posted Tenders </div>
+          <div class="desc"> New Feedbacks </div>
         </div>
-        <a class="more" href="/tenders/new_tender?info=true"> POST MORE TENDER
+        <a class="more" href="javascript:;"> View more
           <i class="m-icon-swapright m-icon-white"></i>
         </a>
       </div>
@@ -103,10 +97,10 @@
         </div>
         <div class="details">
           <div class="number">
-            <span data-counter="counterup" data-value="<%= @tenders.present? ? @tenders.size : 0  %>"><%= @tenders.present? ? @tenders.size : 0  %></span></div>
-          <div class="desc"> Total Live Tenders </div>
+            <span data-counter="counterup" data-value="12,5">0</span>M$ </div>
+          <div class="desc"> Total Profit </div>
         </div>
-        <a class="more" href="/tenders/my_tender"> VIEW MY TENDER
+        <a class="more" href="javascript:;"> View more
           <i class="m-icon-swapright m-icon-white"></i>
         </a>
       </div>
@@ -118,11 +112,11 @@
         </div>
         <div class="details">
           <div class="number">
-            <span data-counter="counterup" data-value="<%= @hc_invites.present? ? @hc_invites.size : 0  %>"><%= @hc_invites.present? ? @hc_invites.size : 0  %></span>
+            <span data-counter="counterup" data-value="549">0</span>
           </div>
-          <div class="desc">  My Network </div>
+          <div class="desc"> New Orders </div>
         </div>
-        <a class="more" href="<%= hc_invites_path %>"> VIEW MY NETWORK
+        <a class="more" href="javascript:;"> View more
           <i class="m-icon-swapright m-icon-white"></i>
         </a>
       </div>
@@ -143,73 +137,11 @@
       </div>
     </div>
   </div>
-<% else %>
-    <div class="row">
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <div class="dashboard-stat blue">
-          <div class="visual">
-            <i class="fa fa-comments"></i>
-          </div>
-          <div class="details">
-            <div class="number">
-              <span data-counter="counterup" data-value="1349">0</span>
-            </div>
-            <div class="desc"> New Feedbacks </div>
-          </div>
-          <a class="more" href="javascript:;"> View more
-            <i class="m-icon-swapright m-icon-white"></i>
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <div class="dashboard-stat red">
-          <div class="visual">
-            <i class="fa fa-bar-chart-o"></i>
-          </div>
-          <div class="details">
-            <div class="number">
-              <span data-counter="counterup" data-value="12,5">0</span>M$ </div>
-            <div class="desc"> Total Profit </div>
-          </div>
-          <a class="more" href="javascript:;"> View more
-            <i class="m-icon-swapright m-icon-white"></i>
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <div class="dashboard-stat green">
-          <div class="visual">
-            <i class="fa fa-shopping-cart"></i>
-          </div>
-          <div class="details">
-            <div class="number">
-              <span data-counter="counterup" data-value="549">0</span>
-            </div>
-            <div class="desc"> New Orders </div>
-          </div>
-          <a class="more" href="javascript:;"> View more
-            <i class="m-icon-swapright m-icon-white"></i>
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-        <div class="dashboard-stat purple">
-          <div class="visual">
-            <i class="fa fa-globe"></i>
-          </div>
-          <div class="details">
-            <div class="number">
-              <span data-counter="counterup" data-value="<%= User.company_completeness(@user.id) %>"></span>%  </div>
-            <div class="desc"> Profile Completeness </div>
-          </div>
-          <a class="more" href="<%= company_profile_users_path(:id => session[:user_logged_id]) %>"> Complete My Profile
-            <i class="m-icon-swapright m-icon-white"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-
 <% end %>
+
+
+
+
 
 
 

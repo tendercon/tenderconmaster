@@ -240,14 +240,14 @@
                             <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
                                 <% if !@trade_cats.include? tc.title %>
                                     <% @trade_cats << tc.title %>
-                                    <h1><input type="checkbox"   class=trade_categories checked="checked">  <%= tc.title %></h1> 
+                                    <h1><input type="checkbox"   class="trade_category_master"  id="<%= tc.id %>" checked>  <%= tc.title %></h1> 
                                 <% end %>
                             <% end %>
                             <div class="col-md-8">
                               <% if t.trade_id.present? %>
-                                  <label id="trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class" checked="checked"> <%= get_trade_name t.trade_id %></label> 
+                                  <label id="trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class trade_category_<%= tc.id %>" checked="checked"> <%= get_trade_name t.trade_id %></label> 
                               <% else %>
-                                  <label id="trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
+                                  <label id="trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class trade_category_<%= tc.id %>"> <%= get_trade_name t.trade_id %></label> 
                               <% end %>
 
                             </div>
@@ -376,17 +376,27 @@
   //update_folder_lists();
   $
 
-  $(window).load(function() {
-    $('.menu-toggler').click();
-  });
+//  $(window).load(function() {
+//    $('.menu-toggler').click();
+//  });
+
+
 
 
   $(document).ready(function(){
 
+    $('.trade_category_master').click(function(){
+      var id = $(this).attr('id');
+      $('.trade_category_'+id).click()
+
+
+    })
+
     if(step4.length > 0){
       var new_package = $('.new_package').val();
       if(pack == 'packages' && new_package.length == 0 && cmd.length <= 0){
-        $('#tender_trade_Modal').modal('show');
+        // Wil replca for the meantime of image
+        //$('#tender_trade_Modal').modal('show');
       }
     }
 

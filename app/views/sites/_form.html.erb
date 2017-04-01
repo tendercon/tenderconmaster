@@ -195,6 +195,43 @@
       <% end %>
     </p>
 
+    <p>
+      <%= f.label :product_header %><br>
+      <%= f.text_area :product_header, class: "form-control" %>
+    </p>
+
+    <p>
+      <%= f.label :product_image1 %><br>
+      <%= f.file_field :product_image1, class: "form-control" %>
+      <% if @site.product_image1.present? %>
+          <img class="profile" src="<%= @site.product_image1.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+
+    <p>
+      <%= f.label :product_image2 %><br>
+      <%= f.file_field :product_image2, class: "form-control" %>
+      <% if @site.product_image2.present? %>
+          <img class="profile" src="<%= @site.product_image2.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :product_image3 %><br>
+      <%= f.file_field :product_image3, class: "form-control" %>
+      <% if @site.product_image3.present? %>
+          <img class="profile" src="<%= @site.product_image3.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
+
+    <p>
+      <%= f.label :product_image4 %><br>
+      <%= f.file_field :product_image4, class: "form-control" %>
+      <% if @site.product_image4.present? %>
+          <img class="profile" src="<%= @site.product_image4.url(:original) %>" width="250px" height="200px" />
+      <% end %>
+    </p>
 
     <p>
       <%= f.submit %>

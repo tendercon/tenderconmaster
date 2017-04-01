@@ -539,7 +539,7 @@ class TendersController < ApplicationController
     if session[:role] == 'Head Contractor'
       @tenders = Tender.where(:user_id => session[:user_logged_id],:publish => true)
       @trade_categories = TradeCategory.all
-    else
+    elsif session[:role] == 'Sub Contractor'
       @trade_categories = TradeCategory.all
       user_tenders = TenderRequestQuote.where(:sc_id => session[:user_logged_id])
       tender_array = []
@@ -555,6 +555,46 @@ class TendersController < ApplicationController
       else
         @tenders = nil
       end
+    else
+      @trade_categories = TradeCategory.all
+      @tenders = Tender.where(:publish => true)
+    end
+  end
+
+
+  def invites
+    @tender = Tender.find(params[:id])
+    @tender_request_quotes = TenderRequestQuote.where(:tender_id => @tender.id)
+    @tender_requesting = TenderRequestQuote.where("tender_id = #{@tender.id} and status is null")
+    @tendering = TenderRequestQuote.where("tender_id = #{@tender.id} and request_date is not null")
+    @quote_array = []
+    @trades_array = []
+
+    InvitedTenderNotification.where(:tender_id => @tender,:hc_id => session[:user_logged_id]).delete_all
+    RequestedTenderNotification.where(:tender_id => @tender,:hc_id => session[:user_logged_id]).delete_all
+
+    @tender_trades = TenderTrade.where(:tender_id => @tender.id)
+    if @tender_trades.present?
+      @tender_trades.each do |t|
+        @trades_array << t.trade_id
+      end
+    end
+
+
+    @tender_invites = TenderInvite.where(:tender_id => @tender.id,:added_by => 'admin ').order('trade_id asc')
+
+    @tender_invite_counts = TenderInvite.tender_invites(@tender.id)
+    @tender_opened_counts = TenderInvite.tender_opened(@tender.id)
+    @tender_accpeted_counts = TenderInvite.tender_accepted(@tender.id)
+
+    if params[:request_target].present?
+      if params[:request_target].to_i == 1
+        @request = 1
+      else
+        @request = nil
+      end
+    else
+      @request = nil
     end
   end
 
@@ -1937,6 +1977,24 @@ class TendersController < ApplicationController
     @data = render :partial => 'tenders/new_invites'
   end
 
+
+  def download_documents
+    tender_id = params[:tender_id]
+    ids = params[:ids]
+    tender = Tender.find(tender_id)
+    Tender.document_control_download tender_id,ids
+    dir = "/assets/tender/#{tender.title}-#{tender.id}-files/#{tender.title}-#{tender.id}-files.zip"
+    render :json => { :state => 'valid',:path => dir}
+  end
+
+  def removed_download_documents
+    tender = Tender.find(params[:tender_id])
+    dir = "/assets/tender/#{tender.title}-#{tender.id}-files/"
+    puts " ==========> #{Rails.root}/public#{dir}"
+    FileUtils.rm_rf("#{Rails.root}/public#{dir}")
+    render :json => { :state => 'valid'}
+  end
+
   def invite_sub_contractor
     tender_id  = params[:tender_id]
 
@@ -2807,7 +2865,12 @@ class TendersController < ApplicationController
     end
 
     if tab == 'invites'
-      @tender_invites = TenderInvite.where(:tender_id => tender_id,:trade_id => params[:trades])
+      if @trades.to_i > 0
+        @tender_invites = TenderInvite.where(:tender_id => tender_id,:trade_id => params[:trades])
+      else
+        @tender_invites = TenderInvite.where(:tender_id => tender_id).order('trade_id asc')
+      end
+
       @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
     elsif tab == 'request'
       @tender_request_quotes = TenderRequestQuote.where(:tender_id => tender_id, :trade_id => params[:trades])
@@ -2831,7 +2894,11 @@ class TendersController < ApplicationController
     @tender = Tender.find(tender_id)
     tab = params[:tab]
     if tab == 'invites'
-      @tender_invites = TenderInvite.where(:tender_id => tender_id)
+      if params[:added_by].present?
+        @tender_invites = TenderInvite.where(:tender_id => tender_id,:added_by => 'admin')
+      else
+        @tender_invites = TenderInvite.where(:tender_id => tender_id,:added_by => nil)
+      end
       @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
     elsif tab == 'request'
       @tender_request_quotes = TenderRequestQuote.where("tender_id = #{tender_id}  and tender_type !='invites'")
@@ -2903,9 +2970,26 @@ class TendersController < ApplicationController
           end
         end
       end
+      if params[:added_by].present?
+        tender_invited_by_admin = TenderInvite.where(:tender_id => tender_id,:added_by => 'admin')
 
-      @tendering = TenderRequestQuote.where(:tender_id => tender_id,:trade_id => @trades_array.uniq).where("declined_date is null and request_date is not null and status='approved'")
+        if tender_invited_by_admin.present?
+          user_ids = []
+          tender_invited_by_admin.each do |u|
+            if u.user_id.present?
+              user_ids << u.user_id
+            end
 
+          end
+          @tendering = TenderRequestQuote.where(:tender_id => tender_id,:trade_id => @trades_array.uniq,:sc_id => user_ids).where("declined_date is null and request_date is not null and status='approved'")
+        else
+          @tendering = nil
+        end
+      else
+        @tendering = TenderRequestQuote.where(:tender_id => tender_id,:trade_id => @trades_array.uniq).where("declined_date is null and request_date is not null and status='approved'")
+      end
+
+      puts "@tendering ======> #{@tendering.inspect}"
 
 
       @data = render :partial => 'tenders/sub_contractors_tab/tendering'
@@ -3079,6 +3163,10 @@ class TendersController < ApplicationController
           invite.trade_id = trades[index]
           invite.company = companies[index]
           invite.email_sent = Time.now
+          if params[:added_by].present?
+            invite.added_by = 'admin'
+          end
+
           if user.present?
             invite.user_id = user.id
           end
@@ -3132,8 +3220,13 @@ class TendersController < ApplicationController
       @tender_accpeted_counts = TenderInvite.tender_accepted(@tender.id)
       puts "@tender_invite_counts ======> #{@tender_invite_counts}"
       puts "@tender_opened_counts#{@tender_opened_counts}"
-      @tender_invites = TenderInvite.where(:tender_id => @tender.id)
-      @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
+      @tender_invites = TenderInvite.where(:tender_id => @tender.id,:added_by => 'admin')
+      if params[:added_by].present?
+        @data = render :partial => 'tenders/admin_role/invited_by_admin'
+      else
+        @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
+      end
+
     end
   end
 

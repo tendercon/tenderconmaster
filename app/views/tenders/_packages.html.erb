@@ -1,3 +1,43 @@
+<div class="row">
+ <div class="col-md-12">
+   <div class="text-center">
+     <h2>TENDERCON MATRIX - COMING SOON </h2>
+     <div style="height: 10px"></div>
+     <h4>
+       On this step Tendercon will automatically generate a "full set” package for your subcontractors once your tender is posted. Very soon you will be able to create custom packages and allocate your documents to more relevant trades. Soon to be released for you to use.
+     </h4>
+     <div style="height: 20px"></div>
+     <div class="profile-userpic">
+       <img src="/img/logos/FEATURES_BUILDER_REQUESTS.png" class="img-responsive" alt="" >
+     </div>
+     <div style="height: 10px"></div>
+   </div>
+   <div class="form-actions">
+     <% if params[:control].present? %>
+         <a href="/tenders/hc_tender?id=<%= @tender.id %>&control=true"> 
+           <button class="btn btn-default  next_info"  type="button">BACK</button>
+         </a>   
+     <% else %>
+         <a href="/tenders/new_tender?document=true&info_id=<%= @tender.id %>"> 
+           <button class="btn btn-default  next_info"  type="button">BACK</button>
+         </a>   
+     <% end %>
+
+     <a href="/tenders/new_tender?invites=true&info_id=<%= @tender.id %>"> 
+       <button class="btn btn-primary" type="button">SAVE AND CONTINUE</button>
+     </a>   
+
+
+   </div>
+ </div>
+
+
+</div>
+
+
+
+<!-- Will Replave for the mean time -->
+<!--
 <style>
   .table-header-rotated td{
     width: 40px;
@@ -61,13 +101,13 @@
   }
 </style>
 <%# if !params[:control].present? %>
-    <!--<button class="btn btn-warning undo" type="button">
+    &lt;!&ndash;<button class="btn btn-warning undo" type="button">
       Undo
     </button>
 
     <button class="btn btn-success update_package" type="button">
       Update
-    </button>-->
+    </button>&ndash;&gt;
 <%# end %>
 
 
@@ -87,10 +127,10 @@
               <table class="table table-header-rotated" id="our_table">
                 <thead>
                 <tr>
-                  <!-- First column header is not rotated -->
+                  &lt;!&ndash; First column header is not rotated &ndash;&gt;
                   <th></th>
-                  <!-- Following headers are rotated -->
-                  <th class="rotate-45"><!--<div><span>Filter By</span></div>--></th>
+                  &lt;!&ndash; Following headers are rotated &ndash;&gt;
+                  <th class="rotate-45">&lt;!&ndash;<div><span>Filter By</span></div>&ndash;&gt;</th>
                   <th class="rotate-45"><div><span>FullSet</span></div></th>
                   <% if @package_array.present? %>
                       <% @tender_packages.each do |p| %>
@@ -115,64 +155,18 @@
                       <% end %>
                   <% end %>
                 </tr>
-               <!-- <tr style="background-color: lightgrey">
-                  <th></th>
-                  <th>
-                    <div class="dropdown">
-                      <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                        <span class="caret"></span></button>
-                      <ul class="dropdown-menu">
-                        <% if @category_array.present? %>
-                            <li><a href="#!" class="category" id="0">All</a> </li>
-                            <% @category_array.uniq.each_with_index do |a,index| %>
-                                <li><a href="#!" class="category" id="<%= a %>"> <%= get_trade_category_name  a %></a> </li>
-                            <% end %>
-                        <% end %>
-                      </ul>
-                    </div>
-                  </th>
-                  <th><div><span></span></div></th>
-                  <%# if @tender_packages.present? %>
-                      <%# @tender_packages.each do |p| %>
-                          <%# if !@tender_package_header.include? p.category_id %>
-                              <%# @tender_package_header << p.category_id %>
-                              <th><div><span></span></div></th>
-                              <%# if (get_trade_list_from_package p.category_id,params[:info_id]).present? %>
-                                  <%# (get_trade_list_from_package p.category_id,params[:info_id]).each do |t| %>
-                                      <th><div><span>
-                            <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                            <span class="caret"></span></button>
-                            <ul class="dropdown-menu">
-                              <li><a href="#!" id="<%#= t.trade_id %>" class="copy">Copy</a></li>
-                              <li><a href="#!" id="<%#= t.trade_id %>" class="paste">Paste</a></li>
-                            </ul>
-                             </div>
-                           </span></div></th>
-                                  <%# end %>
-                              <%# end %>
-                          <%# end %>
-                      <%# end %>
-                  <%# end %>
-                </tr>-->
+
                 <tr class="document_matrix_search">
                   <% if !params[:control].present? %>
                     <th>
-                      <!--<div class="input-group">
-                        <input type="Search" placeholder="Search..." class="form-control search" />
-                        <div class="input-group-btn">
-                          <button class="btn btn-default search_btn" type="button">
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                          </button>
-                        </div>
-                      </div>-->
+
                       </th>
                   <% else %>
                       <th></th>
 
                   <% end %>
 
-                  <!-- Following headers are rotated -->
+                  &lt;!&ndash; Following headers are rotated &ndash;&gt;
                   <th><div></div></th>
                   <th><div><span></span></div></th>
                   <% if @tender_packages.present? %>
@@ -199,7 +193,7 @@
                                 <% if (get_file_directory params[:id]) == t.directory %>
                                     <tr>
                                       <th class="row-header">
-                                        <!--<a href="#!"  class="directory" id="<%#= replace_char_to_string t.directory %>" title="<%= t.directory %>"> <i class="fa fa-chevron-circle-up" aria-hidden="true"> </i> <%#= t.directory %></a>-->
+                                        &lt;!&ndash;<a href="#!"  class="directory" id="<%#= replace_char_to_string t.directory %>" title="<%= t.directory %>"> <i class="fa fa-chevron-circle-up" aria-hidden="true"> </i> <%#= t.directory %></a>&ndash;&gt;
                                         <a href="#!"  class="directory" id="<%= replace_char_to_string t.directory %>" title="<%= t.directory %>" alt="<%= replace_char_to_string t.directory %>_<%= t.id %>">
                                           <i class="fa fa-chevron-circle-up" aria-hidden="true" id="<%= replace_char_to_string t.directory %>_<%= t.id %>_up" > </i>
                                           <i class="fa fa-chevron-circle-down" aria-hidden="true" id="<%= replace_char_to_string t.directory %>_<%= t.id %>_down"  style="display: none"> </i>
@@ -221,7 +215,7 @@
                             <% else %>
                                 <tr>
                                   <th class="row-header">
-                                    <!--<a href="#!"  class="directory" id="<%#= replace_char_to_string t.directory %>" title="<%#= t.directory %>"> <i class="fa fa-chevron-circle-up" aria-hidden="true"> </i> <%#= t.directory %></a>-->
+                                    &lt;!&ndash;<a href="#!"  class="directory" id="<%#= replace_char_to_string t.directory %>" title="<%#= t.directory %>"> <i class="fa fa-chevron-circle-up" aria-hidden="true"> </i> <%#= t.directory %></a>&ndash;&gt;
                                     <a href="#!"  class="directory" id="<%= replace_char_to_string t.directory %>" title="<%= t.directory %>" alt="<%= replace_char_to_string t.directory %>_<%= t.id %>">
                                       <i class="fa fa-chevron-circle-up" aria-hidden="true" id="<%= replace_char_to_string t.directory %>_<%= t.id %>_up" > </i>
                                       <i class="fa fa-chevron-circle-down" aria-hidden="true" id="<%= replace_char_to_string t.directory %>_<%= t.id %>_down"  style="display: none"> </i>
@@ -282,7 +276,7 @@
 
                                                     <% @document_array << "#{a.document_file_name}_#{f}"  %>
 
-                                                    <%= puts "@document_array------------> #{@document_array.inspect}" %>
+                                                    <%= puts "@document_array&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt; #{@document_array.inspect}" %>
                                                     <tr id="demo" class="<%= replace_char_to_string a.directory %>">
                                                       <td id="doc_<%= a.id %>"><%= a.document_file_name %></td>
                                                       <td><input type="checkbox" id="per_field" class="per_field" title="<%= a.id %>"></td>
@@ -361,15 +355,15 @@
               <% end %>
           <% end %>
 
-            <!--<a href="/tenders/new_tender?invites=true&info_id=<%#= @tender.id %>"> 
+            &lt;!&ndash;<a href="/tenders/new_tender?invites=true&info_id=<%#= @tender.id %>"> 
             <button class="btn btn-primary  trade_btn btn-lg pull-right" type="button">SAVE AND CONTINUE</button>
-          </a>   -->
-            <!--<a href="#!"> 
+          </a>   &ndash;&gt;
+            &lt;!&ndash;<a href="#!"> 
               <button class="btn btn-primary  trade_btn btn-lg pull-right" type="submit">SAVE AND CONTINUE</button>
             </a>   
             <a href="/tenders/new_tender?document=true&info_id=<%#= @tender.id %>"> 
               <button class="btn btn-default  next_info btn-lg pull-right"  type="button">BACK</button>
-            </a>   -->
+            </a>   &ndash;&gt;
 
 
         <div class="form-actions">
@@ -403,7 +397,7 @@
 
     $('.per_field').change(function(){
       var id = $(this).attr('title');
-      console.log("id-------->"+id)
+      console.log("id&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;"+id)
       if($(this).is(':checked')){
         $('input:checkbox[id="'+id+'"]').click();
         $('input:checkbox[id="'+id+'"]').prop("checked",true);
@@ -525,7 +519,7 @@
           }
         }
       });
-      console.log("vals:------------>"+vals);
+      console.log("vals:&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;"+vals);
       if(search.length > 1){
         $.ajax({
           method: "POST",
@@ -665,3 +659,4 @@
 
 </script>
 
+-->

@@ -269,7 +269,9 @@ module TendersHelper
 
       end
     else
-      email
+      tender_invite = TenderInvite.where(:email => email).first
+
+      tender_invite.name
     end
   end
 
@@ -278,7 +280,12 @@ module TendersHelper
     t = TenderQuote.where(:tender_id => id).first
     if t.present?
       if t.quote_date.present?
-        t.quote_date.to_datetime.strftime("%d.%m.%Y %H:%M %p")
+        if t.previous_date.present?
+          t.previous_date.to_datetime.strftime("%d.%m.%Y %H:%M %p")
+        else
+          t.quote_date.to_datetime.strftime("%d.%m.%Y %H:%M %p")
+        end
+
       else
         nil
       end

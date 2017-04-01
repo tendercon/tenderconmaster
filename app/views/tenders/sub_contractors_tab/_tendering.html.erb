@@ -75,7 +75,9 @@
         </td>
         <td class="text-center">
           <% if t.approved_date.present? %>
-              <span class="label label-success label-as-badge">Quoting</span>
+              <button class="btn btn-primary" type="button" style="background-color: #26c281">
+                Tendering
+              </button>
           <% else %>
               <label>Quote Submitted</label>
               <p><%= t.request_date.present? ? t.request_date.strftime("%d.%m.%Y %H:%M %p"): '--' %></p>
@@ -110,7 +112,7 @@
           console.log(group);
           if ( last !== group ) {
             $(rows).eq( i ).before(
-                '<tr class="group"><td colspan="7">'+group+'</td></tr>'
+                '<tr class="group" style="background-color: #fafafa"><td colspan="7">'+group+'</td></tr>'
             );
 
             last = group;

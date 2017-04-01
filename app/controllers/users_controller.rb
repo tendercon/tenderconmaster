@@ -103,6 +103,8 @@ class UsersController < ApplicationController
   end
 
   def login
+
+
     if params[:tender].present?
       TenderInvite.where(:tender_id => params[:tender],:trade_id => params[:trade],:email => params[:email]).update_all(:status => 'accepted')
     end

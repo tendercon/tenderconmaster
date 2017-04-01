@@ -58,7 +58,7 @@
       <th class="text-center">Contact Name</th>
       <th class="text-center">Trade</th>
       <th class="text-center">Request Received</th>
-      <th class="text-center">Status</th>
+      <!--<th class="text-center">Status</th>-->
       <th class="text-center">Action</th>
     </tr>
     </thead>
@@ -66,33 +66,33 @@
     <% if @tender_requesting.present? %>
       <% @tender_requesting.each do |t| %>
         <tr class="trade" id="<%=  t %>" data-title="<%= get_trade_name t.trade_id %>">
-          <td class="text-center"><%= get_user_company_name t.sc_id %></td>
+          <td class="text-center"><%= get_user_trade_name t.sc_id %></td>
           <td class="text-center"><%= get_user_name t.sc_id %></td>
           <td class="text-center"><%= get_trade_name t.trade_id  %></td>
           <td class="text-center"><%= t.request_date.present? ? t.request_date.strftime("%d.%m.%Y %H:%M %p"): nil  %></td>
-          <td>
+          <!--<td>
             <p class="text-center"><%= (t.status).present? ? (get_request_status t.id) : 'Pending'  %></p>
-            <% if t.approved_date.present? %>
+            <%# if t.approved_date.present? %>
                 <p class="text-center" style="color: green">
-                  <%= (t.approved_date).strftime("%d.%m.%Y %H:%M %p") %>
+                  <%#= (t.approved_date).strftime("%d.%m.%Y %H:%M %p") %>
                 </p>
-            <% end %>
-            <% if t.declined_date.present? %>
+            <%# end %>
+            <%# if t.declined_date.present? %>
                 <p class="text-center" style="color: red">
-                  <%= (t.declined_date).strftime("%d.%m.%Y %H:%M %p") %>
+                  <%#= (t.declined_date).strftime("%d.%m.%Y %H:%M %p") %>
                 </p>
-            <% end %>
-          </td>
+            <%# end %>
+          </td>-->
           <td class="text-center">
             <% if t.approved_date.present? %>
                 <span class="label label-success label-as-badge">Approved</span>
             <% elsif t.declined_date.present? %>
                 <span class="label label-danger label-as-badge">Declined</span>
             <% else %>
-                <button class="btn btn-success action_request" id="<%= t.id %>">
+                <button class="btn btn-success action_request" id="<%= t.id %>" style="background-color: #26c281">
                   Approve
                 </button>
-                <button class="btn btn-danger action_request" id="<%= t.id %>">
+                <button class="btn btn-danger action_request" id="<%= t.id %>" style="background-color: #e43a45">
                   Decline
                 </button>
             <% end %>
@@ -126,13 +126,19 @@
 
             <td class="text-center">
               <% if t.approved_date.present? %>
-                <span class="label label-success label-as-badge">Approved</span>
-                <br/>
-                <label><%= (t.approved_date).strftime("%d.%m.%Y %H:%M %p") %></label>
+                  <button class="btn btn-primary" type="button" style="background-color: #26c281">
+                    Approved
+                  </button>
+                <!--<span class="label label-success label-as-badge">Approved</span>-->
+                <!--<br/>
+                <label><%#= (t.approved_date).strftime("%d.%m.%Y %H:%M %p") %></label>-->
               <% elsif t.declined_date.present? %>
-                <span class="label label-danger label-as-badge">Declined</span>
-                <br/>
-                <label style="color: red"><%= (t.declined_date).strftime("%d.%m.%Y %H:%M %p") %></label>
+                  <button class="btn btn-primary" type="button" style="background-color: #e43a45">
+                    Declined
+                  </button>
+                <!--<span class="label label-danger label-as-badge" style="">Declined</span>-->
+                <!--<br/>
+                <label style="color: red"><%#= (t.declined_date).strftime("%d.%m.%Y %H:%M %p") %></label>-->
               <% end %>
             </td>
         </tr>
@@ -146,6 +152,7 @@
 
 <script>
   $(document).ready(function(){
+    $('.dataTables_empty').text('TEST')
     $('.request_count').text("<%= get_request_count @tender.id %>");
     $('.request_approved').text("<%= get_request_approved @tender.id %>");
     $('.request_declined').text("<%= get_request_declined @tender.id %>");
@@ -168,7 +175,7 @@
           console.log(group);
           if ( last !== group ) {
             $(rows).eq( i ).before(
-                '<tr class="group"><td colspan="7">'+group+'</td></tr>'
+                '<tr class="group" style="background-color: #fafafa"><td colspan="7">'+group+'</td></tr>'
             );
 
             last = group;
@@ -206,6 +213,9 @@
       "bPaginate": false,
       "bInfo" : false,
       "bFilter" : false,
+      "language": {
+        "emptyTable": "There are no Subcontractors requesting to tender"
+      }
       /*"columnDefs": [
         { "visible": false, "targets": 2 }
       ],

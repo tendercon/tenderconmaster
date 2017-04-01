@@ -18,24 +18,26 @@
         </tbody>
       </table>
 
-      <% if tender.tender_quote.previous_date.present? && (tender.tender_quote.updated_at >= Time.now) %>
+      <% if (tender.tender_quote.previous_date.present? && ((tender.tender_quote.updated_at + 2.minutes) >= Time.now)) ||  (tender.updated_at + 2.minutes) >= Time.now %>
           <div class="note note-info note-bordered">
             <p> Changes </p>
           </div>
           <table class="table table-bordered responsive"  cellspacing="0" width="100%">
             <tbody>
-            <tr>
-              <td>Quotes Due</td>
-              <td><%= tender.tender_quote.quote_date %></td>
-              <td>Updated</td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><%= tender.tender_quote.previous_date %></td>
-              <td>Previously</td>
-            </tr>
+            <% if (tender.tender_quote.previous_date.present? && ((tender.tender_quote.updated_at + 2.minutes) >= Time.now))  %>
+              <tr>
+                <td>Quotes Due</td>
+                <td><%= tender.tender_quote.quote_date %></td>
+                <td>Updated</td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><%= tender.tender_quote.previous_date %></td>
+                <td>Previously</td>
+              </tr>
+            <% end %>
 
-            <% if tender.status_updated == 'true' %>
+            <% if tender.status_updated == 'true' &&  (tender.updated_at + 2.minutes) >= Time.now  %>
                 <tr>
                   <td>Status</td>
                   <% if tender.status == 1 %>

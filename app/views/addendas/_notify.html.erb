@@ -80,8 +80,18 @@
 
 <script>
   $(document).ready(function(){
-    $('.sent_mail').click(function(){
+    /*$('.sent_mail').click(function(){
       $('.email_div').show();
+    });*/
+
+    $('.sent_mail').mouseenter(function() {
+      $(this).attr("disabled", true);
+      $(this).text('This feature is coming soon.');
+    });
+
+    $('.sent_mail').mouseleave(function() {
+      $(this).attr("disabled", true);
+      $(this).text('Sent Email');
     });
   });
 </script>

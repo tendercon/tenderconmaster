@@ -8,9 +8,41 @@
 <button type="button" class="btn btn-danger remove_btn" style="display: none" onclick="return confirm('Are you sure you want to delete this item?');">
   <i class="fa fa-trash" aria-hidden="true" ></i> DELETE SELECTED DOCUMENTS
 </button>-->
+<!--<div class="admin-form">
+  <div class="row">
+    <div class="col-md-9">
+      &lt;!&ndash;<i class="fa fa-folder folder" aria-hidden="true"></i>
+      <i class="fa fa-arrows selected" aria-hidden="true"></i>&ndash;&gt;
+      <button type="button" class="button btn-success add_folder" >
+        <i class="fa fa-arrows" aria-hidden="true"></i> ADD FOLDER
+      </button>
+      <button type="button" class="button btn-warning selected_btn" disabled>
+        <i class="fa fa-arrows" aria-hidden="true"></i> MOVE SELECTED DOCUMENTS
+      </button>
+      &lt;!&ndash;<i class="fa fa-trash remove" aria-hidden="true" onclick="return confirm('Are you sure you want to delete this item?');"></i>&ndash;&gt;
+      <button type="button" class="button btn-danger remove_btn" disabled  onclick="return confirm('Are you sure you want to delete this item?');">
+        <i class="fa fa-trash" aria-hidden="true" ></i> DELETE SELECTED DOCUMENTS
+      </button>
+    </div>
+
+    <div class="col-md-3 pull-right">
+      <div class="section">
+        <div class="smart-widget sm-left sml-50">
+          <label class="field">
+            <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Here">
+          </label>
+          <label for="sm3" class="button">
+            <i class="fa fa-search"></i>
+          </label>
+        </div>
+        &lt;!&ndash; end .smart-widget section &ndash;&gt;
+      </div>
+    </div>
+  </div>
+</div>-->
 <table  class="table table-bordered responsive" id="new_folder_table"  cellspacing="0" width="100%">
   <thead>
-  <tr>
+  <tr style="background-color: #2C3E50;color: white;">
     <th><input type="checkbox" class="document_list_master" name="document_list_master"></th>
     <th>Document</th>
     <th>Size</th>
@@ -65,7 +97,7 @@
         console.log("I -------> :"+i);
         if ( last !== group ) {
           $(rows).eq( i ).before(
-              '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '"><input type="checkbox" class="document_list" name="documents[]" id="'+ group+ '"> '+ group+ '</td>' +
+              '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
               '<td> <i class="fa fa-file-text add_files" aria-hidden="true"  id="'+ group+ '"></i>'+
               '</td></tr>'
           );
@@ -76,9 +108,9 @@
     }
   } );
 
-
-  $('.selected_btn').hide();
-  $('.remove_btn').hide();
+//
+//  $('.selected_btn').hide();
+//  $('.remove_btn').hide();
   $('.selected').show();
   $('.remove').show();
 
@@ -118,7 +150,7 @@
       }).done(function (data) {
         //$('.uploaded_docs').html(data);
         //$('.document_div_table').html('');
-        $('.add_folder').hide();
+        //$('.add_folder').hide();
         $('.folder').show();
         $('.document_div_table').html(data);
       });
@@ -222,9 +254,9 @@
       //$('.uploaded_docs').html(data);
       $('.selected').show();
       $('.remove').show();
-      $('.selected_btn').hide();
-      $('.remove_btn').hide();
-      $('.add_folder').hide();
+      $('.selected_btn').prop('disabled', true);
+      $('.remove_btn').prop('disabled', true);
+
       $('.folder').show();
       $('.document_div_table').html(data);
     });
@@ -244,24 +276,35 @@
 
   $('.document_list').click(function()
   {
+    var checked_array = [];
     if($(this).is(':checked')){
       $('.selected').hide();
       $('.remove').hide();
       $('.folder').hide();
-      $('.selected_btn').show();
-      $('.remove_btn').show();
+      $('.selected_btn').prop('disabled', false);
+      $('.remove_btn').prop('disabled', false);
       $('.add_folder').show();
-    }else{
+    }else {
       $('.selected').show();
       $('.remove').show();
-      $('.folder').show();
-      $('.selected_btn').hide();
-      $('.remove_btn').hide();
-      $('.add_folder').hide();
+
+
+      $('.document_list').each(function () {
+        if ($(this).is(':checked')) {
+          checked_array.push($(this).attr('id'));
+        }
+
+        if (checked_array.length > 0) {
+          $('.selected_btn').prop('disabled', false);
+          $('.remove_btn').prop('disabled', false);
+        } else {
+          $('.selected_btn').prop('disabled', true);
+          $('.remove_btn').prop('disabled', true);
+        }
+      });
     }
-
-
   })
+
   $('.selected_btn').click(function()
   {
     var ids = []
@@ -309,7 +352,7 @@
       data: {ids:ids,tender_id:tender_id},
       url: "/tenders/delete_documents"
     }).done(function (data) {
-      $('.add_folder').hide();
+
       $('.folder').show();
       $('.document_div_table').html(data);
       //$('.uploaded_docs').html(data);

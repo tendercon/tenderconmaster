@@ -171,16 +171,24 @@
         </li>
         <li>
           <a href="<%= company_profile_users_path(:id => session[:user_logged_id]) %>">
-            <i class="icon-user"></i> My Company </a>
+            <i class="icon-briefcase"></i> Company Profile </a>
+        </li>
+        <li>
+          <a href="<%#= company_profile_users_path(:id => session[:user_logged_id]) %>">
+            <i class="icon-support"></i> Help </a>
+        </li>
+        <li>
+          <a href="<%= company_profile_users_path(:id => session[:user_logged_id]) %>">
+            <i class="icon-emoticon-smile"></i> Feedback </a>
         </li>
         <li class="divider"> </li>
         <li>
           <a href="page_user_lock_1.html">
-            <i class="icon-lock locked"></i> Lock Screen </a>
+            <i class="icon-lock"></i> Lock Screen </a>
         </li>
         <li>
           <a href="<%= logout_users_path(:status => 'normal') %>">
-            <i class="icon-key"></i> Log Out </a>
+            <i class="icon-power"></i> Log Out </a>
         </li>
       </ul>
     </li>

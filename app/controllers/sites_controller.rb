@@ -55,7 +55,8 @@ class SitesController < ApplicationController
                                    :item_title1,:item_desc1,:item_title2,:item_desc2,:section_image1,
                                    :section_image2,:section_image3,:item_image1,:item_image2,:item_image3,
                                    :key_feature_image1,:section_title_trusted_by_smart,:section_intro_trusted_by_smart,:quote_intro,
-                                   :quote_name,:quote_title,:quote_intro2,:quote_name2,:quote_title2,:quote_profile,:quote_profile2)
+                                   :quote_name,:quote_title,:quote_intro2,:quote_name2,:quote_title2,:quote_profile,:quote_profile2,:product_header,
+                                   :product_image1,:product_image2,:product_image3,:product_image4)
   end
 
 

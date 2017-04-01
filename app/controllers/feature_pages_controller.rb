@@ -83,6 +83,7 @@ class FeaturePagesController < ApplicationController
       params.require(:feature_page).permit(:id,:page_type,:headline,:tagline,:feature_block_1,:feature_block_2,:feature_block_3,:feature_block_4,
                                    :feature_title,:feature_desc,:feature_title2,:feature_desc2,:feature_title3,:feature_desc3,
                                    :feature_title4,:feature_desc4,:figure_holder,:figure_holder2,:figure_holder3,
-                                   :figure_holder4)
+                                   :figure_holder4,:frequently_block_heading,:faq1,:faq2,:faq3,:faq4,:faq5,:faq6,:faq7,:faq8,
+                                   :faq_ans1,:faq_ans2,:faq_ans3,:faq_ans4,:faq_ans5,:faq_ans6,:faq_ans7,:faq_ans8)
     end
 end

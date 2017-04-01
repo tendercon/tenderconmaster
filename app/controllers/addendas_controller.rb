@@ -16,7 +16,7 @@ class AddendasController < ApplicationController
     if @edited_addenda.present?
       @ref_num  =  @edited_addenda.ref_no
     else
-      last_addenda = Addenda.where(:tender_id => @tender.id,:user_id => session[:user_logged_id]).last
+      last_addenda = Addenda.where(:tender_id => @tender.id,:user_id => session[:user_logged_id],:status => 'completed').last
       if last_addenda.present?
         a = last_addenda.ref_no.gsub(/[^0-9]/, '')
         puts "last_addenda.ref_no.last(4)).to_i + 1 =======> #{a}"
@@ -170,7 +170,7 @@ class AddendasController < ApplicationController
       end
     else
 
-
+      puts "TEST ==============> #"
       @addenda = Addenda.new
       @addenda.subject = subject
       @addenda.details = details
@@ -179,16 +179,19 @@ class AddendasController < ApplicationController
       @addenda.addenda_type = params[:addenda_type]
       @addenda.ref_no = params[:addenda][:ref_no]
       @addenda.status = 'incomplete'
-      addendas = Addenda.where(:ref_no => params[:addenda][:ref_no], :tender_id => params[:tender_id],:user_id => session[:user_logged_id])
+      addendas = Addenda.where(:ref_no => params[:addenda][:ref_no], :tender_id => params[:tender_id],:user_id => session[:user_logged_id],:status => 'completed')
 
       unless addendas.present?
         if @addenda.save
           if params[:addenda_type] == 'details'
+            puts "TEST ==============> 1#"
             redirect_to new_addenda_path(:id => params[:tender_id],:addenda => @addenda.id,:type => 'details',:updates => true)
           else
+            puts "TEST ==============> 2#"
             redirect_to new_addenda_path(:id => params[:tender_id],:addenda => @addenda.id,:addenda_type => 'documents',:documents => true)
           end
         else
+          puts "TEST ==============> 3#"
           flash[:error] = 'Subject required.'
           redirect_to :back
         end
@@ -294,7 +297,8 @@ class AddendasController < ApplicationController
         end
       end
     end
-    Addenda.where(:tender_id => @tender.id).update_all(:status => 'completed')
+
+    Addenda.where(:tender_id => @tender.id,:id => @addenda.id).update_all(:status => 'completed')
     TenderDocument.where(:user_id => session[:user_logged_id],:tender_id => @tender,:action_type => 'addenda',:addenda_id => nil).update_all(:addenda_id => @addenda)
 
     if(User.subscontractor_list).present?
@@ -308,7 +312,7 @@ class AddendasController < ApplicationController
     end
 
 
-
+    Addenda.where(:tender_id => @tender.id,:status => 'incomplete').delete_all
     flash[:notice] = 'New Addenda added.'
    redirect_to  "/tenders/hc_tender?id=#{@tender.id}&addenda=true"
   end
@@ -595,14 +599,14 @@ class AddendasController < ApplicationController
     id = params[:quote_id]
       if params[:type] == 'quote'
         quote = TenderQuote.find(id)
-        TenderQuote.where(:id => id).update_all(:quote_date => params[:quote_date],:previous_date => quote.quote_date)
+        TenderQuote.where(:id => id).update_all(:quote_date => params[:quote_date],:previous_date => quote.quote_date, :updated_at => Time.now)
         updated_quote =  TenderQuote.find(id)
 
         render :json => { :state => 'valid',:quote => (updated_quote.quote_date.to_datetime).strftime("%m/%d/%Y %H:%M %p")}
       end
 
       if params[:type] == 'status'
-        Tender.where(:id => params[:tender_id]).update_all(:status => params[:status],:status_updated => 'true')
+        Tender.where(:id => params[:tender_id]).update_all(:status => params[:status],:status_updated => 'true',:updated_at => Time.now)
         render :json => { :state => 'valid',:tender_status => params[:status]}
       end
   end

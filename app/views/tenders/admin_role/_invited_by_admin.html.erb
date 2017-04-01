@@ -16,11 +16,11 @@
                   <option value="0">All Trades</option>
                   <% @trades_array.uniq.each do |t| %>
                       <% if @trades.present? %>
-                        <% if @trades.to_i == t.to_i %>
-                            <option value="<%= t %>" selected><%= get_trade_name t %></option>
-                        <% else %>
-                            <option value="<%= t %>"><%= get_trade_name t %></option>
-                        <% end %>
+                          <% if @trades.to_i == t.to_i %>
+                              <option value="<%= t %>" selected><%= get_trade_name t %></option>
+                          <% else %>
+                              <option value="<%= t %>"><%= get_trade_name t %></option>
+                          <% end %>
                       <% else %>
                           <option value="<%= t %>"><%= get_trade_name t %></option>
                       <% end %>
@@ -56,15 +56,15 @@
   </div>
   <table class="table table-bordered responsive" id="invited_table"  cellspacing="0" width="100%">
     <thead>
-       <tr style="background-color: #2C3E50;color: white;">
-         <th class="text-center">Company Name</th>
-         <th class="text-center">Contact Name</th>
-         <th class="text-center">Email</th>
-         <th class="text-center">Invitation Sent</th>
-         <th class="text-center">Invitation Opened</th>
-         <th class="text-center">Status</th>
-         <th class="text-center">Trade</th>
-       </tr>
+    <tr style="background-color: #2C3E50;color: white;">
+      <th class="text-center">Company Name</th>
+      <th class="text-center">Contact Name</th>
+      <th class="text-center">Email</th>
+      <th class="text-center">Invitation Sent</th>
+      <th class="text-center">Invitation Opened</th>
+      <th class="text-center">Status</th>
+      <th class="text-center">Trade</th>
+    </tr>
 
     </thead>
     <tbody class="searchable">
@@ -101,9 +101,9 @@
                     <!--<button class="btn btn-warning" type="button">
                       Pending
                     </button>-->
-                      <button class="btn btn-primary" type="button" style="background-color: #32c5d2">
-                        Invited
-                      </button>
+                    <button class="btn btn-primary" type="button" style="background-color: #32c5d2">
+                      Invited
+                    </button>
                   </td>
               <% end %>
               <td class="text-center"><%=  get_trade_name t.trade_id %></td>

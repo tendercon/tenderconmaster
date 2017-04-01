@@ -184,6 +184,8 @@ GEM
       rack
       socksify
     i18n (0.8.0)
+    intercom-rails (0.3.4)
+      activesupport (> 3.0)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -344,6 +346,8 @@ GEM
       rdoc (~> 4.0)
     select2-rails (4.0.3)
       thor (~> 0.14)
+    sendgrid (1.2.4)
+      json
     signet (0.7.3)
       addressable (~> 2.3)
       faraday (~> 0.9)
@@ -439,6 +443,7 @@ DEPENDENCIES
   geokit-rails
   gmaps4rails
   google-api-client (= 0.8.2)
+  intercom-rails
   jbuilder (~> 2.0)
   jquery-cookie-rails
   jquery-datatables-rails (~> 3.4.0)
@@ -463,6 +468,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   select2-rails
+  sendgrid
   spring
   sshkit-sudo
   stripe-rails

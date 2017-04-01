@@ -31,72 +31,73 @@
     <div class="container">
       <h2 class="block-heading text-center"><%= @pricing.present? ? @pricing.block_heading : "30 day FREE trial with all plans!" %> </h2>
       <div class="row">
-        <div class="item item-1 col-xs-12 col-sm-6 col-md-4">
+        <!--<div class="item item-1 col-xs-12 col-sm-6 col-md-4">
           <div class="item-inner">
             <div class="summary-box text-center">
-              <h3 class="item-heading"><%= @pricing.present? ? @pricing.item_heading : "FREE - Starter Plan" %></h3>
-              <div class="item-intro"><%= @pricing.present? ? @pricing.item_intro : "Unknown" %></div>
+              <h3 class="item-heading"><%#= @pricing.present? ? @pricing.item_heading : "FREE - Starter Plan" %></h3>
+              <div class="item-intro"><%#= @pricing.present? ? @pricing.item_intro : "Unknown" %></div>
               <div class="price">
-                <span class="currency"><%= @pricing.present? ? @pricing.currency : "$" %></span>
-                <span class="number"><%= @pricing.present? ? @pricing.number : "0" %></span>
-              </div><!--//price-->
-              <div class="unit"><%= @pricing.present? ? @pricing.unit : "Per month" %></div>
+                <span class="currency"><%#= @pricing.present? ? @pricing.currency : "$" %></span>
+                <span class="number"><%#= @pricing.present? ? @pricing.number : "0" %></span>
+              </div>&lt;!&ndash;//price&ndash;&gt;
+              <div class="unit"><%#= @pricing.present? ? @pricing.unit : "Per month" %></div>
               <div class="action">
                 <div class="btn-container"><a href="/users/user-default-register2123" class="btn btn-secondary btn-ghost"><%= @pricing.present? ? @pricing.sign_up_now : "Sign Up Now" %></a></div>
                 <div class="note"></div>
               </div>
-            </div><!--//summary-box-->
+            </div>&lt;!&ndash;//summary-box&ndash;&gt;
             <div class="details-box">
               <ul class="details-list list-unstyled">
-                <li><i class="fa fa-check" aria-hidden="true"></i><%= @pricing.present? ? @pricing.tender_limit : "5 Tenders" %> </li>
-                <% if @pricing.present? && @pricing.tender_limit1_1.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_1 %></li>
-                <% end %>
-                <% if @pricing.present? && @pricing.tender_limit1_2.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_2 %></li>
-                <% end %>
-                <% if @pricing.present? && @pricing.tender_limit1_3.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_3 %></li>
-                <% end %>
-                <% if @pricing.present? && @pricing.tender_limit1_4.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_4 %></li>
-                <% end %>
-                <% if @pricing.present? && @pricing.tender_limit1_5.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_5 %></li>
-                <% end %>
-                <% if @pricing.present? && @pricing.tender_limit1_6.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_6 %></li>
-                <% end %>
-                <% if @pricing.present? && @pricing.tender_limit1_7.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_7 %></li>
-                <% end %>
-                <% if @pricing.present? && @pricing.tender_limit1_8.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_8 %></li>
-                <% end %>
-                <% if @pricing.present? && @pricing.tender_limit1_9.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_9 %></li>
-                <% end %>
-                <% if @pricing.present? && @pricing.tender_limit1_0.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_0 %></li>
-                <% end %>
-                <% if @pricing.present? && @pricing.tender_limit1_11.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_11 %></li>
-                <% end %>
-                <% if @pricing.present? && @pricing.tender_limit1_12.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_12 %></li>
-                <% end %>
-                <% if @pricing.present? && @pricing.tender_limit1_13.present? %>
-                    <li><i class="fa fa-check" aria-hidden="true"></i> <%= @pricing.tender_limit1_13 %></li>
-                <% end %>
-                <!--<li><i class="fa fa-check" aria-hidden="true"></i> 10 GB file storage</li>
+                <li><i class="fa fa-check" aria-hidden="true"></i><%#= @pricing.present? ? @pricing.tender_limit : "5 Tenders" %> </li>
+                <%# if @pricing.present? && @pricing.tender_limit1_1.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_1 %></li>
+                <%# end %>
+                <%# if @pricing.present? && @pricing.tender_limit1_2.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_2 %></li>
+                <%# end %>
+                <%# if @pricing.present? && @pricing.tender_limit1_3.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_3 %></li>
+                <%# end %>
+                <%# if @pricing.present? && @pricing.tender_limit1_4.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_4 %></li>
+                <%# end %>
+                <%# if @pricing.present? && @pricing.tender_limit1_5.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_5 %></li>
+                <%# end %>
+                <%# if @pricing.present? && @pricing.tender_limit1_6.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_6 %></li>
+                <%# end %>
+                <%# if @pricing.present? && @pricing.tender_limit1_7.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_7 %></li>
+                <%# end %>
+                <%# if @pricing.present? && @pricing.tender_limit1_8.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_8 %></li>
+                <%# end %>
+                <%# if @pricing.present? && @pricing.tender_limit1_9.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_9 %></li>
+                <%# end %>
+                <%# if @pricing.present? && @pricing.tender_limit1_0.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_0 %></li>
+                <%# end %>
+                <%# if @pricing.present? && @pricing.tender_limit1_11.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_11 %></li>
+                <%# end %>
+                <%# if @pricing.present? && @pricing.tender_limit1_12.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_12 %></li>
+                <%# end %>
+                <%# if @pricing.present? && @pricing.tender_limit1_13.present? %>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> <%#= @pricing.tender_limit1_13 %></li>
+                <%# end %>
+                &lt;!&ndash;<li><i class="fa fa-check" aria-hidden="true"></i> 10 GB file storage</li>
                 <li><i class="fa fa-check" aria-hidden="true"></i> Email support</li>
                 <li><i class="fa fa-check" aria-hidden="true"></i> Free update</li>
-                <li><i class="fa fa-check" aria-hidden="true"></i> Native apps</li>-->
+                <li><i class="fa fa-check" aria-hidden="true"></i> Native apps</li>&ndash;&gt;
               </ul>
-            </div><!--//details-box-->
+            </div>&lt;!&ndash;//details-box&ndash;&gt;
 
-          </div><!--//item-inner-->
-        </div><!--//item-->
+          </div>&lt;!&ndash;//item-inner&ndash;&gt;
+        </div>&lt;!&ndash;//item&ndash;&gt;-->
+        <div class="item item-2 col-xs-12 col-sm-6 col-md-2"></div>
         <div class="item item-2 col-xs-12 col-sm-6 col-md-4">
           <div class="item-inner">
             <div class="summary-box text-center">
@@ -411,59 +412,9 @@
               </div>
           <% end %>
 
-          <!--<div class="panel">
-            <div class="panel-heading">
-              <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq5"><i class="fa fa-plus-square"></i>Is it possible to tellus eget auctor condimentum?</a></h4>
-            </div>
-
-            <div class="panel-collapse collapse" id="faq5">
-              <div class="panel-body">
-                test
-              </div>
-            </div>
-          </div>&lt;!&ndash;//panel&ndash;&gt;
-
-          <div class="panel">
-            <div class="panel-heading">
-              <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq6"><i class="fa fa-plus-square"></i>Would it elementum turpis semper imperdiet?</a></h4>
-            </div>
-
-            <div class="panel-collapse collapse" id="faq6">
-              <div class="panel-body">
-                test
-              </div>
-            </div>
-          </div>&lt;!&ndash;//panel&ndash;&gt;
-
-          <div class="panel">
-            <div class="panel-heading">
-              <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq7"><i class="fa fa-plus-square"></i>How can I imperdiet lorem sem non nisl?</a></h4>
-            </div>
-
-            <div class="panel-collapse collapse" id="faq7">
-              <div class="panel-body">
-                test
-              </div>
-            </div>
-          </div>&lt;!&ndash;//panel&ndash;&gt;
-
-          <div class="panel">
-            <div class="panel-heading">
-              <h4 class="panel-title"><a data-parent="#accordion" data-toggle="collapse" class="panel-toggle" href="#faq8"><i class="fa fa-plus-square"></i>Can I imperdiet massa ut?</a></h4>
-            </div>
-
-            <div class="panel-collapse collapse" id="faq8">
-              <div class="panel-body">
-                test
-              </div>
-            </div>
-          </div>--><!--//panel-->
         </div>
       </div><!--//row-->
 
     </div>
-  </div><!--//faqs-block-->
-
-  <!-- ******FOOTER****** -->
-
+  </div>
 </div>

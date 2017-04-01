@@ -122,7 +122,7 @@
                           </div>
                           <div class="col-md-6">
                             <a href="<%= "http://"+@ip+"/assets/tender/document/Fullset-#{@tender.tendercon_id}.zip" %>" >
-                              <button class="btn btn-default">Download Changes</button>
+                              <button class="btn btn-default">download all files in zip</button>
                             </a>
                             <div  style="height: 20px"></div>
                           </div>
@@ -134,7 +134,7 @@
                                 <thead>
                                 <th class="text-center">Filename</th>
                                 <th class="text-center">Change</th>
-                                <th class="text-center">Download</th>
+                                <!--<th class="text-center">Download</th>-->
                                 </thead>
                                 <tbody>
                                 <% if (get_addenda_documents a.id).present? %>
@@ -142,7 +142,7 @@
                                         <tr>
                                           <td class="text-center"><%= t.document_file_name  %></td>
                                           <td class="text-center">Added</td>
-                                          <td class="text-center"></td>
+                                          <!--<td class="text-center"></td>-->
                                         </tr>
                                     <% end %>
                                 <% end %>
@@ -152,24 +152,36 @@
                       <% end %>
 
                       <% if a.addenda_type == 'details' %>
-                          <% if @tender.tender_quote.previous_date.present? %>
-                              <table class="table table-bordered responsive"  cellspacing="0" width="100%">
-                                <thead>
-                                <th>Changes</th>
-                                <th></th>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                  <td>Quotes Due</td>
-                                  <td><%= @tender.tender_quote.quote_date  %> Updated</td>
-                                </tr>
-                                <tr>
-                                  <td></td>
-                                  <td><%= @tender.tender_quote.previous_date  %> Previously</td>
-                                </tr>
-                                </tbody>
-                              </table>
-                          <% end %>
+                        <% if @tender.tender_quote.previous_date.present? || @tender.status_updated.present? %>
+                          <table class="table table-bordered responsive"  cellspacing="0" width="100%">
+                            <thead>
+                            <th>Changes</th>
+                            <th></th>
+                            </thead>
+                            <tbody>
+                            <% if @tender.tender_quote.previous_date.present? %>
+                              <tr>
+                                <td>Quotes Due</td>
+                                <td><%= @tender.tender_quote.quote_date  %> Updated</td>
+                              </tr>
+                              <tr>
+                                <td></td>
+                                <td><%= @tender.tender_quote.previous_date  %> Previously</td>
+                              </tr>
+                            <% end %>
+                            <% if @tender.status_updated.present? %>
+                              <tr>
+                                <td>Status</td>
+                                <% if @tender.status == 1 %>
+                                    <td>Tendering - Your organization is still tendering for this project.</td>
+                                <% else %>
+                                    <td>Awarded - This tender has been awarded yo your organization or this your project.</td>
+                                <% end %>
+                              </tr>
+                            <% end %>
+                            </tbody>
+                          </table>
+                        <% end %>
                       <% end %>
                     </div>
                   </div>
@@ -202,6 +214,9 @@
       "dom":'fltip',
       "bFilter": 'false',
       searching: false,
+      "language": {
+        "emptyTable": "No Addendum's issued yet"
+      }
     });
 
     $('.view_addenda').click(function(){

@@ -65,7 +65,10 @@ class HeaderNavsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_header_nav
-      @header_nav = HeaderNav.find(params[:id])
+      if params[:id].to_i > 0
+        @header_nav = HeaderNav.find(params[:id])
+      end
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

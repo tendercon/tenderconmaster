@@ -68,6 +68,16 @@ Rails.application.configure do
       :enable_starttls_auto => true
   }
 
+  # ActionMailer::Base.smtp_settings = {
+  #     :user_name => 'tendercon',
+  #     :password => 'freshstart17',
+  #     :domain => 'www.tendercon.com',
+  #     :address => 'smtp.sendgrid.net',
+  #     :port => 587,
+  #     :authentication => :plain,
+  #     :enable_starttls_auto => true
+  # }
+
   # config.paperclip_defaults = {
   #     :storage => :s3,
   #     :s3_credentials => {

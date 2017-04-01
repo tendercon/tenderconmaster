@@ -1,14 +1,25 @@
 class TenderconMailer < ActionMailer::Base
   default from: 'constructionclubau@gmail.com'
-
+  #include SendGrid
   def reset_password(email,root_path,user_id)
-    puts "email:#{email}"
-    puts "root_path:#{root_path}"
-    @root_path = root_path
-    @user_id = user_id
-    @email = email
-    @messages = 'You have requested to reset your password'
-    mail(to: @email, subject: 'Reset Password')
+
+     puts "email:#{email}"
+     puts "root_path:#{root_path}"
+     @root_path = 'http://'#root_path
+     @user_id = #user_id
+     @email = email
+     @messages = 'You have requested to reset your password'
+     mail(to: @email, subject: 'Reset Password')
+
+
+    #mail :from => 'info@tendercon.com',to: 'ryanhe@tendercon.com', subject: 'Reset Password'
+    # mg_client = Mailgun::Client.new 'key-621e0d6db490426eb845dbcb992bda2c'
+    # message_params = {:from    => 'joe_dhay@yahoo.co,',
+    #                   :to      => 'agile.jjp@gmail.com',
+    #                   :subject => 'Sample Mail using Mailgun API',
+    #                   :text    => 'This mail is sent using Mailgun API via mailgun-ruby'}
+    # mg_client.send_message 'tendercon.com', message_params
+
   end
 
   def reset_password_confirmation(email,user_id)
