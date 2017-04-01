@@ -169,7 +169,7 @@
                   </a>
               <% end %>
               <a href="#!">
-                <button class="btn btn-success" type="button">Close Tender</button>
+                <button class="btn btn-success close_tender" type="button">Close Tender</button>
               </a>
               <!--<div class="portlet box green">-->
                 <!--<div class="portlet-title">
@@ -430,5 +430,16 @@
         $('.trade_div').html(data);
       });
     });
+
+    $('.close_tender').mouseenter(function() {
+      $(this).attr("disabled", true);
+      $(this).text('Feature is coming soon.');
+    });
+
+    $('.close_tender').mouseleave(function() {
+      $(this).attr("disabled", true);
+      $(this).text('Close Tender');
+    });
+
   });
 </script>

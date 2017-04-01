@@ -55,7 +55,7 @@
             <div class="form-body">
               <div class="form-group">
                 <label class="control-label">Quotes Due</label> 
-                <input type="text" class="form-control quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : @due_default.strftime("%Y-%m-%d %I:%M") : @due_default.strftime("%Y-%m-%d %I:%M") %>" />
+                <input type="text" class="form-control quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : @due_default.strftime("%Y-%m-%d %I:%M") : @due_default.strftime("%Y-%m-%d %I:%M") %>"/>
                 <div class="input-group date  form_meridian_datetime" data-date="2012-12-21T15:25:00Z" id="form_meridian_datetime">
 
                   <!--<span class="input-group-btn">
@@ -107,7 +107,7 @@
               <% end %>
             </div>
             <div class="form-group">
-              <label class="control-label">Values</label>
+              <label class="control-label">Value</label>
               <%= select_tag "values",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@values, 'id','range',@tender.present? ? @tender.tender_value_id : nil),{:class=> 'form-control'} %> 
               <% if @value_error.present? %>
                   <i style="color:red"><%= @value_error %></i>

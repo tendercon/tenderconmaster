@@ -157,7 +157,7 @@
                       <a href="javascript:;" class="collapse"> </a>
                     </div>
                   </div>-->
-                  <div class="portlet-body">
+                  <!--<div class="portlet-body">
                     <table class="table table-bordered table-hover" id="tender_trade_table">
                       <thead>
                       <tr>
@@ -168,21 +168,21 @@
 
                               <tr>
                                 <td class="text-center">
-                                  <% if @document_packages.present? %>
+                                  <%# if @document_packages.present? %>
                                       <select onchange="location = this.options[this.selectedIndex].value;" class="form-control">
                                         <option value="#!">None</option>
-                                        <% @document_packages.each do |d| %>
-                                            <option value="<%= d.url %>"><%= File.basename(d.url) %></option>
-                                        <% end %>
+                                        <%# @document_packages.each do |d| %>
+                                            <option value="<%#= d.url %>"><%#= File.basename(d.url) %></option>
+                                        <%# end %>
                                       </select>
-                                  <% end %>
+                                  <%# end %>
                                 </td>
                               </tr>
 
                       </tbody>
                     </table>
 
-                  </div>
+                  </div>-->
                 </div>
               </div>
             </div>
