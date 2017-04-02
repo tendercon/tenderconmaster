@@ -76,7 +76,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1>Processing...</h1>
+        <h1>Processing uploads. Please standby..</h1>
       </div>
       <div class="modal-body">
         <div class="progress">
@@ -236,7 +236,7 @@
       });
     },progress: function (e, data) {
       var progress = parseInt(data.loaded / data.total * 100, 10);
-      $('#progress .progress-bar').css( 'width', progress + '%');
+      $('#progress .progress-bar').css( 'width', 100 + '%');
     }
   }).bind('fileuploadstop', function (e) {
     console.log("EVENT:"+JSON.stringify(e));
