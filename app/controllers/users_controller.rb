@@ -1858,12 +1858,19 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_logged_id])
     @user_plan = UserPlan.where(:user_id => @user.id).first
     puts "@user_plan =======> #{params[:id].inspect}"
+
+    unless @user.user_subscription.present?
+      UserPlan.where(:user_id => @user.id).update_all(:plan => 'STARTER PLAN $0 ')
+    end
+
+
     @request_upgrade = RequestUpgrade.where(:user_id => @user.id,:status => 'pending').first
     @upgraded = RequestUpgrade.where(:user_id => @user.id,:status => 'upgraded').first
 
     @rejected = RequestUpgrade.where(:user_id => @user.id,:status => 'rejected').first
 
     puts "@user =======> #{@user.user_subscription.present?}"
+
 
     if @rejected.present?
       RequestUpgrade.find(@rejected.id).destroy!
@@ -1974,6 +1981,15 @@ class UsersController < ApplicationController
 
   def profile_control_tabs
     @user = User.find(session[:user_logged_id])
+
+    @user_plan = UserPlan.where(:user_id => @user.id).first
+    puts "@user_plan =======> #{params[:id].inspect}"
+
+    unless @user.user_subscription.present?
+      UserPlan.where(:user_id => @user.id).update_all(:plan => 'STARTER PLAN $0 ')
+    end
+
+
     if params[:tab] == 'edit_profile'
       @avatar = Avatar.new
       if params[:tab_action].present?
@@ -2080,11 +2096,11 @@ class UsersController < ApplicationController
   end
 
   def user_company_profile
-    @user = User.find(params[:id])
-
+    @sc_user = User.find(params[:id])
+    @tender_id = params[:tender]
 
     @company_profile = CompanyProfile.new
-    @added_company_profile = CompanyProfile.where(:user_id => @user.id).first
+    @added_company_profile = CompanyProfile.where(:user_id => @sc_user.id).first
 
     if @added_company_profile.present?
       @about_me = @added_company_profile.about_me
@@ -2097,8 +2113,8 @@ class UsersController < ApplicationController
       end
     end
 
-    @primary_trade = PrimaryTrade.where(:user_id => @user.id).first
-    @secondary_trades = SecondaryTrade.where(:user_id => @user.id)
+    @primary_trade = PrimaryTrade.where(:user_id => @sc_user.id).first
+    @secondary_trades = SecondaryTrade.where(:user_id => @sc_user.id)
     @secondary_trade_array = []
     if @secondary_trades.present?
       @secondary_trades.each do |s|
@@ -2109,13 +2125,7 @@ class UsersController < ApplicationController
     @trades = Trade.all
 
     @company_avatar = CompanyAvatar.new
-    # if @user.company_avatars
-    #   @user.company_avatars.each do |a|
-    #     @avatar_id = a.id
-    #     @avatar_filename = a.image_file_name
-    #     @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{@avatar_id}/original/#{@avatar_filename}"
-    #   end
-    # end
+
 
     @years = []
     @from = ['','1K','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M']

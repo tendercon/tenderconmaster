@@ -460,7 +460,16 @@
       "bSort" : false,
       "bPaginate": false,
       "bInfo" : false,
-      "bFilter" : false
+      "bFilter" : false,
+      <% if session[:role] == 'SubContractor' %>
+        "language": {
+          "emptyTable": "No Tenders Found. Go to Open Tenders and start tendering."
+        },
+      <% else %>
+      "language": {
+        "emptyTable": "No Tenders Found."
+      }
+      <% end %>
     } );
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

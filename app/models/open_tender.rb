@@ -35,7 +35,6 @@ class OpenTender < ActiveRecord::Base
                   statuses = []
                   tender_invites.each do |ti|
                     statuses << ti.status
-
                   end
 
                   if statuses.uniq.include?('accepted')
@@ -44,14 +43,10 @@ class OpenTender < ActiveRecord::Base
                     if statuses.uniq.size == 1
                       puts "statuses ======> #{statuses.uniq.inspect} ===========> #{statuses[0]}"
                       if statuses[0] == 'rejected'
-
                         if user.address.present?
-
                           if user.address.state.present?
                             publish_tender = Tender.find(tender)
                             if user.address.state == publish_tender.state
-                              puts "user.address.state =======> #{user.address.state}"
-                              puts "publish_tender.state =======> #{publish_tender.state}"
                               open_tender.save
                             end
                           end
@@ -64,8 +59,6 @@ class OpenTender < ActiveRecord::Base
                   if user.address.present?
                     if user.address.state.present?
                        publish_tender = Tender.find(tender)
-                       puts "user.address.state =======> #{user.address.state}"
-                       puts "publish_tender.state =======> #{publish_tender.state}"
                        if user.address.state == publish_tender.state
                          open_tender.save
                        end

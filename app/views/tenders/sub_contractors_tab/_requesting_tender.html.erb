@@ -68,7 +68,7 @@
         <tr class="trade" id="<%=  t %>" data-title="<%= get_trade_name t.trade_id %>">
           <% if t.sc_id.present? %>
             <td class="text-center">
-              <a href="<%= user_company_profile_users_path(:id => t.sc_id) %>">
+              <a href="<%= user_company_profile_users_path(:id => t.sc_id,:tender => t.tender_id) %>">
                 <%= get_user_trade_name t.sc_id %>
               </a>
             </td>

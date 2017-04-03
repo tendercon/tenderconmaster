@@ -1,7 +1,7 @@
 <div class="top-menu">
   <% if @user.free_plan? && session[:role] == 'Sub Contractor'  %>
 
-    <a href="/users/profile?id=97&subscription=true" class="btn green btn-outline sbold" style="margin-top: 5px">
+    <a href="/users/profile?id=<%= session[:user_logged_id] %>&subscription=true" class="btn green btn-outline sbold" style="margin-top: 5px">
       UPGRADE NOW
     </a>
   <% end %>

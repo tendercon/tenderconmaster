@@ -574,7 +574,7 @@ module TendersHelper
       if invite.tender_open_date.present?
         invite.tender_open_date.strftime("%d.%m.%Y %H:%M %p")
       else
-        nil
+        Time.now.strftime("%d.%m.%Y %H:%M %p")
       end
     end
   end

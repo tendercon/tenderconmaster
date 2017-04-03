@@ -1,12 +1,19 @@
 <div style="height: 50px"></div>
+<div class="">
+  <a href="/tenders/hc_tender?id=<%= @tender_id %>&subcontractors=true">
+    <button class="btn btn-default">
+      BACK
+    </button>
+  </a>
+</div>
 <div class="profile-sidebar">
   <!-- PORTLET MAIN -->
   <div class="portlet light profile-sidebar-portlet ">
     <!-- SIDEBAR USERPIC -->
     <div class="profile-userpic">
-      <% if @user.company_avatar.present? %>
-          <% if File.exist?(@user.company_avatar.image.path(:original)) %>
-              <img src="<%= @user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
+      <% if @sc_user.company_avatar.present? %>
+          <% if File.exist?(@sc_user.company_avatar.image.path(:original)) %>
+              <img src="<%= @sc_user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
           <% else %>
               <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
           <% end %>
@@ -16,7 +23,7 @@
     </div>
 
     <div class="profile-usertitle">
-      <div class="profile-usertitle-name" style="color: #2C3E50;"> <%= "#{@user.trade_name}" %> </div>
+      <div class="profile-usertitle-name" style="color: #2C3E50;"> <%= "#{@sc_user.trade_name}" %> </div>
     </div>
     <!-- END SIDEBAR USER TITLE -->
     <!-- SIDEBAR BUTTONS -->
@@ -58,11 +65,11 @@
         <tbody>
         <tr>
           <td class="col-md-3">Company</td>
-          <td><%= "#{@user.trade_name}" %></td>
+          <td><%= "#{@sc_user.trade_name}" %></td>
         </tr>
         <tr>
           <td class="col-md-3">ABN</td>
-          <td><%= "#{@user.abn}" %></td>
+          <td><%= "#{@sc_user.abn}" %></td>
         </tr>
         <tr>
           <td class="col-md-3">ACN</td>
@@ -70,11 +77,11 @@
         </tr>
         <tr>
           <td class="col-md-3">Address</td>
-          <td><%= "#{@user.address.location}" %></td>
+          <td><%= "#{@sc_user.address.location}" %></td>
         </tr>
         <tr>
           <td class="col-md-3">Time zone</td>
-          <td><%= "#{@user.address.timezone}" %></td>
+          <td><%= "#{@sc_user.address.timezone}" %></td>
         </tr>
         <tr>
           <td class="col-md-3">About</td>
@@ -82,7 +89,7 @@
         </tr>
         <tr>
           <td class="col-md-3">Tendercon ID</td>
-          <td><%= "#{@user.tendercon_id}" %></td>
+          <td><%= "#{@sc_user.tendercon_id}" %></td>
         </tr>
         <tr>
           <td class="col-md-3">No. of Employees</td>
