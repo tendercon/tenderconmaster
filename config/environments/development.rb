@@ -39,50 +39,5 @@ Rails.application.configure do
   config.stripe.publishable_key = "pk_test_od6qMjEWQDqZI90OI4W9vh8g"
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  ENV['GEOIP_KEY']  = "bc7903c99d1ea532f709cfef316d11b458d0ec41f56b43f07fbcf6f7e2ba2e27"
-  ENV['GOOGLE_KEY'] = "AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8"
-  ENV['ABN_GUID'] = "c7b82124-b224-4d3e-ac54-f008ae5f6ab7"
-  ENV["LINKEDIN_CLIENT_ID"] = "75jjzveiib8wnq"
-  ENV["LINKEDIN_CLIENT_SECRET"] = "loCsi3Cks6yHSRrY"
-  ENV['PUBLISHABLE_KEY'] = "pk_test_od6qMjEWQDqZI90OI4W9vh8g"
-  ENV['SECRET_KEY'] = "sk_test_AyNDRGiWrBva0qJe749H7vai"
-  ENV['FACEBOOK_KEY'] = "1039814866107032"
-  ENV['FACEBOOK_SECRET'] = "75d10afcc168acb00d6cc9b07418bb4f"
-  ENV['OFFICE_ID'] = "38c34ecf-fef2-4c16-ae62-c690dcd5aa5f"
-  ENV['OFFICE_SECRET'] = "QFWJy4UHDLbCubZnE1iWrmA"
-  ENV["INTERCOM_APP_ID"] = "ywfyj3d0"
 
-
-  config.action_mailer.default_url_options = { :host => 'localhost' }
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = true
-
-  config.action_mailer.smtp_settings = {
-      :address              => "smtp.gmail.com",
-      :port                 => 587,
-      :domain               => "gmail.com",
-      :user_name            => "agile.jjp@gmail.com",
-      :password             => "joenerPreagola0428",
-      :authentication       => 'plain',
-      :enable_starttls_auto => true
-  }
-
-  # config.paperclip_defaults = {
-  #     :storage => :s3,
-  #     :s3_credentials => {
-  #         :bucket => ENV['AWS_BUCKET'],
-  #         :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-  #         :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'],
-  #     },
-  #     :s3_protocol => "http",
-  #     :s3_endpoint => "s3-ap-southeast-2.amazonaws.com",
-  #     :s3_host_name => "s3-ap-southeast-2.amazonaws.com",
-  #     :server => ENV['SERVER'],
-  #     :s3_region => ENV['AWS_REGION'],
-  #     :s3_host_alias => ENV['AWS_BUCKET'],
-  #     :url =>':s3_domain_url',
-  #     :path => '/:class/:attachment/:id_partition/:style/:filename'
-  #
-  # }
 end
