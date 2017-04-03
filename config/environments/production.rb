@@ -92,7 +92,7 @@ Rails.application.configure do
   ENV['FACEBOOK_SECRET'] = "75d10afcc168acb00d6cc9b07418bb4f"
   ENV['OFFICE_ID'] = "38c34ecf-fef2-4c16-ae62-c690dcd5aa5f"
   ENV['OFFICE_SECRET'] = "QFWJy4UHDLbCubZnE1iWrmA"
-  ENV["INTERCOM_APP_ID"] = "ie9f10ja"
+
 
   config.active_record.dump_schema_after_migration = false
 
@@ -105,8 +105,8 @@ Rails.application.configure do
       :address              => "smtp.gmail.com",
       :port                 => 587,
       :domain               => "gmail.com",
-      :user_name            => "agile.jjp@gmail.com",
-      :password             => "joenerPreagola0428",
+      :user_name            => ENV['EMAIL_ACCOUNT'],
+      :password             => ENV['EMAIL_PASSWORD'],
       :authentication       => 'plain',
       :enable_starttls_auto => true
   }
