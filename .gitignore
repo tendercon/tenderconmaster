@@ -26,6 +26,8 @@ info
 
 /.env
 .env
+config/deploy/production.rb
+config/deploy/staging.rb
 
 .DS_Store
 /log/*
