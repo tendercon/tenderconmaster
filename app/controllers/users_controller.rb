@@ -2079,6 +2079,54 @@ class UsersController < ApplicationController
     render :json => { :url => @user.avatar.image.url(:original),:state => 'valid'}
   end
 
+  def user_company_profile
+    @user = User.find(params[:id])
+
+
+    @company_profile = CompanyProfile.new
+    @added_company_profile = CompanyProfile.where(:user_id => @user.id).first
+
+    if @added_company_profile.present?
+      @about_me = @added_company_profile.about_me
+      puts "@about_me1:#{@about_me.present?}"
+    end
+
+    if @added_company_profile.present?
+      if @added_company_profile.project_range.present?
+        @p_to = @added_company_profile.project_range.split('-')
+      end
+    end
+
+    @primary_trade = PrimaryTrade.where(:user_id => @user.id).first
+    @secondary_trades = SecondaryTrade.where(:user_id => @user.id)
+    @secondary_trade_array = []
+    if @secondary_trades.present?
+      @secondary_trades.each do |s|
+        @secondary_trade_array << s.trade_id
+      end
+    end
+
+    @trades = Trade.all
+
+    @company_avatar = CompanyAvatar.new
+    # if @user.company_avatars
+    #   @user.company_avatars.each do |a|
+    #     @avatar_id = a.id
+    #     @avatar_filename = a.image_file_name
+    #     @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{@avatar_id}/original/#{@avatar_filename}"
+    #   end
+    # end
+
+    @years = []
+    @from = ['','1K','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M']
+    @to = ['','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M','500M+']
+
+    for i in 1800..(Time.now.strftime('%Y').to_i) do
+      @years << i
+    end
+
+  end
+
 
   private
 

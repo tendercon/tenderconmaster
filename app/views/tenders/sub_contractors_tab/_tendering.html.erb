@@ -65,7 +65,16 @@
   <% if @tendering.present? %>
     <% @tendering.each do |t| %>
       <tr class="trade" id="<%=  t %>" data-title="<%= get_trade_name t.trade_id %>">
-        <td class="text-center"><%= get_user_trade_name t.sc_id %></td>
+        <% if t.sc_id.present? %>
+          <td class="text-center">
+            <a href="<%= user_company_profile_users_path(:id => t.sc_id) %>">
+              <%= get_user_trade_name t.sc_id %>
+            </a>
+          </td>
+        <% else %>
+          <td class="text-center"><%= get_user_trade_name t.sc_id %></td>
+        <% end %>
+
         <td class="text-center"><%= get_user_name t.sc_id %></td>
         <td class="text-center"><%= get_trade_name t.trade_id  %></td>
         <td class="text-center"><%= (get_user_created t.sc_id).present? ?  (get_user_created t.sc_id).to_datetime.strftime("%d.%m.%Y %H:%M %p") : '--' %></td>
@@ -98,6 +107,9 @@
       "bPaginate": false,
       "bInfo" : false,
       "bFilter" : false,
+      "language": {
+        "emptyTable": "There are no Tendering Subcontractors yet"
+      },
       "columnDefs": [
         { "visible": false, "targets": 2 }
       ],

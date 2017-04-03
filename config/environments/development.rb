@@ -62,15 +62,15 @@ Rails.application.configure do
       :address              => "smtp.gmail.com",
       :port                 => 587,
       :domain               => "gmail.com",
-      :user_name            => "agile.jjp@gmail.com",
-      :password             => "joenerPreagola0428",
+      :user_name            => ENV['EMAIL_ACCOUNT'],
+      :password             => ENV['EMAIL_PASSWORD'],
       :authentication       => 'plain',
       :enable_starttls_auto => true
   }
 
   # ActionMailer::Base.smtp_settings = {
-  #     :user_name => 'tendercon',
-  #     :password => 'freshstart17',
+  #     :user_name => ENV['SENGRID_USERNAME'],
+  #     :password => ENV['SENGRID_PASSWORD'],
   #     :domain => 'www.tendercon.com',
   #     :address => 'smtp.sendgrid.net',
   #     :port => 587,

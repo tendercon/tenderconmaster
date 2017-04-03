@@ -5,9 +5,9 @@ class TenderInvite < ActiveRecord::Base
 
   def self.tender_invites(id,added_by = nil)
     if added_by.present?
-      where("tender_id = #{id}").count()
-    else
       where("tender_id = #{id} and added_by = 'admin'").count()
+    else
+      where("tender_id = #{id}").count()
     end
 
   end

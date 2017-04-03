@@ -36,6 +36,9 @@
                <th>Status</th>
             <% end %>
             <th>Tender ID</th>
+            <% if session[:role] == 'Admin' %>
+                <th>HC Company</th>
+            <% end %>
             <% if session[:role] == 'Sub Contractor' %>
               <th>Head Contractor</th>
             <% end %>
@@ -74,6 +77,9 @@
                 <td class="text-center">
                   <%= t.tendercon_id %>
                 </td>
+                <% if session[:role] == 'Admin' %>
+                    <th><%= get_user_trade_name t.user_id %></th>
+                <% end %>
                 <%# if session[:role] == 'Head Contractor' %>
                     <!--<td class="text-center">
                       <%#= t.tendercon_id %>

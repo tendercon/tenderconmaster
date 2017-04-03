@@ -199,6 +199,9 @@
         "dom":'fltip',
         "bFilter": 'false',
         searching: false,
+        "language": {
+          "emptyTable": "No quotes submitted yet"
+        }
       });
     <% else %>
       $('#new_quote_table').DataTable({
@@ -207,6 +210,9 @@
         "bInfo" : false,
         "dom":'fltip',
         "bFilter": 'false',
+        "language": {
+          "emptyTable": "No quotes submitted yet"
+        },
         searching: false,
         "columnDefs": [
           { "visible": false, "targets": 9 }

@@ -206,9 +206,19 @@ module UsersHelper
       false
     end
 
-
-
   end
+
+  def check_if_user_exists email
+    user = User.where(:email => email).last
+
+    if user.present?
+      true
+    else
+      false
+    end
+  end
+
+
 
 
 end

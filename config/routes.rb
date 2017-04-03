@@ -109,6 +109,7 @@ Rails.application.routes.draw do
       get 'credit_card_details'
       get 'edit_company_profile'
       get 'subscription'
+      get 'user_company_profile'
 
       # post
       post 'authenticate'

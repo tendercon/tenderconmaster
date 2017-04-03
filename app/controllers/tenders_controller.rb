@@ -639,17 +639,28 @@ class TendersController < ApplicationController
       @all_tenders = Tender.where(:publish => true).count()
 
       open_tenders = OpenTender.where(:user_id => session[:user_logged_id])
+
+      user = User.find(session[:user_logged_id])
+
       tender_arr = []
       if open_tenders.present?
         open_tenders.each do |a|
-          tender_arr << a.tender_id
+          tender = Tender.find(a.id)
+          puts "tender.id =========> #{tender.id}"
+          puts "tender.title =========> #{tender.title}"
+          puts "tender.state =========> #{tender.state}"
+          puts "user.address.state =========> #{user.address.state}"
+          if user.address.state.include?(tender.state)
+            tender_arr << a.tender_id
+          end
+
         end
       end
 
       puts "open tender tender_arr-------------> #{tender_arr.inspect}"
 
       if tender_arr.present?
-        @tenders = Tender.where(:id => tender_arr.uniq,:publish => true)
+        @tenders = Tender.where(:id => tender_arr.uniq,:publish => true).where("state like ?","%#{user.address.state}%")
       else
         @tenders = nil
       end
@@ -3191,8 +3202,6 @@ class TendersController < ApplicationController
             end
           end
 
-
-
           t = Trade.find(trades[index])
           if user.present?
             decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{@tender.id}&email=#{e}&trade=#{t.id}"
@@ -3220,10 +3229,12 @@ class TendersController < ApplicationController
       @tender_accpeted_counts = TenderInvite.tender_accepted(@tender.id)
       puts "@tender_invite_counts ======> #{@tender_invite_counts}"
       puts "@tender_opened_counts#{@tender_opened_counts}"
-      @tender_invites = TenderInvite.where(:tender_id => @tender.id,:added_by => 'admin')
+
       if params[:added_by].present?
+        @tender_invites = TenderInvite.where(:tender_id => @tender.id,:added_by => 'admin')
         @data = render :partial => 'tenders/admin_role/invited_by_admin'
       else
+        @tender_invites = TenderInvite.where(:tender_id => @tender.id)
         @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
       end
 

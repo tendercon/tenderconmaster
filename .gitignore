@@ -22,6 +22,10 @@ HEAD
 info
 .idea/workspace.xml
 
+/public/assets/tender
+
+/.env
+.env
 
 .DS_Store
 /log/*
