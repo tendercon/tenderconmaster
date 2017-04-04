@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
     Rails.logger.info "INTERCOM_APP_ID =============> #{ENV['INTERCOM_APP_ID']}"
     Rails.logger.info "PUBLISHABLE_KEY =============> #{ENV['PUBLISHABLE_KEY']}"
     Rails.logger.info "SECRET_KEY =============> #{ENV['SECRET_KEY']}"
+    Rails.logger.info "SECRET_KEY_BASE =============> #{ENV['SECRET_KEY_BASE']}"
     if session[:role] == 'Head Contractor'
       @hc_invite_subs = HcInvite.where(:hc_id => session[:user_logged_id],:status => nil).where("email != null OR email != ''")
     end
