@@ -74,65 +74,63 @@
   </div>
   <div style="height: 80px;"></div>
 
-
-  <div class="col-md-12   tender_list_filter">
-    <table  class="table table-bordered responsive" id="open_tender_table"  cellspacing="0" width="100%">
-      <thead>
-        <tr style="background-color: #2C3E50;color: white;">
-          <th class="no-sort">Tender ID</th>
-          <th class="no-sort">Project Name</th>
-          <th class="no-sort">Value</th>
-          <!--<th>Sector</th>-->
-          <th class="no-sort">Location</th>
-          <th class="no-sort">Distance</th>
-          <th class="no-sort">Head Contractor</th>
-          <th>Quote Due</th>
-          <th class="no-sort">Action</th>
-        </tr>
-      </thead>
-      <tbody class="searchable">
-        <% if @tenders.present? %>
-          <% @tenders.each do |t| %>
-            <tr>
-              <% if session[:role] == 'Head Contractor' %>
-                <td class="text-center">
-                  <%= t.tendercon_id %>
-                  <!--<a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
-                    <%#= t.tendercon_id %>
-                  </a>-->
-                </td>
-              <% else %>
-                <td class="text-center">
-                  <%= t.tendercon_id %>
-                  <!--<a href="#!" class="tender" id="<%#= t.id %>">
-                    <%#= t.tendercon_id %>
-                  </a>-->
-                </td>
-
-              <% end %>
-
-              <td class="text-center"><%= t.title %></td>
-              <td class="text-center"><%= get_value_name t.tender_value_id %></td>
-              <!--<td class="text-center"><%#= get_trade_category_name  t.category_id %></td>-->
-              <% if t.address_terms.present? %>
-                <td class="text-center">
-                  Hidden Address <i class="fa fa-question-circle" aria-hidden="true" title="Address will appear once your Head Contractor approved your request"></i>
-                </td>
-              <% else %>
-                  <td class="text-center"><%= split_address t.address %></td>
-              <% end %>
-              <td class="text-center"><%= get_distance t.id,session[:user_logged_id] %></td>
-              <td class="text-center"><%= get_user_trade_name t.user_id %></td>
-              <td class="text-center"><%= get_tender_due t.id %></td>
-              <% if session[:role] == 'Head Contractor' %>
+  <%# cache 'open_tender' do %>
+      <div class="col-md-12   tender_list_filter">
+        <table  class="table table-bordered responsive" id="open_tender_table"  cellspacing="0" width="100%">
+          <thead>
+          <tr style="background-color: #2C3E50;color: white;">
+            <th class="no-sort">Tender ID</th>
+            <th class="no-sort">Project Name</th>
+            <th class="no-sort">Value</th>
+            <!--<th>Sector</th>-->
+            <th class="no-sort">Location</th>
+            <th class="no-sort">Distance</th>
+            <th class="no-sort">Head Contractor</th>
+            <th>Quote Due</th>
+            <th class="no-sort">Action</th>
+          </tr>
+          </thead>
+          <tbody class="searchable">
+          <% if @tenders.present? %>
+            <% @tenders.each do |t| %>
+              <tr>
+                <% if session[:role] == 'Head Contractor' %>
                   <td class="text-center">
-                    <a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
-                      <button class="btn green">
-                        View
-                      </button>
-                    </a>
+                    <%= t.tendercon_id %>
+                    <!--<a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
+                      <%#= t.tendercon_id %>
+                    </a>-->
                   </td>
-              <% else %>
+                <% else %>
+                  <td class="text-center">
+                    <%= t.tendercon_id %>
+                    <!--<a href="#!" class="tender" id="<%#= t.id %>">
+                      <%#= t.tendercon_id %>
+                    </a>-->
+                  </td>
+                <% end %>
+                <td class="text-center"><%= t.title %></td>
+                <td class="text-center"><%= get_value_name t.tender_value_id %></td>
+                <!--<td class="text-center"><%#= get_trade_category_name  t.category_id %></td>-->
+                <% if t.address_terms.present? %>
+                    <td class="text-center">
+                      Hidden Address <i class="fa fa-question-circle" aria-hidden="true" title="Address will appear once your Head Contractor approved your request"></i>
+                    </td>
+                <% else %>
+                    <td class="text-center"><%= split_address t.address %></td>
+                <% end %>
+                <td class="text-center"><%= get_distance t.id,session[:user_logged_id] %></td>
+                <td class="text-center"><%= get_user_trade_name t.user_id %></td>
+                <td class="text-center"><%= get_tender_due t.id %></td>
+                <% if session[:role] == 'Head Contractor' %>
+                    <td class="text-center">
+                      <a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
+                        <button class="btn green">
+                          View
+                        </button>
+                      </a>
+                    </td>
+                <% else %>
                   <td class="text-center">
 
                     <% if @user.free_plan?  %>
@@ -140,21 +138,23 @@
                         View
                       </button>
                     <% else %>
-                        <a href="#!" class="tender" id="<%= t.id %>">
-                          <button class="btn green">
-                            View
-                          </button>
-                        </a>
+                      <a href="#!" class="tender" id="<%= t.id %>">
+                        <button class="btn green">
+                          View
+                        </button>
+                      </a>
                     <% end %>
-
                   </td>
-              <% end %>
-            </tr>
+                <% end %>
+              </tr>
+            <% end %>
           <% end %>
-        <% end %>
-      </tbody>
-      </table>
-  </div>
+          </tbody>
+        </table>
+      </div>
+
+  <%# end %>
+
 </div>
 
 <%= render 'tenders/open_tender/dialog' %>

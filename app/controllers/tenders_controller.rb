@@ -520,8 +520,9 @@ class TendersController < ApplicationController
 
         end
       end
-
+      #expire_fragment 'open_tender'
       Tender.delay.compressed_document(tender_id)
+
     rescue
 
     end

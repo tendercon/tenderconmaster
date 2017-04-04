@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
   before_filter :add_to_open_tender, :only => [:index]
 
   def index
+    #expire_fragment 'open_tender'
     Rails.logger.info "EMAIL_ACCOUNT =============> #{ENV['EMAIL_ACCOUNT']}"
     Rails.logger.info "EMAIL_PASSWORD =============> #{ENV['EMAIL_PASSWORD']}"
     Rails.logger.info "INTERCOM_APP_ID =============> #{ENV['INTERCOM_APP_ID']}"
