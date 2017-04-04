@@ -645,15 +645,12 @@ class TendersController < ApplicationController
       tender_arr = []
       if open_tenders.present?
         open_tenders.each do |a|
-          tender = Tender.find(a.id)
-          puts "tender.id =========> #{tender.id}"
-          puts "tender.title =========> #{tender.title}"
-          puts "tender.state =========> #{tender.state}"
-          puts "user.address.state =========> #{user.address.state}"
-          if user.address.state.include?(tender.state)
-            tender_arr << a.tender_id
+          tender = Tender.where(id => a.id).first
+          if tender.present?
+            if user.address.state.include?(tender.state)
+              tender_arr << a.tender_id
+            end
           end
-
         end
       end
 
