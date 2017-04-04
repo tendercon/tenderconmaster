@@ -69,10 +69,10 @@ Rails.application.configure do
   }
 
   # ActionMailer::Base.smtp_settings = {
-  #     :user_name => 'tendercon',
-  #     :password => 'freshstart17',
+  #     :user_name => ENV['SENGRID_USERNAME'],
+  #     :password => ENV['SENGRID_PASSWORD'],
   #     :domain => 'www.tendercon.com',
-  #     :address => 'smtp.sendgrid.net',
+  #     :address => ENV['SENGRID_SMTP'],
   #     :port => 587,
   #     :authentication => :plain,
   #     :enable_starttls_auto => true
