@@ -657,10 +657,11 @@ class TendersController < ApplicationController
         end
       end
 
-      puts "open tender tender_arr-------------> #{tender_arr.inspect}"
+      Rails.logger.info "open tender tender_arr-------------> #{tender_arr.inspect}"
 
       if tender_arr.present?
         @tenders = Tender.where(:id => tender_arr.uniq,:publish => true)
+        Rails.logger.info "@tenders ===============> #{@tenders.inspect}"
       else
         @tenders = nil
       end
