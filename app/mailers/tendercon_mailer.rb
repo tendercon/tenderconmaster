@@ -39,12 +39,13 @@ class TenderconMailer < ActionMailer::Base
   end
 
   def registration_email email,root_path,user_id,unique_key
+    user = User.find(user_id)
     @root_path = root_path
     @user_id = user_id
-    @email = email
+    @email = user.first_name
     @unique_key = unique_key
     @messages = 'You are successfully registered to Tendercon'
-    mail(to: @email, subject: 'Registration Completed')
+    mail(to: email, subject: 'Registration Completed')
   end
 
   def user_request_to_admin email,user_id,first,second,third,availability,contact_number
