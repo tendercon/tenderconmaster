@@ -645,7 +645,7 @@ class TendersController < ApplicationController
       tender_arr = []
       if open_tenders.present?
         open_tenders.each do |a|
-          tenders = Tender.where(:id => a.id).where("state like ?","%#{user.address.state}%")
+          tenders = Tender.where(:id => a.tender_id).where("state like ?","%#{user.address.state}%")
           if tenders.present?
             #if user.address.state.include?(tender.state)
             tenders.each do |t|
