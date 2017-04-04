@@ -35,9 +35,9 @@ class SubscribersController < ApplicationController
     else
       token = params[:stripeToken]
       if user_plan.to_i == 1
-        stripe_plan = 'tenderconmnthly'
+        stripe_plan = 'tendercon monthly'
       elsif  user_plan.to_i == 2
-        stripe_plan = 'tenderconyrly'
+        stripe_plan = 'tendercon yearly'
       else
         stripe_plan = 1003
       end

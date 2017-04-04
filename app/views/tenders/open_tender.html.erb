@@ -157,11 +157,7 @@
   </div>
 </div>
 
-
-
 <%= render 'tenders/open_tender/dialog' %>
-
-
 
 <div class="row ">
   <% if @tenders.present? %>
@@ -617,7 +613,7 @@
 <script>
   $(document).ready(function(){
 
-    <% if @user.free_plan?  %>
+    <% unless @user.user_subscription.present?  %>
        $('#basic').modal('show');
     <% end %>
 

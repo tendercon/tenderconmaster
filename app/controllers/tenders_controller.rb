@@ -645,11 +645,14 @@ class TendersController < ApplicationController
       tender_arr = []
       if open_tenders.present?
         open_tenders.each do |a|
-          tender = Tender.where(:id => a.id).first
-          if tender.present?
-            if user.address.state.include?(tender.state)
-              tender_arr << a.tender_id
+          tenders = Tender.where(:id => a.id).where("state like ?","%#{user.address.state}%")
+          if tenders.present?
+            #if user.address.state.include?(tender.state)
+            tenders.each do |t|
+              tender_arr << t.id
             end
+
+            #end
           end
         end
       end
@@ -657,7 +660,7 @@ class TendersController < ApplicationController
       puts "open tender tender_arr-------------> #{tender_arr.inspect}"
 
       if tender_arr.present?
-        @tenders = Tender.where(:id => tender_arr.uniq,:publish => true).where("state like ?","%#{user.address.state}%")
+        @tenders = Tender.where(:id => tender_arr.uniq,:publish => true)
       else
         @tenders = nil
       end

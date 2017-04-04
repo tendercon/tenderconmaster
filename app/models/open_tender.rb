@@ -80,7 +80,6 @@ class OpenTender < ActiveRecord::Base
             end
           end
         end
-
       end
     end
   end
