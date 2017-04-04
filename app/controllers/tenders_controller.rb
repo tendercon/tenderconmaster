@@ -641,7 +641,7 @@ class TendersController < ApplicationController
       open_tenders = OpenTender.where(:user_id => session[:user_logged_id])
 
       user = User.find(session[:user_logged_id])
-
+      Rails.logger.info "open_tenders =============> #{open_tenders.inspect}"
       tender_arr = []
       if open_tenders.present?
         open_tenders.each do |a|
