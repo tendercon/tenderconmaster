@@ -645,7 +645,7 @@ class TendersController < ApplicationController
       tender_arr = []
       if open_tenders.present?
         open_tenders.each do |a|
-          tender = Tender.where(id => a.id).first
+          tender = Tender.where(:id => a.id).first
           if tender.present?
             if user.address.state.include?(tender.state)
               tender_arr << a.tender_id
