@@ -308,7 +308,7 @@ class AddendasController < ApplicationController
           trade = Trade.find(tendering.trade_id.to_i)
         end
 
-        message = "#{trade.name} has issued a new Addendum on project #{@tender.title}"
+        message = "#{@tender.user.trade_name} has issued a new Addendum on project #{@tender.title}"
         unless addenda.present?
           AddendaNotification.notification(tendering.sc_id,@tender.id,@tender.user_id,@addenda.id,message,"HC")
         end
