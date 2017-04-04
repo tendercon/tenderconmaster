@@ -13,14 +13,14 @@ class OpenTender < ActiveRecord::Base
       end
     end
 
-    puts "tender_ids ===> #{tender_ids.inspect}"
+    Rails.logger.info "tender_ids ===> #{tender_ids.inspect}"
     if tender_ids.present?
       tender_ids.uniq.each do |tender|
         if users.present?
           users.each do |u|
             user = User.find(u)
             open = where(:tender_id => tender, :user_id => u).first
-            puts "OPEN TENDERS =========> #{open.inspect}"
+            Rails.logger.info "OPEN TENDERS =========> #{open.inspect}"
             unless open.present?
               open_tender = self.new
               open_tender.user_id = u
@@ -44,7 +44,7 @@ class OpenTender < ActiveRecord::Base
                       if statuses[0] == 'rejected'
                         #if user.address.present?
                         #  if user.address.state.present?
-                            publish_tender = Tender.find(tender)
+                            #publish_tender = Tender.find(tender)
                             #if user.address.state == publish_tender.state
                               open_tender.save
                             #end
