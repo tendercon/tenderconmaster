@@ -35,8 +35,8 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-  config.stripe.secret_key = "sk_test_AyNDRGiWrBva0qJe749H7vai"
-  config.stripe.publishable_key = "pk_test_od6qMjEWQDqZI90OI4W9vh8g"
+  config.stripe.secret_key = ENV['PUBLISHABLE_KEY']
+  config.stripe.publishable_key = ENV['SECRET_KEY']
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   ENV['GEOIP_KEY']  = "bc7903c99d1ea532f709cfef316d11b458d0ec41f56b43f07fbcf6f7e2ba2e27"
@@ -44,8 +44,6 @@ Rails.application.configure do
   ENV['ABN_GUID'] = "c7b82124-b224-4d3e-ac54-f008ae5f6ab7"
   ENV["LINKEDIN_CLIENT_ID"] = "75jjzveiib8wnq"
   ENV["LINKEDIN_CLIENT_SECRET"] = "loCsi3Cks6yHSRrY"
-  ENV['PUBLISHABLE_KEY'] = "pk_test_od6qMjEWQDqZI90OI4W9vh8g"
-  ENV['SECRET_KEY'] = "sk_test_AyNDRGiWrBva0qJe749H7vai"
   ENV['FACEBOOK_KEY'] = "1039814866107032"
   ENV['FACEBOOK_SECRET'] = "75d10afcc168acb00d6cc9b07418bb4f"
   ENV['OFFICE_ID'] = "38c34ecf-fef2-4c16-ae62-c690dcd5aa5f"

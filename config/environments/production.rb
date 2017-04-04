@@ -76,8 +76,8 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  config.stripe.secret_key = "sk_test_AyNDRGiWrBva0qJe749H7vai"
-  config.stripe.publishable_key = "pk_test_od6qMjEWQDqZI90OI4W9vh8g"
+  config.stripe.secret_key = ENV['PUBLISHABLE_KEY']
+  config.stripe.publishable_key = ENV['SECRET_KEY']
 
   # Do not dump schema after migrations.
 
@@ -86,8 +86,6 @@ Rails.application.configure do
   ENV['ABN_GUID'] = "c7b82124-b224-4d3e-ac54-f008ae5f6ab7"
   ENV["LINKEDIN_CLIENT_ID"] = "75jjzveiib8wnq"
   ENV["LINKEDIN_CLIENT_SECRET"] = "loCsi3Cks6yHSRrY"
-  ENV['PUBLISHABLE_KEY'] = "pk_test_od6qMjEWQDqZI90OI4W9vh8g"
-  ENV['SECRET_KEY'] = "sk_test_AyNDRGiWrBva0qJe749H7vai"
   ENV['FACEBOOK_KEY'] = "1039814866107032"
   ENV['FACEBOOK_SECRET'] = "75d10afcc168acb00d6cc9b07418bb4f"
   ENV['OFFICE_ID'] = "38c34ecf-fef2-4c16-ae62-c690dcd5aa5f"
