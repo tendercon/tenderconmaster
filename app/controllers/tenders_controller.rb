@@ -452,6 +452,7 @@ class TendersController < ApplicationController
             if user.present?
               sc_invite_notif.user_status =  'user'
               sc_invite_notif.user_id = user.id
+              decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{tender_id}&email=#{a.email}&trade=#{t.id}"
               path = "http://"+request.host_with_port+"/users/login?email=#{user.email}&tender=#{tender_id}&trade=#{t.id}"
             else
               sc_invite_notif.user_status =  'not_user'
@@ -480,7 +481,7 @@ class TendersController < ApplicationController
             sc_invite_notif.message = "Invitation for tender #{tender.title} (#{t.name})"
             sc_invite_notif.save
             #TenderconMailer.delay.sent_sc_invites(a.email,a.name,t.name,path,decline_path)
-            TenderconMailer.sent_sc_invites(a.email,a.name,t.name,path,decline_path).deliver_now
+            TenderconMailer.sent_sc_invites(a.email,a.name,t.name,path,decline_path,tender_id,"http://#{request.host_with_port}").deliver_now
           end
         end
       end

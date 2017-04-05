@@ -1,48 +1,828 @@
-<!DOCTYPE html>
-<html xmlns='http://www.w3.org/1999/xhtml'>
-<head>
-  <title> Tendercon| New Trade</title>
-  <meta http-equiv='Content-Type' content='text/html' charset='utf-8' />
-  <meta content='Elixir' />
-  <meta content='elixir/' name='application-name' />
-  <meta http-equiv='X-UA-Compatible' content='chrome=1'>
-  <meta http-equiv='X-UA-Compatible' content='IE=EmulateIE7, IE=9' />
-  <meta name='viewport' content='width=device-width, minimum-scale=1.0, maximum-scale=1.0' />
-  <meta name='apple-mobile-web-app-capable' content='yes' />
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-  <!-- jQuery library -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><!--[if IE]><html xmlns="http://www.w3.org/1999/xhtml" class="ie-browser" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"><![endif]--><!--[if !IE]><!--><html style="margin: 0;padding: 0;" xmlns="http://www.w3.org/1999/xhtml"><!--<![endif]--><head>
+  <!--[if gte mso 9]><xml>
+    <o:OfficeDocumentSettings>
+      <o:AllowPNG/>
+      <o:PixelsPerInch>96</o:PixelsPerInch>
+    </o:OfficeDocumentSettings>
+  </xml><![endif]-->
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width">
+  <!--[if !mso]><!--><meta http-equiv="X-UA-Compatible" content="IE=edge"><!--<![endif]-->
+  <title>BF-simple-template</title>
+  <!--[if !mso]><!-- -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" type="text/css">
+  <!--<![endif]-->
 
-  <!-- Latest compiled JavaScript -->
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style type="text/css" id="media-query">
+    body {
+      margin: 0;
+      padding: 0; }
+
+    table {
+      border-collapse: collapse;
+      table-layout: fixed; }
+
+    * {
+      line-height: inherit; }
+
+    a[x-apple-data-detectors=true] {
+      color: inherit !important;
+      text-decoration: none !important; }
+
+    [owa] .img-container div, [owa] .img-container button {
+      display: block !important; }
+
+    [owa] .fullwidth button {
+      width: 100% !important; }
+
+    .ie-browser .col, [owa] .block-grid .col {
+      display: table-cell;
+      float: none !important;
+      vertical-align: top; }
+
+    .ie-browser .num12, .ie-browser .block-grid, [owa] .num12, [owa] .block-grid {
+      width: 600px !important; }
+
+    .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div {
+      line-height: 100%; }
+
+    .ie-browser .mixed-two-up .num4, [owa] .mixed-two-up .num4 {
+      width: 200px !important; }
+
+    .ie-browser .mixed-two-up .num8, [owa] .mixed-two-up .num8 {
+      width: 400px !important; }
+
+    .ie-browser .block-grid.two-up .col, [owa] .block-grid.two-up .col {
+      width: 300px !important; }
+
+    .ie-browser .block-grid.three-up .col, [owa] .block-grid.three-up .col {
+      width: 200px !important; }
+
+    .ie-browser .block-grid.four-up .col, [owa] .block-grid.four-up .col {
+      width: 150px !important; }
+
+    .ie-browser .block-grid.five-up .col, [owa] .block-grid.five-up .col {
+      width: 120px !important; }
+
+    .ie-browser .block-grid.six-up .col, [owa] .block-grid.six-up .col {
+      width: 100px !important; }
+
+    .ie-browser .block-grid.seven-up .col, [owa] .block-grid.seven-up .col {
+      width: 85px !important; }
+
+    .ie-browser .block-grid.eight-up .col, [owa] .block-grid.eight-up .col {
+      width: 75px !important; }
+
+    .ie-browser .block-grid.nine-up .col, [owa] .block-grid.nine-up .col {
+      width: 66px !important; }
+
+    .ie-browser .block-grid.ten-up .col, [owa] .block-grid.ten-up .col {
+      width: 60px !important; }
+
+    .ie-browser .block-grid.eleven-up .col, [owa] .block-grid.eleven-up .col {
+      width: 54px !important; }
+
+    .ie-browser .block-grid.twelve-up .col, [owa] .block-grid.twelve-up .col {
+      width: 50px !important; }
+
+    @media only screen and (min-width: 620px) {
+      .block-grid {
+        width: 600px !important; }
+      .block-grid .col {
+        display: table-cell;
+        Float: none !important;
+        vertical-align: top; }
+      .block-grid .col.num12 {
+        width: 600px !important; }
+      .block-grid.mixed-two-up .col.num4 {
+        width: 200px !important; }
+      .block-grid.mixed-two-up .col.num8 {
+        width: 400px !important; }
+      .block-grid.two-up .col {
+        width: 300px !important; }
+      .block-grid.three-up .col {
+        width: 200px !important; }
+      .block-grid.four-up .col {
+        width: 150px !important; }
+      .block-grid.five-up .col {
+        width: 120px !important; }
+      .block-grid.six-up .col {
+        width: 100px !important; }
+      .block-grid.seven-up .col {
+        width: 85px !important; }
+      .block-grid.eight-up .col {
+        width: 75px !important; }
+      .block-grid.nine-up .col {
+        width: 66px !important; }
+      .block-grid.ten-up .col {
+        width: 60px !important; }
+      .block-grid.eleven-up .col {
+        width: 54px !important; }
+      .block-grid.twelve-up .col {
+        width: 50px !important; } }
+
+    @media (max-width: 620px) {
+      .block-grid, .col {
+        min-width: 320px !important;
+        max-width: 100% !important; }
+      .block-grid {
+        width: calc(100% - 40px) !important; }
+      .col {
+        width: 100% !important; }
+      .col > div {
+        margin: 0 auto; }
+      img.fullwidth {
+        max-width: 100% !important; } }
+
+  </style>
 </head>
-<body>
-<div>
-  <div class="profile_pic">
-    <i class="fa fa-paw fa-5x"></i>
-  </div>
-</div>
-<div>
-  <div>
-    <div style='font-size:14px; color: #000000;width: 900px;'>
-      <h2>Hi <%= @name %>, </h2>
-      <br>
-      <h4><%= @messages %></h4>
-      <br>
+<!--[if mso]>
+<body class="mso-container" style="background-color:#FFFFFF;">
+<![endif]-->
+<!--[if !mso]><!-->
+<body class="clean-body" style="margin: 0;padding: 0;-webkit-text-size-adjust: 100%;background-color: #FFFFFF">
+<!--<![endif]-->
+<div class="nl-container" style="min-width: 320px;Margin: 0 auto;background-color: #FFFFFF">
+  <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color: #FFFFFF;"><![endif]-->
 
-      <a href="<%= @path %>">
-        Click here to login/register
-      </a>
-      <br/>
-      <a href="<%= @decline_path %>">
-        Decline Invites
-      </a>
+  <div style="background-color:#323341;">
+    <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">
+      <div style="border-collapse: collapse;display: table;width: 100%;">
+        <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#323341;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+        <!--[if (mso)|(IE)]><td align="center" width="600" style=" width:600px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+        <div class="col num12" style="min-width: 320px;max-width: 600px;width: 600px;width: calc(28000% - 167400px);background-color: transparent;">
+          <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+          <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+            <div style="Margin-top:0px; Margin-bottom:0px;">
+
+
+              <div align="center" class="img-container center">
+                <!--[if !mso]><!--><div style="Margin-right: 0px;Margin-left: 0px;"><!--<![endif]-->
+                <!--[if mso]><table width="175" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right:  0px; padding-left: 0px;" align="center"><![endif]-->
+
+                <img class="center" align="center" border="0" src="<%= @url %>/img/logos/bbbbb.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block;border: 0;height: auto;float: none;width: 100%;max-width: 175px" width="175">
+
+                <!--[if mso]></td></tr></table><![endif]-->
+                <!--[if !mso]><!--></div><!--<![endif]-->
+              </div>
+
+
+              <!--[if !mso]><!--><div align="center" style="Margin-right: 10px;Margin-left: 10px;"><!--<![endif]-->
+              <div style="line-height: 10px; font-size:1px">&nbsp;</div>
+              <!--[if (mso)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px;padding-left: 10px;"><![endif]-->
+              <div style="border-top: 10px solid transparent; width:100%; font-size:1px;">&nbsp;</div>
+              <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
+              <div style="line-height:10px; font-size:1px">&nbsp;</div>
+              <!--[if !mso]><!--></div><!--<![endif]-->
+
+
+              <!--[if !mso]><!--><div style="Margin-right: 0px; Margin-left: 0px;"><!--<![endif]-->
+              <div style="line-height: 30px; font-size: 1px">&nbsp;</div>
+              <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px;"><![endif]-->
+
+              <div style="font-size:12px;line-height:14px;color:#ffffff;font-family:'Montserrat', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center"><span style="font-size: 36px; line-height: 43px;">You Received a Tender Invitation</span></p></div>
+
+              <!--[if mso]></td></tr></table><![endif]-->
+
+              <div style="line-height: 30px; font-size: 1px">&nbsp;</div>
+              <!--[if !mso]><!--></div><!--<![endif]-->
+
+            </div>
+          </div>
+          <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+        </div>
+        <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+      </div>
+    </div>
+  </div>    <div style="background-color:transparent;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="600" style=" width:600px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num12" style="min-width: 320px;max-width: 600px;width: 600px;width: calc(28000% - 167400px);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:15px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:12px;line-height:14px;color:#555555;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">
+              <strong><span style="font-size: 28px; line-height: 33px;">
+              <%= @tender.title %>
+            </span></strong></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
     </div>
   </div>
-  <br>
-  <h3>Happy Tendering!</h3>
-  <h2>Tendercon Team</h2>
+</div>    <div style="background-color:transparent;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="600" style=" width:600px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num12" style="min-width: 320px;max-width: 600px;width: 600px;width: calc(28000% - 167400px);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;">&nbsp;</span></p><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="line-height: 16px; font-size: 14px;">Hi <%= @user.first_name %>,</span></p><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;">&nbsp;</span><br></p><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="line-height: 16px; font-size: 14px;">Congratulations on receiving this tender invitation.</span></p><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="line-height: 16px; font-size: 14px;"><br data-mce-bogus="1"></span></p><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="line-height: 16px; font-size: 14px;"><%= @tender.user.first_name %> at <%= @tender.user.trade_name %> has just published this construction tender on Tendercon and has personally invited you to quote on this.</span></p><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;">&nbsp;</span><br></p><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;">To commence the quoting process, please click on the Accept Invitation button below and you'll be able to access all the relevant details and documentations.</span></p><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;">&nbsp;</span><br></p><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;">To help you get started, we've provided a quick summary of this tender.</span></p><p style="margin: 0;font-size: 12px;line-height: 14px">&nbsp;</p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>    <div style="background-color:#D4F4E6;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#D4F4E6;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="600" style=" width:600px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num12" style="min-width: 320px;max-width: 600px;width: 600px;width: calc(28000% - 167400px);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center"><strong><span style="font-size: 18px; line-height: 21px;">Tender Snapshot&nbsp;</span></strong></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>    <div style="background-color:#D4F4E6;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid mixed-two-up">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#D4F4E6;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="200" style=" width:200px; padding-right: 10px; padding-left: 10px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num4" style="Float: left;max-width: 320px;min-width: 200px;width: 200px;width: calc(72200px - 12000%);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: left"><strong><span style="font-size: 14px; line-height: 16px;">﻿Location</span></strong><br></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></td><td align="center" width="400" style=" width:400px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num8" style="Float: left;min-width: 320px;max-width: 400px;width: 400px;width: calc(9000% - 55400px);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;color:#555555;font-family:'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;"><%= @tender.address %></span></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>    <div style="background-color:#D4F4E6;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid mixed-two-up">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#D4F4E6;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="200" style=" width:200px; padding-right: 10px; padding-left: 10px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num4" style="Float: left;max-width: 320px;min-width: 200px;width: 200px;width: calc(72200px - 12000%);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: left"><strong><span style="font-size: 14px; line-height: 16px;">Tender Value&nbsp;</span></strong></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></td><td align="center" width="400" style=" width:400px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num8" style="Float: left;min-width: 320px;max-width: 400px;width: 400px;width: calc(9000% - 55400px);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;"><%= @tender_value.range %></span></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>    <div style="background-color:#D4F4E6;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid mixed-two-up">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#D4F4E6;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="200" style=" width:200px; padding-right: 10px; padding-left: 10px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num4" style="Float: left;max-width: 320px;min-width: 200px;width: 200px;width: calc(72200px - 12000%);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: left"><strong><span style="font-size: 14px; line-height: 16px;">Tender Documents &nbsp;</span></strong></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></td><td align="center" width="400" style=" width:400px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num8" style="Float: left;min-width: 320px;max-width: 400px;width: 400px;width: calc(9000% - 55400px);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;line-height: 17px;font-size: 14px"><span style="line-height: 16px; font-size: 14px;">Ready for download at <a style="color:#0000FF;text-decoration: underline;" href="http://www.tendercon.com" target="_blank" rel="noopener noreferrer">www.tendercon.com</a></span></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>    <div style="background-color:#D4F4E6;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid mixed-two-up">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#D4F4E6;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="200" style=" width:200px; padding-right: 10px; padding-left: 10px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num4" style="Float: left;max-width: 320px;min-width: 200px;width: 200px;width: calc(72200px - 12000%);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;"><strong>Trade invited for</strong></span></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></td><td align="center" width="400" style=" width:400px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num8" style="Float: left;min-width: 320px;max-width: 400px;width: 400px;width: calc(9000% - 55400px);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;"><%= @trade %></span></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>    <div style="background-color:#D4F4E6;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid mixed-two-up">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#D4F4E6;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="200" style=" width:200px; padding-right: 10px; padding-left: 10px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num4" style="Float: left;max-width: 320px;min-width: 200px;width: 200px;width: calc(72200px - 12000%);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px"><strong><span style="font-size: 14px; line-height: 16px;">Quote Due Date</span></strong></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></td><td align="center" width="400" style=" width:400px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num8" style="Float: left;min-width: 320px;max-width: 400px;width: 400px;width: calc(9000% - 55400px);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;"><%= @tender.tender_quote.quote_date %></span></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>    <div style="background-color:#D4F4E6;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#D4F4E6;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="600" style=" width:600px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num12" style="min-width: 320px;max-width: 600px;width: 600px;width: calc(28000% - 167400px);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Verdana, Geneva, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center"><strong><span style="font-size: 14px; line-height: 16px;">To access all details and download trade documents, click on the Accept Invitation button below.</span></strong></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>    <div style="background-color:#D4F4E6;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid two-up">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#D4F4E6;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="300" style=" width:300px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num6" style="Float: left;max-width: 320px;min-width: 300px;width: 300px;width: calc(12300px - 2000%);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:15px; Margin-bottom:5px;">
+
+
+
+            <div align="center" class="button-container center" style="Margin-right: 10px;Margin-left: 10px;">
+              <div style="line-height:10px;font-size:1px">&nbsp;</div>
+              <a href="http://www.tendercon.com" target="_blank" style="color: #ffffff; text-decoration: none;">
+                <!--[if mso]>
+                <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:38px; v-text-anchor:middle; width:198px;" arcsize="11%" strokecolor="#3AE04D" fillcolor="#3AE04D" >
+                  <w:anchorlock/><center style="color:#ffffff; font-family:'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:14px;">
+                <![endif]-->
+                <!--[if !mso]><!-->
+
+
+                  <div style="color: #ffffff; background-color: #3AE04D; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; max-width: 178px; width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 20px; padding-bottom: 5px; padding-left: 20px; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: center;">
+                    <!--<![endif]-->
+                  <span style="font-size:12px;line-height:24px;"><span style="font-size: 14px; line-height: 28px;" data-mce-style="font-size: 14px;">
+                    ACCEPT INVITATION</span>
+                  </span>
+                    <!--[if !mso]><!-->
+                  </div>
+
+                <!--<![endif]-->
+                <!--[if mso]>
+                </center>
+                </v:roundrect>
+                <![endif]-->
+              </a>
+              <div style="line-height:10px;font-size:1px">&nbsp;</div>
+            </div>
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></td><td align="center" width="300" style=" width:300px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num6" style="Float: left;max-width: 320px;min-width: 300px;width: 300px;width: calc(12300px - 2000%);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:15px; Margin-bottom:5px;">
+
+
+
+            <div align="center" class="button-container center" style="Margin-right: 10px;Margin-left: 10px;">
+              <div style="line-height:10px;font-size:1px">&nbsp;</div>
+              <a href="<%= @decline_path %>" target="_blank" style="color: #ffffff; text-decoration: none;">
+                <!--[if mso]>
+                <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:38px; v-text-anchor:middle; width:206px;" arcsize="11%" strokecolor="#E03A3A" fillcolor="#E03A3A" >
+                  <w:anchorlock/><center style="color:#ffffff; font-family:'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:14px;">
+                <![endif]-->
+                <!--[if !mso]><!-->
+
+                  <div style="color: #ffffff; background-color: #E03A3A; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; max-width: 186px; width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 20px; padding-bottom: 5px; padding-left: 20px; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: center;">
+                    <!--<![endif]-->
+                  <span style="font-size:12px;line-height:24px;">
+                    <span style="font-size: 14px; line-height: 28px;" data-mce-style="font-size: 14px;">DECLINE INVITATION&nbsp;</span>
+                  </span>
+                    <!--[if !mso]><!-->
+                  </div>
+
+                <!--<![endif]-->
+                <!--[if mso]>
+                </center>
+                </v:roundrect>
+                <![endif]-->
+              </a>
+              <div style="line-height:10px;font-size:1px">&nbsp;</div>
+            </div>
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>    <div style="background-color:transparent;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:transparent;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="600" style=" width:600px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num12" style="min-width: 320px;max-width: 600px;width: 600px;width: calc(28000% - 167400px);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:15px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;"></span><span style="font-size: 14px; line-height: 16px;">Happy Tendering!</span></p><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;">&nbsp;</span><br></p><p style="margin: 0;font-size: 12px;line-height: 14px"><span style="font-size: 14px; line-height: 16px;">Tendercon Team</span></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>    <div style="background-color:#4DB5E1;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#4DB5E1;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="600" style=" width:600px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num12" style="min-width: 320px;max-width: 600px;width: 600px;width: calc(28000% - 167400px);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:5px; Margin-bottom:5px;">
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:14px;font-family:Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif;color:#555555;text-align:left;"><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center"><span style="font-size: 28px; line-height: 33px; color: rgb(255, 255, 255);">What is Tendercon?</span></p><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center">&nbsp;<br></p><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center"><span style="font-size: 14px; line-height: 16px; color: rgb(255, 255, 255);">Great question! </span><span style="color: rgb(255, 255, 255); font-size: 14px; line-height: 16px;">Tendercon is an Australian made online service created to help subbies achieve two clear goals:</span><br></p><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center">&nbsp;<br></p><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center"><span style="font-size: 14px; line-height: 16px; color: rgb(255, 255, 255);">1. Expand your business development opportunities by connecting you with &nbsp;construction tenders by qualified head contractors.</span></p><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center">&nbsp;<br></p><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center"><span style="font-size: 14px; line-height: 16px; color: rgb(255, 255, 255);">2. Provide a one stop destination to access tender details, download documents, communicate with the head contractors and submit quotes.</span></p><p style="margin: 0;font-size: 12px;line-height: 14px;text-align: center">&nbsp;<br></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+
+
+            <div align="center" class="button-container center" style="Margin-right: 10px;Margin-left: 10px;">
+              <div style="line-height:10px;font-size:1px">&nbsp;</div>
+              <a href="" target="_blank" style="color: #3AAEE0; text-decoration: none;">
+                <!--[if mso]>
+                <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="" style="height:38px; v-text-anchor:middle; width:172px;" arcsize="19%" strokecolor="#FFFFFF" fillcolor="#FFFFFF" >
+                  <w:anchorlock/><center style="color:#3AAEE0; font-family:'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:14px;">
+                <![endif]-->
+                <!--[if !mso]><!-->
+                <div style="color: #3AAEE0; background-color: #FFFFFF; border-radius: 7px; -webkit-border-radius: 7px; -moz-border-radius: 7px; max-width: 152px; width: auto; border-top: 0px solid transparent; border-right: 0px solid transparent; border-bottom: 0px solid transparent; border-left: 0px solid transparent; padding-top: 5px; padding-right: 20px; padding-bottom: 5px; padding-left: 20px; font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: center;">
+                  <!--<![endif]-->
+                  <span style="font-size:12px;line-height:24px;"><span style="font-size: 14px; line-height: 28px;" data-mce-style="font-size: 14px; line-height: 32px;">TELL ME MORE&nbsp;</span></span>
+                  <!--[if !mso]><!-->
+                </div>
+                <!--<![endif]-->
+                <!--[if mso]>
+                </center>
+                </v:roundrect>
+                <![endif]-->
+              </a>
+              <div style="line-height:10px;font-size:1px">&nbsp;</div>
+            </div>
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>    <div style="background-color:#323341;">
+  <div style="Margin: 0 auto;min-width: 320px;max-width: 600px;width: 600px;width: calc(29000% - 179200px);overflow-wrap: break-word;word-wrap: break-word;word-break: break-word;background-color: transparent;" class="block-grid ">
+    <div style="border-collapse: collapse;display: table;width: 100%;">
+      <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="background-color:#323341;" align="center"><table cellpadding="0" cellspacing="0" border="0" style="width: 600px;"><tr class="layout-full-width" style="background-color:transparent;"><![endif]-->
+
+      <!--[if (mso)|(IE)]><td align="center" width="600" style=" width:600px; padding-right: 0px; padding-left: 0px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><![endif]-->
+      <div class="col num12" style="min-width: 320px;max-width: 600px;width: 600px;width: calc(28000% - 167400px);background-color: transparent;">
+        <!--[if (!mso)&(!IE)]><!--><div style="border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;"><!--<![endif]-->
+        <div style="background-color: transparent; display: inline-block!important; width: 100% !important;">
+          <div style="Margin-top:15px; Margin-bottom:15px;">
+
+
+
+            <div align="center" style="Margin-right: 10px; Margin-left: 10px; Margin-bottom: 10px;">
+              <div style="line-height:10px;font-size:1px">&nbsp;</div>
+              <div style="display: table; max-width:94px;">
+                <!--[if (mso)|(IE)]><table width="94" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; mso-table-lspace: 0pt;mso-table-rspace: 0pt; width:94px;"><tr><td width="37" style="width:37px;" valign="top"><![endif]-->
+                <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-spacing: 0;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 5px">
+                  <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
+                    <a href="https://www.instagram.com/tendercon/" title="Tendercon @ Instagram" target="_blank">
+                      <img src="images/instagram@2x.png" alt="Instagram" title="Tendercon @ Instagram" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block;border: none;height: auto;float: none;max-width: 32px !important">
+                    </a>
+                    <div style="line-height:5px;font-size:1px">&nbsp;</div>
+                  </td></tr>
+                  </tbody></table>
+                <!--[if (mso)|(IE)]></td><td width="37" style="width:37px;" valign="top"><![endif]-->
+                <table align="left" border="0" cellspacing="0" cellpadding="0" width="32" height="32" style="border-spacing: 0;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;vertical-align: top;Margin-right: 0">
+                  <tbody><tr style="vertical-align: top"><td align="left" valign="middle" style="word-break: break-word;border-collapse: collapse !important;vertical-align: top">
+                    <a href="https://www.linkedin.com/company/tendercon" title="Tendercon @ LinkedIn" target="_blank">
+                      <img src="images/linkedin@2x.png" alt="LinkedIn" title="Tendercon @ LinkedIn" width="32" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: block;border: none;height: auto;float: none;max-width: 32px !important">
+                    </a>
+                    <div style="line-height:5px;font-size:1px">&nbsp;</div>
+                  </td></tr>
+                  </tbody></table>
+                <!--[if (mso)|(IE)]></td></tr></table><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td>&nbsp;</td></tr></table><![endif]-->
+              </div>
+            </div>
+
+
+            <!--[if !mso]><!--><div style="Margin-right: 10px; Margin-left: 10px;"><!--<![endif]-->
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px;"><![endif]-->
+
+            <div style="font-size:12px;line-height:18px;color:#FFFFFF;font-family:'Source Sans Pro', Tahoma, Verdana, Segoe, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 21px;text-align: center"><span style="font-size: 12px; line-height: 18px;">You are receiving this email because you were invited to quote on a tender by a Tendercon Head Contractor&nbsp;</span></p></div>
+
+            <!--[if mso]></td></tr></table><![endif]-->
+
+            <div style="line-height: 10px; font-size: 1px">&nbsp;</div>
+            <!--[if !mso]><!--></div><!--<![endif]-->
+
+          </div>
+        </div>
+        <!--[if (!mso)&(!IE)]><!--></div><!--<![endif]-->
+      </div>
+      <!--[if (mso)|(IE)]></tr></table></td></tr></table><![endif]-->
+    </div>
+  </div>
+</div>   <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
 </div>
-</body>
-</html>
+
+
+</body></html>

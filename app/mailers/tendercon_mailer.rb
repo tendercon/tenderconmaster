@@ -28,12 +28,17 @@ class TenderconMailer < ActionMailer::Base
     mail(to: @email, subject: 'Reset Password')
   end
 
-  def sent_sc_invites email,name,trade,path,decline_path
+  def sent_sc_invites email,name,trade,path,decline_path,tender_id,url
+    @tender = Tender.find(tender_id)
+    @tender_value = TenderValue.find(@tender.tender_value_id)
+    @user = User.where(:email => email).first
     puts "decline_path -----------> #{decline_path.inspect}"
     @name = name
     @email = email
     @path = path
     @decline_path = decline_path
+    @trade = trade
+    @url = url
     @messages = "You are invited by HEAD Contractor to quote on #{trade} project"
     mail(to: @email, subject: 'Invited SC')
   end
