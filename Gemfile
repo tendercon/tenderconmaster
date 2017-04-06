@@ -131,6 +131,7 @@ end
 
 gem 'figaro'
 gem 'puma'
+gem 'smtpapi'
 gem 'sshkit-sudo'
 gem 'daemons'
 

@@ -13,8 +13,6 @@ class ApplicationController < ActionController::Base
 
 
   def is_logged?
-
-
     if session[:time_logged].present?
       if session[:time_logged] <= Time.now
         session[:time_logged] = nil

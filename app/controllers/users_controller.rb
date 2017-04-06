@@ -565,7 +565,7 @@ class UsersController < ApplicationController
 
       TenderconCode.where(:name => tendercon_id).destroy_all
 
-      TenderconMailer.welcome_email(@user.email,@user.id).deliver_now
+      TenderconMailer.welcome_email(@user.email,@user.id,root_url).deliver_now
       render :json => { :state => 'valid'}
     else
       render :json => { :state => 'invalid'}
@@ -1326,7 +1326,7 @@ class UsersController < ApplicationController
 
       else
 
-        @user = User.find(@id)
+        @user = User.where(:email => @email).first
         new_password = User.rehash_password password
         new_confirmed_password = User.rehash_password password
         puts "PASSWORD:#{new_password}"
