@@ -144,9 +144,10 @@ class InvitesController < ApplicationController
       notification.save
 
       #TenderconMailer.delay.sent_invitation_email(@user.email,admin_name,invited_name,request.host_with_port,admin.company,@user.id)
-      puts "TEST =============> TEST =========>"
+      puts "TEST =============> TEST =========> #{request.host_with_port}"
+      puts "TEST =============> ROOT =========> #{root_path}"
 
-      TenderconMailer.sent_invitation_email(@user.email,admin_name,invited_name,request.host_with_port,admin.company,@user.id).deliver_now
+      TenderconMailer.sent_invitation_email(@user.email,admin_name,invited_name,request.host_with_port,admin.company,@user.id,@parent.id).deliver_now
       #render :json => { :state => 'valid'}
     end
     @invited_users = User.where("parent_id = #{@user.parent_id} AND position is null")

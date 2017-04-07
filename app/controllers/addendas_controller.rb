@@ -293,7 +293,7 @@ class AddendasController < ApplicationController
           end
           notification.save
           user = User.find(tender_approved.sc_id)
-          TenderconMailer.tender_changed(params[:subject],params[:details],user.email,user.first_name,@tender.title,@addenda.addenda_type).deliver_now
+          #TenderconMailer.tender_changed(params[:subject],params[:details],user.email,user.first_name,@tender.title,@addenda.addenda_type).deliver_now
         end
       end
     end
@@ -309,6 +309,7 @@ class AddendasController < ApplicationController
         end
 
         message = "#{@tender.user.trade_name} has issued a new Addendum on project #{@tender.title}"
+        TenderconMailer.tender_changed(tendering.sc_id,@tender.id,@addenda.created_at.strftime("%d.%m.%Y %H:%M %p"),"http://"+request.host_with_port+"/users/login").deliver_now
         unless addenda.present?
           AddendaNotification.notification(tendering.sc_id,@tender.id,@tender.user_id,@addenda.id,message,"HC")
         end

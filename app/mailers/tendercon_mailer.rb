@@ -47,20 +47,74 @@ class TenderconMailer < ActionMailer::Base
 
   end
 
-  def sent_sc_invites email,name,trade,path,decline_path,tender_id,url
-    @tender = Tender.find(tender_id)
-    @tender_value = TenderValue.find(@tender.tender_value_id)
+  def sent_sc_invites email,name,trade,path,decline_path,parent_id
+    @parent = User.find(parent_id)
+    #@tender = Tender.find(tender_id)
+    #@tender_value = TenderValue.find(@tender.tender_value_id)
     @user = User.where(:email => email).first
-    puts "decline_path -----------> #{decline_path.inspect}"
     @name = name
     @email = email
     @path = path
     @decline_path = decline_path
     @trade = trade
-    @url = url
-    @messages = "You are invited by HEAD Contractor to quote on #{trade} project"
-    mail(to: @email, subject: 'Invited SC')
+    puts "path =======> #{path.inspect}"
+
+
+    headers "X-SMTPAPI" => {
+        sub: {
+            ":sc_first_name" => [name],
+            ":hc_first_name" => [@parent.first_name],
+            ":hc_company_trade_name" => [@parent.trade_name],
+            ":link1" => [path],
+            ":link2" => [path]
+        },
+        filters: {
+            templates: {
+                settings: {
+                    enable: 1,
+                    template_id: "1caed6e3-5c72-49db-9f6e-6b14070d7f16",
+                }
+            }
+        }
+    }.to_json
+    mail(from: 'invite@tendercon.com', to: email, subject: 'SC Invitation to join HC Network ')
+
   end
+
+  def publish_tender_invites invited_email,invited_name,trade,path,decline_path,tender,url_with_port,parent_id
+
+    tender = Tender.find(tender)
+    tender_value = TenderValue.find(tender.tender_value_id)
+    puts "invited_email =======> #{invited_email}"
+    puts "tender =======> #{tender.inspect}"
+
+
+    headers "X-SMTPAPI" => {
+        sub: {
+            ":invited_sc_first_name" => invited_name,
+            ":hc_first_name" => @parent.first_name,
+            ":hc_company_trade_name" => @parent.trade_name,
+            # ":tender_details_city" => tender.address,
+            # ":tender_Project_Value_Range" => tender_value.range,
+            # ":invited_trade_name" => trade,
+            # ":tender_details_quote_due_date" => tender.tender_quote.quote_date,
+            # ":link1" => path,
+            # ":link2" => decline_path,
+            # ":link3" => url_with_port
+        },
+        filters: {
+            templates: {
+                settings: {
+                    enable: 1,
+                    template_id: "1caed6e3-5c72-49db-9f6e-6b14070d7f16",
+                }
+            }
+        }
+    }.to_json
+
+    mail(from: 'invite@tendercon.com', to: invited_email, subject: 'SC Invitation to join HC Network ')
+  end
+
 
   def registration_email email,root_path,user_id,unique_key
     user = User.find(user_id)
@@ -189,31 +243,41 @@ class TenderconMailer < ActionMailer::Base
 
   end
 
-  def sent_invitation_email email,admin_name,user_invited_name,path,company_name,user_id
+  def sent_invitation_email email,admin_name,user_invited_name,path,company_name,user_id,parent_id
     @user = User.find(user_id)
+    @parent = User.find(parent_id)
     @user_id = user_id
     @email = email
     @path = path
     @first_name = user_invited_name
-    @messages = "#{admin_name} has invited you to be part of #{company_name}. "
-    @root_path = "http://#{@root_path}/invites/registration?id=#{@user_id}"
+    #@messages = "#{admin_name} has invited you to be part of #{company_name}. "
+    @root_path = "http://#{path}/invites/registration?id=#{@user_id}"
 
     if @user.role == 'Sub Contractor'
       @subject = "SC Admin Invites Team Member"
       @template_id = "a7cda2b3-a718-4aa1-8217-77952bb9018a"
+      source = {
+          ":invited_sc_first_name" => [user_invited_name],
+          ":inviter_sc_first_name" => [@parent.first_name],
+          ":sc_company_trade_name" => [@parent.trade_name],
+          ":link1" => [@root_path],
+          ":link2" => [@root_path]
+      }
     else
       @subject = "HC Admin Invites Team Member"
       @template_id = "3258380e-d7fd-44a9-a724-f506b416dd7c"
+      source = {
+          ":invited_hc_first_name" => [user_invited_name],
+          ":Inviter_hc_first_name" => [@parent.first_name],
+          ":HC_Company_Trade_name" => [@parent.trade_name],
+          ":link1" => [@root_path],
+          ":link2" => [@root_path]
+      }
     end
 
 
     headers "X-SMTPAPI" => {
-        sub: {
-            ":first_name" => [@user.first_name],
-            ":link1" => [@root_path],
-            ":link2" => [@root_path],
-            ":company_trade_name" => [@user.trade_name]
-        },
+        sub: source,
         filters: {
             templates: {
                 settings: {
@@ -287,12 +351,53 @@ class TenderconMailer < ActionMailer::Base
     mail(to: email, subject: "#{subject}")
   end
 
-  def tender_changed subject,details,email,first_name,tender_title,addenda_type
-    subject = "#{subject} Addenda added."
-    @first_name = first_name
-    @messages = "Addenda added from project #{tender_title}"
-    @details =  details
-    @type = addenda_type
-    mail(to: email, subject: subject )
+  def tender_changed sc_id,tender,addenda_issued,path
+
+    @user  = User.find(sc_id)
+    @tender = Tender.find(tender)
+    headers "X-SMTPAPI" => {
+        sub: {
+            ":tender_title" => [@tender.title],
+            ":tendering_sc_first_name" => [@user.first_name],
+            ":head_first_name" => [@tender.user.first_name],
+            ":addenda_published_time" => [addenda_issued],
+            ":link" => [path]
+        },
+        filters: {
+            templates: {
+                settings: {
+                    enable: 1,
+                    template_id: '2dab32ee-8c06-4cf2-a2fc-58140140f4d0',
+                }
+            }
+        }
+    }.to_json
+    mail(from: 'tenders@tendercon.com', to: @user.email)
   end
+
+  def sent_quotes sc_id,tender,quote_trade,path
+    @user  = User.find(sc_id)
+    @tender = Tender.find(tender)
+    headers "X-SMTPAPI" => {
+        sub: {
+            ":tender_title" => [@tender.title],
+            ":sc_company_trade_name" => [@user.trade_name],
+            ":submitted_quote_sc_first_name" => [@user.first_name],
+            ":hc_first_name" => [@tender.user.first_name],
+            ":quote_trade" => [quote_trade],
+            ":link" => [path]
+        },
+        filters: {
+            templates: {
+                settings: {
+                    enable: 1,
+                    template_id: '73fdbf6e-a21e-4a6e-85a5-abf1cf7acbd9',
+                }
+            }
+        }
+    }.to_json
+    mail(from: 'tenders@tendercon.com', to: @tender.user.email)
+
+  end
+
 end

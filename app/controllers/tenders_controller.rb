@@ -481,7 +481,8 @@ class TendersController < ApplicationController
             sc_invite_notif.message = "Invitation for tender #{tender.title} (#{t.name})"
             sc_invite_notif.save
             #TenderconMailer.delay.sent_sc_invites(a.email,a.name,t.name,path,decline_path)
-            TenderconMailer.sent_sc_invites(a.email,a.name,t.name,path,decline_path,tender_id,"http://#{request.host_with_port}").deliver_now
+            puts "======================> TEST"
+            TenderconMailer.publish_tender_invites(a.email,a.name,t.name,path,decline_path,tender_id,"http://#{request.host_with_port}",tender.user_id).deliver_now
           end
         end
       end
