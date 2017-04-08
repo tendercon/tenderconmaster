@@ -1395,7 +1395,7 @@
           data: {id: user_id,postion:position,new_position:new_position,f_name:f_name,l_name:l_name},
           url: "/invites/add_user_position"
         }).done(function (data) {
-          window.location = "steps_completed";
+          window.location = "steps_completed?invited=true";
         });
       }else{
         $('.error_position').show();

@@ -270,7 +270,7 @@ class UsersController < ApplicationController
         user_plan.amount = 0.00
         user_plan.save
 
-        TenderconMailer.delay.registration_email(@user.email,root_url,@user.id,@user.unique_key)
+        #TenderconMailer.delay.registration_email(@user.email,root_url,@user.id,@user.unique_key)
         User.delay(run_at: 20.minutes.from_now).execute_token_expiration(@user.id)
         flash[:notice] = "Your account has been successfully created."
         redirect_to registration_completed_users_path(:id => @user.id)
@@ -682,7 +682,8 @@ class UsersController < ApplicationController
             end
           else
             if params[:invites].present?
-              redirect_to tendercon_steps_users_path(:id => @user.id,:invites => true)
+              redirect_to registration_completed_users_path(:id => @user.id)
+              #redirect_to tendercon_steps_users_path(:id => @user.id,:invites => true)
             else
               redirect_to welcome_page_users_path(:id=>@user.id)
             end

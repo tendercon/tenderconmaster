@@ -11,8 +11,14 @@ class Trade < ActiveRecord::Base
   validates :name, presence: true
 
   def self.trade_name(id)
-     trade = find(id)
-     trade.name
+     trade = where(:id => id).first
+
+     if trade.present?
+       trade.name
+     else
+       nil
+     end
+
   end
 
 

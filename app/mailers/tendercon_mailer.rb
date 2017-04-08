@@ -77,54 +77,23 @@ class TenderconMailer < ActionMailer::Base
             }
         }
     }.to_json
-    mail(from: 'invite@tendercon.com', to: email, subject: 'SC Invitation to join HC Network ')
+    mail(from: 'invite@tendercon.com', to: email)
 
   end
 
-  def publish_tender_invites invited_email,invited_name,trade,path,decline_path,tender,url_with_port,parent_id
-
-    tender = Tender.find(tender)
-    tender_value = TenderValue.find(tender.tender_value_id)
-    puts "invited_email =======> #{invited_email}"
-    puts "tender =======> #{tender.inspect}"
-
-
-    headers "X-SMTPAPI" => {
-        sub: {
-            ":invited_sc_first_name" => invited_name,
-            ":hc_first_name" => @parent.first_name,
-            ":hc_company_trade_name" => @parent.trade_name,
-            # ":tender_details_city" => tender.address,
-            # ":tender_Project_Value_Range" => tender_value.range,
-            # ":invited_trade_name" => trade,
-            # ":tender_details_quote_due_date" => tender.tender_quote.quote_date,
-            # ":link1" => path,
-            # ":link2" => decline_path,
-            # ":link3" => url_with_port
-        },
-        filters: {
-            templates: {
-                settings: {
-                    enable: 1,
-                    template_id: "1caed6e3-5c72-49db-9f6e-6b14070d7f16",
-                }
-            }
-        }
-    }.to_json
-
-    mail(from: 'invite@tendercon.com', to: invited_email, subject: 'SC Invitation to join HC Network ')
-  end
-
-
-  def registration_email email,root_path,user_id,unique_key
+  def registration_email email,root_path,user_id,unique_key,path=nil
     user = User.find(user_id)
     @root_path = root_path
     @user_id = user_id
     @email = user.first_name
     @unique_key = unique_key
     @messages = 'You are successfully registered to Tendercon'
+    if path.present?
+      @link = path
+    else
+      @link = "#{@root_path}users/validate_account?id=#{@user_id}&email=#{@email}&token=#{@unique_key}"
+    end
 
-    @link = "#{@root_path}users/validate_account?id=#{@user_id}&email=#{@email}&token=#{@unique_key}"
     headers "X-SMTPAPI" => {
         sub: {
             ":first_name" => [user.first_name],
@@ -215,8 +184,6 @@ class TenderconMailer < ActionMailer::Base
         }
     }.to_json
     mail(from: 'hello@tendercon.com', to: email, subject: 'Welcome')
-
-
   end
 
   def delete_email email,user_id
@@ -292,6 +259,14 @@ class TenderconMailer < ActionMailer::Base
   end
 
   def sent_request_upgrade email,user_name,plan,admin_name
+    @email = email
+    @first_name = admin_name
+    @messages = "Your team member #{user_name} requested to upgrade his plan to #{plan}"
+    mail(to: email, subject: "Request upgrade plan")
+
+  end
+
+  def sc_upgrade_plan email,user_name,plan,admin_name
     @email = email
     @first_name = admin_name
     @messages = "Your team member #{user_name} requested to upgrade his plan to #{plan}"
@@ -397,6 +372,63 @@ class TenderconMailer < ActionMailer::Base
         }
     }.to_json
     mail(from: 'tenders@tendercon.com', to: @tender.user.email)
+
+  end
+
+
+  def invites_publish_tender invited_email,invited_name,trade,path,decline_path,tender,url_with_port,parent_id
+
+    tender = Tender.find(tender)
+    tender_value = TenderValue.find(tender.tender_value_id)
+    puts "invited_email =======> #{invited_email}"
+    puts "tender =======> #{tender.inspect}"
+    @parent = User.find(tender.user_id)
+
+    headers "X-SMTPAPI" => {
+        sub: {
+            ":invited_sc_first_name" => [invited_name],
+            ":hc_first_name" => [@parent.first_name],
+            ":hc_company_trade_name" => [@parent.trade_name],
+            ":tender_details_city" => [tender.address],
+            ":tender_Project_Value_Range" => [tender_value.range],
+            ":invited_trade_name" => [trade],
+            ":tender_details_quote_due_date" => [tender.tender_quote.quote_date],
+            ":link1" => [path],
+            ":link2" => [decline_path],
+            ":link3" => [url_with_port]
+        },
+        filters: {
+            templates: {
+                settings: {
+                    enable: 1,
+                    template_id: "bf4d8810-3a64-4d4c-bd9f-9cc0a26406e8",
+                }
+            }
+        }
+    }.to_json
+
+    mail(from: 'invite@tendercon.com', to: invited_email)
+  end
+
+
+  def sc_upgrade_plan email,path,name
+    headers "X-SMTPAPI" => {
+        sub: {
+            ":upgraded_sc_first_name" => [name],
+            ":link" => [path],
+
+        },
+        filters: {
+            templates: {
+                settings: {
+                    enable: 1,
+                    template_id: "2f080687-cc96-424b-94cd-30c874c84c10",
+                }
+            }
+        }
+    }.to_json
+
+    mail(from: 'hello@tendercon.com', to: email)
 
   end
 
