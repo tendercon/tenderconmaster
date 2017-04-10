@@ -13,14 +13,14 @@ class OpenTender < ActiveRecord::Base
       end
     end
 
-    Rails.logger.info "tender_ids ===> #{tender_ids.inspect}"
+
     if tender_ids.present?
       tender_ids.uniq.each do |tender|
         if users.present?
           users.each do |u|
             user = User.find(u)
             open = where(:tender_id => tender, :user_id => u).first
-            Rails.logger.info "OPEN TENDERS =========> #{open.inspect}"
+
             unless open.present?
               open_tender = self.new
               open_tender.user_id = u

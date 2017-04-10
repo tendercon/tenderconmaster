@@ -614,7 +614,7 @@
   $(document).ready(function(){
 
     <% unless @user.user_subscription.present?  %>
-       //$('#basic').modal('show');
+       $('#basic').modal('show');
     <% end %>
 
     var tender_id;
