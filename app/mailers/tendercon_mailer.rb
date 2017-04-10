@@ -9,7 +9,14 @@ class TenderconMailer < ActionMailer::Base
      @user_id = #user_id
      @email = email
 
-     reset_password_path = "http://#{root_path}/users/reset_password?id=#{@user_id}&email=#{@email}"
+     if @user.role == 'Sub Contractor'
+       reset_password_path = "http://subcontractor.tendercon.com/users/reset_password?id=#{@user_id}&email=#{@email}"
+     else
+       reset_password_path = "http://builder.tendercon.com/users/reset_password?id=#{@user_id}&email=#{@email}"
+     end
+
+
+     #reset_password_path = "http://#{root_path}/users/reset_password?id=#{@user_id}&email=#{@email}"
      headers "X-SMTPAPI" => {
          sub: {
              ":first_name" => [@user.first_name],
@@ -167,16 +174,19 @@ class TenderconMailer < ActionMailer::Base
 
     if @user.role == 'Sub Contractor'
       @template_id = "e162a004-e3a7-4dc2-94e1-778b15e96da1"
+      @root_path_link = "http://subcontractor.tendercon.com/dashboard?user=#{user_id}"
     else
       @template_id = "f83ebfb0-9566-4b2a-8c88-7082307570f8"
+      @root_path_link = "http://builder.tendercon.com/dashboard?user=#{user_id}"
     end
+
 
 
     headers "X-SMTPAPI" => {
         sub: {
             ":first_name" => [@user.first_name],
-            ":link1" => ["#{root_url}dashboard?user=#{user_id}"],
-            ":link2" => ["#{root_url}dashboard?user=#{user_id}"],
+            ":link1" => [@root_path_link],
+            ":link2" => [@root_path_link],
             ":company_trade_name" => [@user.trade_name]
         },
         filters: {
@@ -223,7 +233,14 @@ class TenderconMailer < ActionMailer::Base
     @path = path
     @first_name = user_invited_name
     #@messages = "#{admin_name} has invited you to be part of #{company_name}. "
-    @root_path = "http://#{path}/invites/registration?id=#{@user_id}"
+    #@root_path = "http://#{path}/invites/registration?id=#{@user_id}"
+
+    if @user.role == 'Sub Contractor'
+      @root_path = "http://subcontractor.tendercon.com/invites/registration?id=#{@user_id}"
+    else
+      @root_path = "http://builder.tendercon.com/invites/registration?id=#{@user_id}"
+    end
+
 
     if @user.role == 'Sub Contractor'
       @subject = "SC Admin Invites Team Member"
