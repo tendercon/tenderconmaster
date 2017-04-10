@@ -3,7 +3,6 @@ class DashboardController < ApplicationController
   before_filter :add_to_open_tender, :only => [:index]
 
   def index
-    puts "request.base_url =================> #{request.base_url}"
 
     if params[:newly_user].present?
       TenderconMailer.welcome_email(@user.email,@user.id,root_url).deliver_now

@@ -20,7 +20,6 @@ IntercomRails.config do |config|
   config.enabled_environments = ["production","development"]
   config.include_for_logged_out_users = true
 
-
   # == Current user method/variable
   # The method/variable that contains the logged in user in your controllers.
   # If it is `current_user` or `@user`, then you can ignore this
