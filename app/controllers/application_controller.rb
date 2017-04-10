@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
     if session[:user_logged_id].present?
       UserSubscription.delay.notify(session[:user_logged_id],request.host_with_port)
-      @user = User.find(session[:user_logged_id])
+      @user = User.where(:id => session[:user_logged_id]).first
       if @user.present?
 
         InvitedTenderNotification.where(:status => @user.email).update_all(:sc_id => @user.id)
