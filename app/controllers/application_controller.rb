@@ -100,7 +100,12 @@ class ApplicationController < ActionController::Base
         end
 
         if tender_arr.present?
-          @open_tender_size = Tender.where(:id => tender_arr.uniq,:publish => true,:state => @user.address.state).count()
+          if @user.address.present?
+            @open_tender_size = Tender.where(:id => tender_arr.uniq,:publish => true,:state => @user.address.state).count()
+          else
+            @open_tender_size = 0
+          end
+
         else
           @open_tender_size = 0
         end
