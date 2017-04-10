@@ -91,7 +91,12 @@ class TenderconMailer < ActionMailer::Base
     if path.present?
       @link = path
     else
-      @link = "#{@root_path}users/validate_account?id=#{@user_id}&email=#{@email}&token=#{@unique_key}"
+      if user.role == "Sub Contractor"
+        @link = "http://subcontractor.tendercon.com/users/validate_account?id=#{@user_id}&email=#{@email}&token=#{@unique_key}"
+      else
+        @link = "http://http://builder.tendercon.com/users/validate_account?id=#{@user_id}&email=#{@email}&token=#{@unique_key}"
+      end
+
     end
 
     headers "X-SMTPAPI" => {
