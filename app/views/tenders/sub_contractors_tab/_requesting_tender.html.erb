@@ -66,7 +66,15 @@
     <% if @tender_requesting.present? %>
       <% @tender_requesting.each do |t| %>
         <tr class="trade" id="<%=  t %>" data-title="<%= get_trade_name t.trade_id %>">
-          <td class="text-center"><%= get_user_trade_name t.sc_id %></td>
+          <% if t.sc_id.present? %>
+            <td class="text-center">
+              <a href="<%= user_company_profile_users_path(:id => t.sc_id,:tender => t.tender_id) %>">
+                <%= get_user_trade_name t.sc_id %>
+              </a>
+            </td>
+          <% else %>
+            <td class="text-center"><%= get_user_trade_name t.sc_id %></td>
+          <% end %>
           <td class="text-center"><%= get_user_name t.sc_id %></td>
           <td class="text-center"><%= get_trade_name t.trade_id  %></td>
           <td class="text-center"><%= t.request_date.present? ? t.request_date.strftime("%d.%m.%Y %H:%M %p"): nil  %></td>

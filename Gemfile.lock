@@ -353,6 +353,7 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
+    smtpapi (0.1.0)
     socksify (1.7.0)
     spring (2.0.1)
       activesupport (>= 4.2)
@@ -469,6 +470,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   select2-rails
   sendgrid
+  smtpapi
   spring
   sshkit-sudo
   stripe-rails

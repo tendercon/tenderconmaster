@@ -39,14 +39,14 @@
   </div>
 
 </div>
-<label>Attach Supporting files(Optional)</label>
-<%= form_for @quote_document_optional, :url => create_document_quote_document_optionals_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
-    <input type="hidden" value="<%= @tender_id%>" name="tender_id" class="tender_id">
+<!--<label>Attach Supporting files(Optional)</label>
+<%#= form_for @quote_document_optional, :url => create_document_quote_document_optionals_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
+    <input type="hidden" value="<%#= @tender_id%>" name="tender_id" class="tender_id">
     <input type="file" id="file_comment" class="btn btn-success form-control" name="document" webkitdirectory directory multiple /> 
     <div style="display: none">
       <button type="submit" class="submit_document"></button>
     </div>
-<% end %>
+<%# end %>
 <div class="quote_document_optional">
   <div class="row">
     <div class="col-md-22">
@@ -55,30 +55,30 @@
       </button>
       <table  class="table table-bordered document_table col-md-12">
         <thead>
-        <% if @quote_document_optionals.present? %>
+        <%# if @quote_document_optionals.present? %>
             <tr>
               <th><input type="checkbox" class="document_list_master_optional" name="document_list_master"></th>
               <th>Document</th>
             </tr>
-        <% end %>
+        <%# end %>
         </thead>
         <tbody>
-        <% if @quote_document_optionals.present? %>
-            <% @quote_document_optionals.each do |d| %>
+        <%# if @quote_document_optionals.present? %>
+            <%# @quote_document_optionals.each do |d| %>
                 <tr>
-                  <% if d.document_file_name != '.DS_Store'  %>
-                      <td><input type="checkbox" class="document_list_optional" name="documents[]" value="<%= d.id %>"></td>
-                      <td><%= d.document_file_name %></td>
-                  <% end %>
+                  <%# if d.document_file_name != '.DS_Store'  %>
+                      <td><input type="checkbox" class="document_list_optional" name="documents[]" value="<%#= d.id %>"></td>
+                      <td><%#= d.document_file_name %></td>
+                  <%# end %>
                 </tr>
-            <% end %>
-        <% end %>
+            <%# end %>
+        <%# end %>
         </tbody>
       </table>
     </div>
-    <input type="hidden" class="tender_id" value="<%= @tender_id %>">
+    <input type="hidden" class="tender_id" value="<%#= @tender_id %>">
   </div>
-</div>
+</div>-->
 
 
 <script>

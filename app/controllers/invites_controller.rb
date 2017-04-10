@@ -144,9 +144,10 @@ class InvitesController < ApplicationController
       notification.save
 
       #TenderconMailer.delay.sent_invitation_email(@user.email,admin_name,invited_name,request.host_with_port,admin.company,@user.id)
-      puts "TEST =============> TEST =========>"
+      puts "TEST =============> TEST =========> #{request.host_with_port}"
+      puts "TEST =============> ROOT =========> #{root_path}"
 
-      TenderconMailer.sent_invitation_email(@user.email,admin_name,invited_name,request.host_with_port,admin.company,@user.id).deliver_now
+      TenderconMailer.sent_invitation_email(@user.email,admin_name,invited_name,request.host_with_port,admin.company,@user.id,@parent.id).deliver_now
       #render :json => { :state => 'valid'}
     end
     @invited_users = User.where("parent_id = #{@user.parent_id} AND position is null")
@@ -339,8 +340,10 @@ class InvitesController < ApplicationController
       @parent = User.find(@user.parent_id)
       admin_name = "#{@parent.first_name} #{@parent.last_name}"
       user_name = "#{@user.first_name} #{@user.last_name}"
+      path = request.base_url+"/users/tendercon_steps?id=#{@user.id}&invites=true"
+      TenderconMailer.registration_email(@user.email,path,@user.id,@user.unique_key,path).deliver_now
 
-      TenderconMailer.delay.email_notification_member_joined(@parent.email,user_name,admin_name)
+      #TenderconMailer.delay.email_notification_member_joined(@parent.email,user_name,admin_name)
 
       redirect_to authenticate_users_path(:email => @user.email,:invites => true)
     end

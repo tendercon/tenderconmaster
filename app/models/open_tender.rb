@@ -13,14 +13,14 @@ class OpenTender < ActiveRecord::Base
       end
     end
 
-    puts "tender_ids ===> #{tender_ids.inspect}"
+    Rails.logger.info "tender_ids ===> #{tender_ids.inspect}"
     if tender_ids.present?
       tender_ids.uniq.each do |tender|
         if users.present?
           users.each do |u|
             user = User.find(u)
             open = where(:tender_id => tender, :user_id => u).first
-            puts "OPEN TENDERS =========> #{open.inspect}"
+            Rails.logger.info "OPEN TENDERS =========> #{open.inspect}"
             unless open.present?
               open_tender = self.new
               open_tender.user_id = u
@@ -29,52 +29,42 @@ class OpenTender < ActiveRecord::Base
               tender_approved = TenderApprovedTrade.where(:tender_id => tender, :sc_id => u).first
               unless reques_quote.present? && tender_approved.present?
                 tender_invites = TenderInvite.where(:tender_id => tender, :email => user.email)
-                puts "tender_invites =======> #{tender_invites.inspect}"
-                puts "TENDER=========>  #{tender}"
+
                 if tender_invites.present?
                   statuses = []
                   tender_invites.each do |ti|
                     statuses << ti.status
-
                   end
 
                   if statuses.uniq.include?('accepted')
                      # Do nothing
                   else
                     if statuses.uniq.size == 1
-                      puts "statuses ======> #{statuses.uniq.inspect} ===========> #{statuses[0]}"
+                      #puts "statuses ======> #{statuses.uniq.inspect} ===========> #{statuses[0]}"
                       if statuses[0] == 'rejected'
-
-                        if user.address.present?
-
-                          if user.address.state.present?
-                            publish_tender = Tender.find(tender)
-                            if user.address.state == publish_tender.state
-                              puts "user.address.state =======> #{user.address.state}"
-                              puts "publish_tender.state =======> #{publish_tender.state}"
+                        #if user.address.present?
+                        #  if user.address.state.present?
+                            #publish_tender = Tender.find(tender)
+                            #if user.address.state == publish_tender.state
                               open_tender.save
-                            end
-                          end
-                        end
+                            #end
+                        #  end
+                        #end
                       end
                     end
                   end
                 else
                   puts "NOT ON INVITES"
-                  if user.address.present?
-                    if user.address.state.present?
-                       publish_tender = Tender.find(tender)
-                       puts "user.address.state =======> #{user.address.state}"
-                       puts "publish_tender.state =======> #{publish_tender.state}"
-                       if user.address.state == publish_tender.state
+                  #if user.address.present?
+                  #  if user.address.state.present?
+                  #     publish_tender = Tender.find(tender)
+                  #     if user.address.state == publish_tender.state
                          open_tender.save
-                       end
-                    end
-                  end
-
+                  #     end
+                  #  end
+                  #end
                 end
               end
-
             end
           end
         end
@@ -88,7 +78,6 @@ class OpenTender < ActiveRecord::Base
             end
           end
         end
-
       end
     end
   end

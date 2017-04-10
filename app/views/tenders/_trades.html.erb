@@ -10,9 +10,12 @@
               <% @trade_categories.each do |tc|  %> 
                   <% if !@trade_category_array.include? "#{tc.title}" %>
                     <% @trade_category_array << "#{tc.title}" %>
+                    <% if tc.title != 'Others' %>
                     <div class="<%= tc.title %>" id="<%= tc.title %>"> 
+
                       <h1> <%= tc.title %></h1> 
                     </div> 
+                    <% end %>
 
 
                   <% end %>

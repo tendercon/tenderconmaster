@@ -13,8 +13,6 @@ class ApplicationController < ActionController::Base
 
 
   def is_logged?
-
-
     if session[:time_logged].present?
       if session[:time_logged] <= Time.now
         session[:time_logged] = nil
@@ -102,7 +100,12 @@ class ApplicationController < ActionController::Base
         end
 
         if tender_arr.present?
-          @open_tender_size = Tender.where(:id => tender_arr.uniq,:publish => true).count()
+          if @user.address.present?
+            @open_tender_size = Tender.where(:id => tender_arr.uniq,:publish => true,:state => @user.address.state).count()
+          else
+            @open_tender_size = 0
+          end
+
         else
           @open_tender_size = 0
         end
@@ -178,6 +181,22 @@ class ApplicationController < ActionController::Base
 
           end
 
+        end
+
+
+        user_tenders = TenderRequestQuote.where(:sc_id => session[:user_logged_id])
+        tender_array = []
+        if user_tenders.present?
+          user_tenders.each do |t|
+            tender_array << t.tender_id
+          end
+        end
+
+        if tender_array.present?
+          @my_tenders = Tender.where(:id => tender_array,:publish => true).count()
+          @t_array = tender_array
+        else
+          @my_tenders = 0
         end
       end
     end

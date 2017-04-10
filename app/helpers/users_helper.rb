@@ -115,11 +115,15 @@ module UsersHelper
 
   def get_user_trade_name id
 
-    user  = User.find(id)
-    if user.trade_name.present?
-      user.trade_name
+    user = User.where(:id => id).first
+    if user.present?
+      if user.trade_name.present?
+        user.trade_name
+      else
+        user.email
+      end
     else
-      user.email
+      nil
     end
   end
 
@@ -206,9 +210,19 @@ module UsersHelper
       false
     end
 
-
-
   end
+
+  def check_if_user_exists email
+    user = User.where(:email => email).last
+
+    if user.present?
+      true
+    else
+      false
+    end
+  end
+
+
 
 
 end

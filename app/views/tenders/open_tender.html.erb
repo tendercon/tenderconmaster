@@ -1,4 +1,5 @@
 <div class="row widget-row">
+  <div class="col-md-2"></div>
   <div class="col-md-4">
     <!-- BEGIN WIDGET THUMB -->
     <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
@@ -27,8 +28,9 @@
     </div>
     <!-- END WIDGET THUMB -->
   </div>
-  <div class="col-md-4">
-    <!-- BEGIN WIDGET THUMB -->
+  <div class="col-md-2"></div>
+  <!--<div class="col-md-4">
+    &lt;!&ndash; BEGIN WIDGET THUMB &ndash;&gt;
     <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 bordered">
       <h4 class="widget-thumb-heading">WITHIN YOUR TRADE</h4>
       <div class="widget-thumb-wrap">
@@ -39,8 +41,8 @@
         </div>
       </div>
     </div>
-    <!-- END WIDGET THUMB -->
-  </div>
+    &lt;!&ndash; END WIDGET THUMB &ndash;&gt;
+  </div>-->
 </div>
 <div class="row"> 
   <div class="text-center">
@@ -72,65 +74,63 @@
   </div>
   <div style="height: 80px;"></div>
 
-
-  <div class="col-md-12   tender_list_filter">
-    <table  class="table table-bordered responsive" id="open_tender_table"  cellspacing="0" width="100%">
-      <thead>
-        <tr style="background-color: #2C3E50;color: white;">
-          <th class="no-sort">Tender ID</th>
-          <th class="no-sort">Project Name</th>
-          <th class="no-sort">Value</th>
-          <!--<th>Sector</th>-->
-          <th class="no-sort">Location</th>
-          <th>Distance</th>
-          <th class="no-sort">Head Contractor</th>
-          <th>Quote Due</th>
-          <th class="no-sort">Action</th>
-        </tr>
-      </thead>
-      <tbody class="searchable">
-        <% if @tenders.present? %>
-          <% @tenders.each do |t| %>
-            <tr>
-              <% if session[:role] == 'Head Contractor' %>
-                <td class="text-center">
-                  <%= t.tendercon_id %>
-                  <!--<a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
-                    <%#= t.tendercon_id %>
-                  </a>-->
-                </td>
-              <% else %>
-                <td class="text-center">
-                  <%= t.tendercon_id %>
-                  <!--<a href="#!" class="tender" id="<%#= t.id %>">
-                    <%#= t.tendercon_id %>
-                  </a>-->
-                </td>
-
-              <% end %>
-
-              <td class="text-center"><%= t.title %></td>
-              <td class="text-center"><%= get_value_name t.tender_value_id %></td>
-              <!--<td class="text-center"><%#= get_trade_category_name  t.category_id %></td>-->
-              <% if t.address_terms.present? %>
-                <td class="text-center">
-                  Hidden Address <i class="fa fa-question-circle" aria-hidden="true" title="Address will appear once your Head Contractor approved your request"></i>
-                </td>
-              <% else %>
-                  <td class="text-center"><%= split_address t.address %></td>
-              <% end %>
-              <td class="text-center"><%= get_distance t.id,session[:user_logged_id] %></td>
-              <td class="text-center"><%= get_user_trade_name t.user_id %></td>
-              <td class="text-center"><%= get_tender_due t.id %></td>
-              <% if session[:role] == 'Head Contractor' %>
+  <%# cache 'open_tender' do %>
+      <div class="col-md-12   tender_list_filter">
+        <table  class="table table-bordered responsive" id="open_tender_table"  cellspacing="0" width="100%">
+          <thead>
+          <tr style="background-color: #2C3E50;color: white;">
+            <th class="no-sort">Tender ID</th>
+            <th class="no-sort">Project Name</th>
+            <th class="no-sort">Value</th>
+            <!--<th>Sector</th>-->
+            <th class="no-sort">Location</th>
+            <th class="no-sort">Distance</th>
+            <th class="no-sort">Head Contractor</th>
+            <th>Quote Due</th>
+            <th class="no-sort">Action</th>
+          </tr>
+          </thead>
+          <tbody class="searchable">
+          <% if @tenders.present? %>
+            <% @tenders.each do |t| %>
+              <tr>
+                <% if session[:role] == 'Head Contractor' %>
                   <td class="text-center">
-                    <a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
-                      <button class="btn green">
-                        View
-                      </button>
-                    </a>
+                    <%= t.tendercon_id %>
+                    <!--<a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
+                      <%#= t.tendercon_id %>
+                    </a>-->
                   </td>
-              <% else %>
+                <% else %>
+                  <td class="text-center">
+                    <%= t.tendercon_id %>
+                    <!--<a href="#!" class="tender" id="<%#= t.id %>">
+                      <%#= t.tendercon_id %>
+                    </a>-->
+                  </td>
+                <% end %>
+                <td class="text-center"><%= t.title %></td>
+                <td class="text-center"><%= get_value_name t.tender_value_id %></td>
+                <!--<td class="text-center"><%#= get_trade_category_name  t.category_id %></td>-->
+                <% if t.address_terms.present? %>
+                    <td class="text-center">
+                      Hidden Address <i class="fa fa-question-circle" aria-hidden="true" title="Address will appear once your Head Contractor approved your request"></i>
+                    </td>
+                <% else %>
+                    <td class="text-center"><%= split_address t.address %></td>
+                <% end %>
+                <td class="text-center"><%= get_distance t.id,session[:user_logged_id] %></td>
+                <td class="text-center"><%= get_user_trade_name t.user_id %></td>
+                <td class="text-center"><%= get_tender_due t.id %></td>
+                <% if session[:role] == 'Head Contractor' %>
+                    <td class="text-center">
+                      <a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
+                        <button class="btn green">
+                          View
+                        </button>
+                      </a>
+                    </td>
+                <% else %>
                   <td class="text-center">
 
                     <% if @user.free_plan?  %>
@@ -138,28 +138,26 @@
                         View
                       </button>
                     <% else %>
-                        <a href="#!" class="tender" id="<%= t.id %>">
-                          <button class="btn green">
-                            View
-                          </button>
-                        </a>
+                      <a href="#!" class="tender" id="<%= t.id %>">
+                        <button class="btn green">
+                          View
+                        </button>
+                      </a>
                     <% end %>
-
                   </td>
-              <% end %>
-            </tr>
+                <% end %>
+              </tr>
+            <% end %>
           <% end %>
-        <% end %>
-      </tbody>
-      </table>
-  </div>
+          </tbody>
+        </table>
+      </div>
+
+  <%# end %>
+
 </div>
 
-
-
 <%= render 'tenders/open_tender/dialog' %>
-
-
 
 <div class="row ">
   <% if @tenders.present? %>
@@ -349,7 +347,7 @@
 
                                   <% if (get_tender_document_package u.id).present? %>
                                       <p class="text-center" style="font-size: 18px">
-                                        <b>Head Contractor has uploaded documents</b>
+                                        <b>Builder has uploaded documents</b>
                                       </p>
                                       <select onchange="location = this.options[this.selectedIndex].value;" class="form-control download">
                                         <option value="#!">None</option>
@@ -361,7 +359,7 @@
                                       <div style="height: 40px"></div>
                                   <% else %>
                                       <p class="text-center" style="font-size: 18px">
-                                        <b>Head Contractor has not uploaded any documents yet</b>
+                                        <b>Builder has not uploaded any documents yet</b>
                                       </p>
                                       <p class="text-center" style="font-size: 12px">
                                         Document will be available after your request has been approved
@@ -376,7 +374,7 @@
                             <% else %>
                                 <div class="col-md-12">
                                   <p class="text-center" style="font-size: 18px">
-                                    <b>Head Contractor has hidden the documents</b>
+                                    <b>Builder has hidden the documents</b>
                                   </p>
                                   <p class="text-center" style="font-size: 16px">
                                     Documents will be available after your request approved
@@ -615,8 +613,8 @@
 <script>
   $(document).ready(function(){
 
-    <% if @user.free_plan?  %>
-       $('#basic').modal('show');
+    <% unless @user.user_subscription.present?  %>
+       //$('#basic').modal('show');
     <% end %>
 
     var tender_id;

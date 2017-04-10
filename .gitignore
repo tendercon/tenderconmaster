@@ -24,8 +24,16 @@ info
 .idea/workspace.xml
 public/assets/tender
 
+
+/public/assets/tender
+
+/.env
+.env
+config/deploy/production.rb
+config/deploy/staging.rb
 .env
 /.env
+
 
 .DS_Store
 /log/*

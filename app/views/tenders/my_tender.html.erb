@@ -36,6 +36,9 @@
                <th>Status</th>
             <% end %>
             <th>Tender ID</th>
+            <% if session[:role] == 'Admin' %>
+                <th>HC Company</th>
+            <% end %>
             <% if session[:role] == 'Sub Contractor' %>
               <th>Head Contractor</th>
             <% end %>
@@ -74,6 +77,9 @@
                 <td class="text-center">
                   <%= t.tendercon_id %>
                 </td>
+                <% if session[:role] == 'Admin' %>
+                    <th><%= get_user_trade_name t.user_id %></th>
+                <% end %>
                 <%# if session[:role] == 'Head Contractor' %>
                     <!--<td class="text-center">
                       <%#= t.tendercon_id %>
@@ -454,7 +460,16 @@
       "bSort" : false,
       "bPaginate": false,
       "bInfo" : false,
-      "bFilter" : false
+      "bFilter" : false,
+      <% if session[:role] == 'SubContractor' %>
+        "language": {
+          "emptyTable": "No Tenders Found. Go to Open Tenders and start tendering."
+        },
+      <% else %>
+      "language": {
+        "emptyTable": "No Tenders Found."
+      }
+      <% end %>
     } );
 
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

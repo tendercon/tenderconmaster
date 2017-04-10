@@ -17,11 +17,11 @@ class HcInvitesController < ApplicationController
     if hc_invite.save
       @trades = Trade.all
       @hc_invites = HcInvite.where(:hc_id => session[:user_logged_id],:status => nil)
-      unless user.present?
+      #unless user.present?
         decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?&email=#{hc_invite.email}&trade=#{hc_invite.trade_id}"
         path = "http://"+request.host_with_port+"/users/register?name=#{hc_invite.name}&email=#{hc_invite.email}&trade=#{hc_invite.trade_id}"
-        TenderconMailer.sent_sc_invites(hc_invite.email,hc_invite.name,Trade.trade_name(hc_invite.trade_id),path,decline_path).deliver_now
-      end
+      #end
+      TenderconMailer.sent_sc_invites(hc_invite.email,hc_invite.name,Trade.trade_name(hc_invite.trade_id),path,decline_path,session[:user_logged_id]).deliver_now
       HcInvite.where(:email => nil).delete_all
       @data = render :partial => 'hc_invites/savvy'
     end

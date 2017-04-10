@@ -9,7 +9,7 @@
 
       <br/>
       <div class="text-center">
-        <a href="<%= dashboard_index_path %>" class="text-center new-account" style="text-decoration: none; color: #000000">
+        <a href="<%= params[:invited].present? ? dashboard_index_path(:newly_user => true) : dashboard_index_path %>" class="text-center new-account" style="text-decoration: none; color: #000000">
           <button class="btn green uppercase" type="submit">PROCEED TO DASHBOARD</button>
         </a>
       </div>

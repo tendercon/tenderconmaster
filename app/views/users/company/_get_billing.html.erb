@@ -54,7 +54,7 @@
           </tbody>
         </table>
         <div style="height: 30px"></div>
-        <table class="table table-bordered">
+        <!--<table class="table table-bordered">
           <thead>
           <tr>
             <td colspan="1" style="background-color: #2C3E50;color: white;"><strong>PAYMENT INFORMATION</strong></td>
@@ -66,34 +66,34 @@
               <div style="height: 30px"></div>
               <label class="uppercase">Please update your credit card details if you wish to upgrade your plan.</label>
               <div style="height: 20px"></div>
-              <% if @subscriber.present? %>
-                  <label>Expiration Date: <%= @subscriber.expiry_date %> </label>
-                  <% if @brand == 'Visa' %>
+              <%# if @subscriber.present? %>
+                  <label>Expiration Date: <%#= @subscriber.expiry_date %> </label>
+                  <%# if @brand == 'Visa' %>
                       <img src="/assets/credit_card/visa.jpg" class="visa" height="40px" width="60px"> <label>
-                  <% elsif @brand == 'MasterCard' %>
+                  <%# elsif @brand == 'MasterCard' %>
                       <img src="/assets/credit_card/mastercard.jpg" class="mastercard" height="40px" width="60px">
-                  <% elsif @brand == 'American Express' %>
+                  <%# elsif @brand == 'American Express' %>
                       <img src="/assets/credit_card/amex.jpg" class="amex" height="40px" width="60px">
-                  <% end %>
-                  <%= "  .... .... .... #{@last_four}" %> </label>
-              <% end %>
+                  <%# end %>
+                  <%#= "  .... .... .... #{@last_four}" %> </label>
+              <%# end %>
 
-              <%= form_tag subscriber_path(1),method: :put do %>
+              <#= form_tag subscriber_path(1),method: :put do %>
                   <br>
                   <input type="hidden" name="user_plan" value="0">
                   <article>
-                    <% if flash[:error].present? %>
+                    <%# if flash[:error].present? %>
                         <div id="error_explanation">
-                          <p><%= flash[:error] %></p>
+                          <p><%#= flash[:error] %></p>
                         </div>
-                    <% end %>
+                    <%# end %>
                     <label class="amount">
                       <span>Amount: $5.00</span>
                     </label>
                   </article>
 
                   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button btn-success"
-                          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                          data-key="<%#= Rails.configuration.stripe[:publishable_key] %>"
                           data-description="Card Details"
                           data-amount=""
                           data-panelLabel="Submit"
@@ -101,12 +101,12 @@
                           data-label="ADD CARD" >
 
                   </script>
-              <% end %>
+              <%# end %>
               <div style="height: 30px"></div>
             </td>
           </tr>
           </tbody>
-        </table>
+        </table>-->
         <div style="height: 30px"></div>
         <table class="table table-bordered">
           <thead>

@@ -81,11 +81,11 @@
         </div>
         <div class="details">
           <div class="number">
-            <span data-counter="counterup" data-value="1349">0</span>
+            <span data-counter="counterup" data-value="<%= @tender_invites_cnt.present? ? @tender_invites_cnt.uniq.size : 0 %>"><%= @tender_invites_cnt.present? ? @tender_invites_cnt.uniq.size : 0 %></span>
           </div>
-          <div class="desc"> New Feedbacks </div>
+          <div class="desc"> Total Invited Tenders </div>
         </div>
-        <a class="more" href="javascript:;"> View more
+        <a class="more" href="/tenders/invited_tender"> VIEW MY INVITED TENDERS
           <i class="m-icon-swapright m-icon-white"></i>
         </a>
       </div>
@@ -97,10 +97,10 @@
         </div>
         <div class="details">
           <div class="number">
-            <span data-counter="counterup" data-value="12,5">0</span>M$ </div>
-          <div class="desc"> Total Profit </div>
+            <span data-counter="counterup" data-value="<%= @open_tender_size %>"><%= @open_tender_size %></span></div>
+          <div class="desc"> Total Open Tenders </div>
         </div>
-        <a class="more" href="javascript:;"> View more
+        <a class="more" href="/tenders/open_tender"> VIEW OPEN TENDERS
           <i class="m-icon-swapright m-icon-white"></i>
         </a>
       </div>
@@ -112,11 +112,11 @@
         </div>
         <div class="details">
           <div class="number">
-            <span data-counter="counterup" data-value="549">0</span>
+            <span data-counter="counterup" data-value="<%= @my_tenders %>"><%= @my_tenders %></span>
           </div>
-          <div class="desc"> New Orders </div>
+          <div class="desc"> My Total Active Tenders </div>
         </div>
-        <a class="more" href="javascript:;"> View more
+        <a class="more" href="/tenders/my_tender"> MANAGE MY TENDERS
           <i class="m-icon-swapright m-icon-white"></i>
         </a>
       </div>
@@ -135,6 +135,15 @@
           <i class="m-icon-swapright m-icon-white"></i>
         </a>
       </div>
+    </div>
+    <div class="col-md-12" style="background-color: #fafafa">
+      <div style="height: 150px"></div>
+      <div class="text-center">
+        <h3 style="color: #525e64">
+          New Tracking features coming soon..
+        </h3>
+      </div>
+      <div style="height: 150px"></div>
     </div>
   </div>
 <% end %>

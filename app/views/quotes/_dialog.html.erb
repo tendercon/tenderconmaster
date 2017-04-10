@@ -117,20 +117,20 @@
                   <% end %>
                 </div>
 
-                <div class="quote_documents"></div>
+                <!--<div class="quote_documents"></div>
 
                 <div class="form-group">
                   <label>Attach Supporting files(Optional)</label>
-                  <%= form_for @quote_document_optional, :url => create_document_quote_document_optionals_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
-                      <input type="hidden" value="<%= @tender.id%>" name="tender_id" class="tender_id">
+                  <%#= form_for @quote_document_optional, :url => create_document_quote_document_optionals_path,:html => {:multipart => true,:class => 'avatar'} do |m| %> 
+                      <input type="hidden" value="<%#= @tender.id%>" name="tender_id" class="tender_id">
                       <input type="file" id="file_comment" class="btn btn-success form-control" name="document" /> 
                       <div style="display: none">
                         <button type="submit" class="submit_document"></button>
                       </div>
-                  <% end %>
+                  <%# end %>
                 </div>
 
-                <div class="quote_document_optional"></div>
+                <div class="quote_document_optional"></div>-->
               </div>
 
               <div class="rfi_document_lists">

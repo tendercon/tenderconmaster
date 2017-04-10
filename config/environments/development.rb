@@ -4,14 +4,14 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.cache_classes = false
+  config.cache_classes = true
 
   # Do not eager load code on boot.
   config.eager_load = false
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = true
 
   # Don't care if the mailer can't send.
   #config.action_mailer.raise_delivery_errors = false
@@ -35,8 +35,8 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-  config.stripe.secret_key = "sk_test_AyNDRGiWrBva0qJe749H7vai"
-  config.stripe.publishable_key = "pk_test_od6qMjEWQDqZI90OI4W9vh8g"
+  config.stripe.secret_key = ENV['PUBLISHABLE_KEY']
+  config.stripe.publishable_key = ENV['SECRET_KEY']
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
   ENV['GEOIP_KEY']  = "bc7903c99d1ea532f709cfef316d11b458d0ec41f56b43f07fbcf6f7e2ba2e27"
@@ -44,8 +44,6 @@ Rails.application.configure do
   ENV['ABN_GUID'] = "c7b82124-b224-4d3e-ac54-f008ae5f6ab7"
   ENV["LINKEDIN_CLIENT_ID"] = "75jjzveiib8wnq"
   ENV["LINKEDIN_CLIENT_SECRET"] = "loCsi3Cks6yHSRrY"
-  ENV['PUBLISHABLE_KEY'] = "pk_test_od6qMjEWQDqZI90OI4W9vh8g"
-  ENV['SECRET_KEY'] = "sk_test_AyNDRGiWrBva0qJe749H7vai"
   ENV['FACEBOOK_KEY'] = "1039814866107032"
   ENV['FACEBOOK_SECRET'] = "75d10afcc168acb00d6cc9b07418bb4f"
   ENV['OFFICE_ID'] = "38c34ecf-fef2-4c16-ae62-c690dcd5aa5f"
@@ -58,25 +56,15 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
 
-  config.action_mailer.smtp_settings = {
-      :address              => "smtp.gmail.com",
-      :port                 => 587,
-      :domain               => "gmail.com",
-      :user_name            => ENV['EMAIL_ACCOUNT'],
-      :password             => ENV['EMAIL_PASSWORD'],
-      :authentication       => 'plain',
+  ActionMailer::Base.smtp_settings = {
+      :user_name => ENV['SENGRID_USERNAME'],
+      :password => ENV['SENGRID_PASSWORD'],
+      :domain => 'www.tendercon.com',
+      :address => ENV['SENGRID_SMTP'],
+      :port => 587,
+      :authentication => :plain,
       :enable_starttls_auto => true
   }
-
-  # ActionMailer::Base.smtp_settings = {
-  #     :user_name => ENV['SENGRID_USERNAME'],
-  #     :password => ENV['SENGRID_PASSWORD'],
-  #     :domain => 'www.tendercon.com',
-  #     :address => ENV['SENGRID_SMTP'],
-  #     :port => 587,
-  #     :authentication => :plain,
-  #     :enable_starttls_auto => true
-  # }
 
   # config.paperclip_defaults = {
   #     :storage => :s3,

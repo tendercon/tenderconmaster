@@ -270,7 +270,7 @@ class UsersController < ApplicationController
         user_plan.amount = 0.00
         user_plan.save
 
-        TenderconMailer.delay.registration_email(@user.email,root_url,@user.id,@user.unique_key)
+        #TenderconMailer.delay.registration_email(@user.email,root_url,@user.id,@user.unique_key)
         User.delay(run_at: 20.minutes.from_now).execute_token_expiration(@user.id)
         flash[:notice] = "Your account has been successfully created."
         redirect_to registration_completed_users_path(:id => @user.id)
@@ -565,7 +565,7 @@ class UsersController < ApplicationController
 
       TenderconCode.where(:name => tendercon_id).destroy_all
 
-      TenderconMailer.welcome_email(@user.email,@user.id).deliver_now
+      TenderconMailer.welcome_email(@user.email,@user.id,root_url).deliver_now
       render :json => { :state => 'valid'}
     else
       render :json => { :state => 'invalid'}
@@ -682,7 +682,8 @@ class UsersController < ApplicationController
             end
           else
             if params[:invites].present?
-              redirect_to tendercon_steps_users_path(:id => @user.id,:invites => true)
+              redirect_to registration_completed_users_path(:id => @user.id)
+              #redirect_to tendercon_steps_users_path(:id => @user.id,:invites => true)
             else
               redirect_to welcome_page_users_path(:id=>@user.id)
             end
@@ -1326,7 +1327,7 @@ class UsersController < ApplicationController
 
       else
 
-        @user = User.find(@id)
+        @user = User.where(:email => @email).first
         new_password = User.rehash_password password
         new_confirmed_password = User.rehash_password password
         puts "PASSWORD:#{new_password}"
@@ -1795,6 +1796,9 @@ class UsersController < ApplicationController
         end
       end
     end
+    unless @user.user_subscription.present?
+      UserPlan.where(:user_id => @user.id).update_all(:plan => 'STARTER PLAN $0 ')
+    end
     @data = render :partial => 'users/company/get_billing'
   end
 
@@ -1858,12 +1862,19 @@ class UsersController < ApplicationController
     @user = User.find(session[:user_logged_id])
     @user_plan = UserPlan.where(:user_id => @user.id).first
     puts "@user_plan =======> #{params[:id].inspect}"
+
+    unless @user.user_subscription.present?
+      UserPlan.where(:user_id => @user.id).update_all(:plan => 'STARTER PLAN $0 ')
+    end
+
+
     @request_upgrade = RequestUpgrade.where(:user_id => @user.id,:status => 'pending').first
     @upgraded = RequestUpgrade.where(:user_id => @user.id,:status => 'upgraded').first
 
     @rejected = RequestUpgrade.where(:user_id => @user.id,:status => 'rejected').first
 
     puts "@user =======> #{@user.user_subscription.present?}"
+
 
     if @rejected.present?
       RequestUpgrade.find(@rejected.id).destroy!
@@ -1974,6 +1985,15 @@ class UsersController < ApplicationController
 
   def profile_control_tabs
     @user = User.find(session[:user_logged_id])
+
+    @user_plan = UserPlan.where(:user_id => @user.id).first
+    puts "@user_plan =======> #{params[:id].inspect}"
+
+    unless @user.user_subscription.present?
+      UserPlan.where(:user_id => @user.id).update_all(:plan => 'STARTER PLAN $0 ')
+    end
+
+
     if params[:tab] == 'edit_profile'
       @avatar = Avatar.new
       if params[:tab_action].present?
@@ -2070,13 +2090,54 @@ class UsersController < ApplicationController
       avatar.image = params[:avatar]
       avatar.save
     end
-
     render :json => { :state => 'valid',:url => @user.avatar.present? ? @user.avatar.image.url(:original) : nil}
   end
 
   def get_user_avatar_path
     @user = User.find(session[:user_logged_id])
     render :json => { :url => @user.avatar.image.url(:original),:state => 'valid'}
+  end
+
+  def user_company_profile
+    @sc_user = User.find(params[:id])
+    @tender_id = params[:tender]
+
+    @company_profile = CompanyProfile.new
+    @added_company_profile = CompanyProfile.where(:user_id => @sc_user.id).first
+
+    if @added_company_profile.present?
+      @about_me = @added_company_profile.about_me
+      puts "@about_me1:#{@about_me.present?}"
+    end
+
+    if @added_company_profile.present?
+      if @added_company_profile.project_range.present?
+        @p_to = @added_company_profile.project_range.split('-')
+      end
+    end
+
+    @primary_trade = PrimaryTrade.where(:user_id => @sc_user.id).first
+    @secondary_trades = SecondaryTrade.where(:user_id => @sc_user.id)
+    @secondary_trade_array = []
+    if @secondary_trades.present?
+      @secondary_trades.each do |s|
+        @secondary_trade_array << s.trade_id
+      end
+    end
+
+    @trades = Trade.all
+
+    @company_avatar = CompanyAvatar.new
+
+
+    @years = []
+    @from = ['','1K','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M']
+    @to = ['','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M','500M+']
+
+    for i in 1800..(Time.now.strftime('%Y').to_i) do
+      @years << i
+    end
+
   end
 
 

@@ -149,7 +149,11 @@ class QuotesController < ApplicationController
              QuoteDocument.where(:tender_id => tender_id, :user_id => session[:user_logged_id],:quote_id => nil).update_all(:quote_id => quote_data.id)
              QuoteDocumentOptional.where(:tender_id => tender_id, :user_id => session[:user_logged_id],:quote_id => nil).update_all(:quote_id => quote_data.id)
 
+             trade = Trade.find(quote_data.trade_id)
              @tender = Tender.find(tender_id)
+             TenderconMailer.sent_quotes(session[:user_logged_id],@tender.id,trade.name,"http://"+request.host_with_port+"/users/login").deliver_now
+
+
 
              user = User.find(quote_data.user_id)
              if((trades.size - 1) == index)
@@ -161,6 +165,10 @@ class QuotesController < ApplicationController
                quote_notif.tender_id = tender_id
                quote_notif.seen = 0
                quote_notif.save
+
+
+
+
              end
            end
          end

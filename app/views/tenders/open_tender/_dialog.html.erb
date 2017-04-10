@@ -1,4 +1,4 @@
-<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true">
+<div class="modal fade" id="basic" tabindex="-1" role="basic" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,7 +11,7 @@
       </div>
       <div class="modal-footer">
         <div class="text-center">
-          <a href="/users/profile?id=97&subscription=true">
+          <a href="/users/profile?id=<%= session[:user_logged_id] %>&subscription=true">
             <button type="button" class="btn btn-info">UPGRADE</button>
           </a>
         </div>

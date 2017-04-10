@@ -293,20 +293,25 @@ class AddendasController < ApplicationController
           end
           notification.save
           user = User.find(tender_approved.sc_id)
-          TenderconMailer.tender_changed(params[:subject],params[:details],user.email,user.first_name,@tender.title,@addenda.addenda_type).deliver_now
+          #TenderconMailer.tender_changed(params[:subject],params[:details],user.email,user.first_name,@tender.title,@addenda.addenda_type).deliver_now
         end
       end
     end
 
     Addenda.where(:tender_id => @tender.id,:id => @addenda.id).update_all(:status => 'completed')
     TenderDocument.where(:user_id => session[:user_logged_id],:tender_id => @tender,:action_type => 'addenda',:addenda_id => nil).update_all(:addenda_id => @addenda)
+    @tendering = TenderRequestQuote.where(:tender_id => @tender).where("request_date is not null")
+    if(@tendering).present?
+      @tendering.each do |tendering|
+        addenda = AddendaNotification.where(:addenda_id => @addenda.id, :tender_id => @tender.id,:sc_id => tendering.sc_id)
+        if tendering.trade_id.to_i > 0
+          trade = Trade.find(tendering.trade_id.to_i)
+        end
 
-    if(User.subscontractor_list).present?
-      User.subscontractor_list.each do |user|
-        addenda = AddendaNotification.where(:addenda_id => @addenda.id, :tender_id => @tender.id,:sc_id => user.id)
-        message = "#{user.trade_name} has issued a new Addendum on project #{@tender.title}"
+        message = "#{@tender.user.trade_name} has issued a new Addendum on project #{@tender.title}"
+        TenderconMailer.tender_changed(tendering.sc_id,@tender.id,@addenda.created_at.strftime("%d.%m.%Y %H:%M %p"),"http://"+request.host_with_port+"/users/login").deliver_now
         unless addenda.present?
-          AddendaNotification.notification(user.id,@tender.id,session[:user_logged_id],@addenda.id,message,"HC")
+          AddendaNotification.notification(tendering.sc_id,@tender.id,@tender.user_id,@addenda.id,message,"HC")
         end
       end
     end

@@ -71,7 +71,16 @@
     <% if @tender_invites.present? %>
         <% @tender_invites.each_with_index do |t,index| %>
             <tr class="trade" id="<%= index + 1 %>" data-title="<%= get_trade_name t.trade_id %>">
-              <td class="text-center"><%= get_invite_company_name t.email %></td>
+              <% if check_if_user_exists t.email %>
+                  <td class="text-center">
+                    <a href="<%= user_company_profile_users_path(:id => t.user_id,:tender => @tender.id) %>">
+                      <%= get_invite_company_name t.email %>
+                    </a>
+                  </td>
+              <% else %>
+                  <td class="text-center"><%= get_invite_company_name t.email %></td>
+              <% end %>
+
               <td class="text-center"><%= get_user_tender_per_email t.email %></td>
               <td class="text-center"><%=  t.email %></td>
               <td class="text-center"><%=  t.created_at.present? ? t.created_at.strftime("%d.%m.%Y %H:%M %p") : nil  %></td>

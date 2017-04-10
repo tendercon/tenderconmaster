@@ -35,9 +35,9 @@ class SubscribersController < ApplicationController
     else
       token = params[:stripeToken]
       if user_plan.to_i == 1
-        stripe_plan = 1002
+        stripe_plan = 'tendercon monthly'
       elsif  user_plan.to_i == 2
-        stripe_plan = 1001
+        stripe_plan = 'tendercon yearly'
       else
         stripe_plan = 1003
       end
@@ -75,6 +75,8 @@ class SubscribersController < ApplicationController
     session[:nl_name] = params[:l_name]
     session[:n_plan] = params[:n_plan]
 
+    path  = "http://"+request.host_with_port+"/users/login"
+    TenderconMailer.sc_upgrade_plan(@user.email,path,@user.first_name).deliver_now
     if params[:new_credit_card].present?
 
       redirect_to invites_path(:fname => params[:f_name],:lname => params[:lname],:email => params[:n_email],:plan => params[:n_plan],:member => 1)
@@ -123,7 +125,7 @@ class SubscribersController < ApplicationController
       if UserSubscription.where(:user_id => id).update_all(:lightbox1 => 1)
         if !session[:email2].present?
           path = "http://"+request.host_with_port+"/users/authenticate?email=#{@user.email}&credit_card=true"
-          TenderconMailer.credit_card_will_expire_email2(@user.email,@user.id,path,@diff.to_i).deliver_now
+          #TenderconMailer.credit_card_will_expire_email2(@user.email,@user.id,path,@diff.to_i).deliver_now
         end
         session[:email2] = true
         render :json => { :state => 'valid'}

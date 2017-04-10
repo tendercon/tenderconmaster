@@ -249,6 +249,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def is_free_plan?
+
+  end
+
   def free_plan?
     if self.user_plan.present?
       if self.user_plan.plan == 'STARTER PLAN $0' || self.user_plan.plan == 0

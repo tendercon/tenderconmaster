@@ -452,6 +452,7 @@ class TendersController < ApplicationController
             if user.present?
               sc_invite_notif.user_status =  'user'
               sc_invite_notif.user_id = user.id
+              decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{tender_id}&email=#{a.email}&trade=#{t.id}"
               path = "http://"+request.host_with_port+"/users/login?email=#{user.email}&tender=#{tender_id}&trade=#{t.id}"
             else
               sc_invite_notif.user_status =  'not_user'
@@ -480,7 +481,13 @@ class TendersController < ApplicationController
             sc_invite_notif.message = "Invitation for tender #{tender.title} (#{t.name})"
             sc_invite_notif.save
             #TenderconMailer.delay.sent_sc_invites(a.email,a.name,t.name,path,decline_path)
-            TenderconMailer.sent_sc_invites(a.email,a.name,t.name,path,decline_path).deliver_now
+            puts "======================> TEST"
+            if a.name.present?
+              invited_name = a.name
+            else
+              invited_name = a.email
+            end
+            TenderconMailer.invites_publish_tender(a.email,invited_name,t.name,path,decline_path,tender_id,"http://#{request.host_with_port}",tender.user_id).deliver_now
           end
         end
       end
@@ -498,15 +505,12 @@ class TendersController < ApplicationController
       end
 
       sub_contractors = User.where(:role => 'Sub Contractor')
-      puts "sub_contractors -----------------------> publish #{sub_contractors.inspect}"
-      puts "user_array ------------------> #{user_array.inspect}"
       if sub_contractors.present?
         sub_contractors.each do |u|
           open_tender = OpenTender.new
           open_tender.tender_id = tender_id
           puts " !user_array.include? '#{u.id}' #{!user_array.include? "#{u.id}"}"
           if !user_array.include? "#{u.id}"
-            puts "------------------> u.id #{u.id}"
             open_tender.user_id = u.id
           end
           open_tender.tender_id = tender_id
@@ -520,7 +524,6 @@ class TendersController < ApplicationController
 
         end
       end
-
       Tender.delay.compressed_document(tender_id)
     rescue
 
@@ -639,17 +642,29 @@ class TendersController < ApplicationController
       @all_tenders = Tender.where(:publish => true).count()
 
       open_tenders = OpenTender.where(:user_id => session[:user_logged_id])
+
+      user = User.find(session[:user_logged_id])
+      Rails.logger.info "open_tenders =============> #{open_tenders.inspect}"
       tender_arr = []
       if open_tenders.present?
         open_tenders.each do |a|
-          tender_arr << a.tender_id
+          tenders = Tender.where(:id => a.tender_id).where("state like ?","%#{user.address.state}%")
+          if tenders.present?
+            #if user.address.state.include?(tender.state)
+            tenders.each do |t|
+              tender_arr << t.id
+            end
+
+            #end
+          end
         end
       end
 
-      puts "open tender tender_arr-------------> #{tender_arr.inspect}"
+      Rails.logger.info "open tender tender_arr-------------> #{tender_arr.inspect}"
 
       if tender_arr.present?
         @tenders = Tender.where(:id => tender_arr.uniq,:publish => true)
+        Rails.logger.info "@tenders ===============> #{@tenders.inspect}"
       else
         @tenders = nil
       end
@@ -3178,7 +3193,14 @@ class TendersController < ApplicationController
         end
 
           invite.save
-
+        t = Trade.find(trades[index])
+        if user.present?
+          decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{tender_id}&email=#{e}&trade=#{t.id}"
+          path = "http://"+request.host_with_port+"/users/login?email=#{user.email}&tender=#{tender_id}&trade=#{t.id}"
+        else
+          decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{tender_id}&email=#{e}&trade=#{t.id}"
+          path = "http://"+request.host_with_port+"/users/register?name=#{names[index]}&email=#{e}&tender=#{tender_id}&trade=#{t.id}"
+        end
           if save_sub.present?
             if save_sub.to_i > 0
               hc_invite = HcInvite.new
@@ -3188,20 +3210,14 @@ class TendersController < ApplicationController
               hc_invite.trade_id = trades[index]
               hc_invite.hc_id = session[:user_logged_id]
               hc_invite.save
+              TenderconMailer.sent_sc_invites(hc_invite.email,hc_invite.name,Trade.trade_name(hc_invite.trade_id),path,decline_path,session[:user_logged_id]).deliver_now
             end
           end
 
 
+          TenderconMailer.invites_publish_tender(e,names[index],t.name,path,decline_path,tender_id,"http://#{request.host_with_port}",@tender.user_id).deliver_now
 
-          t = Trade.find(trades[index])
-          if user.present?
-            decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{@tender.id}&email=#{e}&trade=#{t.id}"
-            path = "http://"+request.host_with_port+"/users/login?email=#{user.email}&tender=#{@tender.id}&trade=#{t.id}"
-          else
-            decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?tender_id=#{@tender.id}&email=#{e}&trade=#{t.id}"
-            path = "http://"+request.host_with_port+"/users/register?name=#{names[index]}&email=#{e}&tender=#{@tender.id}&trade=#{t.id}"
-          end
-          TenderconMailer.sent_sc_invites(e,names[index],t.name,path,decline_path).deliver_now
+        #TenderconMailer.sent_sc_invites(e,names[index],t.name,path,decline_path).deliver_now
         #end
 
       end
@@ -3220,10 +3236,12 @@ class TendersController < ApplicationController
       @tender_accpeted_counts = TenderInvite.tender_accepted(@tender.id)
       puts "@tender_invite_counts ======> #{@tender_invite_counts}"
       puts "@tender_opened_counts#{@tender_opened_counts}"
-      @tender_invites = TenderInvite.where(:tender_id => @tender.id,:added_by => 'admin')
+
       if params[:added_by].present?
+        @tender_invites = TenderInvite.where(:tender_id => @tender.id,:added_by => 'admin')
         @data = render :partial => 'tenders/admin_role/invited_by_admin'
       else
+        @tender_invites = TenderInvite.where(:tender_id => @tender.id)
         @data = render :partial => 'tenders/sub_contractors_tab/invited_user_tender'
       end
 
