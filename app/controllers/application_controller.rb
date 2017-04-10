@@ -177,6 +177,22 @@ class ApplicationController < ActionController::Base
           end
 
         end
+
+
+        user_tenders = TenderRequestQuote.where(:sc_id => session[:user_logged_id])
+        tender_array = []
+        if user_tenders.present?
+          user_tenders.each do |t|
+            tender_array << t.tender_id
+          end
+        end
+
+        if tender_array.present?
+          @my_tenders = Tender.where(:id => tender_array,:publish => true).count()
+          @t_array = tender_array
+        else
+          @my_tenders = 0
+        end
       end
     end
 

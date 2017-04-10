@@ -1796,6 +1796,9 @@ class UsersController < ApplicationController
         end
       end
     end
+    unless @user.user_subscription.present?
+      UserPlan.where(:user_id => @user.id).update_all(:plan => 'STARTER PLAN $0 ')
+    end
     @data = render :partial => 'users/company/get_billing'
   end
 
@@ -2087,7 +2090,7 @@ class UsersController < ApplicationController
       avatar.image = params[:avatar]
       avatar.save
     end
-
+    puts "@user.avatar.image.url(:original) ==========> #{@user.avatar.image.url(:original)}"
     render :json => { :state => 'valid',:url => @user.avatar.present? ? @user.avatar.image.url(:original) : nil}
   end
 

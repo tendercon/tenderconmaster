@@ -87,12 +87,12 @@
         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
           <% if @user.avatar.present? %>
               <% if File.exist?(@user.avatar.image.path(:original)) %>
-                  <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
+                  <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive user_avatar" alt="" style="width: 180px !important; height: 170px !important;">
               <% else %>
-                  <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
+                  <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive user_avatar" alt="" style="width: 180px !important; height: 170px !important;">
               <% end %>
           <% else %>
-              <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
+              <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive user_avatar" alt="" style="width: 180px !important; height: 170px !important;">
           <% end %>
         </div>
         <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
@@ -187,7 +187,7 @@
       }).done(function (data) {
         console.log(data);
         if(data.state == 'valid'){
-          console.log(data.url);
+          console.log("data.url ======>"+data.url);
           $('.user_avatar').attr('src',data.url);
         }
       });
