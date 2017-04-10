@@ -1,5 +1,5 @@
 <% documents =  QuoteDocument.where(:quote_id => quote_id) %>
-<% optionals =  QuoteDocumentOptional.where(:quote_id => quote_id) %>
+<%# optionals =  QuoteDocumentOptional.where(:quote_id => quote_id) %>
 
 <table  class="table table-bordered document_table col-md-12">
   <thead>
@@ -35,6 +35,7 @@
 </table>
 <div style="height: 10px"></div>
 
+<!--
 <table  class="table table-bordered document_table col-md-12">
   <thead>
     <tr style="background-color: #2C3E50;color: white;">
@@ -42,29 +43,29 @@
     </tr>
   </thead>
   <tbody>
-<% if optionals.present? %>
-  <% optionals.each do |d| %>
+<%# if optionals.present? %>
+  <%# optionals.each do |d| %>
     <tr>
-      <% if d.document_file_name != '.DS_Store'  %>
-        <td class="text-center"><%= d.document_file_name %></td>
+      <%# if d.document_file_name != '.DS_Store'  %>
+        <td class="text-center"><%#= d.document_file_name %></td>
         <td class="text-center">
-          <%= d.id %>
-          <a href="<%= root_path <<  "assets/quote_optionals/#{d.id}/original/"+ d.document_file_name %>" target="_blank">
+          <%#= d.id %>
+          <a href="<%#= root_path <<  "assets/quote_optionals/#{d.id}/original/"+ d.document_file_name %>" target="_blank">
             <button class="btn btn-default">View</button>
           </a>
-          <a href="<%= "http://"+request.host_with_port   <<  "/assets/quote_optionals/#{d.id}/original/"+ d.document_file_name %>" download>
+          <a href="<%#= "http://"+request.host_with_port   <<  "/assets/quote_optionals/#{d.id}/original/"+ d.document_file_name %>" download>
             <button class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></button>
           </a>
         </td>
-      <% end %>
+      <%# end %>
     </tr>
-  <% end %>
-<% else %>
+  <%# end %>
+<%# else %>
   <tr>
     <td colspan="2" class="text-center">
       No documents available
     </td>
   </tr>
-<% end %>
+<%# end %>
   </tbody>
-</table>
+</table>-->
