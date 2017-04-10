@@ -16,11 +16,14 @@
 !/log/.keep
 /tmp
 config/database.yml
+config/deploy/production.rb
 hooks/
 description
 HEAD
 info
 .idea/workspace.xml
+public/assets/tender
+
 
 /public/assets/tender
 
@@ -28,6 +31,9 @@ info
 .env
 config/deploy/production.rb
 config/deploy/staging.rb
+.env
+/.env
+
 
 .DS_Store
 /log/*

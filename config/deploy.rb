@@ -1,28 +1,16 @@
 # config valid only for current version of Capistrano
 lock "3.7.2"
 
-set :application, 'stagingV1_tendercon'
-# production
-#set :repo_url, 'git@github.com:tendercon/tenderconmaster.git' # Edit this to match your repository
-
-set :branch, :staging_V1
+set :application, 'tendercon_v1'
+set :branch, :master
 set :repo_url, 'https://github.com/tendercon/tenderconmaster.git'
-# production
-#set :branch, :master
-# master
-#set :branch, :master
-#set :deploy_to, '/home/deploy/tendercon_v1'
-set :deploy_to, '/home/deploy/stagingV1_tendercon'
+set :deploy_to, '/home/deploy/tendercon_v1'
 set :pty, true
 set :linked_files, %w{config/database.yml config/application.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 set :keep_releases, 5
 set :rvm_type, :user
 set :rvm_ruby_version, 'ruby-2.2.3' # Edit this if you are using MRI Ruby
-#set :rails_env, "staging"
-#set :rack_env, "staging"
-
-
 set :puma_rackup, -> { File.join(current_path, 'config.ru') }
 set :puma_state, "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid, "#{shared_path}/tmp/pids/puma.pid"
