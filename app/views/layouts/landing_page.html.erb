@@ -69,7 +69,7 @@
             </ul>
           </li>--><!--//dropdown-->
           <li class="nav-item"><a href="<%= login_users_path %><%#= @header.present? ? @header.login_path.present? ?  @header.login_path : login1_users_path : login1_users_path %>" class="login-trigger"><%= "LOGIN" %><%#= @header.present? ? @header.login: "Log in" %></a></li>
-          <li class="nav-item nav-item-cta last"><a class="btn-signup" href="<%= register_users_path %><%#= @header.present? ? @header.registration_path.present? ? @header.registration_path : register1_users_path : register1_users_path %>"><%= @header.present? ? @header.register: "Sign Up" %></a></li>
+          <li class="nav-item nav-item-cta last"><a class="btn-signup" href="<%= @header.present? ? @header.registration_path.present? ? @header.registration_path : register1_users_path : register1_users_path %>"><%= @header.present? ? @header.register: "Sign Up" %></a></li>
         </ul><!--//nav-->
       </div><!--//navabr-collapse-->
     </nav><!--//main-nav-->
