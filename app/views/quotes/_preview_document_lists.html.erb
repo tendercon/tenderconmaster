@@ -39,44 +39,44 @@
 
 </div>
 
-<h2 class="invoice-title uppercase">Supporting files(Optional)</h2>
+<!--<h2 class="invoice-title uppercase">Supporting files(Optional)</h2>
 <div class="quote_document_optional">
   <div class="row">
     <div class="col-md-12">
       <table  class="table table-bordered document_table">
         <thead>
-        <% if @quote_document_optionals.present? %>
+        <%# if @quote_document_optionals.present? %>
             <tr>
               <th class="invoice-desc">Document</th>
               <th></th>
             </tr>
-        <% end %>
+        <%# end %>
         </thead>
         <tbody>
-        <% if @quote_document_optionals.present? %>
-            <% @quote_document_optionals.each do |d| %>
+        <%# if @quote_document_optionals.present? %>
+            <%# @quote_document_optionals.each do |d| %>
                 <tr>
-                  <% if d.document_file_name != '.DS_Store'  %>
-                      <td class="invoice-desc"><%= d.document_file_name %></td>
+                  <%# if d.document_file_name != '.DS_Store'  %>
+                      <td class="invoice-desc"><%#= d.document_file_name %></td>
 
                       <td>
-                        <a href="<%= root_path <<  "assets/quote_optionals/#{d.id}/original/"+ d.document_file_name %>" target="_blank">
+                        <a href="<%#= root_path <<  "assets/quote_optionals/#{d.id}/original/"+ d.document_file_name %>" target="_blank">
                           <button class="btn btn-default">View</button>
                         </a>
-                        <a href="<%= root_path <<  "assets/quote_optionals/#{d.id}/original/"+ d.document_file_name %>" download>
+                        <a href="<%#= root_path <<  "assets/quote_optionals/#{d.id}/original/"+ d.document_file_name %>" download>
                           <button class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></button>
                         </a>
                       </td>
-                  <% end %>
+                  <%# end %>
                 </tr>
-            <% end %>
-        <% end %>
+            <%# end %>
+        <%# end %>
         </tbody>
       </table>
     </div>
-    <input type="hidden" class="tender_id" value="<%= @tender_id %>">
+    <input type="hidden" class="tender_id" value="<%#= @tender_id %>">
   </div>
-</div>
+</div>-->
 
 
 <script>

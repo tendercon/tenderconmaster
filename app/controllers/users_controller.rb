@@ -2090,7 +2090,6 @@ class UsersController < ApplicationController
       avatar.image = params[:avatar]
       avatar.save
     end
-    puts "@user.avatar.image.url(:original) ==========> #{@user.avatar.image.url(:original)}"
     render :json => { :state => 'valid',:url => @user.avatar.present? ? @user.avatar.image.url(:original) : nil}
   end
 
