@@ -76,8 +76,8 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  config.stripe.secret_key = ENV['PUBLISHABLE_KEY']
-  config.stripe.publishable_key = ENV['SECRET_KEY']
+  config.stripe.secret_key = ENV['STRIPE_PUBLISHABLE_KEY']
+  config.stripe.publishable_key = ENV['STRIPE_SECRET_KEY']
 
   # Do not dump schema after migrations.
 

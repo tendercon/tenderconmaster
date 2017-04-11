@@ -3,8 +3,8 @@ class DashboardController < ApplicationController
   before_filter :add_to_open_tender, :only => [:index]
 
   def index
-    Rails.logger.info "PUBLISHABLE_KEY ==========> #{ENV['PUBLISHABLE_KEY']}"
-    Rails.logger.info "SECRET_KEY ==========> #{ENV['SECRET_KEY']}"
+    Rails.logger.info "PUBLISHABLE_KEY ==========> #{ENV['STRIPE_PUBLISHABLE_KEY']}"
+    Rails.logger.info "SECRET_KEY ==========> #{ENV['STRIPE_SECRET_KEY']}"
     if params[:newly_user].present?
       TenderconMailer.welcome_email(@user.email,@user.id,root_url).deliver_now
     end
