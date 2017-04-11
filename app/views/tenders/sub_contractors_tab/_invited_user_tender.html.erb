@@ -77,10 +77,17 @@
                     </a>
                   </td>
               <% else %>
-                  <td class="text-center"><%= get_invite_company_name t.email %></td>
+                  <td class="text-center"><%= t.company %></td>
               <% end %>
 
-              <td class="text-center"><%= get_user_tender_per_email t.email %></td>
+
+              <td class="text-center">
+                <% if ( get_user_tender_per_email t.email).present? %>
+                  <%= get_user_tender_per_email t.email %>
+                <% else %>
+                    <%= t.name %>
+                <% end %>
+              </td>
               <td class="text-center"><%=  t.email %></td>
               <td class="text-center"><%=  t.created_at.present? ? t.created_at.strftime("%d.%m.%Y %H:%M %p") : nil  %></td>
               <td class="text-center"><%=  t.tender_open_date.present? ? t.tender_open_date.strftime("%d.%m.%Y %H:%M %p") : 'Not yet' %></td>

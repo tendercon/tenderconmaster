@@ -130,7 +130,7 @@ module UsersHelper
   def get_user_created id
 
     user  = User.find(id)
-    user.created_at.strftime("%d-%m-%Y")
+    user.created_at.strftime("%d-%m-%Y %H:%M %p")
   end
 
   def get_user_name id

@@ -2212,13 +2212,25 @@ class TendersController < ApplicationController
     if !doc.present?
       document = TenderDocument.new
       document.tender_id = params[:tender_id]
-      document.directory = '0'
+      document.directory = 'New Folder'
       document.user_id = session[:user_logged_id]
       document.save
     end
 
     @tender = Tender.find(params[:tender_id])
     @documents = TenderDocument.where(:user_id => session[:user_logged_id],:tender_id => params[:tender_id]).order('created_at desc,directory desc')
+
+    urls = []
+    @directories = []
+    if @documents.present?
+      @documents.each do |u|
+        if u.directory != 'unzip'
+          @directories << u.directory
+          urls << request.host_with_port+"/assets/tender/document/#{u.id}/original/#{u.document_file_name}"
+        end
+      end
+    end
+    @new_direcotires = @directories.reject { |c| c.present? ?  c.empty? : nil }
     @data = render :partial => 'tenders/document_upload/new_ducument_table'
   end
 

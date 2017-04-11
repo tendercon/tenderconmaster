@@ -22,8 +22,9 @@
         <label ><input type="checkbox" name="unzip"  class="unzip" checked="checked"> Unzip all zipped files</label> 
       </p>
     </div>-->
-
+      <div class="col-md-12" style="height: 30px"></div>
       <div class="uploaded_docs">  
+        <div style="height: 20px"></div>
         <% if params[:document].present? %>
             <% if @documents.present? %>
                 <%= render :partial => 'tenders/documents' %>

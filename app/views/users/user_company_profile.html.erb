@@ -77,11 +77,11 @@
         </tr>
         <tr>
           <td class="col-md-3">Address</td>
-          <td><%= "#{@sc_user.address.location}" %></td>
+          <td><%= "#{@sc_user.address.present? ? @sc_user.address.location.present? ? @sc_user.address.location : nil : nil}" %></td>
         </tr>
         <tr>
           <td class="col-md-3">Time zone</td>
-          <td><%= "#{@sc_user.address.timezone}" %></td>
+          <td><%= "#{@sc_user.address.present? ? @sc_user.address.timezone.present? ? @sc_user.address.timezone : nil : nil}" %></td>
         </tr>
         <tr>
           <td class="col-md-3">About</td>

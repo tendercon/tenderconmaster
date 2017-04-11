@@ -1,45 +1,4 @@
 
-<!--<i class="fa fa-folder folder" aria-hidden="true"></i>
-<i class="fa fa-arrows selected" aria-hidden="true"></i>
-<button type="button" class="btn btn-warning selected_btn" style="display: none">
-  <i class="fa fa-arrows" aria-hidden="true"></i> MOVE SELECTED DOCUMENTS
-</button>
-<i class="fa fa-trash remove" aria-hidden="true" onclick="return confirm('Are you sure you want to delete this item?');"></i>
-<button type="button" class="btn btn-danger remove_btn" style="display: none" onclick="return confirm('Are you sure you want to delete this item?');">
-  <i class="fa fa-trash" aria-hidden="true" ></i> DELETE SELECTED DOCUMENTS
-</button>-->
-<!--<div class="admin-form">
-  <div class="row">
-    <div class="col-md-9">
-      &lt;!&ndash;<i class="fa fa-folder folder" aria-hidden="true"></i>
-      <i class="fa fa-arrows selected" aria-hidden="true"></i>&ndash;&gt;
-      <button type="button" class="button btn-success add_folder" >
-        <i class="fa fa-arrows" aria-hidden="true"></i> ADD FOLDER
-      </button>
-      <button type="button" class="button btn-warning selected_btn" disabled>
-        <i class="fa fa-arrows" aria-hidden="true"></i> MOVE SELECTED DOCUMENTS
-      </button>
-      &lt;!&ndash;<i class="fa fa-trash remove" aria-hidden="true" onclick="return confirm('Are you sure you want to delete this item?');"></i>&ndash;&gt;
-      <button type="button" class="button btn-danger remove_btn" disabled  onclick="return confirm('Are you sure you want to delete this item?');">
-        <i class="fa fa-trash" aria-hidden="true" ></i> DELETE SELECTED DOCUMENTS
-      </button>
-    </div>
-
-    <div class="col-md-3 pull-right">
-      <div class="section">
-        <div class="smart-widget sm-left sml-50">
-          <label class="field">
-            <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Here">
-          </label>
-          <label for="sm3" class="button">
-            <i class="fa fa-search"></i>
-          </label>
-        </div>
-        &lt;!&ndash; end .smart-widget section &ndash;&gt;
-      </div>
-    </div>
-  </div>
-</div>-->
 <table  class="table table-bordered responsive" id="new_folder_table"  cellspacing="0" width="100%">
   <thead>
   <tr style="background-color: #2C3E50;color: white;">
@@ -136,6 +95,17 @@
     $(".thVal").keyup(function (event) {
       if (event.keyCode == 13) {
         $(currentEle).html($(".thVal").val().trim());
+        $.ajax({
+          method: "POST",
+          data: {tender_id:tender_id,new_value:$(this).val(),old_value:title},
+          url: "/tenders/rename_file"
+        }).done(function (data) {
+          //$('.uploaded_docs').html(data);
+          //$('.document_div_table').html('');
+          //$('.add_folder').hide();
+          $('.folder').show();
+          $('.document_div_table').html(data);
+        });
       }
     });
 

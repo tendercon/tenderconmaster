@@ -57,7 +57,7 @@
     <th class="text-center">Contact Name</th>
     <th class="text-center">Trade</th>
     <th class="text-center">Joined</th>
-    <th class="text-center">Packages</th>
+    <th class="text-center">Tracking Features</th>
     <th class="text-center">Status</th>
   </tr>
   </thead>
@@ -80,7 +80,7 @@
         <td class="text-center"><%= (get_user_created t.sc_id).present? ?  (get_user_created t.sc_id).to_datetime.strftime("%d.%m.%Y %H:%M %p") : '--' %></td>
         <td class="text-center">
           <label class="text-center"><%= "#{return_download_package_cnt @tender.id,t.trade_id}" %></label>
-          <label>Downloads</label>
+          <label>Coming Soon</label>
         </td>
         <td class="text-center">
           <% if t.approved_date.present? %>
