@@ -41,9 +41,11 @@
                               <% if File.exist?(@sc_user.company_avatar.image.path(:original)) %>
                                   <img src="<%= @sc_user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" class="img-responsive" width="150px" height="70px">
                               <% else %>
+                                  <%= "TEST" %>
                                   <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""  width="150px" height="70px">
                               <% end %>
                           <% else %>
+                              <%= "TEST1" %>
                               <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""  width="150px" height="70px">
                           <% end %>
                         </div>
@@ -55,7 +57,7 @@
                       <label>Description</label>
                     </div>
                     <div class="form-group">
-                      <textarea class="form-control quote_desc" rows="5" ><%= q.description %></textarea>
+                      <textarea class="form-control quote_desc" rows="5" disabled><%= q.description %></textarea>
                     </div>
                   </div>
                 </div>

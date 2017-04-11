@@ -1222,7 +1222,6 @@ class UsersController < ApplicationController
           avatar.save
         end
       end
-
       render :json => { :state => 'valid',:avatar_url => user.company_avatar.image.url(:original)}
     else
       render :json => { :state => 'invalid'}

@@ -165,10 +165,6 @@ class QuotesController < ApplicationController
                quote_notif.tender_id = tender_id
                quote_notif.seen = 0
                quote_notif.save
-
-
-
-
              end
            end
          end

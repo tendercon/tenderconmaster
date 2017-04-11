@@ -125,7 +125,7 @@
                         <tr>
                           <td class="text-center"><input type="checkbox" class="document_list" name="documents[]" value="<%=  t.id %>"></td>
                           <td class="text-center">
-                            <a href="<%= t.document_file_name.url(:original) %>">
+                            <a href="<%= "/assets/tender/document/#{t.id}/original/#{t.document_file_name}" %>" target="_blank">
                               <%= t.document_file_name %><label style="display: none"><%= "#{t.directory} #{t.document_file_name}" %></label>
                             </a>
                           </td>

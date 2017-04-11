@@ -132,6 +132,8 @@ module QuotesHelper
 
       if notif.present?
         notif.updated_at.strftime("%d.%m.%Y")
+      else
+        quote.created_at.strftime("%d.%m.%Y")
       end
 
     end
