@@ -670,17 +670,46 @@ class AddendasController < ApplicationController
 
   def update_quote_due
     id = params[:quote_id]
-      if params[:type] == 'quote'
-        quote = TenderQuote.find(id)
-        TenderQuote.where(:id => id).update_all(:quote_date => params[:quote_date],:previous_date => quote.quote_date, :updated_at => Time.now)
-        updated_quote =  TenderQuote.find(id)
 
-        render :json => { :state => 'valid',:quote => (updated_quote.quote_date.to_datetime).strftime("%m/%d/%Y %H:%M %p")}
-      end
+    addenda_change = AddendaChange.new
+    if params[:type] == 'quote'
+      quote = TenderQuote.find(id)
+      TenderQuote.where(:id => id).update_all(:quote_date => params[:quote_date],:previous_date => quote.quote_date, :updated_at => Time.now)
+      if quote.previous_date.to_datetime != params[:quote_date]
 
-      if params[:type] == 'status'
-        Tender.where(:id => params[:tender_id]).update_all(:status => params[:status],:status_updated => 'true',:updated_at => Time.now)
-        render :json => { :state => 'valid',:tender_status => params[:status]}
+        addenda_change_saved = AddendaChange.where(:addenda_id => params[:addenda_id]).first
+
+        if addenda_change_saved.present?
+          AddendaChange.where(:id => addenda_change_saved.id).update_all(:previous_date => quote.quote_date)
+        else
+          addenda_change.addenda_id = params[:addenda_id]
+          addenda_change.previous_date =  quote.quote_date
+          addenda_change.save
+        end
       end
+      updated_quote =  TenderQuote.find(id)
+      render :json => { :state => 'valid',:quote => (updated_quote.quote_date.to_datetime).strftime("%m/%d/%Y %H:%M %p")}
+    end
+
+    if params[:type] == 'status'
+      tender = Tender.find(params[:tender_id])
+      Tender.where(:id => params[:tender_id]).update_all(:status => params[:status],:status_updated => 'true',:updated_at => Time.now)
+      if tender.status.to_i != params[:status].to_i
+
+        addenda_change_saved = AddendaChange.where(:addenda_id => params[:addenda_id]).first
+
+        if addenda_change_saved.present?
+          AddendaChange.where(:id => addenda_change_saved.id).update_all(:previous_status => tender.status)
+        else
+          addenda_change.addenda_id = params[:addenda_id]
+          addenda_change.previous_status =  tender.status
+          addenda_change.save
+        end
+
+      end
+      render :json => { :state => 'valid',:tender_status => params[:status]}
+    end
+
+
   end
 end

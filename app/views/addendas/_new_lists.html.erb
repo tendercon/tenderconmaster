@@ -168,23 +168,49 @@
                     <% end %>
 
                     <% if a.addenda_type == 'details' %>
-                        <% if tender.tender_quote.previous_date.present? %>
+                        <% if (check_addenda_detail a.id).present? %>
                             <table class="table table-bordered responsive"  cellspacing="0" width="100%">
                               <thead>
                               <th>Changes</th>
                               <th></th>
                               </thead>
                               <tbody>
-                              <tr>
-                                <td>Quotes Due</td>
-                                <td><%= tender.tender_quote.quote_date  %> Updated</td>
-                              </tr>
-                              <tr>
-                                <td></td>
-                                <td><%= tender.tender_quote.previous_date  %> Previously</td>
-                              </tr>
+                              <% if ((check_addenda_detail a.id).previous_date).present? %>
+                                  <tr>
+                                    <td>Quotes Due</td>
+                                    <td><%= @tender.tender_quote.quote_date  %> Updated</td>
+                                  </tr>
+                                  <tr>
+                                    <td></td>
+                                    <td><%= (check_addenda_detail a.id).previous_date  %> Previously</td>
+                                  </tr>
+                              <% end %>
+
+                              <% if ((check_addenda_detail a.id).previous_status).present? %>
+                                  <tr>
+                                    <td>Status</td>
+                                    <% if @tender.status == 1 %>
+                                        <td>Tendering - Your organization is still tendering for this project. Updated</td>
+                                    <% else %>
+                                        <td>Awarded - This tender has been awarded yo your organization or this your project. Updated</td>
+                                    <% end %>
+                                  </tr>
+
+                                  <tr>
+                                    <td></td>
+                                    <% if (check_addenda_detail a.id).previous_status.to_i == 1 %>
+                                        <td>Tendering - Your organization is still tendering for this project. Previously</td>
+                                    <% else %>
+                                        <td>Awarded - This tender has been awarded yo your organization or this your project. Previously</td>
+                                    <% end %>
+                                  </tr>
+
+
+                              <% end %>
+
                               </tbody>
                             </table>
+
                         <% end %>
                     <% end %>
                   </div>

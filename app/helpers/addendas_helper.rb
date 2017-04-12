@@ -10,4 +10,14 @@ module AddendasHelper
     addenda.ref_no
   end
 
+  def check_addenda_detail id
+    addenda_change = AddendaChange.where(:addenda_id => id).first
+
+    if addenda_change.present?
+      addenda_change
+    else
+      nil
+    end
+  end
+
 end

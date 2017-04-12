@@ -142,6 +142,7 @@
     $('.revise').click(function(){
       var id = $(this).attr('id');
       var quote_due = $('.quote_due').val();
+
       $('.quote_date_label').text('');
       $(this).hide();
       $('.quote_date_field').show();
@@ -161,9 +162,10 @@
 
     $('.done_tendering').click(function(){
       var tender_id = $(this).attr('id');
+      var addenda_id = '<%= params[:addenda] %>';
       $.ajax({
         method: "POST",
-        data: {status:status,tender_id:tender_id,type:"status"},
+        data: {status:status,tender_id:tender_id,type:"status",addenda_id:addenda_id},
         url: "/addendas/update_quote_due "
       }).done(function (data) {
         $('.tendering_div').hide();
@@ -181,9 +183,10 @@
     $('.done_quote').click(function(){
       var id = $(this).attr('id');
       var quote_due = $('.quote').val();
+      var addenda_id = '<%= params[:addenda] %>';
       $.ajax({
         method: "POST",
-        data: {quote_id:id,quote_date:quote_due,type:"quote"},
+        data: {quote_id:id,quote_date:quote_due,type:"quote",addenda_id:addenda_id},
         url: "/addendas/update_quote_due  "
       }).done(function (data) {
         $('.quote_date_label').text(data.quote);
