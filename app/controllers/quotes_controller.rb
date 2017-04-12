@@ -187,19 +187,10 @@ class QuotesController < ApplicationController
     dir = "#{Rails.root}/public/assets/quotes/#{project_name}"
     FileUtils.makedirs(dir)
 
-    #dir = "#{Rails.root}/public/assets/quotes/#{project_name}"
-    #Dir.mkdir(dir) unless File.exists?(dir)
     ids = params[:ids]
     quote_id = params[:quote_id]
 
     @sc_user = User.find(session[:user_logged_id])
-
-    #@sc_user.company_avatars.each do |a|
-    #  @avatar_filename = a.image_file_name
-    #  @avatar_path = a.image.path
-    #  puts "@avatar_filename:#{a.image.url}"
-    #  @link = "http://"+request.host_with_port+"/assets/company_avatar/image/#{a.id}/original/#{@avatar_filename}"
-    #end
 
     if quote_id.present?
       quote = Quote.find(quote_id)
@@ -212,7 +203,7 @@ class QuotesController < ApplicationController
       #dir1 = "#{Rails.root}/public/assets/quotes/#{project_name}/#{quote.ref_no}"
       #Dir.mkdir(dir1) unless File.exists?(dir1)
 
-      Quote.quote_link(quote,hc_user,trade,project_name,@avatar_path)
+      #Quote.quote_link(quote,hc_user,trade,project_name,@avatar_path)
 
       if quote.quote_documents.present?
         quote.quote_documents.each do |a|
@@ -247,9 +238,9 @@ class QuotesController < ApplicationController
           FileUtils.makedirs(dir)
 
           if @avatar_path.present? && File.exist?(@avatar_path)
-            Quote.quote_link(quote,hc_user,trade,project_name,@avatar_path)
+            #Quote.quote_link(quote,hc_user,trade,project_name,@avatar_path)
           else
-            Quote.quote_link(quote,hc_user,trade,project_name,nil)
+            #Quote.quote_link(quote,hc_user,trade,project_name,nil)
           end
 
 
@@ -262,14 +253,14 @@ class QuotesController < ApplicationController
             end
           end
 
-          if quote.quote_document_optionals.present?
-            quote.quote_document_optionals.each do |a|
-              puts "a.document.url:#{a.document.path}"
-              if File.exist? a.document.path
-                FileUtils.cp a.document.path, dir1
-              end
-            end
-          end
+          # if quote.quote_document_optionals.present?
+          #   quote.quote_document_optionals.each do |a|
+          #     puts "a.document.url:#{a.document.path}"
+          #     if File.exist? a.document.path
+          #       FileUtils.cp a.document.path, dir1
+          #     end
+          #   end
+          # end
         end
       end
     end

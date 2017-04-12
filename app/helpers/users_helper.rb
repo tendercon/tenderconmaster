@@ -50,6 +50,16 @@ module UsersHelper
     end
   end
 
+  def get_id_by_email email
+    user = User.where(:email => email).first
+
+    if user.present?
+      user.id
+    else
+      nil
+    end
+  end
+
   def return_hc_name user_id
     user = User.where(:id => user_id).first
 
