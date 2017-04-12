@@ -5,4 +5,9 @@ module AddendasHelper
     documents
   end
 
+  def get_addenda_ref id
+    addenda = Addenda.find(id)
+    addenda.ref_no
+  end
+
 end

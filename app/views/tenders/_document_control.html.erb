@@ -101,7 +101,7 @@
                     <td class="text-center"><%= (t.updated_at).strftime("%d.%m.%Y") %></td>
                     <td class="text-center">
                       <% if t.action_type == 'addenda' %>
-                          "Addenda"
+                         <%= " Added from #{(get_addenda_ref t.addenda_id)}" %>
                       <% else %>
                           <%= nil %>
                       <% end %>

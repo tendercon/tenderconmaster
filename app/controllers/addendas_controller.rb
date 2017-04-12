@@ -293,6 +293,9 @@ class AddendasController < ApplicationController
           end
           notification.save
           user = User.find(tender_approved.sc_id)
+
+
+
           #TenderconMailer.tender_changed(params[:subject],params[:details],user.email,user.first_name,@tender.title,@addenda.addenda_type).deliver_now
         end
       end
@@ -598,6 +601,63 @@ class AddendasController < ApplicationController
     @documents = TenderDocument.where(:user_id => session[:user_logged_id],:tender_id => @tender.id,:action_type => 'addenda').where("addenda_id is null").order('created_at desc,directory desc')
     @data = render :partial => 'addendas/documents/get_documents'
 
+  end
+
+
+  def download
+    require 'zip'
+    tender = Tender.find(params[:tender_id])
+    addenda_id = params[:addenda_id]
+
+    @sc_user = User.find(session[:user_logged_id])
+    dir = "#{Rails.root}/assets/tender/document/Fullset-#{tender.tendercon_id}"
+    FileUtils.makedirs(dir)
+    if addenda_id.present?
+      addenda = Addenda.find(addenda_id)
+      hc_user = User.find(tender.user_id)
+      puts "hc_user:#{hc_user.first_name}"
+
+      dir1 = "#{Rails.root}/public/assets/tender/document/Fullset-#{tender.tendercon_id}"
+      FileUtils.makedirs(dir1)
+      tender_docoments = TenderDocument.where(:addenda_id => addenda_id)
+      if tender_docoments.present?
+        tender_docoments.each do |a|
+          puts "a.document.url:#{a.document.path}"
+          if File.exist? a.document.path
+            FileUtils.cp a.document.path, dir1
+          end
+        end
+      end
+    end
+
+
+
+    @destination =  "#{Rails.root}/public/assets/tender/document/Fullset-#{tender.tendercon_id}"
+
+    @destination.sub!(%r[/$],'')
+
+    archive = File.join(@destination,File.basename(@destination))+'.zip'
+    FileUtils.rm archive, :force=>true
+
+    Zip::File.open(archive, 'w') do |zipfile|
+      Dir["#{@destination}/**/**"].reject{|f|f==archive}.each do |file|
+        zipfile.add(file.sub(@destination+'/',''),file)
+      end
+    end
+
+    new_destination =  "#{Rails.root}/public/assets/tender/document/"
+    old_folder = "#{Rails.root}/public/assets/tender/document/Fullset-#{tender.tendercon_id}/Fullset-#{tender.tendercon_id}/.zip"
+    FileUtils.cp old_folder, new_destination
+    if !addenda_id.present?
+      FileUtils.rm_rf("#{Rails.root}/public/assets/tender/document/Fullset-#{tender.tendercon_id}/")
+    end
+
+
+    if addenda_id.present?
+      link = "http://#{request.host_with_port}/public/assets/tender/document/Fullset-#{tender.tendercon_id}/Fullset-#{tender.tendercon_id}.zip"
+      puts "---------->link:#{link}"
+      render :json => { :state => 'valid',:link => link}
+    end
   end
 
   def update_quote_due

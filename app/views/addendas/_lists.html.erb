@@ -121,9 +121,10 @@
                             <label>Documents</label>
                           </div>
                           <div class="col-md-6">
-                            <a href="<%= "http://"+@ip+"/assets/tender/document/Fullset-#{@tender.tendercon_id}.zip" %>" >
+                            <a href="#!" class="download" id="<%= a.id %>">
                               <button class="btn btn-default">download all files in zip</button>
                             </a>
+
                             <div  style="height: 20px"></div>
                           </div>
                           <div  style="height: 20px"></div>
@@ -203,7 +204,11 @@
 <input type="hidden" class="addenda_type">
 <input type="hidden" class="addenda_subject">
 <input type="hidden" class="addenda_details">
+
 <input type="hidden" class="tender_id" value="<%= @tender.id %>">
+<div style="display: none">
+  <a href="/images/myw3schoolsimage.jpg" download class="d_load"></a>
+</div>
 <script>
   $(document).ready(function(){
 
@@ -234,6 +239,23 @@
       }).show();
 
     })
+
+    $('.download').click(function(){
+        var addenda_id = $(this).attr('id');
+        var tender_id  = $('.tender_id').val();
+
+      console.log("addenda_id:"+addenda_id)
+      console.log("tender_id:"+tender_id)
+
+      $.ajax({
+        method: "POST",
+        data: {addenda_id:addenda_id,tender_id:tender_id},
+        url: "/addendas/download"
+      }).done(function (data) {
+        $(".d_load").prop("href", data.link)
+        $(".d_load").click();
+      });
+    });
 
   });
 </script>

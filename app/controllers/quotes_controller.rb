@@ -198,7 +198,7 @@ class QuotesController < ApplicationController
       hc_user = User.find(tender.user_id)
       puts "hc_user:#{hc_user.first_name}"
 
-      dir1 = "#{Rails.root}/public/assets/quotes/#{project_name}/#{quote.ref_no}"
+      dir1 = "#{Rails.root}/public/assets/quotes/#{project_name}"
       FileUtils.makedirs(dir1)
       #dir1 = "#{Rails.root}/public/assets/quotes/#{project_name}/#{quote.ref_no}"
       #Dir.mkdir(dir1) unless File.exists?(dir1)
@@ -234,7 +234,8 @@ class QuotesController < ApplicationController
           #dir1 = "#{Rails.root}/public/assets/quotes/#{project_name}/#{quote.ref_no}"
           #Dir.mkdir(dir1) unless File.exists?(dir1)
 
-          dir1 = "#{Rails.root}/public/assets/quotes/#{project_name}/#{quote.ref_no}"
+          dir1 = "#{Rails.root}/public/assets/quotes/#{project_name}"
+          #File.delete(dir1) if File.exist?(dir1)
           FileUtils.makedirs(dir)
 
           if @avatar_path.present? && File.exist?(@avatar_path)

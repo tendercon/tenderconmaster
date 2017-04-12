@@ -436,6 +436,7 @@ Rails.application.routes.draw do
       post 'delete_documents'
       post 'move_files'
       post 'create_packages'
+      post 'download'
     end
   end
 

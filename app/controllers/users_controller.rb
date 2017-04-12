@@ -269,7 +269,7 @@ class UsersController < ApplicationController
         user_plan.plan = 'STARTER PLAN $0'
         user_plan.amount = 0.00
         user_plan.save
-
+        TenderconMailer.registration_email(@user.email,root_url,@user.id,@user.unique_key).deliver_now
         #TenderconMailer.delay.registration_email(@user.email,root_url,@user.id,@user.unique_key)
         User.delay(run_at: 20.minutes.from_now).execute_token_expiration(@user.id)
         flash[:notice] = "Your account has been successfully created."

@@ -126,7 +126,7 @@
         </div>
 
 
-        <a href="#!" style="color: #000000;text-decoration: none;" data-toggle="modal" data-target="#myModal">TENDERCON ID <span class="fa fa-question-circle" data-toggle="tooltip" data-original-title="TENDERCON ID is a unique key given by the system for each tendercon user." style="color: green"></span></a>
+        <a href="#!" style="color: #000000;text-decoration: none;" data-toggle="modal" data-target="#myModal1">TENDERCON ID <span class="fa fa-question-circle" data-toggle="tooltip" data-original-title="TENDERCON ID is a unique key given by the system for each tendercon user." style="color: green"></span></a>
         <input type="text" class="form-control"  id="tendercon_id" name="tendercon_id" value="<%= @tender_code.name %>" required autofocus readonly>
 
         <div style="display: none" class="error_tendercon_id">
@@ -183,9 +183,35 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            <h4 class="modal-title" id="myModalLabel">ABN</h4>
           </div>
           <div class="modal-body">
+            <div class="text-center">
+              <p>
+                Please provide the ABN your company is currently trading under and click Verify. Tendercon will pull all the relevant information from ABN Lookup and certify you as a legitimate business.
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">Tendercon ID</h4>
+          </div>
+          <div class="modal-body">
+            <div class="text-center">
+              <p>
+                This is your unique ID randomly assigned by Tendercon and is used to assist Tendercon members identify your actions on the platform.
+              </p>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

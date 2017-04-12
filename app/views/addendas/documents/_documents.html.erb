@@ -135,6 +135,17 @@
       $(".thVal").keyup(function (event) {
         if (event.keyCode == 13) {
           $(currentEle).html($(".thVal").val().trim());
+          $.ajax({
+            method: "POST",
+            data: {tender_id:tender_id,new_value:$(this).val(),old_value:title},
+            url: "/tenders/rename_file"
+          }).done(function (data) {
+            //$('.uploaded_docs').html(data);
+            //$('.add_folder').hide();
+            $('.folder').show();
+            $('.document_div_table').html('');
+            $('.document_div_table').html(data);
+          });
         }
       });
 
