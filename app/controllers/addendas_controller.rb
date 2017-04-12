@@ -675,7 +675,7 @@ class AddendasController < ApplicationController
     if params[:type] == 'quote'
       quote = TenderQuote.find(id)
       TenderQuote.where(:id => id).update_all(:quote_date => params[:quote_date],:previous_date => quote.quote_date, :updated_at => Time.now)
-      if quote.previous_date.to_datetime != params[:quote_date]
+      if quote.previous_date.to_datetime != params[:quote_date].to_datetime
 
         addenda_change_saved = AddendaChange.where(:addenda_id => params[:addenda_id]).first
 

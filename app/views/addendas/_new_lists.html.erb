@@ -175,7 +175,7 @@
                               <th></th>
                               </thead>
                               <tbody>
-                              <% if ((check_addenda_detail a.id).previous_date).present? %>
+                              <% if ((check_addenda_detail a.id).previous_date).present? &&  (((check_addenda_detail a.id).previous_date) != ( @tender.tender_quote.quote_date) ) %>
                                   <tr>
                                     <td>Quotes Due</td>
                                     <td><%= @tender.tender_quote.quote_date  %> Updated</td>
@@ -186,7 +186,7 @@
                                   </tr>
                               <% end %>
 
-                              <% if ((check_addenda_detail a.id).previous_status).present? %>
+                              <% if ((check_addenda_detail a.id).previous_status).present? && (((check_addenda_detail a.id).previous_status) != @tender.status) %>
                                   <tr>
                                     <td>Status</td>
                                     <% if @tender.status == 1 %>
