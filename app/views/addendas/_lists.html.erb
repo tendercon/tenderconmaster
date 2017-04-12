@@ -125,6 +125,8 @@
                               <button class="btn btn-default">download all files in zip</button>
                             </a>
 
+                              <a href="#!" download class="d_load"></a>
+
                             <div  style="height: 20px"></div>
                           </div>
                           <div  style="height: 20px"></div>
@@ -160,7 +162,7 @@
                             <th></th>
                             </thead>
                             <tbody>
-                            <% if @tender.tender_quote.previous_date.present? %>
+                            <% if @tender.tender_quote.previous_date.present? && @tender.tender_quote.quote_date.present? %>
                               <tr>
                                 <td>Quotes Due</td>
                                 <td><%= @tender.tender_quote.quote_date  %> Updated</td>
@@ -206,9 +208,7 @@
 <input type="hidden" class="addenda_details">
 
 <input type="hidden" class="tender_id" value="<%= @tender.id %>">
-<div style="display: none">
-  <a href="/images/myw3schoolsimage.jpg" download class="d_load"></a>
-</div>
+
 <script>
   $(document).ready(function(){
 
@@ -254,6 +254,9 @@
       }).done(function (data) {
         $(".d_load").prop("href", data.link)
         $(".d_load").click();
+
+        var href = $('.d_load').attr('href');
+        window.location.href = href;
       });
     });
 

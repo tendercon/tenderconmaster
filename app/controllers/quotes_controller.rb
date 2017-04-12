@@ -290,7 +290,7 @@ class QuotesController < ApplicationController
 
     if quote_id.present?
 
-      link = "http://#{request.host_with_port}/assets/quotes/#{project_name}/#{quote.ref_no}.pdf"
+      link = "http://#{request.host_with_port}/assets/quotes/#{project_name}.zip"
       puts "---------->link:#{link}"
       render :json => { :state => 'valid',:link => link}
     elsif ids.present?

@@ -576,6 +576,8 @@ module TendersHelper
       else
         Time.now.strftime("%d.%m.%Y %H:%M %p")
       end
+    else
+      Time.now.strftime("%d.%m.%Y %H:%M %p")
     end
   end
 

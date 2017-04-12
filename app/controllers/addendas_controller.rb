@@ -610,14 +610,21 @@ class AddendasController < ApplicationController
     addenda_id = params[:addenda_id]
 
     @sc_user = User.find(session[:user_logged_id])
-    dir = "#{Rails.root}/assets/tender/document/Fullset-#{tender.tendercon_id}"
+    #dir = "#{Rails.root}/public/assets/tender/document/Fullset-#{tender.tendercon_id}"
+    #FileUtils.makedirs(dir)
+
+    dir = "#{Rails.root}/public/assets/quotes/Fullset-#{tender.tendercon_id}"
     FileUtils.makedirs(dir)
+
     if addenda_id.present?
       addenda = Addenda.find(addenda_id)
       hc_user = User.find(tender.user_id)
       puts "hc_user:#{hc_user.first_name}"
 
-      dir1 = "#{Rails.root}/public/assets/tender/document/Fullset-#{tender.tendercon_id}"
+      #dir1 = "#{Rails.root}/public/assets/tender/document/Fullset-#{tender.tendercon_id}"
+      #FileUtils.makedirs(dir1)
+
+      dir1 = "#{Rails.root}/public/assets/quotes/Fullset-#{tender.tendercon_id}"
       FileUtils.makedirs(dir1)
       tender_docoments = TenderDocument.where(:addenda_id => addenda_id)
       if tender_docoments.present?
@@ -632,7 +639,7 @@ class AddendasController < ApplicationController
 
 
 
-    @destination =  "#{Rails.root}/public/assets/tender/document/Fullset-#{tender.tendercon_id}"
+    @destination =  "#{Rails.root}/public/assets/quotes/Fullset-#{tender.tendercon_id}"
 
     @destination.sub!(%r[/$],'')
 
@@ -645,16 +652,17 @@ class AddendasController < ApplicationController
       end
     end
 
-    new_destination =  "#{Rails.root}/public/assets/tender/document/"
-    old_folder = "#{Rails.root}/public/assets/tender/document/Fullset-#{tender.tendercon_id}/Fullset-#{tender.tendercon_id}/.zip"
+    new_destination =  "#{Rails.root}/public/assets/quotes/"
+    old_folder = "#{Rails.root}/public/assets/quotes/Fullset-#{tender.tendercon_id}/Fullset-#{tender.tendercon_id}.zip"
     FileUtils.cp old_folder, new_destination
     if !addenda_id.present?
-      FileUtils.rm_rf("#{Rails.root}/public/assets/tender/document/Fullset-#{tender.tendercon_id}/")
+      FileUtils.rm_rf("#{Rails.root}/public/assets/quotes/Fullset-#{tender.tendercon_id}/")
     end
 
 
+
     if addenda_id.present?
-      link = "http://#{request.host_with_port}/public/assets/tender/document/Fullset-#{tender.tendercon_id}/Fullset-#{tender.tendercon_id}.zip"
+      link = "http://#{request.host_with_port}/assets/quotes/Fullset-#{tender.tendercon_id}.zip"
       puts "---------->link:#{link}"
       render :json => { :state => 'valid',:link => link}
     end
