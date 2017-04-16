@@ -1,10 +1,19 @@
 <div style="height: 50px"></div>
 <div class="">
-  <a href="/tenders/hc_tender?id=<%= @tender_id %>&subcontractors=true">
-    <button class="btn btn-default">
-      BACK
-    </button>
-  </a>
+  <% if params[:invited].present? %>
+      <a href="/tenders/invited_tender">
+        <button class="btn btn-default">
+          BACK
+        </button>
+      </a>
+  <% else %>
+      <a href="/tenders/hc_tender?id=<%= @tender_id %>&subcontractors=true">
+        <button class="btn btn-default">
+          BACK
+        </button>
+      </a>
+  <% end %>
+
 </div>
 <div class="profile-sidebar">
   <!-- PORTLET MAIN -->
