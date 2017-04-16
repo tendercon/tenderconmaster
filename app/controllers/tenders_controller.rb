@@ -2634,6 +2634,7 @@ class TendersController < ApplicationController
     if params[:added_by].present?
       @tender_invites = TenderInvite.where(:tender_id => @tender.id,:added_by => 'admin').order('trade_id asc')
     else
+
       @tender_invites = TenderInvite.where(:tender_id => @tender.id,:added_by => nil).order('trade_id asc')
     end
     #@tender_invites = TenderInvite.where(:tender_id => @tender.id).order('trade_id asc')

@@ -1,10 +1,10 @@
 # config valid only for current version of Capistrano
 lock "3.7.2"
 
-set :application, 'tendercon_v1'
-set :branch, :master
+set :application, 'stagingV1_tendercon'
+set :branch, :staging_V1
 set :repo_url, 'https://github.com/tendercon/tenderconmaster.git'
-set :deploy_to, '/home/deploy/tendercon_v1'
+set :deploy_to, '/home/deploy/stagingV1_tendercon'
 set :pty, true
 set :linked_files, %w{config/database.yml config/application.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
