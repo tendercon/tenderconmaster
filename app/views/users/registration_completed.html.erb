@@ -1,40 +1,51 @@
 <div class="row">
+
   <div class="col-md-12">
-    <div class="login_div">
-      <div class="container">
-        <div class="form-group has-feedback">
-          <% if flash[:error] %>
-              <div class="alert alert-danger open-sans-regular" id="users_error">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <%= @error_alert %>
-                <div class="notice text-center" style="font-size: 14px;"><%= flash[:error] %></div>
-                <% flash[:error]=nil %>
-              </div>
-          <% end %>
-          <%- if !flash[:notice].nil? %>
-              <div class="alert alert-success open-sans-regular" id="users_error">
-                <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <%= @error_alert %>
-                <div class="notice text-center" style="font-size: 14px;"><%= flash[:notice] %></div>
-                <% flash[:notice]=nil %>
-              </div>
-          <%- end %>
-        </div>
+    <div class="form-group has-feedback">
+      <% if flash[:error] %>
+          <div class="alert alert-danger open-sans-regular" id="users_error">
+            <!-- <button type="button" class="close" data-dismiss="alert">&times;</button>-->
+            <%= @error_alert %>
+            <div class="notice text-center" style="font-size: 14px;"><%= flash[:error] %></div>
+            <% flash[:error]=nil %>
+          </div>
+      <% end %>
+      <%#- if !flash[:notice].nil? %>
+      <div class="alert alert-success open-sans-regular" id="users_error">
+        <!--<button type="button" class="close" data-dismiss="alert">&times;</button>-->
+        <%= @error_alert %>
+        <div class="notice text-center" style="font-size: 14px;">TEST<%#= flash[:notice] %></div>
+        <%# flash[:notice]=nil %>
       </div>
+      <%#- end %>
+    </div>
+    <div class="login_div">
+
       <div class="text-center">
         <img src="/img/logos/tendercon_log_transparent.png" width="300px">
       </div>
-      <h2 class="text-center login-title" style="color: #ffffff">You're almost done - Activate your Account!</h2>
+      <h2 class="text-center login-title" style="color: #DD66DD;font-family: 'Open Sans';font-size: 30px;font-height:33px">Check your email!</h2>
       <br>
-      <br>
-      <br>
-      <p class="text-center registration_complete_text" style="color: #ffffff">You've just been sent an email that contains a activation link.</p>
+
+      <p class="text-center" style="font-size: 14px;font-height:20px;font-family: 'Open Sans';color: #d6d6d6">
+        We just sent a message to your email address. Open it up and click Access Tendercon Now.
+      </p>
+
+      <p class="text-center" style="font-size: 14px;font-height:20px;font-family: 'Open Sans';color: #d6d6d6">
+        We'll take it from there.
+      </p>
+      <div style="height: 7px"></div>
+      <p class="text-center" style="font-size: 14px;font-height:20px;font-family: 'Open Sans';color: #d6d6d6">
+        If it doesn't show up in 5 minutes, check your spam folder.
+        We sent it from <b>invite@tendercon.com</b>
+      </p>
+      <!--<p class="text-center registration_complete_text" style="color: #ffffff">You've just been sent an email that contains a activation link.</p>
       <p class="text-center registration_complete_text" style="color: #ffffff">To activate your account, check your email and follow the simple instructions.</p>
       <p class="text-center registration_complete_text" style="color: #ffffff">If you don't see that email in your inbox in the next 10 minutes</p>
       <div class="text-center">
-        <a href="<%= resent_email_notification_users_path(:id => @id) %>" class="text-center new-account" role="button" style="text-decoration: none; color: #ffffff"><strong>click here</strong></a>
-      </div>
-      <p class="text-center registration_complete_text" style="color: #ffffff">to have another copy sent to you again.</p>
+        <a href="<%#= resent_email_notification_users_path(:id => @id) %>" class="text-center new-account" role="button" style="text-decoration: none; color: #ffffff"><strong>click here</strong></a>
+      </div>-->
+      <!--<p class="text-center registration_complete_text" style="color: #ffffff">to have another copy sent to you again.</p>-->
     </div>
   </div>
 </div>
