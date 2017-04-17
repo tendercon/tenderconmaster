@@ -121,7 +121,7 @@ class TenderconMailer < ActionMailer::Base
         }
     }.to_json
 
-    mail(from: 'hello@tendercon.com', to: email, subject: 'Account Verification ')
+    mail(from: 'invite@tendercon.com', to: email, subject: 'Account Verification ')
 
   end
 
