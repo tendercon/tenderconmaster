@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   def delete_user
     id = params[:id]
     @type = params[:type]
-    User.where(:id => id).update_all(:status => 'deleted')
+    #User.where(:id => id).update_all(:status => 'deleted')
 
     if @type == 'All'
       @users = User.all
