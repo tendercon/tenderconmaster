@@ -92,7 +92,13 @@
                   </td>-->
                 <%# end %>
                 <% if session[:role] == 'Sub Contractor' %>
-                    <td class="text-center"><%= t.user.trade_name %></td>
+
+                    <td class="text-center">
+                      <a href="<%= user_company_profile_users_path(:id => t.user_id,:tender => t.id,:my_tender => true) %>">
+                        <%= t.user.trade_name %>
+                      </a>
+
+                    </td>
                 <% end %>
                 <td class="text-center"><%= t.title %></td>
                 <td class="text-center"><%= t.address %></td>

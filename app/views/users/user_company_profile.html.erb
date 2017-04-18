@@ -6,6 +6,12 @@
           BACK
         </button>
       </a>
+  <% elsif params[:my_tender].present? %>
+      <a href="/tenders/my_tender">
+        <button class="btn btn-default">
+          BACK
+        </button>
+      </a>
   <% else %>
       <a href="/tenders/hc_tender?id=<%= @tender_id %>&subcontractors=true">
         <button class="btn btn-default">
