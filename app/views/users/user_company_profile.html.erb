@@ -38,7 +38,7 @@
     </div>
 
     <div class="profile-usertitle">
-      <div class="profile-usertitle-name" style="color: #2C3E50;"> <%= "#{@sc_user.trade_name}" %> </div>
+      <div class="profile-usertitle-name" style="color: #2C3E50;"> <%= @sc_user.trade_name.present? ? "#{@sc_user.trade_name}" : nil %> </div>
     </div>
     <!-- END SIDEBAR USER TITLE -->
     <!-- SIDEBAR BUTTONS -->
@@ -80,11 +80,11 @@
         <tbody>
         <tr>
           <td class="col-md-3">Company</td>
-          <td><%= "#{@sc_user.trade_name}" %></td>
+          <td><%= @sc_user.trade_name.present? ? "#{@sc_user.trade_name}" : nil %></td>
         </tr>
         <tr>
           <td class="col-md-3">ABN</td>
-          <td><%= "#{@sc_user.abn}" %></td>
+          <td><%= @sc_user.abn.present? ? "#{@sc_user.abn}" : nil %></td>
         </tr>
         <tr>
           <td class="col-md-3">ACN</td>
@@ -104,7 +104,7 @@
         </tr>
         <tr>
           <td class="col-md-3">Tendercon ID</td>
-          <td><%= "#{@sc_user.tendercon_id}" %></td>
+          <td><%= @sc_user.tendercon_id.present? ? "#{@sc_user.tendercon_id}" : nil %></td>
         </tr>
         <tr>
           <td class="col-md-3">No. of Employees</td>
