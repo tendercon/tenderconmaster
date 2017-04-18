@@ -171,8 +171,20 @@
                         <% if (check_addenda_detail a.id).present? %>
                             <table class="table table-bordered responsive"  cellspacing="0" width="100%">
                               <thead>
-                              <th>Changes</th>
-                              <th></th>
+
+                              <% if (check_addenda_detail a.id).present?  %>
+                                <% if (check_addenda_detail a.id).previous_date.present? || (check_addenda_detail a.id).previous_status.present? %>
+
+                                  <% if ((check_addenda_detail a.id).previous_date != @tender.tender_quote.quote_date)  %>
+                                    <th>Changes</th>
+                                    <th></th>
+                                  <% elsif ((check_addenda_detail a.id).previous_status.to_i != @tender.status.to_i ) && (check_addenda_detail a.id).previous_status.to_i > 0 && @tender.status.to_i > 0 %>
+                                      <th>Changes</th>
+                                      <th></th>
+                                  <% end %>
+
+                                <% end %>
+                              <% end %>
                               </thead>
                               <tbody>
                               <% if ((check_addenda_detail a.id).previous_date).present? &&  (((check_addenda_detail a.id).previous_date) != ( @tender.tender_quote.quote_date) ) %>
@@ -186,10 +198,10 @@
                                   </tr>
                               <% end %>
 
-                              <% if ((check_addenda_detail a.id).previous_status).present? && (((check_addenda_detail a.id).previous_status) != @tender.status) %>
+                              <% if ((check_addenda_detail a.id).previous_status).present? && (((check_addenda_detail a.id).previous_status.to_i) != @tender.status.to_i) %>
                                   <tr>
                                     <td>Status</td>
-                                    <% if @tender.status == 1 %>
+                                    <% if @tender.status.to_i == 1 %>
                                         <td>Tendering - Your organization is still tendering for this project. Updated</td>
                                     <% else %>
                                         <td>Awarded - This tender has been awarded yo your organization or this your project. Updated</td>

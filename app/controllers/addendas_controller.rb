@@ -35,6 +35,13 @@ class AddendasController < ApplicationController
         end
       end
     end
+
+    if params[:addenda].present?
+      @addenda_changed = AddendaChange.where(:addenda_id => params[:addenda]).first
+    end
+
+
+
     @new_direcotires = @directories.reject { |c| c.present? ?  c.empty? : nil }
     @addenda_document = TenderDocument.new
 
@@ -693,21 +700,28 @@ class AddendasController < ApplicationController
 
     if params[:type] == 'status'
       tender = Tender.find(params[:tender_id])
-      Tender.where(:id => params[:tender_id]).update_all(:status => params[:status],:status_updated => 'true',:updated_at => Time.now)
-      if tender.status.to_i != params[:status].to_i
+      if params[:status].present?
+        @status = params[:status]
 
-        addenda_change_saved = AddendaChange.where(:addenda_id => params[:addenda_id]).first
+        if tender.status.to_i != params[:status].to_i
 
-        if addenda_change_saved.present?
-          AddendaChange.where(:id => addenda_change_saved.id).update_all(:previous_status => tender.status)
-        else
-          addenda_change.addenda_id = params[:addenda_id]
-          addenda_change.previous_status =  tender.status
-          addenda_change.save
+          addenda_change_saved = AddendaChange.where(:addenda_id => params[:addenda_id]).first
+
+          if addenda_change_saved.present?
+            AddendaChange.where(:id => addenda_change_saved.id).update_all(:previous_status => tender.status)
+          else
+            addenda_change.addenda_id = params[:addenda_id]
+            addenda_change.previous_status =  tender.status
+            addenda_change.save
+          end
+          Tender.where(:id => params[:tender_id]).update_all(:status => params[:status],:status_updated => 'true',:updated_at => Time.now)
         end
-
+      else
+        @status = nil
       end
-      render :json => { :state => 'valid',:tender_status => params[:status]}
+
+
+      render :json => { :state => 'valid',:tender_status => @status}
     end
 
 
