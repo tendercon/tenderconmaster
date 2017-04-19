@@ -71,7 +71,7 @@ module UsersHelper
   end
 
   def return_trade trade_id
-    trade = Trade.find(trade_id)
+    trade = Trade.where(:id => trade_id).first
     Rails.logger.info "trade =====> #{trade.inspect}"
     if trade.present?
       if trade.name.present?
