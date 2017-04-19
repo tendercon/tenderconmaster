@@ -386,7 +386,12 @@ class UsersController < ApplicationController
   end
 
   def update_info
-    user = User.find(session[:user_logged_id])
+    if params[:user_id].present?
+      user = User.find(params[:user_id])
+    else
+      user = User.find(session[:user_logged_id])
+    end
+
 
     if user.present?
       User.where(:id => user.id).update_all(:first_name => params[:f_name],
@@ -844,6 +849,47 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_user
+    @sign_in_user = User.find(params[:id])
+    @avatar = Avatar.new
+
+    @added_company_profile = CompanyProfile.where(:user_id => @sign_in_user.id).first
+
+    if @added_company_profile.present?
+      @about_me = @added_company_profile.about_me
+    end
+
+    if @added_company_profile.present?
+      if @added_company_profile.project_range.present?
+        @p_to = @added_company_profile.project_range.split('-')
+      end
+    end
+
+    @primary_trade = PrimaryTrade.where(:user_id => @sign_in_user.id).first
+    @secondary_trades = SecondaryTrade.where(:user_id => @sign_in_user.id)
+    @secondary_trade_array = []
+    if @secondary_trades.present?
+      @secondary_trades.each do |s|
+        @secondary_trade_array << s.trade_id
+      end
+    end
+
+    @trades = Trade.all
+
+    @company_avatar = CompanyAvatar.new
+
+
+    @years = []
+    @from = ['','1K','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M']
+    @to = ['','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M','500M+']
+
+    for i in 1800..(Time.now.strftime('%Y').to_i) do
+      @years << i
+    end
+
+    @positions = Position.all
+  end
+
   def company_profile
     @company_profile = CompanyProfile.new
     @user = User.find(session[:user_logged_id])
@@ -1072,16 +1118,21 @@ class UsersController < ApplicationController
   end
 
   def update_company_info
-    @company_profile = CompanyProfile.where(:user_id => session[:user_logged_id]).first
+    if params[:sign_user_id].present?
+      @user_id = params[:sign_user_id]
+    else
+      @user_id = session[:user_logged_id]
+    end
+    @company_profile = CompanyProfile.where(:user_id => @user_id).first
     to = params[:to]
     from = params[:from]
     project_range = "#{from}-#{to}"
 
-    User.where(:id => session[:user_logged_id]).update_all(:trade_name => params[:trade_name])
+    User.where(:id => @user_id).update_all(:trade_name => params[:trade_name])
 
     if @company_profile.present?
 
-      CompanyProfile.where(:user_id => session[:user_logged_id]).update_all(
+      CompanyProfile.where(:user_id => @user_id).update_all(
           :about_me => params[:about_me],
           :number_of_employees => params[:number_of_employees],
           :commenced_operation => params[:commenced_operation],
@@ -1096,19 +1147,19 @@ class UsersController < ApplicationController
       )
 
       if params[:suburb].present?
-        Address.where(:user_id => params[:user_id]).update_all(:location => params[:address],:suburb => params[:suburb],:postcode => params[:postcode],:state => params[:state], :timezone => params[:timezone])
+        Address.where(:user_id => @user_id).update_all(:location => params[:address],:suburb => params[:suburb],:postcode => params[:postcode],:state => params[:state], :timezone => params[:timezone])
       else
-        Address.where(:user_id => params[:user_id]).update_all(:location => params[:address])
+        Address.where(:user_id => @user_id).update_all(:location => params[:address])
       end
 
-      PrimaryTrade.where(:user_id => session[:user_logged_id]).destroy_all
+      PrimaryTrade.where(:user_id => @user_id).destroy_all
 
       primary = PrimaryTrade.new
       primary.trade_id = params[:primary_trade]
-      primary.user_id = session[:user_logged_id]
+      primary.user_id = @user_id
       primary.save
 
-      SecondaryTrade.where(:user_id => session[:user_logged_id]).destroy_all
+      SecondaryTrade.where(:user_id => @user_id).destroy_all
 
       s_array = []
 
@@ -1137,13 +1188,13 @@ class UsersController < ApplicationController
         s_array.each do |s|
           secondary = SecondaryTrade.new
           secondary.trade_id = s
-          secondary.user_id = session[:user_logged_id]
+          secondary.user_id = @user_id
           secondary.save
         end
       end
     else
       @company_profile = CompanyProfile.new
-      @company_profile.user_id = session[:user_logged_id]
+      @company_profile.user_id = @user_id
       @company_profile.about_me = params[:about_me]
       @company_profile.number_of_employees = params[:number_of_employees]
       @company_profile.commenced_operation = params[:commenced_operation]
@@ -1159,19 +1210,19 @@ class UsersController < ApplicationController
 
 
       if params[:suburb].present?
-        Address.where(:user_id => session[:user_logged_id]).update_all(:location => params[:address],:suburb => params[:suburb],:postcode => params[:postcode],:state => params[:state], :timezone => params[:timezone])
+        Address.where(:user_id => @user_id).update_all(:location => params[:address],:suburb => params[:suburb],:postcode => params[:postcode],:state => params[:state], :timezone => params[:timezone])
       else
-        Address.where(:user_id => session[:user_logged_id]).update_all(:location => params[:address])
+        Address.where(:user_id => @user_id).update_all(:location => params[:address])
       end
 
-      PrimaryTrade.where(:user_id => session[:user_logged_id]).destroy_all
+      PrimaryTrade.where(:user_id => @user_id).destroy_all
 
       primary = PrimaryTrade.new
       primary.trade_id = params[:primary_trade]
-      primary.user_id = session[:user_logged_id]
+      primary.user_id = @user_id
       primary.save
 
-      SecondaryTrade.where(:user_id => session[:user_logged_id]).destroy_all
+      SecondaryTrade.where(:user_id => @user_id).destroy_all
 
       s_array = []
 
@@ -1199,7 +1250,7 @@ class UsersController < ApplicationController
         s_array.each do |s|
           secondary = SecondaryTrade.new
           secondary.trade_id = s
-          secondary.user_id = session[:user_logged_id]
+          secondary.user_id = @user_id
           secondary.save
         end
       end
@@ -2074,7 +2125,89 @@ class UsersController < ApplicationController
       else
         @data = render :partial => 'users/tabs/overview'
       end
+    elsif params[:tab] == 'edit_user_profile'
+      @sign_in_user = User.find(params[:user_id])
+      @avatar = Avatar.new
 
+      @added_company_profile = CompanyProfile.where(:user_id => @sign_in_user.id).first
+
+      if @added_company_profile.present?
+        @about_me = @added_company_profile.about_me
+      end
+
+      if @added_company_profile.present?
+        if @added_company_profile.project_range.present?
+          @p_to = @added_company_profile.project_range.split('-')
+        end
+      end
+
+      @primary_trade = PrimaryTrade.where(:user_id => @sign_in_user.id).first
+      @secondary_trades = SecondaryTrade.where(:user_id => @sign_in_user.id)
+      @secondary_trade_array = []
+      if @secondary_trades.present?
+        @secondary_trades.each do |s|
+          @secondary_trade_array << s.trade_id
+        end
+      end
+
+      @trades = Trade.all
+
+      @company_avatar = CompanyAvatar.new
+
+
+      @years = []
+      @from = ['','1K','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M']
+      @to = ['','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M','500M+']
+
+      for i in 1800..(Time.now.strftime('%Y').to_i) do
+        @years << i
+      end
+
+      @positions = Position.all
+      @data = render :partial => 'users/tabs/edit_user_profile'
+    elsif params[:tab] == 'edit_company_profile'
+      @sign_in_user = User.find(params[:user_id])
+      @avatar = Avatar.new
+
+      @added_company_profile = CompanyProfile.where(:user_id => @sign_in_user.id).first
+
+      if @added_company_profile.present?
+        @about_me = @added_company_profile.about_me
+      end
+
+      if @added_company_profile.present?
+        if @added_company_profile.project_range.present?
+          @p_to = @added_company_profile.project_range.split('-')
+        end
+      end
+
+      @primary_trade = PrimaryTrade.where(:user_id => @sign_in_user.id).first
+      @secondary_trades = SecondaryTrade.where(:user_id => @sign_in_user.id)
+      @secondary_trade_array = []
+      if @secondary_trades.present?
+        @secondary_trades.each do |s|
+          @secondary_trade_array << s.trade_id
+        end
+      end
+
+      @trades = Trade.all
+
+      @company_avatar = CompanyAvatar.new
+
+
+      @years = []
+      @from = ['','1K','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M']
+      @to = ['','10K','50K','100K','250K','500K','1M','5M','10M','20M','50M','100M','500M+']
+
+      for i in 1800..(Time.now.strftime('%Y').to_i) do
+        @years << i
+      end
+
+      @positions = Position.all
+      @data = render :partial => 'users/tabs/edit_user_company_profile.html'
+    elsif params[:tab] == 'edit_avatar'
+
+      @data = render :partial => 'users/tabs/edit_user_company_profile.html'
     end
 
   end

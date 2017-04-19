@@ -1,0 +1,144 @@
+
+<div class="row">
+  <div class="col-md-12 ">
+    <div class="tabbable-line">
+      <ul class="nav nav-tabs ">
+        <li class="active"><a href="#edit_user_profile" data-toggle="tab" id="">Edit Profile</a></li>
+        <li><a href="#edit_company_profile" data-toggle="tab" id="">Edit Company Profile</a></li>
+        <!--<li><a href="#edit_avatar" data-toggle="tab" id="">Edit Avatar</a></li>
+        <li><a href="#edit_user_password" data-toggle="tab" id="">Change Password</a></li>-->
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-12 profile_div">
+    <%= render :partial => 'users/tabs/edit_user_profile' %>
+  </div>
+</div>
+
+
+<script>
+  $(document).ready(function(){
+    $('.account_settings').click(function(){
+      $('#overview').removeClass('active');
+      $('#help').removeClass('active');
+      $('#account_settings').addClass('active');
+
+
+      $.ajax({
+        method: "POST",
+        data: {tab:'account_settings'},
+        url: "/users/profile_control_tabs"
+      }).done(function (data) {
+        $('#profile_content').html(data);
+      });
+
+    });
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      var target = $(e.target).attr("href"); // activated tab
+      var id = $(e.target).attr("id");
+      var user_id = '<%= @sign_in_user.id %>';
+      console.log("TARGET:" + target);
+
+      if (target == '#edit_user_profile') {
+        $('.profile_div').html('');
+         $.ajax({
+          method: "POST",
+          data: {tab:'edit_user_profile',user_id: user_id},
+          url: "/users/profile_control_tabs"
+        }).done(function (data) {
+          $('.profile_div').html(data);
+        });
+      }else if(target == '#edit_company_profile'){
+         $('.profile_div').html('');
+        $.ajax({
+          method: "POST",
+          data: {tab:'edit_company_profile',user_id: user_id},
+          url: "/users/profile_control_tabs"
+        }).done(function (data) {
+          $('.profile_div').html(data);
+        });
+      }else if(target == '#edit_avatar'){
+        $('.profile_div').html('');
+        $.ajax({
+          method: "POST",
+          data: {tab:'edit_avatar',user_id: user_id},
+          url: "/users/profile_control_tabs"
+        }).done(function (data) {
+          $('.profile_div').html(data);
+        });
+      }
+
+    });
+
+    $('.overview').click(function(){
+      $('#overview').addClass('active');
+      $('#help').removeClass('active');
+      $('#account_settings').removeClass('active');
+
+      $.ajax({
+        method: "POST",
+        data: {tab:'overview'},
+        url: "/users/profile_control_tabs"
+      }).done(function (data) {
+        $('#profile_content').html(data);
+      });
+    });
+
+    $('.help').click(function(){
+      $('#overview').removeClass('active');
+      $('#help').addClass('active');
+      $('#account_settings').removeClass('active');
+      $('#profile_content').html('');
+    });
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      var target = $(e.target).attr("href"); // activated tab
+      var id = $(e.target).attr("id");
+      console.log("TARGET:"+target);
+
+      if(target == '#overview'){
+        $('.profile_div').html('');
+        $.ajax({
+          method: "POST",
+          data: {tab:'overview'},
+          url: "/users/profile_control_tabs"
+        }).done(function (data) {
+          $('.profile_div').html(data);
+        });
+      }else if(target == '#edit_profile'){
+        $('.profile_div').html('');
+        $.ajax({
+          method: "POST",
+          data: {tab:'edit_profile'},
+          url: "/users/profile_control_tabs"
+        }).done(function (data) {
+          $('.profile_div').html(data);
+        });
+      }else if(target == '#subscription'){
+        $('.profile_div').html('');
+        $.ajax({
+          method: "POST",
+          data: {tab:'edit_profile'},
+          url: "/users/get_subscription"
+        }).done(function (data) {
+          $('.profile_div').html(data);
+        });
+      }
+
+    });
+
+    <% if params[:subscription].present?  %>
+    $('.profile_div').html('');
+    $.ajax({
+      method: "POST",
+      data: {tab:'edit_profile'},
+      url: "/users/get_subscription"
+    }).done(function (data) {
+      $('.profile_div').html(data);
+    });
+    <% end %>
+
+  })
+</script>

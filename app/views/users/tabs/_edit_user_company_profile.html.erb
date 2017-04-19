@@ -1,15 +1,5 @@
 <div style="height: 30px"></div>
-<div class="portlet-title tabbable-line">
 
-  <ul class="nav nav-tabs">
-    <li class="active">
-      <a href="#details" data-toggle="tab">Details</a>
-    </li>
-    <li>
-      <a href="#avatar" data-toggle="tab">Avatar</a>
-    </li>
-  </ul>
-</div>
 
 <!-- PERSONAL INFO TAB -->
 <div class="tab-pane active" id="details">
@@ -20,14 +10,14 @@
 
   </div>
   <form  id="info" action="" method="POST">
-    <input type="hidden" name="user_id" value="<%= @sign_in_user.id %>">
+    <input type="hidden" name="sign_user_id" value="<%= @sign_in_user.id %>">
     <div class="form-group">
       <label class="control-label">Tendercon ID</label>
-      <input type="text"  class="form-control" value="<%= "#{@user.tendercon_id}" %>" name="tendercon_id" readonly/>
+      <input type="text"  class="form-control" value="<%= "#{@sign_in_user.tendercon_id}" %>" name="tendercon_id" />
     </div>
     <div class="form-group">
       <label class="control-label">ABN</label>
-      <input type="text"  class="form-control" value="<%= @user.abn.present? ? "#{@user.abn}" : nil %>" name="f_name" readonly/>
+      <input type="text"  class="form-control" value="<%= @sign_in_user.abn.present? ? "#{@sign_in_user.abn}" : nil %>" name="f_name" />
     </div>
     <div class="form-group">
       <label class="control-label"><label style="font-size: 12px;font-weight: bold">ACN:</label></label>
@@ -35,11 +25,11 @@
     </div>
     <div class="form-group">
       <label class="control-label"><label style="font-size: 12px;font-weight: bold">Company:</label></label>
-      <input type="text" class="form-control" name="trade_name" value="<%= @user.present? ? @user.trade_name : '' %>" readonly>
+      <input type="text" class="form-control" name="trade_name" value="<%= @sign_in_user.present? ? @sign_in_user.trade_name : '' %>" >
     </div>
     <div class="form-group">
       <label  style="font-size: 12px;font-weight: bold">Address:</label>
-      <input type="text" class="form-control" name="address" value="<%=  @user.address.present? ? @user.address.location : nil %>" id="address" readonly>
+      <input type="text" class="form-control" name="address" value="<%=  @sign_in_user.address.present? ? @sign_in_user.address.location : nil %>" id="address" >
       <input type="hidden" name="suburb" class="suburb">
       <input type="hidden" name="postcode" class="postcode">
       <input type="hidden" name="state" class="state">
@@ -47,7 +37,7 @@
     </div>
     <div class="form-group">
       <label class="control-label">Time zone</label>
-      <input type="text" value="<%= @user.address.present? ? "#{@user.address.timezone}" : nil %>" class="form-control" name="tiemzone" readonly/>
+      <input type="text" value="<%= @sign_in_user.address.present? ? "#{@sign_in_user.address.timezone}" : nil %>" class="form-control" name="tiemzone" id="user_signin_timezone"/>
     </div>
 
     <div class="form-group">
@@ -56,12 +46,12 @@
       <!--<input type="text"  class="form-control" value="<%#= @added_company_profile.present? ? @added_company_profile.about_me : nil %>" name="about_me" />-->
     </div>
     <% if session[:role] == 'Sub Contractor' %>
-      <div class="form-group">
-        <label class="control-label">Specialist Trades</label>
-      </div>
-      <div class="form-group">
-        <%= select_tag 'primary_trade',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name',(@primary_trade.present? ? @primary_trade.trade_id : nil))+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control'} %>
-      </div>
+        <div class="form-group">
+          <label class="control-label">Specialist Trades</label>
+        </div>
+        <div class="form-group">
+          <%= select_tag 'primary_trade',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name',(@primary_trade.present? ? @primary_trade.trade_id : nil))+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control'} %>
+        </div>
 
         <div class="form-group">
           <label class="control-label">Secondary Trade</label>
@@ -98,7 +88,7 @@
     </div>
     <div class="form-group">
       <label class="control-label">Tendercon member since</label>
-      <input type="text" class="form-control" name="since" value="<%=  @user.created_at.strftime('%Y') %>" readonly>
+      <input type="text" class="form-control" name="since" value="<%=  @sign_in_user.created_at.strftime('%Y') %>" >
     </div>
 
     <div class="form-group">
@@ -152,9 +142,9 @@
     <div class="form-group">
       <div class="fileinput fileinput-new" data-provides="fileinput">
         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-          <% if @user.company_avatar.present? %>
-              <% if File.exist?(@user.company_avatar.image.path(:original)) %>
-                  <img src="<%= @user.company_avatar.image.url(:original) %>" class="img-responsive user_avatar" alt="">
+          <% if @sign_in_user.company_avatar.present? %>
+              <% if File.exist?(@sign_in_user.company_avatar.image.path(:original)) %>
+                  <img src="<%= @sign_in_user.company_avatar.image.url(:original) %>" class="img-responsive user_avatar" alt="">
               <% else %>
                   <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive user_avatar" alt="">
               <% end %>
@@ -250,19 +240,19 @@
 
     /*$('#upload_company_avatar').on('submit', function (e) {
 
-      e.preventDefault();
+     e.preventDefault();
 
-      $.ajax({
-        method: "POST",
-        data: $('#upload_company_avatar').serialize(),
-        url: "/users/update_company_avatar"
-      }).done(function (data) {
-        console.log(data);
-        if(data.state == 'valid'){
-          $('#users_success').show();
-        }
-      });
-    });*/
+     $.ajax({
+     method: "POST",
+     data: $('#upload_company_avatar').serialize(),
+     url: "/users/update_company_avatar"
+     }).done(function (data) {
+     console.log(data);
+     if(data.state == 'valid'){
+     $('#users_success').show();
+     }
+     });
+     });*/
 
     $( '#upload_company_avatar' ).submit( function( e ) {
       e.preventDefault();
@@ -337,46 +327,46 @@
         url: "/users/get_address_info"
       }).done(function (data) {
         if(data.state = 'valid') {
-          console.log("data.add_state:"+data.add_state)
+          console.log("data.add_state:"+data.timezone)
           $('.state').val(data.add_state);
           $('.suburb').val(data.suburb);
           $('.postcode').val(data.postal);
           $('.timezone').val(data.timezone);
-
+          $('#user_signin_timezone').val(data.timezone);
         }
       });
     }
 
 
     /*$('.image').click(function(e){
-      $('.file_upload_filed').click();
-      e.preventDefault();
-    });
+     $('.file_upload_filed').click();
+     e.preventDefault();
+     });
 
-    $('#new_avatar').fileupload({
+     $('#new_avatar').fileupload({
 
-      dataType: 'json',    done: function (e, data) {
+     dataType: 'json',    done: function (e, data) {
 
-        $.each(data, function (index, file) {
+     $.each(data, function (index, file) {
 
 
-        });
-      },progress: function (e, data) {
+     });
+     },progress: function (e, data) {
 
-      }
-    }).bind('fileuploadstop', function (e) {
-      $.ajax({
-        method: "POST",
-        url: "/users/get_user_avatar_path"
-      }).done(function (data) {
+     }
+     }).bind('fileuploadstop', function (e) {
+     $.ajax({
+     method: "POST",
+     url: "/users/get_user_avatar_path"
+     }).done(function (data) {
 
-        if(data.state == 'valid'){
-          console.log(data);
-          $('.user_avatar').attr('src',data.url);
-        }
-      });
-    });
-*/
+     if(data.state == 'valid'){
+     console.log(data);
+     $('.user_avatar').attr('src',data.url);
+     }
+     });
+     });
+     */
   });
 </script>
 

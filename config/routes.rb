@@ -110,6 +110,7 @@ Rails.application.routes.draw do
       get 'edit_company_profile'
       get 'subscription'
       get 'user_company_profile'
+      get 'edit_user'
 
       # post
       post 'authenticate'
