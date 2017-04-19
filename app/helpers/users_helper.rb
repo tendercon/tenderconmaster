@@ -72,9 +72,14 @@ module UsersHelper
 
   def return_trade trade_id
     trade = Trade.find(trade_id)
+    Rails.logger.info "trade =====> #{trade.inspect}"
     if trade.present?
+      if trade.name.present?
+        trade.name
+      else
+        nil
+      end
 
-      trade.name
     else
       nil
     end

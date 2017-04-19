@@ -5,8 +5,8 @@
       <ul class="nav nav-tabs ">
         <li class="active"><a href="#edit_user_profile" data-toggle="tab" id="">Edit Profile</a></li>
         <li><a href="#edit_company_profile" data-toggle="tab" id="">Edit Company Profile</a></li>
-        <!--<li><a href="#edit_avatar" data-toggle="tab" id="">Edit Avatar</a></li>
-        <li><a href="#edit_user_password" data-toggle="tab" id="">Change Password</a></li>-->
+        <li><a href="#edit_avatar" data-toggle="tab" id="">Edit Avatar</a></li>
+        <li><a href="#edit_user_password" data-toggle="tab" id="">Change Password</a></li>
       </ul>
     </div>
   </div>
@@ -64,6 +64,15 @@
         $.ajax({
           method: "POST",
           data: {tab:'edit_avatar',user_id: user_id},
+          url: "/users/profile_control_tabs"
+        }).done(function (data) {
+          $('.profile_div').html(data);
+        });
+      }else if(target == '#edit_user_password'){
+        $('.profile_div').html('');
+        $.ajax({
+          method: "POST",
+          data: {tab:'edit_user_password',user_id: user_id},
           url: "/users/profile_control_tabs"
         }).done(function (data) {
           $('.profile_div').html(data);

@@ -433,17 +433,34 @@ class UsersController < ApplicationController
   end
 
   def profile_update_password
-    user = User.find(session[:user_logged_id])
+    if params[:user_id].present?
+      user = User.find(params[:user_id])
 
-    if user.password != (User.rehash_password(params[:current_pass]))
-      render :json => { :state => 'old_password'}
-    elsif  user.password == (User.rehash_password(params[:current_pass]))  && params[:new_pass] != params[:confirmed]
-      render :json => { :state => 'not_match'}
+      if params[:new_pass] != params[:confirmed]
+        render :json => { :state => 'not_match'}
+      #elsif  user.password == (User.rehash_password(params[:current_pass]))  && params[:new_pass] != params[:confirmed]
+      #  render :json => { :state => 'not_match'}
+      else
+        User.where(:id => user.id).update_all(:password =>  User.rehash_password(params[:new_pass]),
+                                              :confirmed_password => User.rehash_password(params[:new_pass]))
+        render :json => { :state => 'valid'}
+      end
     else
-      User.where(:id => user.id).update_all(:password =>  User.rehash_password(params[:new_pass]),
-                                            :confirmed_password => User.rehash_password(params[:new_pass]))
-      render :json => { :state => 'valid'}
+      user = User.find(session[:user_logged_id])
+
+      if user.password != (User.rehash_password(params[:current_pass]))
+        render :json => { :state => 'old_password'}
+      elsif  user.password == (User.rehash_password(params[:current_pass]))  && params[:new_pass] != params[:confirmed]
+        render :json => { :state => 'not_match'}
+      else
+        User.where(:id => user.id).update_all(:password =>  User.rehash_password(params[:new_pass]),
+                                              :confirmed_password => User.rehash_password(params[:new_pass]))
+        render :json => { :state => 'valid'}
+      end
     end
+
+
+
   end
 
 
@@ -2206,14 +2223,22 @@ class UsersController < ApplicationController
       @positions = Position.all
       @data = render :partial => 'users/tabs/edit_user_company_profile.html'
     elsif params[:tab] == 'edit_avatar'
-
-      @data = render :partial => 'users/tabs/edit_user_company_profile.html'
+      @sign_in_user = User.find(params[:user_id])
+      @data = render :partial => 'users/tabs/edit_user_avatar'
+    elsif params[:tab] == 'edit_user_password'
+      @sign_in_user = User.find(params[:user_id])
+      @data = render :partial => 'users/tabs/edit_user_password'
     end
 
   end
 
   def update_avatar
-    @user = User.find(session[:user_logged_id])
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+    else
+      @user = User.find(session[:user_logged_id])
+    end
+
     if @user.avatar.present?
       @user.avatar.update_attributes(:image => params[:avatar])
     else

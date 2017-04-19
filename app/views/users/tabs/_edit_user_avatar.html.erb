@@ -1,0 +1,55 @@
+<div style="height: 30px"></div>
+<form action="#"  id="upload_avatar" enctype="multipart/form-data">
+  <input type="hidden" name="user_id" value="<%= @sign_in_user.id %>">
+  <div class="form-group">
+    <div class="fileinput fileinput-new" data-provides="fileinput">
+      <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+        <% if @sign_in_user.avatar.present? %>
+            <% if File.exist?(@sign_in_user.avatar.image.path(:original)) %>
+                <img src="<%= @sign_in_user.avatar.image.url(:original) %>" class="img-responsive user_avatar" alt="" style="width: 180px !important; height: 170px !important;">
+            <% else %>
+                <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive user_avatar" alt="" style="width: 180px !important; height: 170px !important;">
+            <% end %>
+        <% else %>
+            <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive user_avatar" alt="" style="width: 180px !important; height: 170px !important;">
+        <% end %>
+      </div>
+      <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+      <div>
+          <span class="btn default btn-file">
+          <input type="file" name="avatar" class="image"> </span>
+      </div>
+    </div>
+
+  </div>
+  <div class="margin-top-10">
+    <a href="#!" class="btn green">
+      <button class="btn green" type="submit">
+        Update
+      </button>
+    </a>
+  </div>
+</form>
+
+<script>
+  $(document).ready(function(){
+
+    $( '#upload_avatar' ).submit( function( e ) {
+      e.preventDefault();
+      $.ajax( {
+        url: '/users/update_avatar',
+        type: 'POST',
+        data: new FormData( this ),
+        processData: false,
+        contentType: false
+      }).done(function (data) {
+        console.log(data);
+        if(data.state == 'valid'){
+          console.log("data.url ======>"+data.url);
+          $('.user_avatar').attr('src',data.url);
+        }
+      });
+    });
+
+  });
+</script>
