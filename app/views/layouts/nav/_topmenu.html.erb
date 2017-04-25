@@ -1,4 +1,4 @@
-<div class="top-menu">
+<div class="top-menu" style="height: 60px">
   <%= @user.user_plan.present? %>
   <% if !@user.user_subscription.present? &&  session[:role] == 'Sub Contractor'  %>
 
@@ -155,14 +155,14 @@
       <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
         <% if @user.avatar.present? %>
             <% if File.exist?(@user.avatar.image.path(:original)) %>
-                <img src="<%= @user.avatar.image.url(:original) %>" class="img-circle" alt="" style="width: 35px !important; height: 30px !important;">
+                <img src="<%= @user.avatar.image.url(:original) %>"  alt="" style="width: 45px !important; height: 45px !important;">
             <% else %>
-                <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle" alt="">
+                <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"  alt="" style="width: 45px !important; height: 45px !important;">
             <% end %>
         <% else %>
-            <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-circle" alt="">
+            <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"  alt="" style="width: 45px !important; height: 45px !important;">
         <% end %>
-        <span class="username username-hide-on-mobile"> <%= @user.first_name %> </span>
+        <span class="username username-hide-on-mobile" style="color: #f1f1f1"> <%= "#{@user.first_name} #{@user.last_name.present? ? @user.last_name : nil}"  %> </span>
         <i class="fa fa-angle-down"></i>
       </a>
       <ul class="dropdown-menu dropdown-menu-default">

@@ -1,5 +1,10 @@
 <%= form_tag(create_tender_info_tenders_path, :html => { :multipart => true }) do |f| %> 
-
+    <div class="text-center">
+      <h2>Tender Details</h2>
+      <p>
+        Add the key tender details your subcontractors require.
+      </p>
+    </div>
     <% if @errors.present? %>
         <div class="alert alert-danger open-sans-regular" id="users_error">
           <button type="button" class="close" data-dismiss="alert"></button>
@@ -18,8 +23,8 @@
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
-              <label class="control-label">Tender ID</label> 
-              <input maxlength="200" type="text" required="required" class="form-control tendercon_id" readonly="readonly" name="tendercon_id"  value="<%= @tender.present? ? @tender.tendercon_id : "#{(@user.tendercon_id)}-#{rand(1000...10000)}" %>"/> 
+              <h4 class="control-label">TENDER ID</h4> 
+              <input maxlength="200" type="text" required="required" class="form-control tendercon_id" readonly="readonly" name="tendercon_id"  value="<%= @tender.present? ? @tender.tendercon_id : "#{(@user.tendercon_id)}-#{rand(1000...10000)}" %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
             </div> 
             <!--<div class="form-group">
               <label class="control-label">Tender Title</label> 
@@ -39,7 +44,7 @@
             <div class="form-body">
 
               <div class="form-group">
-                <label class="control-label">Tender Title</label> 
+                <h4 class="control-label">TENDER TITLE</h4> 
                 <input maxlength="300" type="text" name="title"  class="form-control title" value="<%= @tender.present? ? @tender.title : nil  %>"/> 
                 <% if @title_error.present? %>
                     <i style="color:red"><%= @title_error %></i>
@@ -54,8 +59,8 @@
           <div class="portlet-body form">
             <div class="form-body">
               <div class="form-group">
-                <label class="control-label">Quotes Due</label> 
-                <input type="text" class="form-control quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : @due_default.strftime("%Y-%m-%d %I:%M") : @due_default.strftime("%Y-%m-%d %I:%M") %>"/>
+                <h4 class="control-label">QUOTE DUE</h4> 
+                <input type="text" class="form-control quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>"/>
                 <div class="input-group date  form_meridian_datetime" data-date="2012-12-21T15:25:00Z" id="form_meridian_datetime">
 
                   <!--<span class="input-group-btn">
@@ -83,11 +88,11 @@
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
-              <label class="control-label">Client(Optional)</label> 
+              <h4 class="control-label">CLIENT(Optional)</h4> 
               <input maxlength="200" type="text" name="client"  class="form-control client" value="<%= @tender.present? ? @tender.client : nil  %>" /> 
             </div>
             <div class="form-group">
-              <label class="control-label">Architect(Optional)</label>
+              <h4 class="control-label">ARCHITECT(Optional)</h4>
               <input maxlength="200" type="text" name="architect"  class="form-control architect" value="<%= @tender.present? ? @tender.architect : nil  %>"/> 
             </div>
           </div>
@@ -100,14 +105,14 @@
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
-              <label class="control-label">Sector</label> 
+              <h4 class="control-label">SECTOR</h4> 
               <%= select_tag "categories",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@categories, 'id','name',@tender.present? ? @tender.category_id : nil),{:class=> 'form-control'} %> 
               <% if @sector_error.present? %>
                   <i style="color:red"><%= @sector_error %></i>
               <% end %>
             </div>
             <div class="form-group">
-              <label class="control-label">Value</label>
+              <h4 class="control-label">VALUE</h4>
               <%= select_tag "values",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@values, 'id','range',@tender.present? ? @tender.tender_value_id : nil),{:class=> 'form-control'} %> 
               <% if @value_error.present? %>
                   <i style="color:red"><%= @value_error %></i>
@@ -122,7 +127,7 @@
       <!--<div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
-            <label class="control-label">Description</label> 
+            <h4 class="control-label">DESCRIPTION</h4> 
             <%= text_area_tag('about_me',@tender.present? ? @tender.description.html_safe : nil,:cols => '109',:rows => '8',:class => 'form-control wysihtml5') %> 
             <!--<i>note: if left blank the system will generate a Tendercon Default Description</i> -->
           </div>
@@ -135,7 +140,7 @@
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
-              <label class="control-label">Address</label> 
+              <h4 class="control-label">ADDRESS</h4> 
               <input type="hidden" name="original_address" class="o_address">
               <input type="type" class="form-control address" id="address" value="<%= @tender.present? ? @tender.address : nil  %>" name="address"> 
               <% if @address_error.present? %>
@@ -143,15 +148,15 @@
               <% end %>
             </div>
             <div class="form-group">
-              <label class="control-label">Suburb</label> 
+              <h4 class="control-label">SUBURB</h4> 
               <input type="text" class="form-control suburb" value="<%= @tender.present? ? @tender.suburb : nil  %>" name="suburb" id="suburb">
             </div>
             <div class="form-group">
-              <label class="control-label">State</label> 
+              <h4 class="control-label">STATE</h4> 
               <input type="text" class="form-control state" name="state" id="state" value="<%= @tender.present? ? @tender.state : nil  %>"> 
             </div>
             <div class="form-group">
-              <label class="control-label">Postcode</label> 
+              <h4 class="control-label">POSTCODE</h4> 
               <input type="text" class="form-control postcode" name="postcode" id="postcode" value="<%= @tender.present? ? @tender.postcode : nil  %>"> 
             </div>
             <!--<div class="form-group">
@@ -178,7 +183,7 @@
       <!--<div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
-            <div id="map" style="height:322px;width:532px;"></div> 
+            <div id="map" style="height:408px;width:470px;"></div> 
           </div>
         </div>
       <!--</div>-->
@@ -343,44 +348,32 @@
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
-              <label class="control-label">Status</label> 
-              <% if @tender.present? %>
-                  <% if @tender.status == '1' %>
-                      <div class="radio-list">
-                        <label><input type="radio" class="tendering form-control" name="tendering" value="1" checked>Tendering - Your organization is still tendering for this project.</label> 
-                        <p class="tendering_text"><i>note: Once this tender is posted you will be able to change the status from Tendering to awarded.</i></p> 
-
-                        <label><input type="radio" name="tendering form-control" class="tendering" value="2">Awarded - This tender has been awarded yo your organization or this your project.</label> 
-                        <p class="awarded_text" style="display: none"><i>note: Once this tender is posted you will no longer be able to change the Awarded status to Tendering again. </i></p> 
-                      </div>
-                  <% else %>
-                      <div class="radio-list">
-                        <label><input type="radio" class="tendering form-control" name="tendering" value="1" >Tendering - Your organization is still tendering for this project.</label> 
-                        <p class="tendering_text"><i>note: Once this tender is posted you will be able to change the status from Tendering to awarded.</i></p> 
-
-                        <label><input type="radio" name="tendering form-control" class="tendering" value="2" checked>Awarded - This tender has been awarded yo your organization or this your project.</label> 
-                        <p class="awarded_text" style="display: none"><i>note: Once this tender is posted you will no longer be able to change the Awarded status to Tendering again. </i></p> 
-                      </div>
-                  <% end %>
-
-              <% else %>
-                  <div class="radio-list">
-                    <label><input type="radio" class="tendering form-control" name="tendering" value="1" checked>Tendering - Your organization is still tendering for this project.</label> 
-                    <p class="tendering_text"><i>note: Once this tender is posted you will be able to change the status from Tendering to awarded.</i></p> 
-
-                    <label><input type="radio" name="tendering" class="tendering form-control" value="2">Awarded - This tender has been awarded yo your organization or this your project.</label> 
-                    <p class="awarded_text" style="display: none"><i>note: Once this tender is posted you will no longer be able to change the Awarded status to Tendering again. </i></p> 
-                  </div>
-              <% end %>
+              <h4 class="control-label">Status</h4> 
+            </div>
+            <div class="col-md-6">
+              <label><input type="radio" class="tendering form-control" name="tendering" value="1">Tendering - Your organization is still tendering for this project.</label> 
+              <p class="tendering_text" style="display: none;color: red"><i>After this tender is published, you can changed the Tender's status form Tendering to Awarded on the Details tab</i></p> 
+            </div>
+            <div class="col-md-6">
+              <label><input type="radio" name="tendering" class="tendering form-control" value="2">Awarded - This tender has been awarded yo your organization or this your project.</label> 
+              <p class="awarded_text" style="display: none;color: red"><i>note: Once this tender is posted you will no longer be able to change the Awarded status to Tendering again. </i></p> 
             </div>
           </div>
+
+
         </div>
+
       <!--</div>-->
-      <div class="form-actions">
-        <button type="submit" class="btn blue">Next</button>
-      </div>
+
     </div>
 
+    <div class="form-actions pull-right">
+      <button type="submit" class="btn" style="color:#FFFFFF; background-color: #c0c0c0;border: 2px solid;border-radius: 8px !important;">
+        <h4>
+          ADD Trades
+        </h4>
+      </button>
+    </div>
 
 
     <input type="hidden" name="tender_id" value="<%= params[:info_id] %>">

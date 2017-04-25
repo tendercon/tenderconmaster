@@ -1,4 +1,4 @@
-<div class="page-sidebar-wrapper">
+<div class="page-sidebar-wrapper" style="width: 250px !important;">
   <!-- BEGIN SIDEBAR -->
   <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
   <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
@@ -40,7 +40,7 @@
 
       <% if session[:role] == 'Admin' %>
           <li class="heading">
-            <h3 class="uppercase">CMS</h3>
+            <h3 class="uppercase" style="color: #aaaaaa">CMS</h3>
           </li>
           <% if params[:controller] == 'sites' %>
               <li class="nav-item start active open">
@@ -50,7 +50,7 @@
           <% end %>
           <a href="<%= sites_path %>"  class="nav-link" id="post_tender_link">
             <i class="fa fa-plus-square"></i>
-            <span class="title">Home</span>
+            <span class="title" style="color: #f1f1f1">Home</span>
             <span class="selected"></span>
           </a>
           </li>
@@ -63,7 +63,7 @@
           <% end %>
           <a href="<%= feature_pages_path %>"  class="nav-link" >
             <i class="fa fa-plus-square"></i>
-            <span class="title">Features</span>
+            <span class="title" style="color: #f1f1f1">Features</span>
             <span class="selected"></span>
           </a>
           </li>
@@ -76,7 +76,7 @@
           <% end %>
           <a href="<%= company_pages_path %>"  class="nav-link" >
             <i class="fa fa-plus-square"></i>
-            <span class="title">Company</span>
+            <span class="title" style="color: #f1f1f1">Company</span>
             <span class="selected"></span>
           </a>
           </li>
@@ -89,7 +89,7 @@
           <% end %>
           <a href="<%= contact_pages_path %>"  class="nav-link" >
             <i class="fa fa-plus-square"></i>
-            <span class="title">Contact Us</span>
+            <span class="title" style="color: #f1f1f1">Contact Us</span>
             <span class="selected"></span>
           </a>
           </li>
@@ -102,7 +102,7 @@
           <% end %>
           <a href="<%= header_navs_path %>"  class="nav-link" >
             <i class="fa fa-plus-square"></i>
-            <span class="title">Header Nav</span>
+            <span class="title" style="color: #f1f1f1">Header Nav</span>
             <span class="selected"></span>
           </a>
           </li>
@@ -116,7 +116,7 @@
           <% end %>
           <a href="<%= pricing_pages_path %>"  class="nav-link" >
             <i class="fa fa-plus-square"></i>
-            <span class="title">Price</span>
+            <span class="title" style="color: #f1f1f1">Price</span>
             <span class="selected"></span>
           </a>
           </li>
@@ -129,7 +129,7 @@
           <% end %>
           <a href="<%= users_path %>"  class="nav-link" >
             <i class="fa fa-plus-square"></i>
-            <span class="title">Users</span>
+            <span class="title" style="color: #f1f1f1">Users</span>
             <span class="selected"></span>
           </a>
           </li>
@@ -137,7 +137,7 @@
 
     <% end %>
       <li class="heading">
-        <h3 class="uppercase">HOME</h3>
+        <h3 class="uppercase" style="color: #aaaaaa">HOME</h3>
       </li>
 
       <% if params[:controller] == 'dashboard' %>
@@ -148,7 +148,7 @@
 
         <a href="<%= dashboard_index_path %>" class="nav-link ">
           <i class="icon-bar-chart"></i>
-          <span class="title">Dashboard</span>
+          <span class="title" style="color: #f1f1f1">Dashboard</span>
           <span class="selected"></span>
         </a>
       </li>
@@ -163,13 +163,13 @@
       <%# end %>
         <a href="<%#= calendars_path %>" class="nav-link ">
           <i class="fa fa-calendar-check-o"></i>
-          <span class="title">Calendar</span>
+          <span class="title" style="color: #f1f1f1">Calendar</span>
           <span class="selected"></span>
         </a>
       </li>-->
 
       <li class="heading">
-        <h3 class="uppercase">Tender Management</h3>
+        <h3 class="uppercase" style="color: #aaaaaa">Tender Management</h3>
       </li>
 
       <% if session[:role] == 'Head Contractor' %>
@@ -181,7 +181,7 @@
           <% end %>
           <a href="<%= '/tenders/new_tender?info=true' %>"  class="nav-link" id="post_tender_link">
             <i class="icon-plus"></i>
-            <span class="title">Post Tender</span>
+            <span class="title" style="color: #f1f1f1">Post Tender</span>
             <% if params[:action] == 'new_tender' %>
                 <span class="selected"></span>
             <% end %>
@@ -198,11 +198,11 @@
         <% end %>
         <a href="<%= '/tenders/invited_tender' %>">
           <i class="fa fa-envelope"></i>
-          <span class="title">Invited Tenders</span>
+          <span class="title" style="color: #f1f1f1">Invited Tenders</span>
           <% if params[:action] == 'invited_tender' %>
               <span class="selected"></span>
           <% end %>
-          <span class="badge badge-danger"><%= @tender_invites_cnt.present? ? @tender_invites_cnt.uniq.size : nil %></span>
+          <span class="badge badge-danger" style="background-color: #f5494d;font-size: 14px; height: 20px;width: 20px"><%= @tender_invites_cnt.present? ? @tender_invites_cnt.uniq.size : nil %></span>
         </a>
         </li>
 
@@ -214,14 +214,14 @@
         <% end %>
         <a href="<%= '/tenders/open_tender' %>" class="nav-link ">
           <i class="fa fa-opencart" aria-hidden="true"></i>
-          <span class="title">Open Tenders</span>
+          <span class="title" style="color: #f1f1f1">Open Tenders</span>
           <% if params[:action] == 'open_tender' %>
               <span class="selected"></span>
           <% end %>
           <% if params[:action] == 'invited_tender' %>
               <span class="selected"></span>
           <% end %>
-          <span class="badge badge-danger"><%= @open_tender_size %></span>
+          <span class="badge badge-danger" style="background-color: #f5494d;font-size: 14px; height: 20px;width: 20px"><%= @open_tender_size %></span>
         </a>
         </li>
       <% end %>
@@ -235,12 +235,12 @@
       <% end %>
         <a href="<%= '/tenders/my_tender' %>" class="nav-link " id="my_tender_link">
           <i class="icon-docs"></i>
-          <span class="title">My Tenders</span>
+          <span class="title" style="color: #f1f1f1">My Tenders</span>
           <% if params[:action] == 'my_tender' || params[:action] == 'hc_tender' || params[:action] == 'sc_tender' || params[:controller] == 'quotes'  || params[:controller] == 'rfis' %>
               <span class="selected"></span>
           <% end %>
           <% if session[:role] == 'Head Contractor' %>
-              <span class="badge badge-danger" style="background-color: #36c6d3"><%= @tenders.present? ? @tenders.size : 0 %></span>
+              <span class="badge badge-danger" style="background-color: #f5494d;font-size: 14px; height: 20px;width: 20px"><%= @tenders.present? ? @tenders.size : 0 %></span>
           <% end %>
         </a>
       </li>
@@ -249,7 +249,7 @@
 
       <% if session[:role] == 'Head Contractor' %>
           <li class="heading">
-            <h3 class="uppercase">MY NETWORK</h3>
+            <h3 class="uppercase" style="color: #aaaaaa">MY NETWORK</h3>
           </li>
           <% if params[:controller] == 'hc_invites' %>
               <li class="nav-item start active open">
@@ -259,7 +259,7 @@
           <% end %>
           <a href="<%= hc_invites_path %>" class="nav-link " id="sub_tender_link">
             <i class="icon-users"></i>
-            <span class="title">Subcontractors</span>
+            <span class="title" style="color: #f1f1f1">Subcontractors</span>
             <% if params[:action] == 'index' %>
                 <span class="selected"></span>
             <% end %>

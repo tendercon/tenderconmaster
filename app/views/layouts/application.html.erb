@@ -77,13 +77,13 @@ License: You must have a valid license purchased only from themeforest(the above
 <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 <!-- BEGIN HEADER -->
 <% if session[:user_logged_id].present?  %>
-  <div class="page-header navbar navbar-fixed-top">
+  <div class="page-header navbar navbar-fixed-top" style="height: 70px">
     <!-- BEGIN HEADER INNER -->
     <div class="page-header-inner ">
       <!-- BEGIN LOGO -->
       <div class="page-logo">
         <a href="/dashboard">
-            <img src="/img/logos/TENDERCONLETTEROBLACK-01_clipped_rev_1-5.png" alt="logo" class="logo-default"  style="margin-top: 17px; margin-left: 20px"/>
+            <img src="/img/logos/new_tendercon_logo1.png" alt="logo" class="logo-default"  style="margin-top: -1px; margin-left: -20px; width: 235px;height: 71px"/>
         </a>
         <div class="menu-toggler sidebar-toggler"> </div>
       </div>
@@ -111,6 +111,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <div class="page-container">
   <!-- BEGIN SIDEBAR -->
   <% if session[:user_logged_id].present?  %>
+    <div style="height: 10px"></div>
     <%= render :partial => 'layouts/nav/sidemenu' %>
   <% end %>
   <!-- END SIDEBAR -->
