@@ -1,3 +1,9 @@
+<div class="text-center">
+  <h2>Tender Trades</h2>
+  <p>
+    Select All the trades this tender requires
+  </p>
+</div>
 <div class="col-md-12">
   <!--<div class="portlet light bordered">-->
     <div class="portlet-body form">
@@ -12,8 +18,7 @@
                     <% @trade_category_array << "#{tc.title}" %>
                     <% if tc.title != 'Others' %>
                     <div class="<%= tc.title %>" id="<%= tc.title %>"> 
-
-                      <h1> <%= tc.title %></h1> 
+                      <h3> <%= tc.title %></h3> 
                     </div> 
                     <% end %>
 
@@ -68,18 +73,29 @@
             </div> 
  
             <div>
+              <button type="button" class="btn btn-primary  back_to_details " style="color:#FFFFFF; background-color: #ff3823; border: 2px solid;border-radius: 8px !important;" id="<%= @tender.id %>">
+                <h4>EDIT Details</h4>
+              </button>
+              <!--<a href="/tenders/new_tender?info=true&info_id=<%#= @tender.id %>" > 
+                <button  type="button" class="btn-default next_info " style="color:white; background-color: #ff3823;border-radius: 8px !important;">
+                  <h4>EDIT Details</h4>
+                </button>
+              </a>   -->
 
-              <a href="/tenders/new_tender?info=true&info_id=<%= @tender.id %>"> 
-                <button class="btn btn-default next_info " type="button" >BACK</button>
-              </a>   
-
-              <a href="#!">
+              <div class="pull-right">
                 <% if @trade_array.present? %>
-                  <button class="btn btn-primary  trade_btn ">SAVE AND CONTINUE</button>
+
+                    <button class="btn btn-primary  trade_btn " style="color:#FFFFFF; background-color: #c0c0c0;border: 2px solid;border-radius: 8px !important;">
+                      <h4>ADD Documents</h4>
+                    </button>
+
                 <% else %>
-                  <button class="btn btn-primary  trade_btn " disabled>SAVE AND CONTINUE</button>
+                  <button class="btn btn-primary  trade_btn " disabled style="color:#FFFFFF; background-color: #c0c0c0;border: 2px solid;border-radius: 8px !important;">
+                    <h4>ADD Documents</h4>
+                  </button>
                 <% end %>
-              </a>   
+              </div>
+
             </div>
         <% end %>
       </div>
@@ -143,6 +159,11 @@
         });
 
       }
+    });
+
+    $('.back_to_details').click(function(){
+      var id = $(this).attr('id');
+      window.location.href = "/tenders/new_tender?info=true&info_id="+id;
     });
 
     $('.trade').keyup(function(){
@@ -220,8 +241,10 @@
 
       if(ids.length > 0 || a.length > 0){
         $('.trade_btn').prop('disabled',false);
+        $('.trade_btn').css({"backgroundColor": "#72bb53", "color": "#f1f1f1"});
       }else{
         $('.trade_btn').prop('disabled',true);
+        $('.trade_btn').css({"backgroundColor": "#c0c0c0", "color": "#f1f1f1"});
       }
     }
 

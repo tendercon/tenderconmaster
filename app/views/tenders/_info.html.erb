@@ -17,40 +17,56 @@
         </div>
     <% end %>
 
+
+
     <div class="col-md-12 ">
       <!-- BEGIN SAMPLE FORM PORTLET-->
       <!--<div class="portlet light bordered">-->
-        <div class="portlet-body form">
+      <div class="portlet-body form">
+
+        <div class="form-body">
+          <div class="form-group">
+
+            <h4>TENDER ID</h4>
+            <input maxlength="200" type="text" required="required" class="form-control tendercon_id" readonly="readonly" name="tendercon_id"  value="<%= @tender.present? ? @tender.tendercon_id : "#{(@user.tendercon_id)}-#{rand(1000...10000)}" %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
+
+          </div>
+        </div>
+
+      </div>
+        <!--<div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
-              <h4 class="control-label">TENDER ID</h4> 
-              <input maxlength="200" type="text" required="required" class="form-control tendercon_id" readonly="readonly" name="tendercon_id"  value="<%= @tender.present? ? @tender.tendercon_id : "#{(@user.tendercon_id)}-#{rand(1000...10000)}" %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
+              <h4>TENDER ID</h4> 
+              <input maxlength="200" type="text" required="required" class="form-control tendercon_id" readonly="readonly" name="tendercon_id"  value="<%#= @tender.present? ? @tender.tendercon_id : "#{(@user.tendercon_id)}-#{rand(1000...10000)}" %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
             </div> 
-            <!--<div class="form-group">
+            &lt;!&ndash;<div class="form-group">
               <label class="control-label">Tender Title</label> 
               <input maxlength="300" type="text" name="title"  class="form-control title" value="<%#= @tender.present? ? @tender.title : nil  %>"/> 
               <%# if @title_error.present? %>
                   <i style="color:red"><%#= @title_error %></i>
               <%# end %>
-            </div>-->
+            </div>&ndash;&gt;
           </div>
-        </div>
+        </div>-->
       <!--</div>-->
     </div>
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-6">
           <div class="portlet-body form">
-            <div class="form-body">
 
-              <div class="form-group">
-                <h4 class="control-label">TENDER TITLE</h4> 
-                <input maxlength="300" type="text" name="title"  class="form-control title" value="<%= @tender.present? ? @tender.title : nil  %>"/> 
-                <% if @title_error.present? %>
-                    <i style="color:red"><%= @title_error %></i>
-                <% end %>
+              <div class="form-body">
+                <div class="form-group">
+                  <h4>TENDER TITLE</h4>
+                  <input maxlength="300" type="text" name="title"  class="form-control title input-xlarge" value="<%= @tender.present? ? @tender.title : nil  %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
+                  <% if @title_error.present? %>
+                      <i style="color:red"><%= @title_error %></i>
+                  <% end %>
+                </div>
               </div>
-            </div>
+
+
           </div>
         </div>
 
@@ -59,18 +75,10 @@
           <div class="portlet-body form">
             <div class="form-body">
               <div class="form-group">
-                <h4 class="control-label">QUOTE DUE</h4> 
-                <input type="text" class="form-control quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>"/>
+                <h4>QUOTE DUE</h4>
+                <input type="text" class="form-control input-xlarge quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/>
                 <div class="input-group date  form_meridian_datetime" data-date="2012-12-21T15:25:00Z" id="form_meridian_datetime">
 
-                  <!--<span class="input-group-btn">
-                      <button class="btn default date-reset" type="button">
-                          <i class="fa fa-times"></i>
-                      </button>
-                      <button class="btn default date-set" type="button">
-                          <i class="fa fa-calendar"></i>
-                      </button>
-                  </span>-->
                 </div>
 
                 <% if @quote_due_error.present? %>
@@ -88,12 +96,14 @@
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
-              <h4 class="control-label">CLIENT(Optional)</h4> 
-              <input maxlength="200" type="text" name="client"  class="form-control client" value="<%= @tender.present? ? @tender.client : nil  %>" /> 
+              <h4>CLIENT(Optional)</h4>
+              <input maxlength="200" type="text" name="client"  class="form-control client" value="<%= @tender.present? ? @tender.client : nil  %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
             </div>
+          </div>
+          <div class="form-body">
             <div class="form-group">
-              <h4 class="control-label">ARCHITECT(Optional)</h4>
-              <input maxlength="200" type="text" name="architect"  class="form-control architect" value="<%= @tender.present? ? @tender.architect : nil  %>"/> 
+              <h4>ARCHITECT(Optional)</h4>
+              <input maxlength="200" type="text" name="architect"  class="form-control architect" value="<%= @tender.present? ? @tender.architect : nil  %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
             </div>
           </div>
         </div>
@@ -105,20 +115,23 @@
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
-              <h4 class="control-label">SECTOR</h4> 
-              <%= select_tag "categories",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@categories, 'id','name',@tender.present? ? @tender.category_id : nil),{:class=> 'form-control'} %> 
+              <h4>SECTOR</h4>
+              <%= select_tag "categories",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@categories, 'id','name',@tender.present? ? @tender.category_id : nil),{:class=> 'form-control', :style=>"background-color: #F6F6F6;border-color: #F6F6F6"} %> 
               <% if @sector_error.present? %>
                   <i style="color:red"><%= @sector_error %></i>
               <% end %>
             </div>
+          </div>
+          <div class="form-body">
             <div class="form-group">
-              <h4 class="control-label">VALUE</h4>
-              <%= select_tag "values",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@values, 'id','range',@tender.present? ? @tender.tender_value_id : nil),{:class=> 'form-control'} %> 
+              <h4>VALUE</h4>
+              <%= select_tag "values",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@values, 'id','range',@tender.present? ? @tender.tender_value_id : nil),{:class=> 'form-control', :style=>"background-color: #F6F6F6;border-color: #F6F6F6"} %> 
               <% if @value_error.present? %>
                   <i style="color:red"><%= @value_error %></i>
               <% end %>
             </div>
           </div>
+
         </div>
       <!--</div>-->
     </div>
@@ -127,9 +140,10 @@
       <!--<div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
-            <h4 class="control-label">DESCRIPTION</h4> 
-            <%= text_area_tag('about_me',@tender.present? ? @tender.description.html_safe : nil,:cols => '109',:rows => '8',:class => 'form-control wysihtml5') %> 
-            <!--<i>note: if left blank the system will generate a Tendercon Default Description</i> -->
+            <div class="form-group">
+              <h4>DESCRIPTION</h4>
+              <%= text_area_tag('about_me',@tender.present? ? @tender.description.html_safe : nil,:cols => '109',:rows => '8',:class => 'form-control wysihtml5', :style => "background-color: #F6F6F6;border-color: #F6F6F6") %> 
+            </div>
           </div>
         </div>
       <!--</div>-->
@@ -139,26 +153,33 @@
       <!--<div class="portlet light bordered">-->
         <div class="portlet-body form">
           <div class="form-body">
+
+          </div>
+          <div class="form-body">
             <div class="form-group">
-              <h4 class="control-label">ADDRESS</h4> 
+              <h4>ADDRESS</h4>
               <input type="hidden" name="original_address" class="o_address">
-              <input type="type" class="form-control address" id="address" value="<%= @tender.present? ? @tender.address : nil  %>" name="address"> 
+              <input type="type" class="form-control address" id="address" value="<%= @tender.present? ? @tender.address : nil  %>" name="address" style="background-color: #F6F6F6;border-color: #F6F6F6"> 
               <% if @address_error.present? %>
                   <i style="color:red"><%= @address_error %></i>
               <% end %>
             </div>
+
             <div class="form-group">
-              <h4 class="control-label">SUBURB</h4> 
-              <input type="text" class="form-control suburb" value="<%= @tender.present? ? @tender.suburb : nil  %>" name="suburb" id="suburb">
+              <h4>SUBURB</h4>
+              <input type="text" class="form-control suburb" value="<%= @tender.present? ? @tender.suburb : nil  %>" name="suburb" id="suburb"  style="background-color: #F6F6F6;border-color: #F6F6F6">
             </div>
+
             <div class="form-group">
-              <h4 class="control-label">STATE</h4> 
-              <input type="text" class="form-control state" name="state" id="state" value="<%= @tender.present? ? @tender.state : nil  %>"> 
+              <h4>STATE</h4>
+              <input type="text" class="form-control state" name="state" id="state" value="<%= @tender.present? ? @tender.state : nil  %>"  style="background-color: #F6F6F6;border-color: #F6F6F6"> 
             </div>
+
             <div class="form-group">
-              <h4 class="control-label">POSTCODE</h4> 
-              <input type="text" class="form-control postcode" name="postcode" id="postcode" value="<%= @tender.present? ? @tender.postcode : nil  %>"> 
+              <h4>POSTCODE</h4>
+              <input type="text" class="form-control postcode" name="postcode" id="postcode" value="<%= @tender.present? ? @tender.postcode : nil  %>"  style="background-color: #F6F6F6;border-color: #F6F6F6"> 
             </div>
+
             <!--<div class="form-group">
               <label>
                 <%# if @tender.present?  %>
@@ -181,9 +202,11 @@
 
     <div class="col-md-6">
       <!--<div class="portlet light bordered">-->
+
         <div class="portlet-body form">
           <div class="form-body">
-            <div id="map" style="height:408px;width:470px;"></div> 
+            <div style="height: 80px"></div>
+            <div id="map" style="height:310px;width:440px;"></div> 
           </div>
         </div>
       <!--</div>-->
@@ -348,15 +371,15 @@
         <div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
-              <h4 class="control-label">Status</h4> 
+              <h4 class="control-label">TENDER STATUS</h4> 
             </div>
             <div class="col-md-6">
-              <label><input type="radio" class="tendering form-control" name="tendering" value="1">Tendering - Your organization is still tendering for this project.</label> 
+              <label><input type="radio" class="tendering form-control" name="tendering" value="1"><strong>Tendering</strong> - Your organization is still tendering for this project.</label> 
               <p class="tendering_text" style="display: none;color: red"><i>After this tender is published, you can changed the Tender's status form Tendering to Awarded on the Details tab</i></p> 
             </div>
             <div class="col-md-6">
-              <label><input type="radio" name="tendering" class="tendering form-control" value="2">Awarded - This tender has been awarded yo your organization or this your project.</label> 
-              <p class="awarded_text" style="display: none;color: red"><i>note: Once this tender is posted you will no longer be able to change the Awarded status to Tendering again. </i></p> 
+              <label><input type="radio" name="tendering" class="tendering form-control" value="2"><strong>Awarded</strong> - Yor company has already won this project</label> 
+              <p class="awarded_text" style="display: none;color: red"><i>After this tender is published, you CAN NOT revert this tender's status back to Tendering.</i></p> 
             </div>
           </div>
 
@@ -368,9 +391,9 @@
     </div>
 
     <div class="form-actions pull-right">
-      <button type="submit" class="btn" style="color:#FFFFFF; background-color: #c0c0c0;border: 2px solid;border-radius: 8px !important;">
+      <button type="submit" class="btn" style="color:#FFFFFF; background-color: #72bb53;border: 2px solid;border-radius: 8px !important;">
         <h4>
-          ADD Trades
+          Next
         </h4>
       </button>
     </div>
@@ -520,6 +543,86 @@
         center: myLatLng
       });
     }
+
+    $(".title").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".title").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+    });
+
+
+    $(".quote").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".quote").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+    });
+
+
+
+    $(".client").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".client").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+    });
+
+    $(".architect").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".architect").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+    });
+
+    $("#categories").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $("#categories").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+    });
+
+    $("#values").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $("#values").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+    });
+
+    $("#about_me").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $("#about_me").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+    });
+
+    $(".address").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".address").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+    });
+
+    $(".suburb").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".suburb").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+    });
+
+    $(".state").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".state").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+    });
+
+    $(".postcode").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".postcode").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+    });
 
     function get_address_info(address){
       $.ajax({

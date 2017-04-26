@@ -1,3 +1,12 @@
+<div class="text-center">
+  <h2>Tender Documents</h2>
+  <p>
+    Drag and drop this tender's documents.
+  </p>
+  <p>
+    You can also add documents after the tender is published via the Issue New Addendum option.
+  </p>
+</div>
 <div class="row"> 
   <div class="col-md-12">  
     <div style="display:none"> 
@@ -11,7 +20,7 @@
           <i class="fa fa-cloud-upload fa-5x upload " aria-hidden="true"></i>
         </p>
         <h1 class="text-center">DRAG AND DROP</h1>
-        <p class="text-center">your files anywhere</p> 
+        <p class="text-center">your tender files and folders into this area </p> 
 
       </div>
     </div>  
@@ -36,21 +45,40 @@
   </div>  
 </div> 
 
-<div class="row">
+
+<button type="button" class="btn btn-primary  back_to_trades " style="color:#FFFFFF; background-color: #ff3823; border: 2px solid;border-radius: 8px !important;" id="<%= @tender.id %>">
+  <h4>EDIT Trades</h4>
+</button>
+<!--<a href="/tenders/new_tender?info=true&info_id=<%#= @tender.id %>" > 
+                <button  type="button" class="btn-default next_info " style="color:white; background-color: #ff3823;border-radius: 8px !important;">
+                  <h4>EDIT Details</h4>
+                </button>
+              </a>   -->
+
+<div class="pull-right">
+
+      <button class="btn btn-primary  invite_subbies " style="color:#f1f1f1; background-color: #72bb53;border: 2px solid;border-radius: 8px !important;" id="<%= @tender.id %>">
+        <h4>INVITE Subbies</h4>
+      </button>
+</div>
+
+<!--<div class="row">
+
+
   <div class="col-md-12">
     <div class="form-actions">
 
-      <a href="/tenders/new_tender?trades=true&info_id=<%= @tender.id %>"> 
+      <a href="/tenders/new_tender?trades=true&info_id=<%#= @tender.id %>"> 
         <button class="btn btn-default next_info " type="button" >BACK</button>
       </a>   
 
-      <a href="/tenders/new_tender?invites=true&info_id=<%= @tender.id %>" class="link"> 
+      <a href="/tenders/new_tender?invites=true&info_id=<%#= @tender.id %>" class="link"> 
         <button class="btn btn-primary" type="button">SAVE AND CONTINUE</button>
       </a>   
 
     </div>
   </div>
-</div>
+</div>-->
 
 <input type="hidden" class="tender_id" value="<%= @tender.id %>">
 
@@ -110,6 +138,16 @@
       alert("false");
       $('.unzip_file').val(null);
     }
+  });
+
+  $('.back_to_trades').click(function(){
+    var id = $(this).attr('id');
+    window.location.href = "/tenders/new_tender?trades=true&info_id="+id;
+  });
+
+  $('.invite_subbies').click(function(){
+    var id = $(this).attr('id');
+    window.location.href = "/tenders/new_tender?invites=true&info_id="+id;
   });
 
   update_link();
