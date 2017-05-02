@@ -10,9 +10,9 @@ class TenderconMailer < ActionMailer::Base
      @email = email
 
      if @user.role == 'Sub Contractor'
-       reset_password_path = "http://subcontractor.tendercon.com/users/reset_password?id=#{@user_id}&email=#{@email}"
+       reset_password_path = "http://ec2-13-54-38-164.ap-southeast-2.compute.amazonaws.com/users/reset_password?id=#{@user_id}&email=#{@email}"
      else
-       reset_password_path = "http://builder.tendercon.com/users/reset_password?id=#{@user_id}&email=#{@email}"
+       reset_password_path = "http://ec2-13-54-38-164.ap-southeast-2.compute.amazonaws.com/users/reset_password?id=#{@user_id}&email=#{@email}"
      end
 
 
@@ -99,9 +99,9 @@ class TenderconMailer < ActionMailer::Base
       @link = path
     else
       if user.role == "Sub Contractor"
-        @link = "http://subcontractor.tendercon.com/users/validate_account?id=#{@user_id}&email=#{@email}&token=#{@unique_key}"
+        @link = "http://ec2-13-54-38-164.ap-southeast-2.compute.amazonaws.com/users/validate_account?id=#{@user_id}&email=#{@email}&token=#{@unique_key}"
       else
-        @link = "http://builder.tendercon.com/users/validate_account?id=#{@user_id}&email=#{@email}&token=#{@unique_key}"
+        @link = "http://ec2-13-54-38-164.ap-southeast-2.compute.amazonaws.com/users/validate_account?id=#{@user_id}&email=#{@email}&token=#{@unique_key}"
       end
 
     end
@@ -236,9 +236,9 @@ class TenderconMailer < ActionMailer::Base
     #@root_path = "http://#{path}/invites/registration?id=#{@user_id}"
 
     if @user.role == 'Sub Contractor'
-      @root_path = "http://subcontractor.tendercon.com/invites/registration?id=#{@user_id}"
+      @root_path = "http://ec2-13-54-38-164.ap-southeast-2.compute.amazonaws.com/invites/registration?id=#{@user_id}"
     else
-      @root_path = "http://builder.tendercon.com/invites/registration?id=#{@user_id}"
+      @root_path = "http://ec2-13-54-38-164.ap-southeast-2.compute.amazonaws.com/invites/registration?id=#{@user_id}"
     end
 
 
