@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   #layout 'users_layout', :on => [:login],:except => [:profile,:company_profile,:index,:edit_profile,:billing,:change_password,:edit_company_profile,:subscription,:register,:welcome_page,
   #                                                  :tendercon_steps,:steps_completed,:registration_completed]
-  #layout 'users_layout', :only => [:login]
-  layout 'in_apps_layout', :only => [:register,:register1,:interest_completed,:tendercon_steps,:login,:login1,:token_expired,:registration_completed,
+  layout 'login_layout', :only => [:login]
+  layout 'in_apps_layout', :only => [:register,:register1,:interest_completed,:tendercon_steps,:login1,:token_expired,:registration_completed,
                                      :welcome_page,:steps_completed,:user_company_exist,:account_taken,:forgot_password,
                                      :validation_complete,:reset_password,:password_changed,:create_user,:token_expired,:update_password]
   skip_before_action :verify_authenticity_token
@@ -108,6 +108,8 @@ class UsersController < ApplicationController
     if params[:tender].present?
       TenderInvite.where(:tender_id => params[:tender],:trade_id => params[:trade],:email => params[:email]).update_all(:status => 'accepted')
     end
+
+    render :layout => 'login_layout'
   end
 
   def login1
@@ -654,20 +656,8 @@ class UsersController < ApplicationController
       if params[:credit_card].present? || params[:invites].present?
         @user = User.where(:email => @email).first
       else
-        puts "PASSWORD ====> #{params[:password]}"
-        puts "EMAIL ====> #{params[:email]}"
         hash_password = User.rehash_password password
-        puts "hash_password:#{hash_password}"
-        #@user = User.where(:email => @email, :password => hash_password,:verified => true,:status => nil).first
-        puts "USER =========> #{@user.inspect}"
-        #if params[:email].strip == 'agile.jjp@gmail.com'.strip
-        #  @user = User.find(6)
-        #elsif  params[:email].strip == 'joe_dhay@yahoo.com'.strip
-        #  @user = User.find(7)
-        #else
-          @user = User.where(:email => @email.strip, :password => hash_password,:verified => true,:status => nil).first
-        #end
-        puts "USERS ALL ==============> #{User.all.inspect}"
+        @user = User.where(:email => @email.strip, :password => hash_password,:verified => true,:status => nil).first
       end
     end
 
@@ -694,13 +684,17 @@ class UsersController < ApplicationController
               redirect_to billing_users_path
             else
               if params[:tender].present?
-                puts "TENDER ========> #{params[:tender]}"
                 redirect_to '/tenders/invited_tender'
               else
-                redirect_to dashboard_index_path
+                if @user.role == 'Head Contractor'
+                  redirect_to '/dashboard?builder=true'
+                elsif @user.role == 'Sub Contractor'
+                  redirect_to '/dashboard?subcontractor=true'
+                else
+                  redirect_to dashboard_index_path
+                end
+                #dashboard_index_path
               end
-
-
             end
           else
             if params[:invites].present?
@@ -712,10 +706,15 @@ class UsersController < ApplicationController
 
           end
         else
-          redirect_to dashboard_index_path
+          if @user.role == 'Head Contractor'
+            redirect_to '/dashboard?builder=true'
+          elsif @user.role == 'Sub Contractor'
+            redirect_to '/dashboard?subcontractor=true'
+          else
+            redirect_to dashboard_index_path
+          end
+          #redirect_to dashboard_index_path
         end
-
-
       end
     else
       user_log = User.where(:email => @email).first
