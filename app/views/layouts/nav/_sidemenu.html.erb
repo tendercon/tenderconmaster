@@ -166,7 +166,7 @@
           <% else %>
               <li class="nav-item">
           <% end %>
-          <a href="<%= '/tenders/new_tender?info=true' %>"  class="nav-link" id="post_tender_link">
+          <a href="<%= '/tenders/new_tender?info=true&builder=true' %>"  class="nav-link" id="post_tender_link">
             <i class="icon-plus"></i>
             <span class="title" style="color: #f1f1f1">Post Tender</span>
             <% if params[:action] == 'new_tender' %>
@@ -220,16 +220,32 @@
       <% else %>
           <li class="nav-item">
       <% end %>
-        <a href="<%= '/tenders/my_tender' %>" class="nav-link " id="my_tender_link">
-          <i class="icon-docs"></i>
-          <span class="title" style="color: #f1f1f1">My Tenders</span>
-          <% if params[:action] == 'my_tender' || params[:action] == 'hc_tender' || params[:action] == 'sc_tender' || params[:controller] == 'quotes'  || params[:controller] == 'rfis' %>
-              <span class="selected"></span>
-          <% end %>
-          <% if session[:role] == 'Head Contractor' %>
-              <span class="badge badge-danger" style="background-color: #f5494d;font-size: 14px; height: 20px;width: 20px"><%= @tenders.present? ? @tenders.size : 0 %></span>
-          <% end %>
-        </a>
+      <% if @user.role == 'Head Contractor' %>
+          <a href="<%= '/tenders/my_tender?builder=true' %>" class="nav-link " id="my_tender_link">
+            <i class="icon-docs"></i>
+            <span class="title" style="color: #f1f1f1">My Tenders</span>
+            <% if params[:action] == 'my_tender' || params[:action] == 'hc_tender' || params[:action] == 'sc_tender' || params[:controller] == 'quotes'  || params[:controller] == 'rfis' %>
+                <span class="selected"></span>
+            <% end %>
+            <% if session[:role] == 'Head Contractor' %>
+                <span class="badge badge-danger" style="background-color: #f5494d;font-size: 14px; height: 20px;width: 20px"><%= @tenders.present? ? @tenders.size : 0 %></span>
+            <% end %>
+          </a>
+      <% elsif @user.role == 'Sub Contractor' %>
+          <a href="<%= '/tenders/my_tender?subcontractor=true' %>" class="nav-link " id="my_tender_link">
+            <i class="icon-docs"></i>
+            <span class="title" style="color: #f1f1f1">My Tenders</span>
+            <% if params[:action] == 'my_tender' || params[:action] == 'hc_tender' || params[:action] == 'sc_tender' || params[:controller] == 'quotes'  || params[:controller] == 'rfis' %>
+                <span class="selected"></span>
+            <% end %>
+            <% if session[:role] == 'Head Contractor' %>
+                <span class="badge badge-danger" style="background-color: #f5494d;font-size: 14px; height: 20px;width: 20px"><%= @tenders.present? ? @tenders.size : 0 %></span>
+            <% end %>
+          </a>
+      <% else %>
+
+      <% end %>
+
       </li>
 
       <% if session[:role] == 'Head Contractor' %>
@@ -242,7 +258,7 @@
           <% else %>
               <li class="nav-item">
           <% end %>
-          <a href="<%= hc_invites_path %>" class="nav-link " id="sub_tender_link">
+          <a href="<%= '/hc_invites?builder=true' %>" class="nav-link " id="sub_tender_link">
             <i class="icon-users"></i>
             <span class="title" style="color: #f1f1f1">Subcontractors</span>
             <% if params[:action] == 'index' %>
