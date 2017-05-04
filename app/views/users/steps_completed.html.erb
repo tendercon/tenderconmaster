@@ -9,9 +9,23 @@
 
       <br/>
       <div class="text-center">
-        <a href="<%= params[:invited].present? ? dashboard_index_path(:newly_user => true) : dashboard_index_path %>" class="text-center new-account" style="text-decoration: none; color: #000000">
-          <button class="btn green uppercase" type="submit">PROCEED TO DASHBOARD</button>
-        </a>
+        <% if @user.role == 'Head Contractor' %>
+            <a href="<%= params[:invited].present? ? '/dashboard?builder=true&newly_user=true' : '/dashboard?builder=true' %>" class="text-center new-account" style="text-decoration: none; color: #000000">
+              <button class="btn green uppercase" type="submit">PROCEED TO DASHBOARD</button>
+            </a>
+
+        <% elsif @user.role == 'Sub Contractor' %>
+            <a href="<%= params[:invited].present? ? '/dashboard?subcontractor=true&newly_user=true' : '/dashboard?subcontractor=true' %>" class="text-center new-account" style="text-decoration: none; color: #000000">
+              <button class="btn green uppercase" type="submit">PROCEED TO DASHBOARD</button>
+            </a>
+
+        <% else %>
+            <a href="<%= params[:invited].present? ? dashboard_index_path(:newly_user => true) : dashboard_index_path %>" class="text-center new-account" style="text-decoration: none; color: #000000">
+              <button class="btn green uppercase" type="submit">PROCEED TO DASHBOARD</button>
+            </a>
+
+        <% end %>
+
       </div>
 
 
