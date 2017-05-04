@@ -221,7 +221,7 @@
           <li class="nav-item">
       <% end %>
       <% if @user.role == 'Head Contractor' %>
-          <a href="<%= '/tenders/my_tender?builder=true' %>" class="nav-link " id="my_tender_link">
+          <a href="<%= '/tenders/my_tender?builders=true' %>" class="nav-link " id="my_tender_link">
             <i class="icon-docs"></i>
             <span class="title" style="color: #f1f1f1">My Tenders</span>
             <% if params[:action] == 'my_tender' || params[:action] == 'hc_tender' || params[:action] == 'sc_tender' || params[:controller] == 'quotes'  || params[:controller] == 'rfis' %>
