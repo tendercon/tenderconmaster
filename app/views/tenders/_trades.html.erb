@@ -1,45 +1,85 @@
 <div class="text-center">
-  <h2>Tender Trades</h2>
-  <p>
+  <h1>ADD TENDER TRADES</h1>
+  <h3>
     Select All the trades this tender requires
-  </p>
+  </h3>
 </div>
 <div class="col-md-12">
-  <!--<div class="portlet light bordered">-->
-    <div class="portlet-body form">
+
       <div class="form-body">
         <%= form_tag(create_tender_trades_tenders_path, :html => { :multipart => true }) do |f| %>
             <input type="hidden" name="save_trade" value="<%= @tender_trades.present? ? true : nil %>">   
             <div class="col-md-12"> 
               <input type="hidden" name="tender_id" value="<%= params[:info_id] %>">
-              <% @trade_included_array = [] %>
-              <% @trade_categories.each do |tc|  %> 
-                  <% if !@trade_category_array.include? "#{tc.title}" %>
-                    <% @trade_category_array << "#{tc.title}" %>
-                    <% if tc.title != 'Others' %>
-                    <div class="<%= tc.title %>" id="<%= tc.title %>"> 
-                      <h3> <%= tc.title %></h3> 
-                    </div> 
-                    <% end %>
 
-
-                  <% end %>
-                  <% @all_trades.each do |a| %> 
-                    <% if tc.id.to_i == a.trade_category_id.to_i %> 
-                      <div class="col-md-3 trade_div"> 
-                        <% if @trade_array.present? %>
+              <h3>Preliminaries</h3> 
+              <div class="row">
+                <% @preliminaries.each do |a| %>
+                    <div class="col-md-3">
+                      <% if @trade_array.present? %>
                           <% if @trade_array.include? a.id %>
-                            <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class" checked> <%= a.name %></label> 
+                              <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class" checked> <%= a.name %></label> 
                           <% else %>
-                            <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class"> <%= a.name %></label> 
+                              <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class"> <%= a.name %></label> 
                           <% end %>
-                        <% else %>
-                            <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class"> <%= a.name %></label> 
-                        <% end %>
-                      </div> 
-                     <% end %> 
-                  <% end %> 
-              <% end %> 
+                      <% else %>
+                          <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class"> <%= a.name %></label> 
+                      <% end %>
+                    </div>
+
+                <% end %>
+              </div>
+              <h3>Structural</h3> 
+              <div class="row">
+                <% @structurtals.each do |a| %>
+                    <div class="col-md-3">
+                      <% if @trade_array.present? %>
+                          <% if @trade_array.include? a.id %>
+                              <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class" checked> <%= a.name %></label> 
+                          <% else %>
+                              <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class"> <%= a.name %></label> 
+                          <% end %>
+                      <% else %>
+                          <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class"> <%= a.name %></label> 
+                      <% end %>
+                    </div>
+
+                <% end %>
+              </div>
+              <h3>Architectural</h3> 
+              <div class="row">
+                <% @architecturals.each do |a| %>
+                    <div class="col-md-3">
+                      <% if @trade_array.present? %>
+                          <% if @trade_array.include? a.id %>
+                              <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class" checked> <%= a.name %></label> 
+                          <% else %>
+                              <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class"> <%= a.name %></label> 
+                          <% end %>
+                      <% else %>
+                          <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class"> <%= a.name %></label> 
+                      <% end %>
+                    </div>
+
+                <% end %>
+              </div>
+              <h3>Services</h3> 
+              <div class="row">
+                <% @services.each do |a| %>
+                    <div class="col-md-3">
+                      <% if @trade_array.present? %>
+                          <% if @trade_array.include? a.id %>
+                              <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class" checked> <%= a.name %></label> 
+                          <% else %>
+                              <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class"> <%= a.name %></label> 
+                          <% end %>
+                      <% else %>
+                          <label id="trade_id_<%= a.id %>" class="all"><input type="checkbox" name="trade_lists[]"  value="<%= a.id %>" class="trade_class"> <%= a.name %></label> 
+                      <% end %>
+                    </div>
+
+                <% end %>
+              </div>
               <!--<div class="row">
                 <div class="form-group">
                   <label>Can't find your trades above? Use the below section to create your own trade titles</label>
@@ -73,8 +113,8 @@
             </div> 
  
             <div>
-              <button type="button" class="btn btn-primary  back_to_details " style="color:#FFFFFF; background-color: #ff3823; border: 2px solid;border-radius: 8px !important;" id="<%= @tender.id %>">
-                <h4>EDIT Details</h4>
+              <button type="button" class="btn btn-primary  back_to_details " style="color:#FFFFFF; background-color: #ff3823; border: 2px solid;border-radius: 8px !important;width: 175px;height: 35px;right: 15px;" id="<%= @tender.id %>">
+                <h4 style="margin-top: -1px">EDIT Details</h4>
               </button>
               <!--<a href="/tenders/new_tender?info=true&info_id=<%#= @tender.id %>" > 
                 <button  type="button" class="btn-default next_info " style="color:white; background-color: #ff3823;border-radius: 8px !important;">
@@ -85,13 +125,13 @@
               <div class="pull-right">
                 <% if @trade_array.present? %>
 
-                    <button class="btn btn-primary  trade_btn " style="color:#FFFFFF; background-color: #c0c0c0;border: 2px solid;border-radius: 8px !important;">
-                      <h4>ADD Documents</h4>
+                    <button class="btn btn-primary  trade_btn " style="color:#FFFFFF; background-color: #c0c0c0;border: 2px solid;border-radius: 8px !important;width: 175px;height: 35px;">
+                      <h4 style="margin-top: -1px">ADD Documents</h4>
                     </button>
 
                 <% else %>
-                  <button class="btn btn-primary  trade_btn " disabled style="color:#FFFFFF; background-color: #c0c0c0;border: 2px solid;border-radius: 8px !important;">
-                    <h4>ADD Documents</h4>
+                  <button class="btn btn-primary  trade_btn " disabled style="color:#FFFFFF; background-color: #c0c0c0;border: 2px solid;border-radius: 8px !important;width: 175px;height: 35px;">
+                    <h4 style="margin-top: -1px">ADD Documents</h4>
                   </button>
                 <% end %>
               </div>
@@ -99,7 +139,7 @@
             </div>
         <% end %>
       </div>
-    </div>
+
   <!--</div>-->
 </div>
 

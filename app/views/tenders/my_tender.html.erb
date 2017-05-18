@@ -1,5 +1,12 @@
 <div class="row">
-
+  <div class="text-center">
+    <h1>
+      TENDER MANAGEMENT
+    </h1>
+    <h4>
+      Manage your tender details, subcontractors, addenda and submitted quotes.
+    </h4>
+  </div>
   <div class="col-md-12  " type="file" id="dir-select" webkitdirectory name="document"> 
     <!--<div class="col-md-10  col-md-offset-8">
       <input type="text" class="form-control" id="inputSuccess2" style="border-radius: 5px"/>
@@ -32,20 +39,40 @@
       <table  class="table table-bordered responsive" id="my_tender_table"  cellspacing="0" width="100%">
         <thead>
           <tr style="background-color: #2C3E50;color: white;">
-            <% if session[:role] == 'Sub Contractor' %>
-               <th>Status</th>
-            <% end %>
-            <th>Tender ID</th>
+
+            <th>
+              <h4>TENDER ID</h4>
+            </th>
             <% if session[:role] == 'Admin' %>
-                <th>HC Company</th>
+                <th>
+                  <h4>HC COMPANY</h4>
+                </th>
             <% end %>
             <% if session[:role] == 'Sub Contractor' %>
-              <th>Head Contractor</th>
+              <th>
+                <h4>
+                  HEAD CONTRACTOR
+                </h4>
+              </th>
             <% end %>
-            <th>Project Name</th>
-            <th>Location</th>
-            <th>Quote Due</th>
-            <th>Action</th>
+            <th>
+              <h4>
+                TENDER NAME
+              </h4>
+            </th>
+            <th>
+              <h4>
+                PROJECT LOCATION
+              </h4>
+            </th>
+            <th>
+              <h4>
+                QUOTE DUE DATE
+              </h4>
+            </th>
+            <!--<th>
+              <h4>ACTION</h4>
+            </th>-->
             <!--<th><i class="fa fa-bell" aria-hidden="true"></i></th>-->
           </tr>
         </thead>
@@ -53,80 +80,79 @@
           <% if @tenders.present? %>
             <% @tenders.each do |t| %>
               <tr>
-                <% if session[:role] == 'Sub Contractor' %>
-                  <td class="text-center">
 
-                      <% if get_tender_approved t.id,session[:user_logged_id] %>
-                        <!--<button class="btn btn-success" type="button" title="You have been approved by Head Contractor to Tender on this project" style="background-color: #26c281">-->
-                          <a href="#!" class="btn btn-success" style="background-color: #26c281" title="You have been approved by Head Contractor to Tender on this project">
-                            Tendering
-                          </a>
-
-                        <!--</button>-->
-                      <% else %>
-                        <!--<button class="btn btn-warning" type="button" title="You are waiting for the Head Contractor to approve your request to tender" style="background-color: #F1C40F">
-
-                        </button>-->
-                        <a href="#!" class="btn btn-warning" title="You are waiting for the Head Contractor to approve your request to tender" style="background-color: #F1C40F">
-                          Pending
-                        </a>
-                      <% end %>
-
-                  </td>
-                <% end %>
-                <td class="text-center">
-                  <%= t.tendercon_id %>
+                <td >
+                  <strong><%= t.tendercon_id %></strong>
                 </td>
                 <% if session[:role] == 'Admin' %>
-                    <th><%= get_user_trade_name t.user_id %></th>
+                    <td><%= get_user_trade_name t.user_id %></td>
                 <% end %>
-                <%# if session[:role] == 'Head Contractor' %>
-                    <!--<td class="text-center">
-                      <%#= t.tendercon_id %>
-                    </td>
-                <%# else %>
-                  <td class="text-center">
-                    <a href="<%#= sc_tender_tenders_path(:id => t.id) %>" >
-                      <%#= t.tendercon_id %>
-                    </a>
-                  </td>-->
-                <%# end %>
+
                 <% if session[:role] == 'Sub Contractor' %>
-                    <td class="text-center"><%= t.user.trade_name %></td>
+
+                    <td style=" height: 20px;">
+                      <a href="<%= user_company_profile_users_path(:id => t.user_id,:tender => t.id,:my_tender => true) %>">
+
+                          <%= t.user.trade_name %>
+
+                      </a>
+
+                    </td>
                 <% end %>
-                <td class="text-center"><%= t.title %></td>
-                <td class="text-center"><%= t.address %></td>
-                <td class="text-center"><%= get_tender_due t.id %></td>
+                <td >
+                  <% if session[:role] == 'Sub Contractor' %>
+                      <a href="<%= sc_tender_tenders_path(:id => t.id) %>" >
+                        <%= t.title %>
+                      </a>
+                  <% elsif session[:role] == 'Head Contractor' %>
+                      <a href="<%= hc_tender_tenders_path(:id => t.id) %>" >
+                        <%= t.title %>
+                      </a>
+                  <% else %>
+
+                  <% end %>
+
+                </td>
+                <td >
+
+                    <%= remove_country_to_address t.id %>
+
+                </td>
+                <td >
+
+                    <%= get_tender_due t.id %>
+
+                </td>
 
 
-                <td class="text-center">
-                  <% if session[:role] == 'Head Contractor' %>
-                    <a href="<%= hc_tender_tenders_path(:id => t.id) %>" >
+                <!--<td class="text-center">
+                  <%# if session[:role] == 'Head Contractor' %>
+                    <a href="<%#= hc_tender_tenders_path(:id => t.id) %>" >
                       <button class="btn btn-success" type="button">
                         View
                       </button>
                     </a>
-                  <% elsif session[:role] == 'Sub Contractor' %>
-                    <a href="<%= sc_tender_tenders_path(:id => t.id) %>" >
-                      <% if get_tender_approved t.id,session[:user_logged_id] %>
+                  <%# elsif session[:role] == 'Sub Contractor' %>
+                    <a href="<%#= sc_tender_tenders_path(:id => t.id) %>" >
+                      <%# if get_tender_approved t.id,session[:user_logged_id] %>
                         <button class="btn btn-default" type="button">
                           View
                         </button>
-                      <% else %>
+                      <%# else %>
                         <button class="btn btn-default" type="button">
                           View
                         </button>
-                      <% end %>
+                      <%# end %>
                     </a>
-                  <% else %>
-                    <a href="<%= invites_tenders_path(:id => t.id) %>" >
+                  <%# else %>
+                    <a href="<%#= invites_tenders_path(:id => t.id) %>" >
                       <button class="btn btn-default" type="button">
                         View
                       </button>
                     </a>
-                  <% end %>
+                  <%# end %>
 
-                </td>
+                </td>-->
                 <!--<td class="text-center">
                   <%# if (get_count_tender_request session[:user_logged_id],t.id ) > 0 %>
                       <span class="badge" style="background-color: red"><%#= get_count_tender_request session[:user_logged_id],t.id %></span>
@@ -456,7 +482,7 @@
       }).show();
     });
 
-    $('#my_tender_table').DataTable({
+   $('#my_tender_table').DataTable({
       "bSort" : false,
       "bPaginate": false,
       "bInfo" : false,
@@ -530,3 +556,9 @@
 
 
 </script>
+
+<style>
+  #my_tender_table tr td {
+    height: 10px;
+  }
+</style>

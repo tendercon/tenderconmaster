@@ -1,3 +1,20 @@
+
+
+<div class="backdrop"></div>
+<!--<div class="fab child img-circle" data-subitem="1"> <i class="fa fa-file fa-5x" aria-hidden="true" style="margin-top: 14px;"></i><p class="mini-action-button__text&#45;&#45;hide">Issue Documents</p></div>
+<div class="fab child img-circle" data-subitem="2"> <i class="fa fa-info-circle fa-5x" aria-hidden="true"  style="margin-top: 14px;"></i><p class="mini-action-button__text&#45;&#45;hide">Change Tender details</p></div>-->
+<div class="fab child " data-subitem="1">
+  <select class="form-control addenda_type">
+    <option>Select</option>
+    <option value="1">Issue Documents</option>
+    <option value="2">Change Tender details</option>
+  </select>
+</div>
+</div>
+<div class="fab img-circle" id="masterfab"><span>+</span></div>
+
+
+
 <div class="row">
   <div style="height: 80px;"></div>
 </div>
@@ -42,17 +59,18 @@
 
 <div class="table-responsive" >
   <table class="table table-bordered responsive" id="addenda_table" >
-    <thead>
-    <tr style="background-color: #2C3E50;color: white;">
-      <th class="text-center">Addendum #</th>
-      <th class="text-center">Subject</th>
-      <th class="text-center">Sent</th>
-      <th class="text-center">Action</th>
-    </tr>
 
-    </thead>
-    <tbody class="searchable">
     <% if @addendas.present? %>
+        <thead>
+        <tr style="background-color: #2C3E50;color: white;">
+          <th class="text-center">Addendum #</th>
+          <th class="text-center">Subject</th>
+          <th class="text-center">Sent</th>
+          <th class="text-center">Action</th>
+        </tr>
+
+        </thead>
+        <tbody class="searchable">
         <% @addendas.each_with_index do |t,index| %>
             <tr>
               <td class="text-center"><%=  "#{t.ref_no}" %></td>
@@ -63,8 +81,17 @@
               </td>
             </tr>
         <% end %>
+        </tbody>
+    <% else %>
+      <div class="md-col-12">
+        <h3 style="font-family: Gotham"><strong>ISSUED ADDENDA</strong></h3>
+        <p style="font-size: 14px;color: #333333;" class="text-center">
+          To notify your subcontractors of newly added documents or tender detail changes,
+          please click on the + symbol at the top of the page.
+        </p>
+      </div>
     <% end %>
-    </tbody>
+
   </table>
 </div>
 
@@ -227,6 +254,10 @@
     <% end %>
 <% end %>
 
+<%= render  'addendas/modal/step1' %>
+<%= render  'addendas/modal/step2' %>
+<%= render  'addendas/modal/review' %>
+
 
 
 <input type="hidden" class="addenda_type">
@@ -237,7 +268,7 @@
 
 <script>
   $(document).ready(function(){
-
+    <% if @addendas.present? %>
     $('#addenda_table').DataTable({
       "bSort" : false,
       "bPaginate": false,
@@ -249,6 +280,8 @@
         "emptyTable": "No Addendum's issued yet"
       }
     });
+    <% end %>
+
 
     $('.view_addenda').click(function(){
       var id = $(this).attr('id');
@@ -286,7 +319,97 @@
       });
     });
 
+    $(".fab,.backdrop").click(function(){
+      if($(".backdrop").is(":visible")){
+        $(".backdrop").fadeOut(125);
+        $(".fab.child")
+            .stop()
+            .animate({
+              bottom	: $("#masterfab").css("bottom"),
+              opacity	: 0
+            },125,function(){
+              //$(this).hide();
+            });
+      }else{
+        $(".backdrop").fadeIn(125);
+        $(".fab.child").each(function(){
+          $(this)
+              .stop()
+              .show()
+              .animate({
+                bottom	: (parseInt($("#masterfab").css("bottom")) + parseInt($("#masterfab").outerHeight()) + 60 * $(this).data("subitem") - $(".fab.child").outerHeight()) + "px",
+                opacity	: 1
+              },125);
+        });
+      }
+    });
+
+
+    $('.addenda_type').change(function(){
+       var id = $(this).val();
+    
+       if(id == 1){
+         $('#step2').modal('show');
+       }else{
+         $('#step1').modal('show');
+       }
+    });
+
   });
+
+
+
 </script>
 
 
+<style>
+
+
+  .fab {
+    background: #CF3F3C;
+    width: 56px;
+    height: 56px;
+    text-align: center;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    color: #FFF;
+    /*box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5), 3px 3px 3px rgba(0, 0, 0, 0.25);*/
+    position: fixed;
+    bottom: 387px;
+    right: 48px;
+    font-size: 2.233em;
+    display: inline-block;
+    cursor: default;
+    z-index: 1;
+  }
+  .fab span {
+    vertical-align: middle;
+  }
+  .fab.child {
+    background-color: transparent !important;
+    right: 58.66666667px;
+    height: 10px;
+   /* width: 42.66666667px;
+    height: 42.66666667px;*/
+    width: 200px;
+    display: none;
+    text-align: center;
+    opacity: 0;
+    font-size: 5px;
+
+  }
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ECECEC;
+    opacity: 0.9;
+    display: none;
+    margin-top: -100px;
+  }
+
+
+</style>

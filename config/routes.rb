@@ -438,6 +438,8 @@ Rails.application.routes.draw do
       post 'move_files'
       post 'create_packages'
       post 'download'
+      post 'update_tender_details'
+      post 'issue_new_addenda'
     end
   end
 

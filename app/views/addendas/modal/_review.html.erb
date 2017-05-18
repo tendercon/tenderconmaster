@@ -1,0 +1,136 @@
+<div>
+  <div class="modal fade" id="review" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:50px;border-color: #ffffff;border-radius: 2px;width: 90%;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-body">
+          <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+          <img src="/img/logos/multiply.png"  class="pull-right review_close"   style="margin-top: -10px;margin-right: -10px;  width: 12px;height: 12px"/>
+          <div style="margin-top: -15px"></div>
+          <div class="text-center">
+            <h2>
+              EDIT TENDER DETAILS
+            </h2>
+            <h4>
+              Review the addendum before issuing it to all quoting subcontractors
+            </h4>
+            <div style="height: 15px"></div>
+            <h3>
+              <strong class="ref">
+
+              </strong>
+            </h3>
+          </div>
+          <div style="height: 0px"></div>
+          <form class="form-horizontal" >
+            <input type="hidden" value="<%= @tender.id %>" class="tender_id">
+            <input type="hidden" value="" class="review_addenda_id">
+            <!--<div class="form-group">
+              <label class="control-label col-sm-2" for="email">SUBJECT</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control subject" id="subject" style="background-color: #F6F6F6;border-color: #F6F6F6; height:26px; " readonly>
+              </div>
+            </div>-->
+
+            <div class="form-group">
+              <h4 style="margin-left:45px;">SUBJECT</h4>
+
+                <input type="text" class="form-control subject" id="subject" style="background-color: #F6F6F6; width: 504px; height:28px; margin-left: 45px;margin-top: -8px;" readonly>
+
+            </div>
+            <div class="form-group">
+              <h4 style="margin-left:45px;">NOTES TO SCs</h4>
+              <textarea class="form-control notes" name="notes" rows="8" cols="109" style="background-color: #F6F6F6;border-color: #F6F6F6;width: 504px;  margin-left: 45px;margin-top: -8px;" readonly></textarea>
+
+            </div>
+
+           <div class="form-group">
+             <h4 style="margin-left:45px;">UPDATES</h4>
+
+
+                <input type="text" class="form-control quote_due" id="" name="quote_due" style="background-color: #F6F6F6; width: 504px; height:28px; margin-left: 45px;margin-top: -8px;" readonly>
+                <br/>
+                <div class="previous_date">
+                  <input type="text" class="form-control previous" id="" name="previous" style="background-color: #F6F6F6; width: 504px; height:28px; margin-left: 45px;margin-top: -8px;" readonly>
+                  <br/>
+                </div>
+
+                <textarea class="form-control desc" name="desc" rows="8" cols="109" style="background-color: #F6F6F6;border-color: #F6F6F6;width: 504px;  margin-left: 45px;margin-top: -8px;" readonly></textarea>
+
+
+            </div>
+            <div style="height:20px"></div>
+             <div class="form-actions text-center pull-right">
+              <button type="button" class="btn back_step2" style="color:#FFFFFF; background-color:#dc4c18 ;border-radius: 2px !important;height: 36px !important;margin-right: 5px;">
+                <p style="margin-top: 1px; font-size: 14px">
+                  BACK
+                </p>
+              </button>
+              <button type="button" class="btn edit_addenda_submit" style="color:#FFFFFF; background-color:#72bb53 ;border-radius: 2px !important;height: 36px !important;margin-right: 32px;">
+                <p style="margin-top: 1px; font-size: 14px">
+                  ISSUE ADDENDA
+                </p>
+              </button>
+            </div>
+          </form>
+          <div style="height:40px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+  $(document).ready(function() {
+
+    $('.back_step2').click(function(){
+      $('#review').modal('hide');
+      $('#step2').modal('show')
+    });
+
+    $('.edit_addenda_submit').click(function(){
+      var  addenda_id = $('.review_addenda_id').val();
+      var  tender_id = $('.tender_id').val();
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id: tender_id, addenda_id: addenda_id},
+        url: "/addendas/issue_new_addenda"
+      }).done(function (data) {
+        window.location.href = "/tenders/hc_tender?id="+data.tender+"&addenda=true";
+      });
+    });
+
+    $(".desc").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".desc").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+
+    });
+
+    $(".quote_due").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".quote_due").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+
+    });
+
+    $(".previous").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".previous").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+
+    });
+
+    $('.review_close').click(function(){
+      $('#review').modal('hide');
+    })
+  });
+
+</script>

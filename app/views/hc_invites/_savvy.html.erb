@@ -1,7 +1,17 @@
 <div class="admin-form">
   <div class="row">
-    <div class="col-md-6">
-
+    <div class="col-md-3">
+      <div class="section">
+        <div class="smart-widget sm-left sml-50">
+          <label class="field">
+            <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Subcontractors Here">
+          </label>
+          <label for="sm3" class="button">
+            <i class="fa fa-search"></i>
+          </label>
+        </div>
+        <!-- end .smart-widget section -->
+      </div>
     </div>
     <div class="col-md-3">
       <% if params[:controller] == 'hc_invites' %>
@@ -11,7 +21,7 @@
             <select class="trades">
               <% if @tender.present? %>
                 <% if @all_trades.present? %>
-                  <option value="0">Default</option>
+                  <option value="0">Filter by trade/s</option>
                   <% @all_trades.each do |t| %>
                     <% if @trade_id.present? %>
                       <% if @trade_id.to_i == t.id.to_i %>
@@ -48,19 +58,8 @@
         </div>
       <% end %>
     </div>
+    <div class="col-md-6">
 
-    <div class="col-md-3 pull right">
-      <div class="section">
-        <div class="smart-widget sm-left sml-50">
-          <label class="field">
-            <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Here">
-          </label>
-          <label for="sm3" class="button">
-            <i class="fa fa-search"></i>
-          </label>
-        </div>
-        <!-- end .smart-widget section -->
-      </div>
     </div>
   </div>
 </div>
@@ -73,13 +72,30 @@
 <table class="table table-bordered" id="new_quote_table">
   <thead>
   <tr style="background-color: #2C3E50;color: white;">
-    <th class="text-center">Name</th>
-    <th class="text-center">Company</th>
-    <th class="text-center">Email</th>
-    <th class="text-center">Trade</th>
+    <th>
+      <h4 style="font-family: Gotham">
+        COMPANY
+      </h4>
+    </th>
+    <th>
+      <h4 style="font-family: Gotham">
+        SUBCONTRACTOR NAME
+      </h4>
+    </th>
+
+    <th>
+      <h4 style="font-family: Gotham">
+        WORK EMAIL
+      </h4>
+    </th>
+    <th>
+      <h4 style="font-family: Gotham">
+        PRIMARY TRADE
+      </h4>
+    </th>
     <% unless @tender.present? %>
       <!--<th class="text-center">Status</th>-->
-      <th class="text-center">Action</th>
+      <th class="text-center"></th>
     <% end %>
     <% if @tender.present? %>
         <th class="text-center" style="display: none"><input type="checkbox" class="hc_invites_list_master" checked> Invite</th>
@@ -92,10 +108,11 @@
     <% @hc_invites.each_with_index do |savvy,index| %>
       <% if savvy.email.present? %>
         <tr>
-          <td class="text-center"><%= savvy.name %></td>
-          <td class="text-center"><%= savvy.company %></td>
-          <td class="text-center"><%= savvy.email %></td>
-          <td class="text-center"><%= get_trade_name savvy.trade_id %></td>
+          <td><strong><%= savvy.company %></strong></td>
+          <td><%= savvy.name %></td>
+
+          <td><%= savvy.email %></td>
+          <td><%= get_trade_name savvy.trade_id %></td>
           <% unless @tender.present? %>
             <!--<td class="text-center">
               <%# if savvy.user_id.present? %>
@@ -114,9 +131,10 @@
                   <%# end %>
                 </select>
               </div>-->
-              <button class="btn btn-danger remove" id="<%= savvy.id  %>">
+              <!--<button class="btn btn-danger remove" id="<%= savvy.id  %>">
                    Remove
-              </button>
+              </button>-->
+              <i class="fa fa-trash-o fa-2x remove" id="<%= savvy.id  %>" aria-hidden="true" style="color:red;"></i>
             </td>
           <% end %>
           <% if @tender.present? %>
@@ -187,13 +205,14 @@
 
     $('.remove').click(function(){
       var savvy_id = $(this).attr('id');
-      $.ajax({
+      $('#delete_modal'+savvy_id).modal('show');
+      /*$.ajax({
         method: "POST",
         data: {id: savvy_id},
         url: "/hc_invites/remove_savvy"
       }).done(function (data) {
         $('.savvy_div').html(data);
-      });
+      });*/
     });
 
     $('#filter').keyup(function () {

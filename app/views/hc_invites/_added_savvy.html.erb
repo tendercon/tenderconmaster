@@ -1,0 +1,130 @@
+<div class="new<%= @number %>">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-3">
+        <div class="form-group">
+          <h4>SUBCONTRACTOR NAME</h4>
+          <input type="text" class="form-control name" id="name" name="name[]" required style="background-color: #F6F6F6;border-color: #F6F6F6">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <h4>COMPANY</h4>
+          <input type="text" class="form-control company" id="company" name="company[]" required style="background-color: #F6F6F6;border-color: #F6F6F6">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <h4>WORK EMAIL</h4>
+          <input type="text" class="form-control email" id="email" name="email[]" required style="background-color: #F6F6F6;border-color: #F6F6F6">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <h4>PRIMARY TRADE</h4>
+          <%= select_tag 'trade_id[]',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name'),{:class=> 'form-control trade', :style=> "background-color: #F6F6F6;border-color: #F6F6F6"} %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $(document).ready(function(){
+    var name_str = '';
+    var email_str = '';
+    var company_str = '';
+    $(".name").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+
+    $(".name").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+      var elems = [];
+      $('.name').each(function() {
+        elems.push($(this).val());
+      });
+      var new_elems = [];
+      new_elems = elems;
+      name_str = checkArray(new_elems)
+      console.log("name_str:"+name_str);
+      console.log("email_str:"+email_str);
+      console.log("company_str:"+company_str);
+      if(name_str == true && email_str == true && company_str == true){
+        $('.submit_info').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+        $('.submit_info').prop('disabled',false);
+      }else{
+        $('.submit_info').css({"backgroundColor": "#c0c0c0", "color": "#ffffff"});
+        $('.submit_info').prop('disabled',true);
+      }
+    });
+
+    $(".company").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".company").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+
+      var elems = [];
+      $('.company').each(function() {
+        elems.push($(this).val());
+      });
+      var new_elems = [];
+      new_elems = elems;
+      console.log(checkArray(new_elems));
+      company_str = checkArray(new_elems)
+      if($(".company").val().length > 0 && $(".email").val().length && $(".company").val().length ){
+        //$('.submit_info').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+      }
+      console.log("name_str:"+name_str);
+      console.log("email_str:"+email_str);
+      console.log("company_str:"+company_str);
+      if(name_str == true && email_str == true && company_str == true){
+        $('.submit_info').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+        $('.submit_info').prop('disabled',false);
+      }else{
+        $('.submit_info').css({"backgroundColor": "#c0c0c0", "color": "#ffffff"});
+        $('.submit_info').prop('disabled',true);
+      }
+    });
+
+    $(".email").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".email").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+
+      var elems = [];
+      $('.email').each(function() {
+        elems.push($(this).val());
+      });
+      var new_elems = [];
+      new_elems = elems;
+      console.log(checkArray(new_elems));
+      email_str = checkArray(new_elems);
+
+      if($(".name").val().length > 0 && $(".email").val().length && $(".company").val().length ){
+        //$('.submit_info').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+      }
+      console.log("name_str:"+name_str);
+      console.log("email_str:"+email_str);
+      console.log("company_str:"+company_str);
+      if(name_str == true && email_str == true && company_str == true){
+        $('.submit_info').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+        $('.submit_info').prop('disabled',false);
+      }else{
+        $('.submit_info').css({"backgroundColor": "#c0c0c0", "color": "#ffffff"});
+        $('.submit_info').prop('disabled',true);
+      }
+    });
+
+    function checkArray(my_arr){
+      for(var i=0;i<my_arr.length;i++){
+        if(my_arr[i] === "")
+          return false;
+      }
+      return true;
+    }
+  });
+</script>

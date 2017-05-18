@@ -3,7 +3,11 @@
     <div class="portlet-body" style="color: #2B3642;">
       <div class="row" >
         <div class="container">
-          <h2><%= "##{@tender.tendercon_id}- #{@tender.title}"  %></h2>
+          <h2 style="font-family: Gotham"><%= "##{@tender.title.upcase} (#{@tender.tendercon_id}) "  %> <a href="#!"  class="btn submit_info" style="color:#FFFFFF; background-color:#ff6624 ;border: 2px solid;border-radius: 8px !important;width: 185px !important;height: 35px !important;margin-right: -15px;">
+            <h4 style="margin-top: 0px; font-family: Gotham">
+              TENDERING
+            </h4>
+          </a></h2>
         </div>
 
       </div>
@@ -12,27 +16,45 @@
 
           <ul class="nav nav-tabs ">
             <% if params[:addenda].present? || params[:control].present? || params[:rfi].present? || params[:quote].present? || params[:subcontractors].present? %>
-                <li ><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
+                <li >
+                  <a href="#info" data-toggle="tab" id="<%= @tender.id %>">
+                    <h4 style="font-family: Gotham">DETAILS</h4>
+                  </a>
+                </li>
             <% else %>
-                <li class="active"><a href="#info" data-toggle="tab" id="<%= @tender.id %>">Details</a></li>
+                <li class="active">
+                  <a href="#info" data-toggle="tab" id="<%= @tender.id %>">
+                    <h4 style="font-family: Gotham"><strong>DETAILS</strong></h4>
+                  </a>
+                </li>
             <% end %>
 
             <% if params[:subcontractors].present? %>
-                <li class="active"><a href="#sub" data-toggle="tab" id="<%= @tender.id %>">Subcontractors</a></li>
+                <li class="active">
+                  <a href="#sub" data-toggle="tab" id="<%= @tender.id %>">
+                    <h4 style="font-family: Gotham"><strong>SUBCONTRACTORS</strong></h4>
+                  </a>
+                </li>
             <% else %>
-                <li><a href="#sub" data-toggle="tab" id="<%= @tender.id %>">Subcontractors</a></li>
-            <% end %>
-
-            <% if params[:control].present? %>
-                <li class="active"><a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">Document Control</a></li>
-            <% else %>
-                <li><a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">Document Control</a></li>
+                <li>
+                  <a href="#sub" data-toggle="tab" id="<%= @tender.id %>">
+                    <h4 style="font-family: Gotham">SUBCONTRACTORS</h4>
+                  </a>
+                </li>
             <% end %>
 
             <% if params[:addenda].present? %>
-                <li class="active"><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
+                <li class="active">
+                  <a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">
+                    <h4 style="font-family: Gotham"><strong>ADDENDA</strong></h4>
+                  </a>
+                </li>
             <% else %>
-                <li><a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">Addenda</a></li>
+                <li>
+                  <a href="#addenda" data-toggle="tab" id="<%= @tender.id %>">
+                    <h4 style="font-family: Gotham">ADDENDA</h4>
+                  </a>
+                </li>
             <% end %>
             <!--<li><a href="#chat" data-toggle="tab" id="<%#= @tender.id %>">Chat</a></li>-->
 
@@ -42,53 +64,32 @@
                   <!--<li ><a href="#rfi" data-toggle="tab" id="<%#= @tender.id %>">RFIs <%#= Rfi.rfi_count(@tender.id) %></a></li>-->
             <%# end %>
             <% if params[:quote].present? %>
-                <li class="active"><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
+                <li class="active">
+                  <a href="#quote" data-toggle="tab" id="<%= @tender.id %>">
+                    <h4 style="font-family: Gotham"><strong>QUOTES</strong></h4>
+                  </a>
+                </li>
             <% else %>
-                <li><a href="#quote" data-toggle="tab" id="<%= @tender.id %>">Quotes</a></li>
+                <li>
+                  <a href="#quote" data-toggle="tab" id="<%= @tender.id %>">
+                    <h4 style="font-family: Gotham">QUOTES</h4>
+                  </a>
+                </li>
             <% end %>
 
-            <!--<li class="pull-right">
-              <a href="#" class="wiki btn-default ">
-                  <i class="fa fa-question-circle fa-2x"></i>
-              </a>
-            </li>-->
-
-            <!--<li class="pull-right">
-             <div class="page-toolbar">
-               <div class="btn-group pull-right">
-                 <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
-                   <i class="fa fa-angle-down"></i>
-                 </button>
-                 <ul class="dropdown-menu pull-right" role="menu">
-                   <li>
-                     <a href="#!" class="full_screen" ><i class="fa fa-arrows-alt"></i> Full Screen</a>
-
-                   </li>
-                 </ul>
-               </div>
-             </div>
-           </li>-->
-            <!--<li class="pull-right dropdown dropdown-extended dropdown-inbox">
-              <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                &lt;!&ndash;<img alt="" class="img-circle" src="" />
-                <i class="fa fa-bars" aria-hidden="true"></i>&ndash;&gt;
-                <button type="button" class="btn green btn-sm btn-outline dropdown-toggle" data-toggle="dropdown"> Actions
-                  <i class="fa fa-angle-down"></i>
-                </button>
-              </a>
-              <ul class="dropdown-menu pull-right" role="menu">
-                <li>
-                  <a href="#!" class="full_screen" ><i class="fa fa-arrows-alt"></i> Full Screen</a>
+            <% if params[:control].present? %>
+                <li class="active">
+                  <a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">
+                    <h4 style="font-family: Gotham"><strong>DOCUMENT CONTROL</strong></h4>
+                  </a>
                 </li>
-              </ul>
-            </li>-->
-            <!--<li class="pull-right">
-              <div class="dropdown">
-                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
-                  <i class="fa fa-bars" aria-hidden="true"></i> &lt;!&ndash;<span class="caret"></span>&ndash;&gt;</button>
-
-              </div>
-            </li>-->
+            <% else %>
+                <li>
+                  <a href="#document_control" data-toggle="tab" id="<%= @tender.id %>">
+                    <h4 style="font-family: Gotham">DOCUMENT CONTROL</h4>
+                  </a>
+                </li>
+            <% end %>
           </ul>
         </div>
 

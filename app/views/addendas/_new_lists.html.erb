@@ -1,3 +1,32 @@
+<div class="backdrop"></div>
+<!--<div class="fab child img-circle" data-subitem="1"> <i class="fa fa-file fa-5x" aria-hidden="true" style="margin-top: 14px;"></i><p class="mini-action-button__text&#45;&#45;hide">Issue Documents</p></div>
+<div class="fab child img-circle" data-subitem="2"> <i class="fa fa-info-circle fa-5x" aria-hidden="true"  style="margin-top: 14px;"></i><p class="mini-action-button__text&#45;&#45;hide">Change Tender details</p></div>-->
+<div class="fab child " data-subitem="1">
+  <!--<select class="form-control addenda_type">
+    <option>Select</option>
+    <option value="1">Issue Documents</option>
+    <option value="2">Change Tender details</option>
+  </select>-->
+  <button type="button" class="btn new_documents" style="color:#FFFFFF; background-color:#36c6e1 ;border-radius: 3px !important;width: 300px !important;height: 38px !important;margin-right: 30px;">
+    <h4 style="margin-top: 1px;">
+      Issue New Documents
+    </h4>
+  </button>
+  <br/>
+  <button type="button" class="btn new_tender_details" style="color:#000000; background-color:#FFFFFF ;border-radius: 3px !important;width: 300px !important;height: 38px !important;margin-right: 30px;">
+    <h4 style="margin-top: 1px;">
+      Issue Original Documents
+    </h4>
+  </button>
+</div>
+</div>
+<div class="fab img-circle" id="masterfab"><span>x</span></div>
+
+
+
+<div class="row">
+  <div style="height: 80px;"></div>
+</div>
 <div class="row">
   <div style="height: 80px;"></div>
 </div>
@@ -26,23 +55,21 @@
 
 <div class="admin-form">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-3">
       <% if session[:role] == 'Head Contractor' %>
-        <div class="admin-form">
-          <a href="<%= addendas_path(:id => tender.id ) %>"  id="<%= tender.id %>">
+        <!--<div class="admin-form">
+          <a href="<%#= addendas_path(:id => tender.id ) %>"  id="<%= tender.id %>">
             <button class="button btn-info">Issue Addenda</button>
           </a>
-        </div>
+        </div>-->
+          <h2 style="margin-top: -1px">Issue Addenda</h2>
       <% end %>
     </div>
     <div class="col-md-3">
-    </div>
-
-    <div class="col-md-3 pull-right">
       <div class="section">
         <div class="smart-widget sm-left sml-50">
           <label class="field">
-            <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Here">
+            <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Addenda">
           </label>
           <label for="sm3" class="button">
             <i class="fa fa-search"></i>
@@ -50,6 +77,10 @@
         </div>
         <!-- end .smart-widget section -->
       </div>
+    </div>
+
+    <div class="col-md-6 pull-right">
+
     </div>
   </div>
 </div>
@@ -59,21 +90,43 @@
   <table class="table table-bordered responsive" id="addenda_table"  cellspacing="0" width="100%">
     <thead>
       <tr style="background-color: #2C3E50;color: white;">
-        <th>Addendum #</th>
-        <th>Subject</th>
-        <th>Sent</th>
-        <th>Action</th>
+        <th>
+          <h4 style="font-family: Gotham">
+            #
+          </h4>
+        </th>
+        <th>
+
+          <h4 style="font-family: Gotham">
+            TYPE
+          </h4>
+        </th>
+        <th>
+          <h4 style="font-family: Gotham">
+            SUBJECT
+          </h4>
+        </th>
+        <th>
+          <h4 style="font-family: Gotham">
+            ISSUE AT
+          </h4>
+        </th>
       </tr>
     </thead>
     <tbody class="searchable">
     <% if addendas.present? %>
         <% addendas.each_with_index do |t,index| %>
             <tr>
-              <td class="text-center"><%=  "#{t.ref_no}" %></td>
-              <td class="text-center"><%=  t.subject %></td>
-              <td class="text-center"><%=  t.created_at.strftime("%d.%m.%Y %H:%M %p") %></td>
-              <td class="text-center">
-                <button class="btn btn-default view_addenda" id="<%= t.id %>">View</button>
+              <td><strong><%=  "#{t.ref_no}" %></strong></td>
+              <td><%=  t.addenda_type %></td>
+              <td>
+                <a href="#!" class="view_addenda" id="<%= t.id %>" style="font-size: 14px;color: #006ce5;font-height: 20px">
+                  <%=  t.subject %>
+                </a>
+              </td>
+              <td>
+                <%= t.created_at.strftime("%H:%M %p %d/%m/%Y") %>
+                <!--<button class="btn btn-default view_addenda" id="<%#= t.id %>">View</button>-->
               </td>
             </tr>
 
@@ -238,7 +291,9 @@
   <% end %>
 <% end %>
 
-
+<%= render  'addendas/modal/step1' %>
+<%= render  'addendas/modal/step2' %>
+<%= render  'addendas/modal/review' %>
 
 <input type="hidden" class="addenda_type">
 <input type="hidden" class="addenda_subject">
@@ -292,7 +347,105 @@
       });
     });
 
+    $(".fab,.backdrop").click(function(){
+      if($(".backdrop").is(":visible")){
+        $(".backdrop").fadeOut(125);
+        $(".fab.child")
+            .stop()
+            .animate({
+              bottom	: $("#masterfab").css("bottom"),
+              opacity	: 0
+            },125,function(){
+              //$(this).hide();
+            });
+      }else{
+        $(".backdrop").fadeIn(125);
+        $(".fab.child").each(function(){
+          $(this)
+              .stop()
+              .show()
+              .animate({
+                bottom	: (parseInt($("#masterfab").css("bottom")) + parseInt($("#masterfab").outerHeight()) * $(this).data("subitem") - $(".fab.child").outerHeight() - 60) + "px",
+                opacity	: 1
+              },125);
+        });
+      }
+    });
+
+
+    $('.addenda_type').change(function(){
+      var id = $(this).val();
+
+      if(id == 1){
+        $('#step2').modal('show');
+      }else{
+        $('#step1').modal('show');
+      }
+    });
+
+    $('.new_documents').click(function(){
+
+    });
+
+    $('.new_tender_details').click(function(){
+      $('#step1').modal('show');
+    });
+
   });
 </script>
+
+
+<style>
+
+
+  .fab {
+    background: #FF7042;
+    width: 56px;
+    height: 56px;
+    text-align: center;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 50px;
+    color: #FFF;
+    /*box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.5), 3px 3px 3px rgba(0, 0, 0, 0.25);*/
+    position: fixed;
+    bottom: 349px;
+    right: 48px;
+    font-size: 2.233em;
+    display: inline-block;
+    cursor: default;
+    z-index: 1;
+  }
+  .fab span {
+    vertical-align: middle;
+  }
+  .fab.child {
+    background-color: transparent !important;
+    right: 180.66666667px;
+    height: 10px;
+    /* width: 42.66666667px;
+     height: 42.66666667px;*/
+    width: 200px;
+    display: none;
+    text-align: center;
+    opacity: 0;
+    font-size: 5px;
+
+  }
+  .backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ECECEC;
+    opacity: 0.9;
+    display: none;
+    margin-top: -100px;
+  }
+
+
+</style>
+
 
 

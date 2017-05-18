@@ -1,0 +1,202 @@
+<div>
+  <div class="modal fade" id="step2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:50px;border-color: #ffffff;border-radius: 2px; width: 90%;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-body">
+          <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+          <img src="/img/logos/multiply.png"  class="pull-right step1_close"   style="margin-top: -10px;margin-right: -10px;  width: 12px;height: 12px"/>
+          <div style="margin-top: -15px"></div>
+          <div class="text-center">
+            <h2>
+              EDIT TENDER DETAILS
+            </h2>
+            <h4>
+              These are the fields you can edit for your tender.
+            </h4>
+          </div>
+          <div style="height: 15px"></div>
+          <form  id="addenda" method="post">
+            <input type="hidden" value="<%= @tender.id %>" class="tender_id">
+            <input type="hidden" value="" class="addenda_id">
+            <div class="form-group">
+              <h4 style="margin-left:30px;">TENDER STATUS</h4>
+              <% if @tender.status == '1' %>
+                  <button type="button" class="btn tendering" style="color:#FFFFFF; background-color:#72bb53 ;border-radius: 1px !important;width: 250px !important;height: 38px !important;margin-left:30px">
+                    <p style="margin-top: 1px;font-size: 14px">
+                      <strong>TENDERING</strong>
+                    </p>
+                  </button>
+              <% else %>
+                  <button type="button" class="btn tendering" style="color:#FFFFFF; background-color:#c0c0c0 ;border-radius: 1px !important;width: 250px !important;height: 38px !important;margin-left:30px">
+                    <p style="margin-top: 1px;font-size: 14px">
+                      TENDERING
+                    </p>
+                  </button>
+              <% end %>
+
+              <% if @tender.status == '2' %>
+                  <button type="button" class="btn awarded" style="color:#FFFFFF; background-color:#72bb53 ;border-radius: 1px !important;width: 250px !important;height: 38px !important;margin-left:-2px">
+                    <p style="margin-top: 1px;font-size: 14px;color: #333">
+                      <strong>AWARDED</strong>
+                    </p>
+                  </button>
+              <% else %>
+                  <button type="button" class="btn awarded" style="color:#FFFFFF; background-color:#c0c0c0 ;border-radius: 1px !important;width: 250px !important;height: 38px !important;margin-left:-2px">
+                    <p style="margin-top: 1px;font-size: 14px; color: #333">
+                      AWARDED
+                    </p>
+                  </button>
+              <% end %>
+              <p class="text-center awarded_text" style="color:#e61610;display: none;font-size: 14px">
+                Once this addendum is issued,
+                you will not be able to reverse the tender status back to tendering
+              </p>
+            </div>
+            <div style="height:5px"></div>
+
+            <div class="form-group">
+              <h4 style="margin-left:30px;">QUOTE DUE DATE</h4>
+              <div class="input-icon  margin-top-10">
+                <!--<i class="fa fa-caret-down" aria-hidden="true"></i>-->
+                <input type="text" class="form-control  quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>" style="background-color: #F6F6F6; width: 504px; height:28px; margin-left: 30px;margin-top: -8px;">
+              </div>
+
+            </div>
+            <div style="height:5px"></div>
+            <div class="form-group">
+              <h4 style="margin-left:30px">TENDER VALUE</h4>
+              <%= select_tag "values",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@values, 'id','range',@tender.present? ? @tender.tender_value_id : nil),{:class=> 'form-control', :style=>"background-color: #F6F6F6;border-color: #F6F6F6;width: 504px; height:28px; margin-left: 30px;margin-top: -8px;"} %> 
+              <!--<input type="text" class="form-control subject"  name="subject" style="background-color: #F6F6F6;border-color: #F6F6F6;width: 504px; height:28px; margin-left: 30px;margin-top: -8px;"/>-->
+            </div>
+
+            <div class="form-group">
+              <h4 style="margin-left:30px">TENDER DESCRIPTION</h4>
+              <%= text_area_tag('notes',@tender.present? ? @tender.description.html_safe : nil,:cols => '109',:rows => '8',:class => 'form-control notes', :style => "background-color: #F6F6F6;border-color: #F6F6F6;width: 504px;  margin-left: 30px;margin-top: -8px;") %> 
+              <!--<textarea class="form-control notes" name="notes" rows="8" cols="109" style="background-color: #F6F6F6;border-color: #F6F6F6;width: 504px;  margin-left: 30px;margin-top: -8px;"></textarea>-->
+              <%#= text_area_tag('notes',:cols => '109',:rows => '8',:class => 'form-control wysihtml5', :style => "background-color: #F6F6F6;border-color: #F6F6F6") %> 
+            </div>
+
+            <div class="form-actions text-center pull-right">
+              <button type="button" class="btn edit_addenda_submit" style="color:#FFFFFF; background-color:#72bb53 ;border-radius: 2px !important;height: 36px !important;margin-right: 34px;" >
+                <p style="margin-top: 1px; font-size: 14px">
+                  NEXT
+                </p>
+              </button>
+            </div>
+            <input type="hidden" class="tender_status" value="<%= @tender.status %>">
+          </form>
+          <div style="height:40px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<style>
+  .datepicker{z-index:9999 !important}
+  .datetimepicker{z-index: -1 !important}
+</style>-->
+
+
+<script>
+  $(document).ready(function(){
+
+    $('.quote').click(function(){
+      var nowDate = new Date();
+      $(this).datetimepicker({
+        format: 'Y-m-d g:i A',
+        formatTime: 'g:i A',
+        ampm: true,
+        minDate: nowDate,
+
+      });
+    })
+
+
+
+    $(".quote").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".quote").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+
+    });
+
+    $("#values").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $("#values").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+
+    });
+
+    $(".notes").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".notes").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+      activate_info_btn();
+    });
+
+    $('.tendering').click(function(){
+      $(this).css({"backgroundColor": "#72bb53", "color": "#000000"});
+      $('.awarded').css({"backgroundColor": "#c0c0c0", "color": "#000000"});
+      $('.tender_status').val(1);
+      $('.awarded_text').hide();
+    });
+
+    $('.awarded').click(function(){
+      $(this).css({"backgroundColor": "#72bb53", "color": "#000000"});
+      $('.tendering').css({"backgroundColor": "#c0c0c0", "color": "#000000"});
+      $('.tender_status').val(2);
+      $('.awarded_text').show();
+    });
+
+
+    $('.edit_addenda_submit').click(function(){
+      var quote = $('.quote').val();
+      var status = $('.tender_status').val();
+      var notes = $(".notes").val();
+      var values = $("#values").val();
+      var tender_id = $(".tender_id").val();
+      var addenda_id = $(".addenda_id").val();
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id: tender_id, quote: quote, status: status, notes: notes, values: values,addenda_id:addenda_id},
+        url: "/addendas/update_tender_details"
+      }).done(function (data) {
+        console.log(data);
+        if(data.state == 'valid'){
+          $('#step2').modal('hide');
+          $('#review').modal('show');
+          $('.ref').text(data.addenda.ref_no)
+          $('.subject').val(data.addenda.subject);
+          $('.notes').val(data.addenda.details);
+          $('.quote_due').val(data.quote);
+          $('.previous').val(data.previous_date);
+          $('.review_addenda_id').val(data.addenda.id);
+          if(data.previous_date == null || data.previous_date == "null" || data.previous_date.length <= 0){
+            $('.previous_date').hide();
+          }else{
+            $('.previous_date').show();
+          }
+
+          $('.desc').val(data.tender.description);
+          console.log("data.quote"+data.quote);
+          console.log("data.previous_date:"+data.previous_date);
+
+        }
+      });
+
+    });
+
+    $('.step2_close').click(function(){
+      $('#step2').modal('hide');
+    })
+  })
+
+
+</script>

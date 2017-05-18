@@ -1,0 +1,118 @@
+<div>
+  <div class="modal fade" id="step1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:50px;border-color: #ffffff;border-radius: 2px;width: 90%;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-body">
+
+          <img src="/img/logos/multiply.png"  class="pull-right step1_close"   style="margin-top: -10px;margin-right: -10px;  width: 12px;height: 12px"/>
+
+          <div style="margin-top: -15px"></div>
+          <div class="text-center">
+            <h2>
+              ADDENDUM DETAILS
+            </h2>
+            <h4>
+              Give your quoting subcontractors a summary of this addendum
+            </h4>
+          </div>
+          <div style="height: 15px"></div>
+          <form  id="addenda" method="post">
+            <input type="hidden" value="<%= @tender.id %>" class="tender_id">
+            <div class="form-group">
+              <h4 style="margin-left:30px;">ADDENDUM #</h4>
+              <input type="text"  class="form-control addendum_number"  name="addendum_number" value="<%= @ref_num %>" style="background-color: #F6F6F6;border-color: #F6F6F6;width: 504px; height:28px; margin-left: 30px;margin-top: -8px;direction: rtl; text-align: left;" readonly="readonly"/>
+            </div>
+            <div style="height:5px"></div>
+            <div class="form-group">
+              <h4 style="margin-left:30px">SUBJECT</h4>
+              <input type="text" class="form-control subject"  name="subject" style="background-color: #F6F6F6;border-color: #F6F6F6;width: 504px; height:28px; margin-left: 30px;margin-top: -8px;"/>
+            </div>
+            <div style="height:5px"></div>
+            <div class="form-group">
+              <h4 style="margin-left:30px">NOTE TO SUBCONTRACTORS</h4>
+              <textarea class="form-control notes" name="notes" rows="8" cols="109" style="background-color: #F6F6F6;border-color: #F6F6F6;width: 504px;  margin-left: 30px;margin-top: -8px;"></textarea>
+              <%#= text_area_tag('notes',:cols => '109',:rows => '8',:class => 'form-control wysihtml5', :style => "background-color: #F6F6F6;border-color: #F6F6F6") %> 
+            </div>
+
+            <div class="form-actions text-center pull-right">
+              <button type="button" class="btn addenda_submit" style="color:#FFFFFF; background-color:#c0c0c0 ;border-radius: 2px !important;height: 36px !important;margin-right: 34px;" disabled>
+                <p style="margin-top: 1px; font-size: 14px">
+                  NEXT
+                </p>
+              </button>
+            </div>
+          </form>
+          <div style="height:40px"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  $(document).ready(function(){
+    $('.addenda_submit').on('click', function(e) {
+      var addendum_number = $('.addendum_number').val();
+      var subject = $('.subject').val();
+      var notes = $('.notes').val();
+      var tender_id = $('.tender_id').val();
+      var type = 'details';
+      e.preventDefault();
+
+      $.ajax({
+        method: "POST",
+        data: {tender_id: tender_id, addendum_number: addendum_number, subject: subject, notes: notes, type: type},
+        url: "/addendas/create_addendas"
+      }).done(function (data) {
+        console.log(data);
+        if(data.state == 'valid'){
+          $('#step1').modal('hide');
+          $('.addenda_id').val(data.addenda);
+          $('#step2').modal('show');
+        }
+      });
+    });
+
+    $(".subject").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".subject").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+      activate_info_btn();
+    });
+
+    $(".notes").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".notes").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+      activate_info_btn();
+    });
+
+    $('.step1_close').click(function(){
+      $('#step1').modal('hide');
+    })
+
+    function activate_info_btn(){
+      var subject = $('.subject').val();
+      var notes = $('.notes').val();
+
+      if(subject.length > 0  && notes.length > 0){
+        $('.addenda_submit').prop('disabled',false);
+        $('.addenda_submit').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+      }else{
+        $('.addenda_submit').prop('disabled',true);
+      }
+    }
+  });
+</script>
+
+
+<style>
+  input::-webkit-input-placeholder {
+    direction: rtl;
+    text-align: left;
+  }
+</style>

@@ -281,9 +281,9 @@ module TendersHelper
     if t.present?
       if t.quote_date.present?
         if t.previous_date.present?
-          t.previous_date.to_datetime.strftime("%d.%m.%Y %H:%M %p")
+          t.previous_date.to_datetime.strftime("%H:%M%p %d/%m/%Y ")
         else
-          t.quote_date.to_datetime.strftime("%d.%m.%Y %H:%M %p")
+          t.quote_date.to_datetime.strftime("%H:%M%p %d/%m/%Y ")
         end
 
       else
@@ -298,6 +298,20 @@ module TendersHelper
     #     nil
     #   end
     # end
+  end
+
+  def remove_country_to_address id
+    tender = Tender.find(id)
+
+    if tender.present?
+      add = tender.address.split(",")
+      add.pop
+
+      address = add.join(",")
+      new_address = address + ", #{tender.postcode}"
+    else
+      nil
+    end
   end
 
   def get_tender_site_dates id
@@ -346,6 +360,13 @@ module TendersHelper
     else
       nil
     end
+  end
+
+  def get_category_id trade_id
+    trade = Trade.find(trade_id)
+    puts "trade.trade_category_id =========> #{trade.trade_category_id}"
+    return trade.trade_category_id
+
   end
 
   def get_tender_trade_status
@@ -1248,6 +1269,18 @@ module TendersHelper
         end
     end
     return a
+  end
+
+  def get_trades_per_title trades,category_id
+    @trade_included_array = []
+    trades.each do |a|
+       if category_id == a.trade_category_id.to_i
+         @trade_included_array << a.id
+       end
+    end
+
+
+    @trade_included_array
   end
 
 end

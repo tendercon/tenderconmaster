@@ -1,10 +1,101 @@
 
 <div style="height: 30px"></div>
-<div class="row">
+
   <div class="col-md-12">
+    <h3 style="font-family: Gotham"><strong>TENDER DETAILS</strong></h3>
+    <div class="col-md-4">
+      <h4 style="font-family: Gotham; color: #b70f0a"><strong>TENDER CLOSING DATE</strong></h4>
+    </div>
+    <div class="col-md-8" style="margin-top: -10px">
+      <p style="font-size: 14px;color: #333333;"><%= (get_tender_due @tender.id).to_datetime.strftime("%H:%M %d/%m/%Y ") %></p>
+    </div>
+    <div class="col-md-4">
+      <h4 style="font-family: Gotham;"><strong>SECTOR</strong></h4>
+    </div>
+    <div class="col-md-8" style="margin-top: -10px">
+      <p style="font-size: 14px;color: #333333;"><%= get_categoty_name @tender.category_id %></p>
+    </div>
+    <div class="col-md-4">
+      <h4 style="font-family: Gotham;"><strong>TENDER VALUE</strong></h4>
+    </div>
+    <div class="col-md-8" style="margin-top: -10px">
+      <p style="font-size: 14px;color: #333333;"><%= get_value_name @tender.tender_value_id %></p>
+    </div>
+    <div class="col-md-4">
+      <h4 style="font-family: Gotham;"><strong>CLIENT</strong></h4>
+    </div>
+    <div class="col-md-8" style="margin-top: -10px">
+      <p style="font-size: 14px;color: #333333;"><%= @tender.client.present? ? @tender.client: '--' %></p>
+    </div>
+    <div class="col-md-4">
+      <h4 style="font-family: Gotham;"><strong>ARCHITECT</strong></h4>
+    </div>
+    <div class="col-md-8" style="margin-top: -10px">
+      <p style="font-size: 14px;color: #333333;"><%= @tender.architect.present? ? @tender.architect: '--' %></p>
+    </div>
+    <div class="col-md-12">
+      <h4 style="font-family: Gotham;"><strong>TENDER DESCRIPTION</strong></h4>
+    </div>
+    <div class="col-md-12" >
+      <p style="font-size: 14px;color: #333333;"><%= @tender.description.present? ? @tender.description.html_safe: '--' %></p>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <h3 style="font-family: Gotham"><strong>TRADES REQUIRED</strong></h3>
+    <div class="col-md-3">
+      <h4 style="font-family: Gotham;"><strong>PRELIMINIARIES</strong></h4>
+      <% if (get_tender_trades @tender.id).present? %>
+          <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
+              <% if get_category_id(a.trade_id).to_i == 1 %>
+                  <p style="font-size: 14px;color: #333333;"><%= "#{get_trade_name a.trade_id}" %></p>
+              <% end %>
+          <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-md-3">
+      <h4 style="font-family: Gotham;"><strong>STRUCTURAL</strong></h4>
+      <% if (get_tender_trades @tender.id).present? %>
+          <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
+              <% puts  get_category_id(a.trade_id) %>
+              <% if get_category_id(a.trade_id).to_i == 2 %>
+                  <p style="font-size: 14px;color: #333333;"><%= "#{get_trade_name a.trade_id}" %></p>
+              <% end %>
+          <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-md-3">
+      <h4 style="font-family: Gotham;"><strong>ARCHITECTURAL</strong></h4>
+      <% if (get_tender_trades @tender.id).present? %>
+          <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
+              <% if get_category_id(a.trade_id).to_i == 3 %>
+                  <p style="font-size: 14px;color: #333333;"><%= "#{get_trade_name a.trade_id}" %></p>
+              <% end %>
+          <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-md-3">
+      <h4 style="font-family: Gotham;"><strong>SERVICES</strong></h4>
+      <% if (get_tender_trades @tender.id).present? %>
+          <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
+              <% if get_category_id(a.trade_id).to_i == 4 %>
+                  <p style="font-size: 14px;color: #333333;"><%= "#{get_trade_name a.trade_id}" %></p>
+              <% end %>
+          <% end %>
+      <% end %>
+    </div>
 
   </div>
-</div>
+
+ <div class="col-md-12">
+   <h3 style="font-family: Gotham"><strong>TENDER LOCATION</strong></h3>
+   <p style="font-size: 14px;color: #333333;"><%= "#{@tender.address}" %></p>
+   <div id="map_<%= @tender.id %>" style="height:300px;width:100%;"></div>
+ </div>
+
 
 
 
@@ -155,158 +246,25 @@
 </div>
 
 
+
+
+
+<!--
 <div class="row">
   <div class="col-md-12">
-
-    <!--<div class="portlet light bordered">-->
-      <div class="portlet-body form">
-        <div class="form-body">
-          <div class="row">
-            <div class="col-md-12">
-              <% if session[:role] == 'Head Contractor' %>
-                  <a href="/tenders/edit_details?id=<%= @tender.id %>">
-                    <button class="btn btn-success" type="button">Edit</button>
-                  </a>
-                  <a href="#!">
-                    <button class="btn btn-success close_tender" type="button">Close Tender</button>
-                  </a>
-              <% end %>
-
-              <!--<div class="portlet box green">-->
-                <!--<div class="portlet-title">
-                  <div class="caption">
-                    <i class="fa fa-info-circle"></i>Details</div>
-                  <div class="tools">
-                    <a href="javascript:;" class="collapse"> </a>
-                  </div>
-                </div>-->
-                <div class="portlet-body">
-                  <div class="table-scrollable">
-                    <table class="table table-bordered table-hover">
-                      <tr style="background-color: #2C3E50;color: white;">
-                        <th colspan="2">Details</th>
-                      </tr>
-                      <tbody>
-                      <tr>
-                        <td class="col-md-2"> Tender ID </td>
-                        <td> <%= @tender.tendercon_id %> </td>
-                      </tr>
-                      <tr>
-                        <td> Title </td>
-                        <td> <%= @tender.title %> </td>
-                      </tr>
-                      <% if session[:role] == 'Sub Contractor' %>
-                        <tr>
-                          <td> Head Contractor </td>
-                          <td> <%= @tender.user.trade_name %> </td>
-                        </tr>
-                      <% end %>
-                      <tr>
-                        <td> Status </td>
-                        <td>
-                          <% if @tender.status == '1' %>
-                              <label>Tendering - Your organization is still tendering for this project.</label>
-                          <% else %>
-                              <label>Awarded - This tender has been awarded to the Head Contractor </label>
-                          <% end %>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td> Client </td>
-                        <td> <%= @tender.client %> </td>
-                      </tr>
-                      <tr>
-                        <td> Architect </td>
-                        <td> <%= @tender.architect %> </td>
-                      </tr>
-                      <tr>
-                        <td> Sector </td>
-                        <td> <%= get_categoty_name @tender.category_id %> </td>
-                      </tr>
-                      <tr>
-                        <td> Value </td>
-                        <td> <%= get_value_name @tender.tender_value_id %> </td>
-                      </tr>
-
-                      <tr>
-                        <td> Description </td>
-                        <td> <%=  @tender.description.html_safe %> </td>
-                      </tr>
-
-
-                      <tr>
-                        <td> Address </td>
-                        <td> <%=  @tender.address %></td>
-                      </tr>
-
-                      <tr>
-                        <td> Quote Due </td>
-                        <td> <%= get_tender_due @tender.id %></td>
-                      </tr>
-
-                      <% if @tender.tender_sites.present? %>
-                        <tr>
-                          <td> Site Inspections </td>
-                          <td></td>
-                        </tr>
-                        <% (get_tender_sites_per_user @tender.id).each do |a| %>
-                          <tr>
-                            <td> </td>
-                            <td><%= get_tender_site_dates a.id %></td>
-                          </tr>
-                        <% end %>
-                      <% end %>
-                      <% if session[:role] == 'Head Contractor' %>
-                        <tr>
-                          <td>Trades</td>
-                          <td>
-                            <% if (get_tender_trades @tender.id).present? %>
-                              <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
-                                <% if index == ((get_tender_trades @tender.id).size - 1) %>
-                                      <%= "#{get_trade_name a.trade_id}" %>
-                                <% else %>
-                                      <%= "#{get_trade_name a.trade_id}," %>
-                                <% end %>
-                              <% end %>
-                          <% end %>
-                          </td>
-                        </tr>
-                      <% end %>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              <!--</div>-->
-            </div>
-          </div>
-        </div>
-      </div>
-    <!--</div>-->
-
-
-    <%#= render 'tender_trades' %>
-
-
-
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-md-12">
-    <!--<div class="portlet light bordered">-->
+    &lt;!&ndash;<div class="portlet light bordered">&ndash;&gt;
     <div class="portlet-body form">
       <div class="form-body">
         <div class="row">
           <div class="col-md-12">
-            <!--<div class="portlet box green">-->
-            <!--<div class="portlet-title">
+            &lt;!&ndash;<div class="portlet box green">&ndash;&gt;
+            &lt;!&ndash;<div class="portlet-title">
               <div class="caption">
                 <i class="fa fa-info-circle"></i>Details</div>
               <div class="tools">
                 <a href="javascript:;" class="collapse"> </a>
               </div>
-            </div>-->
+            </div>&ndash;&gt;
             <div class="portlet-body">
               <div class="table-scrollable">
                 <table class="table table-bordered table-hover">
@@ -315,7 +273,7 @@
                       <i class="fa fa-map-marker"></i> Map</div></th>
                   </tr>
                 </table>
-                <div id="map_<%= @tender.id %>" style="height:300px;width:100%;"></div>
+                <div id="map_<%#= @tender.id %>" style="height:300px;width:100%;"></div>
               </div>
             </div>
           </div>
@@ -324,6 +282,7 @@
     </div>
   </div>
 </div>
+-->
 
 
 <input type="hidden"  class="tenders" value="<%= @tender.id %>">

@@ -37,6 +37,10 @@ class TendersController < ApplicationController
       @all_trades = Trade.all
       @document_packages = DocumentPackage.where(:tender_id => params[:info_id])
 
+      @preliminaries = Trade.where(:trade_category_id => 1)
+      @structurtals = Trade.where(:trade_category_id => 2)
+      @architecturals = Trade.where(:trade_category_id => 3)
+      @services = Trade.where(:trade_category_id => 4)
 
       @trade_array = []
       if @tender_trades.present?
@@ -2724,6 +2728,7 @@ class TendersController < ApplicationController
 
   def hc_tender
     @tender = Tender.find(params[:id])
+    @values = TenderValue.all
     @trade_categories = TradeCategory.all
     @unzip_dirs = []
     @trade_requests = []

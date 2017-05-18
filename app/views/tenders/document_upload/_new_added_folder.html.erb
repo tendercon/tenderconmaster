@@ -3,10 +3,10 @@
   <thead>
   <tr style="background-color: #2C3E50;color: white;">
     <th><input type="checkbox" class="document_list_master" name="document_list_master"></th>
-    <th>Document</th>
-    <th>Size</th>
-    <th>Directory</th>
-    <th></th>
+    <th class="text-center"><h4 style="font-family: Gotham">DOCUMENT</h4></th>
+    <th class="text-center"><h4 style="font-family: Gotham">SIZE</h4></th>
+    <th class="text-center"><h4 style="font-family: Gotham">Directory</h4></th>
+    <th class="text-center"><h4 style="font-family: Gotham">ADD FILE TO FOLDER </h4></th>
   </tr>
   </thead>
   <tbody class="searchable">
@@ -57,7 +57,7 @@
         if ( last !== group ) {
           $(rows).eq( i ).before(
               '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
-              '<td> <i class="fa fa-file-text add_files" aria-hidden="true"  id="'+ group+ '"></i>'+
+              '<td class="text-center"> <i class="fa fa-file-text add_files" aria-hidden="true"  id="'+ group+ '"></i>'+
               '</td></tr>'
           );
 
@@ -239,7 +239,8 @@
 
     $('.new_dir').val(directory);
 
-    $('#add_file_Modal').modal('show');
+    //$('#add_file_Modal').modal('show');
+    $('#new_document_modal').modal('show');
   });
 
 
@@ -325,6 +326,7 @@
 
       $('.folder').show();
       $('.document_div_table').html(data);
+      $('#remove_document_modal').modal('show');
       //$('.uploaded_docs').html(data);
     });
   });

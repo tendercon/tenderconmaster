@@ -1,8 +1,8 @@
 <div class="text-center">
-  <h2>Tender Documents</h2>
-  <p>
+  <h1>ADD TENDER DOCUMENTS</h1>
+  <h3>
     Drag and drop this tender's documents.
-  </p>
+  </h3>
   <p>
     You can also add documents after the tender is published via the Issue New Addendum option.
   </p>
@@ -19,8 +19,8 @@
         <p class="text-center">
           <i class="fa fa-cloud-upload fa-5x upload " aria-hidden="true"></i>
         </p>
-        <h1 class="text-center">DRAG AND DROP</h1>
-        <p class="text-center">your tender files and folders into this area </p> 
+        <h1 class="text-center">Drag and drop the documents for this tender from your desktop.</h1>
+        <p class="text-center">your tender files and folders into this area</p> 
 
       </div>
     </div>  
@@ -46,8 +46,11 @@
 </div> 
 
 
-<button type="button" class="btn btn-primary  back_to_trades " style="color:#FFFFFF; background-color: #ff3823; border: 2px solid;border-radius: 8px !important;" id="<%= @tender.id %>">
-  <h4>EDIT Trades</h4>
+
+
+
+<button type="button" class="btn btn-primary  back_to_trades " style="color:#FFFFFF; background-color: #ff3823; border: 2px solid;border-radius: 8px !important;width: 175px;height: 35px;" id="<%= @tender.id %>">
+  <h4 style="margin-top: -1px">EDIT Trades</h4>
 </button>
 <!--<a href="/tenders/new_tender?info=true&info_id=<%#= @tender.id %>" > 
                 <button  type="button" class="btn-default next_info " style="color:white; background-color: #ff3823;border-radius: 8px !important;">
@@ -57,8 +60,8 @@
 
 <div class="pull-right">
 
-      <button class="btn btn-primary  invite_subbies " style="color:#f1f1f1; background-color: #72bb53;border: 2px solid;border-radius: 8px !important;" id="<%= @tender.id %>">
-        <h4>INVITE Subbies</h4>
+      <button class="btn btn-primary  invite_subbies " style="color:#f1f1f1; background-color: #72bb53;border: 2px solid;border-radius: 8px !important;;width: 175px;height: 35px;" id="<%= @tender.id %>">
+        <h4 style="margin-top: -1px">INVITE Subbies</h4>
       </button>
 </div>
 
@@ -101,16 +104,23 @@
 </div> 
 
 
-<div class="modal fade" id="uploading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:100px;" data-backdrop="false">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1>Processing uploads. Please standby..</h1>
-      </div>
-      <div class="modal-body">
-        <div class="progress">
-          <div id="progress" class="progress progress-striped">
-            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+<div class="text-center">
+  <div class="modal fade" id="uploading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:100px;border-color: #333333;" data-backdrop="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>UPLOADING YOUR DOCUMENTS</h2>
+        </div>
+        <div class="modal-body">
+          <p>
+            Your files are being uploaded to Tendercon's secure online file storage facility.
+          </p>
+          <div class="progress">
+            <div id="progress" class="progress progress-striped">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -119,6 +129,9 @@
 </div>
 
 <script>
+ /* $(document).ready(function(){
+    $('#uploading').modal('show');
+  });*/
   var out = [];
   var directories = [];
   update_folder_lists();
@@ -219,23 +232,9 @@
         if (index == 'result') {
           $.each(file, function (i, f) {
             var a = []
-            //$('.unzip_file').val('');
-            //$('.unzip').prop('checked',false)
+
             if (i == 'avatar_url') {
 
-              console.log("INDEX:"+ index);
-              console.log("FILE:"+ file);
-              /*$.ajax({
-                method: "POST",
-                data: {out: out,directories:directories,tender_id:tender_id},
-                url: "/tenders/get_documents"
-              }).done(function (data) {
-                //$('.document_div_table').html(data);
-                $('.uploaded_docs').html(data);
-                out =  [];
-                directories = [];
-                $('#uploading').modal('hide');
-              });*/
             } else {
               if (f != 'valid') {
                 $('.avatar_error').html('<p class="text-center" style="font-size: 12px;color: grey">' + f + '</p>');

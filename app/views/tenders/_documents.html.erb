@@ -62,10 +62,10 @@
           <thead>
           <tr style="background-color: #2C3E50;color: white;">
             <th><input type="checkbox" class="document_list_master" name="document_list_master"></th>
-            <th class="text-center">Document</th>
-            <th class="text-center">Size</th>
-            <th class="text-center">Directory</th>
-            <th></th>
+            <th class="text-center"><h4 style="font-family: Gotham">DOCUMENT</h4></th>
+            <th class="text-center"><h4 style="font-family: Gotham">SIZE</h4></th>
+            <th class="text-center"><h4 style="font-family: Gotham">Directory</h4></th>
+            <th class="text-center"><h4 style="font-family: Gotham">ADD FILE TO FOLDER </h4></th>
           </tr>
           </thead>
           <tbody class="searchable">
@@ -203,7 +203,7 @@
           if ( last !== group ) {
             $(rows).eq( i ).before(
                 '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '"> '+ group+ '</td>' +
-                '<td> <i class="fa fa-file-text add_files" aria-hidden="true"  id="'+ group+ '"></i>'+
+                '<td class="text-center"> <i class="fa fa-file-text add_files" aria-hidden="true"  id="'+ group+ '"></i>'+
                 '</td></tr>'
             );
 
@@ -372,8 +372,9 @@
       var directory = $(this).attr('id')
 
       $('.new_dir').val(directory);
-
-      $('#add_file_Modal').modal('show');
+      $('#new_document_modal').modal('show');
+      return false;
+      //$('#add_file_Modal').modal('show');
     });
 
     $('.directory').focusout(function(){
@@ -531,7 +532,9 @@
       }).done(function (data) {
         //$('.add_folder').hide();
         $('.folder').show();
+        $('#remove_document_modal').modal('show');
         $('.document_div_table').html(data);
+
         //$('.uploaded_docs').html(data);
       });
     });
@@ -587,6 +590,7 @@
         url: "/tenders/add_directory"
       }).done(function (data) {
         //$('.uploaded_docs').html(data);
+        $('#new_folder_modal').modal('show');
         $('.document_div_table').html(data);
       });
     });

@@ -1,19 +1,17 @@
 <%= form_tag(create_tender_info_tenders_path, :html => { :multipart => true }) do |f| %> 
     <div class="text-center">
-      <h2>Tender Details</h2>
-      <p>
+      <h1>ADD TENDER DETAILS</h1>
+      <h3>
         Add the key tender details your subcontractors require.
-      </p>
+      </h3>
     </div>
     <% if @errors.present? %>
-        <div class="alert alert-danger open-sans-regular" id="users_error">
+        <div class="alert alert-danger open-sans-regular text-center" id="users_error" >
           <button type="button" class="close" data-dismiss="alert"></button>
-          <h2>Errors</h2>
-          <ul>
-            <% @errors.each do |message| %>
-                <li><%= message %></li>
-            <% end %>
-          </ul>
+          <h2 style="color:#e73d4a">
+            Almost there, please complete the fields highlighted in red.
+          </h2>
+
         </div>
     <% end %>
 
@@ -22,7 +20,6 @@
     <div class="col-md-12 ">
       <!-- BEGIN SAMPLE FORM PORTLET-->
       <!--<div class="portlet light bordered">-->
-      <div class="portlet-body form">
 
         <div class="form-body">
           <div class="form-group">
@@ -33,7 +30,7 @@
           </div>
         </div>
 
-      </div>
+
         <!--<div class="portlet-body form">
           <div class="form-body">
             <div class="form-group">
@@ -54,37 +51,46 @@
     <div class="col-md-12">
       <div class="row">
         <div class="col-md-6">
-          <div class="portlet-body form">
+
 
               <div class="form-body">
                 <div class="form-group">
                   <h4>TENDER TITLE</h4>
-                  <input maxlength="300" type="text" name="title"  class="form-control title input-xlarge" value="<%= @tender.present? ? @tender.title : nil  %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
+
                   <% if @title_error.present? %>
-                      <i style="color:red"><%= @title_error %></i>
+                      <input maxlength="300" type="text" name="title"  class="form-control title" value="<%= @tender.present? ? @tender.title : nil  %>" style="background-color: #F6F6F6;border-color: #e73d4a"/> 
+                  <% else %>
+                      <input maxlength="300" type="text" name="title"  class="form-control title" value="<%= @tender.present? ? @tender.title : nil  %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
                   <% end %>
                 </div>
               </div>
 
-
-          </div>
         </div>
 
 
         <div class="col-md-6">
-          <div class="portlet-body form">
-            <div class="form-body">
-              <div class="form-group">
-                <h4>QUOTE DUE</h4>
-                <input type="text" class="form-control input-xlarge quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/>
-                <div class="input-group date  form_meridian_datetime" data-date="2012-12-21T15:25:00Z" id="form_meridian_datetime">
+          <div class="form-body">
+            <div class="form-group">
+              <h4>QUOTE DUE</h4>
 
-                </div>
 
-                <% if @quote_due_error.present? %>
-                    <i style="color:red"><%= @quote_due_error %></i>
-                <% end %>
-              </div>
+              <% if @quote_due_error.present? %>
+                  <div class="input-icon right margin-top-10">
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    <input type="text" class="form-control  quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>" style="background-color: #F6F6F6;border-color: #e73d4a"> </div>
+                 <!-- <input type="text" class="form-control input-xlarge quote" name="quote" value="<%#= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>" style="background-color: #F6F6F6;border-color: #e73d4a"/>-->
+                  <div class="input-group date  form_meridian_datetime" data-date="2012-12-21T15:25:00Z" id="form_meridian_datetime">
+
+                  </div>
+              <% else %>
+                  <div class="input-icon right margin-top-10">
+                    <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    <input type="text" class="form-control  quote" name="quote" value="<%= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>" style="background-color: #F6F6F6;border-color: #F6F6F6"> </div>
+                  <!--<input type="text" class="form-control input-xlarge quote" name="quote" value="<%#= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/>-->
+                  <div class="input-group date  form_meridian_datetime" data-date="2012-12-21T15:25:00Z" id="form_meridian_datetime">
+
+                  </div>
+              <% end %>
             </div>
           </div>
         </div>
@@ -93,53 +99,54 @@
 
     <div class="col-md-6">
      <!-- <div class="portlet light bordered">-->
-        <div class="portlet-body form">
-          <div class="form-body">
+      <div class="form-body">
             <div class="form-group">
               <h4>CLIENT(Optional)</h4>
               <input maxlength="200" type="text" name="client"  class="form-control client" value="<%= @tender.present? ? @tender.client : nil  %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
             </div>
-          </div>
-          <div class="form-body">
+
+
             <div class="form-group">
               <h4>ARCHITECT(Optional)</h4>
               <input maxlength="200" type="text" name="architect"  class="form-control architect" value="<%= @tender.present? ? @tender.architect : nil  %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
             </div>
           </div>
-        </div>
       <!--</div>-->
     </div>
 
     <div class="col-md-6">
       <!--<div class="portlet light bordered">-->
-        <div class="portlet-body form">
+
           <div class="form-body">
             <div class="form-group">
               <h4>SECTOR</h4>
-              <%= select_tag "categories",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@categories, 'id','name',@tender.present? ? @tender.category_id : nil),{:class=> 'form-control', :style=>"background-color: #F6F6F6;border-color: #F6F6F6"} %> 
+
               <% if @sector_error.present? %>
-                  <i style="color:red"><%= @sector_error %></i>
+                  <%= select_tag "categories",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@categories, 'id','name',@tender.present? ? @tender.category_id : nil),{:class=> 'form-control', :style=>"background-color: #F6F6F6;border-color: #e73d4a"} %> 
+              <% else %>
+                  <%= select_tag "categories",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@categories, 'id','name',@tender.present? ? @tender.category_id : nil),{:class=> 'form-control', :style=>"background-color: #F6F6F6;border-color: #F6F6F6"} %> 
               <% end %>
             </div>
-          </div>
-          <div class="form-body">
-            <div class="form-group">
-              <h4>VALUE</h4>
-              <%= select_tag "values",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@values, 'id','range',@tender.present? ? @tender.tender_value_id : nil),{:class=> 'form-control', :style=>"background-color: #F6F6F6;border-color: #F6F6F6"} %> 
-              <% if @value_error.present? %>
-                  <i style="color:red"><%= @value_error %></i>
-              <% end %>
+
+            <div class="form-body">
+              <div class="form-group">
+                <h4>VALUE</h4>
+
+                <% if @value_error.present? %>
+                    <%= select_tag "values",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@values, 'id','range',@tender.present? ? @tender.tender_value_id : nil),{:class=> 'form-control', :style=>"background-color: #F6F6F6;border-color: #e73d4a"} %> 
+                <% else %>
+                    <%= select_tag "values",content_tag(:option,'None',:value=>'')+options_from_collection_for_select(@values, 'id','range',@tender.present? ? @tender.tender_value_id : nil),{:class=> 'form-control', :style=>"background-color: #F6F6F6;border-color: #F6F6F6"} %> 
+                <% end %>
+              </div>
             </div>
           </div>
 
-        </div>
       <!--</div>-->
     </div>
 
     <div class="col-md-12">
       <!--<div class="portlet light bordered">-->
-        <div class="portlet-body form">
-          <div class="form-body">
+        <div class="form-body">
             <div class="form-group">
               <h4>DESCRIPTION</h4>
               <%= text_area_tag('about_me',@tender.present? ? @tender.description.html_safe : nil,:cols => '109',:rows => '8',:class => 'form-control wysihtml5', :style => "background-color: #F6F6F6;border-color: #F6F6F6") %> 
@@ -150,255 +157,76 @@
     </div>
 
     <div class="col-md-6">
-      <!--<div class="portlet light bordered">-->
-        <div class="portlet-body form">
-          <div class="form-body">
+      <div class="form-body">
+        <div class="form-group">
+          <h4>ADDRESS</h4>
+          <input type="hidden" name="original_address" class="o_address">
 
-          </div>
-          <div class="form-body">
-            <div class="form-group">
-              <h4>ADDRESS</h4>
-              <input type="hidden" name="original_address" class="o_address">
+          <% if @address_error.present? %>
+              <input type="type" class="form-control address" id="address" value="<%= @tender.present? ? @tender.address : nil  %>" name="address" style="background-color: #F6F6F6;border-color: #e73d4a"> 
+          <% else %>
               <input type="type" class="form-control address" id="address" value="<%= @tender.present? ? @tender.address : nil  %>" name="address" style="background-color: #F6F6F6;border-color: #F6F6F6"> 
-              <% if @address_error.present? %>
-                  <i style="color:red"><%= @address_error %></i>
-              <% end %>
-            </div>
-
-            <div class="form-group">
-              <h4>SUBURB</h4>
-              <input type="text" class="form-control suburb" value="<%= @tender.present? ? @tender.suburb : nil  %>" name="suburb" id="suburb"  style="background-color: #F6F6F6;border-color: #F6F6F6">
-            </div>
-
-            <div class="form-group">
-              <h4>STATE</h4>
-              <input type="text" class="form-control state" name="state" id="state" value="<%= @tender.present? ? @tender.state : nil  %>"  style="background-color: #F6F6F6;border-color: #F6F6F6"> 
-            </div>
-
-            <div class="form-group">
-              <h4>POSTCODE</h4>
-              <input type="text" class="form-control postcode" name="postcode" id="postcode" value="<%= @tender.present? ? @tender.postcode : nil  %>"  style="background-color: #F6F6F6;border-color: #F6F6F6"> 
-            </div>
-
-            <!--<div class="form-group">
-              <label>
-                <%# if @tender.present?  %>
-                    <%# if @tender.address_terms == 'on' %>
-                        <input type="checkbox"  class="terms" name="address_terms" checked> 
-                    <%# else %>
-                        <input type="checkbox"  class="terms" name="address_terms"> 
-                    <%# end %>
-                <%# else %>
-                    <input type="checkbox"  class="terms" name="address_terms"> 
-                <%# end %>
-
-                Dont show Tender address to Sub Contractors that have not yet approved. 
-              </label>  
-            </div>-->
-          </div>
+          <% end %>
         </div>
-      <!--</div>-->
+
+        <div class="form-group">
+          <h4>SUBURB</h4>
+          <input type="text" class="form-control suburb" value="<%= @tender.present? ? @tender.suburb : nil  %>" name="suburb" id="suburb"  style="background-color: #F6F6F6;border-color: #F6F6F6" readonly="readonly">
+        </div>
+
+        <div class="form-group">
+          <h4>STATE</h4>
+          <input type="text" class="form-control state" name="state" id="state" value="<%= @tender.present? ? @tender.state : nil  %>"  style="background-color: #F6F6F6;border-color: #F6F6F6" readonly="readonly"> 
+        </div>
+
+        <div class="form-group">
+          <h4>POSTCODE</h4>
+          <input type="text" class="form-control postcode" name="postcode" id="postcode" value="<%= @tender.present? ? @tender.postcode : nil  %>"  style="background-color: #F6F6F6;border-color: #F6F6F6" readonly="readonly"> 
+        </div>
+      </div>
     </div>
 
     <div class="col-md-6">
-      <!--<div class="portlet light bordered">-->
-
-        <div class="portlet-body form">
-          <div class="form-body">
-            <div style="height: 80px"></div>
-            <div id="map" style="height:310px;width:440px;"></div> 
-          </div>
+      <div class="form-body">
+        <div style="height: 20px"></div>
+        <div class="form-group"></div>
+        <div class="form-group">
+          <div id="map" style="height:310px;width:480px;"></div> 
         </div>
-      <!--</div>-->
+
+      </div>
+
     </div>
 
-    <!--<div class="col-md-12">
-      &lt;!&ndash;<div class="portlet light bordered">&ndash;&gt;
-        <div class="portlet-body form">
-          <div class="form-body">
-            <div class="form-group">
-              <label class="control-label">Quotes Due</label> 
-              <div class="input-group date col-md-11 form_meridian_datetime" data-date="2012-12-21T15:25:00Z" id="form_meridian_datetime">
-                <input type="text" class="form-control quote" name="quote" value="<%#= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : @due_default.strftime("%Y-%m-%d %I:%M %p") : @due_default.strftime("%Y-%m-%d %I:%M %p") %>" readonly/>
-                  <span class="input-group-btn">
-                      <button class="btn default date-reset" type="button">
-                          <i class="fa fa-times"></i>
-                      </button>
-                      <button class="btn default date-set" type="button">
-                          <i class="fa fa-calendar"></i>
-                      </button>
-                  </span>
-              </div>
-              &lt;!&ndash;<div class="input-group date" id="datetimepicker1"> 
-                <input type="text" class="form-control quote" name="quote" value="<%#= @tender.present? ? @tender.tender_quote.present? ? @tender.tender_quote.quote_date : nil : nil %>"/>	<span class="input-group-addon"><span class="glyphicon-calendar glyphicon quote_calender"></span></span> 
-              </div> &ndash;&gt;
-              <%# if @quote_due_error.present? %>
-                  <i style="color:red"><%#= @quote_due_error %></i>
-              <%# end %>
-            </div>
-          </div>
-        </div>
-      &lt;!&ndash;<div class="form-group">
-        <div class="col-md-3">
-          <div class="input-group">
-            <input type="text" class="form-control timepicker timepicker-no-seconds">
-              <span class="input-group-btn">
-                <button class="btn default timepicker-no-seconds" type="button">
-                    <i class="fa fa-clock-o"></i>
-                </button>
-              </span>
-          </div>
-        </div>
-      </div>
-      <div class='col-sm-6'>
-        <div class="form-group">
-          <div class='input-group date' id='datetimepicker1'>
-            <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-          </div>
-        </div>
-      </div>&ndash;&gt;
-      &lt;!&ndash;</div>&ndash;&gt;
-    </div>-->
 
-    <!--<div class="col-md-12">
-      <div class="portlet light bordered">
-        <div class="portlet-body form">
-          <div class="form-body">
-            <div class="form-group">
-              <label class="control-label">Site Inspection</label> 
-
-            </div>
-
-
-            <%# if @tender.present? && params[:info_id].present? %>
-                <div class="input-group date col-md-10 site_meridian_datetime" data-date="2012-12-21T15:25:00Z">
-                  <input type="text" class="form-control site" name="site[]"/>
-                    <span class="input-group-btn">
-                        <button class="btn default date-reset" type="button">
-                            <i class="fa fa-times"></i>
-                        </button>
-                        <button class="btn default date-set" type="button">
-                            <i class="fa fa-calendar"></i>
-                        </button>
-                    </span>
-                </div>
-                <div style="height: 5px"></div>
-                <div class="form-group">
-                  <a href="#!">
-                    <button class="btn btn-success add" type="button">
-                      Add Inspection Date
-                    </button>
-                  </a>
-                </div>
-                <div style="height: 5px"></div>
-                <div class="previous_site">  
-                  <%# if @tender.tender_sites.present?  %>
-                    <table  class="table table-bordered responsive new_directory_document_table"   cellspacing="0" width="100%">
-                      <thead>
-                      <tr>
-                        <th>Dates</th>
-                        <th></th>
-                      </tr>
-                      </thead>
-                      <tbody class="searchable">
-                      <%# @tender.tender_sites.each_with_index do |a,index| %>
-                          <tr>
-                            <td><%#= a.site_date %></td>
-                            <td>
-                              <a href="#!">
-                                <button type="button" class="btn btn-danger remove" id="<%#= a.id %>">
-                                  Remove
-                                </button>
-                              </a>
-                            </td>
-                          </tr>
-                      <%# end %>
-                      </tbody>
-                    </table>
-                  <%# end %>
-                </div>
-
-
-            <%# else %>
-
-                <div class="new_site1" id="1"> 
-                  <div class="input-group date col-md-10 site_meridian_datetime" data-date="2012-12-21T15:25:00Z">
-                    <input type="text" class="form-control site" name="site[]"/>
-                    <span class="input-group-btn">
-                        <button class="btn default date-reset" type="button">
-                            <i class="fa fa-times"></i>
-                        </button>
-                        <button class="btn default date-set" type="button">
-                            <i class="fa fa-calendar"></i>
-                        </button>
-                        <a href="#!">
-                          <button class="btn btn-success add" type="button">
-                            <i class="fa fa-plus-circle" aria-hidden="true"></i>
-                             Add Inspection Date
-                          </button>
-                        </a>
-                    </span>
-                  </div>
-                    &lt;!&ndash;<div class="input-group date" id="picker1"> 
-                      <input type="text" class="form-control site" name="site[]"/>
-                      <span class="input-group-addon"><span class="glyphicon-calendar glyphicon site_calendar" id="1"></span></span> 
-                    </div> &ndash;&gt;
-
-
-                  <div style="height: 5px"></div>
-                  <div class="form-group">
-
-                    &lt;!&ndash;<i class="fa fa-plus-circle fa-2x add" aria-hidden="true" style="color: green" id="1"></i> 
-                    <i class="fa fa-minus-circle fa-2x remove" aria-hidden="true" style="color: red;display: none" id="1"></i> &ndash;&gt;
-                  </div>
-
-                </div> 
-
-
-            <%# end %>
-            <div class="new_site">  
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>-->
 
     <div class="col-md-12">
-      <!--<div class="portlet light bordered">-->
-        <div class="portlet-body form">
-          <div class="form-body">
-            <div class="form-group">
-              <h4 class="control-label">TENDER STATUS</h4> 
-            </div>
-            <div class="col-md-6">
-              <label><input type="radio" class="tendering form-control" name="tendering" value="1"><strong>Tendering</strong> - Your organization is still tendering for this project.</label> 
-              <p class="tendering_text" style="display: none;color: red"><i>After this tender is published, you can changed the Tender's status form Tendering to Awarded on the Details tab</i></p> 
-            </div>
-            <div class="col-md-6">
-              <label><input type="radio" name="tendering" class="tendering form-control" value="2"><strong>Awarded</strong> - Yor company has already won this project</label> 
-              <p class="awarded_text" style="display: none;color: red"><i>After this tender is published, you CAN NOT revert this tender's status back to Tendering.</i></p> 
-            </div>
-          </div>
+      <h4 class="control-label">TENDER STATUS</h4> 
+      <div class="form-body">
+        <div class="col-md-6">
 
-
+          <label><input type="radio" class="tendering form-control" name="tendering" value="1"><strong>Tendering</strong> - Your organization is still tendering for this project.</label> 
+          <p class="tendering_text" style="display: none;color: red"><i>After this tender is published, you can changed the Tender's status form Tendering to Awarded on the Details tab</i></p> 
+        </div>
+        <div class="col-md-6">
+          <label><input type="radio" name="tendering" class="tendering form-control" value="2"><strong>Awarded</strong> - Yor company has already won this project</label> 
+          <p class="awarded_text" style="display: none;color: red"><i>After this tender is published, you CAN NOT revert this tender's status back to Tendering.</i></p> 
         </div>
 
-      <!--</div>-->
-
-    </div>
-
-    <div class="form-actions pull-right">
-      <button type="submit" class="btn" style="color:#FFFFFF; background-color: #72bb53;border: 2px solid;border-radius: 8px !important;">
-        <h4>
-          Next
-        </h4>
-      </button>
+      </div>
     </div>
 
 
+    <div class="col-md-6"></div>
+    <div class="col-md-6">
+      <div class="form-actions text-center pull-right">
+        <button type="submit" class="btn submit_info" style="color:#FFFFFF; background-color:#c0c0c0 ;border: 2px solid;border-radius: 8px !important;width: 175px !important;height: 35px !important;margin-right: -15px;">
+          <h4 style="margin-top: -1px;">
+            Next
+          </h4>
+        </button>
+      </div>
+    </div>
     <input type="hidden" name="tender_id" value="<%= params[:info_id] %>">
 
 <% end %>
@@ -654,6 +482,7 @@
 
     $('.tendering').change(function(){
       var val = $(this).val();
+      $('.submit_info').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
       if(parseInt(val) == 1){
         $('.tendering_text').show();
         $('.awarded_text').hide();

@@ -208,6 +208,8 @@ class AddendasController < ApplicationController
     end
   end
 
+
+
   def update_details
 
   end
@@ -332,18 +334,29 @@ class AddendasController < ApplicationController
    redirect_to  "/tenders/hc_tender?id=#{@tender.id}&addenda=true"
   end
 
+  def issue_new_addenda
+    @tender = Tender.find(params[:tender_id])
+    @addenda = Addenda.find(params[:addenda_id])
+
+    Addenda.where(:tender_id => @tender.id,:id => @addenda.id).update_all(:status => 'completed')
+    Addenda.where(:tender_id => @tender.id,:status => 'incomplete').delete_all
+
+    render :json => { :state => 'valid',:tender => @tender.id}
+  end
+
   def create_addendas
     addenda = Addenda.new
     addenda.tender_id = params[:tender_id]
     addenda.user_id = session[:user_logged_id]
     addenda.subject = params[:subject]
-    addenda.details = params[:details]
+    addenda.details = params[:notes]
+    addenda.ref_no = params[:addendum_number]
     addenda.addenda_type = params[:type]
 
 
     if addenda.save
-      Addenda.where(:id => addenda.id).update_all(:ref_no => addenda.id)
-      render :json => { :state => 'valid'}
+      #Addenda.where(:id => addenda.id).update_all(:ref_no => addenda.id)
+      render :json => { :state => 'valid',:addenda => addenda.id}
     end
 
   end
@@ -441,10 +454,19 @@ class AddendasController < ApplicationController
 
   def get_addendas
     @tender = Tender.find(params[:tender_id])
+    @values = TenderValue.all
     if session[:role] == 'Head Contractor'
       addendas = Addenda.where(:tender_id => @tender.id,:user_id => session[:user_logged_id],:status => 'completed')
       addenda_array = []
       addenda_ids = []
+      last_addenda = Addenda.where(:tender_id => @tender.id,:user_id => session[:user_logged_id],:status => 'completed').last
+      if last_addenda.present?
+        a = last_addenda.ref_no.gsub(/[^0-9]/, '')
+        @ref_num =  "Addendum ##{a.to_i + 1}"
+      else
+        @ref_num =  "Addendum #1"
+      end
+
       if addendas.present?
         addendas.each do |a|
           if !addenda_array.include?(a.ref_no)
@@ -608,6 +630,21 @@ class AddendasController < ApplicationController
     @documents = TenderDocument.where(:user_id => session[:user_logged_id],:tender_id => @tender.id,:action_type => 'addenda').where("addenda_id is null").order('created_at desc,directory desc')
     @data = render :partial => 'addendas/documents/get_documents'
 
+  end
+
+  def update_tender_details
+    @tender = Tender.find(params[:tender_id])
+    quote = params[:quote]
+    status = params[:status]
+    notes = params[:notes]
+    values = params[:values]
+
+    @tender.update_attributes(:status => status, :description => notes, :tender_value_id => values)
+    if @tender.tender_quote.quote_date.to_s != quote.to_s
+      @tender.tender_quote.update_attributes(:previous_date => @tender.tender_quote.quote_date,:quote_date => quote)
+    end
+    @addenda = Addenda.find(params[:addenda_id])
+    render :json => { :state => 'valid',:addenda => @addenda, :quote => @tender.tender_quote.quote_date, :previous_date => @tender.tender_quote.previous_date, :tender => @tender}
   end
 
 

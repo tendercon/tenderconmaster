@@ -1,67 +1,186 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="text-center">
-      <h2>ADD NEW SUBCONTRACTORS TO YOUR NETWORK</h2>
-    </div>
-    <div style="height: 30px"></div>
-    <form class="savvy_form" id="savvy_form">
-      <div class="col-md-1"></div>
-      <div class="col-md-2">
-        <input type="hidden" name="hc_id" value="<%= session[:user_logged_id] %>">
-        <div class="form-group">
-          <label for="email">Name</label>
-          <input type="text" class="form-control name" id="name" name="name" required>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label for="email">Company</label>
-          <input type="text" class="form-control company" id="company" name="company" required>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" class="form-control email" id="email" name="email" required>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <label for="email">Trade(Optional)</label>
-           <%= select_tag 'trade_id',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name'),{:class=> 'form-control trade'} %>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <div class="form-group">
-          <div style="height: 22px;"></div>
-          <a href="#!" class="add_savvy">
-            <button class="btn btn-success" type="button">
-              Add Subcontractor
-            </button>
-          </a>
-        </div>
-      </div>
-      <div class="col-md-1"></div>
-    </form>
-  </div>
+<div class="row" style="margin-top: -10px">
 
-  <div class="col-md-12">
-    <div style="height: 80px"></div>
-    <div class="savvy_div">
-      <% if @hc_invites.present? %>
-        <%= render :partial =>  "hc_invites/savvy" %>
-      <% else %>
-        <div class="text-center">
-          <h2>No Subcontractors found.</h2>
+    <%- if  @hc_invite.present?  %>
+        <% if @hc_invite.errors.present? %>
+            <div class="alert alert-danger open-sans-regular" id="object_cats_error">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <h2>Errors</h2>
+              <ul>
+                <% @hc_invite.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+    <% end %>
+    <% if flash[:error] %>
+        <div class="alert alert-danger open-sans-regular" id="object_cats_error">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <%= @error_alert %>
+          <div class="notice" style="font-size: 14px;"><%= flash[:error] %></div>
+          <% flash[:error]=nil   %>
         </div>
-      <% end %>
-    </div>
-  </div>
+    <% end %>
+    <%- if !flash[:notice].nil? %>
+        <div class="alert alert-success open-sans-regular" id="object_cats_error" style="background-color: #91DC5A;height: 50px;">
+          <button type="button" class="close" data-dismiss="alert">&times;</button>
+          <div class="notice" style="font-size: 14px;"><%= flash[:notice].html_safe %></div>
+          <% flash[:notice]=nil %>
+        </div>
+    <%- end %>
+
 </div>
+<%= form_for(@hc_invite,:html => { :multipart => true }) do |f| %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-center">
+        <h1>MY SUBCONTRACTOR NETWORK</h1>
+        <h4>
+          All subcontractors under My Preferred Subcontractors can be invited to quote on your published tenders
+        </h4>
+
+      </div>
+      <div style="height: 20px"></div>
+      <div>
+        <h2 style="font-family: Gotham">
+          My Preferred Subcontractors
+        </h2>
+        <% if @hc_invites.size == 0 %>
+          <div class="text-center">
+            <p>
+              You currently have <strong style="color: #f5494d"><%= @hc_invites.size %></strong>  subcontractors in your network.
+            </p>
+            <p>
+              Why not start by inviting your tried and trusted subcontractors so they can start tendering on your projects.
+            </p>
+          </div>
+        <% end %>
+
+        <div style="height: 30px"></div>
+        <div class="savvy_div">
+          <% if @hc_invites.present? %>
+              <%= render :partial =>  "hc_invites/savvy" %>
+          <% end %>
+        </div>
+
+      </div>
+      <div style="height: 30px"></div>
+      <div>
+        <h2>
+          Add Subcontractors
+        </h2>
+      </div>
+      <div style="height: 30px"></div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <h4>SUBCONTRACTOR NAME</h4>
+          <input type="text" class="form-control name" id="name" name="name[]" required style="background-color: #F6F6F6;border-color: #F6F6F6">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <h4>COMPANY</h4>
+          <input type="text" class="form-control company" id="company" name="company[]" required style="background-color: #F6F6F6;border-color: #F6F6F6">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <h4>WORK EMAIL</h4>
+          <input type="text" class="form-control email" id="email" name="email[]" required style="background-color: #F6F6F6;border-color: #F6F6F6">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <h4>PRIMARY TRADE</h4>
+          <%= select_tag 'trade_id[]',content_tag(:option,'None',:value=>0)+options_from_collection_for_select(@trades, 'id','name'),{:class=> 'form-control trade', :style=> "background-color: #F6F6F6;border-color: #F6F6F6"} %>
+        </div>
+      </div>
+      <div class="new_savvy_form">
+
+      </div>
+      <div style="height: 30px"></div>
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md-3">
+
+      </div>
+
+      <div class="col-md-3">
+        <div style="height: 10px"></div>
+        <div class="form-group pull-right">
+          <i class="fa fa-plus-circle fa-3x add_new_savvy" style="color: #43B05C" id="1"></i>
+        </div>
+      </div>
+      <div style="height: 30px"></div>
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md-3">
+        <div class="form-group pull-right">
+          <button type="submit" class="btn submit_info" style="color:#FFFFFF; background-color:#c0c0c0 ;border: 2px solid;border-radius: 8px !important;width: 175px !important;height: 35px !important;margin-right: -15px;" disabled>
+            <h4 style="margin-top: -1px;">
+              Invite Subcontrator
+            </h4>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+<% end %>
+
+<% if @hc_invites.present? %>
+  <% @hc_invites.each do |sc| %>
+    <div class="modal fade" id="delete_modal<%= sc.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:100px;border-color: #006CE5;" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!--<div class="modal-header">
+
+          </div>-->
+          <div style="height: 5px"></div>
+          <button type="button" class="close rejected_close" data-dismiss="modal" style="margin-right: 10px">&times;</button>
+          <div style="height: 30px"></div>
+          <div class="text-center">
+            <i class="fa fa-exclamation-circle fa-4x" aria-hidden="true" style="color: #DA0A2B"></i>
+          </div>
+          <div class="modal-body">
+            <div class="text-center">
+              <h1>
+                Delete This Subcontractor?
+              </h1>
+              <p>
+                You will no longer be able to invite this subcontractor to quote on any of your future tenders.
+              </p>
+
+              <button type="button" class="btn btn-default delete_btn" style="background-color: #FF3823;border-radius: 8px !important;width: 175px !important;height: 35px !important;margin-right: -15px;" id="<%= sc.id %>">
+                <h4 style="color: #ffffff; margin-top: -1px">OK</h4>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
 
 
+<input type="hidden" value="1" class="num">
 <script>
  $(document).ready(function(){
+   var name_str = '';
+   var email_str = '';
+   var company_str = '';
    $('.add_savvy').click(function(){
 
      $.ajax({
@@ -77,5 +196,141 @@
        $('.savvy_div').html(data);
      });
    })
+
+   $('.add_new_savvy').click(function(){
+     var number = $('.num').val();
+     $.ajax({
+       method: "POST",
+       data: {number: number},
+       url: "/hc_invites/add_savvy"
+     }).done(function (data) {
+       var new_value = (parseInt(number) + 1);
+       $('.num').val(new_value);
+       $('.new_savvy_form').append(data);
+     });
+   })
+
+   $('.delete_btn').click(function(){
+
+     $('#delete_modal'+savvy_id).modal('show');
+     var savvy_id = $(this).attr('id');
+     $.ajax({
+      method: "POST",
+      data: {id: savvy_id},
+      url: "/hc_invites/remove_savvy"
+      }).done(function (data) {
+        //$('.savvy_div').html(data);
+       location.reload();
+      });
+   });
+
+   $(".name").focusin(function() {
+     $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+   });
+
+   $(".name").focusout(function() {
+     $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+     var elems = [];
+     $('.name').each(function() {
+       elems.push($(this).val());
+     });
+     var new_elems = [];
+     new_elems = elems;
+     name_str = checkArray(new_elems)
+     console.log("name_str:"+name_str);
+     console.log("email_str:"+email_str);
+     console.log("company_str:"+company_str);
+     if(name_str == true && email_str == true && company_str == true){
+       $('.submit_info').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+       $('.submit_info').prop('disabled',false);
+     }else{
+       $('.submit_info').css({"backgroundColor": "#c0c0c0", "color": "#ffffff"});
+       $('.submit_info').prop('disabled',true);
+     }
+   });
+
+   $(".company").focusin(function() {
+     $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+   });
+   $(".company").focusout(function() {
+     $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+
+     var elems = [];
+     $('.company').each(function() {
+       elems.push($(this).val());
+     });
+     var new_elems = [];
+     new_elems = elems;
+     console.log(checkArray(new_elems));
+     company_str = checkArray(new_elems)
+     if($(".company").val().length > 0 && $(".email").val().length && $(".company").val().length ){
+       //$('.submit_info').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+     }
+     console.log("name_str:"+name_str);
+     console.log("email_str:"+email_str);
+     console.log("company_str:"+company_str);
+     if(name_str == true && email_str == true && company_str == true){
+       $('.submit_info').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+       $('.submit_info').prop('disabled',false);
+     }else{
+       $('.submit_info').css({"backgroundColor": "#c0c0c0", "color": "#ffffff"});
+       $('.submit_info').prop('disabled',true);
+     }
+   });
+
+   $(".email").focusin(function() {
+     $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+   });
+   $(".email").focusout(function() {
+     $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+
+     var elems = [];
+     $('.email').each(function() {
+       elems.push($(this).val());
+     });
+     var new_elems = [];
+     new_elems = elems;
+     console.log(checkArray(new_elems));
+     email_str = checkArray(new_elems);
+
+     if($(".name").val().length > 0 && $(".email").val().length && $(".company").val().length ){
+       //$('.submit_info').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+     }
+     console.log("name_str:"+name_str);
+     console.log("email_str:"+email_str);
+     console.log("company_str:"+company_str);
+     if(name_str == true && email_str == true && company_str == true){
+       $('.submit_info').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+       $('.submit_info').prop('disabled',false);
+     }else{
+       $('.submit_info').css({"backgroundColor": "#c0c0c0", "color": "#ffffff"});
+       $('.submit_info').prop('disabled',true);
+     }
+   });
+
+   $(".trade").focusin(function() {
+     $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+   });
+   $(".trade").focusout(function() {
+     $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+     if($(".name").val().length > 0 && $(".email").val().length && $(".company").val().length ){
+       $('.submit_info').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+     }
+   });
+
+   if( $("#object_cats_error").length > 0){
+     setTimeout(function() {
+       $("#object_cats_error").hide('blind', {}, 500)
+     }, 5000);
+   }
+
+
+   function checkArray(my_arr){
+     for(var i=0;i<my_arr.length;i++){
+       if(my_arr[i] === "")
+         return false;
+     }
+     return true;
+   }
  })
 </script>

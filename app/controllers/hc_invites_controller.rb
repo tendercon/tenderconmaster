@@ -4,27 +4,57 @@ class HcInvitesController < ApplicationController
   def index
     @trades = Trade.all
     @hc_invites = HcInvite.where(:hc_id => session[:user_logged_id],:status => nil)
+    @hc_invite = HcInvite.new
+  end
+
+  def create
+    names = params[:name]
+    emails = params[:email]
+    companies = params[:company]
+    trade_ids = params[:trade_id]
+
+    names.each_with_index do |a,i|
+      user = User.where(:email => emails[i]).first
+      hc_invite = HcInvite.new
+      hc_invite.hc_id = session[:user_logged_id]
+      hc_invite.trade_id = trade_ids[i]
+
+      if user.present?
+        hc_invite.user_id = user.id
+      end
+
+      hc_invite.email = emails[i]
+      hc_invite.company = companies[i]
+      hc_invite.name = a
+      hc_invite.save
+      
+    end
+    flash[:notice] = "<strong>SUCCESS!</strong> <h4>The subcontractor has been sent an email invitation to join your network</h4>"
+    redirect_to hc_invites_path
   end
 
   def add_savvy
-    hc_invite = HcInvite.new(hc_invites_permitted_params)
-    user = User.where(:email => params[:email]).first
+    # hc_invite = HcInvite.new(hc_invites_permitted_params)
+    # user = User.where(:email => params[:email]).first
+    #
+    # if user.present?
+    #   hc_invite.user_id = user.id
+    # end
 
-    if user.present?
-      hc_invite.user_id = user.id
-    end
-
-    if hc_invite.save
-      @trades = Trade.all
-      @hc_invites = HcInvite.where(:hc_id => session[:user_logged_id],:status => nil)
-      #unless user.present?
-        decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?&email=#{hc_invite.email}&trade=#{hc_invite.trade_id}"
-        path = "http://"+request.host_with_port+"/users/register?name=#{hc_invite.name}&email=#{hc_invite.email}&trade=#{hc_invite.trade_id}"
-      #end
-      TenderconMailer.sent_sc_invites(hc_invite.email,hc_invite.name,Trade.trade_name(hc_invite.trade_id),path,decline_path,session[:user_logged_id]).deliver_now
-      HcInvite.where(:email => nil).delete_all
-      @data = render :partial => 'hc_invites/savvy'
-    end
+    #if hc_invite.save
+      # @trades = Trade.all
+      # @hc_invites = HcInvite.where(:hc_id => session[:user_logged_id],:status => nil)
+      # #unless user.present?
+      #   decline_path = "http://"+request.host_with_port+"/invites/decline_tender_invite?&email=#{hc_invite.email}&trade=#{hc_invite.trade_id}"
+      #   path = "http://"+request.host_with_port+"/users/register?name=#{hc_invite.name}&email=#{hc_invite.email}&trade=#{hc_invite.trade_id}"
+      # #end
+      # TenderconMailer.sent_sc_invites(hc_invite.email,hc_invite.name,Trade.trade_name(hc_invite.trade_id),path,decline_path,session[:user_logged_id]).deliver_now
+      # HcInvite.where(:email => nil).delete_all
+      #@data = render :partial => 'hc_invites/savvy'
+    #end
+    @number = params[:number].to_i + 1
+    @trades = Trade.all
+    @data = render :partial => 'hc_invites/added_savvy'
   end
 
   def search_by_trade
@@ -69,7 +99,8 @@ class HcInvitesController < ApplicationController
       HcInvite.where(:id => hc_invite.id).update_all(:status => 'remove')
       @trades = Trade.all
       @hc_invites = HcInvite.where(:hc_id => session[:user_logged_id],:status => nil)
-      @data = render :partial => 'hc_invites/savvy'
+      #@data = render :partial => 'hc_invites/savvy'
+      render :json => { :state => 'valid'}
     end
   end
 
