@@ -4,85 +4,85 @@
   <div class="col-md-12">
     <h3 style="font-family: Gotham"><strong>TENDER DETAILS</strong></h3>
     <div class="col-md-4">
-      <h4 style="font-family: Gotham; color: #b70f0a"><strong>TENDER CLOSING DATE</strong></h4>
+      <h4 style="font-family: Gotham; color: #b70f0a;margin-left:-15px"><strong>TENDER CLOSING DATE</strong></h4>
     </div>
     <div class="col-md-8" style="margin-top: -10px">
-      <p style="font-size: 14px;color: #333333;"><%= (get_tender_due @tender.id).to_datetime.strftime("%H:%M %d/%m/%Y ") %></p>
+      <p style="font-size: 14px;color: #333333;margin-left:-15px" ><strong><%= (get_tender_due @tender.id).to_datetime.strftime("%H:%M %d/%m/%Y ") %></strong></p>
     </div>
     <div class="col-md-4">
-      <h4 style="font-family: Gotham;"><strong>SECTOR</strong></h4>
+      <h4 style="font-family: Gotham;margin-left:-15px"><strong>SECTOR</strong></h4>
     </div>
     <div class="col-md-8" style="margin-top: -10px">
-      <p style="font-size: 14px;color: #333333;"><%= get_categoty_name @tender.category_id %></p>
+      <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= get_categoty_name @tender.category_id %></p>
     </div>
     <div class="col-md-4">
-      <h4 style="font-family: Gotham;"><strong>TENDER VALUE</strong></h4>
+      <h4 style="font-family: Gotham;margin-left:-15px"><strong>TENDER VALUE</strong></h4>
     </div>
     <div class="col-md-8" style="margin-top: -10px">
-      <p style="font-size: 14px;color: #333333;"><%= get_value_name @tender.tender_value_id %></p>
+      <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= get_value_name @tender.tender_value_id %></p>
     </div>
     <div class="col-md-4">
-      <h4 style="font-family: Gotham;"><strong>CLIENT</strong></h4>
+      <h4 style="font-family: Gotham;margin-left:-15px"><strong>CLIENT</strong></h4>
     </div>
     <div class="col-md-8" style="margin-top: -10px">
-      <p style="font-size: 14px;color: #333333;"><%= @tender.client.present? ? @tender.client: '--' %></p>
+      <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= @tender.client.present? ? @tender.client: '--' %></p>
     </div>
     <div class="col-md-4">
-      <h4 style="font-family: Gotham;"><strong>ARCHITECT</strong></h4>
+      <h4 style="font-family: Gotham;margin-left:-15px"><strong>ARCHITECT</strong></h4>
     </div>
     <div class="col-md-8" style="margin-top: -10px">
-      <p style="font-size: 14px;color: #333333;"><%= @tender.architect.present? ? @tender.architect: '--' %></p>
+      <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= @tender.architect.present? ? @tender.architect: '--' %></p>
     </div>
     <div class="col-md-12">
-      <h4 style="font-family: Gotham;"><strong>TENDER DESCRIPTION</strong></h4>
+      <h4 style="font-family: Gotham;margin-left:-15px"><strong>TENDER DESCRIPTION</strong></h4>
     </div>
     <div class="col-md-12" >
-      <p style="font-size: 14px;color: #333333;"><%= @tender.description.present? ? @tender.description.html_safe: '--' %></p>
+      <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= @tender.description.present? ? @tender.description.html_safe: '--' %></p>
     </div>
   </div>
 
   <div class="col-md-12">
     <h3 style="font-family: Gotham"><strong>TRADES REQUIRED</strong></h3>
     <div class="col-md-3">
-      <h4 style="font-family: Gotham;"><strong>PRELIMINIARIES</strong></h4>
+      <h4 style="font-family: Gotham;margin-left:-15px"><strong>PRELIMINIARIES</strong></h4>
       <% if (get_tender_trades @tender.id).present? %>
           <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
               <% if get_category_id(a.trade_id).to_i == 1 %>
-                  <p style="font-size: 14px;color: #333333;"><%= "#{get_trade_name a.trade_id}" %></p>
+                  <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= "#{get_trade_name a.trade_id}" %></p>
               <% end %>
           <% end %>
       <% end %>
     </div>
 
     <div class="col-md-3">
-      <h4 style="font-family: Gotham;"><strong>STRUCTURAL</strong></h4>
+      <h4 style="font-family: Gotham;margin-left:-15px"><strong>STRUCTURAL</strong></h4>
       <% if (get_tender_trades @tender.id).present? %>
           <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
               <% puts  get_category_id(a.trade_id) %>
               <% if get_category_id(a.trade_id).to_i == 2 %>
-                  <p style="font-size: 14px;color: #333333;"><%= "#{get_trade_name a.trade_id}" %></p>
+                  <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= "#{get_trade_name a.trade_id}" %></p>
               <% end %>
           <% end %>
       <% end %>
     </div>
 
     <div class="col-md-3">
-      <h4 style="font-family: Gotham;"><strong>ARCHITECTURAL</strong></h4>
+      <h4 style="font-family: Gotham;margin-left:-15px"><strong>ARCHITECTURAL</strong></h4>
       <% if (get_tender_trades @tender.id).present? %>
-          <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
-              <% if get_category_id(a.trade_id).to_i == 3 %>
-                  <p style="font-size: 14px;color: #333333;"><%= "#{get_trade_name a.trade_id}" %></p>
-              <% end %>
-          <% end %>
+        <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
+            <% if get_category_id(a.trade_id).to_i == 3 %>
+                <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= "#{get_trade_name a.trade_id}" %></p>
+            <% end %>
+        <% end %>
       <% end %>
     </div>
 
     <div class="col-md-3">
-      <h4 style="font-family: Gotham;"><strong>SERVICES</strong></h4>
+      <h4 style="font-family: Gotham;margin-left:-15px"><strong>SERVICES</strong></h4>
       <% if (get_tender_trades @tender.id).present? %>
           <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
               <% if get_category_id(a.trade_id).to_i == 4 %>
-                  <p style="font-size: 14px;color: #333333;"><%= "#{get_trade_name a.trade_id}" %></p>
+                  <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= "#{get_trade_name a.trade_id}" %></p>
               <% end %>
           <% end %>
       <% end %>

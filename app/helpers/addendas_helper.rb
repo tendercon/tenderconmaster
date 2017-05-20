@@ -20,4 +20,14 @@ module AddendasHelper
     end
   end
 
+  def addenda_type id
+    addenda = Addenda.find(id)
+
+    if addenda.addenda_type == 'details'
+       "Issue New Documents"
+    else
+       "Issue Original Documents"
+    end
+  end
+
 end
