@@ -18,7 +18,7 @@
         <div class="section">
           <input type="hidden" class="tender_id" value="<%= @tender.present? ? @tender.id : nil%>">
           <label class="field select">
-            <select class="trades">
+            <select class="bs-select form-control trades">
               <% if @tender.present? %>
                 <% if @all_trades.present? %>
                   <option value="0">Filter by trade/s</option>
@@ -69,60 +69,81 @@
     <div class="notice" style="font-size: 14px;">Email successfully re-sent.</div>
   </div>
 </div>
-<table class="table table-bordered" id="new_quote_table">
-  <thead>
-  <tr style="background-color: #2C3E50;color: white;">
-    <th>
-      <h4 style="font-family: Gotham">
-        COMPANY
-      </h4>
-    </th>
-    <th>
-      <h4 style="font-family: Gotham">
-        SUBCONTRACTOR NAME
-      </h4>
-    </th>
+<div class="table-responsive">
+  <table class="table " id="new_quote_table">
+    <thead>
+    <tr style="background-color: #093bad ;color: white;">
+      <th>
+        <h4 style="font-family: Gotham">
+          COMPANY
+        </h4>
+      </th>
+      <th>
+        <h4 style="font-family: Gotham">
+           NAME
+        </h4>
+      </th>
 
-    <th>
-      <h4 style="font-family: Gotham">
-        WORK EMAIL
-      </h4>
-    </th>
-    <th>
-      <h4 style="font-family: Gotham">
-        PRIMARY TRADE
-      </h4>
-    </th>
-    <% unless @tender.present? %>
-      <!--<th class="text-center">Status</th>-->
-      <th class="text-center"></th>
-    <% end %>
-    <% if @tender.present? %>
-        <th class="text-center" style="display: none"><input type="checkbox" class="hc_invites_list_master" checked> Invite</th>
-        <th class="text-center">To tender for</th>
-    <% end %>
-  </tr>
-  </thead>
-  <tbody class="searchable">
-  <% if @hc_invites.present? %>
-    <% @hc_invites.each_with_index do |savvy,index| %>
-      <% if savvy.email.present? %>
-        <tr>
-          <td><strong><%= savvy.company %></strong></td>
-          <td><%= savvy.name %></td>
+      <th>
+        <h4 style="font-family: Gotham">
+          WORK EMAIL
+        </h4>
+      </th>
+      <th>
+        <h4 style="font-family: Gotham">
+          PRIMARY TRADE
+        </h4>
+      </th>
+      <% unless @tender.present? %>
+          <!--<th class="text-center">Status</th>-->
+          <th class="text-center"></th>
+      <% end %>
+      <% if @tender.present? %>
+          <th class="text-center" style="display: none"><input type="checkbox" class="hc_invites_list_master" checked> Invite</th>
+          <th>
+            <h4 style="font-family: Gotham">
+              QUOTING ON
+            </h4>
+          </th>
+      <% end %>
+    </tr>
+    </thead>
+    <tbody class="searchable">
+    <% if @hc_invites.present? %>
+        <% @hc_invites.each_with_index do |savvy,index| %>
+            <% if savvy.email.present? %>
+                <tr>
+                  <% if @tender.present? %>
+                      <td class="savvy_company_<%= savvy.id %>" style="vertical-align: middle"><%= savvy.company %></td>
+                  <% else %>
+                      <td style="vertical-align: middle"><strong><%= savvy.company %></strong></td>
 
-          <td><%= savvy.email %></td>
-          <td><%= get_trade_name savvy.trade_id %></td>
-          <% unless @tender.present? %>
-            <!--<td class="text-center">
+                  <% end %>
+
+                  <td class="savvy_name_<%= savvy.id %>" style="vertical-align: middle"><%= savvy.name %></td>
+
+                  <td class="savvy_email_<%= savvy.id %>" style="vertical-align: middle">
+                    <% if savvy.user_id.present? %>
+                        <a href="<%= user_company_profile_users_path(:id => savvy.user_id,:tender => @tender.id,:my_tender => true) %>">
+                          <%= savvy.email %>
+                        </a>
+                    <% else %>
+                        <%= savvy.email %>
+                    <% end %>
+
+
+                  </td>
+                  <td class="savvy_trade_<%= savvy.id %>" style="vertical-align: middle"><%= get_trade_name savvy.trade_id %></td>
+                  <% unless @tender.present? %>
+                      <!--<td class="text-center">
               <%# if savvy.user_id.present? %>
                  <%#= get_user_created savvy.user_id %>
               <%# else %>
                  -&#45;&#45;
               <%# end %>
             </td>-->
-            <td class="text-center">
-              <!--<div class="form-group">
+                      <td class="text-center">
+                        <!--<div class="form-group">
                 <select class="form-control hc_action">
                   <option>Select Here</option>
                   <option class="remove" value="<%#= savvy.id %>" id="0">Remove</option>
@@ -131,51 +152,54 @@
                   <%# end %>
                 </select>
               </div>-->
-              <!--<button class="btn btn-danger remove" id="<%= savvy.id  %>">
+                        <!--<button class="btn btn-danger remove" id="<%= savvy.id  %>">
                    Remove
               </button>-->
-              <i class="fa fa-trash-o fa-2x remove" id="<%= savvy.id  %>" aria-hidden="true" style="color:red;"></i>
-            </td>
-          <% end %>
-          <% if @tender.present? %>
-              <td class="text-center" style="display: none">
-                <input type="checkbox" class="hc_invite_<%= index %>" name="hcs[]" value="<%= savvy.id %>">
-              </td>
-              <td class="text-center">
-                <label class="field select">
-                  <select class="hc_trades" name="trades[]">
-                    <% if @trades.present? %>
-                        <option value="0">Select Trade</option>
-                        <% @trades.each do |t| %>
-                            <% if @trade_id.present? %>
-                                <% if @trade_id.to_i == t.id.to_i %>
-                                    <option value="<%= t.id %>" class="<%= index %>" selected ><%= get_trade_name t %></option>
-                                <% else %>
-                                    <option value="<%= t.id %>" class="<%= index %>"><%= get_trade_name t %></option>
-                                <% end %>
-                            <% else %>
-                                <option value="<%= t.id %>" class="<%= index %>"><%= get_trade_name t %></option>
-                            <% end %>
+                        <i class="fa fa-trash-o fa-2x remove" id="<%= savvy.id  %>" aria-hidden="true" style="color:red;"></i>
+                      </td>
+                  <% end %>
+                  <% if @tender.present? %>
+                      <td class="text-center" style="display: none">
+                        <input type="checkbox" class="hc_invite_<%= index %>" name="hcs[]" value="<%= savvy.id %>">
+                      </td>
+                      <td style="vertical-align: middle">
+                        <label class="field select">
+                          <select class="bs-select form-control hc_trades" name="trades[]" id="<%= savvy.id%>" style="width: 220px;height: 30px">
+                            <% if @trades.present? %>
+                                <option value="0">Select Trade</option>
+                                <% @trades.each do |t| %>
+                                    <% if @trade_id.present? %>
+                                        <% if @trade_id.to_i == t.id.to_i %>
+                                            <option value="<%= t.id %>" class="<%= index %>"  selected ><%= get_trade_name t %></option>
+                                        <% else %>
+                                            <option value="<%= t.id %>" class="<%= index %>"><%= get_trade_name t %></option>
+                                        <% end %>
+                                    <% else %>
+                                        <option value="<%= t.id %>" class="<%= index %>"><%= get_trade_name t %></option>
+                                    <% end %>
 
-                        <% end %>
-                    <% end %>
-                  </select>
-                  <i class="arrow"></i>
-                </label>
-              </td>
-          <% end %>
+                                <% end %>
+                            <% end %>
+                          </select>
+                          <i class="arrow"></i>
+                        </label>
+                      </td>
+                  <% end %>
+                </tr>
+            <% end %>
+        <% end %>
+    <% else %>
+        <tr>
+          <td colspan="6" class="text-center">
+            No Subcontractors found.
+          </td>
         </tr>
-      <% end %>
     <% end %>
-  <% else %>
-      <tr>
-        <td colspan="6" class="text-center">
-          No Subcontractors found.
-        </td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+
+</div>
+
 
 <script>
   $(document).ready(function(){
@@ -258,8 +282,27 @@
 
     $('.hc_trades').change(function(){
       var i = $(this).find('option:selected').attr("class");
+      var id = $(this).attr('id');
+      var trade = $(this).val();
+
+      if(trade > 0){
+        $('.savvy_company_'+id).css("font-weight","bold")
+        $('.savvy_name_'+id).css("font-weight","bold")
+        $('.savvy_email_'+id).css("font-weight","bold")
+        $('.savvy_trade_'+id).css("font-weight","bold")
+      }else{
+        $('.savvy_company_'+id).css("font-weight","normal")
+        $('.savvy_name_'+id).css("font-weight","normal")
+        $('.savvy_email_'+id).css("font-weight","normal")
+        $('.savvy_trade_'+id).css("font-weight","normal")
+      }
+      console.log("id:"+trade);
+
+
 
       $('.hc_invite_'+i).prop('checked',true);
+
+
 
     });
 

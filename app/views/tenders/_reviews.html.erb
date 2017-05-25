@@ -1,231 +1,180 @@
 <%= form_tag(publish_tenders_path, :html => { :multipart => true }) do |f| %>
     <input type="hidden" name="tender_id" value="<%= params[:info_id] %>">
     <div class="row">
+
       <div class="col-md-12">
-        <!--<div class="portlet light bordered">-->
-          <div class="portlet-body form">
-            <div class="form-body">
-              <div class="row">
+        <div class="text-center" style="margin-top:-20px">
+          <h1><%= "#{@tender.title} (#{@tender.tendercon_id})" %></h1>
+
+        </div>
+
+
+
+      </div>
+
+
+      <div class="col-md-12">
+        <div class="portlet-body form">
+          <div class="form-body">
+            <div class="row">
+              <div class="col-md-10">
+                <h3 style="font-family: Gotham"><strong>TENDER DETAILS</strong></h3>
+              </div>
+              <div class="col-md-2 pull-right">
+                <a href="/tenders/new_tender?info=true&info_id=<%= @tender.id %>">
+                  <p style="font-family: Gotham;font-size: 14px"><strong>Edit</strong></p>
+                </a>
+              </div>
+              <div class="col-md-12">
+
+                <div class="col-md-4">
+                  <h4 style="font-family: Gotham; color: #b70f0a;margin-left:-15px"><strong>TENDER CLOSING DATE</strong></h4>
+                </div>
+                <div class="col-md-8" style="margin-top: -10px">
+                  <p style="font-size: 14px;color: #333333;margin-left:-15px" ><strong><%= (get_tender_due @tender.id).to_datetime.strftime("%H:%M %d/%m/%Y ") %></strong></p>
+                </div>
+                <div class="col-md-4">
+                  <h4 style="font-family: Gotham;margin-left:-15px;margin-top:-10px"><strong>SECTOR</strong></h4>
+                </div>
+                <div class="col-md-8" style="margin-top: -30px">
+                  <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= get_categoty_name @tender.category_id %></p>
+                </div>
+                <div class="col-md-4">
+                  <h4 style="font-family: Gotham;margin-left:-15px;margin-top:-10px"><strong>TENDER VALUE</strong></h4>
+                </div>
+                <div class="col-md-8" style="margin-top: -30px">
+                  <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= get_value_name @tender.tender_value_id %></p>
+                </div>
+                <div class="col-md-4">
+                  <h4 style="font-family: Gotham;margin-left:-15px;margin-top:-10px"><strong>CLIENT</strong></h4>
+                </div>
+                <div class="col-md-8" style="margin-top: -30px">
+                  <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= @tender.client.present? ? @tender.client: '--' %></p>
+                </div>
+                <div class="col-md-4">
+                  <h4 style="font-family: Gotham;margin-left:-15px;margin-top:-10px"><strong>ARCHITECT</strong></h4>
+                </div>
+                <div class="col-md-8" style="margin-top: -30px">
+                  <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= @tender.architect.present? ? @tender.architect: '--' %></p>
+                </div>
                 <div class="col-md-12">
-                  <div class="portlet box">
-                    <div class="portlet-title">
-                      <div class="caption" >
-                        Details
-                      </div>
-                      <div class="tools">
-                        <!--<a href="/tenders/new_tender?info=true&info_id=<%#= @tender.id %>">
-                          <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                        </a>-->
-                        <a href="javascript:;" class="collapse"> </a>
-                      </div>
-                    </div>
-                    <div class="portlet-body">
-                      <div class="table-scrollable">
-                        <table class="table table-bordered table-hover">
-                          <thead>
-                          <tr>
-                            <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Details</strong></td>
-                          </tr>
-                          </thead>
-                          <tbody>
-                          <tr>
-                            <td> Tender Title </td>
-                            <td> <%= @tender.title %> </td>
-                          </tr>
-                          <tr>
-                            <td> Tender ID </td>
-                            <td> <%= @tender.tendercon_id %> </td>
-                          </tr>
-                          <tr>
-                            <td> Status </td>
-                            <td>
-                              <% if @tender.status == '1' %>
-                                <label>Tendering - Your organization is still tendering for this project.</label>
-                              <% else %>
-                                <label>Awarded - This tender has been awarded to the Head Contractor </label>
-                              <% end %>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td> Client </td>
-                            <td> <%= @tender.client %> </td>
-                          </tr>
-                          <tr>
-                            <td> Architect </td>
-                            <td> <%= @tender.architect %> </td>
-                          </tr>
-                          <tr>
-                            <td> Sector </td>
-                            <td> <%= get_categoty_name @tender.category_id %> </td>
-                          </tr>
-                          <tr>
-                            <td> Value </td>
-                            <td> <%= get_value_name @tender.tender_value_id %> </td>
-                          </tr>
-
-                          <tr>
-                            <td> Description </td>
-                            <td> <%=  @tender.description.html_safe %> </td>
-                          </tr>
+                  <h4 style="font-family: Gotham;margin-left:-15px;margin-top:-10px"><strong>TENDER DESCRIPTION</strong></h4>
+                </div>
+                <div class="col-md-12" style="margin-top: -30px">
+                  <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= @tender.description.present? ? @tender.description.html_safe: '--' %></p>
+                </div>
 
 
-                          <tr>
-                            <td> Address </td>
-                            <td> <%=  @tender.address %></td>
-                          </tr>
+              </div>
+              <div class="col-md-12">
+                <h3 style="font-family: Gotham"><strong>TENDER LOCATION</strong></h3>
+                <p style="font-size: 14px;color: #333333;"><%= "#{@tender.address}" %></p>
+                <div id="map_<%= @tender.id %>" style="height:300px;width:100%;"></div>
+              </div>
+              <div class="col-md-12">
+                <div class="col-md-10">
+                  <h3 style="font-family: Gotham;margin-left: -20px;"><strong>TRADES REQUIRED</strong></h3>
+                </div>
+                <div class="col-md-2 pull-right">
+                  <a href="/tenders/new_tender?trades=true&info_id=<%= @tender.id %>">
+                    <p style="font-family: Gotham;font-size: 14px"><strong>Edit</strong></p>
+                  </a>
+                </div>
 
-                          <tr>
-                            <td> Quote Due </td>
-                            <td> <%= get_tender_due @tender.id %></td>
-                          </tr>
+                <div class="col-md-3">
+                  <h4 style="font-family: Gotham;margin-left:-15px"><strong>PRELIMINIARIES</strong></h4>
+                  <% if (get_tender_trades @tender.id).present? %>
+                      <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
+                          <% if get_category_id(a.trade_id).to_i == 1 %>
+                              <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= "#{get_trade_name a.trade_id}" %></p>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+                </div>
 
-                          <% if @tender.tender_sites.present? %>
-                              <tr>
-                                <td> Site Inspections </td>
-                                <td></td>
-                              </tr>
-                            <% (get_tender_sites_per_user @tender.id).each do |a| %>
+                <div class="col-md-3">
+                  <h4 style="font-family: Gotham;margin-left:-15px"><strong>STRUCTURAL</strong></h4>
+                  <% if (get_tender_trades @tender.id).present? %>
+                      <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
+                          <% puts  get_category_id(a.trade_id) %>
+                          <% if get_category_id(a.trade_id).to_i == 2 %>
+                              <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= "#{get_trade_name a.trade_id}" %></p>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+                </div>
+
+                <div class="col-md-3">
+                  <h4 style="font-family: Gotham;margin-left:-15px"><strong>ARCHITECTURAL</strong></h4>
+                  <% if (get_tender_trades @tender.id).present? %>
+                      <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
+                          <% if get_category_id(a.trade_id).to_i == 3 %>
+                              <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= "#{get_trade_name a.trade_id}" %></p>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+                </div>
+
+                <div class="col-md-3">
+                  <h4 style="font-family: Gotham;margin-left:-15px"><strong>SERVICES</strong></h4>
+                  <% if (get_tender_trades @tender.id).present? %>
+                      <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
+                          <% if get_category_id(a.trade_id).to_i == 4 %>
+                              <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= "#{get_trade_name a.trade_id}" %></p>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+
+        <% if @tender_documents.present? %>
+            <div class="portlet-body form">
+              <div class="form-body">
+                <div class="row">
+                  <div class="col-md-10">
+                    <h3 style="font-family: Gotham"><strong>TRADE DOCUMENTS</strong></h3>
+                  </div>
+                  <div class="col-md-2 pull-right">
+                    <a href="/tenders/new_tender?document=true&info_id=<%= @tender.id %>">
+                      <p style="font-family: Gotham;font-size: 14px"><strong>Edit</strong></p>
+                    </a>
+                  </div>
+                  <div class="col-md-12">
+
+                    <table  class="table" id="document_table">
+                      <thead>
+                      <tr>
+                        <th class="text-center"></th>
+                        <th class="text-center"></th>
+                        <th class="text-center"></th>
+
+
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <% if @tender_documents.present? %>
+                          <% @tender_documents.each_with_index do |t,index| %>
+                              <% if session[:role] == 'Head Contractor' %>
                                   <tr>
-                                    <td> </td>
-                                    <td><%= get_tender_site_dates a.id %></td>
+                                    <td>
+                                     <%= "#{t.document_file_name}" %>
+                                      <!--<a href="<%#= "/assets/tender/document/#{t.id}/original/#{t.document_file_name}" %>" target="_blank">
+                                        <%#= t.document_file_name %><label style="display: none"><%#= "#{t.directory} #{t.document_file_name}" %></label>
+                                      </a>-->
+                                    </td>
+
+                                    <td > <%= convert_kb_to_mb t.document_file_size %> MB</td>
+                                    <td ><%= t.directory %></td>
                                   </tr>
-                            <% end %>
-                          <% end %>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <!--</div>-->
-      </div>
-    </div>
 
-    <div class="row"> 
-      <div class="col-md-12">
-        <!--<div class="portlet light bordered">-->
-          <div class="portlet-body form">
+                              <% end %>
 
-            <div class="row">
-              <div class="col-md-12">
-                <div class="portlet box ">
-
-                  <div class="portlet-body">
-                    <table class="table table-bordered table-hover" id="tender_trade_table">
-                      <thead>
-                      <tr>
-                        <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Trades</strong></td>
-                      </tr>
-                      </thead>
-                      <tbody>
-                        <% if @tender.tender_trades.present? %>
-                          <% @tender.tender_trades.each do |t| %>
-                            <tr>
-                              <td class="text-center"><%= get_trade_name t.trade_id %></td>
-                              <td><%= get_trade_category t.trade_id %></td>
-                            </tr>
-                          <% end %>
-                        <% end %>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        <!--</div>-->
-      </div>
-    </div>  
-
-    <div class="row"> 
-      <div class="col-md-12">
-        <!--<div class="portlet light bordered">-->
-          <div class="portlet-body form">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="portlet box ">
-                  <!--<div class="portlet-title">
-                    <div class="caption">
-                      <i class="fa fa-file"></i>Documents</div>
-                    <div class="tools">
-                      <div class="col-md-18">
-                      </div>
-                      <a href="javascript:;" class="collapse"> </a>
-                    </div>
-                  </div>-->
-                  <!--<div class="portlet-body">
-                    <table class="table table-bordered table-hover" id="tender_trade_table">
-                      <thead>
-                      <tr>
-                        <td  style="background-color: #2C3E50;color: white;"><strong>Documents</strong></td>
-                      </tr>
-                      </thead>
-                      <tbody>
-
-                              <tr>
-                                <td class="text-center">
-                                  <%# if @document_packages.present? %>
-                                      <select onchange="location = this.options[this.selectedIndex].value;" class="form-control">
-                                        <option value="#!">None</option>
-                                        <%# @document_packages.each do |d| %>
-                                            <option value="<%#= d.url %>"><%#= File.basename(d.url) %></option>
-                                        <%# end %>
-                                      </select>
-                                  <%# end %>
-                                </td>
-                              </tr>
-
-                      </tbody>
-                    </table>
-
-                  </div>-->
-                </div>
-              </div>
-            </div>
-          </div>
-        <!--</div>-->
-      </div>
-    </div>  
-
-    <div class="row"> 
-      <div class="col-md-12">
-        <!--<div class="portlet light bordered">-->
-          <div class="portlet-body form">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="portlet box ">
-                  <!--<div class="portlet-title">
-                    <div class="caption">
-                      <i class="fa fa-envelope-o"></i>Invites</div>
-                    <div class="tools">
-                      <a href="/tenders/new_tender?invites=true&info_id=<%= @tender.id %>">
-                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      </a>
-                      <a href="javascript:;" class="collapse"> </a>
-                    </div>
-                  </div>-->
-                  <div class="portlet-body">
-                    <table class="table table-bordered table-hover">
-                      <thead>
-                      <tr>
-                        <th  colspan="2" style="background-color: #2C3E50;color: white;">Invites</th>
-                      </tr>
-                      <tr>
-                        <th class="text-center">Email</th>
-                        <th class="text-center">Trades</th>
-                      </tr>
-                      </thead>
-                      <tbody>
-                      <% if @tender.tender_invites.present? %>
-                          <% @tender.tender_invites.each do |t| %>
-                              <tr>
-                                <td class="text-center"><%= t.email %></td>
-                                <td class="text-center"><%= get_trade_name t.trade_id %></td>
-                              </tr>
                           <% end %>
                       <% end %>
                       </tbody>
@@ -234,10 +183,58 @@
                 </div>
               </div>
             </div>
-          </div>
-        <!--</div>-->
+        <% end %>
       </div>
-    </div>  
+
+      <div class="col-md-12">
+
+        <% if @tender_documents.present? %>
+            <div class="portlet-body form">
+              <div class="form-body">
+                <div class="row">
+                  <div class="col-md-10">
+                    <h3 style="font-family: Gotham;"><strong>INVITED SUBCONTRACTORS</strong></h3>
+                  </div>
+                  <div class="col-md-2 pull-right">
+                    <a href="/tenders/new_tender?invites=true&info_id=<%= @tender.id %>">
+                      <p style="font-family: Gotham;font-size: 14px"><strong>Edit</strong></p>
+                    </a>
+                  </div>
+                  <div class="col-md-12">
+
+                    <table  class="table borderless">
+                      <thead>
+                      <tr>
+                        <th>COMPANY</th>
+                        <th>NAME</th>
+                        <th>QUOTING ON</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <% if @tender_invites.present? %>
+                        <% @tender_invites.each_with_index do |t,index| %>
+                          <tr>
+                            <td>
+                              <%= "#{t.company}" %>
+
+                            </td>
+
+                            <td > <%=  t.name %></td>
+                            <td ><%= get_trade_name t.trade_id %></td>
+                          </tr>
+
+                        <% end %>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </div>
+    </div>
+
 
 
 
@@ -260,31 +257,34 @@
     </div>
 <% end %>
 
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8&libraries=places&sensor=false"></script> 
 
 <script>
   $(document).ready(function(){
-    $('#tender_trade_table').DataTable({
+    $('#document_table').DataTable({
       "bSort" : false,
       "bPaginate": false,
-      "bFilter": false,
-      "bInfo": false,
+      "bInfo" : false,
+      "dom":'fltip',
+      "bFilter": 'false',
+      searching: false,
       "columnDefs": [
-        { "visible": false, "targets": 1 }
+        { "visible": false, "targets": 2 }
       ],
-      "order": [[ 1, 'asc' ]],
+      "order": [[ 2, 'asc' ]],
       "displayLength": 25,
       "drawCallback": function ( settings ) {
         var api = this.api();
         var rows = api.rows( {page:'current'} ).nodes();
         var last=null;
 
-        api.column(1, {page:'current'} ).data().each( function ( group, i ) {
+        api.column(2, {page:'current'} ).data().each( function ( group, i ) {
           console.log("group:"+group);
           console.log("I -------> :"+i);
           if ( last !== group ) {
             $(rows).eq( i ).before(
-                '<tr class="group"><td colspan="3" id="'+ i + '" title="'+ group+ '"><strong>'+ group+ '</strong></td>' +
-                '</td></tr>'
+                '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '"><strong>'+ group+ '</strong></td>' +
+                '</tr>'
             );
 
             last = group;
@@ -292,5 +292,42 @@
         } );
       }
     } );
+
+    load_map();
+    function load_map() {
+      var id = "<%= @tender.id %>";
+      var add = $('.add'+id).val();
+
+      $.ajax({
+        method: "POST",
+        data: {add:add},
+        url: "/tenders/get_latling"
+      }).done(function (data) {
+
+        myLatLng = {lat:data.latitude, lng: data.longitude};
+
+        map = new google.maps.Map(document.getElementById('map_'+id), {
+          zoom: 15,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map
+        });
+
+        google.maps.event.addListenerOnce(map, 'idle', function() {
+          google.maps.event.trigger(map, 'resize');
+          map.setCenter(myLatLng);
+        });
+      });
+
+    }
   });
 </script>
+
+<style>
+  .borderless td, .borderless th {
+    border: none;
+  }
+</style>

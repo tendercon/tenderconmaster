@@ -3,7 +3,11 @@
       <input type="hidden" class="tender_id" name="tender_id" value="<%= params[:info_id] %>">
       <div class="col-md-12">
         <div class="text-center">
-          <h3>SELECT THE SUBCONTRACTORS YOU WANT TO INVITE FROM YOUR NETWORK</h3>
+          <h1>INVITE PREFERRED SUBCONTRACTORS</h1>
+          <h4>
+            The subcontractors invited from Your Preferred Network will receive an email invitation to join this tender.
+          </h4>
+
         </div>
 
         <div style="height: 50px"></div>
@@ -12,7 +16,12 @@
               <%= render :partial =>  "hc_invites/savvy" %>
           <% else %>
               <div class="text-center">
-                <h2>No Subcontractors found.</h2>
+                <p style="font-size: 14px">
+                  You currently have 0 subcontractors in your Preferred Subcontractor Network
+                </p>
+                <p style="font-size: 14px">
+                  If you wish to invite your subcontractors to quote on  this tender, you can do so on the Subcontractor tab in Manage Tender
+                </p>
               </div>
           <% end %>
         </div>

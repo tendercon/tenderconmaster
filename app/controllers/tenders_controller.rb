@@ -96,7 +96,7 @@ class TendersController < ApplicationController
       else
         @documents = TenderDocument.where("user_id = #{session[:user_logged_id]} AND tender_id =#{params[:info_id]} AND directory != 'unzip'").order('created_at desc,directory desc')
       end
-
+      @tender_documents = TenderDocument.where("user_id = #{session[:user_logged_id]} AND tender_id =#{params[:info_id]} AND directory != 'unzip'").order('created_at desc,directory desc')
 
       urls = []
       @directories = []
