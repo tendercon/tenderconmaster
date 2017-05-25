@@ -61,4 +61,4 @@
 #   }
 set :rails_env, :production
 #set :delayed_job_workers, 10
-server '13.55.186.200', user: 'deploy', roles: %w{web app db}
+server '54.153.156.69', user: 'deploy', roles: %w{web app db}
