@@ -1,18 +1,18 @@
 <div class="row">
   <div class="text-center">
-    <h2 style="font-family: Gotham;font-size: 30px"><strong>UPDATE MY PROFILE PICTURE</strong></h2>
+    <h2 style="font-family: Gotham;font-size: 30px"><strong>UPDATE COMPANY LOGO</strong></h2>
     <h4 style="font-family: Gotham;font-size: 16px">
-      <strong>Preview your professional picture and upload onto My Profile Page</strong>
+      <strong>Preview your company logo and add it your company profile</strong>
     </h4>
   </div>  
   <div style="height: 20px"></div>
-  <form action="#"  id="upload_avatar" enctype="multipart/form-data">
+  <form action="#"  id="upload_company_avatar" enctype="multipart/form-data">
     <div class="text-center">
 
       <div class="profile-userpic">
-        <% if @user.avatar.present? %>
-          <% if File.exist?(@user.avatar.image.path(:original)) %>
-              <img src="<%= @user.avatar.image.url(:original) %>" class="img-circle user_avatar"  style="width: 250px; height: 250px;">
+        <% if @user.company_avatar.present? %>
+          <% if File.exist?(@user.company_avatar.image.path(:original)) %>
+              <img src="<%= @user.company_avatar.image.url(:original) %>" class="img-circle user_avatar"  style="width: 250px; height: 250px;">
           <% else %>
               <img src="../assets/pages/media/profile/profile_user.jpg" class="img-responsive user_avatar" class="img-circle user_avatar"  style="width: 250px; height: 250px;">
               <img src="../assets/pages/media/profile/profile_user.jpg" class="img-circle user_avatar" alt="">
@@ -77,13 +77,14 @@
   </div> 
 </div>
 
+
 <script type="text/javascript">
   $(document).ready(function(){
-    $( '#upload_avatar' ).submit( function( e ) {
+    $( '#upload_company_avatar' ).submit( function( e ) {
       e.preventDefault();
-      
+      console.log($('#upload_company_avatar').serialize());
       $.ajax( {
-        url: '/users/update_avatar',
+        url: '/users/update_company_avatar',
         type: 'POST',
         data: new FormData( this ),
         processData: false,
@@ -91,8 +92,8 @@
       }).done(function (data) {
         console.log(data);
         if(data.state == 'valid'){
-          console.log(data.url);
-          $('.user_avatar').attr('src',data.url);
+          console.log(data.avatar_url);
+          $('.user_avatar').attr('src',data.avatar_url);
           console.log(data.id)
           $('.delete').attr('id', data.id);
           $('.uploaded').show();
@@ -115,7 +116,7 @@
       $.ajax( {
         url: '/users/delete_company_avatar',
         type: 'POST',
-        data: {id: id, profile: true}
+        data: {id: id}
         
       }).done(function (data) {
         console.log(data);
@@ -128,32 +129,8 @@
     })
 
     $('.cancel_btn').click(function(){
-      window.location.href = "/users/profile?id=<%= @user.id %>";
+      window.location.href = "/users/company_profile?id=<%= @user.id %>";
       
     })
   })
 </script>
-
-
-<!-- <script>
-  $(document).ready(function(){
-
-    $( '#upload_avatar' ).submit( function( e ) {
-      e.preventDefault();
-      $.ajax( {
-        url: '/users/update_avatar',
-        type: 'POST',
-        data: new FormData( this ),
-        processData: false,
-        contentType: false
-      }).done(function (data) {
-        console.log(data);
-        if(data.state == 'valid'){
-          console.log("data.url ======>"+data.url);
-          $('.user_avatar').attr('src',data.url);
-        }
-      });
-    });
-
-  });
-</script> -->

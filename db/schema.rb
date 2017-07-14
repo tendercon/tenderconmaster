@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170412150241) do
+ActiveRecord::Schema.define(version: 20170713031615) do
 
   create_table "addenda_changes", force: :cascade do |t|
     t.integer  "addenda_id",      limit: 4
@@ -192,6 +192,10 @@ ActiveRecord::Schema.define(version: 20170412150241) do
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.string   "acn",                 limit: 255
+    t.text     "twitter",             limit: 65535
+    t.string   "contact",             limit: 255
+    t.integer  "position",            limit: 4
+    t.string   "email",               limit: 255
   end
 
   create_table "contact_pages", force: :cascade do |t|
@@ -1099,6 +1103,7 @@ ActiveRecord::Schema.define(version: 20170412150241) do
     t.boolean  "registered",                     default: false
     t.boolean  "shown",                          default: false
     t.string   "logged_status",      limit: 255
+    t.string   "experience",         limit: 255
   end
 
 end

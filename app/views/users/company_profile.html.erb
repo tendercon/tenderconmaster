@@ -2,22 +2,35 @@
 <div class="row">
   <div class="col-md-12 ">
     <div class="tabbable-line">
+      <h3 style="font-family: Gotham;font-size: 24px"><strong><%= "#{@user.trade_name}" %></strong></h3>
       <ul class="nav nav-tabs ">
         <% if params[:upgrade] == 'true' || params[:deleted] == 'true' %>
-            <li><a href="#overview" data-toggle="tab" id="">Overview</a></li>
+            <li><a href="#overview" data-toggle="tab" id="">
+              <h4 style="font-family: Gotham;font-size: 16px"><strong>COMPANY PROFILE</strong></h4>
+            </a></li>
         <% else %>
-            <li class="active"><a href="#overview" data-toggle="tab" id="">Overview</a></li>
+            <li class="active"><a href="#overview" data-toggle="tab" id="">
+              <h4 style="font-family: Gotham;font-size: 16px"><strong>COMPANY PROFILE</strong></h4>
+            </a></li>
         <% end %>
 
-        <li><a href="#edit_profile" data-toggle="tab" id="">Edit Profile</a></li>
+        <!-- <li><a href="#edit_profile" data-toggle="tab" id="">
+           <h4 style="font-family: Gotham;font-size: 16px">Edit Profile</h4>
+        </a></li> -->
         <% if params[:upgrade] == 'true' || params[:deleted] == 'true' %>
-            <li class="active"><a href="#users" data-toggle="tab" id="">Users</a></li>
+            <li class="active"><a href="#users" data-toggle="tab" id="">
+              <h4 style="font-family: Gotham;font-size: 16px">Users</h4>
+            </a></li>
         <% else %>
-            <li><a href="#users" data-toggle="tab" id="">Users</a></li>
+            <li><a href="#users" data-toggle="tab" id="">
+               <h4 style="font-family: Gotham;font-size: 16px">Users</h4>
+            </a></li>
         <% end %>
 
         <% if session[:role] == 'Sub Contractor' %>
-            <li><a href="#billing" data-toggle="tab" id="">Billing</a></li>
+            <li><a href="#billing" data-toggle="tab" id="">
+               <h4 style="font-family: Gotham;font-size: 16px">Billing</h4>
+            </a></li>
         <% end %>
         <!--<li><a href="#portfolio" data-toggle="tab" id="">Portfolio</a></li>
         <li><a href="#billing" data-toggle="tab" id="">Billing</a></li>-->
@@ -26,169 +39,411 @@
   </div>
 
   <div class="col-md-12 profile_div">
-    <!-- BEGIN PROFILE SIDEBAR -->
-    <div style="height: 50px"></div>
-    <div class="profile-sidebar">
-      <!-- PORTLET MAIN -->
-      <div class="portlet light profile-sidebar-portlet ">
-        <!-- SIDEBAR USERPIC -->
+    <% if params[:edit] == 'true' %>
+      <%= render :partial => "/users/tabs/company_settings" %>
+    <% elsif params[:company_avatar] == 'true' %>
+      <%= render :partial => "/users/tabs/company_avatar" %>
+    <% else %>
+      <div class="text-center">
+        <input type="hidden" class="address_for_map" value="<%= @user.address.present? ? "#{@user.address.location}" : nil %>">
+        <h2 style="font-family: Gotham;font-size: 30px"><strong>COMPANY PROFILE</strong></h2>
+        <h4 style="font-family: Gotham;font-size: 16px">Your Company Profile Page On Display to the Tendercon Community</h4>
+        <div style="height: 20px"></div>
+        
+        <div class="progress" style="height: 40px;">
+          <div class="progress-bar progress-bar-success" role="  progressbar"
+            aria-valuenow="<%= @percentage %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= @percentage %>%; background-color: #72bb53 ">
+              <!-- <span style="margin-top: 10px;font-size: 16px;font-family: Gotham"><%= @percentage %>% Complete</span>
+               -->
+          </div>
+        </div>
+        <div style="height: 30px"></div>
         <div class="profile-userpic">
-          <% if @user.company_avatar.present? %>
-              <% if File.exist?(@user.company_avatar.image.path(:original)) %>
-                  <img src="<%= @user.company_avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-              <% else %>
-                  <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-              <% end %>
-          <% else %>
-              <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-          <% end %>
+            <% if @user.company_avatar.present? %>
+                <% if File.exist?(  @user.company_avatar.image.path(:original)) %>
+                    <img src="<%= @user.company_avatar.image.url(:original) %>" class="img-circle " alt="" style="width: 250px !important; height: 250px !important;">
+                <% else %>
+                    <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-circle " alt="" style="width: 250px !important; height: 250px !important;">
+                <% end %>
+            <% else %>
+                <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-circle " alt="" style="width: 250px !important; height: 250px !important;">
+            <% end %>
         </div>
-
-        <div class="profile-usertitle">
-          <div class="profile-usertitle-name" style="color: #2C3E50;"> <%= "#{@user.trade_name}" %> </div>
-        </div>
-        <!-- END SIDEBAR USER TITLE -->
-        <!-- SIDEBAR BUTTONS -->
-        <div class="profile-userbuttons">
-
-        </div>
-        <!-- END SIDEBAR BUTTONS -->
-        <!-- SIDEBAR MENU -->
-        <div class="profile-usermenu">
-
-        </div>
-        <!-- END MENU -->
+        <div style="height: 20px"></div>
+        <h3 style="font-family: Gotham;font-size: 24px"><strong><%= "#{@user.trade_name}" %></strong></h3>
+        <div style="height: 20px"></div>
+        <ul class="list-inline">
+          <li class="list-inline-item">
+            <a href="<%= @added_company_profile.present? ? @added_company_profile.website : nil  %>">
+              <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="<%= @added_company_profile.present? ? @added_company_profile.facebook : nil  %>">
+              <i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i>
+            </a>
+            
+          </li>
+          <li class="list-inline-item">
+             <a href="<%= @added_company_profile.present? ? @added_company_profile.linkedin : nil  %>">
+               <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i> 
+             </a>
+            
+          </li>
+          <li class="list-inline-item">
+            <a href="<%= @added_company_profile.present? ? @added_company_profile.twitter : nil  %>">
+              <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+            </a>
+            
+          </li>
+        </ul>
+        <div style="height: 20px"></div>
       </div>
-      <!-- END PORTLET MAIN -->
-      <!-- PORTLET MAIN -->
-      <div class="portlet light ">
-        <!-- STAT -->
-        <!--<div class="row list-separated profile-stat">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+          <u>
+            <h3 style="font-family: Gotham;font-size: 24px">
+              TENDERCON ID
+            </h3>  
+          </u>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      
 
-        </div>-->
-        <!-- END STAT -->
-        <div>
-
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            TENDERCON ID
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{@user.tendercon_id}" %></strong>
+         </h4>
         </div>
       </div>
-      <!-- END PORTLET MAIN -->
-    </div>
-    <!-- END BEGIN PROFILE SIDEBAR -->
-    <!-- BEGIN PROFILE CONTENT -->
-    <div class="profile-content">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            MEMBER SINCE
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{@user.created_at.strftime("%B %Y")}" %></strong>
+         </h4>
+        </div>
+      </div>
+      <div style="height: 10px"></div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+          <u>
+            <h3 style="font-family: Gotham;font-size: 24px">
+              COMPANY DETAILS
+            </h3>  
+          </u>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            COMPANY NAME
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{@user.company}" %></strong>
+         </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            TRADING AS
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{@user.trade_name}" %></strong>
+         </h4>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            ABN
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{@user.abn}" %></strong>
+         </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            ACN
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= @added_company_profile.present? ? @added_company_profile.acn : nil %></strong>
+         </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            # OF EMPLOYEES
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= @added_company_profile.present? ? @added_company_profile.number_of_employees : nil %></strong>
+         </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            YEARS IN OPERATION
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= @added_company_profile.present? ? @added_company_profile.commenced_operation : nil %></strong>
+         </h4>
+        </div>
+      </div>
+      <% if session[:role] == 'Sub Contractor' %>
+
+        <div style="height: 10px"></div>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-6">
+            <u>
+              <h3 style="font-family: Gotham;font-size: 24px">
+                TRADE SPECIALISATION
+              </h3>  
+            </u>
+            
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-3">
+            <h4 style="font-family: Gotham;font-size: 16px">
+              PROJECT SIZE RANGE
+            </h4>
+          </div>
+          <div class="col-md-5">
+            <h4 style="font-family: Gotham;font-size: 16px">
+            <strong><%= @added_company_profile.present? ? @added_company_profile.project_range : nil %></strong>
+           </h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-3">
+            <h4 style="font-family: Gotham;font-size: 16px">
+              PRIMARY TRADE
+            </h4>
+          </div>
+          <div class="col-md-5">
+            <h4 style="font-family: Gotham;font-size: 16px">
+            <strong><%= @primary_trade.present? ? (return_trade @primary_trade.trade_id) : nil %></strong>
+           </h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4"></div>
+          <div class="col-md-3">
+            <h4 style="font-family: Gotham;font-size: 16px">
+              SECONDARY TRADE
+            </h4>
+          </div>
+          <div class="col-md-5">
+            <% if @secondary_trade_array.present? %>
+                <% @s_trades = []  %> 
+                <% @secondary_trade_array.each_with_index do |a,index| %>
+                   <%if !@s_trades.include? (return_trade a) %>
+                      <% @s_trades << (return_trade a) %>
+                      <h4 style="font-family: Gotham;font-size: 16px">
+                        <strong><%= (return_trade a) %></strong>
+                      </h4>
+                   <%end%>
+                <% end %>
+            <% end %> 
+            
+          </div>
+        </div>
+      <% end %> 
+      <div style="height: 10px"></div> 
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+          <u>
+            <h3 style="font-family: Gotham;font-size: 24px">
+              COMPANY CAONTACT INFO
+            </h3>  
+          </u>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            KEY POINT OF CONTACT
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= @added_company_profile.present? ? @added_company_profile.contact : nil %></strong>
+         </h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            POSITION
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{get_postion @added_company_profile.present? ? @added_company_profile.position : nil}" %></strong>
+         </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            PHONE/MOBILE
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong>
+            <%= @added_company_profile.present? ? "#{@added_company_profile.contact_number}/" : nil %> <%= @user.mobile_number.present? ? @user.mobile_number : nil  %>
+          </strong>
+         </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            EMAIL
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= @added_company_profile.present? ? @added_company_profile.email : nil %> </strong>
+         </h4>
+        </div>
+      </div>
+      <div style="height: 10px"></div> 
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+          <u>
+            <h3 style="font-family: Gotham;font-size: 24px">
+              LOCATION
+            </h3>  
+          </u>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      
+
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            ADDRESS
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= @user.address.present? ? "#{@user.address.location}" : nil %></strong>
+         </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            TIME ZONE
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= @user.address.present? ? "#{@user.address.timezone}" : nil %></strong>
+         </h4>
+        </div>
+      </div>
+      <div style="height: 10px"></div> 
+      <div class="row">
+        <div class="col-md-4">
+          <u>
+            <h3 style="font-family: Gotham;font-size: 24px">
+              MAP
+            </h3>  
+          </u>
+        </div>
+        <div class="col-md-6">
+          
+        </div>
+        <div class="col-md-2"></div>
+      </div>
       <div class="row">
         <div class="col-md-12">
-          <table class="table table-bordered">
-            <thead>
-            <tr>
-              <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Details</strong></td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td class="col-md-3">Company</td>
-              <td><%= "#{@user.trade_name}" %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">ABN</td>
-              <td><%= "#{@user.abn}" %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">ACN</td>
-              <td><%= @added_company_profile.present? ? @added_company_profile.acn : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">Address</td>
-              <td><%= @user.address.present? ? "#{@user.address.location}" : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">Time zone</td>
-              <td><%= @user.address.present? ? "#{@user.address.timezone}" : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">About</td>
-              <td><%= @added_company_profile.present? ? @added_company_profile.about_me : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">Tendercon ID</td>
-              <td><%= "#{@user.tendercon_id}" %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">No. of Employees</td>
-              <td><%=  @added_company_profile.present? ? @added_company_profile.number_of_employees : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">Commenced Operation</td>
-              <td><%=  @added_company_profile.present? ? @added_company_profile.commenced_operation : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">Tendercon member since</td>
-              <td><%= @added_company_profile.present? ? @added_company_profile.since : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">Project range</td>
-              <td><%= @added_company_profile.present? ? @added_company_profile.project_range : nil %></td>
-            </tr>
-
-            <% if session[:role] == 'Sub Contractor' %>
-                <tr>
-                  <td colspan="2" style="background-color: #2C3E50;color: white;">Specialist Trades</td>
-                </tr>
-                <tr>
-                  <td class="col-md-3">Primary Trade</td>
-                  <td><%= @primary_trade.present? ? (return_trade @primary_trade.trade_id) : nil %></td>
-                </tr>
-                <tr>
-                  <td class="col-md-3">Secondary Trade</td>
-                  <% if @secondary_trade_array.present? %>
-                      <% @secondary_trade_array.each_with_index do |a,index| %>
-                        <% if index == 0 %>
-                          <td><%= (return_trade a) %></td>
-                        <% end %>
-                      <% end %>
-                  <% end %>
-                </tr>
-                <% if @secondary_trade_array.present? %>
-                    <% @secondary_trade_array.each_with_index do |a,index| %>
-                      <% if index > 0 %>
-                        <tr>
-                          <td class="col-md-3"></td>
-                          <td><%= (return_trade a) %></td>
-                        </tr>
-                      <% end %>
-                    <% end %>
-                <% end %>
-            <% end %>
-            <tr>
-              <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Contact</strong></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">Phone</td>
-              <td><%= @added_company_profile.present? ? @added_company_profile.contact_number : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">FAX</td>
-              <td><%= @added_company_profile.present? ? @added_company_profile.fax_number : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">Website</td>
-              <td><%= @added_company_profile.present? ? @added_company_profile.website : nil %></td>
-            </tr>
-            <tr>
-              <td class="col-md-3">Linkedin</td>
-              <td><%= @added_company_profile.present? ? @added_company_profile.linkedin : nil %></td>
-            </tr>
-            </tbody>
-          </table>
+          <div id="map" style="height:270px;width:100%;"></div> 
         </div>
       </div>
-    </div>
+    <% end %>
+    
   </div>
+  <div id="btncollapzion" class=" btn_collapzion"></div>
 </div>
 
-
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8&libraries=places&sensor=false"></script> 
 <script>
   $(document).ready(function(){
+
+    $.ajax({
+        method: "POST",
+        data: {add: $('.address_for_map').val()},
+        url: "/tenders/get_latling"
+      }).done(function (data) {
+        var myLatLng = {lat:data.latitude, lng: data.longitude};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: myLatLng
+        });
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map
+        });
+      });
 
     <% if params[:upgrade] == 'true' || params[:deleted] == 'true' %>
       $('.profile_div').html('');
@@ -288,5 +543,73 @@
       }
 
     });
+    $('#btncollapzion').Collapzion({
+      _child_attribute:[
+          
+          {
+          'label':'UPDATE COMPANY LOGO',
+          'url':'/users/company_profile?id=<%= @user.id %>&edit=true',
+          'icon': "<i class='fa fa-picture-o fa-2x'></i>"
+          },
+          {
+            'label':'EDIT COMPANY PROFILE',
+            'url':'/users/company_profile?id=<%= @user.id %>&company_avatar=true',
+            'icon': '<i class="fa fa-tasks fa-2x"></i>'
+          }
+      ],
+      _main_btn_color:'#4285f4;',
+      _child_btn_color:'#f4645f;',
+    })  
   })
 </script>
+
+<style type="text/css">
+  
+
+a._collapz_parant {
+    color: #fff;
+    border-radius: 100% !important;
+    background-color: #F44336 !important;
+    width: 70px !important;
+    margin-top: -420px !important;
+    height: 70px !important;
+    display: inline-block;
+    text-decoration: none;
+    float: right;
+    -webkit-transition: -webkit-transform .1s linear 0ms;
+    -moz-transition: -moz-transform .1s linear 0ms;
+    transition: transform .1s linear 0ms;
+    transform: rotate(44deg);
+}
+
+ul._child_collapzion {
+    position: absolute;
+    margin-top: -180px !important;
+    list-style: none;
+    padding: 1px;
+    top: -25px;
+    left: 0;
+    width: 100%;
+    overflow: auto;
+    z-index: 10;
+    -webkit-transform: translate3d(0, -100%, 0);
+    -moz-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    -webkit-transition: -webkit-transform .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+}
+a._collapz_child i {
+    margin-top: 20px !important;
+}
+span._title {
+    position: relative;
+    left: 8px;
+    color: #0F397A !important;
+    padding: 3px;
+    font-size: 16px !important;
+    top: 0px !important;
+    font-family: Gotham !important;
+    font-weight: bold !important;
+}
+</style>

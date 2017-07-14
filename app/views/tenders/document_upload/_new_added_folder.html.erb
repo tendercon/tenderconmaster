@@ -386,66 +386,7 @@
     }
   }
 
-  /*$('.directory').focusout(function(){
-   var id = $(this).attr('id');
-   var new_value = $(this).val();
-
-   console.log("id"+id);
-   console.log("new_value"+new_value);
-   $.ajax({
-   method: "POST",
-   data: {id:id,new_value:new_value},
-   url: "/tenders/rename_file"
-   }).done(function (data) {
-   $('.uploaded_docs').html(data);
-   });
-
-   });
-
-   $('.revision').focus(function(){
-   var al = $(this).attr('alt');
-   console.log(al);
-   $('.revision_icon[title="'+al+'"]').show()
-   $('.revision_btn[title="'+al+'"]').hide();
-   });
-
-   $('.revision').focusout(function(){
-   var tender_id = $('.tender_id').val();
-   var id = $(this).attr('id');
-   var val = $(this).val();
-   var al = $(this).attr('alt');
-   if(val.length > 0){
-   $('.revision_icon').hide();
-   $('.revision_btn').show();
-
-
-   $.ajax({
-   method: "POST",
-   data: {id:id,val:val,tender_id:tender_id},
-   url: "/tenders/add_revision"
-   }).done(function (data) {
-   $('.uploaded_docs').html(data);
-   $('.revision_btn[title="'+al+'"]').val(val);
-   $('.revision_btn[title="'+al+'"]').show();
-   });
-   }
-   });
-
-   $('.revision_btn').click(function(){
-   var category = $(this).attr('id');
-   var val = $(this).val();
-   var tender_id = $('.tender_id').val();
-
-   $.ajax({
-   method: "POST",
-   data: {category:category,val:val,tender_id:tender_id},
-   url: "/tenders/update_revision"
-   }).done(function (data) {
-   $('.uploaded_docs').html(data);
-
-   $('.revision_btn[title="'+category+'"]').show();
-   });
-   });*/
+  
 
 
 </script>

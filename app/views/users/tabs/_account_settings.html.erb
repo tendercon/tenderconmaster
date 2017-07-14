@@ -1,284 +1,232 @@
-<div style="height: 30px"></div>
-<div class="portlet-title tabbable-line">
-
-  <ul class="nav nav-tabs">
-    <li class="active">
-      <a href="#details" data-toggle="tab">Details</a>
-    </li>
-    <li>
-      <a href="#avatar" data-toggle="tab">Avatar</a>
-    </li>
-    <li>
-      <a href="#password" data-toggle="tab">Password</a>
-    </li>
-
-  </ul>
-</div>
-
-<!-- PERSONAL INFO TAB -->
-<div class="tab-pane active" id="details">
-  <div style="height: 10px"></div>
-  <div class="alert alert-success open-sans-regular" id="users_success" style="display: none">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <div class="notice" style="font-size: 14px;">Successfully Updated Info.</div>
-
+<form  id="info" action="" method="POST">
+  <div class="text-center">
+    <input type="hidden" class="address_for_map" value="<%= @user.address.present? ? "#{@user.address.location}" : nil %>">
+    <h2 style="font-family: Gotham;font-size: 30px"><strong>UPDATE PROFESSIONAL PROFILE</strong></h2>
+    <h4 style="font-family: Gotham;font-size: 16px">Update your Professional Profile information</h4>
+    <div style="height: 20px"></div>
   </div>
-  <form  id="info" action="" method="POST">
-    <div class="form-group">
-      <label class="control-label">First Name</label>
-      <input type="text"  class="form-control" value="<%= "#{@user.first_name}" %>" name="f_name" />
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-6">
+      <u>
+        <h3 style="font-family: Gotham;font-size: 24px">
+          DIGITAL PRESENCE
+        </h3>  
+      </u>
     </div>
-    <div class="form-group">
-      <label class="control-label">Last Name</label>
-      <input type="text" class="form-control" value="<%= "#{@user.last_name}" %> " name="l_name" />
+    <div class="col-md-2"></div>
+  </div> 
+  
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-3">
+      <h4 style="font-family: Gotham;font-size: 16px">
+        LINKED URL
+      </h4>
     </div>
-    <div class="form-group">
-      <label class="control-label">Email</label>
-      <input type="text" class="form-control" value="<%= "#{@user.email}" %> " name="email" readonly/>
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="text"  class="form-control"  name="linkedin" value="<%="#{@user.user_info.present? ? @user.user_info.linkedin : nil}" %>" />
+      </div>
     </div>
-    <div class="form-group">
-      <label class="control-label">Company</label>
-      <input type="text" value="<%= "#{@user.trade_name}" %>" class="form-control" name="trade_name" readonly/>
+  </div>   
+ 
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-6">
+      <u>
+        <h3 style="font-family: Gotham;font-size: 24px">
+          PROFESSIONAL DETAILS
+        </h3>  
+      </u>
     </div>
-    <div class="form-group">
-      <label class="control-label">Position</label>
-      <%= select_tag 'position',content_tag(:option,'Select position',:value=>0)+options_from_collection_for_select(@positions, 'id','title',@user.position)+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control position'} %>
-     <!-- <input type="text" value="<%#= "#{get_postion @user.position}" %>" class="form-control" name="position" />-->
-    </div>
-    <!--<div class="form-group">
-      <label class="control-label">Address</label>
-      <input type="text"  class="form-control" value="<%#= "#{@user.address.present? ? @user.address.location : nil}" %>" name="location" />
-    </div>-->
-    <div class="form-group">
-      <label class="control-label">About</label>
-      <textarea class="form-control" rows="5" value="<%= "#{@user.user_info.present? ? @user.user_info.about_me.html_safe : nil}" %>" name="about"><%= "#{@user.user_info.present? ? @user.user_info.about_me.html_safe : nil}" %></textarea>
-      <!--<input type="text"  class="form-control" value="<%#= "#{@user.user_info.present? ? @user.user_info.about_me.html_safe : nil}" %>" name="about" />-->
-    </div>
-    <div class="form-group">
-      <label class="control-label">Mobile</label>
-      <input type="text"  class="form-control" value="<%= "#{@user.mobile_number}" %>" name="mobile" />
-    </div>
-    <div class="form-group">
-      <label class="control-label">Linkedin</label>
-      <input type="text"  class="form-control" value="<%="#{@user.user_info.present? ? @user.user_info.linkedin : nil}" %>" name="linkedin" />
-    </div>
-    <div class="margiv-top-10">
-      <a href="#!" class="btn green">
-        <button class="btn green" type="submit">
-          Save Changes
-        </button>
+    <div class="col-md-2"></div>
+  </div>
 
-      </a>
-      <!--<a href="#!" class="btn default">
-        <button class="btn default">
+
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-3">
+      <h4 style="font-family: Gotham;font-size: 16px">
+        FIRST NAME
+      </h4>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="text"  class="form-control"  name="f_name" value="<%= "#{@user.first_name}" %>" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-3">
+      <h4 style="font-family: Gotham;font-size: 16px">
+        LAST NAME
+      </h4>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="text"  class="form-control"  name="l_name" value="<%= "#{@user.last_name}" %>"/>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-3">
+      <h4 style="font-family: Gotham;font-size: 16px">
+        COMPANY
+      </h4>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="text"  class="form-control"  name="trade_name" value="<%= "#{@user.trade_name}" %>"/>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-3">
+      <h4 style="font-family: Gotham;font-size: 16px">
+        POSITION
+      </h4>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+         <%= select_tag 'position',content_tag(:option,'Select position',:value=>0)+options_from_collection_for_select(@positions, 'id','title', @user.position  )+content_tag(:option,'Others',:value=>'last'),{:class=> 'form-control'} %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-3">
+      <h4 style="font-family: Gotham;font-size: 16px">
+        TOTAL YEARS OF EXPERIENCE 
+      </h4>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="text"  class="form-control"  name="experience" value="<%= @user.experience %>"/>
+      </div>
+    </div>
+  </div>
+  <div style="height: 10px"></div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-6">
+      <u>
+        <h3 style="font-family: Gotham;font-size: 24px">
+          CONTACT DETAILS
+        </h3>  
+      </u>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-3">
+      <h4 style="font-family: Gotham;font-size: 16px">
+        EMAIL
+      </h4>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="text"  class="form-control"  name="email" value="<%= "#{@user.email}" %>" readonly/>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-3">
+      <h4 style="font-family: Gotham;font-size: 16px">
+        MOBILE
+      </h4>
+    </div>
+    <div class="col-md-5">
+      <div class="form-group">
+        <input type="text"  class="form-control"  name="mobile" value="<%= "#{@user.mobile_number}" %>"/>
+      </div>
+    </div>
+  </div>  
+  <div style="height: 10px"></div> 
+
+  <div class="row">
+    <div class="margin-top-10 pull-right" style="margin-right: 10px">
+      <a href="/users/profile?id=<%= @user.id %>" class="btn red">
+        <button class="btn red" type="button">
           Cancel
         </button>
-      </a>-->
-    </div>
-  </form>
-</div>
-<!-- END PERSONAL INFO TAB -->
-<!-- CHANGE AVATAR TAB -->
-<div class="tab-pane" id="avatar" style="display: none">
-  <div style="height: 20px"></div>
-  <form action="#"  id="upload_avatar" enctype="multipart/form-data">
-    <div class="form-group">
-      <div class="fileinput fileinput-new" data-provides="fileinput">
-        <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-          <% if @user.avatar.present? %>
-              <% if File.exist?(@user.avatar.image.path(:original)) %>
-                  <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive user_avatar" alt="" style="width: 180px !important; height: 170px !important;">
-              <% else %>
-                  <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive user_avatar" alt="" style="width: 180px !important; height: 170px !important;">
-              <% end %>
-          <% else %>
-              <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive user_avatar" alt="" style="width: 180px !important; height: 170px !important;">
-          <% end %>
-        </div>
-        <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
-        <div>
-          <span class="btn default btn-file">
-          <input type="file" name="avatar" class="image"> </span>
-        </div>
-      </div>
-
-    </div>
-    <div class="margin-top-10">
-      <a href="#!" class="btn green">
-        <button class="btn green" type="submit">
-          Update
-        </button>
       </a>
-    </div>
-  </form>
-  <!--<div style="background-color: transparent;display: none"> 
-    <%#= form_for @avatar, :url => update_avatar_users_path,:html => {:class => 'avatar'} do |m| %> 
-        <input type="file" class="file_upload_filed"  id="dir-select" name="avatar"   /> 
-    <%# end %>
-  </div> -->
-</div>
-<!-- END CHANGE AVATAR TAB -->
-<!-- CHANGE PASSWORD TAB -->
-<div class="tab-pane" id="password_tab" style="display: none">
-  <div style="height: 10px"></div>
-  <div class="alert alert-warning open-sans-regular" id="users_old_password" style="display: none">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <div class="notice" style="font-size: 14px;">Current Password is wrong.</div>
-  </div>
-
-  <div class="alert alert-warning open-sans-regular" id="users_not_match" style="display: none">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <div class="notice" style="font-size: 14px;">Password does not match.</div>
-  </div>
-  <div class="alert alert-success open-sans-regular" id="password_success" style="display: none">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <div class="notice" style="font-size: 14px;">Successfully Updated Password.</div>
-
-  </div>
-  <form action="#" id="password">
-    <div class="form-group">
-      <label class="control-label">Current Password</label>
-      <input type="password" class="form-control current_pass" name="current_pass"/> </div>
-    <div class="form-group">
-      <label class="control-label">New Password</label>
-      <input type="password" class="form-control new_pass" name="new_pass" /> </div>
-    <div class="form-group">
-      <label class="control-label">Re-type New Password</label>
-      <input type="password" class="form-control confirmed" name="confirmed"/> </div>
-    <div class="margin-top-10">
       <a href="#!" class="btn green">
         <button class="btn green" type="submit">
           Save Changes
         </button>
-
       </a>
     </div>
-  </form>
-</div>
-<!-- END CHANGE PASSWORD TAB -->
+    
+  </div>
+</form>
 
-
-<script>
+<script type="text/javascript">
   $(document).ready(function(){
     $('#info').on('submit', function (e) {
 
       e.preventDefault();
-
+      console.log($('#info').serialize())
       $.ajax({
         method: "POST",
         data: $('#info').serialize(),
         url: "/users/update_info"
       }).done(function (data) {
         console.log(data);
-        if(data.state == 'valid'){
+        //window.location.href = "/users/profile?id=<%= @user.id %>";
+        ///users/company_profile?id=28
+        /*if(data.state == 'valid'){
           $('#users_success').show();
-        }
+        }*/
       });
     });
 
-    $( '#upload_avatar' ).submit( function( e ) {
-      e.preventDefault();
-      $.ajax( {
-        url: '/users/update_avatar',
-        type: 'POST',
-        data: new FormData( this ),
-        processData: false,
-        contentType: false
-      }).done(function (data) {
-        console.log(data);
-        if(data.state == 'valid'){
-          console.log("data.url ======>"+data.url);
-          $('.user_avatar').attr('src',data.url);
-        }
+    $('#address').keyup(function(){
+      console.log("TEST");
+      var address = $(this).val();
+      initAutocomplete();
+      get_address_info(address);
+    });
+
+    $('#address').focusout(function(){
+      var address = $(this).val();
+      initAutocomplete();
+      get_address_info(address);
+    });
+
+    function initAutocomplete() {
+      autocomplete = new google.maps.places.Autocomplete(
+          (document.getElementById('address')),
+          {types: ['geocode'],componentRestrictions: {country: "au"}});
+
+      google.maps.event.addListener(autocomplete,'place_changed',function(){
+
+        var address = $("#address").val();
+        console.log("test:"+address);
+
       });
-    });
+    }
 
-
-
-    $('#password').on('submit', function (e) {
-
-      e.preventDefault();
-      var current_pass = $('.current_pass').val();
-      var new_pass = $('.new_pass').val();
-      var confirmed = $('.confirmed').val();
-
-      if(current_pass.length > 6 && new_pass.length > 6 && confirmed.length > 6){
-        $.ajax({
-          method: "POST",
-          data: $('#password').serialize(),
-          url: "/users/profile_update_password"
-        }).done(function (data) {
-          console.log(data);
-          if(data.state == 'old_password'){
-            $('#users_old_password').show();
-            $('#users_not_match').hide();
-            $('#password_success').hide();
-          }else if(data.state == 'not_match'){
-            $('#users_not_match').show();
-            $('#users_old_password').hide();
-            $('#password_success').hide();
-          }else{
-            $('#users_not_match').hide();
-            $('#users_old_password').hide();
-            $('#password_success').show();
-
-          }
-        });
-      }else{
-        alert("All Fields are required and atleast 8 characters.");
-      }
-    });
-
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-      var target = $(e.target).attr("href"); // activated tab
-      var id = $(e.target).attr("id");
-      console.log("target"+target);
-
-      if(target == '#details'){
-        $('#details').show();
-        $('#avatar').hide();
-        $('#password_tab').hide();
-      }else if(target == '#avatar'){
-        $('#details').hide();
-        $('#avatar').show();
-        $('#password_tab').hide();
-      }else if(target == '#password'){
-        $('#details').hide();
-        $('#avatar').hide();
-        $('#password_tab').show();
-      }
-    });
-
-
-    /*$('.image').click(function(e){
-      $('.file_upload_filed').click();
-      e.preventDefault();
-    });
-
-    $('#new_avatar').fileupload({
-
-      dataType: 'json',    done: function (e, data) {
-
-        $.each(data, function (index, file) {
-
-
-        });
-      },progress: function (e, data) {
-
-      }
-    }).bind('fileuploadstop', function (e) {
+    function get_address_info(address){
       $.ajax({
         method: "POST",
-        url: "/users/get_user_avatar_path"
+        data: {address: address},
+        url: "/users/get_address_info"
       }).done(function (data) {
+        if(data.state = 'valid') {
+          console.log("data.add_state:"+data.add_state)
+          $('.state').val(data.add_state);
+          $('.suburb').val(data.suburb);
+          $('.postcode').val(data.postal);
+          $('.timezone').val(data.timezone);
 
-        if(data.state == 'valid'){
-          console.log(data);
-          $('.user_avatar').attr('src',data.url);
         }
       });
-    });*/
-
+    }
   });
 </script>
-

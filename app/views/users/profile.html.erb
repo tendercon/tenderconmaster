@@ -2,19 +2,33 @@
 <div class="row">
   <div class="col-md-12 ">
     <div class="tabbable-line">
+      <h3 style="font-family: Gotham;font-size: 24px"><strong>
+        <%= "#{@user.first_name} #{@user.last_name}" %>
+      </strong></h3>
       <ul class="nav nav-tabs ">
         <% if params[:subscription].present?  %>
-          <li><a href="#overview" data-toggle="tab" id="">Overview</a></li>
+          <li><a href="#overview" data-toggle="tab" id="">
+            <h4 style="font-family: Gotham;font-size: 16px"><strong>MY PROFILE</strong></h4>
+          </a></li>
         <% else %>
-          <li class="active"><a href="#overview" data-toggle="tab" id="">Overview</a></li>
+          <li class="active"><a href="#overview" data-toggle="tab" id="">
+            <h4 style="font-family: Gotham;font-size: 16px"><strong>MY PROFILE</strong></h4>
+          </a></li>
         <% end %>
 
-        <li><a href="#edit_profile" data-toggle="tab" id="">Edit Profile</a></li>
+        <li><a href="#edit_profile" data-toggle="tab" id="">
+
+          <h4 style="font-family: Gotham;font-size: 16px"><strong>UPDATE PASSWORD</strong></h4>
+        </a></li>
         <% if session[:role] == 'Sub Contractor' %>
           <% if params[:subscription].present?  %>
-            <li class="active"><a href="#subscription" data-toggle="tab" id="">Subscription</a></li>
+            <li class="active"><a href="#subscription" data-toggle="tab" id="">
+              <h4 style="font-family: Gotham;font-size: 16px"><strong>MY SUBSCRIPTION</strong></h4>
+            </a></li>
           <% else %>
-            <li><a href="#subscription" data-toggle="tab" id="">Subscription</a></li>
+            <li><a href="#subscription" data-toggle="tab" id="">
+              <h4 style="font-family: Gotham;font-size: 16px"><strong>MY SUBSCRIPTION</strong></h4>
+            </a></li>
           <% end %>
         <% end %>
       </ul>
@@ -22,105 +36,166 @@
   </div>
 
   <div class="col-md-12 profile_div">
-    <div style="height: 50px"></div>
-    <!-- BEGIN PROFILE SIDEBAR -->
-    <div class="profile-sidebar" >
-      <!-- PORTLET MAIN -->
-      <div class="portlet light profile-sidebar-portlet " >
-        <!-- SIDEBAR USERPIC -->
+    <% if params[:edit] == 'true' %>
+      <%= render :partial => "/users/tabs/account_settings" %>
+    <% elsif params[:company_avatar] == 'true' %>
+      <%= render :partial => "/users/tabs/edit_user_avatar" %>
+    <% else %>
+      <div class="text-center">
+        <input type="hidden" class="address_for_map" value="<%= @user.address.present? ? "#{@user.address.location}" : nil %>">
+        <h2 style="font-family: Gotham;font-size: 30px"><strong>MY PROFESSIONAL PROFILE</strong></h2>
+        <h4 style="font-family: Gotham;font-size: 16px">Fill in your professional profile</h4>
+        <div style="height: 20px"></div>
+        
+        <div class="progress" style="height: 40px;">
+          <div class="progress-bar progress-bar-success" role="  progressbar"
+            aria-valuenow="<%= @percentage %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= @percentage %>%; background-color: #72bb53 ">
+              <!-- <span style="margin-top: 10px;font-size: 16px;font-family: Gotham"><%= @percentage %>% Complete</span>
+               -->
+          </div>
+        </div>
+        <div style="height: 30px"></div>
         <div class="profile-userpic">
-          <% if @user.avatar.present? %>
-              <% if File.exist?(@user.avatar.image.path(:original)) %>
-                  <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-              <% else %>
-                  <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-              <% end %>
-          <% else %>
-              <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-          <% end %>
+            <% if @user.avatar.present? %>
+                <% if File.exist?(  @user.avatar.image.path(:original)) %>
+                    <img src="<%= @user.avatar.image.url(:original) %>" class="img-circle " alt="" style="width: 250px !important; height: 250px !important;">
+                <% else %>
+                    <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-circle " alt="" style="width: 250px !important; height: 250px !important;">
+                <% end %>
+            <% else %>
+                <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-circle " alt="" style="width: 250px !important; height: 250px !important;">
+            <% end %>
         </div>
-
-        <div class="profile-usertitle">
-          <div class="profile-usertitle-name" style="color: #2C3E50;"> <%= "#{@user.first_name} #{@user.last_name}" %> </div>
-          <div class="profile-usertitle-job" style="color: #2C3E50;"> <%= "#{get_postion @user.position}" %>  </div>
-        </div>
-        <!-- END SIDEBAR USER TITLE -->
-        <!-- SIDEBAR BUTTONS -->
-        <div class="profile-userbuttons">
-
-        </div>
-        <!-- END SIDEBAR BUTTONS -->
-        <!-- SIDEBAR MENU -->
-        <div class="profile-usermenu">
-
-        </div>
-        <!-- END MENU -->
+        <div style="height: 20px"></div>
+        <h3 style="font-family: Gotham;font-size: 24px"><strong><%= "#{@user.first_name} #{@user.last_name}" %></strong></h3>
+        <div style="height: 20px"></div>
+        <ul class="list-inline">
+          
+          <li class="list-inline-item">
+            <a href="<%="#{@user.user_info.present? ? @user.user_info.linkedin : nil}" %>">
+              <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
+            </a>
+            
+          </li>
+        </ul>
+        <div style="height: 20px"></div>
       </div>
-      <!-- END PORTLET MAIN -->
-      <!-- PORTLET MAIN -->
-      <div class="portlet light ">
-        <!-- STAT -->
-        <!--<div class="row list-separated profile-stat">
-
-        </div>-->
-        <!-- END STAT -->
-        <div>
-
-        </div>
-      </div>
-      <!-- END PORTLET MAIN -->
-    </div>
-    <!-- END BEGIN PROFILE SIDEBAR -->
-    <!-- BEGIN PROFILE CONTENT -->
-    <div class="profile-content">
+      
+      <div style="height: 10px"></div>
       <div class="row">
-        <div class="col-md-12">
-
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Details</strong></td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="col-md-3">Full Name</td>
-                      <td><%= "#{@user.first_name} #{@user.last_name}" %></td>
-                    </tr>
-                    <tr>
-                      <td>Position</td>
-                      <td><%= "#{get_postion @user.position}" %></td>
-                    </tr>
-                    <tr>
-                      <td>Company</td>
-                      <td><%= "#{@user.trade_name}" %></td>
-                    </tr>
-                    <tr>
-                      <td>About</td>
-                      <td><%= "#{@user.user_info.present? ? @user.user_info.about_me.html_safe : nil}" %></td>
-                    </tr>
-                    <tr>
-                      <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Contact</strong></td>
-                    </tr>
-                    <tr>
-                      <td>Email</td>
-                      <td><%= "#{@user.email}" %></td>
-                    </tr>
-                    <tr>
-                      <td>Mobile</td>
-                      <td><%= "#{@user.mobile_number}" %></td>
-                    </tr>
-                    <tr>
-                      <td>Linkedin</td>
-                      <td><%="#{@user.user_info.present? ? @user.user_info.linkedin : nil}" %></td>
-                    </tr>
-                  </tbody>
-                </table>
-
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+          <u>
+            <h3 style="font-family: Gotham;font-size: 24px">
+              PROFESSIONAL DETAILS
+            </h3>  
+          </u>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            NAME
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{@user.first_name} #{@user.last_name}" %></strong>
+         </h4>
         </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            COMPANY
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{@user.trade_name}" %></strong>
+         </h4>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            POSITION
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{get_postion @user.position}" %></strong>
+         </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            TOTAL YEARS OF EXPERIENCE
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= @user.experience %></strong>
+         </h4>
+        </div>
+      </div>
+      
+      
+      <div style="height: 10px"></div> 
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+          <u>
+            <h3 style="font-family: Gotham;font-size: 24px">
+              CAONTACT DETAILS
+            </h3>  
+          </u>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            EMAIL
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= @user.email %></strong>
+         </h4>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            MOBILE
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{@user.mobile_number}" %></strong>
+         </h4>
+        </div>
+      </div>
+      
+      
+      <div style="height: 10px"></div> 
+      
+      
+    <% end %>
   </div>
+  <div id="btncollapzion" class=" btn_collapzion"></div>
+  <!-- <div class="kc_fab_wrapper" style="border-radius: 100% !important"></div> -->
 </div>
 
 
@@ -210,5 +285,74 @@
       });
     <% end %>
 
+    $('#btncollapzion').Collapzion({
+      _child_attribute:[
+          
+          {
+          'label':'UPDATE PROFILE PICTURE',
+          'url':'/users/profile?id=<%= @user.id %>&company_avatar=true',
+          'icon': "<i class='fa fa-picture-o fa-2x'></i>"
+          },
+          {
+            'label':'EDIT MY PROFILE',
+            'url':'/users/profile?id=<%= @user.id %>&edit=true',
+            'icon': '<i class="fa fa-user fa-2x"></i>'
+          },
+      ],
+      _main_btn_color:'#4285f4;',
+      _child_btn_color:'#f4645f;',
+    })  
+
   })
 </script>
+
+<style type="text/css">
+  
+
+a._collapz_parant {
+    color: #fff;
+    border-radius: 100% !important;
+    background-color: #F44336 !important;
+    width: 70px !important;
+    margin-top: -420px !important;
+    height: 70px !important;
+    display: inline-block;
+    text-decoration: none;
+    float: right;
+    -webkit-transition: -webkit-transform .1s linear 0ms;
+    -moz-transition: -moz-transform .1s linear 0ms;
+    transition: transform .1s linear 0ms;
+    transform: rotate(44deg);
+}
+
+ul._child_collapzion {
+    position: absolute;
+    margin-top: -180px !important;
+    list-style: none;
+    padding: 1px;
+    top: -25px;
+    left: 0;
+    width: 100%;
+    overflow: auto;
+    z-index: 10;
+    -webkit-transform: translate3d(0, -100%, 0);
+    -moz-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    -webkit-transition: -webkit-transform .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+}
+a._collapz_child i {
+    margin-top: 20px !important;
+}
+span._title {
+    position: relative;
+    left: 8px;
+    color: #0F397A !important;
+    padding: 3px;
+    font-size: 16px !important;
+    top: 0px !important;
+    font-family: Gotham !important;
+    font-weight: bold !important;
+}
+</style>

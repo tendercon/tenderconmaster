@@ -1,12 +1,6 @@
-<div class="backdrop"></div>
-<!--<div class="fab child img-circle" data-subitem="1"> <i class="fa fa-file fa-5x" aria-hidden="true" style="margin-top: 14px;"></i><p class="mini-action-button__text&#45;&#45;hide">Issue Documents</p></div>
-<div class="fab child img-circle" data-subitem="2"> <i class="fa fa-info-circle fa-5x" aria-hidden="true"  style="margin-top: 14px;"></i><p class="mini-action-button__text&#45;&#45;hide">Change Tender details</p></div>-->
+<!-- <div class="backdrop"></div>
+
 <div class="fab child " data-subitem="1">
-  <!--<select class="form-control addenda_type">
-    <option>Select</option>
-    <option value="1">Issue Documents</option>
-    <option value="2">Change Tender details</option>
-  </select>-->
   <button type="button" class="btn new_documents" style="color:#FFFFFF; background-color:#36c6e1 ;border-radius: 3px !important;width: 300px !important;height: 38px !important;margin-right: 30px;">
     <h4 style="margin-top: 1px;">
       Issue New Documents
@@ -20,16 +14,13 @@
   </button>
 </div>
 </div>
-<div class="fab img-circle" id="masterfab"><span>x</span></div>
-
-
+<div class="fab img-circle" id="masterfab"><span>x</span></div> 
 
 <div class="row">
   <div style="height: 80px;"></div>
 </div>
-<div class="row">
-  <div style="height: 80px;"></div>
-</div>
+-->
+
 <div class="form-group has-feedback">
   <% if flash[:error] %>
       <div class="alert alert-danger open-sans-regular" id="users_error">
@@ -55,14 +46,24 @@
 
 <div class="admin-form">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-5">
       <% if session[:role] == 'Head Contractor' %>
         <!--<div class="admin-form">
           <a href="<%#= addendas_path(:id => tender.id ) %>"  id="<%= tender.id %>">
             <button class="button btn-info">Issue Addenda</button>
           </a>
         </div>-->
-          <h2 style="margin-top: -1px">Issue Addenda</h2>
+          <h3 style="margin-top: -1px;font-size: 24px; font-family: Gotham">ISSUED ADDENDA DIRECTORY</h3>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <% if session[:role] == 'Head Contractor' %>
+        <!--<div class="admin-form">
+          <a href="<%#= addendas_path(:id => tender.id ) %>"  id="<%= tender.id %>">
+            <button class="button btn-info">Issue Addenda</button>
+          </a>
+        </div>-->
+         
       <% end %>
     </div>
     <div class="col-md-3">
@@ -117,14 +118,20 @@
     <% if addendas.present? %>
         <% addendas.each_with_index do |t,index| %>
             <tr>
-              <td><strong><%=  "#{t.ref_no}" %></strong></td>
-              <td><%=  t.addenda_type %></td>
-              <td>
+              <td style="width: 20px;"><strong><%=  "A-#{t.ref_no.last(1)}" %></strong></td>
+              <td style="width: 100px;">
+                <% if t.addenda_type == "documents" %> 
+                  New Trade Documents
+                <% else %>
+                  Tender Detail Amends
+                <% end %>
+              </td>
+              <td style="width: 300px;">
                 <a href="#!" class="view_addenda" id="<%= t.id %>" style="font-size: 14px;color: #006ce5;font-height: 20px">
                   <%=  t.subject %>
                 </a>
               </td>
-              <td>
+              <td style="width: 100px;">
                 <%= t.created_at.strftime("%H:%M %p %d/%m/%Y") %>
                 <!--<button class="btn btn-default view_addenda" id="<%#= t.id %>">View</button>-->
               </td>

@@ -1,18 +1,6 @@
 <div class="admin-form">
   <div class="row">
-    <div class="col-md-3">
-      <div class="section">
-        <div class="smart-widget sm-left sml-50">
-          <label class="field">
-            <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Subcontractors Here">
-          </label>
-          <label for="sm3" class="button">
-            <i class="fa fa-search"></i>
-          </label>
-        </div>
-        <!-- end .smart-widget section -->
-      </div>
-    </div>
+    
     <div class="col-md-3">
       <% if params[:controller] == 'hc_invites' %>
         <div class="section">
@@ -72,7 +60,9 @@
 <div class="table-responsive">
   <table class="table " id="new_quote_table">
     <thead>
-    <tr style="background-color: #093bad ;color: white;">
+   
+    <!-- <tr style="background-color: #093bad ;color: white;"> -->
+    <tr style="background-color: #2C3E50;color: white;">
       <th>
         <h4 style="font-family: Gotham">
           COMPANY
@@ -124,9 +114,18 @@
 
                   <td class="savvy_email_<%= savvy.id %>" style="vertical-align: middle">
                     <% if savvy.user_id.present? %>
-                        <a href="<%= user_company_profile_users_path(:id => savvy.user_id,:tender => @tender.id,:my_tender => true) %>">
+                        <%= puts "savvy.user_id =====> #{savvy.user_id}" %>
+                        <%= puts "savvy.user_id =====> #{@tender.inspect}" %>
+                        <% if @tender.present? %>
+                          <a href="<%= user_company_profile_users_path(:id => savvy.user_id,:tender => @tender.id,:my_tender => true) %>">
                           <%= savvy.email %>
                         </a>
+                        <% else %>
+                          <a href="<%= user_company_profile_users_path(:id => savvy.user_id,:my_tender => true) %>">
+                            <%= savvy.email %>
+                          </a>
+                        <% end %>
+                        
                     <% else %>
                         <%= savvy.email %>
                     <% end %>

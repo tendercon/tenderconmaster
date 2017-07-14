@@ -1,4 +1,7 @@
 
+
+
+
 <% if session[:role] == 'Head Contractor' %>
  <div class="row">
   <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
@@ -11,7 +14,7 @@
           <span data-counter="counterup" data-value="<%= @tenders.present? ? @tenders.size : 0  %>"><%= @tenders.present? ? @tenders.size : 0  %></span>
         </div>
         <div class="desc"> Total Posted Tenders </div>
-      </div>
+      </div> 
       <a class="more" href="/tenders/new_tender?info=true"> POST MORE TENDER
         <i class="m-icon-swapright m-icon-white"></i>
       </a>
@@ -148,8 +151,9 @@
       <div style="height: 150px"></div>
     </div>
   </div>
+  
 <% end %>
-
+<div id="btncollapzion" class=" btn_collapzion"></div>
 
 
 
@@ -213,6 +217,126 @@
       $('.guidelines').show();
       $('.four_divs').hide();
     <% end %>
+
+    <% if session[:role] == 'Sub Contractor' %>
+      $('#btncollapzion').Collapzion({
+        _child_attribute:[
+            {
+              'label':'VIEW INVITED TENDERS',
+              'url':'/tenders/invited_tender',
+              'icon': "<i class='fa fa-envelope fa-2x'></i>"
+            },
+            {
+              'label':'VIEW OPEN TENDERS',
+              'url':'/tenders/open_tender',
+              'icon': '<i class="fa fa-briefcase fa-2x"></i>'
+            },
+            {
+              'label':'MANAGE TENDERS',
+              'url':'/tenders/my_tender?subcontractor=true',
+              'icon': '<i class="fa fa-folder-open fa-2x"></i>'
+            },
+            {
+              'label':'EDIT MY PROFILE',
+              'url':'/users/profile?id=<%= @user.id %>&edit=true',
+              'icon': '<i class="fa fa-user fa-2x"></i>'
+            },
+            {
+              'label':'EDIT COMPANY PROFILE',
+              'url':'/users/company_profile?id=<%= @user.id %>&company_avatar=true',
+              'icon': '<i class="fa fa-tasks fa-2x"></i>'
+            }
+        ],
+            _main_btn_color:'#4285f4;',
+            _child_btn_color:'#f4645f;',
+        
+      });
+    <% else %>
+     
+      $('#btncollapzion').Collapzion({
+        _child_attribute:[
+            {
+              'label':'PUBLISH TENDER',
+              'url':'/tenders/new_tender?info=true&builder=true',
+              'icon': "<i class='fa fa-clipboard fa-2x'></i>"
+            },
+            {
+              'label':'ADD SUBCONTRACTOR',
+              'url':'/hc_invites?builder=true',
+              'icon': '<i class="fa fa-users fa-2x"></i>'
+            },
+            {
+              'label':'MANAGE TENDERS',
+              'url':'/tenders/my_tender?builders=true',
+              'icon': '<i class="fa fa-folder-open fa-2x"></i>'
+            },
+            {
+              'label':'EDIT MY PROFILE',
+              'url':'/users/profile?id=<%= @user.id %>&edit=true',
+              'icon': '<i class="fa fa-user fa-2x"></i>'
+            },
+            {
+              'label':'EDIT COMPANY PROFILE',
+              'url':'/users/company_profile?id=<%= @user.id %>&company_avatar=true',
+              'icon': '<i class="fa fa-tasks fa-2x"></i>'
+            }
+        ],
+            _main_btn_color:'#4285f4;',
+            _child_btn_color:'#f4645f;',
+        
+      });
+    <% end %>
   });
 
 </script>
+
+<style type="text/css">
+  
+
+a._collapz_parant {
+    color: #fff;
+    border-radius: 100% !important;
+    background-color: #F44336 !important;
+    width: 70px !important;
+    margin-top: -420px !important;
+    height: 70px !important;
+    display: inline-block;
+    text-decoration: none;
+    float: right;
+    -webkit-transition: -webkit-transform .1s linear 0ms;
+    -moz-transition: -moz-transform .1s linear 0ms;
+    transition: transform .1s linear 0ms;
+    transform: rotate(44deg);
+}
+
+ul._child_collapzion {
+    position: absolute;
+    margin-top: 10px !important;
+    list-style: none;
+    padding: 1px;
+    top: -25px;
+    left: 0;
+    width: 100%;
+    overflow: auto;
+    z-index: 10;
+    -webkit-transform: translate3d(0, -100%, 0);
+    -moz-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    -webkit-transition: -webkit-transform .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+}
+a._collapz_child i {
+    margin-top: 20px !important;
+}
+span._title {
+    position: relative;
+    left: 8px;
+    color: #0F397A !important;
+    padding: 3px;
+    font-size: 16px !important;
+    top: 0px !important;
+    font-family: Gotham !important;
+    font-weight: bold !important;
+}
+</style>

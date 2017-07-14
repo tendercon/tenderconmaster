@@ -401,7 +401,8 @@ class UsersController < ApplicationController
                                             :email => params[:email],
                                             :trade_name => params[:trade_name],
                                             :mobile_number => params[:mobile],
-                                            :position => params[:position])
+                                            :position => params[:position],
+                                            :experience => params[:experience])
       user_info = UserInfo.where(:user_id => user.id)
 
       if user_info.present?
@@ -825,22 +826,46 @@ class UsersController < ApplicationController
   def profile
     @user = User.find(params[:id])
     @avatar = Avatar.new
-    #if @user.avatars
-    #  @user.avatars.each do |a|
-    #    puts "ID:#{a.id}"
-    #    @avatar_id = a.id
-    #    @avatar_filename = a.image_file_name
-    #    @link = "http://"+request.host_with_port+"/assets/avatar/image/#{@avatar_id}/original/#{@avatar_filename}"
-    #  end
-    #end
+    @positions = Position.all 
 
-    if @user.user_info
-      #@user.user_infos.each do |a|
-        # puts "ID:#{a.id}"
-        # @linkedin = a.linkedin
-        # @about_me = a.about_me
-      #end
+    @percentage = 0
+
+    if @user.avatar.present?
+      if @user.avatar.image.present?
+         @percentage += 25
+      end  
+    end 
+
+    if @user.user_info.present?
+      if @user.user_info.linkedin.present?
+        @percentage += 10
+      end 
+    end 
+
+    if @user.first_name.present? || @user.last_name.present?
+      @percentage += 10
+    end  
+
+    if @user.trade_name.present?
+      @percentage += 15
+    end 
+
+    if @user.position.present?
+      @percentage += 15
+    end 
+
+    if @user.experience.present?
+      @percentage += 10
     end
+
+    if @user.email.present?
+      @percentage += 5
+    end 
+
+    if @user.mobile_number.present?
+      @percentage += 10
+    end 
+
   end
 
   def edit_profile
@@ -910,11 +935,68 @@ class UsersController < ApplicationController
     @company_profile = CompanyProfile.new
     @user = User.find(session[:user_logged_id])
     @added_company_profile = CompanyProfile.where(:user_id => @user.id).first
-
+    @positions = Position.all
+    @avatar = Avatar.new
     if @added_company_profile.present?
       @about_me = @added_company_profile.about_me
       puts "@about_me1:#{@about_me.present?}"
     end
+
+    @percentage = 0
+
+    if @user.company_avatar.present?
+      if @user.company_avatar.image.present?
+         @percentage += 15
+      end  
+    end  
+
+    if @user.address.present?
+      if @user.address.location.present?
+        @percentage += 10
+      end  
+    end  
+
+    if @user.abn.present?
+      @percentage += 15
+    end 
+
+    if @added_company_profile.present?
+      if @added_company_profile.acn.present?
+        @percentage += 5
+      end 
+
+      if @added_company_profile.position.present?
+        @percentage += 2
+      end  
+
+      if @added_company_profile.contact.present?
+        @percentage += 3
+      end  
+
+      if @added_company_profile.website.present? || @added_company_profile.linkedin.present? || @added_company_profile.facebook.present? || @added_company_profile.twitter.present?
+        @percentage += 15
+      end  
+
+      if @added_company_profile.contact_number.present?
+        @percentage += 3
+      end 
+
+      if @added_company_profile.email.present?
+        @percentage += 2
+      end  
+
+      if @added_company_profile.number_of_employees.present?
+        @percentage += 5
+      end 
+
+      if @added_company_profile.commenced_operation.present?
+        @percentage += 5
+      end  
+
+      if @added_company_profile.project_range.present?
+        @percentage += 5
+      end  
+    end 
 
     if @added_company_profile.present?
       if @added_company_profile.project_range.present?
@@ -1158,13 +1240,20 @@ class UsersController < ApplicationController
           :fax_number => params[:fax_number],
           :website => params[:website],
           :linkedin => params[:linkedin],
-          :facebook => params[:fb],
-          :acn => params[:acn]
+          :facebook => params[:facebook],
+          :twitter => params[:twitter],
+          :acn => params[:acn],
+          :position => params[:position],
+          :email => params[:contact_email],
+          :contact => params[:company_contact]
       )
-
+       
       if params[:suburb].present?
         Address.where(:user_id => @user_id).update_all(:location => params[:address],:suburb => params[:suburb],:postcode => params[:postcode],:state => params[:state], :timezone => params[:timezone])
       else
+
+        
+
         Address.where(:user_id => @user_id).update_all(:location => params[:address])
       end
 
@@ -1222,6 +1311,10 @@ class UsersController < ApplicationController
       @company_profile.linkedin = params[:linkedin]
       @company_profile.facebook = params[:fb]
       @company_profile.acn = params[:acn]
+      @company_profile.position = params[:position],
+      @company_profile.email = params[:contact_email],
+      @company_profile.contact = params[:company_contact]
+      @company_profile.position = params[:position]
       @company_profile.save
 
 
@@ -1283,21 +1376,37 @@ class UsersController < ApplicationController
         user.company_avatar.update_attributes(:image => params[:avatar])
       else
         if params[:avatar].present?
-          avatar = CompanyAvatar.new
-          avatar.image = params[:avatar]
-          avatar.user_id = session[:user_logged_id]
-          avatar.save
+          @avatar = CompanyAvatar.new
+          @avatar.image = params[:avatar]
+          @avatar.user_id = user.id
+          @avatar.save
         end
       end
-      render :json => { :state => 'valid',:avatar_url => user.company_avatar.image.url(:original)}
+      puts "user.company_avatar ==> #{user.company_avatar.present?}"
+      if user.company_avatar.present?
+        render :json => { :state => 'valid',:avatar_url => user.company_avatar.image.url(:original), :id => user.company_avatar.id}
+      else
+        puts "user.company_avatar ===> #{user.company_avatar.inspect}"
+        puts "user.company_avatar ===> #{@avatar.image.url(:original).inspect}"
+       render :json => { :state => 'valid',:avatar_url => @avatar.image.url(:original), :id => @avatar.id}
+      end  
+      
     else
       render :json => { :state => 'invalid'}
     end
-
-
-
-
   end
+
+  def delete_company_avatar
+    id = params[:id]
+
+    if params[:profile].present?
+      Avatar.where(:id => id).delete_all
+    else
+      CompanyAvatar.where(:id => id).delete_all
+    end   
+    
+    render :json => { :state => 'valid'}
+  end  
 
   def create_company_avatar
     avatar = CompanyAvatar.new(company_avatar_premitted_params)
@@ -2055,6 +2164,44 @@ class UsersController < ApplicationController
     @user_plan = UserPlan.where(:user_id => @user.id).first
     puts "@user_plan =======> #{params[:id].inspect}"
 
+    @percentage = 0
+
+    if @user.avatar.present?
+      if @user.avatar.image.present?
+         @percentage += 25
+      end  
+    end 
+
+    if @user.user_info.present?
+      if @user.user_info.linkedin.present?
+        @percentage += 10
+      end 
+    end 
+
+    if @user.first_name.present? || @user.last_name.present?
+      @percentage += 10
+    end  
+
+    if @user.trade_name.present?
+      @percentage += 15
+    end 
+
+    if @user.position.present?
+      @percentage += 15
+    end 
+
+    if @user.experience.present?
+      @percentage += 10
+    end
+
+    if @user.email.present?
+      @percentage += 5
+    end 
+
+    if @user.mobile_number.present?
+      @percentage += 10
+    end 
+
     unless @user.user_subscription.present?
       UserPlan.where(:user_id => @user.id).update_all(:plan => 'STARTER PLAN $0 ')
     end
@@ -2099,7 +2246,7 @@ class UsersController < ApplicationController
         @data = render :partial => 'users/tabs/company_settings'
       else
         @positions = Position.all
-        @data = render :partial => 'users/tabs/account_settings'
+        @data = render :partial => 'users/tabs/edit_user_password'
       end
 
     elsif params[:tab] == 'overview'

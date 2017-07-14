@@ -154,6 +154,7 @@ Rails.application.routes.draw do
       post 'get_company_users'
       post 'get_billing'
       post 'dashboard_user_div'
+      post 'delete_company_avatar'
     end
   end
 

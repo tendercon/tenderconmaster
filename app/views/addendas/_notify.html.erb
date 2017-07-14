@@ -1,64 +1,96 @@
-<div class="note note-info note-bordered">
+
+<div class="row" style="margin-top: -270px">
   <div class="text-center">
-    <h3>Tendercon will send an in app notification to all your subcontrators</h3>
-    <h3>that an addendum has been issued</h3>
+    <h2 style="font-size: 30px; font-family: Gotham"><strong>ISSUE TRADE DOCUMENTS</strong></h2>
+    <h5 style="font-size: 20px;font-family: Gotham"><strong>Review and issue addendum to all quoting subcontractors</strong></h5>
   </div>
-</div>
-<div style="height: 30px"></div>
-<div class="note note-info note-bordered">
+
+  <div style="height: 30px"></div>
+
   <div class="text-center">
-    <h3>Tendercon can also send out an email to all your subcontractors for you</h3>
+    <h3 style="font-size: 24px;font-family: Gotham"><strong><%= @edited_addenda.ref_no  %></strong></h3>
     <div style="height: 10px"></div>
-    <button class="btn btn-default sent_mail">
-      Sent Email
-    </button>
   </div>
 </div>
 
+
 <%= form_tag(issue_addenda_addendas_path)  do %>
-  <div class="email_div" style="display: none">
-    <div class="portlet light bordered">
+  <div class="email_div" >
+    <div class="portlet">
       <div class="portlet-body form">
         <div class="form-body">
-            <div class="form-group">
-              <label class="control-label">Subject</label> 
-              <input maxlength="200" type="text"  class="form-control"  name="subject"  value="<%= @edited_addenda.ref_no %>"/> 
-            </div>
-          <div class="form-group">
-            <label for="comment">Details</label>
-            <textarea class="form-control" rows="5" name="details" value="<%= @edited_addenda.details %>"><%= @edited_addenda.details %></textarea>
+          <div class="form-group" >
+            <h4 style="font-family: Gotham; font-size: 16px"><strong>ISSUE @</strong></h4>
+            <input maxlength="200" type="text" required="required" class="form-control tendercon_id" readonly="readonly"   value="<%= @edited_addenda.created_at.strftime("%H:%M %d/%m/%Y ") %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
+
           </div>
+          <div class="form-group" style="margin-top: -15px">
+              <h4 style="font-family: Gotham; font-size: 16px"><strong>ADDENDA TYPE</strong></h4>
+              <input maxlength="200" type="text" required="required" class="form-control" readonly="readonly"   value="Documents" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
+          </div> 
+          <div class="form-group" style="margin-top: -15px">
+              <h4 style="font-family: Gotham; font-size: 16px"><strong>ISSUE TO</strong></h4>
+              <input maxlength="200" type="text" required="required" class="form-control" readonly="readonly"   value="ALL Quoting subcontractors" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
+          </div>  
+          <div class="form-group" style="margin-top: -15px">
+              <h4 style="font-family: Gotham; font-size: 16px"><strong>SUBJECT</strong></h4>
+              <input maxlength="200" type="text" required="required" class="form-control" readonly="readonly"   value="<%= @edited_addenda.subject %>" style="background-color: #F6F6F6;border-color: #F6F6F6"/> 
+          </div>  
+          <div class="form-group" style="margin-top: -15px">
+            <h4 style="font-family: Gotham; font-size: 16px"><strong>NOTES TO SCs</strong></h4>
+            <%= text_area_tag('details',@edited_addenda.details .present? ? @edited_addenda.details .html_safe : nil,:cols => '109',:rows => '8',:class => 'form-control wysihtml5', :style => "background-color: #F6F6F6;border-color: #F6F6F6") %> 
+          </div>
+
+          <% if @documents.present? %>
+            <div class="portlet-body form">
+              <div class="form-body">
+                <div class="row">
+                  <div class="col-md-12" style="margin-top: -50px;margin-left:-20px">
+                    <h3 style="font-family: Gotham"><strong>TRADE DOCUMENTS</strong></h3>
+                    <h2 style="font-size: 16px;font-family: Gotham;style="margin-top: -3px"">This addendum issued the following trade documents</h2>
+                  </div>
+                  
+                  <div class="col-md-12" style="margin-top: -10px;margin-left:-20px">
+
+                    <table  class="table" id="document_table">
+                      <thead>
+                      <tr>
+                        <th class="text-center"></th>
+                        <th class="text-center"></th>
+                        <th class="text-center"></th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <% if @documents.present? %>
+                          <% @documents.each_with_index do |t,index| %>
+                              <% if session[:role] == 'Head Contractor' %>
+                                  <tr>
+                                    <td>
+                                     <%= "#{t.document_file_name}" %>
+                                      <!--<a href="<%#= "/assets/tender/document/#{t.id}/original/#{t.document_file_name}" %>" target="_blank">
+                                        <%#= t.document_file_name %><label style="display: none"><%#= "#{t.directory} #{t.document_file_name}" %></label>
+                                      </a>-->
+                                    </td>
+
+                                    <td > <%= convert_kb_to_mb t.document_file_size %> MB</td>
+                                    <td ><%= t.directory %></td>
+                                  </tr>
+
+                              <% end %>
+
+                          <% end %>
+                      <% end %>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+          
             <input type="hidden" name="id" value="<%= tender.id %>">
             <input type="hidden" name="addenda" value="<%= @edited_addenda.id %>">
-            <table class="table table-bordered responsive"  cellspacing="0" width="100%">
-              <thead>
-              <tr>
-                <th class="text-center">Notify</th>
-                <th class="text-center">Trades</th>
-                <th class="text-center">Sub Contrators</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td class="text-center">
-                  <input type="checkbox" class="document_list_master" name="document_list_master" checked>
-                </td>
-                <td class="text-center">All</td>
-                <td class="text-center"><%= tender.tender_approved_trades.count() %></td>
-              </tr>
-              <% if tender.tender_trades.present? %>
-                  <% tender.tender_trades.each do |t| %>
-                      <tr>
-                        <td class="text-center">
-                          <input type="checkbox" class="document_list" name="trades[]" value="<%= t.trade_id %>">
-                        </td>
-                        <td class="text-center"><%= get_trade_name t.trade_id %></td>
-                        <td class="text-center"><%= get_approved_trade_count(t.trade_id,t.tender_id) %></td>
-                      </tr>
-                  <% end %>
-              <% end %>
-              </tbody>
-            </table>
+            
 
         </div>
       </div>
@@ -66,16 +98,19 @@
 
   </div>
   <% if params[:addenda_type] == 'documents' %>
-    <a href="<%= review_addendas_path(:id => tender.id,:addenda => @edited_addenda.id,:addenda_type=> params[:addenda_type]) %>">
-      <button type="button" class="btn btn-danger">Back</button>
-    </a>
-  <% else %>
-    <a href="<%= new_addenda_path(:id => tender.id,:addenda => addenda.id,:addenda_type => params[:addenda_type],:review => true)  %>">
-      <button type="button" class="btn btn-danger">Back</button>
-    </a>
-  <% end %>
+    
+    <div class="form-actions text-center ">
+      
 
-  <button type="submit" class="btn btn-default">Issue Addenda</button>
+      <a href="<%= new_addenda_path(:id => @tender.id,:addenda => params[:addenda],:addenda_type => "documents",:review => true) %>">
+        <button type="submit" class="btn addenda_submit" style="color:#FFFFFF; background-color:#72bb53 ;border-radius: 2px !important;height: 36px !important;margin-right: 0px; ">
+        <p style="margin-top: 1px; font-size: 14px">
+          ISSUE ADDENDUM
+        </p>
+      </button>
+      </a>
+    </div>
+  <% end %>
 <% end %>
 
 <script>
@@ -83,6 +118,37 @@
     /*$('.sent_mail').click(function(){
       $('.email_div').show();
     });*/
+    $('#document_table').DataTable({
+      "bSort" : false,
+      "bPaginate": false,
+      "bInfo" : false,
+      "dom":'fltip',
+      "bFilter": 'false',
+      searching: false,
+      "columnDefs": [
+        { "visible": false, "targets": 2 }
+      ],
+      "order": [[ 2, 'asc' ]],
+      "displayLength": 25,
+      "drawCallback": function ( settings ) {
+        var api = this.api();
+        var rows = api.rows( {page:'current'} ).nodes();
+        var last=null;
+
+        api.column(2, {page:'current'} ).data().each( function ( group, i ) {
+          console.log("group:"+group);
+          console.log("I -------> :"+i);
+          if ( last !== group ) {
+            $(rows).eq( i ).before(
+                '<tr class="group"><td colspan="3" class="editable" id="'+ i + '" title="'+ group+ '"><strong>'+ group+ '</strong></td>' +
+                '</tr>'
+            );
+
+            last = group;
+          }
+        } );
+      }
+    } );
 
     $('.sent_mail').mouseenter(function() {
       $(this).attr("disabled", true);

@@ -31,11 +31,11 @@
             <button type="button" class="button btn-success add_folder" >
               <i class="fa fa-arrows" aria-hidden="true"></i> ADD FOLDER
             </button>
-            <button type="button" class="button btn-warning selected_btn" disabled>
+            <button type="button" class="button btn-warning selected_btn" >
               <i class="fa fa-arrows" aria-hidden="true"></i> MOVE SELECTED DOCUMENTS
             </button>
             <!--<i class="fa fa-trash remove" aria-hidden="true" onclick="return confirm('Are you sure you want to delete this item?');"></i>-->
-            <button type="button" class="button btn-danger remove_btn" disabled  onclick="return confirm('Are you sure you want to delete this item?');">
+            <button type="button" class="button btn-danger remove_btn"   onclick="return confirm('Are you sure you want to delete this item?');">
               <i class="fa fa-trash" aria-hidden="true" ></i> DELETE SELECTED DOCUMENTS
             </button>
           </div>
@@ -114,50 +114,58 @@
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close rejected_close" data-dismiss="modal">&times;</button>
-          <div class="col-md-12">
-            <h1 class="text-center">Move Files</h1>
-          </div>
-          <div class="row">
-            <div class="form-group" >
-
-            </div>
-          </div>
-        </div>
-        <br>
+        
         <div class="modal-body">
-          <div class="scroller" style="height:400px" data-always-visible="1" data-rail-visible1="1">
+          <div>
             <div class="row">
               <div class="col-md-12">
-                <p class="text-center" style="font-size: 14px;font-weight: bold" >Move to existing folder</p>
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="form-group"> 
-                      <%= select_tag "directory",content_tag(:option,'None',:value=>'')+options_for_select(@new_direcotires.uniq),{:class=> 'form-control categories',:required => true} %> 
+                <img src="/img/logos/multiply.png"  class="pull-right document_close"   style="margin-top: -10px;margin-right: -10px;  width: 12px;height: 12px"/>
+                
+                <div class="col-md-12">
+                  <h2 class="text-center" style="font-size: 30px;font-family: Gotham">
+                    <strong>MOVE SELECTED FILE/S</strong>
+                  </h2>
+                  <p style="font-size: 16px;margin-top:-5px" class="text-center">
+                    Choose from the existing document folders you wish to add your selected file/s to
+                  </p>
+                 
+                  
+                </div>
+          
+         
+                
+                <div class="text-center">
+                    <h5 style="font-size: 20px; font-family: Gotham">
+                     <strong> Existing document folders</strong>
+                    </h5>
+                    <div class="col-md-6 col-md-offset-2">
+                      <%= select_tag "directory",content_tag(:option,'Choose one Folder',:value=>'Choose one Folder')+options_for_select(@new_direcotires.uniq),{:class=> 'form-control categories',:required => true, :style => "width: 350px"} %> 
                     </div> 
-                  <p class="text-center" style="font-size: 18px;">OR</p>
-                  <input type="hidden" class="document_ids">
+                    <input type="hidden" class="document_ids">
+                  <!-- <p class="text-center" style="font-size: 18px;">OR</p>
+                  <input type="hidden" class="document_ids"> -->
                 </div>
               </div>
 
-              <div class="col-md-6 col-md-offset-3">
+              <!-- <div class="col-md-6 col-md-offset-3">
                 <div class="form-group">
                   <p class="text-center" style="font-size: 14px;font-weight: bold" >Move to new folder</p>
                   <input type="text" class="form-control newly_folder" >
                 </div>
               </div>
-
-
+ -->
+              <div style="height: 10px"></div>
               <div class="col-md-12 col-md-offset-4">
                 <a href="#!">
-                  <button class="btn btn-info move_documents" data-dismiss="modal" type="button">MOVE DOCUMENTS</button>
+                  <button class="btn btn-info move_documents" data-dismiss="modal" type="button" style="color:#FFFFFF; background-color:#72bb53 ;border-radius: 2px !important;height: 36px !important;border-color: #72bb53">
+                  MOVE DOCUMENTS</button>
                 </a>
               </div>
+             
+              <div style="height: 10px"></div>
             </div>
 
-            <div class="row">
-
-            </div>
+           
 
           </div>
 
@@ -171,6 +179,7 @@
 
 <input type="hidden" class="tender_id" value="<%= @tender.id %>">
 <script>
+  
   $('.unzip').prop('checked', true);
   if($('.unzip').is(":checked")){
     $('.unzip_file').val(true);
@@ -304,7 +313,7 @@
           $('.categories').html('');
           $('.categories').append($('<option/>', {
             value: '',
-            text : 'None'
+            text : 'Choose one folder'
           }));
           $.each(data.directories, function (index, value) {
 
@@ -467,9 +476,7 @@
             $('.remove_btn').prop('disabled', true);
           }
         });
-        /*$('.selected_btn').hide();
-        $('.remove_btn').hide();
-        $('.add_folder').hide();*/
+      
       }
 
 
@@ -503,9 +510,7 @@
       }).done(function (data) {
         $('.selected').show();
         $('.remove').show();
-        /*$('.selected_btn').hide();
-        $('.remove_btn').hide();
-        $('.add_folder').hide();*/
+        
         $('.selected_btn').prop('disabled', true);
         $('.remove_btn').prop('disabled', true);
         $('.folder').show();
@@ -583,16 +588,7 @@
     });
 
     $('.add_folder').click(function(){
-      var tender_id = $('.tender_id').val();
-      $.ajax({
-        method: "POST",
-        data: {tender_id:tender_id},
-        url: "/tenders/add_directory"
-      }).done(function (data) {
-        //$('.uploaded_docs').html(data);
-        $('#new_folder_modal').modal('show');
-        $('.document_div_table').html(data);
-      });
+      $('#new_folder').modal('show');
     });
 
     function create_new_folder(e) {
@@ -617,6 +613,10 @@
         return rex.test($(this).text());
       }).show();
 
+    })
+
+    $('.document_close').click(function(){
+      $('#remove_file_Modal').modal('hide');
     })
   })
 </script>

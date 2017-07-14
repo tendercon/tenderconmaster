@@ -1,95 +1,153 @@
-<div style="height: 30px"></div>
-<div class="profile-sidebar">
-  <!-- PORTLET MAIN -->
-  <div class="portlet light profile-sidebar-portlet ">
-    <!-- SIDEBAR USERPIC -->
-    <div class="profile-userpic">
-      <% if @user.avatar.present? %>
-          <% if File.exist?(@user.avatar.image.path(:original)) %>
-              <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-          <% else %>
-              <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-          <% end %>
-      <% else %>
-          <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-responsive" alt="" style="width: 180px !important; height: 170px !important;">
-      <% end %>
-    </div>
+<div class="col-md-12 profile_div">
+    
+      <div class="text-center">
+        <input type="hidden" class="address_for_map" value="<%= @user.address.present? ? "#{@user.address.location}" : nil %>">
+        <h2 style="font-family: Gotham;font-size: 30px"><strong>COMPANY PROFILE</strong></h2>
+        <h4 style="font-family: Gotham;font-size: 16px">Your Company Profile Page On Display to the Tendercon Community</h4>
+        <div style="height: 20px"></div>
+        
+        <div class="progress" style="height: 40px;">
+          <div class="progress-bar progress-bar-success" role="  progressbar"
+            aria-valuenow="<%= @percentage %>" aria-valuemin="0" aria-valuemax="100" style="width:<%= @percentage %>%; background-color: #72bb53 ">
+              <!-- <span style="margin-top: 10px;font-size: 16px;font-family: Gotham"><%= @percentage %>% Complete</span>
+               -->
+          </div>
+        </div>
+        <div style="height: 30px"></div>
+        <div class="profile-userpic">
+            <% if @user.avatar.present? %>
+                <% if File.exist?(  @user.avatar.image.path(:original)) %>
+                    <img src="<%= @user.avatar.image.url(:original) %>" class="img-circle " alt="" style="width: 250px !important; height: 250px !important;">
+                <% else %>
+                    <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-circle " alt="" style="width: 250px !important; height: 250px !important;">
+                <% end %>
+            <% else %>
+                <img src="http://www.timesection.com/wp-content/uploads/2014/11/no-logo.jpg" class="img-circle " alt="" style="width: 250px !important; height: 250px !important;">
+            <% end %>
+        </div>
+        <div style="height: 20px"></div>
+        <h3 style="font-family: Gotham;font-size: 24px"><strong><%= "#{@user.first_name} #{@user.last_name}" %></strong></h3>
+        <div style="height: 20px"></div>
+        <ul class="list-inline">
+          
+          <li class="list-inline-item">
+            <a href="<%="#{@user.user_info.present? ? @user.user_info.linkedin : nil}" %>">
+              <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
+            </a>
+            
+          </li>
+        </ul>
+        <div style="height: 20px"></div>
+      </div>
+      
+      <div style="height: 10px"></div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+          <u>
+            <h3 style="font-family: Gotham;font-size: 24px">
+              PROFESSIONAL DETAILS
+            </h3>  
+          </u>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            NAME
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{@user.first_name} #{@user.last_name}" %></strong>
+         </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            COMPANY
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{@user.trade_name}" %></strong>
+         </h4>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            POSITION
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{get_postion @user.position}" %></strong>
+         </h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            TOTAL YEARS OF EXPERIENCE
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= @user.experience %></strong>
+         </h4>
+        </div>
+      </div>
+      
+      
+      <div style="height: 10px"></div> 
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-6">
+          <u>
+            <h3 style="font-family: Gotham;font-size: 24px">
+              CAONTACT DETAILS
+            </h3>  
+          </u>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            EMAIL
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= @user.email %></strong>
+         </h4>
+        </div>
+      </div>
 
-    <div class="profile-usertitle">
-      <div class="profile-usertitle-name" style="color: #2C3E50;"> <%= "#{@user.first_name} #{@user.last_name}" %> </div>
-      <div class="profile-usertitle-job" style="color: #2C3E50;"> <%= "#{ get_postion @user.position}" %>  </div>
-    </div>
-    <!-- END SIDEBAR USER TITLE -->
-    <!-- SIDEBAR BUTTONS -->
-    <div class="profile-userbuttons">
+      <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3">
+          <h4 style="font-family: Gotham;font-size: 16px">
+            MOBILE
+          </h4>
+        </div>
+        <div class="col-md-5">
+          <h4 style="font-family: Gotham;font-size: 16px">
+          <strong><%= "#{@user.mobile_number}" %></strong>
+         </h4>
+        </div>
+      </div>
+      
+      
+      <div style="height: 10px"></div> 
 
-    </div>
-    <!-- END SIDEBAR BUTTONS -->
-    <!-- SIDEBAR MENU -->
-    <div class="profile-usermenu">
-
-    </div>
-    <!-- END MENU -->
   </div>
-  <!-- END PORTLET MAIN -->
-  <!-- PORTLET MAIN -->
-  <div class="portlet light ">
-    <!-- STAT -->
-    <!--<div class="row list-separated profile-stat">
-
-    </div>-->
-    <!-- END STAT -->
-    <div>
-
-    </div>
-  </div>
-  <!-- END PORTLET MAIN -->
-</div>
-<!-- END BEGIN PROFILE SIDEBAR -->
-<!-- BEGIN PROFILE CONTENT -->
-<div class="profile-content">
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table table-bordered">
-        <thead>
-        <tr>
-          <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Details</strong></td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td class="col-md-3">Full Name</td>
-          <td><%= "#{@user.first_name} #{@user.last_name}" %></td>
-        </tr>
-        <tr>
-          <td>Position</td>
-          <td><%= "#{get_postion @user.position}" %></td>
-        </tr>
-        <tr>
-          <td>Company</td>
-          <td><%= "#{@user.trade_name}" %></td>
-        </tr>
-        <tr>
-          <td>About</td>
-          <td><%= "#{@user.user_info.present? ? @user.user_info.about_me.html_safe : nil}" %></td>
-        </tr>
-        <tr>
-          <td colspan="2" style="background-color: #2C3E50;color: white;"><strong>Contact</strong></td>
-        </tr>
-        <tr>
-          <td>Email</td>
-          <td><%= "#{@user.email}" %></td>
-        </tr>
-        <tr>
-          <td>Mobile</td>
-          <td><%= "#{@user.mobile_number}" %></td>
-        </tr>
-        <tr>
-          <td>Linkedin</td>
-          <td><%="#{@user.user_info.present? ? @user.user_info.linkedin : nil}" %></td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>

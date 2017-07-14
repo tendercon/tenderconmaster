@@ -11,8 +11,10 @@ class AddendasController < ApplicationController
     @directories = []
     @tender = Tender.find(params[:id])
     @addenda = Addenda.new
-    @documents = TenderDocument.where(:tender_id => @tender.id,:action_type => 'addenda').where("addenda_id is null").order('created_at desc,directory desc')
-    @edited_addenda = Addenda.where(:id => params[:addenda]).last
+    @documents = TenderDocument.where(:tender_id => @tender.id,:action_type => 'addenda').order('created_at desc,directory desc')
+    puts "@documents =====> #{@documents.inspect}"
+    @edited_addenda = Addenda.where(:id => params[:addenda], :tender_id => @tender.id).last
+    puts "@edited_addenda ======> #{@edited_addenda.inspect}"
     if @edited_addenda.present?
       @ref_num  =  @edited_addenda.ref_no
     else
@@ -183,11 +185,12 @@ class AddendasController < ApplicationController
       @addenda.details = details
       @addenda.tender_id = params[:tender_id]
       @addenda.user_id = session[:user_logged_id]
-      @addenda.addenda_type = params[:addenda_type]
+      @addenda.addenda_type = params[:addenda][:addenda_type]
       @addenda.ref_no = params[:addenda][:ref_no]
       @addenda.status = 'incomplete'
-      addendas = Addenda.where(:ref_no => params[:addenda][:ref_no], :tender_id => params[:tender_id],:user_id => session[:user_logged_id],:status => 'completed')
+      addendas = Addenda.where(:ref_no => params[:addenda][:ref_no], :tender_id => params[:tender_id],:user_id => session[:user_logged_id],:status => nil)
 
+      puts "addendas ======> #{addendas.inspect}"
       unless addendas.present?
         if @addenda.save
           if params[:addenda_type] == 'details'

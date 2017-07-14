@@ -154,7 +154,7 @@
     <li class="dropdown dropdown-user">
       <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
         <% if @user.avatar.present? %>
-            <% if File.exist?(@user.avatar.image.path(:original)) %>
+            <% if @user.avatar.image.present? && File.exist?(@user.avatar.image.path(:original)) %>
                 <img src="<%= @user.avatar.image.url(:original) %>"  alt="" style="width: 45px !important; height: 45px !important;">
             <% else %>
                 <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"  alt="" style="width: 45px !important; height: 45px !important;">

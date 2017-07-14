@@ -19,8 +19,9 @@
 
 .document_dropzone{
     height: 300px;
-    border: 2px dashed #cccccc;
+    border: 2px dashed #1464f6;
     text-align: center;
+    background-color: #d4e3fc;
 }
 
 .document_dropzone.dragover{
@@ -30,8 +31,9 @@
 
 .new_drop_zone{
     height: 300px;
-    border: 2px dashed #cccccc;
+    border: 2px dashed #1464f6;
     text-align: center;
+    background-color: #d4e3fc;
 }
 
 .new_drop_zone.dragover{
@@ -41,8 +43,9 @@
 
 .addenda_dropzone{
     height: 300px;
-    border: 2px dashed #cccccc;
+    border: 2px dashed #1464f6;
     text-align: center;
+    background-color: #d4e3fc;
 }
 
 .addenda_dropzone.dragover{

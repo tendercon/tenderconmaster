@@ -6,107 +6,179 @@
         <% if !params[:control].present? %>
           <div class="row step-line">
             <% if params[:info] == 'true' %>
-                <div class="col-md-2 mt-step-col active">
-                  <div class="mt-step-number bg-white font-grey">1</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Details</div>
+                <div class="col-md-2 mt-step-col first done">
+                  <div class="mt-step-number bg-white">
+                    <i class="fa fa-list-alt"></i>
+                  </div>
+                  <div class="mt-step-title uppercase font-grey-cascade">
+                    <p style="font-size: 16px"><strong>DETAILS</strong></p>
+                  </div>
+                  <div class="mt-step-content font-grey-cascade"></div>
                 </div>
             <% else %>
-                <div class="col-md-2 mt-step-col done">
-                  <div class="mt-step-number bg-white font-grey">1</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Details</div>
+                <div class="col-md-2 mt-step-col first done">
+                  <div class="mt-step-number bg-white">
+                    <i class="fa fa-check" aria-hidden="true"></i>
+                  </div>
+                  <div class="mt-step-title uppercase font-grey-cascade">
+                    <p style="font-size: 16px; color: #929292">DETAILS</p>
+                  </div>
+                  <div class="mt-step-content font-grey-cascade"></div>
                 </div>
             <% end %>
 
             <% if params[:trades] == 'true' %>
-                <div class="col-md-2 mt-step-col active">
-                  <div class="mt-step-number bg-white font-grey">2</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
+                <div class="col-md-2 mt-step-col done">
+                  <div class="mt-step-number bg-white">
+                    <i class="fa fa-briefcase"></i>
+                  </div>
+                  <div class="mt-step-title uppercase font-grey-cascade">
+                    <p style="font-size: 16px"><strong>TRADES</strong></p>
+                  </div>
+                  <div class="mt-step-content font-grey-cascade"></div>
                 </div>
             <% else %>
                 <% if params[:document] == 'true' || params[:package] == 'true' || params[:invites] == 'true' || params[:reviews] == 'true' %>
                     <div class="col-md-2 mt-step-col done">
-                      <div class="mt-step-number bg-white font-grey">2</div>
-                      <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
+                      <div class="mt-step-number bg-white">
+                        <i class="fa fa-check" aria-hidden="true" ></i>
+                      </div>
+                      <div class="mt-step-title uppercase font-grey-cascade">
+                        <p style="font-size: 16px; color: #929292">TRADES</p>
+                      </div>
+                      <div class="mt-step-content font-grey-cascade"></div>
                     </div>
                 <% else %>
                     <div class="col-md-2 mt-step-col">
-                      <div class="mt-step-number bg-white font-grey">2</div>
-                      <div class="mt-step-title uppercase font-grey-cascade">Trades</div>
+                      <div class="mt-step-number bg-white">
+                        <i class="fa fa-briefcase" style="color: #929292"></i>
+
+                      </div>
+                      <div class="mt-step-title uppercase font-grey-cascade">
+                        <p style="font-size: 16px; color: #929292">TRADES</p>
+                      </div>
+                      <div class="mt-step-content font-grey-cascade"></div>
                     </div>
+
                 <% end %>
 
             <% end %>
 
 
             <% if params[:document] == 'true' %>
-                <div class="col-md-2 mt-step-col active">
-                  <div class="mt-step-number bg-white font-grey">3</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
+
+                <div class="col-md-2 mt-step-col done">
+                  <div class="mt-step-number bg-white">
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  </div>
+                  <div class="mt-step-title uppercase font-grey-cascade">
+                    <p style="font-size: 16px"><strong>DOCUMENTS</strong></p>
+                  </div>
+                  <div class="mt-step-content font-grey-cascade"></div>
                 </div>
+
             <% else %>
               <% if params[:package] == 'true' || params[:invites] == 'true' || params[:reviews] == 'true' %>
-                <div class="col-md-2 mt-step-col done">
-                  <div class="mt-step-number bg-white font-grey">3</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
-                </div>
+                    <div class="col-md-2 mt-step-col done">
+                      <div class="mt-step-number bg-white">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </div>
+                      <div class="mt-step-title uppercase font-grey-cascade">
+                        <p style="font-size: 16px; color: #929292">DOCUMENTS</p>
+                      </div>
+                      <div class="mt-step-content font-grey-cascade"></div>
+                    </div>
               <% else %>
-                <div class="col-md-2 mt-step-col">
-                  <div class="mt-step-number bg-white font-grey">3</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
-                </div>
+                    <div class="col-md-2 mt-step-col">
+                      <div class="mt-step-number bg-white">
+                        <i class="fa fa-file-text-o" aria-hidden="true" style="color: #929292"></i>
+
+                      </div>
+                      <div class="mt-step-title uppercase font-grey-cascade">
+                        <p style="font-size: 16px; color: #929292">Documents</p>
+                      </div>
+                      <div class="mt-step-content font-grey-cascade"></div>
+                    </div>
               <% end %>
 
             <% end %>
 
-            <% if params[:package] == 'true'  %>
-                <div class="col-md-2 mt-step-col active">
+            <%# if params[:package] == 'true'  %>
+                <!--<div class="col-md-2 mt-step-col active">
                   <div class="mt-step-number bg-white font-grey">4</div>
                   <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
-                </div>
-            <% else %>
-                <% if  params[:invites] == 'true' ||  params[:reviews] == 'true' %>
-                    <div class="col-md-2 mt-step-col done">
+                </div>-->
+            <%# else %>
+                <%# if  params[:invites] == 'true' ||  params[:reviews] == 'true' %>
+                   <!-- <div class="col-md-2 mt-step-col done">
                       <div class="mt-step-number bg-white font-grey">4</div>
                       <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
-                    </div>
-                <% else %>
-                    <div class="col-md-2 mt-step-col">
+                    </div>-->
+                <%# else %>
+                    <!--<div class="col-md-2 mt-step-col">
                       <div class="mt-step-number bg-white font-grey">4</div>
                       <div class="mt-step-title uppercase font-grey-cascade">Packages</div>
-                    </div>
-                <% end %>
+                    </div>-->
+                <%# end %>
 
-            <% end %>
+            <%# end %>
 
             <% if params[:invites] == 'true'  %>
-                <div class="col-md-2 mt-step-col active">
-                  <div class="mt-step-number bg-white font-grey">5</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
+                <div class="col-md-2 mt-step-col done">
+                  <div class="mt-step-number bg-white">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                  </div>
+                  <div class="mt-step-title uppercase font-grey-cascade">
+                    <p style="font-size: 16px"><strong>INVITES SCS</strong></p>
+                  </div>
+                  <div class="mt-step-content font-grey-cascade"></div>
                 </div>
             <% else %>
                 <% if    params[:reviews] == 'true' %>
                     <div class="col-md-2 mt-step-col done">
-                      <div class="mt-step-number bg-white font-grey">5</div>
-                      <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
+                      <div class="mt-step-number bg-white">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </div>
+                      <div class="mt-step-title uppercase font-grey-cascade">
+                        <p style="font-size: 16px; color: #929292">INVITES SCS</p>
+                      </div>
+                      <div class="mt-step-content font-grey-cascade"></div>
                     </div>
                 <% else %>
                     <div class="col-md-2 mt-step-col">
-                      <div class="mt-step-number bg-white font-grey">5</div>
-                      <div class="mt-step-title uppercase font-grey-cascade">Invitations</div>
+                      <div class="mt-step-number bg-white">
+                        <i class="fa fa-user" aria-hidden="true" style="color: #929292"></i>
+                      </div>
+                      <div class="mt-step-title uppercase font-grey-cascade">
+                        <p style="font-size: 16px; color: #929292">INVITES SCS</p>
+                      </div>
+                      <div class="mt-step-content font-grey-cascade"></div>
                     </div>
+
                 <% end %>
 
             <% end %>
 
             <% if params[:reviews] == 'true' %>
-                <div class="col-md-2 mt-step-col active">
-                  <div class="mt-step-number bg-white font-grey">6</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Review</div>
+                <div class="col-md-2 mt-step-col done last">
+                  <div class="mt-step-number bg-white">
+                    <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                  </div>
+                  <div class="mt-step-title uppercase font-grey-cascade">
+                    <p style="font-size: 16px"><strong>REVIEW AND PUBLISH</strong></p>
+                  </div>
+                  <div class="mt-step-content font-grey-cascade"></div>
                 </div>
+
             <% else %>
-                <div class="col-md-2 mt-step-col">
-                  <div class="mt-step-number bg-white font-grey">6</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Review</div>
+                <div class="col-md-2 mt-step-col last">
+                  <div class="mt-step-number bg-white">
+                    <i class="fa fa-bullhorn" aria-hidden="true" style="color:#929292"></i>
+                  </div>
+                  <div class="mt-step-title uppercase font-grey-cascade">
+                    <p style="font-size: 16px; color: #929292">REVIEW AND PUBLISH</p>
+                  </div>
+                  <div class="mt-step-content font-grey-cascade"></div>
                 </div>
             <% end %>
 
@@ -116,14 +188,13 @@
       </div>
     </div>
   </div>
-  <hr style="width: 100%; color: grey; height: 1px; background-color:lightgrey;" />
+  <!-- <hr style="width: 100%; color: grey; height: 1px; background-color:lightgrey;" /> -->
 </div>
 
-<div style="height: 5px;"></div>
+
 
 
 <div class="row"> 
-
   <% if !params[:trades].present? && !params[:document].present? && !params[:package].present? && !params[:invites].present? && !params[:reviews].present? %>
       <%= render 'info' %>
   <% end %>
@@ -357,6 +428,7 @@
 <%= render  'tenders/document_upload/add_folder_modal' %>
 <%= render  'tenders/document_upload/remove_document_modal' %>
 <%= render  'tenders/document_upload/add_files_to_document' %>
+<%= render  'tenders/document_upload/add_new_folder' %>
 
 <input type="hidden" class="step6" value="<%= params[:reviews] %>">
 <input type="hidden" class="step5" value="<%= params[:invites] %>">
@@ -371,23 +443,16 @@
 
    
 <script>
-
   var pack = $('.package').val();
   var step4 = $('.step4').val();
   var cmd = $('.cmd').val();
   //update_folder_lists();
   $
 
-//  $(window).load(function() {
-//    $('.menu-toggler').click();
-//  });
-
-
-
 
   $(document).ready(function(){
 
-
+    
 
     $('.trade_category_master').click(function(){
       var id = $(this).attr('id');
@@ -650,4 +715,3 @@
   });
 
 </script>
-

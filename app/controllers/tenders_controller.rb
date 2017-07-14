@@ -2216,13 +2216,21 @@ class TendersController < ApplicationController
     if !doc.present?
       document = TenderDocument.new
       document.tender_id = params[:tender_id]
-      document.directory = 'New Folder'
+      document.directory = params[:folder_name]
       document.user_id = session[:user_logged_id]
+      if params[:addenda_document].present?
+        document.action_type = "addenda"
+      end  
       document.save
     end
 
     @tender = Tender.find(params[:tender_id])
-    @documents = TenderDocument.where(:user_id => session[:user_logged_id],:tender_id => params[:tender_id]).order('created_at desc,directory desc')
+    if params[:addenda_document].present?
+      @documents = TenderDocument.where(:user_id => session[:user_logged_id],:tender_id => params[:tender_id], :action_type => "addenda").order('created_at desc,directory desc')
+    else
+      @documents = TenderDocument.where(:user_id => session[:user_logged_id],:tender_id => params[:tender_id]).order('created_at desc,directory desc')
+    end  
+    
 
     urls = []
     @directories = []

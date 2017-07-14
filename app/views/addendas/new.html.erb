@@ -1,147 +1,104 @@
 
-<div class="row" style="position:fixed;z-index: 1;">
-  <div class="col-md-11" style="background-color: white;border-radius:10px;margin-top: -25px">
-    <div class="container" >
+<div class="row" >
+  <div class="col-md-12" style="background-color: white;border-radius:10px;margin-top: -25px">
+    <div class="text-center" >
       <div class="mt-element-step" >
-        <div class="row step-line">
-          <% if params[:details] == 'true' %>
-              <% if params[:addenda_type] == 'details' || params[:type] == 'details' || params[:addenda_type] == 'documents' || params[:type] == 'documents' %>
-                <div class="col-md-2 mt-step-col active">
-                  <div class="mt-step-number bg-white font-grey">1</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Details</div>
-                </div>
-              <% else %>
-                <div class="col-md-3 mt-step-col done">
-                  <div class="mt-step-number bg-white font-grey">1</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Details</div>
-                </div>
-              <% end %>
-          <% else %>
-              <% if params[:updates] == 'true' || params[:documents] == 'true' || params[:notify] == 'true' %>
-                  <div class="col-md-2 mt-step-col done">
-                    <div class="mt-step-number bg-white font-grey">1</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Details</div>
+        <% if !params[:control].present? %>
+          <div class="row step-line">
+            <% if params[:info] == 'true' %>
+                <div class="col-md-4 mt-step-col first done">
+                  <div class="mt-step-number bg-white">
+                    <i class="fa fa-list-alt"></i>
                   </div>
-              <% else %>
-                  <div class="col-md-2 mt-step-col done">
-                    <div class="mt-step-number bg-white font-grey">1</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Details</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">
+                    <p style="font-size: 16px"><strong>DETAILS</strong></p>
                   </div>
-              <% end %>
-
-          <% end %>
-
-          <% if params[:addenda_type] == 'details' || params[:type] == 'details' %>
-            <% if params[:updates] == 'true' %>
-              <div class="col-md-3 mt-step-col active">
-                <div class="mt-step-number bg-white font-grey">2</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Updates</div>
-              </div>
+                  <div class="mt-step-content font-grey-cascade"></div>
+                </div>
             <% else %>
-              <% if   params[:review] == 'true' || params[:notify] == 'true' %>
-                  <div class="col-md-3 mt-step-col done">
-                    <div class="mt-step-number bg-white font-grey">2</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Updates</div>
+                <div class="col-md-4 mt-step-col first done">
+                  <div class="mt-step-number bg-white">
+                    <i class="fa fa-check" aria-hidden="true"></i>
                   </div>
-              <% else %>
-                  <div class="col-md-3 mt-step-col ">
-                    <div class="mt-step-number bg-white font-grey">2</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Updates</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">
+                    <p style="font-size: 16px; color: #929292">DETAILS</p>
                   </div>
-              <% end %>
-
+                  <div class="mt-step-content font-grey-cascade"></div>
+                </div>
             <% end %>
-          <% else %>
 
-            <% if params[:documents] == 'true'  %>
-              <div class="col-md-4 mt-step-col active">
-                <div class="mt-step-number bg-white font-grey">2</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
-              </div>
-            <% else %>
-              <% if params[:notify] == 'true' %>
+            
+
+
+            <% if params[:documents] == 'true' %>
+
                 <div class="col-md-4 mt-step-col done">
-                  <div class="mt-step-number bg-white font-grey">2</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
+                  <div class="mt-step-number bg-white">
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  </div>
+                  <div class="mt-step-title uppercase font-grey-cascade">
+                    <p style="font-size: 16px"><strong>ATTACH DOCUMENTS</strong></p>
+                  </div>
+                  <div class="mt-step-content font-grey-cascade"></div>
                 </div>
-              <% else %>
-                <div class="col-md-4 mt-step-col">
-                  <div class="mt-step-number bg-white font-grey">2</div>
-                  <div class="mt-step-title uppercase font-grey-cascade">Documents</div>
-                </div>
-              <% end %>
 
+            <% else %>
+              <% if params[:info] == 'true'  %>
+                    <div class="col-md-4 mt-step-col done">
+                      <div class="mt-step-number bg-white">
+                        <i class="fa fa-check" aria-hidden="true"></i>
+                      </div>
+                      <div class="mt-step-title uppercase font-grey-cascade">
+                        <p style="font-size: 16px; color: #929292">ATTACH DOCUMENTS</p>
+                      </div>
+                      <div class="mt-step-content font-grey-cascade"></div>
+                    </div>
+              <% else %>
+                    <div class="col-md-4 mt-step-col done">
+                      <div class="mt-step-number bg-white">
+                         <i class="fa fa-check" aria-hidden="true"></i>
+
+                      </div>
+                      <div class="mt-step-title uppercase font-grey-cascade">
+                        <p style="font-size: 16px; color: #929292">ATTACH DOCUMENTS</p>
+                      </div>
+                      <div class="mt-step-content font-grey-cascade"></div>
+                    </div>
+              <% end %>
             <% end %>
-          <% end %>
 
-          <%# if  params[:type] == 'documents' || params[:addenda_type] == 'documents'  %>
-            <%# if params[:matrix] == 'true' %>
-              <!--<div class="col-md-3 mt-step-col active">
-                <div class="mt-step-number bg-white font-grey">3</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Matrix</div>
-              </div>-->
-            <%# else %>
-              <!--<div class="col-md-3 mt-step-col done">
-                <div class="mt-step-number bg-white font-grey">3</div>
-                <div class="mt-step-title uppercase font-grey-cascade">Matrix</div>
-              </div>-->
-            <%# end %>
-          <%# end %>
-
-          <% if params[:addenda_type] == 'details' ||  params[:type] == 'details' %>
-              <% if params[:review] == 'true' %>
-                  <div class="col-md-3 mt-step-col active">
-                    <div class="mt-step-number bg-white font-grey">3</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Review</div>
+            <% if params[:notify] == 'true' %>
+                <div class="col-md-4 mt-step-col done last">
+                  <div class="mt-step-number bg-white">
+                    <i class="fa fa-bullhorn" aria-hidden="true"></i>
                   </div>
-              <% else %>
-                  <% if  params[:notify] == 'true' %>
-                      <div class="col-md-3 mt-step-col done">
-                        <div class="mt-step-number bg-white font-grey">3</div>
-                        <div class="mt-step-title uppercase font-grey-cascade">Review</div>
-                      </div>
-                  <% else %>
-                      <div class="col-md-3 mt-step-col">
-                        <div class="mt-step-number bg-white font-grey">3</div>
-                        <div class="mt-step-title uppercase font-grey-cascade">Review</div>
-                      </div>
-                  <% end %>
-
-              <% end %>
-          <% end %>
-
-          <% if params[:addenda_type] == 'details' ||  params[:type] == 'details' %>
-              <% if params[:notify] == 'true' %>
-                  <div class="col-md-4 mt-step-col active">
-                    <div class="mt-step-number bg-white font-grey">4</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Notify</div>
+                  <div class="mt-step-title uppercase font-grey-cascade">
+                    <p style="font-size: 16px;margin-left: -18px"><strong>REVIEW AND <br/> SEND</strong></p>
                   </div>
-              <% else %>
-                  <div class="col-md-4 mt-step-col ">
-                    <div class="mt-step-number bg-white font-grey">4</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Notify</div>
-                  </div>
-              <% end %>
-          <% else %>
-              <% if params[:notify] == 'true' %>
-                  <div class="col-md-4 mt-step-col active">
-                    <div class="mt-step-number bg-white font-grey">3</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Notify</div>
-                  </div>
-              <% else %>
-                  <div class="col-md-4 mt-step-col ">
-                    <div class="mt-step-number bg-white font-grey">3</div>
-                    <div class="mt-step-title uppercase font-grey-cascade">Notify</div>
-                  </div>
-              <% end %>
+                  <div class="mt-step-content font-grey-cascade"></div>
+                </div>
 
-          <% end %>
+            <% else %>
+                <div class="col-md-4 mt-step-col last">
+                  <div class="mt-step-number bg-white">
+                    <i class="fa fa-bullhorn" aria-hidden="true" style="color:#929292"></i>
+                  </div>
+                  <div class="mt-step-title uppercase font-grey-cascade">
+                    <p style="font-size: 16px; color: #929292;margin-left: -18px">REVIEW AND <br/> SEND</p>
+                  </div>
+                  <div class="mt-step-content font-grey-cascade"></div>
+                </div>
+            <% end %>
 
-        </div>
+          </div>
+        <% end %>
+
       </div>
     </div>
   </div>
+  <!-- <hr style="width: 100%; color: grey; height: 1px; background-color:lightgrey;" /> -->
 </div>
+
 
 <input type="hidden" class="tender_id" value="<%= @tender.id %>">
 <div class="row">
@@ -171,38 +128,43 @@
 </div>
 <% if params[:details] == 'true' %>
   <%= form_for(@addenda)  do |f| %>
-    <input type="hidden" name="addenda_type" value="<%= params[:type] %>">
-    <div class="portlet light bordered">
-      <div class="portlet-body form">
-        <div class="form-body">
-          <input type="hidden" name="tender_id" value="<%= @tender.id %>">
-          <input type="hidden" name="addenda_id" value="<%= @edited_addenda.present? ? @edited_addenda.id : nil %>">
-          <div class="form-group">
-            <%= f.label 'Addendum #' %>
-            <%= f.text_field :ref_no,:class => 'form-control',:value => "#{@ref_num}",:readonly => true %>
-
-          </div>
-          <div class="form-group">
-            <%= f.label :subject %>
-            <%= f.text_field :subject,:class => 'form-control',:value => @edited_addenda.present? ? @edited_addenda.subject : nil  %>
-
-          </div>
-          <div class="form-group">
-            <%= f.label :details %>
-            <%= f.text_area :details,:class => 'form-control',:rows => 5,:value => @edited_addenda.present? ? @edited_addenda.details : nil %>
-
-          </div>
-        </div>
-      </div>
+    <div class="text-center">
+      <h2>
+        ADDENDUM DETAILS
+      </h2>
+      <h4>
+        Give your quoting subcontractors a summary of this addendum
+      </h4>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <a href="<%= addendas_path(:id => @tender.id ) %>">
-          <button type="button" class="btn btn-danger">Cancel</button>
-        </a>
-        <button type="submit" class="btn btn-default">Next</button>
-      </div>
+         
+    <input type="hidden" value="<%= @tender.id %>" class="tender_id">
+    <div class="form-group">
+      <h4 style="margin-left:30px;">ADDENDUM #</h4>
+      <%= f.text_field :ref_no,:class => 'form-control',:value => @ref_num, :style => "background-color: #F6F6F6;border-color: #F6F6F6; height:28px; margin-left: 30px;margin-top: -8px;  width: 95%", :readonly => true  %>
+      <!-- <input type="text"  class="form-control addendum_number"  name="addendum_number" value="<%= @ref_num %>" style="background-color: #F6F6F6;border-color: #F6F6F6; height:28px; margin-left: 30px;margin-top: -8px;direction: rtl; text-align: left;  width: 95%" readonly="readonly"/> -->
     </div>
+    <div style="height:5px"></div>
+    <div class="form-group">
+      <h4 style="margin-left:30px">SUBJECT</h4>
+      <%= f.text_field :subject,:class => 'form-control subject',:value => @edited_addenda.present? ? @edited_addenda.subject : nil, :style => "background-color: #F6F6F6;border-color: #F6F6F6; height:28px; margin-left: 30px;margin-top: -8px;  width: 95%"  %>
+    </div>
+    <div style="height:5px"></div>
+    <div class="form-group">
+      <h4 style="margin-left:30px">NOTE TO SUBCONTRACTORS</h4>
+      <%= f.text_area :details,:class => 'form-control notes',:rows => 8,:value => @edited_addenda.present? ? @edited_addenda.details : nil, :style =>"background-color: #F6F6F6;border-color: #F6F6F6; margin-left: 30px;margin-top: -8px;  width: 95%" %>
+    </div>
+    <%= f.hidden_field :addenda_type, :value => "documents" %>
+    <input type="hidden" name="tender_id" value="<%= @tender.id %>">
+    <input type="hidden" name="addenda_id" value="<%= @edited_addenda.present? ? @edited_addenda.id : nil %>"
+    <input type="hidden" name="addenda_type" value="documents">
+    <div class="form-actions text-center pull-right">
+      <button type="submit" class="btn addenda_submit" style="color:#FFFFFF; background-color:#c0c0c0 ;border-radius: 2px !important;height: 36px !important;margin-right: 18px" disabled>
+        <p style="margin-top: 1px; font-size: 14px">
+          NEXT
+        </p>
+      </button>
+    </div>
+    <div style="height:20px"></div>
   <% end %>
 <% end %>
 
@@ -296,50 +258,58 @@
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close rejected_close" data-dismiss="modal">&times;</button>
-          <div class="col-md-12">
-            <h1 class="text-center">Move Files</h1>
-          </div>
-          <div class="row">
-            <div class="form-group" >
-
-            </div>
-          </div>
-        </div>
-        <br>
+        
         <div class="modal-body">
-          <div class="scroller" style="height:400px" data-always-visible="1" data-rail-visible1="1">
+          <div>
             <div class="row">
               <div class="col-md-12">
-                <p class="text-center" style="font-size: 14px;font-weight: bold" >Move to existing folder</p>
-                <div class="col-md-6 col-md-offset-3">
-                  <div class="form-group"> 
-                    <%= select_tag "directory",content_tag(:option,'None',:value=>'')+options_for_select(@new_direcotires.uniq),{:class=> 'form-control categories',:required => true} %> 
-                  </div> 
-                  <p class="text-center" style="font-size: 18px;">OR</p>
-                  <input type="hidden" class="document_ids">
+                <img src="/img/logos/multiply.png"  class="pull-right document_close"   style="margin-top: -10px;margin-right: -10px;  width: 12px;height: 12px"/>
+                
+                <div class="col-md-12">
+                  <h2 class="text-center" style="font-size: 30px;font-family: Gotham">
+                    <strong>MOVE SELECTED FILE/S</strong>
+                  </h2>
+                  <p style="font-size: 16px;margin-top:-5px" class="text-center">
+                    Choose from the existing document folders you wish to add your selected file/s to
+                  </p>
+                 
+                  
+                </div>
+          
+         
+                
+                <div class="text-center">
+                    <h5 style="font-size: 20px; font-family: Gotham">
+                     <strong> Existing document folders</strong>
+                    </h5>
+                    <div class="col-md-6 col-md-offset-2">
+                      <%= select_tag "directory",content_tag(:option,'Choose one Folder',:value=>'Choose one Folder')+options_for_select(@new_direcotires.uniq),{:class=> 'form-control categories',:required => true, :style => "width: 350px"} %> 
+                    </div> 
+                    <input type="hidden" class="document_ids">
+                  <!-- <p class="text-center" style="font-size: 18px;">OR</p>
+                  <input type="hidden" class="document_ids"> -->
                 </div>
               </div>
 
-              <div class="col-md-6 col-md-offset-3">
+              <!-- <div class="col-md-6 col-md-offset-3">
                 <div class="form-group">
                   <p class="text-center" style="font-size: 14px;font-weight: bold" >Move to new folder</p>
                   <input type="text" class="form-control newly_folder" >
                 </div>
               </div>
-
-
+ -->
+              <div style="height: 10px"></div>
               <div class="col-md-12 col-md-offset-4">
                 <a href="#!">
-                  <button class="btn btn-info move_documents" data-dismiss="modal" type="button">MOVE DOCUMENTS</button>
+                  <button class="btn btn-info move_documents" data-dismiss="modal" type="button" style="color:#FFFFFF; background-color:#72bb53 ;border-radius: 2px !important;height: 36px !important;border-color: #72bb53">
+                  MOVE DOCUMENTS</button>
                 </a>
               </div>
+             
+              <div style="height: 10px"></div>
             </div>
 
-            <div class="row">
-
-            </div>
+           
 
           </div>
 
@@ -369,6 +339,43 @@
 
 <script>
   $(document).ready(function(){
+
+    $('.document_close').click(function(){
+      $('#remove_file_Modal').modal('hide');
+    })
+
+    $(".subject").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".subject").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+      activate_info_btn();
+    });
+
+    $(".notes").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".notes").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+      activate_info_btn();
+    });
+
+    $('.step1_close').click(function(){
+      $('#step1').modal('hide');
+    })
+
+    function activate_info_btn(){
+      var subject = $('.subject').val();
+      var notes = $('.notes').val();
+
+      if(subject.length > 0  && notes.length > 0){
+        $('.addenda_submit').prop('disabled',false);
+        $('.addenda_submit').css({"backgroundColor": "#72bb53", "color": "#ffffff"});
+      }else{
+        $('.addenda_submit').prop('disabled',true);
+      }
+    }
+
     $('#addenda_document_table').DataTable({
       "bSort" : false,
       "bPaginate": false,
@@ -415,9 +422,9 @@
         data: {ids:ids,tender_id:tender_id},
         url: "/addendas/delete_documents"
       }).done(function (data) {
-        $('.addenda_table_list').html('');
-        $('.addenda_table_list').html(data);
-        //location.reload();
+        //$('.addenda_table_list').html('');
+        //$('.addenda_table_list').html(data);
+        location.reload();
       });
     });
 
@@ -465,8 +472,8 @@
         data: {ids:ids,new_folder_name:new_folder_name,directory:directory,tender_id:tender_id},
         url: "/addendas/move_files"
       }).done(function (data) {
-        $('.addenda_table_list').html('');
-        $('.addenda_table_list').html(data);
+        $('.addenda_document').html('');
+        $('.addenda_document').html(data);
         $('#remove_file_Modal').modal('hide');
 
       });
@@ -488,7 +495,6 @@
           indexes.push(i);
           directories.push(f.relativePath)
         }
-
       }
 
       $.each(data, function (index, file) {

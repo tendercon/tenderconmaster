@@ -1,0 +1,78 @@
+<div class="text-center">
+  <div class="modal fade" id="new_folder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:100px;border-color: #333333;" data-backdrop="false">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-body">
+          <input type="hidden" class="addenda_document">
+          <img src="/img/logos/multiply.png"  class="pull-right new_document_close"   style="margin-top: -10px;margin-right: -10px;  width: 12px;height: 12px"/>
+                
+             <h2 style="font-family: Gotham;font-size: 30px"><strong>CREATE NEW FOLDER</strong></h2>
+             <p style="font-size: 16px;margin-top: -5px;">Name the document folder you document/s will appear in.</p> 
+          </div>
+          
+          <div class="text-center">
+            <h5 style="font-family: Gotham; font-size: 20px">
+              <strong>Name of New Folder</strong>
+            </h5>
+          </div>
+          <div class="col-md-6 col-md-offset-3">
+            <input type="text" class="form-control  folder_name" placeholder="Enter New Document Folder Name" style="background-color: #F6F6F6;">
+          </div>
+          <div class="text-center"> 
+            <button class="btn btn-primary  add_new_folder_btn" style="color:#f1f1f1; background-color: #72bb53;border: 2px solid;border-radius: 2px !important;;width: 175px;height: 35px; margin-top: 30px;border-color: #72bb53"  type="button">
+              <h4 style="margin-top: 2px;font-size: 16px">CREATE FOLDER</h4>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('.add_new_folder_btn').click(function(){
+      var tender_id = $('.tender_id').val();
+      var folder_name = $('.folder_name').val();
+      var addenda_document = $('.addenda_document').val();
+     console.log("folder_name:"+folder_name);
+     console.log("tender_id:"+tender_id);
+      if(folder_name.length> 0){
+        $.ajax({
+          method: "POST",
+          data: {tender_id:tender_id,folder_name:folder_name,addenda_document:addenda_document},
+          url: "/tenders/add_directory"
+        }).done(function (data) {
+        //$('.uploaded_docs').html(data);
+          $('#new_folder').modal('hide');
+          $('#new_folder_modal').modal('show');
+          if(addenda_document.length > 0){
+            $('.addenda_document').html(data);
+          }else{
+            $('.document_div_table').html(data); 
+          }
+          
+
+        });
+      }else{
+        alert("Please put name of the filder.");
+      }
+      
+    })
+
+     
+
+    $(".folder_name").focusin(function() {
+      $(this).css({"backgroundColor": "white", "border-color": "#629c44" ,"color": "#000000"});
+    });
+    $(".folder_name").focusout(function() {
+      $(this).css({"backgroundColor": "#f6f6f6", "color": "#000000","border-color": "#f6f6f6"});
+    });
+
+    $('.new_document_close').click(function(){
+      $('#new_folder').modal('hide');
+    })
+  });
+</script>

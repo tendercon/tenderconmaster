@@ -1,4 +1,5 @@
-<%= form_tag(publish_tenders_path, :html => { :multipart => true }) do |f| %>
+<div style="margin-top: -60px">
+  <%= form_tag(publish_tenders_path, :html => { :multipart => true }) do |f| %>
     <input type="hidden" name="tender_id" value="<%= params[:info_id] %>">
     <div class="row">
 
@@ -234,13 +235,6 @@
         <% end %>
       </div>
     </div>
-
-
-
-
-
-
-
     <div class="col-md-12">
       <div class="row">
         <div class="form-group"></div>
@@ -251,16 +245,115 @@
       </p>  
 
       <p class="text-center">
-        <button type="submit" class="btn btn-lg publish_btn btn-success" disabled>PUBLISH MY TENDER</button>
+        <!--<button type="submit" class="btn btn-lg publish_btn btn-success" disabled>PUBLISH MY TENDER</button>-->
+        <button type="button" class="btn btn-lg publish_btn btn-success" disabled>PUBLISH MY TENDER</button>
       </p>
 
     </div>
 <% end %>
 
+
+<div class="modal fade" id="review_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:50px;border-color: #ffffff;border-radius: 2px;width: 90%;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+        <!--<img src="/img/logos/multiply.png"  class="pull-right review_close"   style="margin-top: -10px;margin-right: -10px;  width: 12px;height: 12px"/>-->
+        <div style="margin-top: -15px"></div>
+        <div class="text-center">
+          <h3 style="font-family: Gotham">
+            TENDER <%= @tender.tendercon_id %>  IS NOW <label style="color:#72bb53">LIVE</label>
+          </h3>
+          <p style="font-size: 16px;margin-top:-5px;color:#333333">
+            Congratulations on publishing your tender. Here's a quick summary
+            of what's happened and what's to come.
+          </p>
+          <div style="height: 15px"></div>
+
+        </div>
+        <div style="height: 0px"></div>
+        <form class="form-horizontal" >
+          <div class="row">
+            <div class="col-md-12">
+              <h5 style="font-size: 20px; margin-top: -10px">WHAT YOU'VE JUST ACCOMPLISHED</h5>
+              <div class="row" style="margin-top: -10px">
+                <div class="col-md-2" style="margin-top: 40px"><i class="fa fa-list fa-3x" aria-hidden="true" style="color: #72bb53"></i></div>
+                <div class="col-md-10" style="margin-left: -30px">
+                  <p style="font-size: 16px;color:#333333">
+                    Your tender is now published on Open Tender, where Tendercon's network of qualified subcontractors can view and apply to quote on the project.
+                  </p>
+                </div>
+              </div>
+              <div class="row" style="margin-top: -10px">
+                <div class="col-md-2" style="margin-top: 15px"><i class="fa fa-lock fa-4x" aria-hidden="true" style="color: #72bb53"></i></div>
+                <div class="col-md-10" style="margin-left: -30px;margin-top: -20px">
+                  <p style="font-size: 16px;color:#333333">
+                    All uploaded trade files and documents have been securely stored on our platform.
+                  </p>
+                </div>
+              </div>
+              <div class="row" style="margin-top: -10px">
+                <div class="col-md-2" style="margin-top: 20px"><i class="fa fa-paper-plane fa-3x" aria-hidden="true" style="color: #72bb53"></i></div>
+                <div class="col-md-10" style="margin-left: -30px;margin-top: -20px">
+                  <p style="font-size: 16px;color:#333333">
+                    All the invited subcontractors have received an email invitation to start quoting on this tender.
+                  </p>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h5 style="font-size: 20px">WHAT'S NEXT</h5>
+              <div class="row" style="margin-top: -10px">
+                <div class="col-md-2" style="margin-top: 40px"><i class="fa fa-youtube-play fa-3x" aria-hidden="true" style="color: #3d8af7"></i></div>
+                <div class="col-md-10" style="margin-left: -30px">
+                  <p style="font-size: 16px;color:#333333">
+                    Now the fun begins. View the 2-minute My Tenders tutorial on how to manage documents, subcontractors, addenda & suubcontractor submitted quotes.
+                  </p>
+                </div>
+              </div>
+              <div class="row" style="margin-top: -10px">
+                <div class="col-md-2" style="margin-top: 10px"><i class="fa fa-pencil-square-o fa-3x" aria-hidden="true" style="color: #3d8af7"></i></div>
+                <div class="col-md-10" style="margin-left: -30px;margin-top: -20px">
+                  <p style="font-size: 16px;color:#333333">
+                    Click on Manage My Tender and put it into practice!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div style="height:40px"></div>
+        <div class="form-actions text-center">
+          <button type="button" class="btn view_tutorial" style="color:#FFFFFF; background-color:#72bb53 ;border-radius: 2px !important;width: 136px;height: 36px !important;">
+            <p style="margin-top: 1px; font-size: 14px;color:#333333">
+              VIEW TUTORIAL
+            </p>
+          </button>
+          <button type="button" class="btn manage_tender" style="color:#FFFFFF; background-color:#3d8af7 ;border-radius: 2px !important;width: 176px;height: 36px !important;">
+            <p style="margin-top: 1px; font-size: 14px;color:#333333">
+              MANAGE MY TENDER
+            </p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8&libraries=places&sensor=false"></script> 
 
 <script>
   $(document).ready(function(){
+
+    $('#review_modal').modal('show');
     $('#document_table').DataTable({
       "bSort" : false,
       "bPaginate": false,

@@ -46,27 +46,7 @@
 <!--<div class="portlet light bordered">
   <div class="portlet-body form">-->
     <div class="form-body">
-      <!--<div class="row">
-        <div class="col-md-6 pull-right">
-          <label>Filter by Trade</label>
-          <div class="form-group">
-            <select class="form-control trades">
-              <%# if @trades.present? %>
-                <option value="0">All</option>
-                <%# @trades.each do |t| %>
-                  <%# if session[:role] == 'Sub Contractor' %>
-                    <%# if @trades_approved.include? t %>
-                      <option value="<%#= t %>"><%#= get_trade_name t %></option>
-                    <%# end %>
-                  <%# else %>
-                    <option value="<%#= t %>"><%#= get_trade_name t %></option>
-                  <%# end %>
-                <%# end %>
-              <%# end %>
-            </select>
-          </div>
-        </div>
-      </div>-->
+      
 
       <div class="documents">
         <table  class="table table-bordered" id="document_table">
@@ -78,11 +58,7 @@
             <th class="text-center">Size</th>
             <th class="text-center">Updated</th>
             <th class="text-center">Notes</th>
-            <%# if User.hc_role(session[:user_logged_id]) %>
-              <!--<th class="text-center">Packages</th>
-            <%# else %>
-              <th class="text-center" style="display: none">Packages</th>-->
-            <%# end %>
+           
           </tr>
           </thead>
           <tbody class="searchable">
@@ -106,17 +82,7 @@
                           <%= nil %>
                       <% end %>
                     </td>
-                    <!--<td class="text-center">
-                      <%# if (get_document_package t.id,@tender.id).to_i > 0 %>
-                          <a href="/tenders/new_tender?package=true&info_id=<%#= @tender.id %>&cmd=edit&id=<%#= t.id %>&control=true">
-                            <span class="badge progress-bar-success"><%#= get_document_package t.id,@tender.id  %></span>
-                          </a>
-                      <%# else %>
-                          <a href="/tenders/new_tender?package=true&info_id=<%#= @tender.id %>&cmd=edit&id=<%#= t.id %>&control=true">
-                            <span class="badge progress-bar-warning"><%#= get_document_package t.id,@tender.id  %></span>
-                          </a>
-                      <%# end %>
-                    </td>-->
+                    
                   </tr>
                 <% else %>
                   <% if @trades_approved.present? %>
