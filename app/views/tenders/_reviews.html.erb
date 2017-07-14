@@ -9,10 +9,7 @@
 
         </div>
 
-
-
       </div>
-
 
       <div class="col-md-12">
         <div class="portlet-body form">
@@ -246,7 +243,7 @@
 
       <p class="text-center">
         <!--<button type="submit" class="btn btn-lg publish_btn btn-success" disabled>PUBLISH MY TENDER</button>-->
-        <button type="button" class="btn btn-lg publish_btn btn-success" disabled>PUBLISH MY TENDER</button>
+        <button type="submit" class="btn btn-lg publish_btn btn-success" disabled>PUBLISH MY TENDER</button>
       </p>
 
     </div>
@@ -333,11 +330,14 @@
               VIEW TUTORIAL
             </p>
           </button>
-          <button type="button" class="btn manage_tender" style="color:#FFFFFF; background-color:#3d8af7 ;border-radius: 2px !important;width: 176px;height: 36px !important;">
+          
+          <a href="/tenders/my_tender?builders=true">
+            <button type="button" class="btn manage_tender" style="color:#FFFFFF; background-color:#3d8af7 ;border-radius: 2px !important;width: 176px;height: 36px !important;">
             <p style="margin-top: 1px; font-size: 14px;color:#333333">
               MANAGE MY TENDER
             </p>
           </button>
+          </a>
         </div>
       </div>
     </div>
@@ -352,8 +352,10 @@
 
 <script>
   $(document).ready(function(){
-
-    $('#review_modal').modal('show');
+    <% if params[:completed].present? %>
+      $('#review_modal').modal('show');
+    <% end %>
+    
     $('#document_table').DataTable({
       "bSort" : false,
       "bPaginate": false,

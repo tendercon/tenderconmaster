@@ -533,7 +533,7 @@ class TendersController < ApplicationController
 
     end
 
-    redirect_to "/tenders/completed?id=#{tender_id}"
+    redirect_to "/tenders/new_tender?reviews=true&info_id=#{tender.id}&completed=true"
   end
 
   def completed
