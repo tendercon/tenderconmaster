@@ -626,6 +626,38 @@ class TendersController < ApplicationController
         end
       end
 
+      accepted_invites = TenderInvite.where(:user_id => session[:user_logged_id], :status =>  'accepted')
+      
+      if accepted_invites.present?
+        acpt_tenders = []
+        accepted_invites.each do |ai|
+          acpt_tenders << ai.tender_id
+        end  
+      end  
+
+      if acpt_tenders.present?
+        @accepted_tenders = Tender.where(:id => acpt_tenders)
+      else  
+        @accepted_tenders = nil
+      end  
+
+      declinded_invites = TenderInvite.where(:user_id => session[:user_logged_id], :status =>  'declined')
+      
+      if declinded_invites.present?
+        dcld_tenders = []
+        declinded_invites.each do |ai|
+          dcld_tenders << ai.tender_id
+        end  
+      end  
+
+      if dcld_tenders.present?
+        @declined_tenders = Tender.where(:id => dcld_tenders)
+      else  
+        @declined_tenders = nil
+      end  
+
+      puts "@declined_tenders =======> #{@declined_tenders.inspect}"
+
       @trade_categories = TradeCategory.all
       if tender_array.present?
         @tenders = Tender.where(:id => tender_array)
@@ -976,15 +1008,10 @@ class TendersController < ApplicationController
             OpenTender.where(:tender_id => tender_id,:user_id => sc_id).destroy_all
           end
         end
-
       end
-
-
-
 
     elsif boolean_array.include? true
       puts "boolean_array ---------------> "
-
 
       invited_user = TenderInvite.where(:tender_id => tender_id, :user_id => params[:sc_id])
 
@@ -1055,8 +1082,13 @@ class TendersController < ApplicationController
         open_tender.save
 
       end
-
-      invited_user = TenderInvite.where(:tender_id => tender_id, :user_id => params[:sc_id])
+      if ids.present?
+        invited_user = TenderInvite.where(:tender_id => tender_id, :user_id => params[:sc_id], :trade_id => ids)
+        TenderInvite.where(:tender_id => tender_id, :user_id => params[:sc_id], :trade_id => ids).update_all(:status => 'accepted', :tender_acceptance_date => Time.now)
+      else
+        invited_user = TenderInvite.where(:tender_id => tender_id, :user_id => params[:sc_id])
+      end  
+      
 
       if invited_user.present?
         invited_user.each do |iu|

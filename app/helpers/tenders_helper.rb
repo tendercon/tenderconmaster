@@ -501,6 +501,16 @@ module TendersHelper
     TenderInvite.where("tender_id = #{tender_id} and tender_acceptance_date is not null").count()
   end
 
+  def is_accepted? tender_id, user_id,trade_id
+    t = TenderInvite.where("tender_id = #{tender_id} and status='accepted' and user_id = #{user_id} and trade_id=#{trade_id}")
+    puts "t ========> #{t.inspect}"  
+    if t.present?
+      true
+    else
+      false    
+    end  
+  end
+
   def get_quote_submitted_count tender_id
     #TenderInvite.where("tender_id = #{tender_id} and status = 'accepted'").count()
     0
@@ -600,6 +610,16 @@ module TendersHelper
     else
       Time.now.strftime("%d.%m.%Y %H:%M %p")
     end
+  end
+
+  def get_tender_invite_trade tender_id,sc_id
+    invite = TenderInvite.where(:tender_id => tender_id,:user_id => sc_id).first
+
+    if invite.present?
+      invite.trade_id
+    else
+      nil   
+    end  
   end
 
   def replace_char_to_string str

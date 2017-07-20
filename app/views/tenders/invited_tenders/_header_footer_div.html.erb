@@ -1,0 +1,45 @@
+<% if params[:invited].present? %>
+  <div class="row" style="background-color: #CBE8BA">
+    <div style="height: 30px"></div>
+    <div class="col-md-12">
+      <div class="col-md-2">
+      <a href="/tenders/invited_tender">
+        <button class="btn btn-success" style="border-radius: 2px !important;background-color: #1464F6;height: 36px !important;" >
+          BACK TO LISTING 
+        </button>
+      </a>
+    </div>
+     
+    <div class="col-md-10">
+      <div class="text-center">
+        <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px">
+          Do you accept the invitation to quote on
+        </h4>
+        <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px"> 
+          <%= get_trade_name params[:trade] %>
+        </h4>
+
+        <button class="btn btn-success yes_btn" style="border-radius: 2px !important;background-color: #72BB53;height: 36px !important;width: 96px !important;" >
+          <p style="margin-top: 1px; font-size: 14px">
+            YES
+          </p>
+          
+        </button>
+
+        <button class="btn btn-danger no_btn" style="border-radius: 2px !important;background-color: #E61610;height: 36px !important;width: 96px !important;">
+          <p style="margin-top: 1px; font-size: 14px">
+            NO
+          </p>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-12" style="height: 30px">
+      
+    </div>
+    
+      
+    </div>
+
+  </div>
+
+<% end %>

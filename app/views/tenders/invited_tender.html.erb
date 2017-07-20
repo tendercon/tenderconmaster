@@ -1,98 +1,76 @@
 <div class="admin-form">
   <div class="row">
-    <div class="col-md-6">
+    
 
-    </div>
-    <div class="col-md-3">
-
-    </div>
-
-    <div class="col-md-3 pull-right">
-      <div class="section">
-        <div class="smart-widget sm-left sml-50">
-          <label class="field">
-            <input type="text" name="sm3" id="filter" class="gui-input" placeholder="Search Here">
-          </label>
-          <label for="sm3" class="button">
-            <i class="fa fa-search"></i>
-          </label>
+    <% if @tenders.present? || @accepted_tenders.present? || @declined_tenders.present? %>
+      <div class="text-center">
+          <h2 style="font-family: 'Montserrat', sans-serif; font-size: 30px">
+            <strong>INVITED TENDERS</strong>
+          </h2>
+          <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px">
+            List of all tenders Tendercon head contractors have pre-approved you to start 
+  quoting immediately
+          </h3>
+        
+      </div>   
+      <% if @tenders.present? %>
+        <div class="row">
+           <div class="col-md-12">
+             <%= render 'tenders/invited_tenders/pending' %>
+           </div> 
         </div>
-        <!-- end .smart-widget section -->
-      </div>
-    </div>
+      <% end %>  
+    
+    
+      <% if @accepted_tenders.present? %>  
+        <div class="row">
+           <div class="col-md-12">
+             <%= render 'tenders/invited_tenders/accepted' %>
+           </div> 
+        </div>
+      <% end %>
+
+      <% if @declined_tenders.present? %>  
+         <div class="row">
+           <div class="col-md-12">
+             <%= render 'tenders/invited_tenders/declined' %>
+           </div> 
+        </div>
+      <% end %>
+    <% else %>
+      <div class="text-center">
+          <h2 style="font-family: 'Montserrat', sans-serif; font-size: 30px">
+            <strong>INVITED TENDERS</strong>
+          </h2>
+          <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px">
+            List of all tenders Tendercon head contractors have pre-approved you to start 
+quoting immediately
+          </h4>
+          <div class="row">
+             <div class="col-md-12">
+              <h3 style="font-family: 'Montserrat', sans-serif;font-size: 24px">
+                PENDING ACTION
+              </h3>
+              <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px">
+                You currently have 0 invited tenders. Check out Open Tenders to increase your tendering opportunities
+              </h4>
+              
+             </div> 
+          </div>
+      </div>  
+    <% end %>
+
+    
+    <div id="map_18" style="height:180px;width:450px;"></div> 
+  
   </div>
 </div>
 
+
+
 <div class="row">
 
-  <div class="col-md-12"> 
-
-    <table class="table table-bordered responsive" id="invited_table"  cellspacing="0" width="100%">
-      <thead>
-        <tr style="background-color: #2C3E50;color: white;">
-          <th>Received Date</th>
-          <th>Tender ID</th>
-          <th>Project Name</th>
-          <th>Location</th>
-          <th>Head Contractor</th>
-          <th>Quotes Due</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody class="searchable">
-        <% if @tenders.present? %>
-          <% @tenders.each do |t| %>
-            <tr>
-              <td class="text-center"><%= get_tender_invite_open_date t.id,session[:user_logged_id] %></td>
-              <% if session[:role] == 'Head Contractor' %>
-                  <td class="text-center">
-                    <a href="/tenders/new_tender?info=true&info_id=<%= t.id %>">
-                      <%= t.tendercon_id %>
-                    </a>
-                  </td>
-              <% else %>
-                  <td class="text-center">
-                    <!--<a href="#!" class="tender" id="<%#= t.id %>">-->
-                      <%= t.tendercon_id %>
-                    <!--</a>-->
-                  </td>
-              <% end %>
-              <td class="text-center"><%= t.title %></td>
-              <td class="text-center"><%= t.address %></td>
-              <td class="text-center">
-                <a href="<%= user_company_profile_users_path(:id => t.user_id,:tender => t.id,:invited => true) %>">
-                  <%= get_user_trade_name t.user_id %>
-                </a>
-
-              </td>
-              <td class="text-center"><%= (get_tender_due t.id) %></td>
-              <td class="text-center">
-                <a href="#!" class="tender" id="<%= t.id %>">
-                  <button class="btn green">
-                    View
-                  </button>
-                </a>
-              </td>
-            </tr>
-          <% end %>
-        <% end %>
-      </tbody>
-    </table>
-
-    <%# if !@tenders.present? %>
-      <!--<div  style="height: 100px;"></div>
-      <div>
-        <a href="/tenders/open_tender">
-          <div class="text-center">
-            <button class="btn btn-success">
-              Go to Open Tender
-            </button>
-          </div>
-        </a>
-      </div>-->
-    <%# end %>
-    <div id="map_18" style="height:180px;width:450px;"></div> 
-  </div>
+  
 </div>
 
 

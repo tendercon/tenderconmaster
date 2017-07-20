@@ -4,37 +4,37 @@
   <div class="col-md-12">
     <h3 style="font-family: Gotham"><strong>TENDER DETAILS</strong></h3>
     <div class="col-md-4">
-      <h4 style="font-family: Gotham; color: #b70f0a;margin-left:-15px"><strong>TENDER CLOSING DATE</strong></h4>
+      <h4 style="font-family: 'Montserrat', sans-serif; color: #b70f0a;margin-left:-15px"><strong>TENDER CLOSING DATE</strong></h4>
     </div>
     <div class="col-md-8" style="margin-top: -10px">
       <p style="font-size: 14px;color: #333333;margin-left:-15px" ><strong><%= (get_tender_due @tender.id).to_datetime.strftime("%H:%M %d/%m/%Y ") %></strong></p>
     </div>
     <div class="col-md-4">
-      <h4 style="font-family: Gotham;margin-left:-15px"><strong>SECTOR</strong></h4>
+      <h4 style="font-family: 'Montserrat', sans-serif;margin-left:-15px"><strong>SECTOR</strong></h4>
     </div>
     <div class="col-md-8" style="margin-top: -10px">
       <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= get_categoty_name @tender.category_id %></p>
     </div>
     <div class="col-md-4">
-      <h4 style="font-family: Gotham;margin-left:-15px"><strong>TENDER VALUE</strong></h4>
+      <h4 style="font-family: 'Montserrat', sans-serif;margin-left:-15px"><strong>TENDER VALUE</strong></h4>
     </div>
     <div class="col-md-8" style="margin-top: -10px">
       <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= get_value_name @tender.tender_value_id %></p>
     </div>
     <div class="col-md-4">
-      <h4 style="font-family: Gotham;margin-left:-15px"><strong>CLIENT</strong></h4>
+      <h4 style="font-family: 'Montserrat', sans-serif;margin-left:-15px"><strong>CLIENT</strong></h4>
     </div>
     <div class="col-md-8" style="margin-top: -10px">
       <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= @tender.client.present? ? @tender.client: '--' %></p>
     </div>
     <div class="col-md-4">
-      <h4 style="font-family: Gotham;margin-left:-15px"><strong>ARCHITECT</strong></h4>
+      <h4 style="font-family: 'Montserrat', sans-serif;margin-left:-15px"><strong>ARCHITECT</strong></h4>
     </div>
     <div class="col-md-8" style="margin-top: -10px">
       <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= @tender.architect.present? ? @tender.architect: '--' %></p>
     </div>
     <div class="col-md-12">
-      <h4 style="font-family: Gotham;margin-left:-15px"><strong>TENDER DESCRIPTION</strong></h4>
+      <h4 style="font-family: 'Montserrat', sans-serif;margin-left:-15px"><strong>TENDER DESCRIPTION</strong></h4>
     </div>
     <div class="col-md-12" >
       <p style="font-size: 14px;color: #333333;margin-left:-15px"><%= @tender.description.present? ? @tender.description.html_safe: '--' %></p>
@@ -44,7 +44,7 @@
   <div class="col-md-12">
     <h3 style="font-family: Gotham"><strong>TRADES REQUIRED</strong></h3>
     <div class="col-md-3">
-      <h4 style="font-family: Gotham;margin-left:-15px"><strong>PRELIMINIARIES</strong></h4>
+      <h4 style="font-family: 'Montserrat', sans-serif;margin-left:-15px"><strong>PRELIMINIARIES</strong></h4>
       <% if (get_tender_trades @tender.id).present? %>
           <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
               <% if get_category_id(a.trade_id).to_i == 1 %>
@@ -55,7 +55,7 @@
     </div>
 
     <div class="col-md-3">
-      <h4 style="font-family: Gotham;margin-left:-15px"><strong>STRUCTURAL</strong></h4>
+      <h4 style="font-family: 'Montserrat', sans-serif;margin-left:-15px"><strong>STRUCTURAL</strong></h4>
       <% if (get_tender_trades @tender.id).present? %>
           <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
               <% puts  get_category_id(a.trade_id) %>
@@ -67,7 +67,7 @@
     </div>
 
     <div class="col-md-3">
-      <h4 style="font-family: Gotham;margin-left:-15px"><strong>ARCHITECTURAL</strong></h4>
+      <h4 style="font-family: 'Montserrat', sans-serif;margin-left:-15px"><strong>ARCHITECTURAL</strong></h4>
       <% if (get_tender_trades @tender.id).present? %>
         <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
             <% if get_category_id(a.trade_id).to_i == 3 %>
@@ -78,7 +78,7 @@
     </div>
 
     <div class="col-md-3">
-      <h4 style="font-family: Gotham;margin-left:-15px"><strong>SERVICES</strong></h4>
+      <h4 style="font-family: 'Montserrat', sans-serif;margin-left:-15px"><strong>SERVICES</strong></h4>
       <% if (get_tender_trades @tender.id).present? %>
           <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
               <% if get_category_id(a.trade_id).to_i == 4 %>
@@ -89,10 +89,52 @@
     </div>
 
   </div>
+ <% if params[:invited].present? %>
 
+  <% if  is_accepted?(@tender.id,session[:user_logged_id], params[:trade]) %>
+    <div class="col-md-12">
+       <h3 style="font-family: Gotham"><strong>TRADE DOCUMENTS</strong></h3>
+       <table class="table table-bordered responsive"   cellspacing="0" width="100%">
+          <thead>
+            <tr style="background-color: #000;color: white;">
+              <th>FIELNAME</th>
+              <th width="30px">DOWNLOAD</th>
+            </tr>
+          </thead>
+          <tbody class="searchable">
+            <% if @tender.tender_documents.present? %>
+              <% @tender.tender_documents.each do |t| %>
+                <tr>
+                  <td>
+                     <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px">
+                       <%= t.document_file_name %>
+                     </h4>
+                  </td>
+                  <td>
+                    <a href="<%= t.document.url(:original)  %>" download>
+                      <button class="btn btn-success" style="border-radius: 2px !important;background-color: #72BB53;height: 36px !important;width: 106px !important;" >
+                        DOWNLOAD
+                      </button>
+                    </a>
+                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px">
+                       
+
+                     </h4>
+                  </td>
+                  
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+     </div>  
+
+  <% end %>
+ <% end %>
  <div class="col-md-12">
    <h3 style="font-family: Gotham"><strong>TENDER LOCATION</strong></h3>
    <p style="font-size: 14px;color: #333333;"><%= "#{@tender.address}" %></p>
+
    <div id="map_<%= @tender.id %>" style="height:300px;width:100%;"></div>
  </div>
 
@@ -123,115 +165,9 @@
                         <!--<p>Status of the trades you have applied to tender for</p>-->
 
                     <div class="trade_div">
-                      <table  class="table table-bordered">
-                        <tr style="background-color: #2C3E50;color: white;">
-                          <th class="col-md-6">Trades</th>
-                          <th class="col-md-6">Status</th>
-                        </tr>
-                        <tbody>
-                        <% if session[:role] == 'Sub Contractor' %>
-
-                            <% if (get_tender_request @tender.id,session[:user_logged_id]).present? %>
-                              <% (get_tender_request @tender.id,session[:user_logged_id]).uniq.each do |a| %>
-                                <% if !@applied_trades.include?(a.trade_id) %>
-                                  <tr>
-                                    <td>
-                                      <label><%= get_trade_name a.trade_id %></label>
-                                    </td>
-                                    <% if a.status == 'approved' %>
-                                        <td><button class="btn btn-success">Tendering</button></td>
-                                    <% elsif a.status == 'declined' %>
-                                        <td><button class="btn btn-danger">Declined</button></td>
-                                    <% else %>
-                                        <td><button class="btn btn-warning">Pending</button></td>
-                                    <% end %>
-                                  </tr>
-                                <% end %>
-                                <% @applied_trades << a.trade_id %>
-                              <% end %>
-                            <% end %>
-
-                            <% if (get_sc_trade_approved @tender.id,session[:user_logged_id]).present? %>
-                              <% (get_sc_trade_approved @tender.id,session[:user_logged_id]).uniq.each do |a| %>
-                                <% if !@applied_trades.include? a.trade_id %>
-                                  <tr>
-                                    <td>
-                                      <label><%= get_trade_name a.trade_id %></label>
-                                    </td>
-                                    <% if a.status == 'approved' %>
-                                        <td><button class="btn btn-success">Tendering</button></td>
-                                    <% elsif a.status == 'declined' %>
-                                        <td><button class="btn btn-danger">Declined</button></td>
-                                    <% else %>
-                                        <td><button class="btn btn-warning">Pending</button></td>
-                                    <% end %>
-                                  </tr>
-                                <% end %>
-                                <% @applied_trades << a.trade_id %>
-                              <% end %>
-                            <% end %>
-
-                            <% if (get_sc_trade_declined @tender_id,session[:user_logged_id]).present? %>
-                                <% (get_sc_trade_declined @tender_id,session[:user_logged_id]).each do |a| %>
-                                  <% if !@applied_trades.include? a.trade_id %>
-                                    <tr>
-                                      <td>
-                                        <label><%= get_trade_name ((a).trade_id) %></label>
-                                      </td>
-                                      <td><button class="btn btn-danger">Decline</button></td>
-                                    </tr>
-                                  <% end %>
-                                  <% @applied_trades << a.trade_id %>
-                                <% end %>
-                            <% end %>
-
-                            <% if (get_tender_invite_status @tender.id,session[:user_logged_id]).present? %>
-                                <% (get_tender_invite_status @tender.id,session[:user_logged_id]).each do |a| %>
-                                  <% if !@applied_trades.include? a.trade_id %>
-                                    <tr>
-                                      <td>
-                                        <label><%= get_trade_name a.trade_id %></label>
-                                      </td>
-                                      <% if a.status == 'rejected' %>
-                                          <td><button class="btn btn-danger">Invite Declined</button></td>
-                                      <% else %>
-                                          <td><button class="btn btn-warning">Invite Pending</button></td>
-                                      <% end %>
-                                    </tr>
-                                  <% end %>
-                                  <% @applied_trades << a.trade_id %>
-                                <% end %>
-                            <% end %>
-                        <% end %>
-
-                        <% if session[:role] == 'Head Contractor' %>
-                            <% if (get_tender_trades @tender.id).present? %>
-                                <% (get_tender_trades @tender.id).each do |a| %>
-                                    <tr>
-                                      <td>
-                                        <label><%= get_trade_name a.trade_id %></label>
-                                      </td>
-                                    </tr>
-                                <% end %>
-                            <% end %>
-                        <% end %>
-
-                            <% if session[:role] == 'Sub Contractor' %>
-                            <tr>
-                              <td colspan="2">
-                                <div class="text-center">
-                                  <button class="btn btn-default apply_more_trade">
-                                    Apply For more Trades
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                            <% end %>
-
-                        </tbody>
-                      </table>
+                      
                     </div>
-
+                    
 
                   <!--</div>-->
                 <!--</div>-->
@@ -241,6 +177,7 @@
           </div>
         </div>
       </div>
+      <%#= render 'tenders/invited_tenders/header_footer_div' %>
     <!--</div>-->
   </div>
 </div>

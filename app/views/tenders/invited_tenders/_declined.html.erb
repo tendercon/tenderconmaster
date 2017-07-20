@@ -1,0 +1,52 @@
+<h3 style="font-family: 'Montserrat', sans-serif;font-size: 24px">
+  REJECTED
+</h3>
+<table class="table table-bordered responsive" id="invited_table"  cellspacing="0" width="100%">
+  <thead>
+    <tr style="background-color: #000;color: white;">
+      <th width="130px">QUOTE DUE</th>
+      <th width="230px">HEAD CONTRACTOR</th>
+      <th width="310px">TENDER TITLE</th>
+      <th width="180px">LOCATION</th>
+      <th width="140px">INVITED TO QUOTE ON</th>
+    </tr>
+  </thead>
+  <tbody class="searchable">
+    <% if @declined_tenders.present? %>
+      <% @declined_tenders.each do |t| %>
+        <tr>
+          <td>
+             <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px">
+               <%= (get_tender_due t.id) %>
+             </h4>
+          </td>
+          <td>
+            <a href="<%= user_company_profile_users_path(:id => t.user_id,:tender => t.id,:invited => true) %>">
+               <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px">
+                 <%= get_user_trade_name t.user_id %>
+               </h4>
+            </a>
+          </td>
+          <td>
+            <a href="<%= "/tenders/sc_tender?id=#{t.id}&invited=true&trade=#{get_tender_invite_trade t.id, session[:user_logged_id]}" %>">
+                <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px">
+                  <%= t.title %>
+                </h4>
+            </a>
+           
+          </td>
+          <td>
+            <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px">
+              <%= t.address %>
+            </h4>
+          </td>
+          <td>
+            <h4 style="font-family: 'Montserrat', sans-serif; font-size: 16px">
+              <%=  get_trade_name((get_tender_invite_trade t.id, session[:user_logged_id])) %>
+            </h4>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

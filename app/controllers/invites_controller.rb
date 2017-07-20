@@ -516,7 +516,7 @@ class InvitesController < ApplicationController
     trade_id = params[:trade]
     user = User.find(params[:id])
 
-    invite = TenderInvite.where(:tender_id => tender_id,:trade_id => trade_id,:email => user.email).update_all(:status => 'declined')
+    invite = TenderInvite.where(:tender_id => tender_id,:trade_id => trade_id,:email => user.email).update_all(:status => 'declined', :tender_declined_date => Time.now)
 
     render :json => { :state => 'valid'}
   end
