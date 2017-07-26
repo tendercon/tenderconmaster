@@ -438,6 +438,8 @@
   <!-- end: .panel -->
 </div>
 
+<div id="btncollapzion" class=" btn_collapzion"></div>
+
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA7B-_hoQVA07h-qSd3E-HXxyXnM9W4zC8&libraries=places&sensor=false"></script> 
 <script>
 
@@ -729,10 +731,100 @@
       $(this).css("background-color", "#FFF");
     });
 
+    <% if session[:role] == 'Sub Contractor' %>
+      $('#btncollapzion').Collapzion({
+        _child_attribute:[
+            {
+              'label':'QUOTE ON MORE TRADES',
+              'url':'/tenders/invited_tender',
+              'icon': "<i class='fa fa-wrench fa-2x'></i>"
+            }
+        ],
+            _main_btn_color:'#4285f4;',
+            _child_btn_color:'#f4645f;',
+        
+      });
+    <% else %>
+     
+      $('#btncollapzion').Collapzion({
+        _child_attribute:[
+            {
+              'label':'EDIT TENDER DETAILS',
+              'url':'/tenders/new_tender?info=true&builder=true',
+              'icon': "<i class='fa fa-wrench fa-2x'></i>"
+            },
+            
+        ],
+            _main_btn_color:'#4285f4;',
+            _child_btn_color:'#f4645f;',
+        
+      });
+    <% end %>
+
   })
 
 
 </script>
+
+<style type="text/css">
+  a._collapz_parant {
+    color: #fff;
+    border-radius: 100% !important;
+    background-color: #F44336 !important;
+    width: 70px !important;
+    margin-top: -420px !important;
+    height: 70px !important;
+    display: inline-block;
+    text-decoration: none;
+    float: right;
+    -webkit-transition: -webkit-transform .1s linear 0ms;
+    -moz-transition: -moz-transform .1s linear 0ms;
+    transition: transform .1s linear 0ms;
+    transform: rotate(8deg);
+}
+
+ul._child_collapzion {
+    position: absolute;
+    margin-top: -250px !important;
+    list-style: none;
+    padding: 1px;
+    top: -25px;
+    left: 0;
+    width: 100%;
+    overflow: auto;
+    z-index: 10;
+    -webkit-transform: translate3d(0, -100%, 0);
+    -moz-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+    -webkit-transition: -webkit-transform .3s ease-in-out;
+    -moz-transition: -moz-transform .3s ease-in-out;
+    transition: transform .3s ease-in-out;
+}
+a._collapz_child i {
+    margin-top: 20px !important;
+}
+span._title {
+    position: relative;
+    left: 8px;
+    color: #0F397A !important;
+    padding: 3px;
+    font-size: 16px !important;
+    top: 0px !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: bold !important;
+}
+
+a._collapz_parant._close:after, a._collapz_parant._open:after {
+    content: "\f040" !important;
+    font-family: FontAwesome !important;
+    /*font-family: 'Material Icons' !important;*/
+    font-size: 30px !important;
+    position: relative !important;
+    top: 16px !important;
+    font-style: normal !important;
+    color: #fff !important;
+}
+</style>
 
 
 

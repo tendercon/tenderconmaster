@@ -1,20 +1,28 @@
 <div class="top-menu" style="height: 60px">
-  <%= @user.user_plan.present? %>
-  <% if !@user.user_subscription.present? &&  session[:role] == 'Sub Contractor'  %>
+  
 
-    <a href="/users/profile?id=<%= session[:user_logged_id] %>&subscription=true" class="btn green btn-outline sbold" style="margin-top: 5px">
-      UPGRADE NOW
-    </a>
-  <% end %>
   <ul class="nav navbar-nav pull-right">
+    <li>
+      <% if !@user.user_subscription.present? &&  session[:role] == 'Sub Contractor'  %>
+        <a href="/users/profile?id=<%= session[:user_logged_id] %>&subscription=true"  style="font-size: 16px;font-family: Josefin Sans;color: #72bb53; margin-top: 4px">     
+            UPGRADE NOW
+        </a>
+      <% end %>
+    </li>
     <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">
       <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-        <i class="icon-bell"></i>
+        <i class="fa fa-bell fa-4x" style="font-size: 27px !important; color: #aaaaaa !important"></i>
         <% if Notification.notification_count(session[:user_logged_id]) > 0 %>
           <span class="badge badge-default" style="background-color: red"> <%= Notification.notification_count(session[:user_logged_id]) %> </span>
         <% end %>
       </a>
       <ul class="dropdown-menu">
+       <li class="external">
+          <h3>
+            <span class="bold"><%= Notification.notification_count(session[:user_logged_id]) %> pending</span> notifications
+            </h3>
+          <a href="#!"></a>
+        </li>
         <li class="external">
           <h3>
             <span class="bold"><%= Notification.notification_count(session[:user_logged_id]) %> pending</span> notifications</h3>
@@ -155,53 +163,63 @@
       <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
         <% if @user.avatar.present? %>
             <% if @user.avatar.image.present? && File.exist?(@user.avatar.image.path(:original)) %>
-                <img src="<%= @user.avatar.image.url(:original) %>"  alt="" style="width: 45px !important; height: 45px !important;">
+                <img src="<%= @user.avatar.image.url(:original) %>"  class="img-circle " style="width: 45px !important; height: 45px !important;">
             <% else %>
-                <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"  alt="" style="width: 45px !important; height: 45px !important;">
+                <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"  class="img-circle " style="width: 45px !important; height: 45px !important;">
             <% end %>
         <% else %>
-            <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"  alt="" style="width: 45px !important; height: 45px !important;">
+            <img src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"  class="img-circle " style="width: 45px !important; height: 45px !important;">
         <% end %>
         <span class="username username-hide-on-mobile" style="color: #f1f1f1"> <%= "#{@user.first_name} #{@user.last_name.present? ? @user.last_name : nil}"  %> </span>
         <i class="fa fa-angle-down"></i>
       </a>
-      <ul class="dropdown-menu dropdown-menu-default">
+      <ul class="dropdown-menu dropdown-menu-default" style="background-color: #000 !important ; width: 200px !important">
         <li>
+          <div style="height: 10px"></div>
           <a href="<%= profile_users_path(:id => session[:user_logged_id]) %>">
-            <i class="icon-user"></i> My Profile </a>
+            <i class="icon-user" style="font-size: 27px !important; color: #f1f1f1 !important"> </i> &nbsp; 
+             <label style="font-family: 'Montserrat', sans-serif; font-size: 13px;color: #f1f1f1;">
+               MY PROFILE
+            </label> 
+            </a>
         </li>
         <li>
           <a href="<%= company_profile_users_path(:id => session[:user_logged_id]) %>">
-            <i class="icon-briefcase"></i> Company Profile </a>
-        </li>
-        <!--<li>
-          <a href="<%#= company_profile_users_path(:id => session[:user_logged_id]) %>">
-            <i class="icon-support"></i> Help </a>
+            <i class="icon-briefcase" style="font-size: 27px !important; color: #f1f1f1 !important"></i> &nbsp;
+             <label style="font-family: 'Montserrat', sans-serif; font-size: 13px;color: #f1f1f1;">
+               COMAPANY PROFILE
+            </label> 
+          </a>
         </li>
         <li>
-          <a href="<%#= company_profile_users_path(:id => session[:user_logged_id]) %>">
-            <i class="icon-emoticon-smile"></i> Feedback </a>
+          <a href="#!">
+            <i class="fa fa-lightbulb-o" style="font-size: 27px !important; color: #f1f1f1 !important"></i>&nbsp;
+             <label style="font-family: 'Montserrat', sans-serif; font-size: 13px;color: #f1f1f1;">
+               KNOWLEDGE CENTRE
+            </label>  
+          </a>
         </li>
-        <li class="divider"> </li>
         <li>
-          <a href="page_user_lock_1.html">
-            <i class="icon-lock"></i> Lock Screen </a>
-        </li>-->
+          <hr>
+        </li>
+        <li>
+          <a href="#!">
+            <i class="fa fa-lock" style="font-size: 27px !important; color: #f1f1f1 !important"></i>&nbsp;
+             <label style="font-family: 'Montserrat', sans-serif; font-size: 13px;color: #f1f1f1;">
+               LOCK SCREEN
+            </label>  
+          </a>
+        </li>
         <li>
           <a href="<%= logout_users_path(:status => 'normal') %>">
-            <i class="icon-power"></i> Log Out </a>
+            <i class="fa fa-sign-out" style="font-size: 27px !important; color: #f1f1f1 !important"></i>&nbsp; 
+            <label style="font-family: 'Montserrat', sans-serif; font-size: 13px;color: #f1f1f1;">
+               LOG OUT
+            </label>    
+          </a>
         </li>
       </ul>
     </li>
-    <!-- END USER LOGIN DROPDOWN -->
-    <!-- BEGIN QUICK SIDEBAR TOGGLER -->
-    <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-    <!--<li class="dropdown dropdown-quick-sidebar-toggler">
-      <a href="javascript:;" class="dropdown-toggle">
-        <i class="icon-logout"></i>
-      </a>
-    </li>-->
-    <!-- END QUICK SIDEBAR TOGGLER -->
   </ul>
 
 </div>

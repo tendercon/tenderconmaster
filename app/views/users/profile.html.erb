@@ -322,7 +322,7 @@ a._collapz_parant {
     -webkit-transition: -webkit-transform .1s linear 0ms;
     -moz-transition: -moz-transform .1s linear 0ms;
     transition: transform .1s linear 0ms;
-    transform: rotate(44deg);
+    transform: rotate(8deg);
 }
 
 ul._child_collapzion {
@@ -352,7 +352,18 @@ span._title {
     padding: 3px;
     font-size: 16px !important;
     top: 0px !important;
-    font-family: Gotham !important;
+    font-family: 'Montserrat', sans-serif !important;
     font-weight: bold !important;
+}
+
+a._collapz_parant._close:after, a._collapz_parant._open:after {
+    content: "\f040" !important;
+    font-family: FontAwesome !important;
+    /*font-family: 'Material Icons' !important;*/
+    font-size: 30px !important;
+    position: relative !important;
+    top: 16px !important;
+    font-style: normal !important;
+    color: #fff !important;
 }
 </style>

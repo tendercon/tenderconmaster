@@ -53,16 +53,17 @@
             $('#'+this.attr('id')+ ' a._collapz_parant').on('click',function(){
                 var ths = $(this);                
                 _base.collapz_btn(ths, _settings._child_attribute);
+
             });
         };
         // toggle button 
         _base.collapz_btn = function(_element, child_attribute){
             if(_element.hasClass('_close')){
-                
+                $('body').css('background', '#ccc');
                 _element.css({
-                    '-webkit-transform': 'rotate(90deg)',
-                    '-moz-transform': 'rotate(90deg)',
-                    'transform': 'rotate(90deg)',
+                    '-webkit-transform': 'rotate(44deg)',
+                    '-moz-transform': 'rotate(44deg)',
+                    'transform': 'rotate(44deg)',
                 });
                 _element.removeClass('_close');
                 _element.addClass('_open');
@@ -77,12 +78,14 @@
                 $("._child_collapzion" ).css( {'transform':'translate3d(0, -100%, 0)'} );
 
             } else {
+                 $('body').css('background', '');
+                
                 $("._child_collapzion" ).css( {'transform':'translate3d(0, 0%, 0)'} );
                 $(this).parent().find('ul._child_collapzion').remove();
                 _element.css({
-                    '-webkit-transform': 'rotate(44deg)',
-                    '-moz-transform': 'rotate(44deg)',
-                    'transform': 'rotate(44deg)',
+                    '-webkit-transform': 'rotate(8deg)',
+                    '-moz-transform': 'rotate(8deg)',
+                    'transform': 'rotate(8deg)',
                 });
                 _element.removeClass('_open');
                 _element.addClass('_close');                
