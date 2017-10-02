@@ -1,48 +1,20 @@
-
-<div style="height: 30px"></div>
-<div class="row">
-  <div class="col-md-12">
-
-  </div>
-</div>
-
-
-
-<div class="row">
-  <div class="col-md-12">
-    <!--<div class="portlet light bordered">-->
-      <div class="portlet-body form">
-        <div class="form-body">
-          <div class="row">
-            <div class="col-md-12">
-              <!--<div class="portlet box green">-->
-                <!--<div class="portlet-title">
-                  <div class="caption">
-                    <label><i class="fa fa-question-circle"></i> Trades</label>
-                  </div>
-                  <div class="tools">
-                    <a href="javascript:;" class="collapse"> </a>
-                  </div>
-                </div>-->
-              <% if session[:role] == 'Sub Contractor' %>
-                <!--<div class="portlet-body">-->
-                  <!--<div class="table-scrollable">-->
-
-
-                        <!--<p>Status of the trades you have applied to tender for</p>-->
-
-                    <div class="trade_div">
-                      <table  class="table table-bordered">
-                        <tr style="background-color: #2C3E50;color: white;">
-                          <th class="col-md-6">Trades</th>
-                          <th class="col-md-6">Status</th>
-                        </tr>
-                        <tbody>
-                        <% if session[:role] == 'Sub Contractor' %>
-
-                            <% if (get_tender_request @tender.id,session[:user_logged_id]).present? %>
-                              <% (get_tender_request @tender.id,session[:user_logged_id]).uniq.each do |a| %>
-                                <% if !@applied_trades.include?(a.trade_id) %>
+<div class="row" style="padding-top: 2%;">
+  <div class="portlet-body form">
+    <div class="form-body">
+      <div class="row">
+        <div class="col-md-12">
+          <% if session[:role] == 'Sub Contractor' %>
+              <div class="trade_div">
+                <table  class="table table-bordered">
+                  <tr style="background-color: #2C3E50;color: white;">
+                    <th class="col-md-6">Trades</th>
+                    <th class="col-md-6">Status</th>
+                  </tr>
+                  <tbody>
+                  <% if session[:role] == 'Sub Contractor' %>
+                      <% if (get_tender_request @tender.id,session[:user_logged_id]).present? %>
+                          <% (get_tender_request @tender.id,session[:user_logged_id]).uniq.each do |a| %>
+                              <% if !@applied_trades.include?(a.trade_id) %>
                                   <tr>
                                     <td>
                                       <label><%= get_trade_name a.trade_id %></label>
@@ -55,268 +27,224 @@
                                         <td><button class="btn btn-warning">Pending</button></td>
                                     <% end %>
                                   </tr>
-                                <% end %>
-                                <% @applied_trades << a.trade_id %>
                               <% end %>
-                            <% end %>
-
-                            <% if (get_sc_trade_approved @tender.id,session[:user_logged_id]).present? %>
-                              <% (get_sc_trade_approved @tender.id,session[:user_logged_id]).uniq.each do |a| %>
-                                <% if !@applied_trades.include? a.trade_id %>
-                                  <tr>
-                                    <td>
-                                      <label><%= get_trade_name a.trade_id %></label>
-                                    </td>
-                                    <% if a.status == 'approved' %>
-                                        <td><button class="btn btn-success">Tendering</button></td>
-                                    <% elsif a.status == 'declined' %>
-                                        <td><button class="btn btn-danger">Declined</button></td>
-                                    <% else %>
-                                        <td><button class="btn btn-warning">Pending</button></td>
-                                    <% end %>
-                                  </tr>
-                                <% end %>
-                                <% @applied_trades << a.trade_id %>
-                              <% end %>
-                            <% end %>
-
-                            <% if (get_sc_trade_declined @tender_id,session[:user_logged_id]).present? %>
-                                <% (get_sc_trade_declined @tender_id,session[:user_logged_id]).each do |a| %>
-                                  <% if !@applied_trades.include? a.trade_id %>
-                                    <tr>
-                                      <td>
-                                        <label><%= get_trade_name ((a).trade_id) %></label>
-                                      </td>
-                                      <td><button class="btn btn-danger">Decline</button></td>
-                                    </tr>
-                                  <% end %>
-                                  <% @applied_trades << a.trade_id %>
-                                <% end %>
-                            <% end %>
-
-                            <% if (get_tender_invite_status @tender.id,session[:user_logged_id]).present? %>
-                                <% (get_tender_invite_status @tender.id,session[:user_logged_id]).each do |a| %>
-                                  <% if !@applied_trades.include? a.trade_id %>
-                                    <tr>
-                                      <td>
-                                        <label><%= get_trade_name a.trade_id %></label>
-                                      </td>
-                                      <% if a.status == 'rejected' %>
-                                          <td><button class="btn btn-danger">Invite Declined</button></td>
-                                      <% else %>
-                                          <td><button class="btn btn-warning">Invite Pending</button></td>
-                                      <% end %>
-                                    </tr>
-                                  <% end %>
-                                  <% @applied_trades << a.trade_id %>
-                                <% end %>
-                            <% end %>
-                        <% end %>
-
-                        <% if session[:role] == 'Head Contractor' %>
-                            <% if (get_tender_trades @tender.id).present? %>
-                                <% (get_tender_trades @tender.id).each do |a| %>
-                                    <tr>
-                                      <td>
-                                        <label><%= get_trade_name a.trade_id %></label>
-                                      </td>
-                                    </tr>
-                                <% end %>
-                            <% end %>
-                        <% end %>
-
-                            <% if session[:role] == 'Sub Contractor' %>
-                            <tr>
-                              <td colspan="2">
-                                <div class="text-center">
-                                  <button class="btn btn-default apply_more_trade">
-                                    Apply For more Trades
-                                  </button>
-                                </div>
-                              </td>
-                            </tr>
-                            <% end %>
-
-                        </tbody>
-                      </table>
-                    </div>
-
-
-                  <!--</div>-->
-                <!--</div>-->
-              <% end %>
-              <!--</div>-->
-            </div>
-          </div>
-        </div>
-      </div>
-    <!--</div>-->
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-md-12">
-
-    <!--<div class="portlet light bordered">-->
-      <div class="portlet-body form">
-        <div class="form-body">
-          <div class="row">
-            <div class="col-md-12">
-              <% if session[:role] == 'Head Contractor' %>
-                  <a href="/tenders/edit_details?id=<%= @tender.id %>">
-                    <button class="btn btn-success" type="button">Edit</button>
-                  </a>
-                  <a href="#!">
-                    <button class="btn btn-success close_tender" type="button">Close Tender</button>
-                  </a>
-              <% end %>
-
-              <!--<div class="portlet box green">-->
-                <!--<div class="portlet-title">
-                  <div class="caption">
-                    <i class="fa fa-info-circle"></i>Details</div>
-                  <div class="tools">
-                    <a href="javascript:;" class="collapse"> </a>
-                  </div>
-                </div>-->
-                <div class="portlet-body">
-                  <div class="table-scrollable">
-                    <table class="table table-bordered table-hover">
-                      <tr style="background-color: #2C3E50;color: white;">
-                        <th colspan="2">Details</th>
-                      </tr>
-                      <tbody>
-                      <tr>
-                        <td class="col-md-2"> Tender ID </td>
-                        <td> <%= @tender.tendercon_id %> </td>
-                      </tr>
-                      <tr>
-                        <td> Title </td>
-                        <td> <%= @tender.title %> </td>
-                      </tr>
-                      <% if session[:role] == 'Sub Contractor' %>
-                        <tr>
-                          <td> Head Contractor </td>
-                          <td> <%= @tender.user.trade_name %> </td>
-                        </tr>
-                      <% end %>
-                      <tr>
-                        <td> Status </td>
-                        <td>
-                          <% if @tender.status == '1' %>
-                              <label>Tendering - Your organization is still tendering for this project.</label>
-                          <% else %>
-                              <label>Awarded - This tender has been awarded to the Head Contractor </label>
+                              <% @applied_trades << a.trade_id %>
                           <% end %>
+                      <% end %>
+                      <% if (get_sc_trade_approved @tender.id,session[:user_logged_id]).present? %>
+                          <% (get_sc_trade_approved @tender.id,session[:user_logged_id]).uniq.each do |a| %>
+                              <% if !@applied_trades.include? a.trade_id %>
+                                  <tr>
+                                    <td>
+                                      <label><%= get_trade_name a.trade_id %></label>
+                                    </td>
+                                    <% if a.status == 'approved' %>
+                                        <td><button class="btn btn-success">Tendering</button></td>
+                                    <% elsif a.status == 'declined' %>
+                                        <td><button class="btn btn-danger">Declined</button></td>
+                                    <% else %>
+                                        <td><button class="btn btn-warning">Pending</button></td>
+                                    <% end %>
+                                  </tr>
+                              <% end %>
+                              <% @applied_trades << a.trade_id %>
+                          <% end %>
+                      <% end %>
+
+                      <% if (get_sc_trade_declined @tender_id,session[:user_logged_id]).present? %>
+                          <% (get_sc_trade_declined @tender_id,session[:user_logged_id]).each do |a| %>
+                              <% if !@applied_trades.include? a.trade_id %>
+                                  <tr>
+                                    <td>
+                                      <label><%= get_trade_name ((a).trade_id) %></label>
+                                    </td>
+                                    <td><button class="btn btn-danger">Decline</button></td>
+                                  </tr>
+                              <% end %>
+                              <% @applied_trades << a.trade_id %>
+                          <% end %>
+                      <% end %>
+                      <% if (get_tender_invite_status @tender.id,session[:user_logged_id]).present? %>
+                          <% (get_tender_invite_status @tender.id,session[:user_logged_id]).each do |a| %>
+                              <% if !@applied_trades.include? a.trade_id %>
+                                  <tr>
+                                    <td>
+                                      <label><%= get_trade_name a.trade_id %></label>
+                                    </td>
+                                    <% if a.status == 'rejected' %>
+                                        <td><button class="btn btn-danger">Invite Declined</button></td>
+                                    <% else %>
+                                        <td><button class="btn btn-warning">Invite Pending</button></td>
+                                    <% end %>
+                                  </tr>
+                              <% end %>
+                              <% @applied_trades << a.trade_id %>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+                  <% if session[:role] == 'Head Contractor' %>
+                      <% if (get_tender_trades @tender.id).present? %>
+                          <% (get_tender_trades @tender.id).each do |a| %>
+                              <tr>
+                                <td>
+                                  <label><%= get_trade_name a.trade_id %></label>
+                                </td>
+                              </tr>
+                          <% end %>
+                      <% end %>
+                  <% end %>
+                  <% if session[:role] == 'Sub Contractor' %>
+                      <tr>
+                        <td colspan="2">
+                          <div class="text-center">
+                            <button class="btn btn-default apply_more_trade">
+                              Apply For more Trades
+                            </button>
+                          </div>
                         </td>
                       </tr>
-                      <tr>
-                        <td> Client </td>
-                        <td> <%= @tender.client %> </td>
-                      </tr>
-                      <tr>
-                        <td> Architect </td>
-                        <td> <%= @tender.architect %> </td>
-                      </tr>
-                      <tr>
-                        <td> Sector </td>
-                        <td> <%= get_categoty_name @tender.category_id %> </td>
-                      </tr>
-                      <tr>
-                        <td> Value </td>
-                        <td> <%= get_value_name @tender.tender_value_id %> </td>
-                      </tr>
-
-                      <tr>
-                        <td> Description </td>
-                        <td> <%=  @tender.description.html_safe %> </td>
-                      </tr>
-
-
-                      <tr>
-                        <td> Address </td>
-                        <td> <%=  @tender.address %></td>
-                      </tr>
-
-                      <tr>
-                        <td> Quote Due </td>
-                        <td> <%= get_tender_due @tender.id %></td>
-                      </tr>
-
-                      <% if @tender.tender_sites.present? %>
-                        <tr>
-                          <td> Site Inspections </td>
-                          <td></td>
-                        </tr>
-                        <% (get_tender_sites_per_user @tender.id).each do |a| %>
-                          <tr>
-                            <td> </td>
-                            <td><%= get_tender_site_dates a.id %></td>
-                          </tr>
-                        <% end %>
-                      <% end %>
-                      <% if session[:role] == 'Head Contractor' %>
-                        <tr>
-                          <td>Trades</td>
-                          <td>
-                            <% if (get_tender_trades @tender.id).present? %>
-                              <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
-                                <% if index == ((get_tender_trades @tender.id).size - 1) %>
-                                      <%= "#{get_trade_name a.trade_id}" %>
-                                <% else %>
-                                      <%= "#{get_trade_name a.trade_id}," %>
-                                <% end %>
-                              <% end %>
-                          <% end %>
-                          </td>
-                        </tr>
-                      <% end %>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              <!--</div>-->
-            </div>
-          </div>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+          <% end %>
         </div>
       </div>
-    <!--</div>-->
-
-
-    <%#= render 'tender_trades' %>
-
-
-
+    </div>
   </div>
 </div>
 
 
 <div class="row">
-  <div class="col-md-12">
-    <!--<div class="portlet light bordered">-->
-    <div class="portlet-body form">
-      <div class="form-body">
-        <div class="row">
-          <div class="col-md-12">
-            <!--<div class="portlet box green">-->
-            <!--<div class="portlet-title">
-              <div class="caption">
-                <i class="fa fa-info-circle"></i>Details</div>
-              <div class="tools">
-                <a href="javascript:;" class="collapse"> </a>
-              </div>
-            </div>-->
-            <div class="portlet-body">
-              <div class="table-scrollable">
-                <table class="table table-bordered table-hover">
-                  <tr style="background-color: #2C3E50;color: white;">
-                    <th><div class="caption">
-                      <i class="fa fa-map-marker"></i> Map</div></th>
-                  </tr>
-                </table>
-                <div id="map_<%= @tender.id %>" style="height:300px;width:100%;"></div>
-              </div>
+  <div class="portlet-body form">
+    <div class="form-body">
+      <div class="row">
+        <div class="col-md-12">
+          <% if session[:role] == 'Head Contractor' %>
+              <a href="/tenders/edit_details?id=<%= @tender.id %>">
+                <button class="btn btn-success" type="button">Edit</button>
+              </a>
+              <a href="#!">
+                <button class="btn btn-success close_tender" type="button">Close Tender</button>
+              </a>
+          <% end %>
+          <div class="portlet-body">
+            <div class="table-scrollable">
+              <table class="table table-bordered table-hover">
+                <tr style="background-color: #2C3E50;color: white;">
+                  <th colspan="2">Details</th>
+                </tr>
+                <tbody>
+                <tr>
+                  <td class="col-md-2"> Tender ID </td>
+                  <td> <%= @tender.tendercon_id %> </td>
+                </tr>
+                <tr>
+                  <td> Title </td>
+                  <td> <%= @tender.title %> </td>
+                </tr>
+                <% if session[:role] == 'Sub Contractor' %>
+                    <tr>
+                      <td> Head Contractor </td>
+                      <td> <%= @tender.user.trade_name %> </td>
+                    </tr>
+                <% end %>
+                <tr>
+                  <td> Status </td>
+                  <td>
+                    <% if @tender.status == '1' %>
+                        <label>Tendering - Your organization is still tendering for this project.</label>
+                    <% else %>
+                        <label>Awarded - This tender has been awarded to the Head Contractor </label>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr>
+                  <td> Client </td>
+                  <td> <%= @tender.client %> </td>
+                </tr>
+                <tr>
+                  <td> Architect </td>
+                  <td> <%= @tender.architect %> </td>
+                </tr>
+                <tr>
+                  <td> Sector </td>
+                  <td> <%= get_categoty_name @tender.category_id %> </td>
+                </tr>
+                <tr>
+                  <td> Value </td>
+                  <td> <%= get_value_name @tender.tender_value_id %> </td>
+                </tr>
+
+                <tr>
+                  <td> Description </td>
+                  <td> <%=  @tender.description.html_safe %> </td>
+                </tr>
+
+
+                <tr>
+                  <td> Address </td>
+                  <td> <%=  @tender.address %></td>
+                </tr>
+
+                <tr>
+                  <td> Quote Due </td>
+                  <td> <%= get_tender_due @tender.id %></td>
+                </tr>
+
+                <% if @tender.tender_sites.present? %>
+                    <tr>
+                      <td> Site Inspections </td>
+                      <td></td>
+                    </tr>
+                    <% (get_tender_sites_per_user @tender.id).each do |a| %>
+                        <tr>
+                          <td> </td>
+                          <td><%= get_tender_site_dates a.id %></td>
+                        </tr>
+                    <% end %>
+                <% end %>
+                <% if session[:role] == 'Head Contractor' %>
+                    <tr>
+                      <td>Trades</td>
+                      <td>
+                        <% if (get_tender_trades @tender.id).present? %>
+                            <% (get_tender_trades @tender.id).each_with_index do |a,index| %>
+                                <% if index == ((get_tender_trades @tender.id).size - 1) %>
+                                    <%= "#{get_trade_name a.trade_id}" %>
+                                <% else %>
+                                    <%= "#{get_trade_name a.trade_id}," %>
+                                <% end %>
+                            <% end %>
+                        <% end %>
+                      </td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="portlet-body form">
+    <div class="form-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="portlet-body">
+            <div class="table-scrollable">
+              <table class="table table-bordered table-hover">
+                <tr style="background-color: #2C3E50;color: white;">
+                  <th><div class="caption">
+                    <i class="fa fa-map-marker"></i> Map</div></th>
+                </tr>
+              </table>
+              <div id="map_<%= @tender.id %>" style="height:300px;width:100%;"></div>
             </div>
           </div>
         </div>
@@ -348,45 +276,44 @@
         <br>
         <div class="modal-body">
           <div class="row">
-              <div id="content">
-                <div class="tab-pane" id="orange">
-                  <% if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
-                      <div class="col-md-12">
-                        <p class="text-center" style="font-size: 16px">
-                          Note: All selected checkbox are being requested on Invited Tender
-                        </p>
-                      </div>
-                  <% end %>
-                  <div class="col-md-12">
-                    <% @trade_cats = [] %>
-                    <% @trade_categories.each do |tc|  %> 
+            <div id="content">
+              <div class="tab-pane" id="orange">
+                <% if (get_open_tender_trades @tender.id,session[:user_logged_id]).present? %>
+                    <div class="col-md-12">
+                      <p class="text-center" style="font-size: 16px">
+                        Note: All selected checkbox are being requested on Invited Tender
+                      </p>
+                    </div>
+                <% end %>
+                <div class="col-md-12">
+                  <% @trade_cats = [] %>
+                  <% @trade_categories.each do |tc|  %> 
                       <% if (get_tender_trades @tender.id).present? %>
-                        <% (get_tender_trades @tender.id).each_with_index do |t,index| %>
-                          <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
-                            <div class="text-center"> 
+                          <% (get_tender_trades @tender.id).each_with_index do |t,index| %>
                               <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
-                                <% if !@trade_cats.include? tc.title %>
-                                  <% @trade_cats << tc.title %>
-                                  <h1> <%= tc.title %></h1> 
-                                <% end %>
-                              <% end %>
-                            </div>
-                              <% if (check_request_trade_quotes  @tender.id,session[:user_logged_id],t.trade_id)  %>
-                                <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  class="trade_class" checked disabled readonly> <%= get_trade_name t.trade_id %></label> 
-                              <% else %>
-                                <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
+                                  <div class="text-center"> 
+                                    <% if tc.id.to_i == (get_trade_category_id t.trade_id).to_i %>
+                                        <% if !@trade_cats.include? tc.title %>
+                                            <% @trade_cats << tc.title %>
+                                            <h1> <%= tc.title %></h1> 
+                                        <% end %>
+                                    <% end %>
+                                  </div>
+                                  <% if (check_request_trade_quotes  @tender.id,session[:user_logged_id],t.trade_id)  %>
+                                      <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  class="trade_class" checked disabled readonly> <%= get_trade_name t.trade_id %></label> 
+                                  <% else %>
+                                      <label id = "trade_id_<%= t.trade_id %>"><input type="checkbox" name="trade_lists[]"  value="<%= t.trade_id %>" class="trade_class"> <%= get_trade_name t.trade_id %></label> 
+                                  <% end %>
                               <% end %>
                           <% end %>
-                        <% end %>
                       <% end %> 
-                    <% end %>
-                  </div>
+                  <% end %>
                 </div>
               </div>
+            </div>
           </div>
           <div class="row">
             <div class="form-group"></div>
-
           </div>
         </div>
         <div class="modal-footer" style="background-color: #184a5f">
@@ -399,48 +326,44 @@
       </div>
     </div>
   </div>
-
 </div>
 
-
-
-
 <script>
-  $(document).ready(function(){
-    $('.apply_more_trade').click(function(){
-      $('#apply_more_trade').modal('show');
+    $(document).ready(function(){
+        $('.apply_more_trade').click(function(){
+            $('#apply_more_trade').modal('show');
+        });
+
+        $('.quotes').click(function(){
+            var tender_id = $('.tender_id').val();
+            var sc_id = $('.sc_id').val();
+
+            var ids = []
+            $('.trade_class').each(function(){
+                if($(this).is(':checked')){
+                    ids.push($(this).val());
+                }
+            });
+            console.log(ids)
+            $.ajax({
+                method: "POST",
+                data: {tender_id:tender_id,sc_id:sc_id,ids:ids,tender_detail:true},
+                url: "/tenders/request_to_quote"
+            }).done(function (data) {
+                $('#apply_more_trade').modal('hide');
+                $('.trade_div').html(data);
+            });
+        });
+
+        $('.close_tender').mouseenter(function() {
+            $(this).attr("disabled", true);
+            $(this).text('Feature is coming soon.');
+        });
+
+        $('.close_tender').mouseleave(function() {
+            $(this).attr("disabled", true);
+            $(this).text('Close Tender');
+        });
+
     });
-
-    $('.quotes').click(function(){
-      var tender_id = $('.tender_id').val();
-      var sc_id = $('.sc_id').val();
-
-      var ids = []
-      $('.trade_class').each(function(){
-        if($(this).is(':checked')){
-          ids.push($(this).val());
-        }
-      });
-      console.log(ids)
-      $.ajax({
-        method: "POST",
-        data: {tender_id:tender_id,sc_id:sc_id,ids:ids,tender_detail:true},
-        url: "/tenders/request_to_quote"
-      }).done(function (data) {
-        $('#apply_more_trade').modal('hide');
-        $('.trade_div').html(data);
-      });
-    });
-
-    $('.close_tender').mouseenter(function() {
-      $(this).attr("disabled", true);
-      $(this).text('Feature is coming soon.');
-    });
-
-    $('.close_tender').mouseleave(function() {
-      $(this).attr("disabled", true);
-      $(this).text('Close Tender');
-    });
-
-  });
 </script>

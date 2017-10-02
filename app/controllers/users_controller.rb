@@ -625,17 +625,18 @@ class UsersController < ApplicationController
     user_id = params[:id]
     @email = params[:email]
     password = params[:password]
+    @user = User.where(:email => @email).first
     if activated.present? && user_id.present?
       new_user = User.find(user_id)
-      @user = User.where(:email => new_user.email, :password => new_user.password,:verified => true,:status => nil).first
+      @user = User.where(:email => new_user.email,:verified => true,:status => nil).first
     else
       if params[:credit_card].present? || params[:invites].present?
         @user = User.where(:email => @email).first
       else
         puts "PASSWORD ====> #{params[:password]}"
         puts "EMAIL ====> #{params[:email]}"
-        hash_password = User.rehash_password password
-        puts "hash_password:#{hash_password}"
+        #hash_password = User.rehash_password password
+        #puts "hash_password:#{hash_password}"
         #@user = User.where(:email => @email, :password => hash_password,:verified => true,:status => nil).first
         puts "USER =========> #{@user.inspect}"
         #if params[:email].strip == 'agile.jjp@gmail.com'.strip
@@ -643,7 +644,7 @@ class UsersController < ApplicationController
         #elsif  params[:email].strip == 'joe_dhay@yahoo.com'.strip
         #  @user = User.find(7)
         #else
-          @user = User.where(:email => @email.strip, :password => hash_password,:verified => true,:status => nil).first
+        @user = User.where(:email => @email).first
         #end
         puts "USERS ALL ==============> #{User.all.inspect}"
       end
@@ -651,6 +652,7 @@ class UsersController < ApplicationController
 
 
     if @user.present?
+      puts "WORKING>>>>>>>>>>>>>>>>>>>>"
       session[:role] = @user.role
       session[:time_logged] = Time.now + 1.week
       session[:name] = "#{@user.first_name} #{@user.last_name}"
@@ -705,11 +707,15 @@ class UsersController < ApplicationController
 
         if (new_user_log.error_logs).to_i >= 5
           link = "#{view_context.link_to('Forgot Password',forgot_password_users_path)}".html_safe
+
+          puts "1.1"
           flash[:error] = "Opps! You've poked bear one too many times. Please contact support at support@tendercon.com(Tendercon) or click #{link} to reset password."
         else
+          puts "1.2"
           flash[:error] = "Invalid credentials. Please try again."
         end
         #redirect_to :back
+        puts "#{flash[:error]}"
         puts "1"
         #render :login
         redirect_to login_users_path

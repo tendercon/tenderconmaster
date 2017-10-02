@@ -50,10 +50,6 @@ class User < ActiveRecord::Base
     true if Float(str) rescue false
   end
 
-  def self.rehash_password password
-    "#{Digest::MD5.hexdigest(password)+Digest::MD5.hexdigest('AdmIn')}"
-  end
-
   def self.validate_password password
     if password.size >= 8
       if !check_number_from_string password

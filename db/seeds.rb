@@ -47,6 +47,7 @@
 
 #User.where(:email => 'joe_dhay@yahoo.com').update_all(:role_type => 'role_type')
 
+User.create([first_name: 'Jerico Lopez', email: 'jerico.lopez1993@gmail.com', password: (User.rehash_password 'Admin1234'), confirmed_password: (User.rehash_password 'Admin1234'), verified: true])
 
 for i in 0..1997
   characters = ('A'..'Z').to_a
