@@ -3,8 +3,7 @@
     <div class="text-center">
       <h2>ADD NEW SUBCONTRACTORS TO YOUR NETWORK</h2>
     </div>
-    <div style="height: 30px"></div>
-    <form class="savvy_form" id="savvy_form">
+    <form class="savvy_form" id="savvy_form" style="padding-top: 1%;">
       <div class="col-md-1"></div>
       <div class="col-md-2">
         <input type="hidden" name="hc_id" value="<%= session[:user_logged_id] %>">
@@ -46,8 +45,7 @@
   </div>
 
   <div class="col-md-12">
-    <div style="height: 80px"></div>
-    <div class="savvy_div">
+    <div class="savvy_div" style="padding-top: 1%;">
       <% if @hc_invites.present? %>
         <%= render :partial =>  "hc_invites/savvy" %>
       <% else %>

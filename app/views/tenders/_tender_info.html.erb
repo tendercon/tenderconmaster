@@ -1,9 +1,10 @@
-<div class="row" style="padding-top: 2%;">
-  <div class="portlet-body form">
-    <div class="form-body">
-      <div class="row">
-        <div class="col-md-12">
-          <% if session[:role] == 'Sub Contractor' %>
+
+<% if session[:role] == 'Sub Contractor' %>
+    <div class="row">
+      <div class="portlet-body form">
+        <div class="form-body">
+          <div class="row">
+            <div class="col-md-12">
               <div class="trade_div">
                 <table  class="table table-bordered">
                   <tr style="background-color: #2C3E50;color: white;">
@@ -107,12 +108,13 @@
                   </tbody>
                 </table>
               </div>
-          <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
+
+<% end %>
 
 
 <div class="row">
