@@ -14,10 +14,14 @@
             </a>
         <% end %>
         <a href="<%= @pdf_link %>" class="download" download>
-          <button class="btn btn-primary">Download</button>
+          <button class="btn btn-primary">
+            <i class="fa fa-download" aria-hidden="true"></i> Download
+          </button>
         </a>
         <a href="<%= @pdf_link %>" class="download" target="_blank">
-          <button class="btn btn-primary">View as PDF</button>
+          <button class="btn btn-primary">
+            <i class="fa fa-eye" aria-hidden="true"></i> View as PDF
+          </button>
         </a>
         <% if session[:role] == 'Sub Contractor' %>
             <a href="<%= update_quote_quotes_path(:quote_id => @quote.id) %>">

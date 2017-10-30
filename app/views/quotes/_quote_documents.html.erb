@@ -15,7 +15,9 @@
         <td class="text-center"><%= d.document_file_name %></td>
         <td class="text-center">
           <a href="<%= root_path <<  "assets/quotes/#{d.id}/original/"+ d.document_file_name%>" target="_blank">
-            <button class="btn btn-default">View</button>
+            <button class="btn btn-default">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+            </button>
           </a>
           <a href="<%= "http://"+request.host_with_port   <<  "/assets/quotes/#{d.id}/original/"+ d.document_file_name%>" download>
             <button class="btn btn-default"><i class="fa fa-download" aria-hidden="true"></i></button>

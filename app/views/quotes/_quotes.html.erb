@@ -137,7 +137,7 @@
               <td class="text-center">
                 <a href="#!<%#= view_quotes_path(:ref_no => d,:tender_id => tender_id) %>" data-toggle="modal" data-target="#quote<%=  d.id %>">
                   <button class="btn btn-default view" id="<%= d.id %>">
-                    View
+                    <i class="fa fa-eye" aria-hidden="true"></i>
                   </button>
                 </a>
                 <%# if session[:role] == 'Sub Contractor' %>

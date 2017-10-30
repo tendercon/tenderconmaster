@@ -49,7 +49,9 @@
               <td class="text-center"><%=  t.subject %></td>
               <td class="text-center"><%=  t.created_at.strftime("%d.%m.%Y %H:%M %p") %></td>
               <td class="text-center">
-                <button class="btn btn-default view_addenda" id="<%= t.id %>">View</button>
+                <button class="btn btn-default view_addenda" id="<%= t.id %>">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </button>
               </td>
             </tr>
         <% end %>
@@ -112,7 +114,9 @@
                           </div>
                           <div class="col-md-6">
                             <a href="#!" class="download" id="<%= a.id %>">
-                              <button class="btn btn-default">download all files in zip</button>
+                              <button class="btn btn-default">
+                                <i class="fa fa-download" aria-hidden="true"></i> download all files in zip
+                              </button>
                             </a>
 
                               <a href="#!" download class="d_load"></a>

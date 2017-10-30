@@ -15,10 +15,14 @@
                 <div class="col-md-10">
                   <div class="form-group"></div>
                   <a href="<%= zendesk_index_path(:id => @user.id) %>" class="text-center new-account">
-                    <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Learn More</button>
+                    <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">
+                      <i class="fa fa-info-circle" aria-hidden="true"></i> Learn More
+                    </button>
                   </a>
                   <a href="<%= update_user_div_users_path(:id => @user.id) %>" class="text-center new-account">
-                    <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">Don't shw this again.</button>
+                    <button class="btn btn-lg btn-default btn-sm profile_header_btn" type="button">
+                      <i class="fa fa-eye-slash" aria-hidden="true"></i> Don't shw this again.
+                    </button>
                   </a>
                 </div>
               </div>
@@ -266,7 +270,9 @@
     <div class="col-md-16 input-group">
       <input id="chat-input" class="form-control" type="text" placeholder="say anything" autofocus/>
       <span class="input-group-btn">
-        <button class="btn btn-default send" type="button">Send</button>
+        <button class="btn btn-default send" type="button">
+          <i class="fa fa-paper-plane" aria-hidden="true"></i> Send
+        </button>
       </span>
     </div>
   </div>

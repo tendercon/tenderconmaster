@@ -68,7 +68,7 @@
                   </td>
                 <% end %>
                 <td class="text-center">
-                  <%= t.tendercon_id %>
+                  <i><%= t.tendercon_id %></i>
                 </td>
                 <% if session[:role] == 'Admin' %>
                     <th><%= get_user_trade_name t.user_id %></th>
@@ -102,7 +102,7 @@
                   <% if session[:role] == 'Head Contractor' %>
                     <a href="<%= hc_tender_tenders_path(:id => t.id) %>" >
                       <button class="btn btn-success" type="button">
-                        View
+                        <i class="fa fa-eye" aria-hidden="true"></i>
                       </button>
                     </a>
                   <% elsif session[:role] == 'Sub Contractor' %>
@@ -120,7 +120,7 @@
                   <% else %>
                     <a href="<%= invites_tenders_path(:id => t.id) %>" >
                       <button class="btn btn-default" type="button">
-                        View
+                        <i class="fa fa-eye" aria-hidden="true"></i>
                       </button>
                     </a>
                   <% end %>

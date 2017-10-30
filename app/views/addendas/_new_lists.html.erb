@@ -73,7 +73,9 @@
               <td class="text-center"><%=  t.subject %></td>
               <td class="text-center"><%=  t.created_at.strftime("%d.%m.%Y %H:%M %p") %></td>
               <td class="text-center">
-                <button class="btn btn-default view_addenda" id="<%= t.id %>">View</button>
+                <button class="btn btn-default view_addenda" id="<%= t.id %>">
+                  <i class="fa fa-eye" aria-hidden="true"></i>
+                </button>
               </td>
             </tr>
 
