@@ -81,7 +81,7 @@
     <div class="form-group">
       <div class="fileinput fileinput-new" data-provides="fileinput">
         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-          <% if @user.avatar.present? %>
+          <% if @user.avatar.present? && !@user.avatar.image.path(:original).nil? %>
               <% if File.exist?(@user.avatar.image.path(:original)) %>
                   <img src="<%= @user.avatar.image.url(:original) %>" class="img-responsive user_avatar" alt="" style="width: 180px !important; height: 170px !important;">
               <% else %>
